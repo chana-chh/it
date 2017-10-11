@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Modeli;
+
+use Illuminate\Database\Eloquent\Model;
+
+class MrezniUredjaj extends Model
+{
+    protected $table = 'aktivna_mrezna_oprema';
+    public $timestamps = false;
+
+    public function proizvodjac()
+    {
+        return $this->belongsTo('App\Modeli\Proizvodjac', 'proizvodjac_id', 'id');
+    }
+
+    public function kancelarija()
+    {
+        return $this->belongsTo('App\Modeli\Kancelarija', 'kancelarija_id', 'id');
+    }
+
+    public function stavkaOtpremnice()
+    {
+        return $this->belongsTo('App\Modeli\OtpremnicaStavka', 'stavka_otpremnice_id', 'id');
+    }
+
+    public function nabavka()
+    {
+        return $this->belongsTo('App\Modeli\Nabavka', 'nabavka_id', 'id');
+    }
+}

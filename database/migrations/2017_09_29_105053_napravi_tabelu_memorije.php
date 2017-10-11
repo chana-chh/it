@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class NapraviTabeluMemorije extends Migration
+{
+    public function up()
+    {
+        Schema::create('memorije', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('serijski_broj', 50)->nullable();
+            $table->integer('memorija_model_id')->unsigned();
+            $table->integer('racunar_id')->unsigned()->nullable();
+            $table->text('napomena')->nullable();
+            $table->integer('stavka_otpremnice_id')->unsigned()->nullable();
+			$table->softDeletes();
+            $table->boolean('reciklirano')->default(false);
+			
+            $table->foreign('stavka_otpremnice_id')->references('id')->on('otpremnice_stavke')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('racunar_id')->references('id')->on('racunari')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('memorija_model_id')->references('id')->on('memorije_modeli')->onUpdate('cascade')->onDelete('restrict');
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropForeign(['racunar_id', 'memorija_model_id', 'stavka_otpremnice_id']);
+        Schema::dropIfExists('memorije');
+    }
+}
