@@ -21,3 +21,6 @@ Ocene od 1 do 4 za modele Cpu, Mem, Hdd, Ploca, a za racunar zbir. Ako je ocena 
 Dodati kombinovan kljuc za spratove
 
 dijagonala da ima jednu decimalu
+
+
+bre
