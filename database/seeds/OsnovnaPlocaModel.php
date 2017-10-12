@@ -15,6 +15,7 @@ class OsnovnaPlocaModel extends Seeder
             'soket_id' => 2,
             'usb_tri' => 1,
             'integrisana_grafika' => 1,
+            'ocena' => 3,
             'link' => 'https://www.asus.com/rs/Motherboards/H110M-C/',
             'napomena' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         ]);
@@ -26,6 +27,7 @@ class OsnovnaPlocaModel extends Seeder
             'soket_id' => 2,
             'usb_tri' => 1,
             'integrisana_grafika' => 1,
+            'ocena' => 3,
             'link' => 'https://www.asus.com/rs/Motherboards/H110M-C/',
             'napomena' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         ]);
@@ -37,6 +39,7 @@ class OsnovnaPlocaModel extends Seeder
             'soket_id' => 2,
             'usb_tri' => 1,
             'integrisana_grafika' => 1,
+            'ocena' => 3,
             'link' => 'https://www.asus.com/rs/Motherboards/H110M-C/',
             'napomena' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         ]);
