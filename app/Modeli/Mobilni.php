@@ -9,7 +9,7 @@ class Mobilni extends Model
     protected $table = 'mobilni';
     public $timestamps = false;
 
-    public function mobilni()
+    public function zapolseni()
     {
     	return $this->belongsTo('App\Modeli\Zaposleni', 'zaposleni_id', 'id');
     }
