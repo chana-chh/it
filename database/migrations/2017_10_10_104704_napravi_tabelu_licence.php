@@ -13,10 +13,11 @@ class NapraviTabeluLicence extends Migration
             $table->increments('id');
             $table->string('tip_licence', 50);
             $table->string('proizvod', 50);
-            $table->string('kljuc', 50)->nullable();
-            $table->integer('broj_necega')->unsigned()->nullable();
+            $table->string('kljuc')->nullable();
+            $table->integer('broj_aktivacija')->unsigned()->nullable();
             $table->date('datum_pocetka_vazenja');
             $table->date('datum_prestanka_vazenja');
+            $table->text('napomena');
         });
     }
 

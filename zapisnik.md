@@ -23,3 +23,4 @@ Dodati kombinovan kljuc za spratove
 dijagonala da ima jednu decimalu
 
 Fizicko brisanje slike i dodavanje imena zapolsenog zbog lakseg snalazenja u folderu. Nas admina.
+

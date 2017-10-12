@@ -15,6 +15,7 @@ class ProcesoriModeli extends Seeder
             'kes' => 3,
             'broj_jezgara' => 2,
             'broj_niti' => 2,
+            'ocena' => 4,
             'link' => 'https://ark.intel.com/products/88179/Intel-Pentium-Processor-G4400-3M-Cache-3_30-GHz',
             'napomena' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         ]);
@@ -26,6 +27,7 @@ class ProcesoriModeli extends Seeder
             'kes' => 3,
             'broj_jezgara' => 2,
             'broj_niti' => 2,
+            'ocena' => 3,
             'link' => 'https://ark.intel.com/products/87356/Intel-Pentium-Processor-G3260-3M-Cache-3_30-GHz',
             'napomena' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         ]);

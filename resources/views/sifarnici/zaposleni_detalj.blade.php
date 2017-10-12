@@ -21,7 +21,7 @@
         <tbody>
             <tr>
                 <th style="width: 20%;">Uprava:</th>
-                <td style="width: 80%;">{{ $zaposleni->uprava->naziv }}</td>
+                <td style="width: 80%;">{{$zaposleni->uprava->naziv}}</td>
             </tr>
             <tr>
                 <th style="width: 20%;">Kancelarija:</th>
@@ -53,28 +53,39 @@
         <h3>Brojevi mobilnog telefona:</h3>
         <hr style="border-top: 1px solid #18BC9C">
         <table class="table table-striped table-responsive">
-            <tbody>
-                @foreach ($zaposleni->mobilni as $mobilni)
+            
+                @if ($zaposleni->mobilnit)
+                
+                <tbody>
+                @foreach ($zaposleni->mobilni as $mobilni_telefon)
                     <tr>
-                        <td style="width: 10%;"><span title="Ako je ovde S ondak je to sluzbeni">{{ $mobilni->sluzbeni }}</span></td>
-                        <td style="width: 35%;"><strong class="text-info">{{ $mobilni->broj }}</strong></td>
-                        <td style="width: 40%;"><em>{{ $mobilni->napomena }}</em></td>
+                        <td style="width: 10%;"><span title="Ako je ovde S ondak je to sluzbeni">{{ $mobilni_telefon->sluzbeni }}</span></td>
+                        <td style="width: 35%;"><strong class="text-info">{{ $mobilni_telefon->broj }}</strong></td>
+                        <td style="width: 40%;"><em>{{ $mobilni_telefon->napomena }}</em></td>
                         <td style="width: 15%;">
                             <button
                                 class="btn btn-success btn-xs" id="dugmeMobilniIzmeni"
-                                data-toggle="modal" data-target="#izmeniMobilniModal" value="{{$mobilni->id}}">
+                                data-toggle="modal" data-target="#izmeniMobilniModal" value="{{$mobilni_telefon->id}}">
                                     <i class="fa fa-pencil"></i>
                             </button>
                             <button
                                 class="btn btn-danger btn-xs" id="dugmeMobilniBrisanje"
-                                value="{{$mobilni->id}}">
+                                value="{{$mobilni_telefon->id}}">
                                     <i class="fa fa-trash"></i>
                             </button>
                         </td>
                     </tr>
                 @endforeach
-            </tbody>
+
+                @else
+                   <tr>
+                        <td>Nema</td>
+                    </tr>
+                @endif
+                </tbody>
+                
         </table>
+
         <hr style="border-top: 1px solid #18BC9C">
         <button
             class="btn btn-success btn-sm" id="dugmeDodajMobilni"
@@ -199,7 +210,7 @@
                         </div>
 
                         <input type="hidden" id="zaposleni_id" name="zaposleni_id" value="{{ $zaposleni->id }}">
-                        <input type="hidden" id="mobilni_id" name="mobilni_id" value="{{ $mobilni->id }}">
+                        <input type="hidden" id="mobilni_id" name="mobilni_id" value="{{ isset($mobilni_telefon) ?  $mobilni_telefon->id : ' '}}">
                     </form>
                 </div>
                 <div class="modal-footer">

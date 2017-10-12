@@ -21,6 +21,7 @@ class Racunari extends Seeder
             'link' => 'https://google.com',
             'deleted_at' => null,
             'reciklirano' => 0,
+            'ocena' => 0,
             'napomena' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         ]);
         DB::table('racunari')->insert([
@@ -38,6 +39,7 @@ class Racunari extends Seeder
             'link' => 'https://google.com',
             'deleted_at' => null,
             'reciklirano' => 0,
+            'ocena' => 0,
             'napomena' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         ]);
         DB::table('racunari')->insert([
@@ -55,6 +57,7 @@ class Racunari extends Seeder
             'link' => 'https://google.com',
             'deleted_at' => null,
             'reciklirano' => 0,
+            'ocena' => 0,
             'napomena' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         ]);
     }
