@@ -33,6 +33,7 @@
                 </span>
                 </td>
             </tr>
+            @if (count($zaposleni->racunar)>0)
              <tr>
                 <th style="width: 20%;">Računar:</th>
                 <td style="width: 80%;">
@@ -41,6 +42,14 @@
                     @endforeach
                 </td>
             </tr>
+            @else
+            <tr>
+                <th style="width: 20%;">Računar:</th>
+                <td style="width: 80%;">
+                   Zaposleni trenutno ne koristi nijednu radnu stanicu
+                </td>
+            </tr>
+            @endif
         </tbody>
     </table>
 </div>
@@ -54,12 +63,12 @@
         <hr style="border-top: 1px solid #18BC9C">
         <table class="table table-striped table-responsive">
             
-                @if ($zaposleni->mobilnit)
+                @if (count($zaposleni->mobilni)>0)
                 
                 <tbody>
                 @foreach ($zaposleni->mobilni as $mobilni_telefon)
                     <tr>
-                        <td style="width: 10%;"><span title="Ako je ovde S ondak je to sluzbeni">{{ $mobilni_telefon->sluzbeni }}</span></td>
+                        <td style="width: 10%;"><span title="Radi se o službenom telefonu"><b>{{ $mobilni_telefon->sluzbeni == 1 ? "s" : "" }}</b></span></td>
                         <td style="width: 35%;"><strong class="text-info">{{ $mobilni_telefon->broj }}</strong></td>
                         <td style="width: 40%;"><em>{{ $mobilni_telefon->napomena }}</em></td>
                         <td style="width: 15%;">
@@ -79,7 +88,7 @@
 
                 @else
                    <tr>
-                        <td>Nema</td>
+                        <td>Nema podataka o brojevima mobilnog telefona</td>
                     </tr>
                 @endif
                 </tbody>
@@ -234,6 +243,9 @@
         <hr style="border-top: 1px solid #18BC9C">
         <table class="table table-striped table-responsive">
             <tbody>
+
+                @if(count($zaposleni->emailovi)>0)
+
                 @foreach ($zaposleni->emailovi as $email)
                     <tr>
                         <td style="width: 10%;">{{ $email->sluzbena }}</td>
@@ -252,7 +264,13 @@
                             </button>
                         </td>
                     </tr>
-                @endforeach
+                    @endforeach
+                    @else
+                        <tr>
+                            <td>Nema podataka o e-mail adresi</td>
+                        </tr>
+                    @endif
+                
             </tbody>
         </table>
         <hr style="border-top: 1px solid #18BC9C">
@@ -273,7 +291,11 @@
     <h3 class="panel-title">Fotografija zaposlenog:</h3>
   </div>
   <div class="panel-body">
+    @if (!empty($zaposleni->src))
         <img id="{{ $zaposleni->id }}" data-toggle="modal" data-target="#slikaModal" src="{{asset('images/slike_zaposlenih/'.$zaposleni->src)}}" class="img-thumbnail center-block" style="height:150px; margin-top: 10px;" alt="Slika zaposlenog">
+    @else
+    Fotografija zaposlenog nije dostupna
+    @endif
   </div>
 </div>
 

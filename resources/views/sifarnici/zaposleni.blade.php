@@ -9,7 +9,7 @@
 @section('naslov')
     <div class="row">
         <div class="col-md-10">
-            <h1>Zaposleni&emsp;<span><img alt="korisnici" src="{{url('/images/korisnik.png')}}" style="height:80px;  width:80px"></span></h1>
+            <h1><span><img alt="korisnici" src="{{url('/images/korisnik.png')}}" style="height:64px;"></span>&emsp;Zaposleni</h1>
         </div>
 
          <div class="col-md-2 text-right" style="padding-top: 50px;">
@@ -58,7 +58,8 @@
                                 </ul>
                             </td>
                             <td style="text-align:center; vertical-align: middle; line-height: normal;">
-                    <a class="btn btn-success btn-sm" id="dugmeDetalj"  href="{{ route('zaposleni.detalj', $zaposleni->id) }}"><i class="fa fa-info-circle"></i></a>
+                    <a class="btn btn-success btn-sm" id="dugmeDetalj"  href="{{ route('zaposleni.detalj', $zaposleni->id) }}"><i class="fa fa-eye"></i></a>
+                    <a class="btn btn-info btn-sm" id="dugmeIzmena"  href=""><i class="fa fa-pencil"></i></a>
                     <button id="dugmeBrisanje" class="btn btn-danger btn-sm otvori_modal"  value="{{$zaposleni->id}}"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>

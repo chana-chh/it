@@ -14,7 +14,7 @@ class NapraviTabeluZaposleni extends Migration
             $table->string('ime', 50);
             $table->integer('kancelarija_id')->unsigned();
             $table->integer('uprava_id')->unsigned();
-            $table->string('src');
+            $table->string('src')->nullable();
             $table->text('napomena')->nullable();
 
             $table->foreign('uprava_id')->references('id')->on('s_uprave')->onUpdate('cascade')->onDelete('restrict');
