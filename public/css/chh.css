@@ -388,3 +388,32 @@ textarea {
     list-style-type: none;
     margin: 0;
 }
+
+.ono{
+    display: inline-block;
+  text-transform: uppercase;
+  border-radius: 5px;
+  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: all ease-in-out 300ms;
+}
+.ono:hover{
+    box-shadow: 0px 37px 20px -20px rgba(0,0,0,0.2);
+    transform: translate(0px, -10px) scale(1.2);
+}
+
+
+.slicica_animirana{
+
+    animation: slicica 800ms ease-in-out forwards;
+    transform-origin: center 60px;
+}
+        
+@keyframes slicica {
+    0%   {opacity: 0;
+            transform: scale(0.1) rotate(30deg) translateY(50px) rotateX(90deg);}
+    50%  {transform: rotate(-10deg) rotateX(-2deg);
+            opacity: 1;}
+    70%  {transform: rotate(3deg);}
+    100% {transform: scale(1);}
+}

@@ -9,11 +9,11 @@
 @section('naslov')
     <div class="row">
         <div class="col-md-10">
-            <h1><span><img alt="korisnici" src="{{url('/images/korisnik.png')}}" style="height:64px;"></span>&emsp;Zaposleni</h1>
+            <h1><span><img class="slicica_animirana" alt="korisnici" src="{{url('/images/korisnik.png')}}" style="height:64px;"></span>&emsp;Zaposleni</h1>
         </div>
 
          <div class="col-md-2 text-right" style="padding-top: 50px;">
-            <a class="btn btn-primary" href="{{ route('zaposleni.dodavanje.get') }}"><i class="fa fa-plus-circle fa-fw"></i> Dodaj zaposlenog</a>
+            <a class="btn btn-primary ono" href="{{ route('zaposleni.dodavanje.get') }}"><i class="fa fa-plus-circle fa-fw"></i> Dodaj zaposlenog</a>
         </div>
         </div>
         <hr>

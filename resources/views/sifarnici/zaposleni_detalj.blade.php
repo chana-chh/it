@@ -135,7 +135,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group{{ $errors->has('mobilni_dodavanje_napomena') ? ' has-error' : '' }}">
-                                    <label for="mobilni_dodavanje_napomena">Напомена</label>
+                                    <label for="mobilni_dodavanje_napomena">Napomena:</label>
                                     <textarea name="mobilni_dodavanje_napomena" id="mobilni_dodavanje_napomena" class="form-control">{{old('mobilni_dodavanje_napomena') }}</textarea>
                                     @if ($errors->has('mobilni_dodavanje_napomena'))
                                         <span class="help-block">
@@ -178,7 +178,7 @@
                     <button type="button" class="btn btn-warning" id="dugmeModalObrisiMobilniBrisi">
                         <i class="fa fa-trash"></i> Obriši
                     </button>
-                    <button type="button" class="btn btn-danger" id="dugmeModalObrisiMobilniOtazi">
+                    <button type="button" class="btn btn-danger" id="dugmeModalObrisiMobilniOtkazi">
                         <i class="fa fa-ban"></i> Otkaži
                     </button>
                 </div>
@@ -212,7 +212,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="mobilni_izmena_napomena">Напомена:</label>
+                                    <label for="mobilni_izmena_napomena">Napomena:</label>
                                     <textarea class="form-control" id="mobilni_izmena_napomena" name="mobilni_izmena_napomena"></textarea>
                                 </div>
                             </div>
@@ -248,7 +248,8 @@
 
                 @foreach ($zaposleni->emailovi as $email)
                     <tr>
-                        <td style="width: 10%;">{{ $email->sluzbena }}</td>
+                        
+                        <td style="width: 10%;"><span title="Radi se o službenoj elektronskoj adresi"><b>{{ $email->sluzbena == 1 ? "s" : "" }}</b></span></td>
                         <td style="width: 35%;"><strong class="text-info"><a href="mailto:{{$email->adresa }}">{{$email->adresa }}</a></strong></td>
                         <td style="width: 40%;"><em>{{ str_limit($email->napomena, 60) }}</em></td>
                         <td style="width: 15%;">
@@ -280,6 +281,138 @@
                 <i class="fa fa-plus-circle"></i> Dodaj e-mail adresu
         </button>
     </div>
+
+    {{--  pocetak modal_emailovi_dodavanje  --}}
+    <div class="modal fade" id="dodajEmailModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-success">Dodavanje elektronske adrese</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('zaposleni.email.dodavanje.post') }}" method="POST" id="frmEmailDodavanje" data-parsley-validate>
+                        {{ csrf_field() }}
+                        <div class="row">
+                            <div class="col-md-8">
+                                  <div class="form-group{{ $errors->has('email_dodavanje_adresa') ? ' has-error' : '' }}">
+                                    <label for="email_dodavanje_adresa">Adresa:</label>
+                                    <input type="email" name="email_dodavanje_adresa" id="email_dodavanje_adresa" class="form-control"
+                                    value="{{ old('email_dodavanje_adresa') }}" required>
+                                    @if ($errors->has('email_dodavanje_adresa'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email_dodavanje_adresa') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-4 form-group checkboxoviforme">
+                                        <label><input type="checkbox" name="email_dodavanje_sluzbeni" id="email_dodavanje_sluzbeni"> &emsp;Da li je elektronska adresa službena?</label>
+                            </div>
+                        </div>
+                        <hr style="border-top: 2px solid #18BC9C">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group{{ $errors->has('email_dodavanje_napomena') ? ' has-error' : '' }}">
+                                    <label for="email_dodavanje_napomena">Napomena:</label>
+                                    <textarea name="email_dodavanje_napomena" id="email_dodavanje_napomena" class="form-control">{{old('email_dodavanje_napomena') }}</textarea>
+                                    @if ($errors->has('email_dodavanje_napomena'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email_dodavanje_napomena') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="zaposleni_id" name="zaposleni_id" value="{{ $zaposleni->id }}">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="dugmeModalDodajEmail">
+                        <i class="fa fa-floppy-o"></i> Snimi
+                    </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-ban"></i> Otkaži
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{--  kraj modal_email_dodavanje  --}}
+
+    {{--  pocetak modal_email_brisanje  --}}
+    <div class="modal fade" id="brisanjeEmailModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title text-danger">Brisanje elektronske adrese</h3>
+                </div>
+                <div class="modal-body">
+                    <h3>Da li želite trajno da obrišete elektronsku adresu?</h3>
+                    <h4 id="brisanje_email_poruka"></h4>
+                    <p class="text-danger">Ova akcija je nepovratna!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" id="dugmeModalObrisiEmailBrisi">
+                        <i class="fa fa-trash"></i> Obriši
+                    </button>
+                    <button type="button" class="btn btn-danger" id="dugmeModalObrisiEmailOtkazi">
+                        <i class="fa fa-ban"></i> Otkaži
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{--  kraj modal_email_brisanje  --}}
+
+    {{--  pocetak modal_email_izmena  --}}
+    <div class="modal fade" id="izmeniEmailModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-warning">Izmena elektronske adrese</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('email.zaposleni.izmena') }}" method="POST" id="frmEmailIzmena" data-parsley-validate>
+                        {{ csrf_field() }}
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="email_izmena_adresa">Adresa:</label>
+                                    <input type="email" class="form-control" id="email_izmena_adresa" name="email_izmena_adresa" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4 form-group checkboxoviforme">
+                                        <label><input type="checkbox" name="email_izmena_sluzbeni" id="email_izmena_sluzbeni"> &emsp;Da li je elektonska adresa službena?</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="email_izmena_napomena">Napomena:</label>
+                                    <textarea class="form-control" id="email_izmena_napomena" name="email_izmena_napomena"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="zaposleni_id" name="zaposleni_id" value="{{ $zaposleni->id }}">
+                        <input type="hidden" id="email_id" name="email_id" value="{{ isset($email) ?  $email->id : ' '}}">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="dugmeModalIzmeniEmail">
+                        <i class="fa fa-floppy-o"></i> Snimi
+                    </button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">
+                        <i class="fa fa-ban"></i> Otkaži
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{--  kraj modal_email_izmena  --}}
     {{--  KRAJ EMAILOVI  --}}
 
 </div> {{-- Kraj reda sa well-om --}}
@@ -320,6 +453,8 @@ $( document ).ready(function() {
 
     var mobilni_brisanje_ruta = "{{ route('mobilni.zaposleni.brisanje') }}";
     var mobilni_detalj_ruta = "{{ route('mobilni.zaposleni.detalj') }}";
+    var email_brisanje_ruta = "{{ route('email.zaposleni.brisanje') }}";
+    var email_detalj_ruta = "{{ route('email.zaposleni.detalj') }}";
 
     $('#slikaModal').on('show.bs.modal', function (e) {
             var image = $(e.relatedTarget).attr('src');
@@ -352,7 +487,7 @@ $( document ).ready(function() {
 
                 });
 
-                $('#dugmeModalObrisiMobilniOtazi').on('click', function() {
+                $('#dugmeModalObrisiMobilniOtkazi').on('click', function() {
                     $('#brisanjeMobilniModal').modal('hide');
                 });
             });
@@ -373,6 +508,58 @@ $( document ).ready(function() {
                         $("#mobilni_izmena_broj").val(result.broj);
                         $("#mobilni_izmena_sluzbeni").prop('checked', result.sluzbeni);
                         $("#mobilni_izmena_napomena").val(result.napomena);
+                    }
+                });
+            });
+
+
+    // Modal email dodavanje
+    $("#dugmeModalDodajEmail").on('click', function() {
+            $('#frmEmailDodavanje').submit();
+    });
+
+    // Modal email brisanje
+            $(document).on('click', '#dugmeEmailBrisanje', function() {
+                var id_brisanje = $(this).val();
+
+                $('#brisanjeEmailModal').modal('show');
+
+                $('#dugmeModalObrisiEmailBrisi').on('click', function() {
+
+                    $.ajax({
+                        url: email_brisanje_ruta,
+                        type:"POST",
+                        data: {"id": id_brisanje, _token: "{!! csrf_token() !!}"},
+                        success: function() {
+                            location.reload();
+                        }
+                    });
+
+                    $('#brisanjeEmailModal').modal('hide');
+
+                });
+
+                $('#dugmeModalObrisiEmailOtkazi').on('click', function() {
+                    $('#brisanjeEmailModal').modal('hide');
+                });
+            });
+
+            // Modal uprave izmene
+            $("#dugmeModalIzmeniEmail").on('click', function() {
+                $('#frmEmailIzmena').submit();
+            });
+
+            $(document).on('click','#dugmeEmailIzmeni', function() {
+                var id_menjanje = $(this).val();
+
+                $.ajax({
+                    url: email_detalj_ruta,
+                    type:"POST",
+                    data: {"id": id_menjanje, _token: "{!! csrf_token() !!}"},
+                    success: function(result) {
+                        $("#email_izmena_adresa").val(result.adresa);
+                        $("#email_izmena_sluzbeni").prop('checked', result.sluzbeni);
+                        $("#email_izmena_napomena").val(result.napomena);
                     }
                 });
             });

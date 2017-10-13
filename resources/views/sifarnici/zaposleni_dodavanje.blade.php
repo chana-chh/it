@@ -8,7 +8,7 @@
 
 @section('naslov')
 
-            <h1 class="page-header">Dodavanje novog zaposlenog&emsp;<span><img alt="korisnici" src="{{url('/images/korisnik.png')}}" style="height:80px;  width:80px"></span></h1>
+            <h1 class="page-header"><span><img class="slicica_animirana" alt="korisnici" src="{{url('/images/korisnik_add.png')}}" style="height:64px;"></span>&emsp;Dodavanje zaposlenog</h1>
 
         <form action="{{ route('zaposleni.dodavanje.post') }}" method="POST" enctype="multipart/form-data" data-parsley-validate>
         {{ csrf_field() }}
@@ -96,8 +96,8 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <label for="slika" class="btn btn-default btn-block">Odaberi fotografiju zaposlenog&emsp;<i class="fa fa-upload" aria-hidden="true"></i></label>
+            <div class="col-md-6 text-right">
+                <label for="slika" class="btn btn-default ono">Odaberi fotografiju zaposlenog&emsp;<i class="fa fa-upload" aria-hidden="true"></i></label>
                 <input type="file" style="display:none" name="slika" id="slika" />
             </div>
         </div>

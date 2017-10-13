@@ -39,7 +39,7 @@ class ZaposleniKontroler extends Kontroler
             ]);
 
         $img = $req->slika;
-        $ime_slike = time().'.'.$req->slika->getClientOriginalExtension();
+        $ime_slike = $req->ime.time().'.'.$req->slika->getClientOriginalExtension();
         $lokacija = public_path('images/slike_zaposlenih/'.$ime_slike);
         $resize_img = Image::make($img)->heighten(300, function ($constraint) {
             $constraint->upsize();

@@ -7,7 +7,7 @@
 @endsection
 
 @section('naslov')
-    <h1 class="page-header">Proizvođači&emsp;<span><img alt="proizvodjaci" src="{{url('/images/proizvodjaci.png')}}" style="height:64px;  width:64px"></span></h1>
+    <h1 class="page-header"><span><img class="slicica_animirana" alt="proizvodjaci" src="{{url('/images/proizvodjaci.png')}}" style="height:64px; margin-bottom: 15px"></span>&emsp;Proizvođači</h1>
 @endsection
 
 @section('sadrzaj')

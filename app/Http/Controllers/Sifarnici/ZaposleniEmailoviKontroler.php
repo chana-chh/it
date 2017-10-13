@@ -18,11 +18,11 @@ class ZaposleniEmailoviKontroler extends Kontroler
     {
 
         $this->validate($req, [
-                'adresa' => ['required'],
+                'email_dodavanje_adresa' => ['required', 'email'],
             ]);
 
         //Check-box
-            if ($req->sluzbena) {
+            if ($req->email_dodavanje_sluzbeni) {
                 $sluzbenac = 1;
             } else {
                 $sluzbenac = 0;
@@ -31,14 +31,62 @@ class ZaposleniEmailoviKontroler extends Kontroler
         $zaposleni_id = $req->zaposleni_id;
 
         $email = new Email();
-        $email->adresa = $req->adresa;
+        $email->adresa = $req->email_dodavanje_adresa;
         $email->sluzbena = $sluzbenac;
         $email->zaposleni_id = $zaposleni_id;
-        $email->napomena = $req->napomena;
+        $email->napomena = $req->email_dodavanje_napomena;
 
         $email->save();
 
-        Session::flash('uspeh','Adresa elektronske poste korisnika je uspešno dodata!');
+        Session::flash('uspeh','Adresa elektronske pošte korisnika je uspešno dodata!');
         return redirect()->route('zaposleni.detalj', $zaposleni_id);
+    }
+
+    public function postBrisanje(Request $req)
+    {
+        $email = Email::find($req->id);
+        $odgovor = $email->delete();
+
+        if ($odgovor) 
+        {
+                Session::flash('uspeh','Stavka je uspešno obrisana!');
+        }
+        else
+        {
+                Session::flash('greska','Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
+        }
+    }
+
+    public function postDetalj(Request $req)
+    {
+        if($req->ajax()){
+                $id = $req->id;
+                $email = Email::find($id);
+                return response()->json($email);
+            }
+    }
+
+    public function postIzmena(Request $req)
+    {
+        $this->validate($req, [
+             'email_izmena_adresa' => ['required', 'email'],
+        ]);
+
+        if ($req->email_izmena_adresa) {
+                $sluzbenic = 1;
+            } else {
+                $sluzbenic = 0;
+            }
+
+        $mobilni = Email::find($req->email_id);
+        $mobilni->adresa = $req->email_izmena_adresa;
+        $mobilni->sluzbena = $sluzbenic;
+        $mobilni->zaposleni_id = $req->zaposleni_id;
+        $mobilni->napomena = $req->email_izmena_napomena;
+
+        $mobilni->save();
+
+        Session::flash('uspeh','Adresa elektronske pošte je uspešno izmenjena!');
+        return redirect()->route('zaposleni.detalj', $req->zaposleni_id);
     }
 }
