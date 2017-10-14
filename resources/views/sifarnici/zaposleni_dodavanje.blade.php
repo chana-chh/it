@@ -72,7 +72,7 @@
                         <option value=""></option>
                         @foreach($kancelarije as $kancelarija)
                         <option value="{{ $kancelarija->id }}"{{ old('kancelarija_id') == $kancelarija->id ? ' selected' : '' }}>
-                            {{ $kancelarija->naziv }}
+                            {{ $kancelarija->naziv }}, {{$kancelarija->lokacija->naziv}}, {{$kancelarija->sprat->naziv}}
                         </option>
                         @endforeach
                     </select>

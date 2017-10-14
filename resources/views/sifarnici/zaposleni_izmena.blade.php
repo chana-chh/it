@@ -11,9 +11,9 @@
         <div class="row ceo_dva">
         <div class="col-md-10 col-md-offset-1 boxic">
 
-        <h1 class="page-header"><span><img class="slicica_animirana" alt="korisnici" src="{{url('/images/korisnik_add.png')}}" style="height:64px;"></span>&emsp;Dodavanje zaposlenog</h1>
+        <h1 class="page-header"><span><img class="slicica_animirana" alt="korisnici" src="{{url('/images/korisnik_add.png')}}" style="height:64px;"></span>&emsp;Izmena osnovnih podataka o zaposlenom<i>&emsp;{{ $zaposleni->imePrezime() }}</i></h1>
 
-        <form action="{{ route('zaposleni.dodavanje.post') }}" method="POST" enctype="multipart/form-data" data-parsley-validate>
+        <form action="{{ route('zaposleni.izmena.post', $zaposleni->id) }}" method="POST" enctype="multipart/form-data" data-parsley-validate>
         {{ csrf_field() }}
 
         <div class="row">
@@ -21,7 +21,7 @@
             <div class="col-md-6">
                     <div class="form-group{{ $errors->has('ime') ? ' has-error' : '' }}">
                     <label for="ime">Ime:</label>
-                    <input type="text" name="ime" id="ime" class="form-control" value="{{ old('ime') }}" maxlength="50">
+                    <input type="text" name="ime" id="ime" class="form-control" value="{{ old('ime', $zaposleni->ime) }}" maxlength="50">
                     @if ($errors->has('ime'))
                         <span class="help-block">
                             <strong>{{ $errors->first('ime') }}</strong>
@@ -33,7 +33,7 @@
                 <div class="col-md-6">
                     <div class="form-group{{ $errors->has('prezime') ? ' has-error' : '' }}">
                     <label for="prezime">Prezime:</label>
-                    <input type="text" name="prezime" id="prezime" class="form-control"  value="{{ old('prezime') }}" maxlength="100" required>
+                    <input type="text" name="prezime" id="prezime" class="form-control"  value="{{ old('prezime', $zaposleni->prezime) }}" maxlength="100" required>
                     @if ($errors->has('prezime'))
                         <span class="help-block">
                             <strong>{{ $errors->first('prezime') }}</strong>
@@ -44,7 +44,7 @@
         </div>
 
         <hr>
-        {{-- Red sa sudom --}}
+        {{-- Red sa upravom --}}
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group{{ $errors->has('uprava_id') ? ' has-error' : '' }}">
@@ -52,7 +52,9 @@
                     <select name="uprava_id" id="uprava_id" class="chosen-select form-control" data-placeholder="uprava ..." required>
                         <option value=""></option>
                         @foreach($uprave as $uprava)
-                        <option value="{{ $uprava->id }}"{{ old('uprava_id') == $uprava->id ? ' selected' : '' }}>
+                        <option value="{{ $uprava->id }}"
+                            {{ $uprava->id == old('uprava_id')   ? ' selected' : '' }}
+                            {{ $zaposleni->uprava_id == $uprava->id ? ' selected' : '' }}>
                             {{ $uprava->naziv }}
                         </option>
                         @endforeach
@@ -71,8 +73,10 @@
                     <select name="kancelarija_id" id="kancelarija_id" class="chosen-select form-control" data-placeholder="kancelarija ..." required>
                         <option value=""></option>
                         @foreach($kancelarije as $kancelarija)
-                        <option value="{{ $kancelarija->id }}"{{ old('kancelarija_id') == $kancelarija->id ? ' selected' : '' }}>
-                            {{ $kancelarija->naziv }}
+                        <option value="{{ $kancelarija->id }}"
+                            {{ old('kancelarija_id') == $kancelarija->id ? ' selected' : '' }}
+                            {{ $zaposleni->kancelarija_id == $kancelarija->id ? ' selected' : '' }}>
+                            {{ $kancelarija->naziv }}, {{$kancelarija->lokacija->naziv}}, {{$kancelarija->sprat->naziv}}
                         </option>
                         @endforeach
                     </select>
@@ -91,7 +95,7 @@
             <div class="col-md-6">
                 <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
                     <label for="napomena">Napomena:</label>
-                    <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena') }}</textarea>
+                    <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena', $zaposleni->napomena) }}</textarea>
                     @if ($errors->has('napomena'))
                         <span class="help-block">
                             <strong>{{ $errors->first('napomena') }}</strong>
@@ -101,7 +105,9 @@
             </div>
 
             <div class="col-md-6 text-center">
-                <label style="margin-top: 30px;" for="slika" class="btn btn-default ono">Odaberi fotografiju zaposlenog&emsp;<i class="fa fa-upload" aria-hidden="true"></i></label>
+                <img src="{{asset('images/slike_zaposlenih/'.$zaposleni->src)}}" class="img-rounded" style="max-height: 120px" alt="Slika zaposlenog">
+                <hr>
+                <label for="slika" style="margin: 20px 20px;" class="btn btn-default ono">Izmeni fotografiju zaposlenog&emsp;<i class="fa fa-upload" aria-hidden="true"></i></label>
                 <input type="file" style="display:none" name="slika" id="slika" />
             </div>
         </div>
