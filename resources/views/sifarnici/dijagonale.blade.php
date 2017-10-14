@@ -7,7 +7,10 @@
 @endsection
 
 @section('naslov')
-<h1 class="page-header">Dijagonale monitora&emsp;<img alt="spratovi" src="{{url('/images/monitor_size.png')}}" style="height:64px;  width:64px"></h1>
+<h1 class="page-header">
+    Dijagonale monitora&emsp;
+    <img alt="dijagonale" src="{{url('/images/monitor_size.png')}}" style="height:64px;  width:64px">
+</h1>
 @endsection
 
 @section('sadrzaj')
@@ -108,7 +111,7 @@
                         <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-plus-circle"></i> Dodaj</button>
                     </div>
                     <div class="col-md-6">
-                        <a class="btn btn-danger btn-block ono" href="{{route('spratovi')}}"><i class="fa fa-ban"></i> Otkaži</a>
+                        <a class="btn btn-danger btn-block ono" href="{{route('dijagonale')}}"><i class="fa fa-ban"></i> Otkaži</a>
                     </div>
                 </div>
             </div>
@@ -177,4 +180,6 @@
 <script src="{{ asset('/js/parsley.js') }}"></script>
 <script src="{{ asset('/js/parsley_sr.js') }}"></script>
 @endsection
+
+
 
