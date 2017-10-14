@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Sifarnici | Zaposleni dodavanje')
+@section('naziv', 'Sifarnici | Zaposleni izmena')
 
 @section('meni')
     @include('sabloni.inc.meni')

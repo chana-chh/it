@@ -59,7 +59,7 @@
                             </td>
                             <td style="text-align:center; vertical-align: middle; line-height: normal;">
                     <a class="btn btn-success btn-sm" id="dugmeDetalj"  href="{{ route('zaposleni.detalj', $zaposleni->id) }}"><i class="fa fa-eye"></i></a>
-                    <a class="btn btn-info btn-sm" id="dugmeIzmena"  href=""><i class="fa fa-pencil"></i></a>
+                    <a class="btn btn-info btn-sm" id="dugmeIzmena"  href="{{ route('zaposleni.izmena.get', $zaposleni->id) }}"><i class="fa fa-pencil"></i></a>
                     <button id="dugmeBrisanje" class="btn btn-danger btn-sm otvori_modal"  value="{{$zaposleni->id}}"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>

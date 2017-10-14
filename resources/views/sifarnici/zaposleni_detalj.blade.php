@@ -8,7 +8,7 @@
 
 @section('naslov')
     <h1 class="page-header">
-        <img alt="korisnik" src="{{url('/images/korisnik_jedan.png')}}" style="height:50px;">
+        <img class="slicica_animirana" alt="korisnik" src="{{url('/images/korisnik_jedan.png')}}" style="height:50px;">
         Detaljni pregled zaposlenog &emsp;
          <i>{{ $zaposleni->imePrezime() }}</i>
     </h1>

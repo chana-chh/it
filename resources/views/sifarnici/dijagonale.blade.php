@@ -101,9 +101,17 @@
             </span>
             @endif
         </div>
-        <div class="form-group text-right">
-            <button type="submit" class="btn btn-success"><i class="fa fa-plus-circle"></i> Dodaj</button>
-            <a class="btn btn-danger" href="{{route('spratovi')}}"><i class="fa fa-ban"></i> Otkaži</a>
+        <div class="row dugmici">
+            <div class="col-md-12">
+                <div class="form-group text-right">
+                    <div class="col-md-6 snimi">
+                        <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-plus-circle"></i> Dodaj</button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-danger btn-block ono" href="{{route('spratovi')}}"><i class="fa fa-ban"></i> Otkaži</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
 </div>
@@ -127,8 +135,8 @@
                 lengthMenu: "Prikaži _MENU_ elemenata",
                 zeroRecords: "Nije pronađen nijedan zapis za zadati kriterijum",
                 info: "Prikazano _START_ do _END_ od ukupno _TOTAL_ elemenata",
-                infoFiltered: "(filtrirano od _MAX_ elemenata)",
-            },
+                infoFiltered: "(filtrirano od _MAX_ elemenata)"
+            }
         });
 
         $(document).on('click', '.otvori_modal', function () {
@@ -169,3 +177,4 @@
 <script src="{{ asset('/js/parsley.js') }}"></script>
 <script src="{{ asset('/js/parsley_sr.js') }}"></script>
 @endsection
+

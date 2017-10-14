@@ -7,7 +7,7 @@
 @endsection
 
 @section('naslov')
-    <h1 class="page-header">Kancelarije&emsp;<span><img alt="kancelarije" src="{{url('/images/kancelarije.png')}}" style="height:64px;  width:64px"></span></h1>
+    <h1 class="page-header"><span><img class="slicica_animirana" alt="kancelarije" src="{{url('/images/kancelarije.png')}}" style="height:64px;  width:64px"></span>&emsp;Kancelarije</h1>
 @endsection
 
 @section('sadrzaj')
@@ -16,14 +16,14 @@
 	@if($kancelarije->isEmpty())
     		<h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
     	@else
-    		<table class="table table-striped tabelaKancelarije" name="tabelaKancelarije" id="tabelaKancelarije">
+    		<table class="table table-striped tabelaKancelarije" cellspacing="0" width="100%" name="tabelaKancelarije" id="tabelaKancelarije">
         		<thead>
-                        <th style="width: 10%;">#</th>
-                        <th style="width: 23%;">Kancelarija</th>
-                        <th style="width: 15%;">Sprat</th>
-                        <th style="width: 22%;">Lokacija</th>
-                        <th style="width: 15%;">Napomena</th>
-                        <th style="width: 15%;text-align:center"><i class="fa fa-cogs"></i></th>
+                        <th>#</th>
+                        <th>Kancelarija</th>
+                        <th>Sprat</th>
+                        <th>Lokacija</th>
+                        <th>Napomena</th>
+                        <th style="text-align:center"><i class="fa fa-cogs"></i></th>
         		</thead>
         		<tbody id="kancelarije_lista" name="kancelarije_lista">
             	@foreach ($kancelarije as $kancelarija)
@@ -184,8 +184,9 @@
 <script>
 $( document ).ready(function() {
 
-        $('#tabelaKancelarije').DataTable({
+        var table = $('#tabelaKancelarije').DataTable({
 
+        responsive: true,
         language: {
         search: "Pronađi u tabeli",
             paginate: {
@@ -202,7 +203,19 @@ $( document ).ready(function() {
     },
     });
 
+        new $.fn.dataTable.FixedHeader( table );
+
+    resizeChosen();
+    jQuery(window).on('resize', resizeChosen);
+
     $('.chosen-select').chosen({allow_single_deselect: true});
+
+    function resizeChosen() {
+   $(".chosen-container").each(function() {
+       $(this).attr('style', 'width: 100%');
+
+   });
+   };
 
     $(document).on('click','.otvori_modal',function(){
 
