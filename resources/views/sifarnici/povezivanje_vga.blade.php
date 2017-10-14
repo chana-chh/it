@@ -113,7 +113,13 @@
     $(document).ready(function () {
 
         $('#tabela').DataTable({
-            columnDefs: [{orderable: false, searchable: false, "targets": -1}],
+            columnDefs: [
+                {
+                    orderable: false,
+                    searchable: false,
+                    "targets": -1
+                }
+            ],
             language: {
                 search: "Pronađi u tabeli",
                 paginate: {
@@ -174,6 +180,7 @@
 <script src="{{ asset('/js/parsley.js') }}"></script>
 <script src="{{ asset('/js/parsley_sr.js') }}"></script>
 @endsection
+
 
 
 
