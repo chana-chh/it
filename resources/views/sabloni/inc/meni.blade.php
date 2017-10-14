@@ -98,9 +98,26 @@
                             <li><a href="">Aplikacije</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="fa fa-sign-out fa-fw" style="color: #18BC9C"></i> Odjava
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
 </nav>
+
+
+
+
+
+
+
+
 

@@ -1,7 +1,9 @@
 # TODO
 
 Optpremnica 0 Stara oprema
+
 Stavke:
+
 1. HDD
 2. Memorija
 3. Ploca
@@ -24,4 +26,3 @@ dijagonala da ima jednu decimalu
 
 Fizicko brisanje slike i dodavanje imena zapolsenog zbog lakseg snalazenja u folderu. Nas admina.
 
-Dodavanje sifarnika
