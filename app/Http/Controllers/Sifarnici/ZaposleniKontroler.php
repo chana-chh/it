@@ -65,4 +65,12 @@ class ZaposleniKontroler extends Kontroler
         $zaposleni = Zaposleni::find($id);
         return view('sifarnici.zaposleni_detalj')->with(compact ('zaposleni'));
     }
+
+    public function getIzmena($id)
+    {
+        $zaposleni = Zaposleni::find($id);
+        $uprave = Uprava::all();
+        $kancelarije = Kancelarija::all();
+        return view('sifarnici.zaposleni_izmena')->with(compact ('zaposleni', 'uprave', 'kancelarije'));
+    }
 }
