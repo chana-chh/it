@@ -7,11 +7,15 @@
 @endsection
 
 @section('naslov')
+        
+        <div class="row ceo_dva">
+        <div class="col-md-10 col-md-offset-1 boxic">
 
-            <h1 class="page-header"><span><img class="slicica_animirana" alt="korisnici" src="{{url('/images/korisnik_add.png')}}" style="height:64px;"></span>&emsp;Dodavanje zaposlenog</h1>
+        <h1 class="page-header"><span><img class="slicica_animirana" alt="korisnici" src="{{url('/images/korisnik_add.png')}}" style="height:64px;"></span>&emsp;Dodavanje zaposlenog</h1>
 
         <form action="{{ route('zaposleni.dodavanje.post') }}" method="POST" enctype="multipart/form-data" data-parsley-validate>
         {{ csrf_field() }}
+
         <div class="row">
 
             <div class="col-md-6">
@@ -96,23 +100,58 @@
                 </div>
             </div>
 
-            <div class="col-md-6 text-right">
-                <label for="slika" class="btn btn-default ono">Odaberi fotografiju zaposlenog&emsp;<i class="fa fa-upload" aria-hidden="true"></i></label>
+            <div class="col-md-6 text-center">
+                <label style="margin-top: 30px;" for="slika" class="btn btn-default ono">Odaberi fotografiju zaposlenog&emsp;<i class="fa fa-upload" aria-hidden="true"></i></label>
                 <input type="file" style="display:none" name="slika" id="slika" />
             </div>
         </div>
-        <div class="form-group text-right">
-            <button type="submit" class="btn btn-success"><i class="fa fa-plus-circle"></i> Dodaj</button>
-            <a class="btn btn-danger" href="{{route('zaposleni')}}"><i class="fa fa-ban"></i> Otkaži</a>
-        </div>
+           <div class="row dugmici">
+            <div class="col-md-6 col-md-offset-6">
+            <div class="form-group text-right">
+            <div class="col-md-6 snimi">
+                <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-plus-circle"></i> Dodaj</button>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-danger btn-block ono" href="{{route('zaposleni')}}"><i class="fa fa-ban"></i> Otkaži</a>
+            </div>
+            </div>
+            </div>
+            </div>
     </form>
+            
+</div>
+    <div class="row dugmici">
+        <div class="col-md-10 col-md-offset-1" style="margin-top: 20px">
+            <div class="form-group">
+            <div class="col-md-6 text-left">
+                <a class="btn btn-info" href="{{route('zaposleni')}}" title="Povratak na listu zaposlenih"><i class="fa fa-users" style="color:#2C3E50"></i></a>
+            </div>
+            <div class="col-md-6 text-right">
+                <a class="btn btn-info" href="{{route('pocetna')}}" title="Povratak na početnu stranu"><i class="fa fa-home" style="color:#2C3E50"></i></a>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('skripte')
 <script>
 $( document ).ready(function() {
+    
+    resizeChosen();
+    jQuery(window).on('resize', resizeChosen);
+
     $('.chosen-select').chosen({allow_single_deselect: true});
-});
+
+    function resizeChosen() {
+   $(".chosen-container").each(function() {
+       $(this).attr('style', 'width: 100%');
+
+   });
+   };
+   });
+
 </script>
 <script src="{{ asset('/js/parsley.js') }}"></script>
 <script src="{{ asset('/js/parsley_sr.js') }}"></script>

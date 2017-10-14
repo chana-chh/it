@@ -7,7 +7,7 @@
 @endsection
 
 @section('naslov')
-    <h1 class="page-header">Dijagonale monitora&emsp;<span><img alt="spratovi" src="{{url('/images/monitor_size.png')}}" style="height:64px;  width:64px"></span></h1>
+    <h1 class="page-header"><span><img class="slicica_animirana" alt="spratovi" src="{{url('/images/monitor_size.png')}}" style="height:64px;  width:64px"></span>&emsp;Dijagonale monitora</h1>
 @endsection
 
 @section('sadrzaj')
@@ -101,9 +101,17 @@
                     </span>
                 @endif
             </div>
+            <div class="row dugmici">
+            <div class="col-md-12">
             <div class="form-group text-right">
-                <button type="submit" class="btn btn-success"><i class="fa fa-plus-circle"></i> Dodaj</button>
-                <a class="btn btn-danger" href="{{route('spratovi')}}"><i class="fa fa-ban"></i> Otkaži</a>
+            <div class="col-md-6 snimi">
+                <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-plus-circle"></i> Dodaj</button>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-danger btn-block ono" href="{{route('spratovi')}}"><i class="fa fa-ban"></i> Otkaži</a>
+            </div>
+            </div>
+            </div>
             </div>
         </form>
     </div>
