@@ -22,7 +22,7 @@
 @if($zaposleni->isEmpty())
             <h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
         @else
-            <table class="table table-striped tabelaZaposleni" name="tabelaZaposleni" id="tabelaZaposleni">
+            <table class="table table-striped display" cellspacing="0" width="100%" name="tabelaZaposleni" id="tabelaZaposleni">
                 <thead>
                         <th style="width: 5%;">#</th>
                         <th style="width: 22%;">Prezime i ime</th>
@@ -125,9 +125,16 @@ $( document ).ready(function() {
         });
         });
 
-        $('#tabelaZaposleni').DataTable({
+        var tabela = $('#tabelaZaposleni').DataTable({
 
-        responsive:true,
+        columnDefs: [
+                {
+                    orderable: false,
+                    searchable: false,
+                    "targets": -1
+                }
+            ],
+        responsive: true,
         language: {
         search: "Pronađi u tabeli",
             paginate: {
@@ -143,6 +150,8 @@ $( document ).ready(function() {
         infoFiltered: "(filtrirano od ukupno _MAX_ elemenata)",
     },
     });
+
+        new $.fn.dataTable.FixedHeader( tabela );
 
 });
 </script>

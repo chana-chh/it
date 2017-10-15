@@ -184,7 +184,7 @@
 <script>
 $( document ).ready(function() {
 
-        var table = $('#tabelaKancelarije').DataTable({
+        var tabela = $('#tabelaKancelarije').DataTable({
 
         responsive: true,
         language: {
@@ -203,7 +203,7 @@ $( document ).ready(function() {
     },
     });
 
-        new $.fn.dataTable.FixedHeader( table );
+        new $.fn.dataTable.FixedHeader( tabela );
 
     resizeChosen();
     jQuery(window).on('resize', resizeChosen);
@@ -276,4 +276,6 @@ $( document ).ready(function() {
 
 });
 </script>
+<script src="{{ asset('/js/parsley.js') }}"></script>
+<script src="{{ asset('/js/parsley_sr.js') }}"></script>
 @endsection

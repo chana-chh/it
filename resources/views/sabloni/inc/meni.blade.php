@@ -81,7 +81,7 @@
                             <li><a href="{{ route('uprave') }}">Uprave</a></li>
                             <li><a href="{{ route('zaposleni') }}">Zaposleni</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="">Telefoni</a></li>
+                            <li><a href="{{ route('telefoni') }}">Telefoni</a></li>
                             <li><a href="">Mobilni</a></li>
                             <li><a href="">Email-ovi</a></li>
                             <li role="separator" class="divider"></li>
