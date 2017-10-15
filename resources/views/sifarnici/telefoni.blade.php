@@ -242,7 +242,7 @@
         });
 
         $(document).on('click', '.otvori-izmenu', function () {
-            var id = $(this).val(                            );
+            var id = $(this).val();
             var ruta = "{{ route('telefoni.detalj') }}";
             $.ajax({
                 url: ruta,
@@ -254,11 +254,23 @@
                 success: function (data) {
                     $("#idModal").val(data.telefoni.id);
                     $("#brojModal").val(data.telefoni.broj);
-                    $("#vrstaModal").val(data.telefoni.vrsta);
+                    switch (data.telefoni.vrsta) { 
+                            case 'direktni': 
+                                $("#vrstaModal").val(1);
+                                break;
+                            case 'lokal': 
+                                $("#vrstaModal").val(2);
+                                break;
+                            case 'fax': 
+                                $("#vrstaModal").val(3);
+                                break;   
+                            default:
+                                $("#vrstaModal").val(0);
+                        }
                     $("#napomenaModal").val(data.telefoni.napomena);
 
                      $.each(data.kancelarije, function(index, lokObjekat){
-                    $('#kancelarija_idModal').append('<option value="'+lokObjekat.id+'">'+lokObjekat.naziv+'</option>');
+                    $('#kancelarija_idModal').append('<option value="'+lokObjekat.id+'">'+lokObjekat.naziv+', '+lokObjekat.lokacija.naziv+', '+lokObjekat.sprat.naziv+'</option>');
                     });
                     $("#kancelarija_idModal").val(data.telefoni.kancelarija_id);
                 }

@@ -70,7 +70,7 @@
                     <tr>
                         <td style="width: 10%;"><span title="Radi se o službenom telefonu"><b>{{ $mobilni_telefon->sluzbeni == 1 ? "s" : "" }}</b></span></td>
                         <td style="width: 35%;"><strong class="text-info">{{ $mobilni_telefon->broj }}</strong></td>
-                        <td style="width: 40%;"><em>{{ $mobilni_telefon->napomena }}</em></td>
+                        <td style="width: 40%;"><em>{{ str_limit($mobilni_telefon->napomena, 60) }}</em></td>
                         <td style="width: 15%;">
                             <button
                                 class="btn btn-success btn-xs" id="dugmeMobilniIzmeni"

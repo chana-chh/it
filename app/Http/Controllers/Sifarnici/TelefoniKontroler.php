@@ -36,23 +36,28 @@ class TelefoniKontroler extends Kontroler {
     }
 
     public function postDetalj(Request $request) {
-        if ($request->ajax()) {
-            $data = Telefon::find($request->id);
-            return response()->json($data);
-        }
+        if($request->ajax()){
+                $id = $request->id;
+                $telefoni = Telefon::find($id);
+                $kancelarije = Kancelarija::with(['lokacija', 'sprat'])->get();
+                return response()->json(array('kancelarije'=>$kancelarije,'telefoni'=>$telefoni));
+            }
     }
 
     public function postIzmena(Request $request) {
+        
         $id = $request->idModal;
         $this->validate($request, [
-            'nazivModal' => [
+            'brojModal' => [
                 'required',
-                'unique:s_monitori_povezivanje,naziv,' . $id,
             ],
         ]);
 
         $data = Telefon::find($id);
-        $data->naziv = $request->nazivModal;
+        $data->broj = $request->brojModal;
+        $data->vrsta = $request->vrstaModal;
+        $data->kancelarija_id = $request->kancelarija_idModal;
+        $data->napomena = $request->napomenaModal;
         $data->save();
 
         Session::flash('uspeh', 'Stavka je uspešno izmenjena!');
