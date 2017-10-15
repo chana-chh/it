@@ -42,10 +42,8 @@ class Zaposleni extends Model
     public static function boot()
     {
         parent::boot();
-        
 
-        Zaposleni::deleting(function($zaposleni)
-        {   
+        Zaposleni::deleting(function($zaposleni) {
 
             foreach ($zaposleni->mobilni as $mobilni) {
                 $mobilni->delete();
@@ -54,7 +52,9 @@ class Zaposleni extends Model
                 $email->delete();
             }
 
-            unlink(public_path('images/slike_zaposlenih/').$zaposleni->src);
+            unlink(public_path('images/slike_zaposlenih/') . $zaposleni->src);
         });
     }
+
 }
+
