@@ -8,7 +8,7 @@
 
 @section('naslov')
 <h1 class="page-header">
-    Video povezivanje (VGA)&emsp;
+    Hard disk povezivanje (HDD)&emsp;
     <img alt="spratovi" src="{{ url('/images/monitor_size.png') }}" style="height:64px;  width:64px">
 </h1>
 @endsection
@@ -58,7 +58,7 @@
                 <h1 class="modal-title text-info">Izmeni stavku</h1>
             </div>
             <div class="modal-body">
-                <form action="{{ route('povezivanje_vga.izmena') }}" method="post">
+                <form action="{{ route('povezivanje_hdd.izmena') }}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="nazivModal">Naziv:</label>
@@ -72,7 +72,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">
-                    <i class="fa fa-ban"></i> Otkaži
+                    <i class="fa fa-ban fa-fw"></i> Otkaži
                 </button>
             </div>
         </div>
@@ -82,10 +82,10 @@
 @endsection
 
 @section('traka')
-<h4>Dodavanje video (VGA) povezivanja</h4>
+<h4>Dodavanje hard disk (HDD) povezivanja</h4>
 <hr>
 <div class="well">
-    <form action="{{ route('povezivanje_vga.dodavanje') }}" method="POST" data-parsley-validate>
+    <form action="{{ route('povezivanje_hdd.dodavanje') }}" method="POST" data-parsley-validate>
         {{ csrf_field() }}
         <div class="form-group{{ $errors->has('naziv') ? ' has-error' : '' }}">
             <label for="naziv">Način povezivanja: </label>
@@ -138,7 +138,7 @@
 
         $(document).on('click', '.otvori-brisanje', function () {
             var id = $(this).val();
-            var ruta = "{{ route('povezivanje_vga.brisanje') }}";
+            var ruta = "{{ route('povezivanje_hdd.brisanje') }}";
             $('#brisanjeModal').modal('show');
             $('#btn-brisanje-obrisi').click(function () {
                 $.ajax({
@@ -161,7 +161,7 @@
 
         $(document).on('click', '.otvori-izmenu', function () {
             var id = $(this).val(                            );
-            var ruta = "{{ route('povezivanje_vga.detalj') }}";
+            var ruta = "{{ route('povezivanje_hdd.detalj') }}";
             $.ajax({
                 url: ruta,
                 type: "POST",
@@ -180,6 +180,10 @@
 <script src="{{ asset('/js/parsley.js') }}"></script>
 <script src="{{ asset('/js/parsley_sr.js') }}"></script>
 @endsection
+
+
+
+
 
 
 

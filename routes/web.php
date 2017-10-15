@@ -83,3 +83,18 @@ Route::post('sifarnici/povezivanje_vga/brisanje', 'Sifarnici\PovezivanjeVgaKontr
 Route::post('sifarnici/povezivanje_vga/izmena', 'Sifarnici\PovezivanjeVgaKontroler@postIzmena')->name('povezivanje_vga.izmena');
 Route::post('sifarnici/povezivanje_vga/detalj', 'Sifarnici\PovezivanjeVgaKontroler@postDetalj')->name('povezivanje_vga.detalj');
 
+//Povezivanje hdd
+Route::get('sifarnici/povezivanje_hdd', 'Sifarnici\PovezivanjeHddKontroler@getLista')->name('povezivanje_hdd');
+Route::post('sifarnici/povezivanje_hdd/dodavanje', 'Sifarnici\PovezivanjeHddKontroler@postDodavanje')->name('povezivanje_hdd.dodavanje');
+Route::post('sifarnici/povezivanje_hdd/brisanje', 'Sifarnici\PovezivanjeHddKontroler@postBrisanje')->name('povezivanje_hdd.brisanje');
+Route::post('sifarnici/povezivanje_hdd/izmena', 'Sifarnici\PovezivanjeHddKontroler@postIzmena')->name('povezivanje_hdd.izmena');
+Route::post('sifarnici/povezivanje_hdd/detalj', 'Sifarnici\PovezivanjeHddKontroler@postDetalj')->name('povezivanje_hdd.detalj');
+
+//Soketi
+Route::get('sifarnici/soketi', 'Sifarnici\SoketiKontroler@getLista')->name('soketi');
+Route::post('sifarnici/soketi/dodavanje', 'Sifarnici\SoketiKontroler@postDodavanje')->name('soketi.dodavanje');
+Route::post('sifarnici/soketi/brisanje', 'Sifarnici\SoketiKontroler@postBrisanje')->name('soketi.brisanje');
+Route::post('sifarnici/soketi/izmena', 'Sifarnici\SoketiKontroler@postIzmena')->name('soketi.izmena');
+Route::post('sifarnici/soketi/detalj', 'Sifarnici\SoketiKontroler@postDetalj')->name('soketi.detalj');
+
+
