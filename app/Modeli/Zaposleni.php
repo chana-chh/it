@@ -38,4 +38,23 @@ class Zaposleni extends Model
     {
         return $this->ime . ' ' . $this->prezime;
     }
+
+    public static function boot()
+    {
+        parent::boot();
+        
+
+        Zaposleni::deleting(function($zaposleni)
+        {   
+
+            foreach ($zaposleni->mobilni as $mobilni) {
+                $mobilni->delete();
+            }
+            foreach ($zaposleni->emailovi as $email) {
+                $email->delete();
+            }
+
+            unlink(public_path('images/slike_zaposlenih/').$zaposleni->src);
+        });
+    }
 }

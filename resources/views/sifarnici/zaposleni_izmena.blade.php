@@ -11,7 +11,7 @@
         <div class="row ceo_dva">
         <div class="col-md-10 col-md-offset-1 boxic">
 
-        <h1 class="page-header"><span><img class="slicica_animirana" alt="korisnici" src="{{url('/images/korisnik_add.png')}}" style="height:64px;"></span>&emsp;Izmena osnovnih podataka o zaposlenom<i>&emsp;{{ $zaposleni->imePrezime() }}</i></h1>
+        <h1 class="page-header"><span><img class="slicica_animirana" alt="korisnici" src="{{url('/images/korisnik_edit.png')}}" style="height:64px;"></span>&emsp;Izmena osnovnih podataka o zaposlenom<i>&emsp;{{ $zaposleni->imePrezime() }}</i></h1>
 
         <form action="{{ route('zaposleni.izmena.post', $zaposleni->id) }}" method="POST" enctype="multipart/form-data" data-parsley-validate>
         {{ csrf_field() }}
@@ -115,10 +115,10 @@
             <div class="col-md-6 col-md-offset-6">
             <div class="form-group text-right">
             <div class="col-md-6 snimi">
-                <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-plus-circle"></i> Dodaj</button>
+                <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-floppy-o"></i>&emsp;Snimi</button>
             </div>
             <div class="col-md-6">
-                <a class="btn btn-danger btn-block ono" href="{{route('zaposleni')}}"><i class="fa fa-ban"></i> Otkaži</a>
+                <a class="btn btn-danger btn-block ono" href="{{route('zaposleni')}}"><i class="fa fa-ban"></i>&emsp;Otkaži</a>
             </div>
             </div>
             </div>

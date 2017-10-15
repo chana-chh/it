@@ -416,6 +416,26 @@
     {{--  KRAJ EMAILOVI  --}}
 
 </div> {{-- Kraj reda sa well-om --}}
+
+<hr>
+
+<div class="row dugmici">
+        <div class="col-md-10 col-md-offset-1" style="margin-top: 20px">
+
+            <div class="col-md-4 text-left">
+                <a class="btn btn-info" href="{{route('zaposleni')}}" title="Povratak na listu zaposlenih"><i class="fa fa-users" style="color:#2C3E50"></i></a>
+            </div>
+
+            <div class="col-md-4 text-center">
+                <a class="btn btn-info" href="{{route('zaposleni.izmena.get', $zaposleni->id) }}" title="Izmena osnovnih podataka o zaposlenom"><i class="fa fa-pencil" style="color:#2C3E50"></i></a>
+            </div>
+
+            <div class="col-md-4 text-right">
+                <a class="btn btn-info" href="{{route('pocetna')}}" title="Povratak na početnu stranu"><i class="fa fa-home" style="color:#2C3E50"></i></a>
+            </div>
+
+        </div>
+    </div>
 @endsection
 
 @section('traka')
