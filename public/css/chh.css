@@ -398,13 +398,13 @@ textarea {
 }
 .ono:hover{
     box-shadow: 0px 37px 20px -20px rgba(0,0,0,0.2);
-    transform: translate(0px, -10px) scale(1.2);
+    transform: translate(0px, -5px) scale(1.05);
 }
 
 
 .slicica_animirana{
 
-    animation: slicica 800ms ease-in-out forwards;
+    animation: slicica 1400ms ease-in-out forwards;
     transform-origin: center 60px;
 }
         

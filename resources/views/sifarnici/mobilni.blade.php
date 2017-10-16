@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Šifarnici | Telefoni')
+@section('naziv', 'Šifarnici | Mobilni Telefoni')
 
 @section('meni')
 @include('sabloni.inc.meni')
@@ -8,8 +8,8 @@
 
 @section('naslov')
 <h1 class="page-header">
-    <img class="slicica_animirana" alt="spratovi" src="{{ url('/images/telefon.png') }}" style="height:64px;  width:64px">
-     &emsp;Fiksni telefoni
+    <img class="slicica_animirana" alt="spratovi" src="{{ url('/images/mobilni.png') }}" style="height:64px;  width:64px">
+     &emsp;Mobilni telefoni
 </h1>
 @endsection
 
@@ -21,18 +21,18 @@
     <thead>
     <th style="width: 5%;">#</th>
     <th style="width: 20%;">Broj</th>
-    <th style="width: 10%;">Vrsta</th>
-    <th style="width: 25%;">Kancelarija</th>
+    <th style="width: 10%;">Službeni</th>
+    <th style="width: 25%;">Zaposleni</th>
     <th style="width: 25%;">Napomena</th>
-    <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i> Akcije</th>
+    <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
 </thead>
 <tbody>
     @foreach ($data as $d)
     <tr>
         <td>{{ $d->id }}</td>
         <td><strong>{{ $d->broj }}</strong></td>
-        <td><strong>{{ $d->vrsta }}</strong></td>
-        <td>{{$d->kancelarija->naziv}}, {{$d->kancelarija->lokacija->naziv}}, {{$d->kancelarija->sprat->naziv}}</td>
+        <td><strong title="U pitanju je službeni telefon">{{ $d->sluzbeni == 1 ? "s" : " "}}</strong></td>
+        <td><a  href="{{ route('zaposleni.detalj', $d->zaposleni->id) }}"><strong>{{ $d->zaposleni->imePrezime() }}</strong></a></td>
         <td><em>{{ str_limit($d->napomena, 60) }}</em></td>
         <td style="text-align:right;">
             <button class="btn btn-success btn-sm otvori-izmenu"
@@ -64,7 +64,7 @@
                 <h1 class="modal-title text-info">Izmeni stavku</h1>
             </div>
             <div class="modal-body">
-                <form action="{{ route('telefoni.izmena') }}" method="post">
+                <form action="{{ route('mobilni.izmena') }}" method="post">
                     {{ csrf_field() }}
 
                     <div class="form-group">
@@ -72,18 +72,13 @@
                         <input type="text" id="brojModal" name="brojModal" class="form-control" required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="vrstaModal">Vrsta:</label>
-                            <select class="form-control" name="vrstaModal" id="vrstaModal" data-placeholder="vrsta ...">
-                                <option value="1">Direktni</option>
-                                <option value="2">Lokal</option>
-                                <option value="3">Fax</option>
-                            </select>
+                    <div class="form-group checkboxoviforme">
+                                <label><input type="checkbox" name="mobilni_izmena_sluzbeni" id="mobilni_izmena_sluzbeni"> &emsp;Da li je mobilni telefon službeni?</label>
                     </div>
 
                     <div class="form-group">
-                        <label for="kancelarija_idModal">Kancelarija:</label>
-                        <select class="form-control" name="kancelarija_idModal" id="kancelarija_idModal" data-placeholder="kancelarija ...">
+                        <label for="zaposleni_idModal">Zaposleni:</label>
+                        <select class="form-control" name="zaposleni_idModal" id="zaposleni_idModal" data-placeholder="kancelarija ...">
                         </select>
                     </div>
 
@@ -110,10 +105,10 @@
 @endsection
 
 @section('traka')
-<h4>Dodavanje broja fiksne telefonije</h4>
+<h4>Dodavanje broja mobilne telefonije</h4>
 <hr>
 <div class="well">
-    <form action="{{ route('telefoni.dodavanje') }}" method="POST" data-parsley-validate>
+    <form action="{{ route('mobilni.dodavanje') }}" method="POST" data-parsley-validate>
         {{ csrf_field() }}
         <div class="form-group{{ $errors->has('broj') ? ' has-error' : '' }}">
             <label for="broj">Broj: </label>
@@ -125,33 +120,23 @@
             @endif
         </div>
 
-        <div class="form-group{{ $errors->has('vrsta') ? ' has-error' : '' }}">
-            <label for="vrsta">Vrsta:</label>
-                <select name="vrsta" id="vrsta" class="chosen-select form-control" data-placeholder="vrsta ..." required>
-                  <option value="1">Direktni</option>
-                  <option value="2">Lokal</option>
-                  <option value="3">Fax</option>
-                </select>
-                @if ($errors->has('vrsta'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('vrsta') }}</strong>
-                    </span>
-                @endif
+       <div class="form-group checkboxoviforme">
+                <label><input type="checkbox" name="mobilni_dodavanje_sluzbeni" id="mobilni_dodavanje_sluzbeni"> &emsp;Da li je mobilni telefon službeni?</label>
         </div>
 
-        <div class="form-group{{ $errors->has('kancelarija_id') ? ' has-error' : '' }}">
-                    <label for="kancelarija_id">Kancelarija:</label>
-                    <select name="kancelarija_id" id="kancelarija_id" class="chosen-select form-control" data-placeholder="kancelarija ..." required>
+        <div class="form-group{{ $errors->has('zaposleni_id') ? ' has-error' : '' }}">
+                    <label for="zaposleni_id">Zaposleni:</label>
+                    <select name="zaposleni_id" id="zaposleni_id" class="chosen-select form-control" data-placeholder="zaposleni ..." required>
                         <option value=""></option>
-                        @foreach($kancelarije as $kancelarija)
-                        <option value="{{ $kancelarija->id }}"{{ old('kancelarija_id') == $kancelarija->id ? ' selected' : '' }}>
-                            {{ $kancelarija->naziv }}, {{$kancelarija->lokacija->naziv}}, {{$kancelarija->sprat->naziv}}
+                        @foreach($radnici as $radnik)
+                        <option value="{{ $radnik->id }}"{{ old('zaposleni_id') == $radnik->id ? ' selected' : '' }}>
+                            {{ $radnik->Imeprezime() }}
                         </option>
                         @endforeach
                     </select>
-                    @if ($errors->has('kancelarija_id'))
+                    @if ($errors->has('zaposleni_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('kancelarija_id') }}</strong>
+                            <strong>{{ $errors->first('zaposleni_id') }}</strong>
                         </span>
                     @endif
         </div>
@@ -173,7 +158,7 @@
                 <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-plus-circle"></i>&emsp;Dodaj</button>
             </div>
             <div class="col-md-6">
-                <a class="btn btn-danger btn-block ono" href="{{route('telefoni')}}"><i class="fa fa-ban"></i>&emsp;Otkaži</a>
+                <a class="btn btn-danger btn-block ono" href="{{route('mobilni')}}"><i class="fa fa-ban"></i>&emsp;Otkaži</a>
             </div>
             </div>
             </div>
@@ -225,7 +210,7 @@
 
         $(document).on('click', '.otvori-brisanje', function () {
             var id = $(this).val();
-            var ruta = "{{ route('telefoni.brisanje') }}";
+            var ruta = "{{ route('mobilni.brisanje') }}";
             $('#brisanjeModal').modal('show');
             $('#btn-brisanje-obrisi').click(function () {
                 $.ajax({
@@ -248,7 +233,7 @@
 
         $(document).on('click', '.otvori-izmenu', function () {
             var id = $(this).val();
-            var ruta = "{{ route('telefoni.detalj') }}";
+            var ruta = "{{ route('mobilni.detalj') }}";
             $.ajax({
                 url: ruta,
                 type: "POST",
@@ -257,27 +242,15 @@
                     "_token": "{!! csrf_token() !!}"
                 },
                 success: function (data) {
-                    $("#idModal").val(data.telefoni.id);
-                    $("#brojModal").val(data.telefoni.broj);
-                    switch (data.telefoni.vrsta) { 
-                            case 'direktni': 
-                                $("#vrstaModal").val(1);
-                                break;
-                            case 'lokal': 
-                                $("#vrstaModal").val(2);
-                                break;
-                            case 'fax': 
-                                $("#vrstaModal").val(3);
-                                break;   
-                            default:
-                                $("#vrstaModal").val(0);
-                        }
-                    $("#napomenaModal").val(data.telefoni.napomena);
+                    $("#idModal").val(data.mobilni.id);
+                    $("#brojModal").val(data.mobilni.broj);
+                    $("#mobilni_izmena_sluzbeni").prop('checked', data.mobilni.sluzbeni);
+                    $("#napomenaModal").val(data.mobilni.napomena);
 
-                     $.each(data.kancelarije, function(index, lokObjekat){
-                    $('#kancelarija_idModal').append('<option value="'+lokObjekat.id+'">'+lokObjekat.naziv+', '+lokObjekat.lokacija.naziv+', '+lokObjekat.sprat.naziv+'</option>');
+                     $.each(data.zaposleni, function(index, lokObjekat){
+                    $('#zaposleni_idModal').append('<option value="'+lokObjekat.id+'">'+lokObjekat.ime+'  '+lokObjekat.prezime+'</option>');
                     });
-                    $("#kancelarija_idModal").val(data.telefoni.kancelarija_id);
+                    $("#zaposleni_idModal").val(data.mobilni.zaposleni_id);
                 }
             });
         });

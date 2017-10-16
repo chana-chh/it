@@ -75,7 +75,19 @@ Route::post('sifarnici/telefoni/brisanje', 'Sifarnici\TelefoniKontroler@postBris
 Route::post('sifarnici/telefoni/izmena', 'Sifarnici\TelefoniKontroler@postIzmena')->name('telefoni.izmena');
 Route::post('sifarnici/telefoni/detalj', 'Sifarnici\TelefoniKontroler@postDetalj')->name('telefoni.detalj');
 
+//Mobilni telefoni
+Route::get('sifarnici/mobilni', 'Sifarnici\MobilniKontroler@getLista')->name('mobilni');
+Route::post('sifarnici/mobilni/dodavanje', 'Sifarnici\MobilniKontroler@postDodavanje')->name('mobilni.dodavanje');
+Route::post('sifarnici/mobilni/brisanje', 'Sifarnici\MobilniKontroler@postBrisanje')->name('mobilni.brisanje');
+Route::post('sifarnici/mobilni/izmena', 'Sifarnici\MobilniKontroler@postIzmena')->name('mobilni.izmena');
+Route::post('sifarnici/mobilni/detalj', 'Sifarnici\MobilniKontroler@postDetalj')->name('mobilni.detalj');
 
+//Email
+Route::get('sifarnici/email', 'Sifarnici\EmailKontroler@getLista')->name('email');
+Route::post('sifarnici/email/dodavanje', 'Sifarnici\EmailKontroler@postDodavanje')->name('email.dodavanje');
+Route::post('sifarnici/email/brisanje', 'Sifarnici\EmailKontroler@postBrisanje')->name('email.brisanje');
+Route::post('sifarnici/email/izmena', 'Sifarnici\EmailKontroler@postIzmena')->name('email.izmena');
+Route::post('sifarnici/email/detalj', 'Sifarnici\EmailKontroler@postDetalj')->name('email.detalj');
 
 //Dijagonale
 Route::get('sifarnici/dijagonale', 'Sifarnici\DijagonaleKontroler@getLista')->name('dijagonale');
