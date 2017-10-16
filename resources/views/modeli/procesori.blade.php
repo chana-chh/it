@@ -13,7 +13,7 @@
         </div>
 
          <div class="col-md-2 text-right" style="padding-top: 50px;">
-            <a class="btn btn-primary ono" href=""><i class="fa fa-plus-circle fa-fw"></i> Dodaj model procesora</a>
+            <a class="btn btn-primary ono" href="{{route('procesori.modeli.dodavanje.get')}}"><i class="fa fa-plus-circle fa-fw"></i> Dodaj model procesora</a>
         </div>
         </div>
         <hr>
