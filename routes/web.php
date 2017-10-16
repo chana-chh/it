@@ -117,4 +117,7 @@ Route::post('sifarnici/soketi/brisanje', 'Sifarnici\SoketiKontroler@postBrisanje
 Route::post('sifarnici/soketi/izmena', 'Sifarnici\SoketiKontroler@postIzmena')->name('soketi.izmena');
 Route::post('sifarnici/soketi/detalj', 'Sifarnici\SoketiKontroler@postDetalj')->name('soketi.detalj');
 
+// MODELI UREDJAJA
 
+//Procesori
+Route::get('modeli/procesori/', 'Modeli\ProcesoriKontroler@getLista')->name('procesori.modeli');

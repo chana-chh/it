@@ -52,7 +52,7 @@
                         <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-server fa-fw" style="color: #18BC9C"></i>  Modeli<span class="caret">
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="">Procesori</a></li>
+                            <li><a href="{{route('procesori.modeli')}}">Procesori</a></li>
                             <li><a href="">Memorije</a></li>
                             <li><a href="">Matične ploče</a></li>
                             <li><a href="">Hard diskovi</a></li>
