@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Modeli | Modeli procesora')
+@section('naziv', 'Modeli | Izmena modela procesora')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -11,9 +11,9 @@
         <div class="row ceo_dva">
         <div class="col-md-10 col-md-offset-1 boxic">
 
-        <h1 class="page-header"><span><img class="slicica_animirana" alt="korisnici" src="{{url('/images/cpu_add.png')}}" style="height:64px;"></span>&emsp;Dodavanje modela procesora</h1>
+        <h1 class="page-header"><span><img class="slicica_animirana" alt="procesori" src="{{url('/images/cpu_add.png')}}" style="height:64px;"></span>&emsp;Izmena modela procesora</h1>
 
-        <form action="{{ route('procesori.modeli.dodavanje.post') }}" method="POST" data-parsley-validate>
+        <form action="{{ route('procesori.modeli.izmena.post', $procesor->id) }}" method="POST" data-parsley-validate>
         {{ csrf_field() }}
 
         <div class="row">
@@ -21,7 +21,7 @@
             <div class="col-md-6">
                     <div class="form-group{{ $errors->has('naziv') ? ' has-error' : '' }}">
                     <label for="naziv">Naziv:</label>
-                    <input type="text" name="naziv" id="naziv" class="form-control" value="{{ old('naziv') }}" maxlength="50">
+                    <input type="text" name="naziv" id="naziv" class="form-control" value="{{ old('naziv', $procesor->naziv) }}" maxlength="50">
                     @if ($errors->has('naziv'))
                         <span class="help-block">
                             <strong>{{ $errors->first('naziv') }}</strong>
@@ -33,10 +33,12 @@
                 <div class="col-md-6">
                    <div class="form-group{{ $errors->has('proizvodjac_id') ? ' has-error' : '' }}">
                     <label for="proizvodjac_id">Proizvođač:</label>
-                    <select name="proizvodjac_id" id="proizvodjac_id" class="chosen-select form-control" data-placeholder="proizvodjac ..." required>
+                    <select name="proizvodjac_id" id="proizvodjac_id" class="chosen-select form-control" data-placeholder="proizvođač ..." required>
                         <option value=""></option>
                         @foreach($proizvodjaci as $proizvodjac)
-                        <option value="{{ $proizvodjac->id }}"{{ old('proizvodjac_id') == $proizvodjac->id ? ' selected' : '' }}>
+                        <option value="{{ $proizvodjac->id }}"
+                            {{ $proizvodjac->id == old('proizvodjac_id')   ? ' selected' : '' }}
+                            {{ $procesor->proizvodjac_id == $proizvodjac->id ? ' selected' : '' }}>
                             {{ $proizvodjac->naziv }}
                         </option>
                         @endforeach
@@ -54,12 +56,14 @@
         {{-- Red II --}}
         <div class="row">
             <div class="col-md-4">
-                <div class="form-group{{ $errors->has('soket_id') ? ' has-error' : '' }}">
+               <div class="form-group{{ $errors->has('soket_id') ? ' has-error' : '' }}">
                     <label for="soket_id">Soket:</label>
                     <select name="soket_id" id="soket_id" class="chosen-select form-control" data-placeholder="soket ..." required>
                         <option value=""></option>
                         @foreach($soketi as $soket)
-                        <option value="{{ $soket->id }}"{{ old('soket_id') == $soket->id ? ' selected' : '' }}>
+                        <option value="{{ $soket->id }}"
+                            {{ $soket->id == old('soket_id')   ? ' selected' : '' }}
+                            {{ $procesor->soket_id == $soket->id ? ' selected' : '' }}>
                             {{ $soket->naziv }}
                         </option>
                         @endforeach
@@ -76,7 +80,7 @@
 
                 <div class="form-group{{ $errors->has('takt') ? ' has-error' : '' }}">
             <label for="takt">Takt u MHz: </label>
-            <input  type="number" name="takt" id="takt" class="form-control" value="{{ old('takt') }}"
+            <input  type="number" name="takt" id="takt" class="form-control" value="{{ old('takt', $procesor->takt) }}"
                     min="1000"  step="100" required>
             @if ($errors->has('takt'))
             <span class="help-block">
@@ -90,7 +94,7 @@
             <div class="col-md-4">
                     <div class="form-group{{ $errors->has('kes') ? ' has-error' : '' }}">
                     <label for="kes">Keš u MB:</label>
-                    <input type="text" name="kes" id="kes" class="form-control" value="{{ old('kes') }}" maxlength="50">
+                    <input type="text" name="kes" id="kes" class="form-control" value="{{ old('kes', $procesor->kes) }}" maxlength="50">
                     @if ($errors->has('kes'))
                         <span class="help-block">
                             <strong>{{ $errors->first('kes') }}</strong>
@@ -107,7 +111,7 @@
             <div class="col-md-3">
                     <div class="form-group{{ $errors->has('broj_jezgara') ? ' has-error' : '' }}">
                     <label for="broj_jezgara">Broj jezgara:</label>
-                    <input type="number" name="broj_jezgara" id="broj_jezgara" class="form-control" value="{{ old('broj_jezgara') }}">
+                    <input type="number" name="broj_jezgara" id="broj_jezgara" class="form-control" value="{{ old('broj_jezgara', $procesor->broj_jezgara) }}">
                     @if ($errors->has('broj_jezgara'))
                         <span class="help-block">
                             <strong>{{ $errors->first('broj_jezgara') }}</strong>
@@ -119,7 +123,7 @@
                 <div class="col-md-3">
                     <div class="form-group{{ $errors->has('broj_niti') ? ' has-error' : '' }}">
                     <label for="broj_niti">Broj niti:</label>
-                    <input type="number" name="broj_niti" id="broj_niti" class="form-control" value="{{ old('broj_niti') }}">
+                    <input type="number" name="broj_niti" id="broj_niti" class="form-control" value="{{ old('broj_niti', $procesor->broj_niti) }}">
                     @if ($errors->has('broj_niti'))
                         <span class="help-block">
                             <strong>{{ $errors->first('broj_niti') }}</strong>
@@ -131,7 +135,7 @@
             <div class="col-md-6">
                 <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
                     <label for="napomena">Napomena:</label>
-                    <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena') }}</textarea>
+                    <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena', $procesor->napomena) }}</textarea>
                     @if ($errors->has('napomena'))
                         <span class="help-block">
                             <strong>{{ $errors->first('napomena') }}</strong>
@@ -145,7 +149,7 @@
             <div class="col-md-7">
                 <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
             <label for="link">Link modela procesora: </label>
-            <input type="url" name="link" id="link" class="form-control" value="{{ old('link') }}" maxlenght="255">
+            <input type="url" name="link" id="link" class="form-control" value="{{ old('link', $procesor->link) }}" maxlenght="255">
             @if ($errors->has('link'))
                 <span class="help-block">
                     <strong>{{ $errors->first('link') }}</strong>
@@ -159,7 +163,7 @@
 
                 <div class="form-group{{ $errors->has('ocena') ? ' has-error' : '' }}">
             <label for="ocena">Ocena: </label>
-            <input  type="number" name="ocena" id="ocena" class="form-control" value="{{ old('ocena') }}"
+            <input  type="number" name="ocena" id="ocena" class="form-control" value="{{ old('ocena', $procesor->ocena) }}"
                     min="1"  max="4" step="1" required>
             @if ($errors->has('ocena'))
             <span class="help-block">
@@ -188,10 +192,10 @@
             <div class="col-md-6 col-md-offset-6">
             <div class="form-group text-right">
             <div class="col-md-6 snimi">
-                <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-plus-circle"></i> Dodaj</button>
+                <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-floppy-o"></i>&emsp;Snimi izmene</button>
             </div>
             <div class="col-md-6">
-                <a class="btn btn-danger btn-block ono" href="{{route('procesori.modeli')}}"><i class="fa fa-ban"></i> Otkaži</a>
+                <a class="btn btn-danger btn-block ono" href="{{route('procesori.modeli')}}"><i class="fa fa-ban"></i>&emsp;Otkaži</a>
             </div>
             </div>
             </div>

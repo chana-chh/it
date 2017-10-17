@@ -123,3 +123,8 @@ Route::post('sifarnici/soketi/detalj', 'Sifarnici\SoketiKontroler@postDetalj')->
 Route::get('modeli/procesori/', 'Modeli\ProcesoriKontroler@getLista')->name('procesori.modeli');
 Route::get('modeli/procesori/dodavanje', 'Modeli\ProcesoriKontroler@getDodavanje')->name('procesori.modeli.dodavanje.get');
 Route::post('modeli/procesori/dodavanje', 'Modeli\ProcesoriKontroler@postDodavanje')->name('procesori.modeli.dodavanje.post');
+Route::get('modeli/procesori/izmena/{id}', 'Modeli\ProcesoriKontroler@getIzmena')->name('procesori.modeli.izmena.get');
+Route::post('modeli/procesori/izmena/{id}', 'Modeli\ProcesoriKontroler@postIzmena')->name('procesori.modeli.izmena.post');
+Route::get('modeli/procesori/detalj/{id}', 'Modeli\ProcesoriKontroler@getDetalj')->name('procesori.modeli.detalj');
+Route::post('modeli/procesori/brisanje', 'Modeli\ProcesoriKontroler@postBrisanje')->name('procesori.modeli.brisanje');
+
