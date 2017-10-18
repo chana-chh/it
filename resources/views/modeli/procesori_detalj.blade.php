@@ -62,12 +62,10 @@
     {{--  POCETAK Wellil  --}}
 <div class="row well" style="overflow: auto; margin-top: 40px">
 <h4>Napomena:</h4>
-<p>{{$procesor->napomena}}</p>
-Broj procesora u posedu GU u ovom trenutku: {{$procesor->procesori->count()}}
-Broj računara u posedu GU u ovom trenutku: {{$racunari}}
-</div> {{-- Kraj reda sa well-om --}}
+<em>{{$procesor->napomena}}</em>
 
-<hr>
+</div> {{-- Kraj reda sa well-om --}}
+<hr style="border-top: 1px solid #18BC9C">
 
 <div class="row dugmici">
         <div class="col-md-10 col-md-offset-1" style="margin-top: 20px">
@@ -102,10 +100,17 @@ Broj računara u posedu GU u ovom trenutku: {{$racunari}}
 </div>
 
 <hr>
-
 <div class="row">
-<div class="col-md-12">
-    <a href="{{$procesor->link}}" target="_blank">{{$procesor->link}}</a>
+    <div class="col-md-12">
+<h3>Broj procesora ovog modela: <a href="{{route('procesori.modeli.uredjaji', $procesor->id) }}" title="Pregled svih uređaja ovog modela procesora"> {{$procesor->procesori->count()}} </a></h3>
+
+<h3>Broj računara sa ovim modelom procesora: <a href="{{route('procesori.modeli.racunari', $procesor->id) }}" title="Pregled svih računara sa ovim modelom procesora"> {{$racunari}} </a></h3>
+</div>
+</div>
+
+<div class="row" style="margin-top: 50px">
+<div class="col-md-12 text-center">
+    <a href="{{$procesor->link}}" target="_blank"><img alt="link" src="{{url('/images/link.png')}}" style="height:32px;"></a>
 </div>
 </div>
 

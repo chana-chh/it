@@ -12,6 +12,8 @@ Use App\Modeli\ProcesorModel;
 Use App\Modeli\Proizvodjac;
 Use App\Modeli\Soket;
 Use App\Modeli\Procesor;
+Use App\Modeli\Racunar;
+
 
 
 class ProcesoriKontroler extends Kontroler
@@ -99,25 +101,33 @@ class ProcesoriKontroler extends Kontroler
     }
 
     public function postBrisanje(Request $request) {
-        $data = ProcesorModel::find($request->id);
+        
+        $data = ProcesorModel::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Stavka je uspešno obrisana!');
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
         }
+        return Redirect::back();
     }
 
     public function getRacunari($id)
-    {
-        $procesori = ProcesorModel::all();
-        return view('modeli.procesori')->with(compact ('procesori'));
+    {   
+        // Dobra fora za uvlachenje id u funkciju, kao i eliminisanje sa WhereHas
+        $model = ProcesorModel::find($id);
+        $racunari = Racunar::whereHas('procesori', function($query) use ($id){
+            $query->where('procesori.procesor_model_id', '=', $id);
+        })->get();
+        return view('modeli.procesori_racunari')->with(compact ('racunari', 'model'));
     }
 
     public function getUredjaji($id)
-    {
-        $procesori = Procesor::where('procesor_model_id', '=', $id)->get();
-        return view('modeli.procesori_uredjaji')->with(compact ('procesori'));
+    {   
+        //Dobra fora za pozivanje dodatnih relacija sa Tockicom.SledecaRElacija
+        $procesori = Procesor::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('procesor_model_id', '=', $id)->get();
+        $model = ProcesorModel::find($id);
+        return view('modeli.procesori_uredjaji')->with(compact ('procesori', 'model'));
     }
 
 }

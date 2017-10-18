@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use PDOException;
 
 class Handler extends ExceptionHandler
 {
@@ -44,6 +45,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        
+                if($exception instanceof PDOException)
+        {
+            $poruka = $exception->getMessage();
+            return response()->view('errors/pdo')->with(compact ('poruka'));
+        }
         return parent::render($request, $exception);
     }
 

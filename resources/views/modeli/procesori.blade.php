@@ -52,7 +52,7 @@
                             <td style="text-align:center; vertical-align: middle; line-height: normal;">
                     <a class="btn btn-success btn-sm" id="dugmeDetalj"  href="{{route('procesori.modeli.detalj', $procesor->id)}}"><i class="fa fa-eye"></i></a>
                     <a class="btn btn-info btn-sm" id="dugmeIzmena"  href="{{route('procesori.modeli.izmena.get', $procesor->id)}}"><i class="fa fa-pencil"></i></a>
-                    <button id="dugmeBrisanje" class="btn btn-danger btn-sm otvori_modal"  value="{{$procesor->id}}"><i class="fa fa-trash"></i></button>
+                    <button id="dugmeBrisanje" class="btn btn-danger btn-sm otvori-brisanje"  value="{{$procesor->id}}"><i class="fa fa-trash"></i></button>
 
                             </td>
                         </tr>
@@ -63,26 +63,9 @@
     </div>
 </div>
 
-{{-- Modal za dijalog brisanje--}}
-    <div class="modal fade" id="brisanjeModal" tabindex="-1" role="dialog" aria-labelledby="Modal za brisanje" aria-hidden="true">
-        <div class="modal-dialog">
-           <div class="modal-content">
-             <div class="modal-header">
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="brisanjeModalLabel">Upozorenje!</h4>
-            </div>
-            <div class="modal-body">
-                <h4 class="text-primary">Da li želite trajno da obrišete stavku</strong></h4>
-                <p ><strong>Ova akcija je nepovratna!</strong></p>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-danger" id="btn-obrisi">Obriši</button>
-            <button type="button" class="btn btn-success" id="btn-otkazi">Otkaži</button>
-            </div>
-        </div>
-      </div>
-  </div>
-    {{-- Kraj Modala za dijalog brisanje--}}
+<!--  POCETAK brisanjeModal  -->
+@include('sifarnici.inc.modal_brisanje')
+<!--  KRAJ brisanjeModal  -->
 
 
 @endsection
@@ -91,30 +74,18 @@
 <script>
 $( document ).ready(function() {
 
-        $(document).on('click','.otvori_modal',function(){
-
-        var id = $(this).val();
-
-        var ruta = "{{ route('procesori.modeli.brisanje') }}";
-
-
-        $('#brisanjeModal').modal('show');
-
-        $('#btn-obrisi').click(function(){
-            $.ajax({
-            url: ruta,
-            type:"POST",
-            data: {"id":id, _token: "{!! csrf_token() !!}"},
-            success: function(){
-            location.reload();
-          }
-        });
-
-        $('#brisanjeModal').modal('hide');
-        });
-        $('#btn-otkazi').click(function(){
-            $('#brisanjeModal').modal('hide');
-        });
+        $(document).on('click', '.otvori-brisanje', function () {
+            var id = $(this).val();
+            $('#idBrisanje').val(id);
+            var ruta = "{{ route('procesori.modeli.brisanje') }}";
+            $('#brisanje-forma').attr('action', ruta);
+            $('#brisanjeModal').modal('show');
+            $('#btn-brisanje-otkazi').click(function () {
+                    $('#brisanjeModal').modal('hide');
+            });
+            $('#btn-brisanje-obrisi').click(function () {
+                    $('#brisanjeModal').modal('hide');
+            });
         });
 
         var tabela = $('#tabelaProcesori').DataTable({
