@@ -423,7 +423,7 @@
         <div class="col-md-10 col-md-offset-1" style="margin-top: 20px">
 
             <div class="col-md-4 text-left">
-                <a class="btn btn-info" href="{{route('zaposleni')}}" title="Povratak na listu zaposlenih"><i class="fa fa-users" style="color:#2C3E50"></i></a>
+                <a class="btn btn-info" href="{{route('zaposleni')}}" title="Povratak na listu zaposlenih"><i class="fa fa-list" style="color:#2C3E50"></i></a>
             </div>
 
             <div class="col-md-4 text-center">

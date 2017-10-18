@@ -25,15 +25,10 @@
             <table class="table table-striped display" cellspacing="0" width="100%" name="tabelaProcesori" id="tabelaProcesori">
                 <thead>
                         <th style="width: 5%;">#</th>
-                        <th style="width: 10%;">Naziv</th>
-                        <th style="width: 10%;">Proizvođač</th>
-                        <th style="width: 10%;">Soket</th>
-                        <th style="width: 10%;">Takt</th>
-                        <th style="width: 5%;">Kes</th>
-                        <th style="width: 10%;">Broj jezgara</th>
-                        <th style="width: 10%;">Broj niti</th>
-                        <th style="width: 10%;">Ocena</th>
-                        <th style="width: 5%;">Link</th>
+                        <th style="width: 10%;">Serijski broj</th>
+                        <th style="width: 10%;">Racunar</th>
+                        <th style="width: 10%;">Broj otpremnice</th>
+                        <th style="width: 10%;">Napomena</th>
                         <th style="width: 15%;text-align:center"><i class="fa fa-cogs"></i></th>
                 </thead>
                 <tbody id="procesori_lista" name="procesori_lista">
@@ -48,10 +43,7 @@
                             <td>{{$procesor->broj_jezgara}}</td>
                             <td>{{$procesor->broj_niti}}</td>
                             <td>{{$procesor->ocena}}</td>
-                            <td><a href="{{$procesor->link}}" target="_blank" style="font-size: 2rem;">
-                                    <i class="fa fa-link"></i>
-                                </a>
-                            </td>
+                            <td><a href="{{$procesor->link}}" target="_blank"><i class="fa fa-link"></i></a></td>
                             <td style="text-align:center; vertical-align: middle; line-height: normal;">
                     <a class="btn btn-success btn-sm" id="dugmeDetalj"  href="{{route('procesori.modeli.detalj', $procesor->id)}}"><i class="fa fa-eye"></i></a>
                     <a class="btn btn-info btn-sm" id="dugmeIzmena"  href="{{route('procesori.modeli.izmena.get', $procesor->id)}}"><i class="fa fa-pencil"></i></a>
