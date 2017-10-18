@@ -20,13 +20,14 @@ class EmailKontroler extends Kontroler {
     public function postDodavanje(Request $request) {
         
         $this->validate($request, [
-            'broj' => [
+            'adresa' => [
+                'email',
                 'required',
             ],
         ]);
 
          //Check-box
-            if ($request->email_dodavanje_sluzbena) {
+            if ($request->sluzbena) {
                 $sluzbenic = 1;
             } else {
                 $sluzbenic = 0;
@@ -57,12 +58,13 @@ class EmailKontroler extends Kontroler {
         $id = $request->idModal;
         $this->validate($request, [
             'adresaModal' => [
+                'email',
                 'required',
             ],
         ]);
 
          //Check-box
-            if ($request->email_izmena_sluzbena) {
+            if ($request->sluzbenaModal) {
                 $sluzbenic = 1;
             } else {
                 $sluzbenic = 0;
@@ -71,7 +73,7 @@ class EmailKontroler extends Kontroler {
         $data = Email::find($id);
         $data->adresa = $request->adresaModal;
         $data->sluzbena = $sluzbenic;
-        $data->zaposleni_id = $request->zaposleni_idModal;
+        $data->zaposleni_id = $request->zaposleniIdModal;
         $data->napomena = $request->napomenaModal;
         $data->save();
 
@@ -90,4 +92,6 @@ class EmailKontroler extends Kontroler {
     }
 
 }
+
+
 
