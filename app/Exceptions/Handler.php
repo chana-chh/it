@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use PDOException;
+use Session;
 
 class Handler extends ExceptionHandler
 {
@@ -47,9 +48,12 @@ class Handler extends ExceptionHandler
     {
         
                 if($exception instanceof PDOException)
-        {
-            $poruka = $exception->getMessage();
-            return response()->view('errors/pdo')->with(compact ('poruka'));
+            {
+            if (strpos($exception->getMessage(),'1451') !== true) {
+            Session::flash('greska', 'Ovaj model se jos uvek nalazi u nekim uređajima, zbog toga ga ne možete obrisati');
+            return redirect()->back();
+            }
+        
         }
         return parent::render($request, $exception);
     }
