@@ -56,14 +56,13 @@ class PovezivanjeVgaKontroler extends Kontroler {
     }
 
     public function postBrisanje(Request $request) {
-        $data = MonitorPovezivanje::find($request->id);
+        $data = MonitorPovezivanje::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Stavka je uspešno obrisana!');
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
         }
+        return Redirect::back();
     }
-
 }
-

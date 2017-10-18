@@ -48,7 +48,10 @@
                             <td>{{$procesor->broj_jezgara}}</td>
                             <td>{{$procesor->broj_niti}}</td>
                             <td>{{$procesor->ocena}}</td>
-                            <td><a href="{{$procesor->link}}" target="_blank"><i class="fa fa-link"></i></a></td>
+                            <td><a href="{{$procesor->link}}" target="_blank" style="font-size: 2rem;">
+                                    <i class="fa fa-link"></i>
+                                </a>
+                            </td>
                             <td style="text-align:center; vertical-align: middle; line-height: normal;">
                     <a class="btn btn-success btn-sm" id="dugmeDetalj"  href="{{route('procesori.modeli.detalj', $procesor->id)}}"><i class="fa fa-eye"></i></a>
                     <a class="btn btn-info btn-sm" id="dugmeIzmena"  href="{{route('procesori.modeli.izmena.get', $procesor->id)}}"><i class="fa fa-pencil"></i></a>

@@ -13,64 +13,63 @@ class DijagonaleKontroler extends Kontroler
 {
     public function getLista()
     {
-        $dijagonale = MonitorDijagonala::all();
-        return view('sifarnici.dijagonale')->with(compact ('dijagonale'));
+        $data = MonitorDijagonala::all();
+        return view('sifarnici.dijagonale')->with(compact ('data'));
     }
 
-    public function postDodavanje(Request $req)
+    public function postDodavanje(Request $request)
     {
-        $this->validate($req, [
+        $this->validate($request, [
             'naziv' => [
-                'required',
-                'unique:s_dijagonale,naziv',
-            	],
+                    'required',
+                    'unique:s_dijagonale,naziv',
+                    ],
         	]);
 
-        $dijagonala = new MonitorDijagonala();
-        $dijagonala->naziv = $req->naziv;
-        $dijagonala->save();
+        $data = new MonitorDijagonala();
+        $data->naziv = $request->naziv;
+        $data->save();
 
         Session::flash('uspeh','Stavka je uspešno dodata!');
         return redirect()->route('dijagonale');
     }
 
-    public function postDetalj(Request $req)
+    public function postDetalj(Request $request)
     {
-        if($req->ajax())
+        if($request->ajax())
         {
-            $id = $req->id;
-            $dijagonala = MonitorDijagonala::find($id);
-            return response()->json($dijagonala);
+            $data = MonitorDijagonala::find($request->id);
+            return response()->json($data);
         }
     }
 
-    public function postIzmena(Request $req)
+    public function postIzmena(Request $request)
     {
-        $id = $req -> edit_id;
-        $this->validate($req, [
+        $id = $request->idModal;
+        $this->validate($request, [
         'nazivModal' => [
             'required',
             'unique:s_dijagonale,naziv,' . $id,
             ],
         ]);
 
-        $dijagonala = MonitorDijagonala::find($id);
-        $dijagonala->naziv = $req->nazivModal;
-        $dijagonala->save();
+        $data = MonitorDijagonala::find($id);
+        $data->naziv = $request->nazivModal;
+        $data->save();
 
         Session::flash('uspeh','Stavka je uspešno izmenjena!');
         return Redirect::back();
     }
 
-    public function postBrisanje(Request $req)
+    public function postBrisanje(Request $request)
     {
-        $id = $req->id;
-        $dijagonala = MonitorDijagonala::find($id);
-        $odgovor = $dijagonala->delete();
+        $data = MonitorDijagonala::find($request->idBrisanje);
+        $odgovor = $data->delete();
         if ($odgovor) {
-            Session::flash('uspeh','Stavka je uspešno obrisana!');
+            Session::flash('uspeh', 'Stavka je uspešno obrisana!');
         } else {
-            Session::flash('greska','Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
+            Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
         }
+        return Redirect::back();
     }
 }

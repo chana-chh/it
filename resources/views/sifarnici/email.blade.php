@@ -8,7 +8,7 @@
 
 @section('naslov')
 <h1 class="page-header">
-    <img class="slicica_animirana" alt="spratovi" src="{{ url('/images/email.png') }}" style="height:64px;  width:64px">
+    <img class="slicica_animirana" alt="email" src="{{ url('/images/email.png') }}" style="height:64px;  width:64px">
      &emsp;Adrese elektronske pošte
 </h1>
 @endsection
@@ -30,9 +30,19 @@
     @foreach ($data as $d)
     <tr>
         <td>{{ $d->id }}</td>
-        <td><strong class="text-info"><a href="mailto:{{ $d->adresa }}">{{ $d->adresa }}</a></strong></td>
-        <td><strong title="U pitanju je služben elektronska adresa">{{ $d->sluzbena == 1 ? "s" : " "}}</strong></td>
-        <td><a  href="{{ route('zaposleni.detalj', $d->zaposleni->id) }}"><strong>{{ $d->zaposleni->imePrezime() }}</strong></a></td>
+        <td>
+            <a href="mailto:{{ $d->adresa }}"><strong class="text-info">{{ $d->adresa }}</strong></a>
+        </td>
+        <td>
+            <span title="U pitanju je služben elektronska adresa" style="color: #18bc9c;">
+                {!! $d->sluzbena == 1 ? "<i class=\"fa fa-check-square-o\"></i>" : " "!!}
+            </span>
+        </td>
+        <td>
+            <a href="{{ route('zaposleni.detalj', $d->zaposleni->id) }}">
+                <strong>{{ $d->zaposleni->imePrezime() }}</strong>
+            </a>
+        </td>
         <td><em>{{ str_limit($d->napomena, 60) }}</em></td>
         <td style="text-align:right;">
             <button class="btn btn-success btn-sm otvori-izmenu"
@@ -66,27 +76,28 @@
             <div class="modal-body">
                 <form action="{{ route('email.izmena') }}" method="post">
                     {{ csrf_field() }}
-
                     <div class="form-group">
                         <label for="adresaModal">Adresa:</label>
                         <input type="text" id="adresaModal" name="adresaModal" class="form-control" required>
                     </div>
-
                     <div class="form-group checkboxoviforme">
-                                <label><input type="checkbox" name="email_izmena_sluzbena" id="email_izmena_sluzbena"> &emsp;Da li je elektronska adresa službena?</label>
+                        <label>
+                            <input type="checkbox" id="sluzbenaModal" name="sluzbenaModal">
+                            &emsp;Da li je elektronska adresa službena?
+                        </label>
                     </div>
-
                     <div class="form-group">
-                        <label for="zaposleni_idModal">Zaposleni:</label>
-                        <select class="form-control" name="zaposleni_idModal" id="zaposleni_idModal" data-placeholder="zaposleni ...">
+                        <label for="zaposleniIdModal">Zaposleni:</label>
+                        <select class="form-control"
+                                id="zaposleniIdModal"
+                                name="zaposleniIdModal"
+                                data-placeholder="zaposleni ...">
                         </select>
                     </div>
-
                     <div class="form-group">
                         <label for="napomenaModal">Napomena:</label>
                         <textarea class="form-control" id="napomenaModal" name="napomenaModal"></textarea>
                     </div>
-
                     <input type="hidden" id="idModal" name="idModal">
                     <button type="submit" class="btn btn-success">
                         <i class="fa fa-save"></i> Snimi izmene
@@ -105,65 +116,69 @@
 @endsection
 
 @section('traka')
-<h4>Dodavanje broja mobilne telefonije</h4>
+<h4>Dodavanje elektronske adrese zaposlenog</h4>
 <hr>
 <div class="well">
     <form action="{{ route('email.dodavanje') }}" method="POST" data-parsley-validate>
         {{ csrf_field() }}
         <div class="form-group{{ $errors->has('adresa') ? ' has-error' : '' }}">
             <label for="adresa">Adresa: </label>
-            <input  type="text" name="adresa" id="adresa" class="form-control" value="{{ old('adresa') }}" required>
+            <input  type="email" id="adresa" name="adresa" class="form-control" value="{{ old('adresa') }}" required>
             @if ($errors->has('adresa'))
             <span class="help-block">
                 <strong>{{ $errors->first('adresa') }}</strong>
             </span>
             @endif
         </div>
-
        <div class="form-group checkboxoviforme">
-                <label><input type="checkbox" name="email_dodavanje_sluzbena" id="email_dodavanje_sluzbena"> &emsp;Da li je adresa elektronske pošte službena?</label>
+            <label>
+                <input type="checkbox" name="sluzbena" id="sluzbena">
+                &emsp;Da li je adresa elektronske pošte službena?
+            </label>
         </div>
-
         <div class="form-group{{ $errors->has('zaposleni_id') ? ' has-error' : '' }}">
-                    <label for="zaposleni_id">Zaposleni:</label>
-                    <select name="zaposleni_id" id="zaposleni_id" class="chosen-select form-control" data-placeholder="zaposleni ..." required>
-                        <option value=""></option>
-                        @foreach($radnici as $radnik)
-                        <option value="{{ $radnik->id }}"{{ old('zaposleni_id') == $radnik->id ? ' selected' : '' }}>
-                            {{ $radnik->Imeprezime() }}
-                        </option>
-                        @endforeach
-                    </select>
-                    @if ($errors->has('zaposleni_id'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('zaposleni_id') }}</strong>
-                        </span>
-                    @endif
+            <label for="zaposleni_id">Zaposleni:</label>
+            <select id="zaposleni_id" name="zaposleni_id"
+                    class="chosen-select form-control"
+                    data-placeholder="zaposleni ..." required>
+                <option value=""></option>
+                @foreach($radnici as $radnik)
+                <option value="{{ $radnik->id }}"{{ old('zaposleni_id') == $radnik->id ? ' selected' : '' }}>
+                    {{ $radnik->Imeprezime() }}
+                </option>
+                @endforeach
+            </select>
+            @if ($errors->has('zaposleni_id'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('zaposleni_id') }}</strong>
+                </span>
+            @endif
         </div>
-
         <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
-                    <label for="napomena">Napomena:</label>
-                    <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena') }}</textarea>
-                    @if ($errors->has('napomena'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('napomena') }}</strong>
-                        </span>
-                    @endif
-                </div>
-
-            <div class="row dugmici">
+            <label for="napomena">Napomena:</label>
+            <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena') }}</textarea>
+            @if ($errors->has('napomena'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('napomena') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="row dugmici">
             <div class="col-md-12" style="margin-top: 20px;">
-            <div class="form-group">
-            <div class="col-md-6 snimi">
-                <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-plus-circle"></i>&emsp;Dodaj</button>
+                <div class="form-group">
+                    <div class="col-md-6 snimi">
+                        <button type="submit" class="btn btn-success btn-block ono">
+                            <i class="fa fa-plus-circle"></i>&emsp;Dodaj
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-danger btn-block ono" href="{{route('mobilni')}}">
+                            <i class="fa fa-ban"></i>&emsp;Otkaži
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6">
-                <a class="btn btn-danger btn-block ono" href="{{route('mobilni')}}"><i class="fa fa-ban"></i>&emsp;Otkaži</a>
-            </div>
-            </div>
-            </div>
-            </div>
-
+        </div>
     </form>
 </div>
 @endsection
@@ -244,13 +259,16 @@
                 success: function (data) {
                     $("#idModal").val(data.email.id);
                     $("#adresaModal").val(data.email.adresa);
-                    $("#email_izmena_sluzbena").prop('checked', data.email.sluzbena);
+                    $("#sluzbenaModal").prop('checked', data.email.sluzbena);
                     $("#napomenaModal").val(data.email.napomena);
 
-                     $.each(data.zaposleni, function(index, lokObjekat){
-                    $('#zaposleni_idModal').append('<option value="'+lokObjekat.id+'">'+lokObjekat.ime+'  '+lokObjekat.prezime+'</option>');
+                    $.each(data.zaposleni, function(index, lokObjekat){
+                        $('#zaposleniIdModal').append('<option value="'
+                                + lokObjekat.id + '">'
+                                + lokObjekat.ime + '  '
+                                + lokObjekat.prezime + '</option>');
                     });
-                    $("#zaposleni_idModal").val(data.email.zaposleni_id);
+                    $("#zaposleniIdModal").val(data.email.zaposleni_id);
                 }
             });
         });
@@ -259,6 +277,19 @@
 <script src="{{ asset('/js/parsley.js') }}"></script>
 <script src="{{ asset('/js/parsley_sr.js') }}"></script>
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

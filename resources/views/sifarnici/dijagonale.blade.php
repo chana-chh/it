@@ -8,59 +8,50 @@
 
 @section('naslov')
 <h1 class="page-header">
-    Dijagonale monitora&emsp;
-    <img alt="dijagonale" src="{{url('/images/monitor_size.png')}}" style="height:64px;  width:64px">
+     <img class="slicica_animirana" alt="Dijagonale monitora"
+          src="{{ url('/images/monitor_size.png') }}" style="height:64px; width:64px">
+    &emsp;Dijagonale monitora
 </h1>
 @endsection
 
 @section('sadrzaj')
-@if($dijagonale->isEmpty())
-<h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
+@if($data->isEmpty())
+    <h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
 @else
-<table class="table table-striped tabelaSpratovi" name="tabelaSpratovi" id="tabelaSpratovi">
+<table id="tabela" class="table table-striped">
     <thead>
-    <th style="width: 15%;">#</th>
-    <th style="width: 70%;">Naziv</th>
-    <th style="width: 15%;text-align:center"><i class="fa fa-cogs"></i></th>
-</thead>
-<tbody id="spratovi_lista" name="spratovi_lista">
-    @foreach ($dijagonale as $dijagonala)
-    <tr>
-        <td>{{$dijagonala->id}}</td>
-        <td><strong>{{ $dijagonala->inc() }}</strong></td>
-        <td style="text-align:right;">
-            <button class="btn btn-success btn-sm otvori_izmenu" id="dugmeIzmena" data-toggle="modal" data-target="#editModal" value="{{$dijagonala->id}}"><i class="fa fa-pencil"></i></button>
-            <button id="dugmeBrisanje" class="btn btn-danger btn-sm otvori_modal"  value="{{$dijagonala->id}}"><i class="fa fa-trash"></i></button>
-        </td>
-    </tr>
-    @endforeach
-</tbody>
+        <th style="width: 15%;">#</th>
+        <th style="width: 70%;">Naziv</th>
+        <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i> Akcije</th>
+    </thead>
+    <tbody>
+        @foreach ($data as $d)
+        <tr>
+            <td>{{ $d->id }}</td>
+            <td><strong>{{ $d->inc() }}</strong></td>
+            <td style="text-align:right;">
+                <button class="btn btn-success btn-sm otvori-izmenu"
+                        data-toggle="modal" data-target="#editModal"
+                        value="{{ $d->id }}">
+                    <i class="fa fa-pencil"></i>
+                </button>
+                <button class="btn btn-danger btn-sm otvori-brisanje"
+                        value="{{ $d->id }}">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
 </table>
 @endif
 
-{{-- Modal za dijalog brisanje--}}
-<div class="modal fade" id="brisanjeModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Upozorenje!</h4>
-            </div>
-            <div class="modal-body">
-                <h4 class="text-primary">Da li želite trajno da obrišete stavku</h4>
-                <p>Ova akcija je nepovratna!</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="btn-obrisi">Obriši</button>
-                <button type="button" class="btn btn-danger" id="btn-otkazi">Otkaži</button>
-            </div>
-        </div>
-    </div>
-</div>
-{{-- Kraj Modala za dijalog brisanje--}}
+<!--  POCETAK brisanjeModal  -->
+@include('sifarnici.inc.modal_brisanje')
+<!--  KRAJ brisanjeModal  -->
 
 {{-- Pocetak Modala za dijalog izmena--}}
-<div class="modal fade" id="editModal" role="dialog">
+<div id="editModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -75,12 +66,16 @@
                         <input  type="number" class="form-control" id="nazivModal" name="nazivModal"
                                 min="10"  step="0.5" required>
                     </div>
-                    <input type="hidden" id="edit_id" name="edit_id">
-                    <button type="submit" class="btn btn-success">Izmeni</button>
+                    <input type="hidden" id="idModal" name="idModal">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-save"></i> Snimi izmene
+                    </button>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Zatvori</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    <i class="fa fa-ban"></i> Otkaži
+                </button>
             </div>
         </div>
     </div>
@@ -124,7 +119,7 @@
 <script>
     $(document).ready(function () {
 
-        $('#tabelaSpratovi').DataTable({
+        $('#tabela').DataTable({
             columnDefs: [{orderable: false, searchable: false, "targets": -1}],
             language: {
                 search: "Pronađi u tabeli",
@@ -142,36 +137,32 @@
             }
         });
 
-        $(document).on('click', '.otvori_modal', function () {
+        $(document).on('click', '.otvori-brisanje', function () {
             var id = $(this).val();
+            $('#idBrisanje').val(id);
             var ruta = "{{ route('dijagonale.brisanje') }}";
+            console.log(id);
+            console.log(ruta);
+            $('#brisanje-forma').attr('action', ruta);
             $('#brisanjeModal').modal('show');
-            $('#btn-obrisi').click(function () {
-                $.ajax({
-                    url: ruta,
-                    type: "POST",
-                    data: {"id": id, _token: "{!! csrf_token() !!}"},
-                    success: function () {
-                        location.reload();
-                    }
-                });
-                $('#brisanjeModal').modal('hide');
+            $('#btn-brisanje-otkazi').click(function () {
+                 $('#brisanjeModal').modal('hide');
             });
-            $('#btn-otkazi').click(function () {
+            $('#btn-brisanje-obrisi').click(function () {
                 $('#brisanjeModal').modal('hide');
             });
         });
 
-        $(document).on('click', '.otvori_izmenu', function () {
-            var id_izmena = $(this).val();
-            var detalj_ruta = "{{ route('dijagonale.detalj') }}";
+        $(document).on('click', '.otvori-izmenu', function () {
+            var id = $(this).val();
+            var ruta = "{{ route('dijagonale.detalj') }}";
             $.ajax({
-                url: detalj_ruta,
+                url: ruta,
                 type: "POST",
-                data: {"id": id_izmena, _token: "{!! csrf_token() !!}"},
-                success: function (result) {
-                    $("#edit_id").val(result.id);
-                    $("#nazivModal").val(result.naziv);
+                data: {"id": id, _token: "{!! csrf_token() !!}"},
+                success: function (data) {
+                    $("#idModal").val(data.id);
+                    $("#nazivModal").val(data.naziv);
                 }
             });
         });
@@ -180,6 +171,33 @@
 <script src="{{ asset('/js/parsley.js') }}"></script>
 <script src="{{ asset('/js/parsley_sr.js') }}"></script>
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
