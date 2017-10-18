@@ -25,15 +25,10 @@
             <table class="table table-striped display" cellspacing="0" width="100%" name="tabelaProcesori" id="tabelaProcesori">
                 <thead>
                         <th style="width: 5%;">#</th>
-                        <th style="width: 10%;">Naziv</th>
-                        <th style="width: 10%;">Proizvođač</th>
-                        <th style="width: 10%;">Soket</th>
-                        <th style="width: 10%;">Takt</th>
-                        <th style="width: 5%;">Kes</th>
-                        <th style="width: 10%;">Broj jezgara</th>
-                        <th style="width: 10%;">Broj niti</th>
-                        <th style="width: 10%;">Ocena</th>
-                        <th style="width: 5%;">Link</th>
+                        <th style="width: 10%;">Serijski broj</th>
+                        <th style="width: 10%;">Racunar</th>
+                        <th style="width: 10%;">Broj otpremnice</th>
+                        <th style="width: 10%;">Napomena</th>
                         <th style="width: 15%;text-align:center"><i class="fa fa-cogs"></i></th>
                 </thead>
                 <tbody id="procesori_lista" name="procesori_lista">

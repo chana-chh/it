@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Modeli;
 use Illuminate\Http\Request;
 use Session;
 use Redirect;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
 
 Use App\Modeli\ProcesorModel;
 Use App\Modeli\Proizvodjac;
 Use App\Modeli\Soket;
+Use App\Modeli\Procesor;
 
 
 class ProcesoriKontroler extends Kontroler
@@ -89,7 +91,33 @@ class ProcesoriKontroler extends Kontroler
     public function getDetalj($id)
     {
         $procesor = ProcesorModel::find($id);
-        return view('modeli.procesori_detalj')->with(compact ('procesor'));
+        $racunari = DB::table('procesori')->where([
+            ['procesor_model_id', '=', $id],
+            ['racunar_id', '<>', null],
+        ])->count();
+        return view('modeli.procesori_detalj')->with(compact ('procesor', 'racunari'));
+    }
+
+    public function postBrisanje(Request $request) {
+        $data = ProcesorModel::find($request->id);
+        $odgovor = $data->delete();
+        if ($odgovor) {
+            Session::flash('uspeh', 'Stavka je uspešno obrisana!');
+        } else {
+            Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
+        }
+    }
+
+    public function getRacunari($id)
+    {
+        $procesori = ProcesorModel::all();
+        return view('modeli.procesori')->with(compact ('procesori'));
+    }
+
+    public function getUredjaji($id)
+    {
+        $procesori = Procesor::where('procesor_model_id', '=', $id)->get();
+        return view('modeli.procesori_uredjaji')->with(compact ('procesori'));
     }
 
 }
