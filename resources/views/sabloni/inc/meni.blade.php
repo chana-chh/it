@@ -91,10 +91,10 @@
                             <li><a href="{{ route('soketi') }}">Soketi (cpu, mbd)</a></li>
                             <li><a href="{{ route('tipovi_memorije') }}">Tipovi memorije (ram, mbd, vga)</a></li>
                             <li><a href="{{ route('vga_slotovi') }}">VGA slotovi (mbd, vga)</a></li>
-                            <li><a href="">Tipovi štampača</a></li>
-                            <li><a href="">Toneri</a></li>
+                            <li><a href="{{ route('tipovi_stampaca') }}">Tipovi štampača</a></li>
+                            <li><a href="{{ route('toneri') }}">Toneri</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="">Operativni sistemi</a></li>
+                            <li><a href="{{ route('operativni_sistemi') }}">Operativni sistemi</a></li>
                             <li><a href="">Aplikacije</a></li>
                         </ul>
                     </li>
@@ -112,6 +112,11 @@
         </div>
     </div>
 </nav>
+
+
+
+
+
 
 
 

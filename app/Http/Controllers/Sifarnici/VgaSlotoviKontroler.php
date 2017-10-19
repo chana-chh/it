@@ -22,7 +22,7 @@ class VgaSlotoviKontroler extends Kontroler
         $this->validate($request, [
             'naziv' => [
                 'required',
-                'unique:s_soketi,naziv',
+                'unique:vga_slotovi,naziv',
             ],
         ]);
 
@@ -48,7 +48,7 @@ class VgaSlotoviKontroler extends Kontroler
         $this->validate($request, [
             'nazivModal' => [
                 'required',
-                'unique:s_soketi,naziv,' . $id,
+                'unique:vga_slotovi,naziv,' . $id,
             ],
         ]);
 

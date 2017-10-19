@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 use Session;
 use Redirect;
 use App\Http\Controllers\Kontroler;
-use App\Modeli\TipMemorije;
+use App\Modeli\OperativniSistem;
 
-class TipoviMemorijeKontroler extends Kontroler
+class OperativniSistemiKontroler extends Kontroler
 {
 
     public function getLista()
     {
-        $data = TipMemorije::all();
-        return view('sifarnici.tipovi_memorije')->with(compact('data'));
+        $data = OperativniSistem::all();
+        return view('sifarnici.operativni_sistemi')->with(compact('data'));
     }
 
     public function postDodavanje(Request $request)
@@ -22,22 +22,22 @@ class TipoviMemorijeKontroler extends Kontroler
         $this->validate($request, [
             'naziv' => [
                 'required',
-                'unique:s_tipovi_memorije,naziv',
+                'unique:operativni_sistemi,naziv',
             ],
         ]);
 
-        $data = new TipMemorije();
+        $data = new OperativniSistem();
         $data->naziv = $request->naziv;
         $data->save();
 
         Session::flash('uspeh', 'Stavka je uspešno dodata!');
-        return redirect()->route('tipovi_memorije');
+        return redirect()->route('operativni_sistemi');
     }
 
     public function postDetalj(Request $request)
     {
         if ($request->ajax()) {
-            $data = TipMemorije::find($request->id);
+            $data = OperativniSistem::find($request->id);
             return response()->json($data);
         }
     }
@@ -48,11 +48,11 @@ class TipoviMemorijeKontroler extends Kontroler
         $this->validate($request, [
             'nazivModal' => [
                 'required',
-                'unique:s_tipovi_memorije,naziv,' . $id,
+                'unique:operativni_sistemi,naziv,' . $id,
             ],
         ]);
 
-        $data = TipMemorije::find($id);
+        $data = OperativniSistem::find($id);
         $data->naziv = $request->nazivModal;
         $data->save();
 
@@ -62,7 +62,7 @@ class TipoviMemorijeKontroler extends Kontroler
 
     public function postBrisanje(Request $request)
     {
-        $data = TipMemorije::find($request->idBrisanje);
+        $data = OperativniSistem::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Stavka je uspešno obrisana!');

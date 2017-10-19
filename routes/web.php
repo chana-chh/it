@@ -130,8 +130,30 @@ Route::post('sifarnici/vga_slotovi/dodavanje', 'Sifarnici\VgaSlotoviKontroler@po
 Route::post('sifarnici/vga_slotovi/brisanje', 'Sifarnici\VgaSlotoviKontroler@postBrisanje')->name('vga_slotovi.brisanje');
 Route::post('sifarnici/vga_slotovi/izmena', 'Sifarnici\VgaSlotoviKontroler@postIzmena')->name('vga_slotovi.izmena');
 Route::post('sifarnici/vga_slotovi/detalj', 'Sifarnici\VgaSlotoviKontroler@postDetalj')->name('vga_slotovi.detalj');
-// MODELI UREDJAJA
 
+//Tipovi stampaca
+Route::get('sifarnici/tipovi_stampaca', 'Sifarnici\TipoviStampacaKontroler@getLista')->name('tipovi_stampaca');
+Route::post('sifarnici/tipovi_stampaca/dodavanje', 'Sifarnici\TipoviStampacaKontroler@postDodavanje')->name('tipovi_stampaca.dodavanje');
+Route::post('sifarnici/tipovi_stampaca/brisanje', 'Sifarnici\TipoviStampacaKontroler@postBrisanje')->name('tipovi_stampaca.brisanje');
+Route::post('sifarnici/tipovi_stampaca/izmena', 'Sifarnici\TipoviStampacaKontroler@postIzmena')->name('tipovi_stampaca.izmena');
+Route::post('sifarnici/tipovi_stampaca/detalj', 'Sifarnici\TipoviStampacaKontroler@postDetalj')->name('tipovi_stampaca.detalj');
+
+//Toneri
+Route::get('sifarnici/toneri', 'Sifarnici\ToneriKontroler@getLista')->name('toneri');
+Route::post('sifarnici/toneri/dodavanje', 'Sifarnici\ToneriKontroler@postDodavanje')->name('toneri.dodavanje');
+Route::post('sifarnici/toneri/brisanje', 'Sifarnici\ToneriKontroler@postBrisanje')->name('toneri.brisanje');
+Route::post('sifarnici/toneri/izmena', 'Sifarnici\ToneriKontroler@postIzmena')->name('toneri.izmena');
+Route::post('sifarnici/toneri/detalj', 'Sifarnici\ToneriKontroler@postDetalj')->name('toneri.detalj');
+
+//Operativni sistemi
+Route::get('sifarnici/operativni_sistemi', 'Sifarnici\OperativniSistemiKontroler@getLista')->name('operativni_sistemi');
+Route::post('sifarnici/operativni_sistemi/dodavanje', 'Sifarnici\OperativniSistemiKontroler@postDodavanje')->name('operativni_sistemi.dodavanje');
+Route::post('sifarnici/operativni_sistemi/brisanje', 'Sifarnici\OperativniSistemiKontroler@postBrisanje')->name('operativni_sistemi.brisanje');
+Route::post('sifarnici/operativni_sistemi/izmena', 'Sifarnici\OperativniSistemiKontroler@postIzmena')->name('operativni_sistemi.izmena');
+Route::post('sifarnici/operativni_sistemi/detalj', 'Sifarnici\OperativniSistemiKontroler@postDetalj')->name('operativni_sistemi.detalj');
+
+
+// MODELI UREDJAJA
 //Procesori
 Route::get('modeli/procesori/', 'Modeli\ProcesoriKontroler@getLista')->name('procesori.modeli');
 Route::get('modeli/procesori/dodavanje', 'Modeli\ProcesoriKontroler@getDodavanje')->name('procesori.modeli.dodavanje.get');
@@ -142,4 +164,8 @@ Route::get('modeli/procesori/detalj/{id}', 'Modeli\ProcesoriKontroler@getDetalj'
 Route::post('modeli/procesori/brisanje', 'Modeli\ProcesoriKontroler@postBrisanje')->name('procesori.modeli.brisanje');
 Route::get('modeli/procesori/uredjaji/{id}', 'Modeli\ProcesoriKontroler@getUredjaji')->name('procesori.modeli.uredjaji');
 Route::get('modeli/procesori/racunari/{id}', 'Modeli\ProcesoriKontroler@getRacunari')->name('procesori.modeli.racunari');
+
+
+
+
 

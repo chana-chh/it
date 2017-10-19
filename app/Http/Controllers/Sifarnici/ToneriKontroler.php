@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 use Session;
 use Redirect;
 use App\Http\Controllers\Kontroler;
-use App\Modeli\TipMemorije;
+use App\Modeli\Toner;
 
-class TipoviMemorijeKontroler extends Kontroler
+class ToneriKontroler extends Kontroler
 {
 
     public function getLista()
     {
-        $data = TipMemorije::all();
-        return view('sifarnici.tipovi_memorije')->with(compact('data'));
+        $data = Toner::all();
+        return view('sifarnici.toneri')->with(compact('data'));
     }
 
     public function postDodavanje(Request $request)
@@ -22,22 +22,22 @@ class TipoviMemorijeKontroler extends Kontroler
         $this->validate($request, [
             'naziv' => [
                 'required',
-                'unique:s_tipovi_memorije,naziv',
+                'unique:s_toneri,naziv',
             ],
         ]);
 
-        $data = new TipMemorije();
+        $data = new Toner();
         $data->naziv = $request->naziv;
         $data->save();
 
         Session::flash('uspeh', 'Stavka je uspešno dodata!');
-        return redirect()->route('tipovi_memorije');
+        return redirect()->route('toneri');
     }
 
     public function postDetalj(Request $request)
     {
         if ($request->ajax()) {
-            $data = TipMemorije::find($request->id);
+            $data = Toner::find($request->id);
             return response()->json($data);
         }
     }
@@ -48,11 +48,11 @@ class TipoviMemorijeKontroler extends Kontroler
         $this->validate($request, [
             'nazivModal' => [
                 'required',
-                'unique:s_tipovi_memorije,naziv,' . $id,
+                'unique:s_toneri,naziv,' . $id,
             ],
         ]);
 
-        $data = TipMemorije::find($id);
+        $data = Toner::find($id);
         $data->naziv = $request->nazivModal;
         $data->save();
 
@@ -62,7 +62,7 @@ class TipoviMemorijeKontroler extends Kontroler
 
     public function postBrisanje(Request $request)
     {
-        $data = TipMemorije::find($request->idBrisanje);
+        $data = Toner::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Stavka je uspešno obrisana!');

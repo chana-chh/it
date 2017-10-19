@@ -8,42 +8,42 @@
 
 @section('naslov')
 <h1 class="page-header">
-     <img class="slicica_animirana" alt="Dijagonale monitora"
-          src="{{ url('/images/monitor_size.png') }}" style="height:64px;">
+    <img class="slicica_animirana" alt="Dijagonale monitora"
+         src="{{ url('/images/monitor_size.png') }}" style="height:64px;">
     &emsp;Dijagonale monitora
 </h1>
 @endsection
 
 @section('sadrzaj')
 @if($data->isEmpty())
-    <h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
+<h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
 @else
 <table id="tabela" class="table table-striped">
     <thead>
-        <th style="width: 15%;">#</th>
-        <th style="width: 70%;">Naziv</th>
-        <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
-    </thead>
-    <tbody>
-        @foreach ($data as $d)
-        <tr>
-            <td>{{ $d->id }}</td>
-            <td><strong>{{ $d->inc() }}</strong></td>
-            <td style="text-align:right;">
-                <button class="btn btn-success btn-sm otvori-izmenu"
-                        data-toggle="modal" data-target="#editModal"
-                        value="{{ $d->id }}">
-                    <i class="fa fa-pencil"></i>
-                </button>
-                <button class="btn btn-danger btn-sm otvori-brisanje"
-                        data-toggle="modal" data-target="#brisanjeModal"
-                        value="{{ $d->id }}">
-                    <i class="fa fa-trash"></i>
-                </button>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
+    <th style="width: 15%;">#</th>
+    <th style="width: 70%;">Naziv</th>
+    <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
+</thead>
+<tbody>
+    @foreach ($data as $d)
+    <tr>
+        <td>{{ $d->id }}</td>
+        <td><strong>{{ $d->inc() }}</strong></td>
+        <td style="text-align:right;">
+            <button class="btn btn-success btn-sm otvori-izmenu"
+                    data-toggle="modal" data-target="#editModal"
+                    value="{{ $d->id }}">
+                <i class="fa fa-pencil"></i>
+            </button>
+            <button class="btn btn-danger btn-sm otvori-brisanje"
+                    data-toggle="modal" data-target="#brisanjeModal"
+                    value="{{ $d->id }}">
+                <i class="fa fa-trash"></i>
+            </button>
+        </td>
+    </tr>
+    @endforeach
+</tbody>
 </table>
 @endif
 
@@ -104,10 +104,14 @@
             <div class="col-md-12">
                 <div class="form-group text-right">
                     <div class="col-md-6 snimi">
-                        <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-plus-circle"></i> Dodaj</button>
+                        <button type="submit" class="btn btn-success btn-block ono">
+                            <i class="fa fa-plus-circle"></i> Dodaj
+                        </button>
                     </div>
                     <div class="col-md-6">
-                        <a class="btn btn-danger btn-block ono" href="{{route('dijagonale')}}"><i class="fa fa-ban"></i> Otkaži</a>
+                        <a class="btn btn-danger btn-block ono" href="{{route('dijagonale')}}">
+                            <i class="fa fa-ban"></i> Otkaži
+                        </a>
                     </div>
                 </div>
             </div>
@@ -121,7 +125,13 @@
     $(document).ready(function () {
 
         $('#tabela').DataTable({
-            columnDefs: [{orderable: false, searchable: false, "targets": -1}],
+            columnDefs: [
+                {
+                    orderable: false,
+                    searchable: false,
+                    "targets": -1
+                }
+            ],
             language: {
                 search: "Pronađi u tabeli",
                 paginate: {
@@ -151,7 +161,10 @@
             $.ajax({
                 url: ruta,
                 type: "POST",
-                data: {"id": id, _token: "{!! csrf_token() !!}"},
+                data: {
+                    "id": id,
+                    _token: "{!! csrf_token() !!}"
+                },
                 success: function (data) {
                     $("#idModal").val(data.id);
                     $("#nazivModal").val(data.naziv);
@@ -163,3 +176,4 @@
 <script src="{{ asset('/js/parsley.js') }}"></script>
 <script src="{{ asset('/js/parsley_sr.js') }}"></script>
 @endsection
+
