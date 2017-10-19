@@ -17,7 +17,7 @@
                 </form>
             </div>
             <div class = "modal-footer">
-                <button id = "btn-brisanje-otkazi" class = "btn btn-primary">
+                <button class = "btn btn-primary" data-dismiss="modal">
                     <i class = "fa fa-ban"></i> Otkaži
                 </button>
             </div>
