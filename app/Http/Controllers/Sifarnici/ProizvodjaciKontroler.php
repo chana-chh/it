@@ -13,13 +13,13 @@ class ProizvodjaciKontroler extends Kontroler
 {
     public function getLista()
     {
-    	$proizvodjaci = Proizvodjac::all();
-    	return view('sifarnici.proizvodjaci')->with(compact ('proizvodjaci'));
+    	$data = Proizvodjac::all();
+    	return view('sifarnici.proizvodjaci')->with(compact ('data'));
     }
 
-    public function postDodavanje(Request $req)
+    public function postDodavanje(Request $request)
     {
-        $this->validate($req, [
+        $this->validate($request, [
             'naziv' => [
                 'required',
                 'max:190',
@@ -31,53 +31,51 @@ class ProizvodjaciKontroler extends Kontroler
         ]);
 
         $proizvodjac = new Proizvodjac();
-        $proizvodjac->naziv = $req->naziv;
-        $proizvodjac->link = $req->link;
+        $proizvodjac->naziv = $request->naziv;
+        $proizvodjac->link = $request->link;
         $proizvodjac->save();
 
         Session::flash('uspeh','Stavka je uspešno dodata!');
         return redirect()->route('proizvodjaci');
     }
 
-        public function postDetalj(Request $req)
+        public function postDetalj(Request $request)
         {
-            if($req->ajax()){
-                $id = $req->id;
-                $proizvodjac = Proizvodjac::find($id);
-                return response()->json($proizvodjac);
+            if($request->ajax()){
+                $data = Proizvodjac::find($request->id);
+                return response()->json($data);
             }
         }
 
-        public function postIzmena(Request $req)
+        public function postIzmena(Request $request)
         {
-            $id = $req -> edit_id;
-            $this->validate($req, [
+            $id = $request ->idModal;
+            $this->validate($request, [
                 'nazivModal' => ['required',
                 'max:190',
-                'unique:s_proizvodjaci,naziv,'.$id,],
+                'unique:s_proizvodjaci,naziv,' . $id,
+                ],
                 'linkModal' => ['required']
             ]);
 
-            $proizvodjac = Proizvodjac::find($id);
-            $proizvodjac -> naziv = $req -> nazivModal;
-            $proizvodjac -> link = $req -> linkModal;
-            $proizvodjac -> save();
+            $data = Proizvodjac::find($id);
+            $data -> naziv = $request -> nazivModal;
+            $data -> link = $request -> linkModal;
+            $data -> save();
 
             Session::flash('uspeh','Stavka je uspešno izmenjena!');
             return Redirect::back();
         }
 
-        public function postBrisanje(Request $req)
+        public function postBrisanje(Request $request)
         {   
-            $id = $req->id;
-            $proizvodjac = Proizvodjac::find($id);
-            $odgovor = $proizvodjac->delete();
-            
+            $data = Proizvodjac::find($request->idBrisanje);
+            $odgovor = $data->delete();
             if ($odgovor) {
                 Session::flash('uspeh','Stavka je uspešno obrisana!');
-            }
-            else{
+            } else {
                 Session::flash('greska','Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
             }
+            return Redirect::back();
         }
 }

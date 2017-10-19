@@ -13,13 +13,13 @@ class LokacijeKontroler extends Kontroler
 {
     public function getLista()
     {
-    	$lokacije = Lokacija::all();
-    	return view('sifarnici.lokacije')->with(compact ('lokacije'));
+    	$data = Lokacija::all();
+    	return view('sifarnici.lokacije')->with(compact ('data'));
     }
 
-    public function postDodavanje(Request $req)
+    public function postDodavanje(Request $request)
     {
-        $this->validate($req, [
+        $this->validate($request, [
             'naziv' => [
                 'required',
                 'max:190',
@@ -27,57 +27,55 @@ class LokacijeKontroler extends Kontroler
             ],
         ]);
 
-        $lokacija = new Lokacija();
-        $lokacija->naziv = $req->naziv;
-        $lokacija->adresa_ulica = $req->adresa_ulica;
-        $lokacija->adresa_broj = $req->adresa_broj;
-        $lokacija->napomena = $req->napomena;
-        $lokacija->save();
+        $data = new Lokacija();
+        $data->naziv = $request->naziv;
+        $data->adresa_ulica = $request->adresa_ulica;
+        $data->adresa_broj = $request->adresa_broj;
+        $data->napomena = $request->napomena;
+        $data->save();
 
         Session::flash('uspeh','Stavka je uspešno dodata!');
         return redirect()->route('lokacije');
     }
 
-        public function postDetalj(Request $req)
+        public function postDetalj(Request $request)
         {
-            if($req->ajax()){
-                $id = $req->id;
-                $lokacija = Lokacija::find($id);
-                return response()->json($lokacija);
+            if($request->ajax()){
+                $data = Lokacija::find($request->id);
+                return response()->json($data);
             }
         }
 
-        public function postIzmena(Request $req)
+        public function postIzmena(Request $request)
         {
-            $id = $req -> edit_id;
-            $this->validate($req, [
+            $id = $request->idModal;
+            $this->validate($request, [
                 'nazivModal' => ['required',
                 'max:190',
                 'unique:s_lokacije,naziv,'.$id,]
             ]);
 
-            $lokacija = Lokacija::find($id);
-            $lokacija -> naziv = $req -> nazivModal;
-            $lokacija->adresa_ulica = $req->adresa_ulicaModal;
-        	$lokacija->adresa_broj = $req->adresa_brojModal;
-        	$lokacija->napomena = $req->napomenaModal;
-            $lokacija -> save();
+            $data = Lokacija::find($id);
+            $data -> naziv = $request -> nazivModal;
+            $data->adresa_ulica = $request->adresaModal;
+        	$data->adresa_broj = $request->brojModal;
+        	$data->napomena = $request->napomenaModal;
+            $data -> save();
 
             Session::flash('uspeh','Stavka je uspešno izmenjena!');
             return Redirect::back();
         }
 
-        public function postBrisanje(Request $req)
+        public function postBrisanje(Request $request)
         {   
-            $id = $req->id;
-            $lokacija = Lokacija::find($id);
-            $odgovor = $lokacija->delete();
+            $data = Lokacija::find($request->idBrisanje);
+            $odgovor = $data->delete();
             
             if ($odgovor) {
                 Session::flash('uspeh','Stavka je uspešno obrisana!');
-            }
-            else{
+            } else {
                 Session::flash('greska','Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
             }
+            return Redirect::back();
         }
 }
