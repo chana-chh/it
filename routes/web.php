@@ -117,6 +117,19 @@ Route::post('sifarnici/soketi/brisanje', 'Sifarnici\SoketiKontroler@postBrisanje
 Route::post('sifarnici/soketi/izmena', 'Sifarnici\SoketiKontroler@postIzmena')->name('soketi.izmena');
 Route::post('sifarnici/soketi/detalj', 'Sifarnici\SoketiKontroler@postDetalj')->name('soketi.detalj');
 
+//Tipovi memorije
+Route::get('sifarnici/tipovi_memorije', 'Sifarnici\TipoviMemorijeKontroler@getLista')->name('tipovi_memorije');
+Route::post('sifarnici/tipovi_memorije/dodavanje', 'Sifarnici\TipoviMemorijeKontroler@postDodavanje')->name('tipovi_memorije.dodavanje');
+Route::post('sifarnici/tipovi_memorije/brisanje', 'Sifarnici\TipoviMemorijeKontroler@postBrisanje')->name('tipovi_memorije.brisanje');
+Route::post('sifarnici/tipovi_memorije/izmena', 'Sifarnici\TipoviMemorijeKontroler@postIzmena')->name('tipovi_memorije.izmena');
+Route::post('sifarnici/tipovi_memorije/detalj', 'Sifarnici\TipoviMemorijeKontroler@postDetalj')->name('tipovi_memorije.detalj');
+
+//VGA slotovi
+Route::get('sifarnici/vga_slotovi', 'Sifarnici\VgaSlotoviKontroler@getLista')->name('vga_slotovi');
+Route::post('sifarnici/vga_slotovi/dodavanje', 'Sifarnici\VgaSlotoviKontroler@postDodavanje')->name('vga_slotovi.dodavanje');
+Route::post('sifarnici/vga_slotovi/brisanje', 'Sifarnici\VgaSlotoviKontroler@postBrisanje')->name('vga_slotovi.brisanje');
+Route::post('sifarnici/vga_slotovi/izmena', 'Sifarnici\VgaSlotoviKontroler@postIzmena')->name('vga_slotovi.izmena');
+Route::post('sifarnici/vga_slotovi/detalj', 'Sifarnici\VgaSlotoviKontroler@postDetalj')->name('vga_slotovi.detalj');
 // MODELI UREDJAJA
 
 //Procesori

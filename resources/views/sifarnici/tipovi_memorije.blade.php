@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Šifarnici | Povezivanje - video')
+@section('naziv', 'Šifarnici | Tipovi memorije')
 
 @section('meni')
 @include('sabloni.inc.meni')
@@ -8,9 +8,9 @@
 
 @section('naslov')
 <h1 class="page-header">
-    <img class="slicica_animirana" alt="Povezivanje VGA"
-         src="{{ url('/images/povezivanje.png') }}" style="height:64px;">
-    &emsp;Video povezivanje (VGA)
+    <img class="slicica_animirana" alt="Tip memorije"
+         src="{{ url('/images/memorija.png') }}" style="height:64px;">
+    &emsp;Tipovi memorije (ram, mbd, vga)
 </h1>
 @endsection
 
@@ -18,7 +18,7 @@
 @if($data->isEmpty())
     <h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
 @else
-<table id="tabela" class="table table-striped">
+<table class="table table-striped" id="tabela">
     <thead>
     <th style="width: 15%;">#</th>
     <th style="width: 70%;">Naziv</th>
@@ -60,7 +60,7 @@
                 <h1 class="modal-title text-info">Izmeni stavku</h1>
             </div>
             <div class="modal-body">
-                <form action="{{ route('povezivanje_vga.izmena') }}" method="post">
+                <form action="{{ route('tipovi_memorije.izmena') }}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="nazivModal">Naziv:</label>
@@ -73,8 +73,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">
-                    <i class="fa fa-ban"></i> Otkaži
+                <button class="btn btn-primary" data-dismiss="modal">
+                    <i class="fa fa-ban fa-fw"></i> Otkaži
                 </button>
             </div>
         </div>
@@ -84,13 +84,13 @@
 @endsection
 
 @section('traka')
-<h4>Dodavanje video (VGA) povezivanja</h4>
+<h4>Dodavanje novog tipa memorije</h4>
 <hr>
 <div class="well">
-    <form action="{{ route('povezivanje_vga.dodavanje') }}" method="POST" data-parsley-validate>
+    <form action="{{ route('tipovi_memorije.dodavanje') }}" method="POST" data-parsley-validate>
         {{ csrf_field() }}
         <div class="form-group{{ $errors->has('naziv') ? ' has-error' : '' }}">
-            <label for="naziv">Način povezivanja: </label>
+            <label for="naziv">Tip memorije:</label>
             <input  type="text" name="naziv" id="naziv" class="form-control" value="{{ old('naziv') }}" required>
             @if ($errors->has('naziv'))
             <span class="help-block">
@@ -107,7 +107,7 @@
                         </button>
                     </div>
                     <div class="col-md-6">
-                        <a class="btn btn-danger btn-block ono" href="{{route('povezivanje_vga')}}">
+                        <a class="btn btn-danger btn-block ono" href="{{route('tipovi_memorije')}}">
                             <i class="fa fa-ban"></i>&emsp;Otkaži
                         </a>
                     </div>
@@ -149,13 +149,13 @@
         $(document).on('click', '.otvori-brisanje', function () {
             var id = $(this).val();
             $('#idBrisanje').val(id);
-            var ruta = "{{ route('povezivanje_vga.brisanje') }}";
+            var ruta = "{{ route('tipovi_memorije.brisanje') }}";
             $('#brisanje-forma').attr('action', ruta);
         });
 
         $(document).on('click', '.otvori-izmenu', function () {
-            var id = $(this).val();
-            var ruta = "{{ route('povezivanje_vga.detalj') }}";
+            var id = $(this).val(                            );
+            var ruta = "{{ route('tipovi_memorije.detalj') }}";
             $.ajax({
                 url: ruta,
                 type: "POST",
@@ -174,11 +174,6 @@
 <script src="{{ asset('/js/parsley.js') }}"></script>
 <script src="{{ asset('/js/parsley_sr.js') }}"></script>
 @endsection
-
-
-
-
-
 
 
 

@@ -9,7 +9,7 @@
 @section('naslov')
 <h1 class="page-header">
      <img class="slicica_animirana" alt="Dijagonale monitora"
-          src="{{ url('/images/monitor_size.png') }}" style="height:64px; width:64px">
+          src="{{ url('/images/monitor_size.png') }}" style="height:64px;">
     &emsp;Dijagonale monitora
 </h1>
 @endsection
@@ -22,7 +22,7 @@
     <thead>
         <th style="width: 15%;">#</th>
         <th style="width: 70%;">Naziv</th>
-        <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i> Akcije</th>
+        <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
     </thead>
     <tbody>
         @foreach ($data as $d)
@@ -36,6 +36,7 @@
                     <i class="fa fa-pencil"></i>
                 </button>
                 <button class="btn btn-danger btn-sm otvori-brisanje"
+                        data-toggle="modal" data-target="#brisanjeModal"
                         value="{{ $d->id }}">
                     <i class="fa fa-trash"></i>
                 </button>
@@ -141,16 +142,7 @@
             var id = $(this).val();
             $('#idBrisanje').val(id);
             var ruta = "{{ route('dijagonale.brisanje') }}";
-            console.log(id);
-            console.log(ruta);
             $('#brisanje-forma').attr('action', ruta);
-            $('#brisanjeModal').modal('show');
-            $('#btn-brisanje-otkazi').click(function () {
-                 $('#brisanjeModal').modal('hide');
-            });
-            $('#btn-brisanje-obrisi').click(function () {
-                $('#brisanjeModal').modal('hide');
-            });
         });
 
         $(document).on('click', '.otvori-izmenu', function () {
@@ -171,33 +163,3 @@
 <script src="{{ asset('/js/parsley.js') }}"></script>
 <script src="{{ asset('/js/parsley_sr.js') }}"></script>
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

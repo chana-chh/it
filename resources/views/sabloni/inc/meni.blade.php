@@ -89,8 +89,8 @@
                             <li><a href="{{ route('povezivanje_vga') }}">Povezivanje (video)</a></li>
                             <li><a href="{{ route('povezivanje_hdd') }}">Povezivanje (hdd)</a></li>
                             <li><a href="{{ route('soketi') }}">Soketi (cpu, mbd)</a></li>
-                            <li><a href="">Tipovi memorije (ram, mbd, vga)</a></li>
-                            <li><a href="">VGA slotovi (mbd, vga)</a></li>
+                            <li><a href="{{ route('tipovi_memorije') }}">Tipovi memorije (ram, mbd, vga)</a></li>
+                            <li><a href="{{ route('vga_slotovi') }}">VGA slotovi (mbd, vga)</a></li>
                             <li><a href="">Tipovi štampača</a></li>
                             <li><a href="">Toneri</a></li>
                             <li role="separator" class="divider"></li>

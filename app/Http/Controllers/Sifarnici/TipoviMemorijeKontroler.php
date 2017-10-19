@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 use Session;
 use Redirect;
 use App\Http\Controllers\Kontroler;
-use App\Modeli\Soket;
+use App\Modeli\TipMemorije;
 
-class SoketiKontroler extends Kontroler
+class TipoviMemorijeKontroler extends Kontroler
 {
 
     public function getLista()
     {
-        $data = Soket::all();
-        return view('sifarnici.soketi')->with(compact('data'));
+        $data = TipMemorije::all();
+        return view('sifarnici.tipovi_memorije')->with(compact('data'));
     }
 
     public function postDodavanje(Request $request)
@@ -26,18 +26,18 @@ class SoketiKontroler extends Kontroler
             ],
         ]);
 
-        $data = new Soket();
+        $data = new TipMemorije();
         $data->naziv = $request->naziv;
         $data->save();
 
         Session::flash('uspeh', 'Stavka je uspešno dodata!');
-        return redirect()->route('soketi');
+        return redirect()->route('tipovi_memorije');
     }
 
     public function postDetalj(Request $request)
     {
         if ($request->ajax()) {
-            $data = Soket::find($request->id);
+            $data = TipMemorije::find($request->id);
             return response()->json($data);
         }
     }
@@ -52,7 +52,7 @@ class SoketiKontroler extends Kontroler
             ],
         ]);
 
-        $data = Soket::find($id);
+        $data = TipMemorije::find($id);
         $data->naziv = $request->nazivModal;
         $data->save();
 
@@ -62,7 +62,7 @@ class SoketiKontroler extends Kontroler
 
     public function postBrisanje(Request $request)
     {
-        $data = Soket::find($request->idBrisanje);
+        $data = TipMemorije::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Stavka je uspešno obrisana!');

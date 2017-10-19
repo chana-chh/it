@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 use Session;
 use Redirect;
 use App\Http\Controllers\Kontroler;
-use App\Modeli\Soket;
+use App\Modeli\VgaSlot;
 
-class SoketiKontroler extends Kontroler
+class VgaSlotoviKontroler extends Kontroler
 {
 
     public function getLista()
     {
-        $data = Soket::all();
-        return view('sifarnici.soketi')->with(compact('data'));
+        $data = VgaSlot::all();
+        return view('sifarnici.vga_slotovi')->with(compact('data'));
     }
 
     public function postDodavanje(Request $request)
@@ -26,18 +26,18 @@ class SoketiKontroler extends Kontroler
             ],
         ]);
 
-        $data = new Soket();
+        $data = new VgaSlot();
         $data->naziv = $request->naziv;
         $data->save();
 
         Session::flash('uspeh', 'Stavka je uspešno dodata!');
-        return redirect()->route('soketi');
+        return redirect()->route('vga_slotovi');
     }
 
     public function postDetalj(Request $request)
     {
         if ($request->ajax()) {
-            $data = Soket::find($request->id);
+            $data = VgaSlot::find($request->id);
             return response()->json($data);
         }
     }
@@ -52,7 +52,7 @@ class SoketiKontroler extends Kontroler
             ],
         ]);
 
-        $data = Soket::find($id);
+        $data = VgaSlot::find($id);
         $data->naziv = $request->nazivModal;
         $data->save();
 
@@ -62,7 +62,7 @@ class SoketiKontroler extends Kontroler
 
     public function postBrisanje(Request $request)
     {
-        $data = Soket::find($request->idBrisanje);
+        $data = VgaSlot::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Stavka je uspešno obrisana!');

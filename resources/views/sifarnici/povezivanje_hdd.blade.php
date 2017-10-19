@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Šifarnici | Povezivanje - video')
+@section('naziv', 'Šifarnici | Povezivanje - hard disk')
 
 @section('meni')
 @include('sabloni.inc.meni')
@@ -8,20 +8,21 @@
 
 @section('naslov')
 <h1 class="page-header">
-    Hard disk povezivanje (HDD)&emsp;
-    <img alt="spratovi" src="{{ url('/images/monitor_size.png') }}" style="height:64px;  width:64px">
+    <img  class="slicica_animirana" alt="Povezivanje HDD"
+          src="{{ url('/images/sata_icon.png') }}" style="height:64px;">
+    &emsp;Hard disk povezivanje (HDD)
 </h1>
 @endsection
 
 @section('sadrzaj')
 @if($data->isEmpty())
-<h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
+    <h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
 @else
 <table class="table table-striped" id="tabela">
     <thead>
     <th style="width: 15%;">#</th>
     <th style="width: 70%;">Naziv</th>
-    <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i> Akcije</th>
+    <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
 </thead>
 <tbody>
     @foreach ($data as $d)
@@ -35,6 +36,7 @@
                 <i class="fa fa-pencil"></i>
             </button>
             <button class="btn btn-danger btn-sm otvori-brisanje"
+                    data-toggle="modal" data-target="#brisanjeModal"
                     value="{{ $d->id }}">
                 <i class="fa fa-trash"></i>
             </button>
@@ -71,7 +73,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
                     <i class="fa fa-ban fa-fw"></i> Otkaži
                 </button>
             </div>
@@ -96,13 +98,21 @@
             </span>
             @endif
         </div>
-        <div class="form-group text-right">
-            <button type="submit" class="btn btn-success">
-                <i class="fa fa-plus-circle"></i> Dodaj
-            </button>
-            <a href="{{ route('povezivanje_vga') }}" class="btn btn-danger">
-                <i class="fa fa-ban"></i> Otkaži
-            </a>
+        <div class="row dugmici">
+            <div class="col-md-12" style="margin-top: 20px;">
+                <div class="form-group">
+                    <div class="col-md-6 snimi">
+                        <button type="submit" class="btn btn-success btn-block ono">
+                            <i class="fa fa-plus-circle"></i>&emsp;Dodaj
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-danger btn-block ono" href="{{route('povezivanje_hdd')}}">
+                            <i class="fa fa-ban"></i>&emsp;Otkaži
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
 </div>
@@ -138,25 +148,9 @@
 
         $(document).on('click', '.otvori-brisanje', function () {
             var id = $(this).val();
+            $('#idBrisanje').val(id);
             var ruta = "{{ route('povezivanje_hdd.brisanje') }}";
-            $('#brisanjeModal').modal('show');
-            $('#btn-brisanje-obrisi').click(function () {
-                $.ajax({
-                    url: ruta,
-                    type: "POST",
-                    data: {
-                        "id": id,
-                        "_token": "{!! csrf_token() !!}"
-                    },
-                    success: function () {
-                        location.reload();
-                    }
-                });
-                $('#brisanjeModal').modal('hide');
-            });
-            $('#btn-brisanje-otkazi').click(function () {
-                $('#brisanjeModal').modal('hide');
-            });
+            $('#brisanje-forma').attr('action', ruta);
         });
 
         $(document).on('click', '.otvori-izmenu', function () {
