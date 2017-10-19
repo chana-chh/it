@@ -1,116 +1,111 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Sifarnici | Lokacije')
+@section('naziv', 'Šifarnici | Lokacije')
 
 @section('meni')
     @include('sabloni.inc.meni')
 @endsection
 
 @section('naslov')
-     <h1 class="page-header">Lokacije&emsp;<span><img alt="lokacije" src="{{url('/images/map.png')}}" style="height:80px;  width:80px"></span></h1>
+<h1 class="page-header">
+    <img class="slicica_animirana" alt="Šifarnik lokacija" 
+        src="{{url('/images/map.png')}}" style="height:64px;">
+    &emsp;Lokacije
+</h1>
 @endsection
 
 @section('sadrzaj')
-{{-- <h3>Lista trenutno raspoloživih proizvođača</h3>
-<hr> --}}
-	@if($lokacije->isEmpty())
-    		<h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
-    	@else
-    		<table class="table table-striped tabelaLokacije" name="tabelaLokacije" id="tabelaLokacije">
-        		<thead>
-            		<th style="width: 10%;">#</th>
-            		<th style="width: 25%;">Naziv</th>
-                    <th style="width: 20%;">Adresa</th>
-                    <th style="width: 10%;">Broj</th>
-            		<th style="width: 25%;">Napomena</th>
-            		<th style="width: 10%;text-align:center"><i class="fa fa-cogs"></i></th>
-        		</thead>
-        		<tbody id="lokacije_lista" name="lokacije_lista">
-            	@foreach ($lokacije as $lokacija)
-                    <tr>
-                        <td>{{$lokacija->id}}</td>
-                        <td><strong>{{ $lokacija->naziv }}</strong></td>
-                        <td>{{ $lokacija->adresa_ulica }}</td>
-                        <td>{{ $lokacija->adresa_broj }}</td>
-                        <td>{{ str_limit($lokacija->napomena, 80) }}</td>
-                        <td style="text-align:right;">
-                            <button class="btn btn-success btn-sm otvori_izmenu" id="dugmeIzmena" data-toggle="modal" data-target="#editModal" value="{{$lokacija->id}}"><i class="fa fa-pencil"></i></button>
-                            <button id="dugmeBrisanje" class="btn btn-danger btn-sm otvori_modal"  value="{{$lokacija->id}}"><i class="fa fa-trash"></i></button>
-                        </td>
-                    </tr>
-            	@endforeach
-        		</tbody>
-    		</table>
-    	@endif
-    	{{-- Modal za dijalog brisanje--}}
-    <div class="modal fade" id="brisanjeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-           <div class="modal-content">
-             <div class="modal-header">
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="brisanjeModalLabel">Upozorenje!</h4>
-            </div>
-            <div class="modal-body">
-                <h4 class="text-primary">Da li želite trajno da obrišete stavku</strong></h4>
-                <p ><strong>Ova akcija je nepovratna!</strong></p>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-success" id="btn-obrisi">Obriši</button>
-            <button type="button" class="btn btn-danger" id="btn-otkazi">Otkaži</button>
-            </div>
-        </div>
+@if($data->isEmpty())
+    <h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
+@else
+<table id="tabela" class="table table-striped">
+	<thead>
+		<th style="width: 10%;">#</th>
+		<th style="width: 25%;">Naziv</th>
+        <th style="width: 20%;">Adresa</th>
+        <th style="width: 10%;">Broj</th>
+		<th style="width: 25%;">Napomena</th>
+		<th style="width: 10%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
+	</thead>
+	<tbody>
+	@foreach ($data as $d)
+        <tr>
+            <td>{{$d->id}}</td>
+            <td><strong>{{ $d->naziv }}</strong></td>
+            <td>{{ $d->adresa_ulica }}</td>
+            <td>{{ $d->adresa_broj }}</td>
+            <td>{{ str_limit($d->napomena, 80) }}</td>
+            <td style="text-align:right;">
+                <button class="btn btn-success btn-sm otvori-izmenu"
+                        data-toggle="modal" data-target="#editModal"
+                        value="{{$d->id}}">
+                    <i class="fa fa-pencil"></i>
+                </button>
+                <button class="btn btn-danger btn-sm otvori-brisanje"
+                        data-toggle="modal" data-target="#brisanjeModal"
+                        value="{{$d->id}}">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+	   @endforeach
+	</tbody>
+</table>
+@endif
+
+<!--  POCETAK brisanjeModal  -->
+@include('sifarnici.inc.modal_brisanje')
+<!--  KRAJ brisanjeModal  -->
+
+{{-- Pocetak Modala za dijalog izmena--}}
+<div class="modal fade" id="editModal">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-primary">Izmeni stavku</h4>
       </div>
-  </div>
-    {{-- Kraj Modala za dijalog brisanje--}}
+      <div class="modal-body">
+        <form action="{{ route('lokacije.izmena') }}" method="post">
+          {{ csrf_field() }}
 
-    {{-- Pocetak Modala za dijalog izmena--}}
-    <div class="modal fade" id="editModal" role="dialog">
-      <div class="modal-dialog">
+            <div class="form-group">
+              <label for="nazivModal">Naziv:</label>
+              <input type="text" class="form-control" id="nazivModal" name="nazivModal">
+            </div>
 
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title text-primary">Izmeni stavku</h4>
-          </div>
-          <div class="modal-body">
-            <form action="{{ route('lokacije.izmena') }}" method="post">
-              {{ csrf_field() }}
+            <div class="form-group">
+              <label for="adresaModal">Adresa:</label>
+              <input type="text" class="form-control" id="adresaModal" name="adresaModal">
+            </div>
 
-                <div class="form-group">
-                  <label for="nazivModal">Naziv:</label>
-                  <input type="text" class="form-control" id="nazivModal" name="nazivModal">
-                </div>
+             <div class="form-group">
+              <label for="brojModal">Broj:</label>
+              <input type="text" class="form-control" id="brojModal" name="brojModal">
+            </div>
 
-                <div class="form-group">
-                  <label for="adresaModal">Adresa:</label>
-                  <input type="text" class="form-control" id="adresaModal" name="adresaModal">
-                </div>
+            <div class="form-group">
+              <label for="napomenaModal">Napomena:</label>
+              <textarea class="form-control" id="napomenaModal" name="napomenaModal"></textarea>
+            </div>
 
-                 <div class="form-group">
-                  <label for="brojModal">Broj:</label>
-                  <input type="text" class="form-control" id="brojModal" name="brojModal">
-                </div>
-
-                <div class="form-group">
-                  <label for="napomenaModal">Napomena:</label>
-                  <textarea class="form-control" id="napomenaModal" name="napomenaModal"></textarea>
-                </div>
-
-              <button type="submit" class="btn btn-success">Izmeni</button>
-              <input type="hidden" id="edit_id" name="edit_id">
+            <input type="hidden" id="idModal" name="idModal">
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-save"></i> Snimi izmene
+                </button>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Zatvori</button>
-          </div>
-
         </div>
-
-      </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    <i class="fa fa-ban"></i> Otkaži
+                </button>
+            </div>
+        </div>
     </div>
-    {{-- Kraj Modala za dijalog izmena--}}
-
+</div>
+{{-- Kraj Modala za dijalog izmena--}}
 @endsection
 
 @section('traka')
@@ -150,7 +145,7 @@
         </div>
 
         <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
-            <label for="napomena">Напомена: </label>
+            <label for="napomena">Napomena: </label>
             <textarea name="napomena" id="napomena" maxlength="255" class="form-control">{{ old('napomena') }}</textarea>
             @if ($errors->has('napomena'))
                 <span class="help-block">
@@ -158,9 +153,17 @@
                 </span>
             @endif
         </div>
-        <div class="form-group text-right">
-            <button type="submit" class="btn btn-success"><i class="fa fa-plus-circle"></i> Dodaj</button>
-            <a class="btn btn-danger" href="{{route('lokacije')}}"><i class="fa fa-ban"></i> Otkaži</a>
+        <div class="row dugmici">
+            <div class="col-md-12">
+                <div class="form-group text-right">
+                    <div class="col-md-6 snimi">
+                        <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-plus-circle"></i> Dodaj</button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-danger btn-block ono" href="{{route('lokacije')}}"><i class="fa fa-ban"></i> Otkaži</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
 </div>
@@ -170,8 +173,11 @@
 <script>
 $( document ).ready(function() {
 
+    setTimeout(function() {
+        $('#poruka').fadeOut('fast');
+        }, 2000);
 
-    $('#tabelaLokacije').DataTable({
+    $('#tabela').DataTable({
         columnDefs: [{ orderable: false, searchable: false, "targets": -1 }],
         language: {
         search: "Pronađi u tabeli",
@@ -189,52 +195,30 @@ $( document ).ready(function() {
     },
     });
 
-    $(document).on('click','.otvori_modal',function(){
+    $(document).on('click', '.otvori-brisanje', function () {
+            var id = $(this).val();
+            $('#idBrisanje').val(id);
+            var ruta = "{{ route('lokacije.brisanje') }}";
+            $('#brisanje-forma').attr('action', ruta);
+        });
 
+   $(document).on('click','.otvori-izmenu',function(){
         var id = $(this).val();
-
-        var ruta = "{{ route('lokacije.brisanje') }}";
-
-
-        $('#brisanjeModal').modal('show');
-
-        $('#btn-obrisi').click(function(){
-            $.ajax({
-            url: ruta,
-            type:"POST",
-            data: {"id":id, _token: "{!! csrf_token() !!}"},
-            success: function(){
-            location.reload();
-          }
-        });
-
-        $('#brisanjeModal').modal('hide');
-        });
-        $('#btn-otkazi').click(function(){
-            $('#brisanjeModal').modal('hide');
-        });
-    });
-
-   $(document).on('click','.otvori_izmenu',function(){
-        
-        var id_izmena = $(this).val();
-        var detalj_ruta = "{{ route('lokacije.detalj') }}";
+        var ruta = "{{ route('lokacije.detalj') }}";
 
         $.ajax({
-        url: detalj_ruta,
+        url: ruta,
         type:"POST", 
-        data: {"id":id_izmena, _token: "{!! csrf_token() !!}"},
-        success: function(result){
-          $("#edit_id").val(result.id);
-          $("#nazivModal").val(result.naziv);
-          $("#adresaModal").val(result.adresa_ulica);
-          $("#brojModal").val(result.adresa_broj);
-          $("#napomenaModal").val(result.napomena);
-        }
-      });     
-
+        data: {"id":id, _token: "{!! csrf_token() !!}"},
+        success: function(data){
+              $("#idModal").val(data.id);
+              $("#nazivModal").val(data.naziv);
+              $("#adresaModal").val(data.adresa_ulica);
+              $("#brojModal").val(data.adresa_broj);
+              $("#napomenaModal").val(data.napomena);
+            }
+        });     
     });
-
 });
 </script>
 <script src="{{ asset('/js/parsley.js') }}"></script>
