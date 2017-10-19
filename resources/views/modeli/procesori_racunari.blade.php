@@ -8,41 +8,37 @@
 
 @section('naslov')
     <div class="row">
-        <div class="col-md-10">
-            <h1><span><img class="slicica_animirana" alt="Procesori ..." src="{{url('/images/cpu.png')}}" style="height:64px;"></span>&emsp;Procesori čiji je naziv modela <span style="color: #18bc9c">{{$model->proizvodjac->naziv}} {{$model->naziv}}, {{$model->takt}} MHz</span>  </h1>
-        </div>
-
-         <div class="col-md-2 text-right" style="padding-top: 50px;">
-            <a class="btn btn-primary ono" href=""><i class="fa fa-plus-circle fa-fw"></i> Dodaj procesor</a>
+        <div class="col-md-12">
+            <h1><span><img class="slicica_animirana" alt="Računari ..." src="{{url('/images/cpu.png')}}" style="height:64px;"></span>&emsp;Računari u kojima je CPU model <span style="color: #18bc9c">{{$model->proizvodjac->naziv}} {{$model->naziv}}, {{$model->takt}} MHz</span>  </h1>
         </div>
         </div>
         <hr>
 <div class="row">
     <div class="col-md-12">
-@if($procesori->isEmpty())
+@if($racunari->isEmpty())
             <h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
         @else
-            <table class="table table-striped display" cellspacing="0" width="100%" name="tabelaProcesori" id="tabelaProcesori">
+            <table class="table table-striped display" cellspacing="0" width="100%" name="tabelaRacunari" id="tabelaRacunari">
                 <thead>
                         <th style="width: 5%;">#</th>
-                        <th style="width: 15%;">Serijski broj</th>
-                        <th style="width: 15%;">Racunar</th>
-                        <th style="width: 25%;">Broj otpremnice</th>
+                        <th style="width: 15%;">Inventarski broj</th>
+                        <th style="width: 15%;">Ime odeljenja za IKT</th>
+                        <th style="width: 25%;">Ime - Domen</th>
                         <th style="width: 25%;">Napomena</th>
                         <th style="width: 15%;text-align:center"><i class="fa fa-cogs"></i></th>
                 </thead>
-                <tbody id="procesori_lista" name="procesori_lista">
-                @foreach ($procesori as $procesor)
+                <tbody id="racunari_lista" name="racunari_lista">
+                @foreach ($racunari as $racunar)
                         <tr>
-                            <td>{{$procesor['id']}}</td>
-                            <td><strong>{{$procesor['serijski_broj']}}</strong></td>
-                            <td>{{$procesor['racunar']['ime']}}</td>
-                            <td>{{$procesor['stavkaOtpremnice']['otpremnica']['broj']}}</td>
-                            <td>{{$procesor['napomena']}}</td>
+                            <td>{{$racunar['id']}}</td>
+                            <td><strong>{{$racunar['inventarski_broj']}}</strong></td>
+                            <td>{{$racunar['erc_broj']}}</td>
+                            <td>{{$racunar['ime']}}</td>
+                            <td>{{$racunar['napomena']}}</td>
                             <td style="text-align:center; vertical-align: middle; line-height: normal;">
                     <a class="btn btn-success btn-sm" id="dugmeDetalj"  href=" "><i class="fa fa-eye"></i></a>
                     <a class="btn btn-info btn-sm" id="dugmeIzmena"  href=" "><i class="fa fa-pencil"></i></a>
-                    <button id="dugmeBrisanje" class="btn btn-danger btn-sm otvori_modal"  value="{{$procesor['id']}}"><i class="fa fa-trash"></i></button>
+                    <button id="dugmeBrisanje" class="btn btn-danger btn-sm otvori_modal"  value="{{$racunar['id']}}"><i class="fa fa-trash"></i></button>
 
                             </td>
                         </tr>
@@ -72,7 +68,7 @@
 <script>
 $( document ).ready(function() {
 
-        var tabela = $('#tabelaProcesori').DataTable({
+        var tabela = $('#tabelaRacunari').DataTable({
 
         columnDefs: [
                 {
