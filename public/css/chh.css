@@ -110,9 +110,9 @@ h3 {
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-    color: #FFFFFF;
-    background-color: #18BC9C;
-    border-color: #18BC9C;
+    color: #2C3E50;
+    background-color: #c2d3cd;
+    border-color: #c2d3cd;
 }
 
 .btn-success {

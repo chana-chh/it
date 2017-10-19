@@ -207,7 +207,7 @@
         <div class="col-md-10 col-md-offset-1" style="margin-top: 20px">
             <div class="form-group">
             <div class="col-md-6 text-left">
-                <a class="btn btn-info" href="{{route('procesori.modeli')}}" title="Povratak na listu modela procesora"><i class="fa fa-laptop" style="color:#2C3E50"></i></a>
+                <a class="btn btn-info" href="{{route('procesori.modeli')}}" title="Povratak na listu modela procesora"><i class="fa fa-list" style="color:#2C3E50"></i></a>
             </div>
             <div class="col-md-6 text-right">
                 <a class="btn btn-info" href="{{route('pocetna')}}" title="Povratak na početnu stranu"><i class="fa fa-home" style="color:#2C3E50"></i></a>
