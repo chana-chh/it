@@ -28,6 +28,7 @@ class OperativniSistemiKontroler extends Kontroler
 
         $data = new OperativniSistem();
         $data->naziv = $request->naziv;
+        $data->napomena = $request->napomena;
         $data->save();
 
         Session::flash('uspeh', 'Stavka je uspešno dodata!');
@@ -54,6 +55,7 @@ class OperativniSistemiKontroler extends Kontroler
 
         $data = OperativniSistem::find($id);
         $data->naziv = $request->nazivModal;
+        $data->napomena = $request->napomenaModal;
         $data->save();
 
         Session::flash('uspeh', 'Stavka je uspešno izmenjena!');

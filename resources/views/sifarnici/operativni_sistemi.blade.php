@@ -21,7 +21,8 @@
 <table class="table table-striped" id="tabela">
     <thead>
     <th style="width: 15%;">#</th>
-    <th style="width: 70%;">Naziv</th>
+    <th style="width: 35%;">Naziv</th>
+    <th style="width: 35%;">Napomena</th>
     <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
 </thead>
 <tbody>
@@ -29,6 +30,7 @@
     <tr>
         <td>{{ $d->id }}</td>
         <td><strong>{{ $d->naziv }}</strong></td>
+        <td><em>{{ str_limit($d->napomena, 60) }}</em></td>
         <td style="text-align:right;">
             <button class="btn btn-success btn-sm otvori-izmenu"
                     data-toggle="modal" data-target="#editModal"
@@ -66,6 +68,10 @@
                         <label for="nazivModal">Naziv:</label>
                         <input type="text" id="nazivModal" name="nazivModal" class="form-control" required>
                     </div>
+                    <div class="form-group">
+                        <label for="napomenaModal">Napomena:</label>
+                        <textarea id="napomenaModal" name="napomenaModal" class="form-control"></textarea>
+                    </div>
                     <input type="hidden" id="idModal" name="idModal">
                     <button type="submit" class="btn btn-success">
                         <i class="fa fa-save"></i> Snimi izmene
@@ -95,6 +101,15 @@
             @if ($errors->has('naziv'))
             <span class="help-block">
                 <strong>{{ $errors->first('naziv') }}</strong>
+            </span>
+            @endif
+        </div>
+        <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
+            <label for="napomena">Naziv operativnog sistema:</label>
+            <textarea id="napomena" name="napomena" class="form-control" value="{{ old('napomena') }}"></textarea>
+            @if ($errors->has('napomena'))
+            <span class="help-block">
+                <strong>{{ $errors->first('napomena') }}</strong>
             </span>
             @endif
         </div>
