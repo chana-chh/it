@@ -53,7 +53,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{route('procesori.modeli')}}">Procesori</a></li>
-                            <li><a href="">Memorije</a></li>
+                            <li><a href="{{route('memorije.modeli')}}">Memorije</a></li>
                             <li><a href="">Matične ploče</a></li>
                             <li><a href="">Hard diskovi</a></li>
                             <li><a href="">Grafički adapteri</a></li>

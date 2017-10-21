@@ -187,6 +187,17 @@ Route::post('modeli/procesori/brisanje', 'Modeli\ProcesoriKontroler@postBrisanje
 Route::get('modeli/procesori/uredjaji/{id}', 'Modeli\ProcesoriKontroler@getUredjaji')->name('procesori.modeli.uredjaji');
 Route::get('modeli/procesori/racunari/{id}', 'Modeli\ProcesoriKontroler@getRacunari')->name('procesori.modeli.racunari');
 
+// Memorije
+Route::get('modeli/memorije/', 'Modeli\MemorijeKontroler@getLista')->name('memorije.modeli');
+Route::get('modeli/memorije/dodavanje', 'Modeli\MemorijeKontroler@getDodavanje')->name('memorije.modeli.dodavanje.get');
+Route::post('modeli/memorije/dodavanje', 'Modeli\MemorijeKontroler@postDodavanje')->name('memorije.modeli.dodavanje.post');
+Route::get('modeli/memorije/izmena/{id}', 'Modeli\MemorijeKontroler@getIzmena')->name('memorije.modeli.izmena.get');
+Route::post('modeli/memorije/izmena/{id}', 'Modeli\MemorijeKontroler@postIzmena')->name('memorije.modeli.izmena.post');
+Route::get('modeli/memorije/detalj/{id}', 'Modeli\MemorijeKontroler@getDetalj')->name('memorije.modeli.detalj');
+Route::post('modeli/memorije/brisanje', 'Modeli\MemorijeKontroler@postBrisanje')->name('memorije.modeli.brisanje');
+Route::get('modeli/memorije/uredjaji/{id}', 'Modeli\MemorijeKontroler@getUredjaji')->name('memorije.modeli.uredjaji');
+Route::get('modeli/memorije/racunari/{id}', 'Modeli\MemorijeKontroler@getRacunari')->name('memorije.modeli.racunari');
+
 
 
 
