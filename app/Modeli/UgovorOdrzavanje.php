@@ -11,7 +11,7 @@ class UgovorOdrzavanje extends Model
 
     public function racuni()
     {
-        return $this->hasMany('App\Modeli\Racun', 'racun_id', 'id');
+        return $this->hasMany('App\Modeli\Racun', 'ugovor_id', 'id');
     }
 
     public function utroseno()
