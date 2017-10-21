@@ -1,61 +1,54 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Sifarnici | Spratovi')
+@section('naziv', 'Šifarnici | Spratovi')
 
 @section('meni')
     @include('sabloni.inc.meni')
 @endsection
 
 @section('naslov')
-    <h1 class="page-header">Spratovi&emsp;<span><img alt="spratovi" src="{{url('/images/spratovi.jpg')}}" style="height:64px;  width:64px"></span></h1>
+        <h1 class="page-header">
+        <img alt="Šifarnik spratova" class="slicica_animirana"
+        src="{{url('/images/spratovi.jpg')}}" style="height:64px;">
+        &emsp;Spratovi
+        </h1>
 @endsection
 
 @section('sadrzaj')
-{{-- <h3>Lista trenutno raspoloživih proizvođača</h3>
-<hr> --}}
-	@if($spratovi->isEmpty())
+	@if($data->isEmpty())
     		<h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
     	@else
-    		<table class="table table-striped tabelaSpratovi" name="tabelaSpratovi" id="tabelaSpratovi">
+    		<table id="tabela" class="table table-striped" >
         		<thead>
             		<th style="width: 15%;">#</th>
             		<th style="width: 70%;">Naziv</th>
-            		<th style="width: 15%;text-align:center"><i class="fa fa-cogs"></i></th>
+            		<th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
         		</thead>
-        		<tbody id="spratovi_lista" name="spratovi_lista">
-            	@foreach ($spratovi as $sprat)
+        		<tbody>
+            	@foreach ($data as $d)
                     <tr>
-                        <td>{{$sprat->id}}</td>
-                        <td><strong>{{ $sprat->naziv }}</strong></td>
+                        <td>{{$d->id}}</td>
+                        <td><strong>{{ $d->naziv }}</strong></td>
                         <td style="text-align:right;">
-                            <button class="btn btn-success btn-sm otvori_izmenu" id="dugmeIzmena" data-toggle="modal" data-target="#editModal" value="{{$sprat->id}}"><i class="fa fa-pencil"></i></button>
-                            <button id="dugmeBrisanje" class="btn btn-danger btn-sm otvori_modal"  value="{{$sprat->id}}"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-success btn-sm otvori-izmenu" 
+                                data-toggle="modal" data-target="#editModal" 
+                                value="{{$d->id}}">
+                                    <i class="fa fa-pencil"></i>
+                            </button>
+                            <button class="btn btn-danger btn-sm otvori-brisanje"  
+                                data-toggle="modal" data-target="#brisanjeModal"
+                                value="{{$d->id}}">
+                                    <i class="fa fa-trash"></i>
+                        </button>
                         </td>
                     </tr>
             	@endforeach
         		</tbody>
     		</table>
-    	@endif
-    	{{-- Modal za dijalog brisanje--}}
-    <div class="modal fade" id="brisanjeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-           <div class="modal-content">
-             <div class="modal-header">
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="brisanjeModalLabel">Upozorenje!</h4>
-            </div>
-            <div class="modal-body">
-                <h4 class="text-primary">Da li želite trajno da obrišete stavku</strong></h4>
-                <p ><strong>Ova akcija je nepovratna!</strong></p>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-success" id="btn-obrisi">Obriši</button>
-            <button type="button" class="btn btn-danger" id="btn-otkazi">Otkaži</button>
-            </div>
-        </div>
-      </div>
-  </div>
-    {{-- Kraj Modala za dijalog brisanje--}}
+@endif
+<!--  POCETAK brisanjeModal  -->
+@include('sifarnici.inc.modal_brisanje')
+<!--  KRAJ brisanjeModal  -->
 
     {{-- Pocetak Modala za dijalog izmena--}}
     <div class="modal fade" id="editModal" role="dialog">
@@ -75,13 +68,16 @@
                   <label for="nazivModal">Naziv:</label>
                   <input type="text" class="form-control" id="nazivModal" name="nazivModal">
                 </div>
-
-              <button type="submit" class="btn btn-success">Izmeni</button>
-              <input type="hidden" id="edit_id" name="edit_id">
+                <input type="hidden" id="idModal" name="idModal">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-save"></i> Snimi izmene
+                        </button>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Zatvori</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    <i class="fa fa-ban"></i> Otkaži
+                </button>
           </div>
 
         </div>
@@ -107,9 +103,17 @@
                 </span>
             @endif
         </div>
-        <div class="form-group text-right">
-            <button type="submit" class="btn btn-success"><i class="fa fa-plus-circle"></i> Dodaj</button>
-            <a class="btn btn-danger" href="{{route('spratovi')}}"><i class="fa fa-ban"></i> Otkaži</a>
+<div class="row dugmici">
+            <div class="col-md-12">
+                <div class="form-group text-right">
+                    <div class="col-md-6 snimi">
+                        <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-plus-circle"></i> Dodaj</button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-danger btn-block ono" href="{{route('spratovi')}}"><i class="fa fa-ban"></i> Otkaži</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
 </div>
@@ -119,7 +123,7 @@
 <script>
 $( document ).ready(function() {
 
-    $('#tabelaSpratovi').DataTable({
+    $('#tabela').DataTable({
         columnDefs: [{ orderable: false, searchable: false, "targets": -1 }],
         language: {
         search: "Pronađi u tabeli",
@@ -137,51 +141,26 @@ $( document ).ready(function() {
     },
     });
 
-    $(document).on('click','.otvori_modal',function(){
-
+     $(document).on('click', '.otvori-brisanje', function () {
         var id = $(this).val();
-
+        $('#idBrisanje').val(id);
         var ruta = "{{ route('spratovi.brisanje') }}";
+        $('#brisanje-forma').attr('action', ruta);
+    });
 
-
-        $('#brisanjeModal').modal('show');
-
-        $('#btn-obrisi').click(function(){
-            $.ajax({
+   $(document).on('click','.otvori-izmenu',function(){
+        var id = $(this).val();
+        var ruta = "{{ route('spratovi.detalj') }}";
+        $.ajax({
             url: ruta,
             type:"POST",
             data: {"id":id, _token: "{!! csrf_token() !!}"},
-            success: function(){
-            location.reload();
-          }
-        });
-
-        $('#brisanjeModal').modal('hide');
-        });
-        $('#btn-otkazi').click(function(){
-            $('#brisanjeModal').modal('hide');
+            success: function(data){
+                  $("#idModal").val(data.id);
+                  $("#nazivModal").val(data.naziv);
+            }
         });
     });
-
-   $(document).on('click','.otvori_izmenu',function(){
-        
-        var id_izmena = $(this).val();
-        var detalj_ruta = "{{ route('spratovi.detalj') }}";
-
-        $.ajax({
-        url: detalj_ruta,
-        type:"POST", 
-        data: {"id":id_izmena, _token: "{!! csrf_token() !!}"},
-        success: function(result){
-          $("#edit_id").val(result.id);
-          $("#nazivModal").val(result.naziv);
-        }
-      });     
-
-    });
-
 });
 </script>
-<script src="{{ asset('/js/parsley.js') }}"></script>
-<script src="{{ asset('/js/parsley_sr.js') }}"></script>
 @endsection

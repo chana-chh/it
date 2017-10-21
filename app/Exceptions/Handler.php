@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
                 if($exception instanceof PDOException)
             {
             if (strpos($exception->getMessage(),'1451') !== true) {
-            Session::flash('greska', 'Ovaj model se jos uvek nalazi u nekim uređajima, zbog toga ga ne možete obrisati');
+            Session::flash('greska', 'Ova stavka je vezana za druge objekte zbog toga je nije moguće obrisati !!!');
             return redirect()->back();
             }
         

@@ -13,13 +13,13 @@ class SpratoviKontroler extends Kontroler
 {
      public function getLista()
     {
-    	$spratovi = Sprat::all();
-    	return view('sifarnici.spratovi')->with(compact ('spratovi'));
+    	$data = Sprat::all();
+    	return view('sifarnici.spratovi')->with(compact ('data'));
     }
 
-    public function postDodavanje(Request $req)
+    public function postDodavanje(Request $request)
     {
-        $this->validate($req, [
+        $this->validate($request, [
             'naziv' => [
                 'required',
                 'max:50',
@@ -27,54 +27,50 @@ class SpratoviKontroler extends Kontroler
             	],
         	]);
 
-        $sprat = new Sprat();
-        $sprat->naziv = $req->naziv;
-        $sprat->save();
+        $data = new Sprat();
+        $data->naziv = $request->naziv;
+        $data->save();
 
         Session::flash('uspeh','Stavka je uspešno dodata!');
         return redirect()->route('spratovi');
     }
 
-        public function postDetalj(Request $req)
+        public function postDetalj(Request $request)
         {
-            if($req->ajax()){
-                $id = $req->id;
-                $sprat = Sprat::find($id);
-                return response()->json($sprat);
+            if($request->ajax()){
+                $data = Sprat::find($request->id);
+                return response()->json($data);
             }
         }
 
-        public function postIzmena(Request $req)
+        public function postIzmena(Request $request)
         {
             
-            $this->validate($req, [
-            'naziv' => [
+            $this->validate($request, [
+            'nazivModal' => [
                 'required',
                 'max:50',
                 'unique:s_spratovi,naziv',
             	],
         	]);
-
-            $id = $req -> edit_id;
-            $sprat = Sprat::find($id);
-            $sprat -> naziv = $req -> nazivModal;
-            $sprat -> save();
+            $data = Sprat::find($request->idModal);
+            $data -> naziv = $request->nazivModal;
+            $data -> save();
 
             Session::flash('uspeh','Stavka je uspešno izmenjena!');
             return Redirect::back();
         }
 
-        public function postBrisanje(Request $req)
+        public function postBrisanje(Request $request)
         {   
-            $id = $req->id;
-            $sprat = Sprat::find($id);
-            $odgovor = $sprat->delete();
-            
+            $data = Sprat::find($request->idBrisanje);
+            $odgovor = $data->delete();
             if ($odgovor) {
                 Session::flash('uspeh','Stavka je uspešno obrisana!');
             }
             else{
                 Session::flash('greska','Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
             }
+            return Redirect::back();
         }
 }

@@ -68,7 +68,7 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="nazivModal">Naziv:</label>
-                        <input type="text" class="form-control" id="nazivModal" name="nazivModal">
+                        <input type="text" class="form-control" id="nazivModal" name="nazivModal" required>
                     </div>
                     <div class="form-group">
                         <label for="linkModal">Link:</label>
@@ -134,11 +134,6 @@
 @section('skripte')
 <script>
 $( document ).ready(function() {
-
-    setTimeout(function() {
-        $('#poruka').fadeOut('fast');
-        }, 2000);
-
     $('#tabela').DataTable({
             columnDefs: [{ orderable: false, searchable: false, "targets": -1 }],
             language: {
@@ -183,6 +178,4 @@ $( document ).ready(function() {
 
     });
 </script>
-<script src="{{ asset('/js/parsley.js') }}"></script>
-<script src="{{ asset('/js/parsley_sr.js') }}"></script>
 @endsection

@@ -20,14 +20,14 @@
 @endif
 
 @if(Session::has('greska'))
-<div class="alert alert-danger alert-dismissible fade in" role="alert" id="poruka">
+<div class="alert alert-danger alert-dismissible fade in" role="alert" id="poruka_greska">
  	<button class="close" data-dismiss="alert">&times;</button>
   	{{ Session::get('greska') }}
 </div>
 @endif
 
 @if(count($errors) > 0)
-<div class="alert alert-danger alert-dismissible fade in" role="alert" id="poruka">
+<div class="alert alert-danger alert-dismissible fade in" role="alert" id="poruka_greska">
  	<button class="close" data-dismiss="alert">&times;</button>
  	<strong>Greške:</strong>
  	<ul>

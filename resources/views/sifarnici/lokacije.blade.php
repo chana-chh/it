@@ -172,11 +172,6 @@
 @section('skripte')
 <script>
 $( document ).ready(function() {
-
-    setTimeout(function() {
-        $('#poruka').fadeOut('fast');
-        }, 2000);
-
     $('#tabela').DataTable({
         columnDefs: [{ orderable: false, searchable: false, "targets": -1 }],
         language: {
@@ -221,6 +216,4 @@ $( document ).ready(function() {
     });
 });
 </script>
-<script src="{{ asset('/js/parsley.js') }}"></script>
-<script src="{{ asset('/js/parsley_sr.js') }}"></script>
 @endsection

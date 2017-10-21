@@ -173,7 +173,5 @@
         });
     });
 </script>
-<script src="{{ asset('/js/parsley.js') }}"></script>
-<script src="{{ asset('/js/parsley_sr.js') }}"></script>
 @endsection
 

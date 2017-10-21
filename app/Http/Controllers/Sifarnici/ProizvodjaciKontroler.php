@@ -25,9 +25,6 @@ class ProizvodjaciKontroler extends Kontroler
                 'max:190',
                 'unique:s_proizvodjaci,naziv',
             ],
-            'link' => [
-                'required'
-            ]
         ]);
 
         $proizvodjac = new Proizvodjac();
@@ -55,7 +52,6 @@ class ProizvodjaciKontroler extends Kontroler
                 'max:190',
                 'unique:s_proizvodjaci,naziv,' . $id,
                 ],
-                'linkModal' => ['required']
             ]);
 
             $data = Proizvodjac::find($id);
