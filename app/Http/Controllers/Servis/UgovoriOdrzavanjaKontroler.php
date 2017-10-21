@@ -67,25 +67,38 @@ class UgovoriOdrzavanjaKontroler extends Kontroler
 //            return response()->json($data);
 //        }
 //    }
-//
-//    public function postIzmena(Request $request)
-//    {
-//        $id = $request->idModal;
-//        $this->validate($request, [
-//            'nazivModal' => [
-//                'required',
-//                'unique:s_soketi,naziv,' . $id,
-//            ],
-//        ]);
-//
-//        $data = Soket::find($id);
-//        $data->naziv = $request->nazivModal;
-//        $data->save();
-//
-//        Session::flash('uspeh', 'Stavka je uspešno izmenjena!');
-//        return Redirect::back();
-//    }
-//
+
+    public function postIzmena(Request $request, $id)
+    {
+        $this->validate($request, [
+            'broj' => [
+                'required',
+                'max:50',
+            ],
+            'iznos_sredstava' => [
+                'required',
+                'min:0',
+            ],
+            'datum_zakljucivanja' => [
+                'required',
+            ],
+            'datum_raskida' => [
+                'required',
+            ],
+        ]);
+
+        $data = UgovorOdrzavanje::find($id);
+        $data->broj = $request->broj;
+        $data->iznos_sredstava = $request->iznos_sredstava;
+        $data->datum_zakljucivanja = $request->datum_zakljucivanja;
+        $data->datum_raskida = $request->datum_raskida;
+        $data->napomena = $request->napomena;
+        $data->save();
+
+        Session::flash('uspeh', 'Ugovor o održavanju je uspešno izmenjen!');
+        return redirect()->route('ugovori');
+    }
+
     public function postBrisanje(Request $request)
     {
         $data = UgovorOdrzavanje::find($request->idBrisanje);

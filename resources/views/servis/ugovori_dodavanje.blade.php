@@ -13,7 +13,7 @@
             <img class="slicica_animirana" alt="Ugovori" src="{{url('/images/ugovor.png')}}" style="height:64px;">
             &emsp;Dodavanje ugovora o održavanju
         </h1>
-        <form action="" method="POST" data-parsley-validate>
+        <form action="{{ route('ugovori.dodavanje.post') }}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-md-6">
@@ -80,8 +80,7 @@
                     <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
                         <label for="napomena">Napomena:</label>
                         <textarea id="napomena" name="napomena"
-                               class="form-control"
-                               value="{{ old('napomena') }}"></textarea>
+                               class="form-control">{{ old('napomena') }}</textarea>
                         @if ($errors->has('napomena'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('napomena') }}</strong>

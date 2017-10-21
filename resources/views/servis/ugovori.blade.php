@@ -56,7 +56,7 @@
                         <i class="fa fa-eye"></i>
                     </a>
                     <a class="btn btn-info btn-sm" 
-                       href="">
+                       href="{{ route('ugovori.izmena.get', $ugovor->id) }}">
                         <i class="fa fa-pencil"></i>
                     </a>
                     <button class="btn btn-danger btn-sm otvori-brisanje"

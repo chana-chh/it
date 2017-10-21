@@ -11,9 +11,9 @@
     <div class="col-md-10 col-md-offset-1 boxic">
         <h1 class="page-header">
             <img class="slicica_animirana" alt="Ugovori" src="{{url('/images/ugovor.png')}}" style="height:64px;">
-            &emsp;Dodavanje ugovora o održavanju
+            &emsp;Izmena ugovora o održavanju
         </h1>
-        <form action="" method="POST" data-parsley-validate>
+        <form action="{{ route('ugovori.izmena.post', $data->id) }}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-md-6">
@@ -21,7 +21,7 @@
                         <label for="broj">Broj ugovora:</label>
                         <input type="text" id="broj" name="broj"
                                class="form-control"
-                               value="{{ old('broj') }}"
+                               value="{{ old('broj', $data->broj) }}"
                                maxlength="50">
                         @if ($errors->has('broj'))
                             <span class="help-block">
@@ -35,7 +35,7 @@
                         <label for="iznos_sredstava">Iznos sredstava:</label>
                         <input type="number" id="iznos_sredstava" name="iznos_sredstava"
                                class="form-control"
-                               value="{{ old('iznos_sredstava', 0) }}"
+                               value="{{ old('iznos_sredstava', $data->iznos_sredstava) }}"
                                min="0" step="0.01" required>
                         @if ($errors->has('iznos_sredstava'))
                             <span class="help-block">
@@ -51,7 +51,7 @@
                         <label for="datum_zakljucivanja">Datum zaključenja ugovora:</label>
                         <input type="date" id="datum_zakljucivanja" name="datum_zakljucivanja"
                                class="form-control"
-                               value="{{ old('datum_zakljucivanja') }}"
+                               value="{{ old('datum_zakljucivanja', $data->datum_zakljucivanja) }}"
                                required>
                         @if ($errors->has('datum_zakljucivanja'))
                             <span class="help-block">
@@ -65,7 +65,7 @@
                         <label for="datum_raskida">Datum isteka ugovora:</label>
                         <input type="date" id="datum_raskida" name="datum_raskida"
                                class="form-control"
-                               value="{{ old('datum_raskida') }}"
+                               value="{{ old('datum_raskida', $data->datum_raskida) }}"
                                required>
                         @if ($errors->has('datum_raskida'))
                             <span class="help-block">
@@ -80,8 +80,7 @@
                     <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
                         <label for="napomena">Napomena:</label>
                         <textarea id="napomena" name="napomena"
-                               class="form-control"
-                               value="{{ old('napomena') }}"></textarea>
+                               class="form-control">{{ old('napomena', $data->napomena) }}</textarea>
                         @if ($errors->has('napomena'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('napomena') }}</strong>
@@ -95,7 +94,7 @@
                     <div class="form-group text-right">
                         <div class="col-md-6 snimi">
                             <button type="submit" class="btn btn-success btn-block ono">
-                                <i class="fa fa-plus-circle"></i> Dodaj
+                                <i class="fa fa-save"></i> Snimi izmene
                             </button>
                         </div>
                         <div class="col-md-6">
