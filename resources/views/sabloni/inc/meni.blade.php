@@ -63,8 +63,6 @@
                             <li><a href="">Štampači</a></li>
                             <li><a href="">Skeneri</a></li>
                             <li><a href="">UPS-evi</a></li>
-                            <li><a href="">Projektori</a></li>
-                            <li><a href="">Mrežna oprema</a></li>
                         </ul>
                     </li>
 
@@ -95,7 +93,7 @@
                             <li><a href="{{ route('toneri') }}">Toneri</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('operativni_sistemi') }}">Operativni sistemi</a></li>
-                            <li><a href="">Aplikacije</a></li>
+                            <li><a href="{{route('aplikacije')}}">Aplikacije</a></li>
                         </ul>
                     </li>
                     <li>

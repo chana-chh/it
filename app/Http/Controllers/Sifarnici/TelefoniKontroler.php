@@ -22,6 +22,9 @@ class TelefoniKontroler extends Kontroler {
             'broj' => [
                 'required',
             ],
+            'kancelarija_id' => [
+                 'required',
+            ],
         ]);
 
         $data = new Telefon();
@@ -36,9 +39,8 @@ class TelefoniKontroler extends Kontroler {
     }
 
     public function postDetalj(Request $request) {
-        if($request->ajax()){
-                $id = $request->id;
-                $telefoni = Telefon::find($id);
+            if($request->ajax()){
+                $telefoni = Telefon::find($request->id);
                 $kancelarije = Kancelarija::with(['lokacija', 'sprat'])->get();
                 return response()->json(array('kancelarije'=>$kancelarije,'telefoni'=>$telefoni));
             }
@@ -49,6 +51,9 @@ class TelefoniKontroler extends Kontroler {
         $id = $request->idModal;
         $this->validate($request, [
             'brojModal' => [
+                'required',
+            ],
+             'kancelarija_idModal' => [
                 'required',
             ],
         ]);
@@ -65,13 +70,14 @@ class TelefoniKontroler extends Kontroler {
     }
 
     public function postBrisanje(Request $request) {
-        $data = Telefon::find($request->id);
+        $data = Telefon::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Stavka je uspešno obrisana!');
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
         }
+        return Redirect::back();
     }
 
 }

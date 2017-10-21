@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Šifarnici | Kancelarije')
+@section('naziv', 'Šifarnici | Aplikacije')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -8,42 +8,40 @@
 
 @section('naslov')
 <h1 class="page-header">
-    <img class="slicica_animirana" alt="Kancelarije"
-         src="{{ url('/images/kancelarije.png') }}" style="height:64px;">
-    &emsp;Kancelarije
+    <img class="slicica_animirana" alt="Aplikacije"
+         src="{{ url('/images/aplikacije.png') }}" style="height:64px;">
+    &emsp;Aplikacije
 </h1>
 @endsection
 
 @section('sadrzaj')
-@if($kancelarije->isEmpty())
+@if($aplikacije->isEmpty())
 <h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
 @else
 <table id="tabela" class="table table-striped" cellspacing="0" width="100%">
     <thead>
         <th>#</th>
-        <th>Kancelarija</th>
-        <th>Sprat</th>
-        <th>Lokacija</th>
-        <th>Napomena</th>
+        <th>Naziv</th>
+        <th>Proizvođač</th>
+        <th>Opis</th>
         <th style="text-align:right"><i class="fa fa-cogs"></i></th>
     </thead>
     <tbody>
-        @foreach ($kancelarije as $kancelarija)
+        @foreach ($aplikacije as $d)
         <tr>
-            <td>{{$kancelarija->id}}</td>
-            <td><strong>{{$kancelarija->naziv}}</strong></td>
-            <td>{{$kancelarija->sprat->naziv}}</td>
-            <td>{{$kancelarija->lokacija->naziv}}</td>
-            <td>{{$kancelarija->napomena}}</td>
+            <td>{{$d->id}}</td>
+            <td><strong>{{$d->naziv}}</strong></td>
+            <td>{{$d->proizvodjac->naziv}}</td>
+            <td>{{$d->opis}}</td>
             <td style="text-align:right;">
                 <button class="btn btn-success btn-sm otvori-izmenu"
                         data-toggle="modal" data-target="#editModal"
-                        value="{{ $kancelarija->id }}">
+                        value="{{ $d->id }}">
                     <i class="fa fa-pencil"></i>
                 </button>
                 <button class="btn btn-danger btn-sm otvori-brisanje"
                         data-toggle="modal" data-target="#brisanjeModal"
-                        value="{{ $kancelarija->id }}">
+                        value="{{ $d->id }}">
                     <i class="fa fa-trash"></i>
                 </button>
             </td>
@@ -68,29 +66,23 @@
             <h4 class="modal-title text-primary">Izmeni stavku</h4>
           </div>
           <div class="modal-body">
-            <form action="{{ route('kancelarije.izmena') }}" method="post">
+            <form action="{{ route('aplikacije.izmena') }}" method="post" data-parsley-validate>
               {{ csrf_field() }}
               
                 <div class="form-group">
                   <label for="nazivModal">Naziv/broj:</label>
-                  <input type="text" class="form-control" id="nazivModal" name="nazivModal">
+                  <input type="text" class="form-control" id="nazivModal" name="nazivModal" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="lokacija_idModal">Lokacija</label>
-                    <select class="form-control" name="lokacija_idModal" id="lokacija_idModal" data-placeholder="lokacija ...">
+                    <label for="proizvodjac_idModal">Proizvođač</label>
+                    <select class="form-control" name="proizvodjac_idModal" id="proizvodjac_idModal" data-placeholder="proizvodjaci ..." required>
                     </select>
                 </div>
 
                 <div class="form-group">
-                  <label for="sprat_idModal">Sprat:</label>
-                  <select class="form-control" name="sprat_idModal" id="sprat_idModal" data-placeholder="sprat ...">
-                    </select>
-                </div>
-
-                <div class="form-group">
-                  <label for="napomenaModal">Napomena:</label>
-                  <textarea class="form-control" id="napomenaModal" name="napomenaModal"></textarea>
+                  <label for="opisModal">Opis:</label>
+                  <textarea class="form-control" id="opisModal" name="opisModal"></textarea>
                 </div>
 
               <input type="hidden" id="idModal" name="idModal">
@@ -113,10 +105,10 @@
 @endsection
 
 @section('traka')
-<h3>Dodavanje kancelarije</h3>
+<h3>Dodavanje aplikacije</h3>
 <hr>
 <div class="well">
-    <form action="{{ route('kancelarije.dodavanje') }}" method="POST" data-parsley-validate>
+    <form action="{{ route('aplikacije.dodavanje') }}" method="POST" data-parsley-validate>
         {{ csrf_field() }}
 
         <div class="form-group{{ $errors->has('naziv') ? ' has-error' : '' }}">
@@ -128,46 +120,29 @@
             @endif
         </div>
 
-        <div class="form-group{{ $errors->has('lokacija_id') ? ' has-error' : '' }}">
-            <label for="lokacija_id">Lokacija</label>
-            <select name="lokacija_id" id="lokacija_id" class="chosen-select form-control" data-placeholder="lokacija ..." required>
+        <div class="form-group{{ $errors->has('proizvodjac_id') ? ' has-error' : '' }}">
+            <label for="proizvodjac_id">Proizvođač</label>
+            <select name="proizvodjac_id" id="proizvodjac_id" class="chosen-select form-control" data-placeholder="proizvodjac ..." required>
                 <option value=""></option>
-                @foreach($lokacije as $lokacija)
-                <option value="{{ $lokacija->id }}" {{ old( 'lokacija_id')==$lokacija->id ? ' selected' : '' }}>
-                    <strong>{{ $lokacija->naziv }}</strong>
+                @foreach($proizvodjaci as $proizvodjac)
+                <option value="{{ $proizvodjac->id }}" {{ old( 'proizvodjac_id')==$proizvodjac->id ? ' selected' : '' }}>
+                    <strong>{{ $proizvodjac->naziv }}</strong>
                 </option>
                 @endforeach
             </select>
-            @if ($errors->has('lokacija_id'))
+            @if ($errors->has('proizvodjac_id'))
             <span class="help-block">
-                <strong>{{ $errors->first('lokacija_id') }}</strong>
+                <strong>{{ $errors->first('proizvodjac_id') }}</strong>
             </span>
             @endif
         </div>
 
-        <div class="form-group{{ $errors->has('sprat_id') ? ' has-error' : '' }}">
-            <label for="sprat_id">Sprat</label>
-            <select name="sprat_id" id="sprat_id" class="chosen-select form-control" data-placeholder="sprat ..." required>
-                <option value=""></option>
-                @foreach($spratovi as $sprat)
-                <option value="{{ $sprat->id }}" {{ old( 'sprat_id')==$sprat->id ? ' selected' : '' }}>
-                    <strong>{{ $sprat->naziv }}</strong>
-                </option>
-                @endforeach
-            </select>
-            @if ($errors->has('sprat_id'))
+        <div class="form-group{{ $errors->has('opis') ? ' has-error' : '' }}">
+            <label for="opis">Напомена: </label>
+            <textarea name="opis" id="opis" maxlength="255" class="form-control">{{ old('opis') }}</textarea>
+            @if ($errors->has('opis'))
             <span class="help-block">
-                <strong>{{ $errors->first('sprat_id') }}</strong>
-            </span>
-            @endif
-        </div>
-
-        <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
-            <label for="napomena">Напомена: </label>
-            <textarea name="napomena" id="napomena" maxlength="255" class="form-control">{{ old('napomena') }}</textarea>
-            @if ($errors->has('napomena'))
-            <span class="help-block">
-                <strong>{{ $errors->first('napomena') }}</strong>
+                <strong>{{ $errors->first('opis') }}</strong>
             </span>
             @endif
         </div>
@@ -181,7 +156,7 @@
                         </button>
                     </div>
                     <div class="col-md-6">
-                        <a class="btn btn-danger btn-block ono" href="{{route('kancelarije')}}">
+                        <a class="btn btn-danger btn-block ono" href="{{route('aplikacije')}}">
                             <i class="fa fa-ban"></i> Otkaži
                         </a>
                     </div>
@@ -239,7 +214,7 @@ $( document ).ready(function() {
    $(document).on('click', '.otvori-brisanje', function () {
             var id = $(this).val();
             $('#idBrisanje').val(id);
-            var ruta = "{{ route('kancelarije.brisanje') }}";
+            var ruta = "{{ route('aplikacije.brisanje') }}";
             $('#brisanje-forma').attr('action', ruta);
         });
 
@@ -247,27 +222,21 @@ $( document ).ready(function() {
     $(document).on('click','.otvori-izmenu',function(){
 
         var id = $(this).val();
-        var ruta = "{{ route('kancelarije.detalj') }}";
+        var ruta = "{{ route('aplikacije.detalj') }}";
 
         $.ajax({
         url: ruta,
         type:"POST", 
         data: {"id":id, _token: "{!! csrf_token() !!}"},
-        success: function(result){
-
-          $("#idModal").val(result.kancelarije.id);
-          $("#nazivModal").val(result.kancelarije.naziv);
-          $("#napomenaModal").val(result.kancelarije.napomena);
+        success: function(data){
+          $("#idModal").val(data.aplikacija.id);
+          $("#nazivModal").val(data.aplikacija.naziv);
+          $("#opisModal").val(data.aplikacija.opis);
           
-            $.each(result.lokacije, function(index, lokObjekat){
-            $('#lokacija_idModal').append('<option value="'+lokObjekat.id+'">'+lokObjekat.naziv+'</option>');
+            $.each(data.proizvodjaci, function(index, lokObjekat){
+            $('#proizvodjac_idModal').append('<option value="'+lokObjekat.id+'">'+lokObjekat.naziv+'</option>');
             });
-            $("#lokacija_idModal").val(result.kancelarije.lokacija_id);
-
-             $.each(result.spratovi, function(i, lokObjekats){
-            $('#sprat_idModal').append('<option value="'+lokObjekats.id+'">'+lokObjekats.naziv+'</option>');
-            });
-             $("#sprat_idModal").val(result.kancelarije.sprat_id);
+            $("#proizvodjac_idModal").val(data.aplikacija.proizvodjac_id);
         }
       });     
 

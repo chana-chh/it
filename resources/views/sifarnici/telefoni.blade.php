@@ -8,7 +8,7 @@
 
 @section('naslov')
 <h1 class="page-header">
-    <img class="slicica_animirana" alt="spratovi" src="{{ url('/images/telefon.png') }}" style="height:64px;  width:64px">
+    <img class="slicica_animirana" alt="Fiksna telefonija" src="{{ url('/images/telefon.png') }}" style="height:64px;">
      &emsp;Fiksni telefoni
 </h1>
 @endsection
@@ -24,7 +24,7 @@
     <th style="width: 10%;">Vrsta</th>
     <th style="width: 25%;">Kancelarija</th>
     <th style="width: 25%;">Napomena</th>
-    <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i> Akcije</th>
+    <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
 </thead>
 <tbody>
     @foreach ($data as $d)
@@ -41,6 +41,7 @@
                 <i class="fa fa-pencil"></i>
             </button>
             <button class="btn btn-danger btn-sm otvori-brisanje"
+                    data-toggle="modal" data-target="#brisanjeModal"
                     value="{{ $d->id }}">
                 <i class="fa fa-trash"></i>
             </button>
@@ -223,27 +224,11 @@
    });
    };
 
-        $(document).on('click', '.otvori-brisanje', function () {
+    $(document).on('click', '.otvori-brisanje', function () {
             var id = $(this).val();
+            $('#idBrisanje').val(id);
             var ruta = "{{ route('telefoni.brisanje') }}";
-            $('#brisanjeModal').modal('show');
-            $('#btn-brisanje-obrisi').click(function () {
-                $.ajax({
-                    url: ruta,
-                    type: "POST",
-                    data: {
-                        "id": id,
-                        "_token": "{!! csrf_token() !!}"
-                    },
-                    success: function () {
-                        location.reload();
-                    }
-                });
-                $('#brisanjeModal').modal('hide');
-            });
-            $('#btn-brisanje-otkazi').click(function () {
-                $('#brisanjeModal').modal('hide');
-            });
+            $('#brisanje-forma').attr('action', ruta);
         });
 
         $(document).on('click', '.otvori-izmenu', function () {

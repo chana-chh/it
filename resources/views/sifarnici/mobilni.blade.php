@@ -8,7 +8,7 @@
 
 @section('naslov')
 <h1 class="page-header">
-    <img class="slicica_animirana" alt="spratovi" src="{{ url('/images/mobilni.png') }}" style="height:64px;  width:64px">
+    <img class="slicica_animirana" alt="Mobilni Telefoni" src="{{ url('/images/mobilni.png') }}" style="height:64px;  width:64px">
      &emsp;Mobilni telefoni
 </h1>
 @endsection

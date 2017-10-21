@@ -152,6 +152,13 @@ Route::post('sifarnici/operativni_sistemi/brisanje', 'Sifarnici\OperativniSistem
 Route::post('sifarnici/operativni_sistemi/izmena', 'Sifarnici\OperativniSistemiKontroler@postIzmena')->name('operativni_sistemi.izmena');
 Route::post('sifarnici/operativni_sistemi/detalj', 'Sifarnici\OperativniSistemiKontroler@postDetalj')->name('operativni_sistemi.detalj');
 
+//Aplikacije
+Route::get('sifarnici/aplikacije', 'Sifarnici\AplikacijeKontroler@getLista')->name('aplikacije');
+Route::post('sifarnici/aplikacije/dodavanje', 'Sifarnici\AplikacijeKontroler@postDodavanje')->name('aplikacije.dodavanje');
+Route::post('sifarnici/aplikacije/brisanje', 'Sifarnici\AplikacijeKontroler@postBrisanje')->name('aplikacije.brisanje');
+Route::post('sifarnici/aplikacije/izmena', 'Sifarnici\AplikacijeKontroler@postIzmena')->name('aplikacije.izmena');
+Route::post('sifarnici/aplikacije/detalj', 'Sifarnici\AplikacijeKontroler@postDetalj')->name('aplikacije.detalj');
+
 
 // MODELI UREDJAJA
 //Procesori

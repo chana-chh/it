@@ -13,13 +13,13 @@ class UpraveKontroler extends Kontroler
 {
      public function getLista()
     {
-    	$uprave = Uprava::all();
-    	return view('sifarnici.uprave')->with(compact ('uprave'));
+    	$data = Uprava::all();
+    	return view('sifarnici.uprave')->with(compact ('data'));
     }
 
-    public function postDodavanje(Request $req)
+    public function postDodavanje(Request $request)
     {
-        $this->validate($req, [
+        $this->validate($request, [
             'naziv' => [
                 'required',
                 'max:190',
@@ -27,52 +27,50 @@ class UpraveKontroler extends Kontroler
             	],
         	]);
 
-        $uprava = new Uprava();
-        $uprava->naziv = $req->naziv;
-        $uprava->save();
+        $data = new Uprava();
+        $data->naziv = $request->naziv;
+        $data->save();
 
         Session::flash('uspeh','Stavka je uspešno dodata!');
         return redirect()->route('uprave');
     }
 
-        public function postDetalj(Request $req)
+        public function postDetalj(Request $request)
         {
-            if($req->ajax()){
-                $id = $req->id;
-                $uprava = Uprava::find($id);
-                return response()->json($uprava);
+            if($request->ajax()){
+                $data = Uprava::find($request->id);
+                return response()->json($data);
             }
         }
 
-        public function postIzmena(Request $req)
+        public function postIzmena(Request $request)
         {
-            $id = $req -> edit_id;
-            $this->validate($req, [
+            $id = $request -> idModal;
+            $this->validate($request, [
             'nazivModal' => [
                 'required',
                 'max:190',
                 'unique:s_uprave,naziv,'.$id,],
         	]);
 
-            $uprava = Uprava::find($id);
-            $uprava -> naziv = $req -> nazivModal;
-            $uprava -> save();
+            $data = Uprava::find($id);
+            $data -> naziv = $request -> nazivModal;
+            $data -> save();
 
             Session::flash('uspeh','Stavka je uspešno izmenjena!');
             return Redirect::back();
         }
 
-        public function postBrisanje(Request $req)
+        public function postBrisanje(Request $request)
         {   
-            $id = $req->id;
-            $uprava = Uprava::find($id);
-            $odgovor = $uprava->delete();
-            
+            $data = Uprava::find($request->idBrisanje);
+            $odgovor = $data->delete();
             if ($odgovor) {
                 Session::flash('uspeh','Stavka je uspešno obrisana!');
             }
             else{
                 Session::flash('greska','Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
             }
+            return Redirect::back();
         }
 }
