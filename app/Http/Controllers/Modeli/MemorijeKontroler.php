@@ -129,7 +129,7 @@ class MemorijeKontroler extends Kontroler
         //Dobra fora za pozivanje dodatnih relacija sa Tockicom.SledecaRElacija
         $memorije = Memorija::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('memorija_model_id', '=', $id)->get();
         $model = MemorijaModel::find($id);
-        return view('modeli.procesori_uredjaji')->with(compact ('memorije', 'model'));
+        return view('modeli.memorije_uredjaji')->with(compact ('memorije', 'model'));
     }
 
 }

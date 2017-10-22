@@ -20,9 +20,9 @@
 <div class="row">
     <div class="col-md-12">
 @if($memorije->isEmpty())
-            <h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
+            <h3 class="text-danger">Trenutno nema stavki u bazi podataka</h3>
         @else
-            <table class="table table-striped display" cellspacing="0" width="100%" name="tabelaProcesori" id="tabelaProcesori">
+            <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
                 <thead>
                         <th style="width: 5%;">#</th>
                         <th style="width: 10%;">Proizvođač</th>
@@ -31,9 +31,9 @@
                         <th style="width: 15%;">Kapacitet</th>
                         <th style="width: 15%;">Ocena</th>
                         <th style="width: 15%;">Link</th>
-                        <th style="width: 15%;text-align:center"><i class="fa fa-cogs"></i></th>
+                        <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
                 </thead>
-                <tbody id="procesori_lista" name="procesori_lista">
+                <tbody>
                 @foreach ($memorije as $m)
                         <tr>
                             <td>{{$m->id}}</td>
@@ -46,7 +46,7 @@
                                     <i class="fa fa-link"></i>
                                 </a>
                             </td>
-                            <td style="text-align:center; vertical-align: middle; line-height: normal;">
+                            <td style="text-align:right; vertical-align: middle; line-height: normal;">
                     <a class="btn btn-success btn-sm" id="dugmeDetalj"  href="{{route('memorije.modeli.detalj', $m->id)}}"><i class="fa fa-eye"></i></a>
                     <a class="btn btn-info btn-sm" id="dugmeIzmena"  href="{{route('memorije.modeli.izmena.get', $m->id)}}"><i class="fa fa-pencil"></i></a>
                     <button class="btn btn-danger btn-sm otvori-brisanje"
@@ -81,7 +81,7 @@ $( document ).ready(function() {
             $('#brisanje-forma').attr('action', ruta);
         });
 
-        var tabela = $('#tabelaProcesori').DataTable({
+        var tabela = $('#tabela').DataTable({
 
         columnDefs: [
                 {

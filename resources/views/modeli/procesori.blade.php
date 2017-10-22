@@ -7,61 +7,74 @@
 @endsection
 
 @section('naslov')
-    <div class="row">
-        <div class="col-md-10">
-            <h1><span><img class="slicica_animirana" alt="Modeli procesora" src="{{url('/images/cpu.png')}}" style="height:64px;"></span>&emsp;Modeli procesora (CPU)</h1>
-        </div>
+<div class="row">
+    <div class="col-md-10">
+        <h1>
+            <span>
+                <img class="slicica_animirana" alt="Modeli procesora" src="{{url('/images/cpu.png')}}" style="height:64px;">
+            </span>&emsp;Modeli procesora (CPU)</h1>
+    </div>
 
-         <div class="col-md-2 text-right" style="padding-top: 50px;">
-            <a class="btn btn-primary ono" href="{{route('procesori.modeli.dodavanje.get')}}"><i class="fa fa-plus-circle fa-fw"></i> Dodaj model procesora</a>
-        </div>
-        </div>
+    <div class="col-md-2 text-right" style="padding-top: 50px;">
+        <a class="btn btn-primary ono" href="{{route('procesori.modeli.dodavanje.get')}}">
+            <i class="fa fa-plus-circle fa-fw"></i> Dodaj model procesora</a>
+    </div>
+</div>
         <hr>
 <div class="row">
     <div class="col-md-12">
 @if($procesori->isEmpty())
-            <h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
+            <h3 class="text-danger">Trenutno nema stavki u bazi podataka</h3>
         @else
-            <table class="table table-striped display" cellspacing="0" width="100%" name="tabelaProcesori" id="tabelaProcesori">
-                <thead>
-                        <th style="width: 5%;">#</th>
-                        <th style="width: 10%;">Naziv</th>
-                        <th style="width: 10%;">Proizvođač</th>
-                        <th style="width: 10%;">Soket</th>
-                        <th style="width: 10%;">Takt</th>
-                        <th style="width: 5%;">Kes</th>
-                        <th style="width: 10%;">Broj jezgara</th>
-                        <th style="width: 10%;">Broj niti</th>
-                        <th style="width: 10%;">Ocena</th>
-                        <th style="width: 5%;">Link</th>
-                        <th style="width: 15%;text-align:center"><i class="fa fa-cogs"></i></th>
-                </thead>
-                <tbody id="procesori_lista" name="procesori_lista">
-                @foreach ($procesori as $procesor)
-                        <tr>
-                            <td>{{$procesor->id}}</td>
-                            <td><strong>{{$procesor->naziv}}</strong></td>
-                            <td>{{$procesor->proizvodjac->naziv}}</td>
-                            <td>{{$procesor->soket->naziv}}</td>
-                            <td>{{$procesor->takt}} MHz</td>
-                            <td>{{$procesor->kes}} MB</td>
-                            <td>{{$procesor->broj_jezgara}}</td>
-                            <td>{{$procesor->broj_niti}}</td>
-                            <td>{{$procesor->ocena}}</td>
-                            <td><a href="{{$procesor->link}}" target="_blank" style="font-size: 2rem;">
-                                    <i class="fa fa-link"></i>
-                                </a>
-                            </td>
-                            <td style="text-align:center; vertical-align: middle; line-height: normal;">
-                    <a class="btn btn-success btn-sm" id="dugmeDetalj"  href="{{route('procesori.modeli.detalj', $procesor->id)}}"><i class="fa fa-eye"></i></a>
-                    <a class="btn btn-info btn-sm" id="dugmeIzmena"  href="{{route('procesori.modeli.izmena.get', $procesor->id)}}"><i class="fa fa-pencil"></i></a>
-                    <button id="dugmeBrisanje" class="btn btn-danger btn-sm otvori-brisanje"  value="{{$procesor->id}}"><i class="fa fa-trash"></i></button>
-
-                            </td>
-                        </tr>
-                @endforeach
-                </tbody>
-            </table>
+<table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
+    <thead>
+        <th style="width: 5%;">#</th>
+        <th style="width: 10%;">Naziv</th>
+        <th style="width: 10%;">Proizvođač</th>
+        <th style="width: 10%;">Soket</th>
+        <th style="width: 10%;">Takt</th>
+        <th style="width: 5%;">Kes</th>
+        <th style="width: 10%;">Broj jezgara</th>
+        <th style="width: 10%;">Broj niti</th>
+        <th style="width: 10%;">Ocena</th>
+        <th style="width: 5%;">Link</th>
+        <th style="width: 15%;text-align:right">
+            <i class="fa fa-cogs"></i>&emsp;Akcije</th>
+    </thead>
+    <tbody>
+        @foreach ($procesori as $procesor)
+        <tr>
+            <td>{{$procesor->id}}</td>
+            <td>
+                <strong>{{$procesor->naziv}}</strong>
+            </td>
+            <td>{{$procesor->proizvodjac->naziv}}</td>
+            <td>{{$procesor->soket->naziv}}</td>
+            <td>{{$procesor->takt}} MHz</td>
+            <td>{{$procesor->kes}} MB</td>
+            <td>{{$procesor->broj_jezgara}}</td>
+            <td>{{$procesor->broj_niti}}</td>
+            <td>{{$procesor->ocena}}</td>
+            <td>
+                <a href="{{$procesor->link}}" target="_blank" style="font-size: 2rem;">
+                    <i class="fa fa-link"></i>
+                </a>
+            </td>
+            <td style="text-align:right; vertical-align: middle; line-height: normal;">
+                <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('procesori.modeli.detalj', $procesor->id)}}">
+                    <i class="fa fa-eye"></i>
+                </a>
+                <a class="btn btn-info btn-sm" id="dugmeIzmena" href="{{route('procesori.modeli.izmena.get', $procesor->id)}}">
+                    <i class="fa fa-pencil"></i>
+                </a>
+                <button class="btn btn-danger btn-sm otvori-brisanje" data-toggle="modal" data-target="#brisanjeModal" value="{{$procesor->id}}">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
         @endif
     </div>
 </div>
@@ -77,21 +90,13 @@
 <script>
 $( document ).ready(function() {
 
-        $(document).on('click', '.otvori-brisanje', function () {
+    $(document).on('click', '.otvori-brisanje', function () {
             var id = $(this).val();
             $('#idBrisanje').val(id);
             var ruta = "{{ route('procesori.modeli.brisanje') }}";
-            $('#brisanje-forma').attr('action', ruta);
-            $('#brisanjeModal').modal('show');
-            $('#btn-brisanje-otkazi').click(function () {
-                    $('#brisanjeModal').modal('hide');
-            });
-            $('#btn-brisanje-obrisi').click(function () {
-                    $('#brisanjeModal').modal('hide');
-            });
-        });
+            $('#brisanje-forma').attr('action', ruta); });
 
-        var tabela = $('#tabelaProcesori').DataTable({
+        var tabela = $('#tabela').DataTable({
 
         columnDefs: [
                 {

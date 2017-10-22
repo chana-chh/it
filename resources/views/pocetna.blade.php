@@ -7,7 +7,7 @@
 @endsection
 
 @section('naslov')
-    <h1 class="text-center" style="font-size: 72px;">{{config('app.name')}}</h1>
+    <h1 class="text-center" style="font-size: 64px;">{{config('app.name')}}</h1>
     <hr>
     <div class="row" style="margin-top: 72px;">
         <div class="col-md-3">

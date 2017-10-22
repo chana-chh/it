@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Modeli | Procesori')
+@section('naziv', 'Modeli | Procesori - model memorije')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -16,16 +16,16 @@
 <div class="row">
     <div class="col-md-12">
 @if($racunari->isEmpty())
-            <h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
+            <h3 class="text-danger">Trenutno nema računara sa ovim modelom procesora</h3>
         @else
-            <table class="table table-striped display" cellspacing="0" width="100%" name="tabelaRacunari" id="tabelaRacunari">
+            <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
                 <thead>
                         <th style="width: 5%;">#</th>
                         <th style="width: 15%;">Inventarski broj</th>
                         <th style="width: 15%;">Ime odeljenja za IKT</th>
                         <th style="width: 25%;">Ime - Domen</th>
                         <th style="width: 25%;">Napomena</th>
-                        <th style="width: 15%;text-align:center"><i class="fa fa-cogs"></i></th>
+                        <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
                 </thead>
                 <tbody id="racunari_lista" name="racunari_lista">
                 @foreach ($racunari as $racunar)
@@ -35,7 +35,7 @@
                             <td>{{$racunar['erc_broj']}}</td>
                             <td>{{$racunar['ime']}}</td>
                             <td>{{$racunar['napomena']}}</td>
-                            <td style="text-align:center; vertical-align: middle; line-height: normal;">
+                            <td style="text-align:right; vertical-align: middle; line-height: normal;">
                     <a class="btn btn-success btn-sm" id="dugmeDetalj"  href=" "><i class="fa fa-eye"></i></a>
                     <a class="btn btn-info btn-sm" id="dugmeIzmena"  href=" "><i class="fa fa-pencil"></i></a>
                     <button id="dugmeBrisanje" class="btn btn-danger btn-sm otvori_modal"  value="{{$racunar['id']}}"><i class="fa fa-trash"></i></button>
@@ -68,7 +68,7 @@
 <script>
 $( document ).ready(function() {
 
-        var tabela = $('#tabelaRacunari').DataTable({
+        var tabela = $('#tabela').DataTable({
 
         columnDefs: [
                 {
