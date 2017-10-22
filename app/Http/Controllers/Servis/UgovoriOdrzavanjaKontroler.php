@@ -16,12 +16,12 @@ class UgovoriOdrzavanjaKontroler extends Kontroler
         $ugovori = UgovorOdrzavanje::all();
         return view('servis.ugovori')->with(compact('ugovori'));
     }
-    
+
     public function getDodavanje()
     {
-    	return view('servis.ugovori_dodavanje');
+        return view('servis.ugovori_dodavanje');
     }
-    
+
     public function postDodavanje(Request $request)
     {
         $this->validate($request, [
@@ -52,21 +52,19 @@ class UgovoriOdrzavanjaKontroler extends Kontroler
         Session::flash('uspeh', 'Ugovor o održavanju je uspešno dodat!');
         return redirect()->route('ugovori');
     }
-    
+
     public function getIzmena($id)
     {
         $data = UgovorOdrzavanje::find($id);
-        
-    	return view('servis.ugovori_izmena')->with(compact ('data'));
+
+        return view('servis.ugovori_izmena')->with(compact('data'));
     }
 
-//    public function postDetalj(Request $request)
-//    {
-//        if ($request->ajax()) {
-//            $data = Soket::find($request->id);
-//            return response()->json($data);
-//        }
-//    }
+    public function getDetalj($id)
+    {
+        $data = UgovorOdrzavanje::find($id);
+        return view('servis.ugovori_detalj')->with(compact('data'));
+    }
 
     public function postIzmena(Request $request, $id)
     {
@@ -110,4 +108,6 @@ class UgovoriOdrzavanjaKontroler extends Kontroler
         }
         return Redirect::back();
     }
+
 }
+
