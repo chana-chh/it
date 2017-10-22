@@ -16,8 +16,9 @@ BTN Default Hover Background: #74898A;
 
 html,
 body {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
+    -webkit-font-smoothing: antialiased !important;
+    font-family: 'Roboto-Regular', sans-serif;
+    font-weight: normal;
     display: table;
     height: 100%;
     width: 100%;
@@ -26,17 +27,18 @@ body {
 h1,
 h2,
 h3 {
-    font-weight: 500;
+    font-family: "Roboto-Medium";
+    font-weight: normal;
     color: #2C3E50;
 }
 
 .text-primary {
-    font-weight: 300;
+    font-weight: normal;
     color: #2C3E50;
 }
 
 .text-success {
-    font-weight: 500;
+    font-weight: normal;
     color: #18BC9C;
 }
 
@@ -59,13 +61,13 @@ h3 {
     background-color: #2C3E50;
     border-color: #FFFFFF;
     color: #FFFFFF;
-    font-weight: 200;
+    font-weight: normal;
     font-size: 16px;
 }
 
 .navbar-default .navbar-brand {
     color: #FFFFFF;
-    font-weight: 500 !important;
+    font-weight: normal;
 }
 
 .navbar-default .navbar-brand:hover,
@@ -204,6 +206,9 @@ textarea {
 
 
 /*Tabela pruge*/
+th{
+    font-weight: normal;
+}
 
 .table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
@@ -213,7 +218,6 @@ textarea {
 .table-striped>thead {
     background-color: #2C3E50;
     color: #FFFFFF;
-    font-weight: 200 !important;
 }
 
 .checkboxoviforme {

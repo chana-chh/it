@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ route('pocetna') }}">
-                    <span><img alt="IT oprema" src="{{url('/images/c.png')}}" style="height:32px;  width:32px"></span> {{ config('app.name') }}</a>
+                    <span><img alt="IT oprema" src="{{url('/images/c.png')}}" style="height:32px;  width:32px"></span>&emsp;{{ config('app.name') }}</a>
             </div>
 
             <div class="collapse navbar-collapse" id="kolaps">

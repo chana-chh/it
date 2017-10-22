@@ -192,10 +192,10 @@
             <div class="col-md-6 col-md-offset-6">
             <div class="form-group text-right">
             <div class="col-md-6 snimi">
-                <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-floppy-o"></i>&emsp;Snimi izmene</button>
+                <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-floppy-o"></i>&emsp;&emsp;Snimi izmene</button>
             </div>
             <div class="col-md-6">
-                <a class="btn btn-danger btn-block ono" href="{{route('procesori.modeli')}}"><i class="fa fa-ban"></i>&emsp;Otkaži</a>
+                <a class="btn btn-danger btn-block ono" href="{{route('procesori.modeli')}}"><i class="fa fa-ban"></i>&emsp;&emsp;Otkaži</a>
             </div>
             </div>
             </div>
