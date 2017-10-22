@@ -8,7 +8,7 @@
 
 @section('naslov')
     <h1 class="page-header">
-        <img class="slicica_animirana" alt="korisnik" src="{{url('/images/cpu.png')}}" style="height:50px;">
+        <img class="slicica_animirana" alt="Model procesora detaljno" src="{{url('/images/cpu.png')}}" style="height:64px;">
         Detaljni pregled modela 
          <i>{{ $procesor->naziv }}</i>
          procesora

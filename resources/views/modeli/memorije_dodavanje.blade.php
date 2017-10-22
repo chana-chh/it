@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Modeli | Dodavanje modela procesora')
+@section('naziv', 'Modeli | Dodavanje modela memorije')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -11,29 +11,17 @@
         <div class="row ceo_dva">
         <div class="col-md-10 col-md-offset-1 boxic">
 
-        <h1 class="page-header"><span><img class="slicica_animirana" alt="korisnici" src="{{url('/images/cpu_add.png')}}" style="height:64px;"></span>&emsp;Dodavanje modela procesora</h1>
+        <h1 class="page-header"><span><img class="slicica_animirana" alt="Modeli memorije - dodavanje" src="{{url('/images/memorija_add.png')}}" style="height:64px;"></span>&emsp;Dodavanje modela memorije</h1>
 
-        <form action="{{ route('procesori.modeli.dodavanje.post') }}" method="POST" data-parsley-validate>
+        <form action="{{ route('memorije.modeli.dodavanje.post') }}" method="POST" data-parsley-validate>
         {{ csrf_field() }}
 
         <div class="row">
 
-            <div class="col-md-6">
-                    <div class="form-group{{ $errors->has('naziv') ? ' has-error' : '' }}">
-                    <label for="naziv">Naziv:</label>
-                    <input type="text" name="naziv" id="naziv" class="form-control" value="{{ old('naziv') }}" maxlength="50">
-                    @if ($errors->has('naziv'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('naziv') }}</strong>
-                        </span>
-                    @endif
-                </div>
-                </div>
-
                 <div class="col-md-6">
                    <div class="form-group{{ $errors->has('proizvodjac_id') ? ' has-error' : '' }}">
                     <label for="proizvodjac_id">Proizvođač:</label>
-                    <select name="proizvodjac_id" id="proizvodjac_id" class="chosen-select form-control" data-placeholder="proizvodjac ..." required>
+                    <select name="proizvodjac_id" id="proizvodjac_id" class="chosen-select form-control" data-placeholder="proizvodjaci ..." required>
                         <option value=""></option>
                         @foreach($proizvodjaci as $proizvodjac)
                         <option value="{{ $proizvodjac->id }}"{{ old('proizvodjac_id') == $proizvodjac->id ? ' selected' : '' }}>
@@ -48,87 +36,57 @@
                     @endif
                 </div>
                 </div>
-        </div>
 
-        <hr>
-        {{-- Red II --}}
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group{{ $errors->has('soket_id') ? ' has-error' : '' }}">
-                    <label for="soket_id">Soket:</label>
-                    <select name="soket_id" id="soket_id" class="chosen-select form-control" data-placeholder="soket ..." required>
+                <div class="col-md-3">
+                   <div class="form-group{{ $errors->has('tip_memorije_id') ? ' has-error' : '' }}">
+                    <label for="tip_memorije_id">Tip memorije:</label>
+                    <select name="tip_memorije_id" id="tip_memorije_id" class="chosen-select form-control" data-placeholder="tipovi ..." required>
                         <option value=""></option>
-                        @foreach($soketi as $soket)
-                        <option value="{{ $soket->id }}"{{ old('soket_id') == $soket->id ? ' selected' : '' }}>
-                            {{ $soket->naziv }}
+                        @foreach($tip as $t)
+                        <option value="{{ $t->id }}"{{ old('tip_memorije_id') == $t->id ? ' selected' : '' }}>
+                            {{ $t->naziv }}
                         </option>
                         @endforeach
                     </select>
-                    @if ($errors->has('soket_id'))
+                    @if ($errors->has('tip_memorije_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('soket_id') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-
-            <div class="col-md-4">
-
-                <div class="form-group{{ $errors->has('takt') ? ' has-error' : '' }}">
-            <label for="takt">Takt u MHz: </label>
-            <input  type="number" name="takt" id="takt" class="form-control" value="{{ old('takt') }}"
-                    min="1000"  step="100" required>
-            @if ($errors->has('takt'))
-            <span class="help-block">
-                <strong>{{ $errors->first('takt') }}</strong>
-            </span>
-            @endif
-            </div>
-
-            </div>
-
-            <div class="col-md-4">
-                    <div class="form-group{{ $errors->has('kes') ? ' has-error' : '' }}">
-                    <label for="kes">Keš u MB:</label>
-                    <input type="text" name="kes" id="kes" class="form-control" value="{{ old('kes') }}" maxlength="50">
-                    @if ($errors->has('kes'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('kes') }}</strong>
-                        </span>
-                    @endif
-                </div>
-                </div>
-
-        </div>
-
-        <hr>
-
-        <div class="row">
-            <div class="col-md-3">
-                    <div class="form-group{{ $errors->has('broj_jezgara') ? ' has-error' : '' }}">
-                    <label for="broj_jezgara">Broj jezgara:</label>
-                    <input type="number" name="broj_jezgara" id="broj_jezgara" class="form-control" value="{{ old('broj_jezgara') }}">
-                    @if ($errors->has('broj_jezgara'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('broj_jezgara') }}</strong>
+                            <strong>{{ $errors->first('tip_memorije_id') }}</strong>
                         </span>
                     @endif
                 </div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="form-group{{ $errors->has('broj_niti') ? ' has-error' : '' }}">
-                    <label for="broj_niti">Broj niti:</label>
-                    <input type="number" name="broj_niti" id="broj_niti" class="form-control" value="{{ old('broj_niti') }}">
-                    @if ($errors->has('broj_niti'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('broj_niti') }}</strong>
-                        </span>
-                    @endif
+                    <div class="form-group{{ $errors->has('brzina') ? ' has-error' : '' }}">
+            <label for="brzina">Brzina u MHz: </label>
+            <input  type="number" name="brzina" id="brzina" class="form-control" value="{{ old('brzina') }}"
+                    min="256" required>
+            @if ($errors->has('brzina'))
+            <span class="help-block">
+                <strong>{{ $errors->first('brzina') }}</strong>
+            </span>
+            @endif
+            </div>
                 </div>
-                </div>
+        </div>
 
-            <div class="col-md-6">
+        <hr>
+        {{-- Red II --}}
+        <div class="row">
+            <div class="col-md-4">
+            <div class="form-group{{ $errors->has('kapacitet') ? ' has-error' : '' }}">
+            <label for="kapacitet">Kapacitet u MB: </label>
+            <input  type="number" name="kapacitet" id="kapacitet" class="form-control" value="{{ old('kapacitet') }}"
+                    min="256"  step="64" required>
+            @if ($errors->has('kapacitet'))
+            <span class="help-block">
+                <strong>{{ $errors->first('kapacitet') }}</strong>
+            </span>
+            @endif
+            </div>
+            </div>
+
+            <div class="col-md-8">
                 <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
                     <label for="napomena">Napomena:</label>
                     <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena') }}</textarea>
@@ -140,7 +98,8 @@
                 </div>
             </div>
         </div>
-
+        <hr>
+        {{-- Red III --}}
         <div class="row">
             <div class="col-md-7">
                 <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
@@ -191,7 +150,7 @@
                 <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-plus-circle"></i>&emsp;&emsp;Dodaj</button>
             </div>
             <div class="col-md-6">
-                <a class="btn btn-danger btn-block ono" href="{{route('procesori.modeli')}}"><i class="fa fa-ban"></i>&emsp;&emsp;Otkaži</a>
+                <a class="btn btn-danger btn-block ono" href="{{route('memorije.modeli')}}"><i class="fa fa-ban"></i>&emsp;&emsp;Otkaži</a>
             </div>
             </div>
             </div>
@@ -203,7 +162,7 @@
         <div class="col-md-10 col-md-offset-1" style="margin-top: 20px">
             <div class="form-group">
             <div class="col-md-6 text-left">
-                <a class="btn btn-info" href="{{route('procesori.modeli')}}" title="Povratak na listu modela procesora"><i class="fa fa-list" style="color:#2C3E50"></i></a>
+                <a class="btn btn-info" href="{{route('memorije.modeli')}}" title="Povratak na listu modela memorije"><i class="fa fa-list" style="color:#2C3E50"></i></a>
             </div>
             <div class="col-md-6 text-right">
                 <a class="btn btn-info" href="{{route('pocetna')}}" title="Povratak na početnu stranu"><i class="fa fa-home" style="color:#2C3E50"></i></a>

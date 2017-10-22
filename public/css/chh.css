@@ -297,7 +297,7 @@ th{
 
 .tankoza {
     color: #18bc9c;
-    font-weight: 300 !important;
+    font-weight: normal;
     font-size: 1.875em;
 }
 
@@ -319,6 +319,8 @@ th{
 }
 
 .krug_mali {
+    font-family: "Roboto-Medium";
+    font-weight: normal;
     border: 1px solid #18bc9c;
     border-radius: 50%;
     width: 80px;
@@ -409,8 +411,8 @@ th{
 
 .slicica_animirana{
 
-    animation: slicica 1400ms ease-in-out forwards;
-    transform-origin: center 60px;
+    animation: slicica 1000ms ease-in-out forwards;
+    transform-origin: center 50px;
 }
         
 @keyframes slicica {

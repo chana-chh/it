@@ -36,7 +36,11 @@ class MemorijeKontroler extends Kontroler
     {
 
         $this->validate($request, [
-                'naziv' => ['required', 'max:50'],
+                'proizvodjac_id' => ['required'],
+                'tip_memorije_id' => ['required'],
+                'brzina' => ['required', 'integer'],
+                'kapacitet' => ['required', 'integer'],
+                'ocena' => ['required', 'integer'],
             ]);
 
         $data = new MemorijaModel();
@@ -51,7 +55,7 @@ class MemorijeKontroler extends Kontroler
         $data->save();
 
         Session::flash('uspeh','Model memorije je uspešno dodata!');
-        return redirect()->route('procesori.modeli');
+        return redirect()->route('memorije.modeli');
     }
 
     public function getIzmena($id)
@@ -66,7 +70,11 @@ class MemorijeKontroler extends Kontroler
     {
 
             $this->validate($request, [
-                'naziv' => ['required', 'max:50'],
+                'proizvodjac_id' => ['required'],
+                'tip_memorije_id' => ['required'],
+                'brzina' => ['required', 'integer'],
+                'kapacitet' => ['required', 'integer'],
+                'ocena' => ['required', 'integer'],
             ]);
         
         $data = MemorijaModel::find($id);
