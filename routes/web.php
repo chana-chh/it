@@ -207,6 +207,17 @@ Route::post('modeli/memorije/brisanje', 'Modeli\MemorijeKontroler@postBrisanje')
 Route::get('modeli/memorije/uredjaji/{id}', 'Modeli\MemorijeKontroler@getUredjaji')->name('memorije.modeli.uredjaji');
 Route::get('modeli/memorije/racunari/{id}', 'Modeli\MemorijeKontroler@getRacunari')->name('memorije.modeli.racunari');
 
+// Maticne Ploce
+Route::get('modeli/osnovne_ploce/', 'Modeli\OsnovnePloceKontroler@getLista')->name('osnovne_ploce.modeli');
+Route::get('modeli/osnovne_ploce/dodavanje', 'Modeli\OsnovnePloceKontroler@getDodavanje')->name('osnovne_ploce.modeli.dodavanje.get');
+Route::post('modeli/osnovne_ploce/dodavanje', 'Modeli\OsnovnePloceKontroler@postDodavanje')->name('osnovne_ploce.modeli.dodavanje.post');
+Route::get('modeli/osnovne_ploce/izmena/{id}', 'Modeli\OsnovnePloceKontroler@getIzmena')->name('osnovne_ploce.modeli.izmena.get');
+Route::post('modeli/osnovne_ploce/izmena/{id}', 'Modeli\OsnovnePloceKontroler@postIzmena')->name('osnovne_ploce.modeli.izmena.post');
+Route::get('modeli/osnovne_ploce/detalj/{id}', 'Modeli\OsnovnePloceKontroler@getDetalj')->name('osnovne_ploce.modeli.detalj');
+Route::post('modeli/osnovne_ploce/brisanje', 'Modeli\OsnovnePloceKontroler@postBrisanje')->name('osnovne_ploce.modeli.brisanje');
+Route::get('modeli/osnovne_ploce/uredjaji/{id}', 'Modeli\OsnovnePloceKontroler@getUredjaji')->name('osnovne_ploce.modeli.uredjaji');
+Route::get('modeli/osnovne_ploce/racunari/{id}', 'Modeli\OsnovnePloceKontroler@getRacunari')->name('osnovne_ploce.modeli.racunari');
+
 
 
 
