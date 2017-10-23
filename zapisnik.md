@@ -1,5 +1,8 @@
 # TODO
 
+
+Kad se naprave racuni povezati tabelu racuna u pregledu ugovora.
+
 Optpremnica 0 Stara oprema
 
 Stavke:

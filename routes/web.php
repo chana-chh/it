@@ -25,6 +25,15 @@ Route::post('ugovori/izmena/{id}', 'Servis\UgovoriOdrzavanjaKontroler@postIzmena
 Route::get('ugovori/detalj/{id}', 'Servis\UgovoriOdrzavanjaKontroler@getDetalj')->name('ugovori.detalj');
 Route::post('ugovori/brisanje', 'Servis\UgovoriOdrzavanjaKontroler@postBrisanje')->name('ugovori.brisanje');
 
+// Racuni
+Route::get('racuni', 'Servis\RacuniKontroler@getLista')->name('racuni');
+Route::get('racuni/dodavanje', 'Servis\RacuniKontroler@getDodavanje')->name('racuni.dodavanje.get');
+Route::post('racuni/dodavanje', 'Servis\RacuniKontroler@postDodavanje')->name('racuni.dodavanje.post');
+Route::get('racuni/izmena/{id}', 'Servis\RacuniKontroler@getIzmena')->name('racuni.izmena.get');
+Route::post('racuni/izmena/{id}', 'Servis\RacuniKontroler@postIzmena')->name('racuni.izmena.post');
+Route::get('racuni/detalj/{id}', 'Servis\RacuniKontroler@getDetalj')->name('racuni.detalj');
+Route::post('racuni/brisanje', 'Servis\RacuniKontroler@postBrisanje')->name('racuni.brisanje');
+
 // SIFARNICI
 
 // Proizvodjaci
