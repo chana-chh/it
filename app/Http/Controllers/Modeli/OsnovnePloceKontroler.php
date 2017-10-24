@@ -27,15 +27,15 @@ class OsnovnePloceKontroler extends Kontroler
 
     public function getDodavanje()
     {
-        $memorije = OsnovnaPlocaModel::all();
+        $osnovne_ploce = OsnovnaPlocaModel::all();
         $proizvodjaci = Proizvodjac::all();
         $tip = TipMemorije::all();
-        $soket = Soket::all();
-        return view('modeli.osnovne_ploce_dodavanje')->with(compact ('memorije', 'proizvodjaci', 'tip', 'soket'));
+        $soketi = Soket::all();
+        return view('modeli.osnovne_ploce_dodavanje')->with(compact ('osnovne_ploce', 'proizvodjaci', 'tip', 'soketi'));
     }
 
     public function postDodavanje(Request $request)
-    {
+    {   
 
         $this->validate($request, [
                 'naziv' => ['required','unique:osnovne_ploce_modeli,naziv'],
@@ -65,6 +65,7 @@ class OsnovnePloceKontroler extends Kontroler
         $data->cipset = $request->cipset;
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->tip_memorije_id = $request->tip_memorije_id;
+        $data->soket_id = $request->soket_id;
         $data->usb_tri = $usb_tric;
         $data->integrisana_grafika = $integrisana_grafikac;
         $data->ocena = $request->ocena;
