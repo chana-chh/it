@@ -39,6 +39,7 @@ class OsnovnePloceKontroler extends Kontroler
 
         $this->validate($request, [
                 'naziv' => ['required','unique:osnovne_ploce_modeli,naziv'],
+                'cipset' => ['required'],
                 'proizvodjac_id' => ['required'],
                 'tip_memorije_id' => ['required'],
                 'soket_id' => ['required'],
@@ -60,10 +61,12 @@ class OsnovnePloceKontroler extends Kontroler
             }
 
         $data = new OsnovnaPlocaModel();
+        $data->naziv = $request->naziv;
+        $data->cipset = $request->cipset;
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->tip_memorije_id = $request->tip_memorije_id;
-        $data->brzina = $request->brzina;
-        $data->kapacitet = $request->kapacitet;
+        $data->usb_tri = $usb_tric;
+        $data->integrisana_grafika = $integrisana_grafikac;
         $data->ocena = $request->ocena;
         $data->link = $request->link;
         $data->napomena = $request->napomena;
@@ -71,7 +74,7 @@ class OsnovnePloceKontroler extends Kontroler
         $data->save();
 
         Session::flash('uspeh','Model osnovne ploče je uspešno dodata!');
-        return redirect()->route('memorije.modeli');
+        return redirect()->route('osnovne_ploce.modeli');
     }
 
     public function getIzmena($id)
@@ -79,19 +82,35 @@ class OsnovnePloceKontroler extends Kontroler
         $memorija = OsnovnaPlocaModel::find($id);
         $proizvodjaci = Proizvodjac::all();
         $tip = TipMemorije::all();
-        return view('modeli.memorije_izmena')->with(compact ('memorija', 'proizvodjaci', 'tip'));
+        $soket = Soket::all();
+        return view('modeli.osnovne_ploce_izmena')->with(compact ('memorija', 'proizvodjaci', 'tip', 'soket'));
     }
 
     public function postIzmena(Request $request, $id)
     {
 
             $this->validate($request, [
+                'naziv' => ['required','unique:osnovne_ploce_modeli,naziv,' .$id],
+                'cipset' => ['required'],
                 'proizvodjac_id' => ['required'],
                 'tip_memorije_id' => ['required'],
-                'brzina' => ['required', 'integer'],
-                'kapacitet' => ['required', 'integer'],
+                'soket_id' => ['required'],
+                'usb_tri' => ['required'],
+                'integrisana_grafika' => ['required'],
                 'ocena' => ['required', 'integer'],
             ]);
+
+            if ($request->usb_tri) {
+                $usb_tric = 1;
+            } else {
+                $usb_tric = 0;
+            }
+
+         if ($request->integrisana_grafika) {
+                $integrisana_grafikac = 1;
+            } else {
+                $integrisana_grafikac = 0;
+            }
         
         $data = OsnovnaPlocaModel::find($id);
         $data->proizvodjac_id = $request->proizvodjac_id;
