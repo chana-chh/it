@@ -16,7 +16,7 @@ class HddModel extends Model
 
     public function povezivanje()
     {
-        return $this->belongsTo('App\HddPovezivanje', 'povezivanje_id', 'id');
+        return $this->belongsTo('App\Modeli\HddPovezivanje', 'povezivanje_id', 'id');
     }
 
     public function hddovi()

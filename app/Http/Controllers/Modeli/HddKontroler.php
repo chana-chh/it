@@ -25,10 +25,10 @@ class HddKontroler extends Kontroler
 
     public function getDodavanje()
     {
-        $procesori = HddModel::all();
+        $hddovi = HddModel::all();
         $proizvodjaci = Proizvodjac::all();
-        $soketi = Soket::all();
-        return view('modeli.procesori_dodavanje')->with(compact ('procesori', 'proizvodjaci', 'soketi'));
+        $povezivanja = HddPovezivanje::all();
+        return view('modeli.hddovi_dodavanje')->with(compact ('hddovi', 'proizvodjaci', 'povezivanja'));
     }
 
     public function postDodavanje(Request $req)
