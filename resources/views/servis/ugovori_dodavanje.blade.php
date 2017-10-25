@@ -3,7 +3,7 @@
 @section('naziv', 'Sifarnici | Ugovori dodavanje')
 
 @section('meni')
-    @include('sabloni.inc.meni')
+@include('sabloni.inc.meni')
 @endsection
 
 @section('naslov')
@@ -22,11 +22,11 @@
                         <input type="text" id="broj" name="broj"
                                class="form-control"
                                value="{{ old('broj') }}"
-                               maxlength="50">
+                               maxlength="50" required>
                         @if ($errors->has('broj'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('broj') }}</strong>
-                            </span>
+                        <span class="help-block">
+                            <strong>{{ $errors->first('broj') }}</strong>
+                        </span>
                         @endif
                     </div>
                 </div>
@@ -38,9 +38,9 @@
                                value="{{ old('iznos_sredstava', 0) }}"
                                min="0" step="0.01" required>
                         @if ($errors->has('iznos_sredstava'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('iznos_sredstava') }}</strong>
-                            </span>
+                        <span class="help-block">
+                            <strong>{{ $errors->first('iznos_sredstava') }}</strong>
+                        </span>
                         @endif
                     </div>
                 </div>
@@ -54,9 +54,9 @@
                                value="{{ old('datum_zakljucivanja') }}"
                                required>
                         @if ($errors->has('datum_zakljucivanja'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('datum_zakljucivanja') }}</strong>
-                            </span>
+                        <span class="help-block">
+                            <strong>{{ $errors->first('datum_zakljucivanja') }}</strong>
+                        </span>
                         @endif
                     </div>
                 </div>
@@ -68,9 +68,9 @@
                                value="{{ old('datum_raskida') }}"
                                required>
                         @if ($errors->has('datum_raskida'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('datum_raskida') }}</strong>
-                            </span>
+                        <span class="help-block">
+                            <strong>{{ $errors->first('datum_raskida') }}</strong>
+                        </span>
                         @endif
                     </div>
                 </div>
@@ -80,11 +80,11 @@
                     <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
                         <label for="napomena">Napomena:</label>
                         <textarea id="napomena" name="napomena"
-                               class="form-control">{{ old('napomena') }}</textarea>
+                                  class="form-control">{{ old('napomena') }}</textarea>
                         @if ($errors->has('napomena'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('napomena') }}</strong>
-                            </span>
+                        <span class="help-block">
+                            <strong>{{ $errors->first('napomena') }}</strong>
+                        </span>
                         @endif
                     </div>
                 </div>

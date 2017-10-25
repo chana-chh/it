@@ -72,7 +72,7 @@
                 <td class="text-right">{{ number_format($racun->pdv, 2, ',', '.') }}</td>
                 <td class="text-right">{{ number_format($racun->ukupno, 2, ',', '.') }}</td>
                 <td class="text-right">
-                    <a class="btn btn-success btn-xs">
+                    <a href="{{ route('racuni.detalj', $racun->id) }}" class="btn btn-success btn-xs">
                         <i class="fa fa-eye"></i>
                     </a>
                     <a class="btn btn-info btn-xs">

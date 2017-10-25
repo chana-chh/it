@@ -86,11 +86,11 @@
 <div class="well">
     <h3>Slike</h3>
     @if($racun->slike->isEmpty())
-    <h3 class="text-danger">Trenutno nema slika za ovaj račun</h3>
+    <h5 class="text-danger">Trenutno nema slika za ovaj račun</h5>
     @else
-        @foreach($racun->slike as $slika)
-        <a href=""><img src="{{ $slika->src }}" class="responsive" style="width: 100%;"></a><br><br>
-        @endforeach
+    @foreach($racun->slike as $slika)
+    <a href=""><img src="{{ $slika->src }}" class="responsive" style="width: 100%;"></a><br><br>
+    @endforeach
     @endif
 </div>
 @endsection
