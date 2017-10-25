@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Modeli | Računari - model procesora')
+@section('naziv', 'Modeli |Računari - model osnovne ploče')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -9,14 +9,14 @@
 @section('naslov')
     <div class="row">
         <div class="col-md-12">
-            <h1><span><img class="slicica_animirana" alt="Računari ..." src="{{url('/images/cpu.png')}}" style="height:64px;"></span>&emsp;Računari u kojima je CPU model <span style="color: #18bc9c">{{$model->proizvodjac->naziv}} {{$model->naziv}}, {{$model->takt}} MHz</span>  </h1>
+            <h1><span><img class="slicica_animirana" alt="Računari ..." src="{{url('/images/kompjuterici.png')}}" style="height:64px;"></span>&emsp;Računari u kojima je osnovna ploča model <span style="color: #18bc9c">{{$model->proizvodjac->naziv}} {{$model->naziv}}, {{$model->soket->naziv}}</span>  </h1>
         </div>
         </div>
         <hr>
 <div class="row">
     <div class="col-md-12">
 @if($racunari->isEmpty())
-            <h3 class="text-danger">Trenutno nema računara sa ovim modelom procesora</h3>
+            <h3 class="text-danger">Trenutno nema računara sa ovim modelom osnovne ploče</h3>
         @else
             <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
                 <thead>
@@ -53,7 +53,7 @@
         <div class="col-md-10 col-md-offset-1" style="margin-top: 20px">
 
             <div class="col-md-6 text-left">
-                <a class="btn btn-info" href="{{route('procesori.modeli.detalj', $model->id)}}" title="Povratak na detaljni pregled modela procesora {{$model->proizvodjac->naziv}} {{$model->naziv}}, {{$model->takt}} MHz"><i class="fa fa-arrow-left" style="color:#2C3E50"></i></a>
+                <a class="btn btn-info" href="{{route('osnovne_ploce.modeli.detalj', $model->id)}}" title="Povratak na detaljni pregled modela osnovne ploče {{$model->proizvodjac->naziv}} {{$model->naziv}}, {{$model->soket->naziv}}"><i class="fa fa-arrow-left" style="color:#2C3E50"></i></a>
             </div>
 
             <div class="col-md-6 text-right">

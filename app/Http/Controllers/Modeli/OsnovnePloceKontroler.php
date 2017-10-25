@@ -43,8 +43,6 @@ class OsnovnePloceKontroler extends Kontroler
                 'proizvodjac_id' => ['required'],
                 'tip_memorije_id' => ['required'],
                 'soket_id' => ['required'],
-                'usb_tri' => ['required'],
-                'integrisana_grafika' => ['required'],
                 'ocena' => ['required', 'integer'],
             ]);
 
@@ -80,11 +78,11 @@ class OsnovnePloceKontroler extends Kontroler
 
     public function getIzmena($id)
     {
-        $memorija = OsnovnaPlocaModel::find($id);
+        $osnovna_ploca = OsnovnaPlocaModel::find($id);
         $proizvodjaci = Proizvodjac::all();
         $tip = TipMemorije::all();
-        $soket = Soket::all();
-        return view('modeli.osnovne_ploce_izmena')->with(compact ('memorija', 'proizvodjaci', 'tip', 'soket'));
+        $soketi = Soket::all();
+        return view('modeli.osnovne_ploce_izmena')->with(compact ('osnovna_ploca', 'proizvodjaci', 'tip', 'soketi'));
     }
 
     public function postIzmena(Request $request, $id)
@@ -96,8 +94,6 @@ class OsnovnePloceKontroler extends Kontroler
                 'proizvodjac_id' => ['required'],
                 'tip_memorije_id' => ['required'],
                 'soket_id' => ['required'],
-                'usb_tri' => ['required'],
-                'integrisana_grafika' => ['required'],
                 'ocena' => ['required', 'integer'],
             ]);
 
@@ -114,28 +110,31 @@ class OsnovnePloceKontroler extends Kontroler
             }
         
         $data = OsnovnaPlocaModel::find($id);
+        $data->naziv = $request->naziv;
+        $data->cipset = $request->cipset;
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->tip_memorije_id = $request->tip_memorije_id;
-        $data->brzina = $request->brzina;
-        $data->kapacitet = $request->kapacitet;
+        $data->soket_id = $request->soket_id;
+        $data->usb_tri = $usb_tric;
+        $data->integrisana_grafika = $integrisana_grafikac;
         $data->ocena = $request->ocena;
         $data->link = $request->link;
         $data->napomena = $request->napomena;
 
         $data->save();
 
-        Session::flash('uspeh','Podaci o modelu memorije su uspešno izmenjeni!');
-        return redirect()->route('memorije.modeli');
+        Session::flash('uspeh','Podaci o modelu osnovne ploče su uspešno izmenjeni!');
+        return redirect()->route('osnovne_ploce.modeli');
     }
 
     public function getDetalj($id)
     {
-        $memorija = OsnovnaPlocaModel::find($id);
-        $racunari = DB::table('memorije')->where([
-            ['memorija_model_id', '=', $id],
+        $osnovna_ploca = OsnovnaPlocaModel::find($id);
+        $racunari = DB::table('osnovne_ploce')->where([
+            ['osnovna_ploca_model_id', '=', $id],
             ['racunar_id', '<>', null],
         ])->count();
-        return view('modeli.memorije_detalj')->with(compact ('memorija', 'racunari'));
+        return view('modeli.osnovne_ploce_detalj')->with(compact ('osnovna_ploca', 'racunari'));
     }
 
     public function postBrisanje(Request $request) {
@@ -152,20 +151,20 @@ class OsnovnePloceKontroler extends Kontroler
 
     public function getRacunari($id)
     {   
-        // Dobra fora za uvlachenje id u funkciju, kao i eliminisanje sa WhereHas
+        // Dobra fora za uvlachenje id u funkciju, kao i eliminisanje sa WhereHas (koji by the way poziva tabelu a ne relaciju iz modela)
         $model = OsnovnaPlocaModel::find($id);
-        $racunari = Racunar::whereHas('memorije', function($query) use ($id){
-            $query->where('memorije.memorija_model_id', '=', $id);
+        $racunari = Racunar::whereHas('osnovnaPloca', function($query) use ($id){
+            $query->where('osnovne_ploce.osnovna_ploca_model_id', '=', $id);
         })->get();
-        return view('modeli.memorije_racunari')->with(compact ('racunari', 'model'));
+        return view('modeli.osnovne_ploce_racunari')->with(compact ('racunari', 'model'));
     }
 
     public function getUredjaji($id)
     {   
         //Dobra fora za pozivanje dodatnih relacija sa Tockicom.SledecaRElacija
-        $memorije = Memorija::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('memorija_model_id', '=', $id)->get();
+        $osnovne_ploce = OsnovnaPloca::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('osnovna_ploca_model_id', '=', $id)->get();
         $model = OsnovnaPlocaModel::find($id);
-        return view('modeli.memorije_uredjaji')->with(compact ('memorije', 'model'));
+        return view('modeli.osnovne_ploce_uredjaji')->with(compact ('osnovne_ploce', 'model'));
     }
 
 }

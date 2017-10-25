@@ -218,6 +218,17 @@ Route::post('modeli/osnovne_ploce/brisanje', 'Modeli\OsnovnePloceKontroler@postB
 Route::get('modeli/osnovne_ploce/uredjaji/{id}', 'Modeli\OsnovnePloceKontroler@getUredjaji')->name('osnovne_ploce.modeli.uredjaji');
 Route::get('modeli/osnovne_ploce/racunari/{id}', 'Modeli\OsnovnePloceKontroler@getRacunari')->name('osnovne_ploce.modeli.racunari');
 
+// HDDovi
+Route::get('modeli/hddovi/', 'Modeli\HddKontroler@getLista')->name('hddovi.modeli');
+Route::get('modeli/hddovi/dodavanje', 'Modeli\HddKontroler@getDodavanje')->name('hddovi.modeli.dodavanje.get');
+Route::post('modeli/hddovi/dodavanje', 'Modeli\HddKontroler@postDodavanje')->name('hddovi.modeli.dodavanje.post');
+Route::get('modeli/hddovi/izmena/{id}', 'Modeli\HddKontroler@getIzmena')->name('hddovi.modeli.izmena.get');
+Route::post('modeli/hddovi/izmena/{id}', 'Modeli\HddKontroler@postIzmena')->name('hddovi.modeli.izmena.post');
+Route::get('modeli/hddovi/detalj/{id}', 'Modeli\HddKontroler@getDetalj')->name('hddovi.modeli.detalj');
+Route::post('modeli/hddovi/brisanje', 'Modeli\HddKontroler@postBrisanje')->name('hddovi.modeli.brisanje');
+Route::get('modeli/hddovi/uredjaji/{id}', 'Modeli\HddKontroler@getUredjaji')->name('hddovi.modeli.uredjaji');
+Route::get('modeli/hddovi/racunari/{id}', 'Modeli\HddKontroler@getRacunari')->name('hddovi.modeli.racunari');
+
 
 
 

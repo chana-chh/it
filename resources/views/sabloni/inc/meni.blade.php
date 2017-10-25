@@ -55,7 +55,7 @@
                             <li><a href="{{route('procesori.modeli')}}">Procesori</a></li>
                             <li><a href="{{route('memorije.modeli')}}">Memorije</a></li>
                             <li><a href="{{route('osnovne_ploce.modeli')}}">Matične ploče</a></li>
-                            <li><a href="">Hard diskovi</a></li>
+                            <li><a href="{{route('hddovi.modeli')}}">Hard diskovi</a></li>
                             <li><a href="">Grafički adapteri</a></li>
                             <li><a href="">Napajanja</a></li>
                             <li role="separator" class="divider"></li>
