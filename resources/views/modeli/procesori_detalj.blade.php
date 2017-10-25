@@ -59,31 +59,37 @@
 </div>
 </div>
     
-    {{--  POCETAK Wellil  --}}
-<div class="row well" style="overflow: auto; margin-top: 40px">
-<h4>Napomena:</h4>
-<em>{{$procesor->napomena}}</em>
+<div class="row ceo_dva">
+<div class="col-md-12 boxic">
+<h4>Napomena: 
+    <br>
+    <hr>
+    <em>{{$procesor->napomena}}</em>
+</h4>
+</div>
+</div>
 
-</div> {{-- Kraj reda sa well-om --}}
-<hr style="border-top: 1px solid #18BC9C">
 
-<div class="row dugmici">
-        <div class="col-md-10 col-md-offset-1" style="margin-top: 20px">
-
-            <div class="col-md-4 text-left">
-                <a class="btn btn-info" href="{{route('procesori.modeli')}}" title="Povratak na listu modela procesora"><i class="fa fa-list" style="color:#2C3E50"></i></a>
-            </div>
-
-            <div class="col-md-4 text-center">
-                <a class="btn btn-info" href="{{route('procesori.modeli.izmena.get', $procesor->id) }}" title="Izmena osnovnih podataka o modelu procesora"><i class="fa fa-pencil" style="color:#2C3E50"></i></a>
-            </div>
-
-            <div class="col-md-4 text-right">
-                <a class="btn btn-info" href="{{route('pocetna')}}" title="Povratak na početnu stranu"><i class="fa fa-home" style="color:#2C3E50"></i></a>
-            </div>
-
-        </div>
+    <div class="row dugmici">
+    <div class="col-md-4 text-left">
+        <a class="btn btn-info" href="{{route('procesori.modeli')}}"
+           title="Povratak na listu modela procesora">
+            <i class="fa fa-list" style="color:#2C3E50"></i>
+        </a>
     </div>
+    <div class="col-md-4 text-center">
+        <a class="btn btn-info" href="{{route('procesori.modeli.izmena.get', $procesor->id) }}"
+           title="Izmena osnovnih podataka o modelu procesora">
+            <i class="fa fa-pencil" style="color:#2C3E50"></i>
+        </a>
+    </div>
+    <div class="col-md-4 text-right">
+        <a class="btn btn-info" href="{{route('pocetna')}}"
+           title="Povratak na početnu stranu">
+            <i class="fa fa-home" style="color:#2C3E50"></i>
+        </a>
+    </div>
+</div>
 @endsection
 
 @section('traka')
