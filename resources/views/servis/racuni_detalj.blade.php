@@ -61,19 +61,25 @@
 </div>
 <hr>
 <div class="row dugmici">
-    <div class="col-md-4 text-left">
+    <div class="col-md-3 text-left">
         <a class="btn btn-info" href="{{ route('racuni') }}"
            title="Povratak na listu računa">
             <i class="fa fa-list" style="color:#2C3E50"></i>
         </a>
     </div>
-    <div class="col-md-4 text-center">
+    <div class="col-md-3 text-center">
+        <a class="btn btn-info"
+           onclick="window.history.back();">
+            <i class="fa fa-arrow-left" style="color:#2C3E50"></i>
+        </a>
+    </div>
+    <div class="col-md-3 text-center">
         <a class="btn btn-info" href="{{ route('racuni.izmena.get', $racun->id) }}"
            title="Izmena podataka o računu">
             <i class="fa fa-pencil" style="color:#2C3E50"></i>
         </a>
     </div>
-    <div class="col-md-4 text-right">
+    <div class="col-md-3 text-right">
         <a class="btn btn-info" href="{{ route('racuni') }}"
            title="Povratak na početnu stranu">
             <i class="fa fa-home" style="color:#2C3E50"></i>

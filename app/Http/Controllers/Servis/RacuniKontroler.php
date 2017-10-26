@@ -19,10 +19,10 @@ class RacuniKontroler extends Kontroler
         return view('servis.racuni')->with(compact('racuni'));
     }
 
-    public function getDodavanje()
+    public function getDodavanje($id_ugovora = null)
     {
         $ugovori = UgovorOdrzavanje::all();
-        return view('servis.racuni_dodavanje')->with(compact('ugovori'));
+        return view('servis.racuni_dodavanje')->with(compact('ugovori', 'id_ugovora'));
     }
 
     public function postDodavanje(Request $request)
@@ -67,12 +67,12 @@ class RacuniKontroler extends Kontroler
         return redirect()->route('racuni');
     }
 
-//    public function getIzmena($id)
-//    {
-//        $data = UgovorOdrzavanje::find($id);
-//
-//        return view('servis.ugovori_izmena')->with(compact('data'));
-//    }
+    public function getIzmena($id)
+    {
+        $data = Racun::find($id);
+        $ugovori = UgovorOdrzavanje::all();
+        return view('servis.racuni_izmena')->with(compact('data', 'ugovori'));
+    }
 
     public function getDetalj($id)
     {
@@ -80,46 +80,58 @@ class RacuniKontroler extends Kontroler
         return view('servis.racuni_detalj')->with(compact('racun'));
     }
 
-//    public function postIzmena(Request $request, $id)
-//    {
-//        $this->validate($request, [
-//            'broj' => [
-//                'required',
-//                'max:50',
-//            ],
-//            'iznos_sredstava' => [
-//                'required',
-//                'min:0',
-//            ],
-//            'datum_zakljucivanja' => [
-//                'required',
-//            ],
-//            'datum_raskida' => [
-//                'required',
-//            ],
-//        ]);
-//
-//        $data = UgovorOdrzavanje::find($id);
-//        $data->broj = $request->broj;
-//        $data->iznos_sredstava = $request->iznos_sredstava;
-//        $data->datum_zakljucivanja = $request->datum_zakljucivanja;
-//        $data->datum_raskida = $request->datum_raskida;
-//        $data->napomena = $request->napomena;
-//        $data->save();
-//
-//        Session::flash('uspeh', 'Ugovor o održavanju je uspešno izmenjen!');
-//        return redirect()->route('ugovori');
-//    }
-//
-//    public function postBrisanje(Request $request)
-//    {
-//        $data = UgovorOdrzavanje::find($request->idBrisanje);
-//        $odgovor = $data->delete();
-//        if ($odgovor) {
-//            Session::flash('uspeh', 'Stavka je uspešno obrisana!');
-//        } else {
-//            Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
-//        }
-//        return Redirect::back();
-//    }
+    public function postIzmena(Request $request, $id)
+    {
+        $this->validate($request, [
+            'ugovor_id' => [
+                'required',
+                'integer',
+            ],
+            'broj' => [
+                'required',
+                'max:50',
+            ],
+            'datum' => [
+                'required',
+            ],
+            'iznos' => [
+                'required',
+                'min:0',
+            ],
+            'pdv' => [
+                'required',
+                'min:0',
+            ],
+            'ukupno' => [
+                'required',
+                'min:0',
+            ],
+        ]);
+
+        $data = Racun::find($id);
+        $data->ugovor_id = $request->ugovor_id;
+        $data->broj = $request->broj;
+        $data->datum = $request->datum;
+        $data->iznos = $request->iznos;
+        $data->pdv = $request->pdv;
+        $data->ukupno = $request->ukupno;
+        $data->napomena = $request->napomena;
+        $data->save();
+
+        Session::flash('uspeh', 'Račun je uspešno izmenjen!');
+        return redirect()->route('racuni');
+    }
+
+    public function postBrisanje(Request $request)
+    {
+        $data = Racun::find($request->idBrisanje);
+        $odgovor = $data->delete();
+        if ($odgovor) {
+            Session::flash('uspeh', 'Račun je uspešno obrisan!');
+        } else {
+            Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
+        }
+        return Redirect::back();
+    }
+
 }

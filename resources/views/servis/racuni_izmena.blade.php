@@ -1,15 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Sifarnici | Račun dodavanje')
-
-@section('stilovi')
-<style>
-    .upozorenje {
-        color: red;
-        display: none;
-    }
-</style>
-@endsection
+@section('naziv', 'Sifarnici | Račun izmena')
 
 @section('meni')
 @include('sabloni.inc.meni')
@@ -20,9 +11,9 @@
     <div class="col-md-10 col-md-offset-1 boxic">
         <h1 class="page-header">
             <img class="slicica_animirana" alt="Ugovori" src="{{url('/images/ugovor.png')}}" style="height:64px;">
-            &emsp;Dodavanje računa
+            &emsp;Izmena računa
         </h1>
-        <form id="forma" action="{{ route('racuni.dodavanje.post') }}" method="POST" data-parsley-validate>
+        <form action="{{ route('racuni.izmena.post', $data->id) }}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-md-4">
@@ -34,7 +25,7 @@
                             <option value=""></option>
                             @foreach($ugovori as $ugovor)
                             <option value="{{ $ugovor->id }}"
-                                    {{ old('ugovor_id', $id_ugovora) == $ugovor->id ? ' selected' : '' }}>
+                                    {{ old('ugovor_id', $data->ugovor_id) == $ugovor->id ? ' selected' : '' }}>
                                     {{ $ugovor->broj }}
                         </option>
                         @endforeach
@@ -51,7 +42,7 @@
                     <label for="broj">Broj računa:</label>
                     <input type="text" id="broj" name="broj"
                            class="form-control"
-                           value="{{ old('broj') }}"
+                           value="{{ old('broj', $data->broj) }}"
                            maxlength="50" required>
                     @if ($errors->has('broj'))
                     <span class="help-block">
@@ -65,7 +56,7 @@
                     <label for="datum">Datum:</label>
                     <input type="date" id="datum" name="datum"
                            class="form-control"
-                           value="{{ old('datum') }}"
+                           value="{{ old('datum', $data->datum) }}"
                            required>
                     @if ($errors->has('datum'))
                     <span class="help-block">
@@ -81,7 +72,7 @@
                     <label for="iznos">Iznos:</label>
                     <input type="number" id="iznos" name="iznos"
                            class="form-control"
-                           value="{{ old('iznos', 0) }}"
+                           value="{{ old('iznos', $data->iznos) }}"
                            min="0" step="0.01" required>
                     @if ($errors->has('iznos'))
                     <span class="help-block">
@@ -95,7 +86,7 @@
                     <label for="pdv">PDV:</label>
                     <input type="number" id="pdv" name="pdv"
                            class="form-control"
-                           value="{{ old('pdv', 0) }}"
+                           value="{{ old('pdv', $data->pdv) }}"
                            min="0" step="0.01" required>
                     @if ($errors->has('pdv'))
                     <span class="help-block">
@@ -109,7 +100,7 @@
                     <label for="ukupno">Ukupno:</label>
                     <input type="number" id="ukupno" name="ukupno"
                            class="form-control"
-                           value="{{ old('ukupno', 0) }}"
+                           value="{{ old('ukupno', $data->ukupno) }}"
                            min="0" step="0.01" required>
                     @if ($errors->has('ukupno'))
                     <span class="help-block">
@@ -119,15 +110,12 @@
                 </div>
             </div>
         </div>
-        <div class="upozorenje">
-            Upozorenje: Uneti podaci za iznos, pdv i ukupan iznos se ne uklapaju u stopu pdv-a od 20%!!!
-        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
                     <label for="napomena">Napomena:</label>
                     <textarea id="napomena" name="napomena"
-                              class="form-control">{{ old('napomena') }}</textarea>
+                              class="form-control">{{ old('napomena', $data->napomena) }}</textarea>
                     @if ($errors->has('napomena'))
                     <span class="help-block">
                         <strong>{{ $errors->first('napomena') }}</strong>
@@ -141,7 +129,7 @@
                 <div class="form-group text-right">
                     <div class="col-md-6 snimi">
                         <button type="submit" class="btn btn-success btn-block ono">
-                            <i class="fa fa-plus-circle"></i> Dodaj
+                            <i class="fa fa-save"></i> Snimi izmene
                         </button>
                     </div>
                     <div class="col-md-6">
@@ -177,18 +165,17 @@
 
 @section('skripte')
 <script>
-    $(document).ready(function () {
-        jQuery(window).on('resize', resizeChosen);
+    jQuery(window).on('resize', resizeChosen);
 
-        $('.chosen-select').chosen({
-            allow_single_deselect: true
-        });
-
-        function resizeChosen() {
-            $(".chosen-container").each(function () {
-                $(this).attr('style', 'width: 100%');
-            });
-        }
+    $('.chosen-select').chosen({
+        allow_single_deselect: true
     });
+
+    function resizeChosen() {
+        $(".chosen-container").each(function () {
+            $(this).attr('style', 'width: 100%');
+        });
+    }
+    ;
 </script>
 @endsection

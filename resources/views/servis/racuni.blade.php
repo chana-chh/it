@@ -8,14 +8,14 @@
 
 @section('naslov')
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-8">
         <h1>
             <img class="slicica_animirana" alt="Ugovori"
                  src="{{ url('/images/ugovor.png') }}" style="height:64px;">
             &emsp;Računi
         </h1>
     </div>
-    <div class="col-md-2 text-right" style="padding-top: 50px;">
+    <div class="col-md-4 text-right" style="padding-top: 50px;">
         <a class="btn btn-primary ono" href="{{ route('racuni.dodavanje.get') }}">
             <i class="fa fa-plus-circle fa-fw"></i> Dodaj račun
         </a>

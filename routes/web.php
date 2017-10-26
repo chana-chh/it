@@ -15,7 +15,6 @@ Route::get('sifarnici/korisnici/pregled/{id}', 'KorisniciKontroler@getPregled')-
 
 
 // SERVIS
-
 // Ugovori
 Route::get('ugovori', 'Servis\UgovoriOdrzavanjaKontroler@getLista')->name('ugovori');
 Route::get('ugovori/dodavanje', 'Servis\UgovoriOdrzavanjaKontroler@getDodavanje')->name('ugovori.dodavanje.get');
@@ -27,7 +26,7 @@ Route::post('ugovori/brisanje', 'Servis\UgovoriOdrzavanjaKontroler@postBrisanje'
 
 // Racuni
 Route::get('racuni', 'Servis\RacuniKontroler@getLista')->name('racuni');
-Route::get('racuni/dodavanje', 'Servis\RacuniKontroler@getDodavanje')->name('racuni.dodavanje.get');
+Route::get('racuni/dodavanje/{id_ugovora?}', 'Servis\RacuniKontroler@getDodavanje')->name('racuni.dodavanje.get');
 Route::post('racuni/dodavanje', 'Servis\RacuniKontroler@postDodavanje')->name('racuni.dodavanje.post');
 Route::get('racuni/izmena/{id}', 'Servis\RacuniKontroler@getIzmena')->name('racuni.izmena.get');
 Route::post('racuni/izmena/{id}', 'Servis\RacuniKontroler@postIzmena')->name('racuni.izmena.post');
@@ -35,7 +34,6 @@ Route::get('racuni/detalj/{id}', 'Servis\RacuniKontroler@getDetalj')->name('racu
 Route::post('racuni/brisanje', 'Servis\RacuniKontroler@postBrisanje')->name('racuni.brisanje');
 
 // SIFARNICI
-
 // Proizvodjaci
 Route::get('sifarnici/proizvodjaci', 'Sifarnici\ProizvodjaciKontroler@getLista')->name('proizvodjaci');
 Route::post('sifarnici/proizvodjaci/dodavanje', 'Sifarnici\ProizvodjaciKontroler@postDodavanje')->name('proizvodjaci.dodavanje');
@@ -184,7 +182,6 @@ Route::post('sifarnici/aplikacije/detalj', 'Sifarnici\AplikacijeKontroler@postDe
 
 
 // MODELI UREDJAJA
-
 // Procesori
 Route::get('modeli/procesori/', 'Modeli\ProcesoriKontroler@getLista')->name('procesori.modeli');
 Route::get('modeli/procesori/dodavanje', 'Modeli\ProcesoriKontroler@getDodavanje')->name('procesori.modeli.dodavanje.get');

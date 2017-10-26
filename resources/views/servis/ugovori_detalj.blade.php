@@ -75,7 +75,7 @@
                     <a href="{{ route('racuni.detalj', $racun->id) }}" class="btn btn-success btn-xs">
                         <i class="fa fa-eye"></i>
                     </a>
-                    <a class="btn btn-info btn-xs">
+                    <a href="" class="btn btn-info btn-xs">
                         <i class="fa fa-pencil"></i>
                     </a>
                     <a class="btn btn-danger btn-xs">
@@ -99,6 +99,9 @@
         </tfoot>
     </table>
     @endif
+    <a href="{{ route('racuni.dodavanje.get', $data->id) }}" class="btn btn-primary btn-sm">
+        <i class="fa fa-plus-circle"></i> Dodaj račun
+    </a>
 </div>
 <hr>
 <div class="row dugmici">
