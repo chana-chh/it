@@ -46,7 +46,7 @@
                     <td>
                         <span title="U pitanju je Solid State Disk" style="color: #18bc9c;">
                             {!! $m->ssd == 1 ? "
-                            <i class=\ "fa fa-check-square-o\"></i>" : " "!!}
+                            <i class=\"fa fa-check-square-o\"></i>" : " "!!}
                         </span>
                     </td>
                     <td>{{$m->ocena}}</td>

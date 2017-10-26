@@ -96,7 +96,7 @@
                             <li><a href="{{route('aplikacije')}}">Aplikacije</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li style="margin-left: 40px;">
                         <a href="{{ route('logout') }}"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fa fa-sign-out fa-fw" style="color: #18BC9C"></i> Odjava

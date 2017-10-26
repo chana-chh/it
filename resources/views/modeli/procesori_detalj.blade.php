@@ -61,16 +61,16 @@
     
 <div class="row ceo_dva">
 <div class="col-md-12 boxic">
-<h4>Napomena: 
+<h5>Napomena: 
     <br>
     <hr>
     <em>{{$procesor->napomena}}</em>
-</h4>
+</h5>
 </div>
 </div>
-
 
     <div class="row dugmici">
+        <div class="col-md-12" style="margin-top: 20px">
     <div class="col-md-4 text-left">
         <a class="btn btn-info" href="{{route('procesori.modeli')}}"
            title="Povratak na listu modela procesora">
@@ -89,6 +89,7 @@
             <i class="fa fa-home" style="color:#2C3E50"></i>
         </a>
     </div>
+</div>
 </div>
 @endsection
 

@@ -293,6 +293,8 @@ th{
     border: 1px solid #18bc9c;
     /*box-shadow: 4px 4px 5px 0px rgba(128,128,128,1);*/
     border-radius: 10px 10px 10px 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .tankoza {
