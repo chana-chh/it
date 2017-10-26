@@ -32,24 +32,24 @@ class ProcesoriKontroler extends Kontroler
         return view('modeli.procesori_dodavanje')->with(compact ('procesori', 'proizvodjaci', 'soketi'));
     }
 
-    public function postDodavanje(Request $req)
+    public function postDodavanje(Request $request)
     {
 
-        $this->validate($req, [
+        $this->validate($request, [
                 'naziv' => ['required', 'max:50'],
             ]);
 
         $procesor = new ProcesorModel();
-        $procesor->naziv = $req->naziv;
-        $procesor->proizvodjac_id = $req->proizvodjac_id;
-        $procesor->soket_id = $req->soket_id;
-        $procesor->takt = $req->takt;
-        $procesor->kes = $req->kes;
-        $procesor->broj_jezgara = $req->broj_jezgara;
-        $procesor->broj_niti = $req->broj_niti;
-        $procesor->ocena = $req->ocena;
-        $procesor->link = $req->link;
-        $procesor->napomena = $req->napomena;
+        $procesor->naziv = $request->naziv;
+        $procesor->proizvodjac_id = $request->proizvodjac_id;
+        $procesor->soket_id = $request->soket_id;
+        $procesor->takt = $request->takt;
+        $procesor->kes = $request->kes;
+        $procesor->broj_jezgara = $request->broj_jezgara;
+        $procesor->broj_niti = $request->broj_niti;
+        $procesor->ocena = $request->ocena;
+        $procesor->link = $request->link;
+        $procesor->napomena = $request->napomena;
 
         $procesor->save();
 
@@ -65,24 +65,24 @@ class ProcesoriKontroler extends Kontroler
         return view('modeli.procesori_izmena')->with(compact ('procesor', 'proizvodjaci', 'soketi'));
     }
 
-    public function postIzmena(Request $req, $id)
+    public function postIzmena(Request $request, $id)
     {
 
-            $this->validate($req, [
+            $this->validate($request, [
                 'naziv' => ['required', 'max:50'],
             ]);
         
         $procesor = ProcesorModel::find($id);
-        $procesor->naziv = $req->naziv;
-        $procesor->proizvodjac_id = $req->proizvodjac_id;
-        $procesor->soket_id = $req->soket_id;
-        $procesor->takt = $req->takt;
-        $procesor->kes = $req->kes;
-        $procesor->broj_jezgara = $req->broj_jezgara;
-        $procesor->broj_niti = $req->broj_niti;
-        $procesor->ocena = $req->ocena;
-        $procesor->link = $req->link;
-        $procesor->napomena = $req->napomena;
+        $procesor->naziv = $request->naziv;
+        $procesor->proizvodjac_id = $request->proizvodjac_id;
+        $procesor->soket_id = $request->soket_id;
+        $procesor->takt = $request->takt;
+        $procesor->kes = $request->kes;
+        $procesor->broj_jezgara = $request->broj_jezgara;
+        $procesor->broj_niti = $request->broj_niti;
+        $procesor->ocena = $request->ocena;
+        $procesor->link = $request->link;
+        $procesor->napomena = $request->napomena;
 
         $procesor->save();
 

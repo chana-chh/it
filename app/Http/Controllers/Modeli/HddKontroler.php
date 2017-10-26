@@ -31,72 +31,84 @@ class HddKontroler extends Kontroler
         return view('modeli.hddovi_dodavanje')->with(compact ('hddovi', 'proizvodjaci', 'povezivanja'));
     }
 
-    public function postDodavanje(Request $req)
+    public function postDodavanje(Request $request)
     {
 
-        $this->validate($req, [
-                'naziv' => ['required', 'max:50'],
+        $this->validate($request, [
+                'proizvodjac_id' => ['required'],
+                'povezivanje_id' => ['required'],
+                'kapacitet' => ['required'],
+                'ocena' => ['required'],
             ]);
 
-        $procesor = new HddModel();
-        $procesor->naziv = $req->naziv;
-        $procesor->proizvodjac_id = $req->proizvodjac_id;
-        $procesor->soket_id = $req->soket_id;
-        $procesor->takt = $req->takt;
-        $procesor->kes = $req->kes;
-        $procesor->broj_jezgara = $req->broj_jezgara;
-        $procesor->broj_niti = $req->broj_niti;
-        $procesor->ocena = $req->ocena;
-        $procesor->link = $req->link;
-        $procesor->napomena = $req->napomena;
+         if ($request->ssd) {
+                $ssdc = 1;
+            } else {
+                $ssdc = 0;
+            }
 
-        $procesor->save();
+        $data = new HddModel();
+        $data->proizvodjac_id = $request->proizvodjac_id;
+        $data->povezivanje_id = $request->povezivanje_id;
+        $data->kapacitet = $request->kapacitet;
+        $data->ssd = $ssdc;
+        $data->ocena = $request->ocena;
+        $data->link = $request->link;
+        $data->napomena = $request->napomena;
 
-        Session::flash('uspeh','Model procesora je uspešno dodata!');
-        return redirect()->route('procesori.modeli');
+        $data->save();
+
+        Session::flash('uspeh','Model čvrstog diska je uspešno dodata!');
+        return redirect()->route('hddovi.modeli');
     }
 
     public function getIzmena($id)
     {
-        $procesor = HddModel::find($id);
+        $hddovi = HddModel::find($id);
         $proizvodjaci = Proizvodjac::all();
-        $soketi = Soket::all();
-        return view('modeli.procesori_izmena')->with(compact ('procesor', 'proizvodjaci', 'soketi'));
+        $povezivanja = HddPovezivanje::all();
+        return view('modeli.procesori_izmena')->with(compact ('hddovi', 'proizvodjaci', 'povezivanja'));
     }
 
-    public function postIzmena(Request $req, $id)
+    public function postIzmena(Request $request, $id)
     {
 
-            $this->validate($req, [
-                'naziv' => ['required', 'max:50'],
+            $this->validate($request, [
+                'proizvodjac_id' => ['required'],
+                'povezivanje_id' => ['required'],
+                'kapacitet' => ['required'],
+                'ocena' => ['required'],
             ]);
+
+            if ($request->ssd) {
+                $ssdc = 1;
+            } else {
+                $ssdc = 0;
+            }
         
-        $procesor = HddModel::find($id);
-        $procesor->naziv = $req->naziv;
-        $procesor->proizvodjac_id = $req->proizvodjac_id;
-        $procesor->soket_id = $req->soket_id;
-        $procesor->takt = $req->takt;
-        $procesor->kes = $req->kes;
-        $procesor->broj_jezgara = $req->broj_jezgara;
-        $procesor->broj_niti = $req->broj_niti;
-        $procesor->ocena = $req->ocena;
-        $procesor->link = $req->link;
-        $procesor->napomena = $req->napomena;
+        $data = HddModel::find($id);
+        $data->proizvodjac_id = $request->proizvodjac_id;
+        $data->povezivanje_id = $request->povezivanje_id;
+        $data->kapacitet = $request->kapacitet;
+        $data->ssd = $ssdc;
+        $data->ocena = $request->ocena;
+        $data->link = $request->link;
+        $data->napomena = $request->napomena;
 
-        $procesor->save();
+        $data->save();
 
-        Session::flash('uspeh','Podaci o modelu procesora su uspešno izmenjeni!');
+        Session::flash('uspeh','Podaci o modelu čvrstih diskova su uspešno izmenjeni!');
         return redirect()->route('procesori.modeli');
     }
 
     public function getDetalj($id)
     {
-        $procesor = HddModel::find($id);
-        $racunari = DB::table('procesori')->where([
-            ['procesor_model_id', '=', $id],
+        $hdd = HddModel::find($id);
+        $racunari = DB::table('hdd')->where([
+            ['hdd_model_id', '=', $id],
             ['racunar_id', '<>', null],
         ])->count();
-        return view('modeli.procesori_detalj')->with(compact ('procesor', 'racunari'));
+        return view('modeli.hddovi_detalj')->with(compact ('hdd', 'racunari'));
     }
 
     public function postBrisanje(Request $request) {
