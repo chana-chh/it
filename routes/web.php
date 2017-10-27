@@ -226,7 +226,16 @@ Route::post('modeli/hddovi/brisanje', 'Modeli\HddKontroler@postBrisanje')->name(
 Route::get('modeli/hddovi/uredjaji/{id}', 'Modeli\HddKontroler@getUredjaji')->name('hddovi.modeli.uredjaji');
 Route::get('modeli/hddovi/racunari/{id}', 'Modeli\HddKontroler@getRacunari')->name('hddovi.modeli.racunari');
 
-
+// VGA
+Route::get('modeli/vga/', 'Modeli\GrafickiAdapteriKontroler@getLista')->name('vga.modeli');
+Route::get('modeli/vga/dodavanje', 'Modeli\GrafickiAdapteriKontroler@getDodavanje')->name('vga.modeli.dodavanje.get');
+Route::post('modeli/vga/dodavanje', 'Modeli\GrafickiAdapteriKontroler@postDodavanje')->name('vga.modeli.dodavanje.post');
+Route::get('modeli/vga/izmena/{id}', 'Modeli\GrafickiAdapteriKontroler@getIzmena')->name('vga.modeli.izmena.get');
+Route::post('modeli/vga/izmena/{id}', 'Modeli\GrafickiAdapteriKontroler@postIzmena')->name('vga.modeli.izmena.post');
+Route::get('modeli/vga/detalj/{id}', 'Modeli\GrafickiAdapteriKontroler@getDetalj')->name('vga.modeli.detalj');
+Route::post('modeli/vga/brisanje', 'Modeli\GrafickiAdapteriKontroler@postBrisanje')->name('vga.modeli.brisanje');
+Route::get('modeli/vga/uredjaji/{id}', 'Modeli\GrafickiAdapteriKontroler@getUredjaji')->name('vga.modeli.uredjaji');
+Route::get('modeli/vga/racunari/{id}', 'Modeli\GrafickiAdapteriKontroler@getRacunari')->name('vga.modeli.racunari');
 
 
 
