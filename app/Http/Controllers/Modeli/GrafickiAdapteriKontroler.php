@@ -27,44 +27,48 @@ class GrafickiAdapteriKontroler extends Kontroler
 
     public function getDodavanje()
     {
-        $memorije = MemorijaModel::all();
+        $vga = GrafickiAdapterModel::all();
         $proizvodjaci = Proizvodjac::all();
         $tip = TipMemorije::all();
-        return view('modeli.memorije_dodavanje')->with(compact ('memorije', 'proizvodjaci', 'tip'));
+        $slotovi = VgaSlot::all();
+        return view('modeli.vga_dodavanje')->with(compact ('vga', 'proizvodjaci', 'tip', 'slotovi'));
     }
 
     public function postDodavanje(Request $request)
     {
 
         $this->validate($request, [
+                'naziv' => ['required','unique:graficki_adapteri_modeli,naziv'],
+                'cip' => ['required'],
                 'proizvodjac_id' => ['required'],
                 'tip_memorije_id' => ['required'],
-                'brzina' => ['required', 'integer'],
-                'kapacitet' => ['required', 'integer'],
-                'ocena' => ['required', 'integer'],
+                'vga_slot_id' => ['required'],
+                'kapacitet_memorije' => ['required', 'integer'],
             ]);
 
-        $data = new MemorijaModel();
+        $data = new GrafickiAdapterModel();
+        $data->naziv = $request->naziv;
+        $data->cip = $request->cip;
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->tip_memorije_id = $request->tip_memorije_id;
-        $data->brzina = $request->brzina;
-        $data->kapacitet = $request->kapacitet;
-        $data->ocena = $request->ocena;
+        $data->vga_slot_id = $request->vga_slot_id;
+        $data->kapacitet_memorije = $request->kapacitet_memorije;
         $data->link = $request->link;
         $data->napomena = $request->napomena;
 
         $data->save();
 
-        Session::flash('uspeh','Model memorije je uspešno dodata!');
-        return redirect()->route('memorije.modeli');
+        Session::flash('uspeh','Model grafičkog adaptera je uspešno dodat!');
+        return redirect()->route('vga.modeli');
     }
 
     public function getIzmena($id)
     {
-        $memorija = MemorijaModel::find($id);
+        $vga = GrafickiAdapterModel::all();
         $proizvodjaci = Proizvodjac::all();
         $tip = TipMemorije::all();
-        return view('modeli.memorije_izmena')->with(compact ('memorija', 'proizvodjaci', 'tip'));
+        $slotovi = VgaSlot::all();
+        return view('modeli.vga_izmena')->with(compact ('vga', 'proizvodjaci', 'tip', 'slotovi'));
     }
 
     public function postIzmena(Request $request, $id)
@@ -78,7 +82,7 @@ class GrafickiAdapteriKontroler extends Kontroler
                 'ocena' => ['required', 'integer'],
             ]);
         
-        $data = MemorijaModel::find($id);
+        $data = GrafickiAdapterModel::find($id);
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->tip_memorije_id = $request->tip_memorije_id;
         $data->brzina = $request->brzina;
@@ -89,22 +93,22 @@ class GrafickiAdapteriKontroler extends Kontroler
 
         $data->save();
 
-        Session::flash('uspeh','Podaci o modelu memorije su uspešno izmenjeni!');
-        return redirect()->route('memorije.modeli');
+        Session::flash('uspeh','Podaci o modelu grafičkog adaptera su uspešno izmenjeni!');
+        return redirect()->route('vga.modeli');
     }
 
     public function getDetalj($id)
     {
-        $memorija = MemorijaModel::find($id);
-        $racunari = Racunar::whereHas('memorije', function($query) use ($id){
-            $query->where('memorije.memorija_model_id', '=', $id);
+        $vga = GrafickiAdapterModel::find($id);
+        $racunari = Racunar::whereHas('graficki_adapteri', function($query) use ($id){
+            $query->where('graficki_adapteri.graficki_adapteri_model_id', '=', $id);
         })->count();
-        return view('modeli.memorije_detalj')->with(compact ('memorija', 'racunari'));
+        return view('modeli.vga_detalj')->with(compact ('vga', 'racunari'));
     }
 
     public function postBrisanje(Request $request) {
         
-        $data = MemorijaModel::find($request->idBrisanje);
+        $data = GrafickiAdapterModel::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Stavka je uspešno obrisana!');
@@ -117,19 +121,19 @@ class GrafickiAdapteriKontroler extends Kontroler
     public function getRacunari($id)
     {   
         // Dobra fora za uvlachenje id u funkciju, kao i eliminisanje sa WhereHas
-        $model = MemorijaModel::find($id);
-        $racunari = Racunar::whereHas('memorije', function($query) use ($id){
-            $query->where('memorije.memorija_model_id', '=', $id);
+        $model = GrafickiAdapterModel::find($id);
+        $racunari = Racunar::whereHas('graficki_adapteri', function($query) use ($id){
+            $query->where('graficki_adapteri.graficki_adapteri_model_id', '=', $id);
         })->get();
-        return view('modeli.memorije_racunari')->with(compact ('racunari', 'model'));
+        return view('modeli.vga_racunari')->with(compact ('racunari', 'model'));
     }
 
     public function getUredjaji($id)
     {   
         //Dobra fora za pozivanje dodatnih relacija sa Tockicom.SledecaRElacija
-        $memorije = Memorija::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('memorija_model_id', '=', $id)->get();
-        $model = MemorijaModel::find($id);
-        return view('modeli.memorije_uredjaji')->with(compact ('memorije', 'model'));
+        $vga = GrafickiAdapter::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('graficki_adapteri_model_id', '=', $id)->get();
+        $model = GrafickiAdapterModel::find($id);
+        return view('modeli.vga_uredjaji')->with(compact ('vga', 'model'));
     }
 
 }
