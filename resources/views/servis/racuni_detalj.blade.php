@@ -57,7 +57,7 @@
 </div>
 <hr>
 <div class="row well" style="overflow: auto;">
-    trt
+    TABELA OTPREMNICA ZA OVAJ RACUN
 </div>
 <hr>
 <div class="row dugmici">

@@ -66,7 +66,11 @@
         <tbody>
             @foreach($data->racuni as $racun)
             <tr>
-                <td>{{ $racun->broj }}</td>
+                <td>
+                    <a href="{{ route('racuni.detalj', $racun->id) }}">
+                        <strong>{{ $racun->broj }}</strong>
+                    </a>
+                </td>
                 <td>{{ \Carbon\Carbon::parse($racun->datum)->format('d.m.Y') }}</td>
                 <td class="text-right">{{ number_format($racun->iznos, 2, ',', '.') }}</td>
                 <td class="text-right">{{ number_format($racun->pdv, 2, ',', '.') }}</td>
@@ -75,12 +79,15 @@
                     <a href="{{ route('racuni.detalj', $racun->id) }}" class="btn btn-success btn-xs">
                         <i class="fa fa-eye"></i>
                     </a>
-                    <a href="" class="btn btn-info btn-xs">
+                    <a class="btn btn-info btn-xs"
+                       href="{{ route('racuni.izmena.get', $racun->id) }}">
                         <i class="fa fa-pencil"></i>
                     </a>
-                    <a class="btn btn-danger btn-xs">
+                    <button class="btn btn-danger btn-xs otvori-brisanje"
+                            data-toggle="modal" data-target="#brisanjeModal"
+                            value="{{ $racun->id }}">
                         <i class="fa fa-trash"></i>
-                    </a>
+                    </button>
                 </td>
             </tr>
             @endforeach
@@ -124,6 +131,9 @@
         </a>
     </div>
 </div>
+<!--  POCETAK brisanjeModal [brisanje racuna] -->
+@include('sifarnici.inc.modal_brisanje')
+<!--  KRAJ brisanjeModal  -->
 @endsection
 
 @section('traka')
@@ -147,4 +157,15 @@
         <strong>{{ number_format($data->preostalo(), 2, ',', '.') }}</strong>
     </p>
 </div>
+@endsection
+
+@section('skripte')
+<script>
+    $(document).on('click', '.otvori-brisanje', function () {
+        var id = $(this).val();
+        $('#idBrisanje').val(id);
+        var ruta = "{{ route('racuni.brisanje') }}";
+        $('#brisanje-forma').attr('action', ruta);
+    });
+</script>
 @endsection
