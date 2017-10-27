@@ -67,7 +67,7 @@ class HddKontroler extends Kontroler
         $hddovi = HddModel::find($id);
         $proizvodjaci = Proizvodjac::all();
         $povezivanja = HddPovezivanje::all();
-        return view('modeli.procesori_izmena')->with(compact ('hddovi', 'proizvodjaci', 'povezivanja'));
+        return view('modeli.hddovi_izmena')->with(compact ('hddovi', 'proizvodjaci', 'povezivanja'));
     }
 
     public function postIzmena(Request $request, $id)
@@ -98,16 +98,15 @@ class HddKontroler extends Kontroler
         $data->save();
 
         Session::flash('uspeh','Podaci o modelu čvrstih diskova su uspešno izmenjeni!');
-        return redirect()->route('procesori.modeli');
+        return redirect()->route('hddovi.modeli');
     }
 
     public function getDetalj($id)
     {
         $hdd = HddModel::find($id);
-        $racunari = DB::table('hdd')->where([
-            ['hdd_model_id', '=', $id],
-            ['racunar_id', '<>', null],
-        ])->count();
+        $racunari = Racunar::whereHas('hddovi', function($query) use ($id){
+            $query->where('hdd.hdd_model_id', '=', $id);
+        })->count();
         return view('modeli.hddovi_detalj')->with(compact ('hdd', 'racunari'));
     }
 
@@ -127,10 +126,10 @@ class HddKontroler extends Kontroler
     {   
         // Dobra fora za uvlachenje id u funkciju, kao i eliminisanje sa WhereHas
         $model = HddModel::find($id);
-        $racunari = Racunar::whereHas('procesori', function($query) use ($id){
-            $query->where('procesori.procesor_model_id', '=', $id);
+        $racunari = Racunar::whereHas('hddovi', function($query) use ($id){
+            $query->where('hdd.hdd_model_id', '=', $id);
         })->get();
-        return view('modeli.procesori_racunari')->with(compact ('racunari', 'model'));
+        return view('modeli.hddovi_racunari')->with(compact ('racunari', 'model'));
     }
 
     public function getUredjaji($id)

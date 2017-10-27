@@ -49,8 +49,10 @@
     </div>
 </div>
 
+<hr>
+
 <div class="row dugmici">
-        <div class="col-md-10 col-md-offset-1" style="margin-top: 20px">
+        <div class="col-md-12" style="margin-top: 20px">
 
             <div class="col-md-6 text-left">
                 <a class="btn btn-info" href="{{route('osnovne_ploce.modeli.detalj', $model->id)}}" title="Povratak na detaljni pregled modela osnovne ploče {{$model->proizvodjac->naziv}} {{$model->naziv}}, {{$model->soket->naziv}}"><i class="fa fa-arrow-left" style="color:#2C3E50"></i></a>

@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Modeli | Računari - model procesora')
+@section('naziv', 'Modeli | Računari - model memorije')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -9,16 +9,16 @@
 @section('naslov')
     <div class="row">
         <div class="col-md-12">
-            <h1><span><img class="slicica_animirana" alt="Računari ..." src="{{url('/images/cpu.png')}}" style="height:64px;"></span>&emsp;Računari u kojima je CPU model <span style="color: #18bc9c">{{$model->proizvodjac->naziv}} {{$model->naziv}}, {{$model->takt}} MHz</span>  </h1>
+            <h1><span><img class="slicica_animirana" alt="Računari ..." src="{{url('/images/hdd.png')}}" style="height:64px;"></span>&emsp;Računari u kojima je čvrsti disk model <span style="color: #18bc9c">{{$model->proizvodjac->naziv}} {{$model->kapacitet}} GB</span>  </h1>
         </div>
         </div>
         <hr>
 <div class="row">
     <div class="col-md-12">
 @if($racunari->isEmpty())
-            <h3 class="text-danger">Trenutno nema računara sa ovim modelom procesora</h3>
+            <h3 class="text-danger">Trenutno nema računara sa ovim modelom čvrstog diska</h3>
         @else
-            <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
+            <table id="tabela" class="table table-striped display" cellspacing="0" width="100%" >
                 <thead>
                         <th style="width: 5%;">#</th>
                         <th style="width: 15%;">Inventarski broj</th>
@@ -27,7 +27,7 @@
                         <th style="width: 25%;">Napomena</th>
                         <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
                 </thead>
-                <tbody id="racunari_lista" name="racunari_lista">
+                <tbody>
                 @foreach ($racunari as $racunar)
                         <tr>
                             <td>{{$racunar['id']}}</td>
@@ -55,7 +55,7 @@
         <div class="col-md-12" style="margin-top: 20px">
 
             <div class="col-md-6 text-left">
-                <a class="btn btn-info" href="{{route('procesori.modeli.detalj', $model->id)}}" title="Povratak na detaljni pregled modela procesora {{$model->proizvodjac->naziv}} {{$model->naziv}}, {{$model->takt}} MHz"><i class="fa fa-arrow-left" style="color:#2C3E50"></i></a>
+                <a class="btn btn-info" href="{{route('hddovi.modeli.detalj', $model->id)}}" title="Povratak na detaljni pregled modela čvrstog diska {{$model->proizvodjac->naziv}} {{$model->kapacitet}} GB"><i class="fa fa-arrow-left" style="color:#2C3E50"></i></a>
             </div>
 
             <div class="col-md-6 text-right">

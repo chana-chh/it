@@ -95,10 +95,9 @@ class MemorijeKontroler extends Kontroler
     public function getDetalj($id)
     {
         $memorija = MemorijaModel::find($id);
-        $racunari = DB::table('memorije')->where([
-            ['memorija_model_id', '=', $id],
-            ['racunar_id', '<>', null],
-        ])->count();
+        $racunari = Racunar::whereHas('memorije', function($query) use ($id){
+            $query->where('memorije.memorija_model_id', '=', $id);
+        })->count();
         return view('modeli.memorije_detalj')->with(compact ('memorija', 'racunari'));
     }
 

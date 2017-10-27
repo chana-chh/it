@@ -9,7 +9,7 @@
 @section('naslov')
     <div class="row">
         <div class="col-md-12">
-            <h1><span><img class="slicica_animirana" alt="Računari ..." src="{{url('/images/memorija.png')}}" style="height:64px;"></span>&emsp;Računari u kojima je memorija model <span style="color: #18bc9c">{{$model->proizvodjac->naziv}} {{$model->kapacitet}}, {{$model->brzina}} MHz</span>  </h1>
+            <h1><span><img class="slicica_animirana" alt="Računari ..." src="{{url('/images/memorija.png')}}" style="height:64px;"></span>&emsp;Računari u kojima je memorija model <span style="color: #18bc9c">{{$model->proizvodjac->naziv}} {{$model->kapacitet}} MB, {{$model->brzina}} MHz</span>  </h1>
         </div>
         </div>
         <hr>
@@ -49,8 +49,10 @@
     </div>
 </div>
 
+<hr>
+
 <div class="row dugmici">
-        <div class="col-md-10 col-md-offset-1" style="margin-top: 20px">
+        <div class="col-md-12" style="margin-top: 20px">
 
             <div class="col-md-6 text-left">
                 <a class="btn btn-info" href="{{route('memorije.modeli.detalj', $model->id)}}" title="Povratak na detaljni pregled modela memorije {{$model->proizvodjac->naziv}} {{$model->kapacitet}}, {{$model->brzina}} MHz"><i class="fa fa-arrow-left" style="color:#2C3E50"></i></a>
