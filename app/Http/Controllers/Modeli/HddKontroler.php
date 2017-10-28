@@ -12,6 +12,7 @@ Use App\Modeli\HddModel;
 Use App\Modeli\Proizvodjac;
 Use App\Modeli\HddPovezivanje;
 Use App\Modeli\Racunar;
+Use App\Modeli\Hdd;
 
 
 
@@ -135,9 +136,9 @@ class HddKontroler extends Kontroler
     public function getUredjaji($id)
     {   
         //Dobra fora za pozivanje dodatnih relacija sa Tockicom.SledecaRElacija
-        $procesori = Procesor::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('procesor_model_id', '=', $id)->get();
+        $hddovi = Hdd::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('hdd_model_id', '=', $id)->get();
         $model = HddModel::find($id);
-        return view('modeli.procesori_uredjaji')->with(compact ('procesori', 'model'));
+        return view('modeli.hddovi_uredjaji')->with(compact ('hddovi', 'model'));
     }
 
 }

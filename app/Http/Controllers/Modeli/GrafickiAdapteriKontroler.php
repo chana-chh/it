@@ -64,7 +64,7 @@ class GrafickiAdapteriKontroler extends Kontroler
 
     public function getIzmena($id)
     {
-        $vga = GrafickiAdapterModel::all();
+        $vga = GrafickiAdapterModel::find($id);
         $proizvodjaci = Proizvodjac::all();
         $tip = TipMemorije::all();
         $slotovi = VgaSlot::all();
@@ -125,8 +125,8 @@ class GrafickiAdapteriKontroler extends Kontroler
     {   
         // Dobra fora za uvlachenje id u funkciju, kao i eliminisanje sa WhereHas
         $model = GrafickiAdapterModel::find($id);
-        $racunari = Racunar::whereHas('graficki_adapteri', function($query) use ($id){
-            $query->where('graficki_adapteri.graficki_adapteri_model_id', '=', $id);
+        $racunari = Racunar::whereHas('grafickiAdapteri', function($query) use ($id){
+            $query->where('graficki_adapteri.graficki_adapter_model_id', '=', $id);
         })->get();
         return view('modeli.vga_racunari')->with(compact ('racunari', 'model'));
     }
@@ -134,7 +134,7 @@ class GrafickiAdapteriKontroler extends Kontroler
     public function getUredjaji($id)
     {   
         //Dobra fora za pozivanje dodatnih relacija sa Tockicom.SledecaRElacija
-        $vga = GrafickiAdapter::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('graficki_adapteri_model_id', '=', $id)->get();
+        $vga = GrafickiAdapter::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('graficki_adapter_model_id', '=', $id)->get();
         $model = GrafickiAdapterModel::find($id);
         return view('modeli.vga_uredjaji')->with(compact ('vga', 'model'));
     }

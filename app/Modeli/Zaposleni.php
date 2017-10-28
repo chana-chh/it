@@ -51,8 +51,10 @@ class Zaposleni extends Model
             foreach ($zaposleni->emailovi as $email) {
                 $email->delete();
             }
-
-            unlink(public_path('images/slike_zaposlenih/') . $zaposleni->src);
+            if ($zaposleni->src) {
+                unlink(public_path('images/slike_zaposlenih/') . $zaposleni->src);
+            }
+            
         });
     }
 
