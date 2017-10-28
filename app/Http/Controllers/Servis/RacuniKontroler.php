@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Servis;
 use Illuminate\Http\Request;
 use Session;
 use Redirect;
+use Image;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\Racun;
 use App\Modeli\RacunSlika;
@@ -65,6 +66,51 @@ class RacuniKontroler extends Kontroler
 
         Session::flash('uspeh', 'Račun je uspešno dodat!');
         return redirect()->route('racuni');
+    }
+
+    public function postDodavanjeSlike(Request $request, $id)
+    {
+        $this->validate($request, [
+            'slika' => [
+                'required',
+                'image',
+                'mimes:jpeg,png,jpg',
+                'max:2048',
+            ],
+        ]);
+
+        $racun = Racun::find($id);
+
+        $img = $request->slika;
+        $ime_slike = $id . '_' . $racun->broj . '_' . time() . '.' . $request->slika->getClientOriginalExtension();
+        $lokacija = public_path('images/racuni/' . $ime_slike);
+//        $resize_img = Image::make($img)->heighten(300, function ($constraint) {
+//            $constraint->upsize();
+//        });
+        $image = Image::make($img);
+        $image->save($lokacija);
+
+        $slika = new RacunSlika();
+        $slika->racun_id = $id;
+        $slika->src = $ime_slike;
+        $slika->save();
+
+        Session::flash('uspeh', 'Scan je uspešno dodat!');
+        return redirect()->route('racuni.detalj', $id);
+    }
+
+    public function postBrisanjeSlike(Request $request)
+    {
+        $slika = RacunSlika::find($request->idBrisanje);
+        $putanja = public_path('images/racuni/') . $slika->src;
+        $odgovor = $slika->delete();
+        if ($odgovor) {
+            unlink($putanja);
+            Session::flash('uspeh', 'Scan je uspešno obrisan!');
+        } else {
+            Session::flash('greska', 'Došlo je do greške prilikom brisanja. Pokušajte ponovo, kasnije!');
+        }
+        return Redirect::back();
     }
 
     public function getIzmena($id)
@@ -131,7 +177,7 @@ class RacuniKontroler extends Kontroler
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
         }
-        return Redirect::back();
+        return redirect()->route('racuni');
     }
 
 }

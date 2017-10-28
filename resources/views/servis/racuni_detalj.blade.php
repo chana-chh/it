@@ -15,6 +15,33 @@
 @endsection
 
 @section('sadrzaj')
+<div class="row" style="margin-bottom: 16px;">
+    <div class="col-md-12">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="window.history.back();"
+               title="Povratak na prethodnu stranu">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('racuni') }}"
+               title="Povratak na listu računa">
+                <i class="fa fa-list"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('racuni.izmena.get', $racun->id) }}"
+               title="Izmena podataka o računu">
+                <i class="fa fa-pencil"></i>
+            </a>
+            <button id="brisanjeRacuna" class="btn btn-primary"
+                    data-toggle="modal" data-target="#brisanjeModal"
+                    value="{{$racun->id}}">
+                <i class="fa fa-trash"></i>
+            </button>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped" style="table-layout: fixed;">
@@ -60,43 +87,87 @@
     TABELA OTPREMNICA ZA OVAJ RACUN
 </div>
 <hr>
-<div class="row dugmici">
-    <div class="col-md-3 text-left">
-        <a class="btn btn-info" href="{{ route('racuni') }}"
-           title="Povratak na listu računa">
-            <i class="fa fa-list" style="color:#2C3E50"></i>
-        </a>
-    </div>
-    <div class="col-md-3 text-center">
-        <a class="btn btn-info"
-           onclick="window.history.back();">
-            <i class="fa fa-arrow-left" style="color:#2C3E50"></i>
-        </a>
-    </div>
-    <div class="col-md-3 text-center">
-        <a class="btn btn-info" href="{{ route('racuni.izmena.get', $racun->id) }}"
-           title="Izmena podataka o računu">
-            <i class="fa fa-pencil" style="color:#2C3E50"></i>
-        </a>
-    </div>
-    <div class="col-md-3 text-right">
-        <a class="btn btn-info" href="{{ route('racuni') }}"
-           title="Povratak na početnu stranu">
-            <i class="fa fa-home" style="color:#2C3E50"></i>
-        </a>
-    </div>
-</div>
+
 @endsection
 
 @section('traka')
 <div class="well">
+    <h3>Dodavanje slike</h3>
+    <form action="{{route('racuni.dodavanje.slike', $racun->id)}}" method="POST" enctype="multipart/form-data">
+        {{csrf_field()}}
+        <label for="slika" class="btn btn-default ono">
+            <i class="fa fa-upload"></i> Izaberi scan računa
+        </label>
+        <input type="file" name="slika" id="slika" class="hide" required>
+        <button type="submit" class="btn btn-success ono">
+            <i class="fa fa-floppy-o"></i> Prosledi scan
+        </button>
+        <button type="reset" class="btn btn-danger ono">
+            <i class="fa fa-ban"></i> Otkaži
+        </button>
+    </form>
+    <hr style="border-top: 1px solid #18BC9C">
     <h3>Slike</h3>
     @if($racun->slike->isEmpty())
     <h5 class="text-danger">Trenutno nema slika za ovaj račun</h5>
     @else
     @foreach($racun->slike as $slika)
-    <a href=""><img src="{{ $slika->src }}" class="responsive" style="width: 100%;"></a><br><br>
+    <div class="img-thumbnail center-block" style="width: 80%; margin: 10px auto;">
+        <img data-toggle="modal"
+             data-target="#slikaModal"
+             src="{{asset('images/racuni/' . $slika->src)}}"
+             class="img-responsive"
+             style="width: 80%; margin: 10px auto;">
+        <button class="btn btn-danger btn-xs btn-block otvori-brisanje"
+                style="width: 80%; margin: 5px auto;"
+                data-toggle="modal" data-target="#brisanjeModal"
+                value="{{$slika->id}}">
+            <i class="fa fa-trash"></i>
+        </button>
+    </div>
+
     @endforeach
     @endif
 </div>
+
+<!--  POCETAK brisanjeModal [brisanje slike] -->
+@include('sifarnici.inc.modal_brisanje')
+<!--  KRAJ brisanjeModal  -->
+
+<!-- Modal za pregled fotografija -->
+<div id="slikaModal" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img id="slikaRacuna" class="img-responsive center-block" src="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('skripte')
+<script>
+    $('#slikaModal').on('show.bs.modal', function (e) {
+        var image = $(e.relatedTarget).attr('src');
+        $('#slikaRacuna').attr('src', image);
+    });
+
+    $(document).on('click', '.otvori-brisanje', function () {
+        var id = $(this).val();
+        $('#idBrisanje').val(id);
+        var ruta = "{{ route('racuni.brisanje.slike') }}";
+        $('#brisanje-forma').attr('action', ruta);
+    });
+
+    $(document).on('click', '#brisanjeRacuna', function () {
+        var id = $(this).val();
+        $('#idBrisanje').val(id);
+        var ruta = "{{ route('racuni.brisanje') }}";
+        $('#brisanje-forma').attr('action', ruta);
+    });
+</script>
 @endsection
