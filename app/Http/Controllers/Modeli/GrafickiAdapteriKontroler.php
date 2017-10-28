@@ -75,19 +75,21 @@ class GrafickiAdapteriKontroler extends Kontroler
     {
 
             $this->validate($request, [
+                'naziv' => ['required','unique:graficki_adapteri_modeli,naziv,' .$id],
+                'cip' => ['required'],
                 'proizvodjac_id' => ['required'],
                 'tip_memorije_id' => ['required'],
-                'brzina' => ['required', 'integer'],
-                'kapacitet' => ['required', 'integer'],
-                'ocena' => ['required', 'integer'],
+                'vga_slot_id' => ['required'],
+                'kapacitet_memorije' => ['required', 'integer'],
             ]);
         
         $data = GrafickiAdapterModel::find($id);
+        $data->naziv = $request->naziv;
+        $data->cip = $request->cip;
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->tip_memorije_id = $request->tip_memorije_id;
-        $data->brzina = $request->brzina;
-        $data->kapacitet = $request->kapacitet;
-        $data->ocena = $request->ocena;
+        $data->vga_slot_id = $request->vga_slot_id;
+        $data->kapacitet_memorije = $request->kapacitet_memorije;
         $data->link = $request->link;
         $data->napomena = $request->napomena;
 
@@ -99,9 +101,10 @@ class GrafickiAdapteriKontroler extends Kontroler
 
     public function getDetalj($id)
     {
+        // U WhereHas metodi kao prvi parametar navodi se metoda relacije iz modela - grafickiAdapteri(), a ne naziv tabele
         $vga = GrafickiAdapterModel::find($id);
-        $racunari = Racunar::whereHas('graficki_adapteri', function($query) use ($id){
-            $query->where('graficki_adapteri.graficki_adapteri_model_id', '=', $id);
+        $racunari = Racunar::whereHas('grafickiAdapteri', function($query) use ($id){
+            $query->where('graficki_adapteri.graficki_adapter_model_id', '=', $id);
         })->count();
         return view('modeli.vga_detalj')->with(compact ('vga', 'racunari'));
     }
