@@ -153,8 +153,8 @@
             </div>
             </div>
                 </form>
-
             </div>
+            
             <div class="row dugmici">
                 <div class="col-md-12" style="margin-top: 20px">
                     <div class="form-group">

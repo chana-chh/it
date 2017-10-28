@@ -241,5 +241,14 @@ Route::post('modeli/vga/brisanje', 'Modeli\GrafickiAdapteriKontroler@postBrisanj
 Route::get('modeli/vga/uredjaji/{id}', 'Modeli\GrafickiAdapteriKontroler@getUredjaji')->name('vga.modeli.uredjaji');
 Route::get('modeli/vga/racunari/{id}', 'Modeli\GrafickiAdapteriKontroler@getRacunari')->name('vga.modeli.racunari');
 
-
+// Napajanja
+Route::get('modeli/napajanja/', 'Modeli\NapajanjaKontroler@getLista')->name('napajanja.modeli');
+Route::get('modeli/napajanja/dodavanje', 'Modeli\NapajanjaKontroler@getDodavanje')->name('napajanja.modeli.dodavanje.get');
+Route::post('modeli/napajanja/dodavanje', 'Modeli\NapajanjaKontroler@postDodavanje')->name('napajanja.modeli.dodavanje.post');
+Route::get('modeli/napajanja/izmena/{id}', 'Modeli\NapajanjaKontroler@getIzmena')->name('napajanja.modeli.izmena.get');
+Route::post('modeli/napajanja/izmena/{id}', 'Modeli\NapajanjaKontroler@postIzmena')->name('napajanja.modeli.izmena.post');
+Route::get('modeli/napajanja/detalj/{id}', 'Modeli\NapajanjaKontroler@getDetalj')->name('napajanja.modeli.detalj');
+Route::post('modeli/napajanja/brisanje', 'Modeli\NapajanjaKontroler@postBrisanje')->name('napajanja.modeli.brisanje');
+Route::get('modeli/napajanja/uredjaji/{id}', 'Modeli\NapajanjaKontroler@getUredjaji')->name('napajanja.modeli.uredjaji');
+Route::get('modeli/napajanja/racunari/{id}', 'Modeli\NapajanjaKontroler@getRacunari')->name('napajanja.modeli.racunari');
 

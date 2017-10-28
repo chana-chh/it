@@ -1,5 +1,5 @@
 @extends('sabloni.app') 
-@section('naziv', 'Modeli | Dodavanje modela grafičkog adaptera') 
+@section('naziv', 'Modeli | Izmena modela grafičkog adaptera') 
 @section('meni') 
 @include('sabloni.inc.meni')
 @endsection @section('naslov')
@@ -11,14 +11,14 @@
 
                 <h1 class="page-header">
                     <span>
-                        <img class="slicica_animirana" alt="Modeli grafičkih adaptera - dodavanje" src="{{url('/images/vga.png')}}" style="height:64px;">
-                    </span>&emsp;Dodavanje modela grafičkog adaptera</h1>
+                        <img class="slicica_animirana" alt="Modeli grafičkih adaptera - izmena" src="{{url('/images/vga.png')}}" style="height:64px;">
+                    </span>&emsp;Izmena modela grafičkog adaptera</h1>
             </div>
         </div>
         <div class="row ceo_dva">
             <div class="col-md-12 boxic">
 
-                <form action="{{ route('vga.modeli.dodavanje.post') }}" method="POST" data-parsley-validate>
+                <form action="{{ route('vga.modeli.izmena.post', $vga->id) }}" method="POST" data-parsley-validate>
                     {{ csrf_field() }}
 
                     <div class="row">
@@ -26,7 +26,7 @@
                         <div class="col-md-6">
                             <div class="form-group{{ $errors->has('naziv') ? ' has-error' : '' }}">
                                 <label for="naziv">Naziv: </label>
-                                <input type="text" name="naziv" id="naziv" class="form-control" value="{{ old('naziv') }}" required> @if ($errors->has('naziv'))
+                                <input type="text" name="naziv" id="naziv" class="form-control" value="{{ old('naziv', $vga->naziv) }}" required> @if ($errors->has('naziv'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('naziv') }}</strong>
                                 </span>
@@ -41,7 +41,10 @@
                                     required>
                                     <option value=""></option>
                                     @foreach($proizvodjaci as $proizvodjac)
-                                    <option value="{{ $proizvodjac->id }}" {{ old( 'proizvodjac_id')==$proizvodjac->id ? ' selected' : '' }}> {{ $proizvodjac->naziv }}
+                                    <option value="{{ $proizvodjac->id }}"
+                                        {{ $proizvodjac->id == old('proizvodjac_id')   ? ' selected' : '' }}
+                                        {{ $vga->proizvodjac_id == $proizvodjac->id ? ' selected' : '' }}>
+                                        {{ $proizvodjac->naziv }}
                                     </option>
                                     @endforeach
                                 </select>
@@ -61,7 +64,7 @@
                         <div class="col-md-3">
                             <div class="form-group{{ $errors->has('cip') ? ' has-error' : '' }}">
                                 <label for="cip">Čip: </label>
-                                <input type="text" name="cip" id="cip" class="form-control" value="{{ old('cip') }}" required> @if ($errors->has('cip'))
+                                <input type="text" name="cip" id="cip" class="form-control" value="{{ old('cip', $vga->cip) }}" required> @if ($errors->has('cip'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('cip') }}</strong>
                                 </span>
@@ -75,7 +78,10 @@
                                 <select name="tip_memorije_id" id="tip_memorije_id" class="chosen-select form-control" data-placeholder="tipovi ..." required>
                                     <option value=""></option>
                                     @foreach($tip as $t)
-                                    <option value="{{ $t->id }}" {{ old( 'tip_memorije_id')==$t->id ? ' selected' : '' }}> {{ $t->naziv }}
+                                    <option value="{{ $t->id }}"
+                                        {{ $t->id == old('tip_memorije_id')   ? ' selected' : '' }}
+                                        {{ $vga->tip_memorije_id == $t->id ? ' selected' : '' }}>
+                                        {{ $t->naziv }}
                                     </option>
                                     @endforeach
                                 </select>
@@ -90,7 +96,7 @@
                         <div class="col-md-3">
                             <div class="form-group{{ $errors->has('kapacitet_memorije') ? ' has-error' : '' }}">
                                 <label for="kapacitet_memorije">Kapacitet memorije MB: </label>
-                                <input type="number" name="kapacitet_memorije" id="kapacitet_memorije" class="form-control" value="{{ old('kapacitet_memorije') }}" required> @if ($errors->has('kapacitet_memorije'))
+                                <input type="number" name="kapacitet_memorije" id="kapacitet_memorije" class="form-control" value="{{ old('kapacitet_memorije', $vga->kapacitet_memorije) }}" required> @if ($errors->has('kapacitet_memorije'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('kapacitet_memorije') }}</strong>
                                 </span>
@@ -104,7 +110,10 @@
                                 <select name="vga_slot_id" id="vga_slot_id" class="chosen-select form-control" data-placeholder="slotovi ..." required>
                                     <option value=""></option>
                                     @foreach($slotovi as $t)
-                                    <option value="{{ $t->id }}" {{ old( 'vga_slot_id')==$t->id ? ' selected' : '' }}> {{ $t->naziv }}
+                                    <option value="{{ $t->id }}"
+                                        {{ $t->id == old('vga_slot_id')   ? ' selected' : '' }}
+                                        {{ $vga->vga_slot_id == $t->id ? ' selected' : '' }}>
+                                        {{ $t->naziv }}
                                     </option>
                                     @endforeach
                                 </select>
@@ -122,7 +131,7 @@
                         <div class="col-md-6">
                             <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
                                 <label for="link">Link modela grafičkog adaptera: </label>
-                                <input type="url" name="link" id="link" class="form-control" value="{{ old('link') }}" maxlenght="255"> @if ($errors->has('link'))
+                                <input type="url" name="link" id="link" class="form-control" value="{{ old('link', $vga->link) }}" maxlenght="255"> @if ($errors->has('link'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('link') }}</strong>
                                 </span>
@@ -134,7 +143,7 @@
                         <div class="col-md-6">
                             <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
                                 <label for="napomena">Napomena:</label>
-                                <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena') }}</textarea>
+                                <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena', $vga->napomena) }}</textarea>
                                 @if ($errors->has('napomena'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('napomena') }}</strong>
@@ -147,19 +156,17 @@
                     <hr style="border-top: 1px solid #18BC9C">
 
                     <div class="row dugmici">
-                        <div class="col-md-6 col-md-offset-6">
-                            <div class="form-group text-right">
-                                <div class="col-md-6 snimi">
-                                    <button type="submit" class="btn btn-success btn-block ono">
-                                        <i class="fa fa-plus-circle"></i>&emsp;&emsp;Dodaj</button>
-                                </div>
-                                <div class="col-md-6">
-                                    <a class="btn btn-danger btn-block ono" href="{{route('vga.modeli')}}">
-                                        <i class="fa fa-ban"></i>&emsp;&emsp;Otkaži</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-md-6 col-md-offset-6">
+            <div class="form-group text-right">
+            <div class="col-md-6 snimi">
+                <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-floppy-o"></i>&emsp;&emsp;Snimi izmene</button>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-danger btn-block ono" href="{{route('vga.modeli')}}"><i class="fa fa-ban"></i>&emsp;&emsp;Otkaži</a>
+            </div>
+            </div>
+            </div>
+            </div>
                 </form>
 
             </div>
