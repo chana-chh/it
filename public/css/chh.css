@@ -416,12 +416,13 @@ th{
     animation: slicica 1000ms ease-in-out forwards;
     transform-origin: center 50px;
 }
-        
+
 @keyframes slicica {
     0%   {opacity: 0;
-            transform: scale(0.1) rotate(30deg) translateY(50px) rotateX(90deg);}
+          transform: scale(0.1) rotate(30deg) translateY(50px) rotateX(90deg);}
     50%  {transform: rotate(-10deg) rotateX(-2deg);
-            opacity: 1;}
+          opacity: 1;}
     70%  {transform: rotate(3deg);}
     100% {transform: scale(1);}
 }
+

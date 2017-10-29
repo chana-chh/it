@@ -28,7 +28,7 @@
 </div>
 <hr>
 <div id="pretraga" class="well" style="display: none;">
-    forma
+    NAPREDNA PRETRAGA
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -132,18 +132,3 @@
 //    });
 </script>
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

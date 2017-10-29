@@ -63,7 +63,8 @@ class UgovoriOdrzavanjaKontroler extends Kontroler
     public function getDetalj($id)
     {
         $data = UgovorOdrzavanje::find($id);
-        return view('servis.ugovori_detalj')->with(compact('data'));
+        $racuni = UgovorOdrzavanje::find($id)->racuni()->paginate(10);
+        return view('servis.ugovori_detalj')->with(compact('data', 'racuni'));
     }
 
     public function postIzmena(Request $request, $id)
@@ -106,8 +107,7 @@ class UgovoriOdrzavanjaKontroler extends Kontroler
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
         }
-        return Redirect::back();
+        return redirect()->route('ugovori');
     }
 
 }
-

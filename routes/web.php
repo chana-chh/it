@@ -250,5 +250,3 @@ Route::get('modeli/napajanja/detalj/{id}', 'Modeli\NapajanjaKontroler@getDetalj'
 Route::post('modeli/napajanja/brisanje', 'Modeli\NapajanjaKontroler@postBrisanje')->name('napajanja.modeli.brisanje');
 Route::get('modeli/napajanja/uredjaji/{id}', 'Modeli\NapajanjaKontroler@getUredjaji')->name('napajanja.modeli.uredjaji');
 Route::get('modeli/napajanja/racunari/{id}', 'Modeli\NapajanjaKontroler@getRacunari')->name('napajanja.modeli.racunari');
-
-
