@@ -47,7 +47,7 @@
                 <div class="col-md-4">
                    <div class="form-group{{ $errors->has('proizvodjac_id') ? ' has-error' : '' }}">
                     <label for="proizvodjac_id">Proizvođač:</label>
-                    <select name="proizvodjac_id" id="proizvodjac_id" class="chosen-select form-control" data-placeholder="proizvodjac ..." required>
+                    <select name="proizvodjac_id" id="proizvodjac_id" class="chosen-select form-control" data-placeholder="proizvođač ..." required>
                         <option value=""></option>
                         @foreach($proizvodjaci as $proizvodjac)
                         <option value="{{ $proizvodjac->id }}"{{ old('proizvodjac_id') == $proizvodjac->id ? ' selected' : '' }}>

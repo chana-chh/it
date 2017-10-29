@@ -26,10 +26,9 @@ class MemorijeKontroler extends Kontroler
 
     public function getDodavanje()
     {
-        $memorije = MemorijaModel::all();
         $proizvodjaci = Proizvodjac::all();
         $tip = TipMemorije::all();
-        return view('modeli.memorije_dodavanje')->with(compact ('memorije', 'proizvodjaci', 'tip'));
+        return view('modeli.memorije_dodavanje')->with(compact ('proizvodjaci', 'tip'));
     }
 
     public function postDodavanje(Request $request)

@@ -16,7 +16,7 @@ class MonitorModel extends Model
 
     public function dijagonala()
     {
-        return $this->belongsTo('App\Modeli\Dijagonala', 'dijagonala_id', 'id');
+        return $this->belongsTo('App\Modeli\MonitorDijagonala', 'dijagonala_id', 'id');
     }
 
     public function povezivanja()

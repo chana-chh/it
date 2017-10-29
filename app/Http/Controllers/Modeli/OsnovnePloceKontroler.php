@@ -27,11 +27,10 @@ class OsnovnePloceKontroler extends Kontroler
 
     public function getDodavanje()
     {
-        $osnovne_ploce = OsnovnaPlocaModel::all();
         $proizvodjaci = Proizvodjac::all();
         $tip = TipMemorije::all();
         $soketi = Soket::all();
-        return view('modeli.osnovne_ploce_dodavanje')->with(compact ('osnovne_ploce', 'proizvodjaci', 'tip', 'soketi'));
+        return view('modeli.osnovne_ploce_dodavanje')->with(compact ('proizvodjaci', 'tip', 'soketi'));
     }
 
     public function postDodavanje(Request $request)

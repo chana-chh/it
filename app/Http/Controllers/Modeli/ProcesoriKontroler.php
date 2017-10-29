@@ -26,10 +26,9 @@ class ProcesoriKontroler extends Kontroler
 
     public function getDodavanje()
     {
-        $procesori = ProcesorModel::all();
         $proizvodjaci = Proizvodjac::all();
         $soketi = Soket::all();
-        return view('modeli.procesori_dodavanje')->with(compact ('procesori', 'proizvodjaci', 'soketi'));
+        return view('modeli.procesori_dodavanje')->with(compact ('proizvodjaci', 'soketi'));
     }
 
     public function postDodavanje(Request $request)

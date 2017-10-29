@@ -59,7 +59,7 @@
                             <li><a href="{{route('vga.modeli')}}">Grafički adapteri</a></li>
                             <li><a href="{{route('napajanja.modeli')}}">Napajanja</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="">Monitori</a></li>
+                            <li><a href="{{route('monitori.modeli')}}">Monitori</a></li>
                             <li><a href="">Štampači</a></li>
                             <li><a href="">Skeneri</a></li>
                             <li><a href="">UPS-evi</a></li>

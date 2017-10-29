@@ -25,9 +25,8 @@ class NapajanjaKontroler extends Kontroler
 
     public function getDodavanje()
     {
-        $model = NapajanjeModel::all();
         $proizvodjaci = Proizvodjac::all();
-        return view('modeli.napajanja_dodavanje')->with(compact ('model', 'proizvodjaci'));
+        return view('modeli.napajanja_dodavanje')->with(compact ('proizvodjaci'));
     }
 
     public function postDodavanje(Request $request)
@@ -54,8 +53,8 @@ class NapajanjaKontroler extends Kontroler
     public function getIzmena($id)
     {
         $model = NapajanjeModel::find($id);
-        $proizvodjaci = Proizvodjac::all();model;
-        return view('modeli.procesori_izmena')->with(compact ('model', 'proizvodjaci'));
+        $proizvodjaci = Proizvodjac::all();
+        return view('modeli.napajanja_izmena')->with(compact ('model', 'proizvodjaci'));
     }
 
     public function postIzmena(Request $request, $id)
