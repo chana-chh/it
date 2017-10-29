@@ -32,7 +32,6 @@ Route::get('racuni/izmena/{id}', 'Servis\RacuniKontroler@getIzmena')->name('racu
 Route::post('racuni/izmena/{id}', 'Servis\RacuniKontroler@postIzmena')->name('racuni.izmena.post');
 Route::get('racuni/detalj/{id}', 'Servis\RacuniKontroler@getDetalj')->name('racuni.detalj');
 Route::post('racuni/brisanje', 'Servis\RacuniKontroler@postBrisanje')->name('racuni.brisanje');
-
 // Racuni slike
 Route::post('racuni/dodavanje/slike/{id}', 'Servis\RacuniKontroler@postDodavanjeSlike')->name('racuni.dodavanje.slike');
 Route::post('racuni/brisanje/slike', 'Servis\RacuniKontroler@postBrisanjeSlike')->name('racuni.brisanje.slike');
@@ -252,13 +251,3 @@ Route::post('modeli/napajanja/brisanje', 'Modeli\NapajanjaKontroler@postBrisanje
 Route::get('modeli/napajanja/uredjaji/{id}', 'Modeli\NapajanjaKontroler@getUredjaji')->name('napajanja.modeli.uredjaji');
 Route::get('modeli/napajanja/racunari/{id}', 'Modeli\NapajanjaKontroler@getRacunari')->name('napajanja.modeli.racunari');
 
-// Napajanja
-Route::get('modeli/monitori/', 'Modeli\MonitoriKontroler@getLista')->name('monitori.modeli');
-Route::get('modeli/monitori/dodavanje', 'Modeli\MonitoriKontroler@getDodavanje')->name('monitori.modeli.dodavanje.get');
-Route::post('modeli/monitori/dodavanje', 'Modeli\MonitoriKontroler@postDodavanje')->name('monitori.modeli.dodavanje.post');
-Route::get('modeli/monitori/izmena/{id}', 'Modeli\MonitoriKontroler@getIzmena')->name('monitori.modeli.izmena.get');
-Route::post('modeli/monitori/izmena/{id}', 'Modeli\MonitoriKontroler@postIzmena')->name('monitori.modeli.izmena.post');
-Route::get('modeli/monitori/detalj/{id}', 'Modeli\MonitoriKontroler@getDetalj')->name('monitori.modeli.detalj');
-Route::post('modeli/monitori/brisanje', 'Modeli\MonitoriKontroler@postBrisanje')->name('monitori.modeli.brisanje');
-Route::get('modeli/monitori/uredjaji/{id}', 'Modeli\MonitoriKontroler@getUredjaji')->name('monitori.modeli.uredjaji');
-Route::get('modeli/monitori/racunari/{id}', 'Modeli\MonitoriKontroler@getRacunari')->name('monitori.modeli.racunari');

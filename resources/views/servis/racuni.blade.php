@@ -15,13 +15,22 @@
             &emsp;Računi
         </h1>
     </div>
-    <div class="col-md-4 text-right" style="padding-top: 50px;">
-        <a class="btn btn-primary ono" href="{{ route('racuni.dodavanje.get') }}">
+    <div class="col-md-2 text-right" style="padding-top: 50px;">
+        <button id="pretragaDugme" class="btn btn-success btn-block ono">
+            <i class="fa fa-search fa-fw"></i> Napredna pretraga
+        </button>
+    </div>
+    <div class="col-md-2 text-right" style="padding-top: 50px;">
+        <a class="btn btn-primary btn-block ono" href="{{ route('racuni.dodavanje.get') }}">
             <i class="fa fa-plus-circle fa-fw"></i> Dodaj račun
         </a>
     </div>
 </div>
 <hr>
+<div id="pretraga" class="well" style="display: none;">
+    NAPREDNA PRETRAGA
+</div>
+
 <div class="row">
     <div class="col-md-12">
         @if($racuni->isEmpty())
@@ -81,39 +90,43 @@
 
 @section('skripte')
 <script>
-    $(document).ready(function () {
-        var tabela = $('#tabela').DataTable({
-            columnDefs: [
-                {
-                    orderable: false,
-                    searchable: false,
-                    "targets": -1
-                }
-            ],
-            responsive: true,
-            language: {
-                search: "Pronađi u tabeli",
-                paginate: {
-                    first: "Prva",
-                    previous: "Prethodna",
-                    next: "Sledeća",
-                    last: "Poslednja"
-                },
-                processing: "Procesiranje u toku...",
-                lengthMenu: "Prikaži _MENU_ elemenata",
-                zeroRecords: "Nije pronađen nijedan rezultat",
-                info: "Prikaz _START_ do _END_ od ukupno _TOTAL_ elemenata",
-                infoFiltered: "(filtrirano od ukupno _MAX_ elemenata)"
+//    $(document).ready(function () {
+    var tabela = $('#tabela').DataTable({
+        columnDefs: [
+            {
+                orderable: false,
+                searchable: false,
+                "targets": -1
             }
-        });
-        new $.fn.dataTable.FixedHeader(tabela);
-
-        $(document).on('click', '.otvori-brisanje', function () {
-            var id = $(this).val();
-            $('#idBrisanje').val(id);
-            var ruta = "{{ route('racuni.brisanje') }}";
-            $('#brisanje-forma').attr('action', ruta);
-        });
+        ],
+        responsive: true,
+        language: {
+            search: "Pronađi u tabeli",
+            paginate: {
+                first: "Prva",
+                previous: "Prethodna",
+                next: "Sledeća",
+                last: "Poslednja"
+            },
+            processing: "Procesiranje u toku...",
+            lengthMenu: "Prikaži _MENU_ elemenata",
+            zeroRecords: "Nije pronađen nijedan rezultat",
+            info: "Prikaz _START_ do _END_ od ukupno _TOTAL_ elemenata",
+            infoFiltered: "(filtrirano od ukupno _MAX_ elemenata)"
+        }
     });
+    new $.fn.dataTable.FixedHeader(tabela);
+
+    $(document).on('click', '.otvori-brisanje', function () {
+        var id = $(this).val();
+        $('#idBrisanje').val(id);
+        var ruta = "{{ route('racuni.brisanje') }}";
+        $('#brisanje-forma').attr('action', ruta);
+    });
+
+    $('#pretragaDugme').click(function () {
+        $('#pretraga').toggle();
+    });
+//    });
 </script>
 @endsection

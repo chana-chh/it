@@ -6,6 +6,14 @@
 @include('sabloni.inc.meni')
 @endsection
 
+@section('stilovi')
+<style>
+    .pagination {
+        margin-top: 0;
+    }
+</style>
+@endsection
+
 @section('naslov')
 <h1 class="page-header">
     <img class="slicica_animirana" alt="Ugovor" src="{{ url('/images/ugovor.png') }}" style="height:64px;">
@@ -15,6 +23,34 @@
 @endsection
 
 @section('sadrzaj')
+<div class="row" style="margin-bottom: 16px;">
+    <div class="col-md-12">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="window.history.back();"
+               title="Povratak na prethodnu stranu">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('ugovori') }}"
+               title="Povratak na listu ugovora">
+                <i class="fa fa-list"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('ugovori.izmena.get', $data->id) }}"
+               title="Izmena podataka o ugovoru">
+                <i class="fa fa-pencil"></i>
+            </a>
+            <button id="brisanjeUgovora" class="btn btn-primary"
+                    title="Brisanje ugovora"
+                    data-toggle="modal" data-target="#brisanjeModal"
+                    value="{{$data->id}}">
+                <i class="fa fa-trash"></i>
+            </button>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
         <table class="table table-striped" style="table-layout: fixed;">
@@ -43,11 +79,11 @@
         </table>
     </div>
 </div>
-<hr>
+<!--<hr>-->
 <div class="row well" style="overflow: auto;">
     <h3>Računi</h3>
     <hr style="border-top: 1px solid #18BC9C">
-    @if($data->racuni->isEmpty())
+    @if($racuni->isEmpty())
     <p class="text-danger">Trenutno nema podataka o računima za ovaj ugovor</p>
     @else
     <table class="table table-striped table-responsive">
@@ -64,7 +100,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($data->racuni as $racun)
+            @foreach($racuni as $racun)
             <tr>
                 <td>
                     <a href="{{ route('racuni.detalj', $racun->id) }}">
@@ -79,15 +115,15 @@
                     <a href="{{ route('racuni.detalj', $racun->id) }}" class="btn btn-success btn-xs">
                         <i class="fa fa-eye"></i>
                     </a>
-                    <a class="btn btn-info btn-xs"
-                       href="{{ route('racuni.izmena.get', $racun->id) }}">
-                        <i class="fa fa-pencil"></i>
-                    </a>
-                    <button class="btn btn-danger btn-xs otvori-brisanje"
-                            data-toggle="modal" data-target="#brisanjeModal"
-                            value="{{ $racun->id }}">
-                        <i class="fa fa-trash"></i>
-                    </button>
+                    <!--                    <a class="btn btn-info btn-xs"
+                                           href="{{ route('racuni.izmena.get', $racun->id) }}">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        <button class="btn btn-danger btn-xs otvori-brisanje"
+                                                data-toggle="modal" data-target="#brisanjeModal"
+                                                value="{{ $racun->id }}">
+                                            <i class="fa fa-trash"></i>
+                                        </button>                                                               -->
                 </td>
             </tr>
             @endforeach
@@ -106,29 +142,15 @@
         </tfoot>
     </table>
     @endif
-    <a href="{{ route('racuni.dodavanje.get', $data->id) }}" class="btn btn-primary btn-sm">
-        <i class="fa fa-plus-circle"></i> Dodaj račun
-    </a>
-</div>
-<hr>
-<div class="row dugmici">
-    <div class="col-md-4 text-left">
-        <a class="btn btn-info" href="{{route('ugovori')}}"
-           title="Povratak na listu ugovora">
-            <i class="fa fa-list" style="color:#2C3E50"></i>
-        </a>
-    </div>
-    <div class="col-md-4 text-center">
-        <a class="btn btn-info" href="{{route('ugovori.izmena.get', $data->id) }}"
-           title="Izmena podataka o ugovoru">
-            <i class="fa fa-pencil" style="color:#2C3E50"></i>
-        </a>
-    </div>
-    <div class="col-md-4 text-right">
-        <a class="btn btn-info" href="{{route('pocetna')}}"
-           title="Povratak na početnu stranu">
-            <i class="fa fa-home" style="color:#2C3E50"></i>
-        </a>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{{ route('racuni.dodavanje.get', $data->id) }}" class="btn btn-primary btn-sm">
+                <i class="fa fa-plus-circle"></i> Dodaj račun
+            </a>
+        </div>
+        <div class="col-md-6 text-right">
+            {{ $racuni->links() }}
+        </div>
     </div>
 </div>
 <!--  POCETAK brisanjeModal [brisanje racuna] -->
@@ -138,33 +160,45 @@
 
 @section('traka')
 <div class="well">
-    <p class="lead">
+    <p>
         Ukupna sredstva po ugovoru:
+        <strong class="text-info">{{ number_format($data->iznos_sredstava, 2, ',', '.') }}</strong>
     </p>
-    <p class="lead text-right text-info">
-        {{ number_format($data->iznos_sredstava, 2, ',', '.') }}
-    </p>
-    <p class="lead">
+    <div class="progress pro">
+        <div class="progress-bar progress-bar-info" style="width:100%;">
+            100%
+        </div>
+    </div>
+
+    <p>
         Utrošena sredstva po ugovoru:
+        <strong class="text-danger">{{ number_format($data->utroseno(), 2, ',', '.') }}</strong>
     </p>
-    <p class="lead text-right text-danger">
-        {{ number_format($data->utroseno(), 2, ',', '.') }}
-    </p>
-    <p class="lead">
+    <div class="progress pro">
+        <div class="progress-bar progress-bar-danger"
+             style="min-width: 5%; width:{{$data->utroseno() / $data->iznos_sredstava * 100}}%;">
+            {{number_format($data->utroseno() / $data->iznos_sredstava * 100,0)}}%
+        </div>
+    </div>
+    <p>
         Preostala sredstva po ugovoru:
+        <strong class="text-success">{{ number_format($data->preostalo(), 2, ',', '.') }}</strong>
     </p>
-    <p class="lead text-right text-success">
-        <strong>{{ number_format($data->preostalo(), 2, ',', '.') }}</strong>
-    </p>
+    <div class="progress pro">
+        <div class="progress-bar progress-bar-success"
+             style="min-width: 5%; width:{{$data->preostalo() / $data->iznos_sredstava * 100}}%;">
+            {{number_format($data->preostalo() / $data->iznos_sredstava * 100,0)}}%
+        </div>
+    </div>
 </div>
 @endsection
 
 @section('skripte')
 <script>
-    $(document).on('click', '.otvori-brisanje', function () {
+    $(document).on('click', '#brisanjeUgovora', function () {
         var id = $(this).val();
         $('#idBrisanje').val(id);
-        var ruta = "{{ route('racuni.brisanje') }}";
+        var ruta = "{{ route('ugovori.brisanje') }}";
         $('#brisanje-forma').attr('action', ruta);
     });
 </script>
