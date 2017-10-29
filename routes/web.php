@@ -32,7 +32,6 @@ Route::get('racuni/izmena/{id}', 'Servis\RacuniKontroler@getIzmena')->name('racu
 Route::post('racuni/izmena/{id}', 'Servis\RacuniKontroler@postIzmena')->name('racuni.izmena.post');
 Route::get('racuni/detalj/{id}', 'Servis\RacuniKontroler@getDetalj')->name('racuni.detalj');
 Route::post('racuni/brisanje', 'Servis\RacuniKontroler@postBrisanje')->name('racuni.brisanje');
-
 // Racuni slike
 Route::post('racuni/dodavanje/slike/{id}', 'Servis\RacuniKontroler@postDodavanjeSlike')->name('racuni.dodavanje.slike');
 Route::post('racuni/brisanje/slike', 'Servis\RacuniKontroler@postBrisanjeSlike')->name('racuni.brisanje.slike');
@@ -251,4 +250,5 @@ Route::get('modeli/napajanja/detalj/{id}', 'Modeli\NapajanjaKontroler@getDetalj'
 Route::post('modeli/napajanja/brisanje', 'Modeli\NapajanjaKontroler@postBrisanje')->name('napajanja.modeli.brisanje');
 Route::get('modeli/napajanja/uredjaji/{id}', 'Modeli\NapajanjaKontroler@getUredjaji')->name('napajanja.modeli.uredjaji');
 Route::get('modeli/napajanja/racunari/{id}', 'Modeli\NapajanjaKontroler@getRacunari')->name('napajanja.modeli.racunari');
+
 

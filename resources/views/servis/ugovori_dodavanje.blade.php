@@ -7,12 +7,19 @@
 @endsection
 
 @section('naslov')
-<div class="row ceo_dva">
-    <div class="col-md-10 col-md-offset-1 boxic">
-        <h1 class="page-header">
-            <img class="slicica_animirana" alt="Ugovori" src="{{url('/images/ugovor.png')}}" style="height:64px;">
+<div class="row">
+    <div class="col-md-8">
+        <h1>
+            <img class="slicica_animirana" alt="Ugovori"
+                 src="{{ url('/images/ugovor.png') }}" style="height:64px;">
             &emsp;Dodavanje ugovora o održavanju
         </h1>
+    </div>
+</div>
+<hr>
+
+<div class="row ceo_dva">
+    <div class="col-md-12 boxic">
         <form action="{{ route('ugovori.dodavanje.post') }}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row">
@@ -127,3 +134,5 @@
     </div>
 </div>
 @endsection
+
+
