@@ -251,3 +251,13 @@ Route::post('modeli/napajanja/brisanje', 'Modeli\NapajanjaKontroler@postBrisanje
 Route::get('modeli/napajanja/uredjaji/{id}', 'Modeli\NapajanjaKontroler@getUredjaji')->name('napajanja.modeli.uredjaji');
 Route::get('modeli/napajanja/racunari/{id}', 'Modeli\NapajanjaKontroler@getRacunari')->name('napajanja.modeli.racunari');
 
+//Monitori
+Route::get('modeli/monitori/', 'Modeli\MonitoriKontroler@getLista')->name('monitori.modeli');
+Route::get('modeli/monitori/dodavanje', 'Modeli\MonitoriKontroler@getDodavanje')->name('monitori.modeli.dodavanje.get');
+Route::post('modeli/monitori/dodavanje', 'Modeli\MonitoriKontroler@postDodavanje')->name('monitori.modeli.dodavanje.post');
+Route::get('modeli/monitori/izmena/{id}', 'Modeli\MonitoriKontroler@getIzmena')->name('monitori.modeli.izmena.get');
+Route::post('modeli/monitori/izmena/{id}', 'Modeli\MonitoriKontroler@postIzmena')->name('monitori.modeli.izmena.post');
+Route::get('modeli/monitori/detalj/{id}', 'Modeli\MonitoriKontroler@getDetalj')->name('monitori.modeli.detalj');
+Route::post('modeli/monitori/brisanje', 'Modeli\MonitoriKontroler@postBrisanje')->name('monitori.modeli.brisanje');
+Route::get('modeli/monitori/uredjaji/{id}', 'Modeli\MonitoriKontroler@getUredjaji')->name('monitori.modeli.uredjaji');
+Route::get('modeli/monitori/racunari/{id}', 'Modeli\MonitoriKontroler@getRacunari')->name('monitori.modeli.racunari');
