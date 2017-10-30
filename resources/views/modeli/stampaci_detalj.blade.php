@@ -78,7 +78,7 @@
 @section('traka')
 <div class="row well">
     <div class="col-md-12">
-<h3>Broj štampača ovog modela: <a href="{{route('stampaci.modeli.uredjaji', $model->id) }}" title="Pregled svih uređaja ovog modela štampača"> {{$model->stampac->count()}} </a></h3>
+<h3>Broj štampača ovog modela: <a href="{{route('stampaci.modeli.uredjaji', $model->id) }}" title="Pregled svih uređaja ovog modela štampača"> {{$model->stampaci->count()}} </a></h3>
 
 <h3>Broj računara sa ovim modelom štampača: <a href="{{route('stampaci.modeli.racunari', $model->id) }}" title="Pregled svih računara sa ovim modelom štampača"> {{$racunari}} </a></h3>
 </div>

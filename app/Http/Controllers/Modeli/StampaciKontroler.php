@@ -60,7 +60,9 @@ class StampaciKontroler extends Kontroler
     {
         $model = StampacModel::find($id);
         $proizvodjaci = Proizvodjac::all();
-        return view('modeli.stampaci_izmena')->with(compact ('model', 'proizvodjaci'));
+        $tipovi = TipStampaca::all();
+        $toneri = Toner::all();
+        return view('modeli.stampaci_izmena')->with(compact ('model', 'proizvodjaci', 'tipovi', 'toneri'));
     }
 
     public function postIzmena(Request $request, $id)
@@ -91,7 +93,7 @@ class StampaciKontroler extends Kontroler
     {
         $model = StampacModel::find($id);
         $racunari = DB::table('stampaci')->where([
-            ['stampaci_model_id', '=', $id],
+            ['stampac_model_id', '=', $id],
             ['racunar_id', '<>', null],
         ])->count();
         return view('modeli.stampaci_detalj')->with(compact ('model', 'racunari'));
