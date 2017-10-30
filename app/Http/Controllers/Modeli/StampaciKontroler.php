@@ -13,6 +13,7 @@ Use App\Modeli\Proizvodjac;
 Use App\Modeli\TipStampaca;
 Use App\Modeli\Toner;
 Use App\Modeli\Stampac;
+Use App\Modeli\Racunar;
 
 
 
@@ -124,7 +125,7 @@ class StampaciKontroler extends Kontroler
     public function getUredjaji($id)
     {   
         //Dobra fora za pozivanje dodatnih relacija sa Tockicom.SledecaRElacija
-        $stampaci = Napajanje::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('stampac_model_id', '=', $id)->get();
+        $stampaci = Stampac::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('stampac_model_id', '=', $id)->get();
         $model = StampacModel::find($id);
         return view('modeli.stampaci_uredjaji')->with(compact ('stampaci', 'model'));
     }

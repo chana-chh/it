@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Modeli | Napajanja')
+@section('naziv', 'Modeli | Štampači')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -9,17 +9,17 @@
 @section('naslov')
     <div class="row">
         <div class="col-md-10">
-            <h1><span><img class="slicica_animirana" alt="Napajanja ..." src="{{url('/images/napajanje.png')}}" style="height:64px;"></span>&emsp;Napajanja čiji je naziv modela <span style="color: #18bc9c">{{$model->proizvodjac->naziv}} {{$model->naziv}}, {{$model->snaga}} W</span>  </h1>
+            <h1><span><img class="slicica_animirana" alt="Štampači ..." src="{{url('/images/stampac.png')}}" style="height:64px;"></span>&emsp;Štampači čiji je naziv modela <span style="color: #18bc9c">{{$model->proizvodjac->naziv}} {{$model->naziv}}</span>  </h1>
         </div>
 
          <div class="col-md-2 text-right" style="padding-top: 50px;">
-            <a class="btn btn-primary ono" href=""><i class="fa fa-plus-circle fa-fw"></i> Dodaj napajanje</a>
+            <a class="btn btn-primary ono" href=""><i class="fa fa-plus-circle fa-fw"></i> Dodaj štampač</a>
         </div>
         </div>
         <hr>
 <div class="row">
     <div class="col-md-12">
-@if($napajanja->isEmpty())
+@if($stampaci->isEmpty())
             <h3 class="text-danger">Trenutno nema ovakvih uređaja</h3>
         @else
             <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
@@ -32,7 +32,7 @@
                         <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
                 </thead>
                 <tbody>
-                @foreach ($napajanja as $n)
+                @foreach ($stampaci as $n)
                         <tr>
                             <td>{{$n['id']}}</td>
                             <td><strong>{{$n['serijski_broj']}}</strong></td>
@@ -57,7 +57,7 @@
         <div class="col-md-12" style="margin-top: 20px">
 
             <div class="col-md-6 text-left">
-                <a class="btn btn-info" href="{{route('napajanja.modeli.detalj', $model->id)}}" title="Povratak na detaljni pregled modela napajanja {{$model->proizvodjac->naziv}} {{$model->naziv}}, {{$model->snaga}} W"><i class="fa fa-arrow-left" style="color:#2C3E50"></i></a>
+                <a class="btn btn-info" href="{{route('stampaci.modeli.detalj', $model->id)}}" title="Povratak na detaljni pregled modela štampača {{$model->proizvodjac->naziv}} {{$model->naziv}}"><i class="fa fa-arrow-left" style="color:#2C3E50"></i></a>
             </div>
 
             <div class="col-md-6 text-right">

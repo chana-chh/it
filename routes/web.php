@@ -272,3 +272,14 @@ Route::get('modeli/stampaci/detalj/{id}', 'Modeli\StampaciKontroler@getDetalj')-
 Route::post('modeli/stampaci/brisanje', 'Modeli\StampaciKontroler@postBrisanje')->name('stampaci.modeli.brisanje');
 Route::get('modeli/stampaci/uredjaji/{id}', 'Modeli\StampaciKontroler@getUredjaji')->name('stampaci.modeli.uredjaji');
 Route::get('modeli/stampaci/racunari/{id}', 'Modeli\StampaciKontroler@getRacunari')->name('stampaci.modeli.racunari');
+
+//Skeneri
+Route::get('modeli/skeneri/', 'Modeli\SkeneriKontroler@getLista')->name('skeneri.modeli');
+Route::get('modeli/skeneri/dodavanje', 'Modeli\SkeneriKontroler@getDodavanje')->name('skeneri.modeli.dodavanje.get');
+Route::post('modeli/skeneri/dodavanje', 'Modeli\SkeneriKontroler@postDodavanje')->name('skeneri.modeli.dodavanje.post');
+Route::get('modeli/skeneri/izmena/{id}', 'Modeli\SkeneriKontroler@getIzmena')->name('skeneri.modeli.izmena.get');
+Route::post('modeli/skeneri/izmena/{id}', 'Modeli\SkeneriKontroler@postIzmena')->name('skeneri.modeli.izmena.post');
+Route::get('modeli/skeneri/detalj/{id}', 'Modeli\SkeneriKontroler@getDetalj')->name('skeneri.modeli.detalj');
+Route::post('modeli/skeneri/brisanje', 'Modeli\SkeneriKontroler@postBrisanje')->name('skeneri.modeli.brisanje');
+Route::get('modeli/skeneri/uredjaji/{id}', 'Modeli\SkeneriKontroler@getUredjaji')->name('skeneri.modeli.uredjaji');
+Route::get('modeli/skeneri/racunari/{id}', 'Modeli\SkeneriKontroler@getRacunari')->name('skeneri.modeli.racunari');
