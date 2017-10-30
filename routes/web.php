@@ -261,3 +261,14 @@ Route::get('modeli/monitori/detalj/{id}', 'Modeli\MonitoriKontroler@getDetalj')-
 Route::post('modeli/monitori/brisanje', 'Modeli\MonitoriKontroler@postBrisanje')->name('monitori.modeli.brisanje');
 Route::get('modeli/monitori/uredjaji/{id}', 'Modeli\MonitoriKontroler@getUredjaji')->name('monitori.modeli.uredjaji');
 Route::get('modeli/monitori/racunari/{id}', 'Modeli\MonitoriKontroler@getRacunari')->name('monitori.modeli.racunari');
+
+//Stampaci
+Route::get('modeli/stampaci/', 'Modeli\StampaciKontroler@getLista')->name('stampaci.modeli');
+Route::get('modeli/stampaci/dodavanje', 'Modeli\StampaciKontroler@getDodavanje')->name('stampaci.modeli.dodavanje.get');
+Route::post('modeli/stampaci/dodavanje', 'Modeli\StampaciKontroler@postDodavanje')->name('stampaci.modeli.dodavanje.post');
+Route::get('modeli/stampaci/izmena/{id}', 'Modeli\StampaciKontroler@getIzmena')->name('stampaci.modeli.izmena.get');
+Route::post('modeli/stampaci/izmena/{id}', 'Modeli\StampaciKontroler@postIzmena')->name('stampaci.modeli.izmena.post');
+Route::get('modeli/stampaci/detalj/{id}', 'Modeli\StampaciKontroler@getDetalj')->name('stampaci.modeli.detalj');
+Route::post('modeli/stampaci/brisanje', 'Modeli\StampaciKontroler@postBrisanje')->name('stampaci.modeli.brisanje');
+Route::get('modeli/stampaci/uredjaji/{id}', 'Modeli\StampaciKontroler@getUredjaji')->name('stampaci.modeli.uredjaji');
+Route::get('modeli/stampaci/racunari/{id}', 'Modeli\StampaciKontroler@getRacunari')->name('stampaci.modeli.racunari');

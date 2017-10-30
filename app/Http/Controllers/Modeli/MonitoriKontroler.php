@@ -76,6 +76,9 @@ class MonitoriKontroler extends Kontroler
             ]);
         
         $data = MonitorModel::find($id);
+        
+        $data->povezivanja()->detach();
+        
         $data->naziv = $request->naziv;
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->dijagonala_id = $request->dijagonala_id;
@@ -83,6 +86,8 @@ class MonitoriKontroler extends Kontroler
         $data->napomena = $request->napomena;
 
         $data->save();
+
+        $data->povezivanja()->attach($request->povezivanja);
 
         Session::flash('uspeh','Podaci o modelu monitora su uspešno izmenjeni!');
         return redirect()->route('monitori.modeli');
