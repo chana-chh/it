@@ -105,6 +105,7 @@ class MonitoriKontroler extends Kontroler
     public function postBrisanje(Request $request) {
         
         $data = MonitorModel::find($request->idBrisanje);
+        $data->povezivanja()->detach();
         $odgovor = $data->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Stavka je uspešno obrisana!');
