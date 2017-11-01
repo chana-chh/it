@@ -16,7 +16,7 @@
     </div>
 
     <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <a class="btn btn-primary ono" href="">
+        <a class="btn btn-primary ono" href="{{route('procesori.oprema.dodavanje.get')}}">
             <i class="fa fa-plus-circle fa-fw"></i> Dodaj procesor</a>
     </div>
 </div>
