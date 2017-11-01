@@ -11,7 +11,7 @@
         <div class="row ceo_dva">
         <div class="col-md-10 col-md-offset-1 boxic">
 
-        <h1 class="page-header"><span><img class="slicica_animirana" alt="korisnici" src="{{url('/images/cpu_add.png')}}" style="height:64px;"></span>&emsp;Dodavanje modela procesora</h1>
+        <h1 class="page-header"><span><img class="slicica_animirana" alt="procesori" src="{{url('/images/cpu_add.png')}}" style="height:64px;"></span>&emsp;Dodavanje modela procesora</h1>
 
         <form action="{{ route('procesori.modeli.dodavanje.post') }}" method="POST" data-parsley-validate>
         {{ csrf_field() }}
@@ -33,7 +33,7 @@
                 <div class="col-md-6">
                    <div class="form-group{{ $errors->has('proizvodjac_id') ? ' has-error' : '' }}">
                     <label for="proizvodjac_id">Proizvođač:</label>
-                    <select name="proizvodjac_id" id="proizvodjac_id" class="chosen-select form-control" data-placeholder="proizvodjac ..." required>
+                    <select name="proizvodjac_id" id="proizvodjac_id" class="chosen-select form-control" data-placeholder="proizvođač ..." required>
                         <option value=""></option>
                         @foreach($proizvodjaci as $proizvodjac)
                         <option value="{{ $proizvodjac->id }}"{{ old('proizvodjac_id') == $proizvodjac->id ? ' selected' : '' }}>

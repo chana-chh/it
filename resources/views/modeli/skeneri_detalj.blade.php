@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Modeli | Model napajanja detaljno')
+@section('naziv', 'Modeli | Model skenera detaljno')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -8,10 +8,10 @@
 
 @section('naslov')
     <h1 class="page-header">
-        <img class="slicica_animirana" alt="Model napajanja detaljno" src="{{url('/images/napajanje.png')}}" style="height:64px;">&emsp;
+        <img class="slicica_animirana" alt="Model skenera detaljno" src="{{url('/images/scanner.png')}}" style="height:64px;">&emsp;
         Detaljni pregled modela 
          <i>{{ $model->naziv }}</i>
-         napajanja
+         skenera
     </h1>
 @endsection
 
@@ -26,8 +26,14 @@
             </tr>
 
             <tr>
-                <th style="width: 20%;">Snaga:</th>
-                <td style="width: 80%;">{{$model->snaga}} W
+                <th style="width: 20%;">Format:</th>
+                <td style="width: 80%;">{{$model->format}}
+                </td>
+            </tr>
+
+            <tr>
+                <th style="width: 20%;">Rezolucija:</th>
+                <td style="width: 80%;">{{$model->rezolucija}}
                 </td>
             </tr>
         </tbody>
@@ -48,14 +54,14 @@
     <div class="row dugmici">
         <div class="col-md-12" style="margin-top: 20px">
     <div class="col-md-4 text-left">
-        <a class="btn btn-info" href="{{route('napajanja.modeli')}}"
-           title="Povratak na listu modela napajanja">
+        <a class="btn btn-info" href="{{route('skeneri.modeli')}}"
+           title="Povratak na listu modela skenera">
             <i class="fa fa-list" style="color:#2C3E50"></i>
         </a>
     </div>
     <div class="col-md-4 text-center">
-        <a class="btn btn-info" href="{{route('napajanja.modeli.izmena.get', $model->id) }}"
-           title="Izmena osnovnih podataka o modelu napajanja">
+        <a class="btn btn-info" href="{{route('skeneri.modeli.izmena.get', $model->id) }}"
+           title="Izmena osnovnih podataka o modelu skenera">
             <i class="fa fa-pencil" style="color:#2C3E50"></i>
         </a>
     </div>
@@ -72,9 +78,9 @@
 @section('traka')
 <div class="row well">
     <div class="col-md-12">
-<h3>Broj napajanja ovog modela: <a href="{{route('napajanja.modeli.uredjaji', $model->id) }}" title="Pregled svih uređaja ovog modela napajanja"> {{$model->napajanja->count()}} </a></h3>
+<h3>Broj skenera ovog modela: <a href="{{route('skeneri.modeli.uredjaji', $model->id) }}" title="Pregled svih uređaja ovog modela skenera"> {{$model->skeneri->count()}} </a></h3>
 
-<h3>Broj računara sa ovim modelom napajanja: <a href="{{route('napajanja.modeli.racunari', $model->id) }}" title="Pregled svih računara sa ovim modelom napajanja"> {{$racunari}} </a></h3>
+<h3>Broj računara sa ovim modelom skenera: <a href="{{route('skeneri.modeli.racunari', $model->id) }}" title="Pregled svih računara sa ovim modelom skenera"> {{$racunari}} </a></h3>
 </div>
 </div>
 

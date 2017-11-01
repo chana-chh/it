@@ -27,11 +27,10 @@ class GrafickiAdapteriKontroler extends Kontroler
 
     public function getDodavanje()
     {
-        $vga = GrafickiAdapterModel::all();
         $proizvodjaci = Proizvodjac::all();
         $tip = TipMemorije::all();
         $slotovi = VgaSlot::all();
-        return view('modeli.vga_dodavanje')->with(compact ('vga', 'proizvodjaci', 'tip', 'slotovi'));
+        return view('modeli.vga_dodavanje')->with(compact ('proizvodjaci', 'tip', 'slotovi'));
     }
 
     public function postDodavanje(Request $request)

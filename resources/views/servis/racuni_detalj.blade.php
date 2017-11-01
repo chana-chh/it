@@ -95,7 +95,7 @@
     <h3>Dodavanje slike</h3>
     <form action="{{route('racuni.dodavanje.slike', $racun->id)}}" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
-        <label for="slika" class="btn btn-default ono">
+        <label for="slika" class="btn btn-warning ono">
             <i class="fa fa-upload"></i> Izaberi scan računa
         </label>
         <input type="file" name="slika" id="slika" class="hide" required>

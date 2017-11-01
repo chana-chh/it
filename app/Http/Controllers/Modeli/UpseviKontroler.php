@@ -8,9 +8,9 @@ use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
 
-Use App\Modeli\NapajanjeModel;
+Use App\Modeli\UpsModel;
 Use App\Modeli\Proizvodjac;
-Use App\Modeli\Napajanje;
+Use App\Modeli\Ups;
 Use App\Modeli\Racunar;
 
 
@@ -19,7 +19,7 @@ class NapajanjaKontroler extends Kontroler
 {
     public function getLista()
     {
-    	$model = NapajanjeModel::all();
+    	$model = UpsModel::all();
     	return view('modeli.napajanja')->with(compact ('model'));
     }
 
@@ -37,7 +37,7 @@ class NapajanjaKontroler extends Kontroler
                'proizvodjac_id' => ['required']
             ]);
 
-        $data = new NapajanjeModel();
+        $data = new UpsModel();
         $data->naziv = $request->naziv;
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->snaga = $request->snaga;
@@ -52,7 +52,7 @@ class NapajanjaKontroler extends Kontroler
 
     public function getIzmena($id)
     {
-        $model = NapajanjeModel::find($id);
+        $model = UpsModel::find($id);
         $proizvodjaci = Proizvodjac::all();
         return view('modeli.napajanja_izmena')->with(compact ('model', 'proizvodjaci'));
     }
@@ -65,7 +65,7 @@ class NapajanjaKontroler extends Kontroler
                 'proizvodjac_id' => ['required']
             ]);
         
-        $data = NapajanjeModel::find($id);
+        $data = UpsModel::find($id);
         $data->naziv = $request->naziv;
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->snaga = $request->snaga;
@@ -80,7 +80,7 @@ class NapajanjaKontroler extends Kontroler
 
     public function getDetalj($id)
     {
-        $model = NapajanjeModel::find($id);
+        $model = UpsModel::find($id);
         $racunari = DB::table('napajanja')->where([
             ['napajanje_model_id', '=', $id],
             ['racunar_id', '<>', null],
@@ -90,7 +90,7 @@ class NapajanjaKontroler extends Kontroler
 
     public function postBrisanje(Request $request) {
         
-        $data = NapajanjeModel::find($request->idBrisanje);
+        $data = UpsModel::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Stavka je uspešno obrisana!');
@@ -103,7 +103,7 @@ class NapajanjaKontroler extends Kontroler
     public function getRacunari($id)
     {   
         // Dobra fora za uvlachenje id u funkciju, kao i eliminisanje sa WhereHas
-        $model = NapajanjeModel::find($id);
+        $model = UpsModel::find($id);
         $racunari = Racunar::whereHas('napajanja', function($query) use ($id){
             $query->where('napajanja.napajanje_model_id', '=', $id);
         })->get();
@@ -113,8 +113,8 @@ class NapajanjaKontroler extends Kontroler
     public function getUredjaji($id)
     {   
         //Dobra fora za pozivanje dodatnih relacija sa Tockicom.SledecaRElacija
-        $napajanja = Napajanje::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('napajanje_model_id', '=', $id)->get();
-        $model = NapajanjeModel::find($id);
+        $napajanja = Ups::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('napajanje_model_id', '=', $id)->get();
+        $model = UpsModel::find($id);
         return view('modeli.napajanja_uredjaji')->with(compact ('napajanja', 'model'));
     }
 

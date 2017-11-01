@@ -27,7 +27,7 @@
                         <th style="width: 25%;">Napomena</th>
                         <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
                 </thead>
-                <tbody id="racunari_lista" name="racunari_lista">
+                <tbody>
                 @foreach ($racunari as $racunar)
                         <tr>
                             <td>{{$racunar['id']}}</td>

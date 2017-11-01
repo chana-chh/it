@@ -23,7 +23,7 @@
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('ugovori') }}">Ugovori o održavanju</a></li>
                             <li><a href="{{ route('racuni') }}">Računi</a></li>
-                            <li><a href="">Otpremnice</a></li>
+                            <li><a href="{{ route('otpremnice') }}">Otpremnice</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -59,9 +59,9 @@
                             <li><a href="{{route('vga.modeli')}}">Grafički adapteri</a></li>
                             <li><a href="{{route('napajanja.modeli')}}">Napajanja</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="">Monitori</a></li>
-                            <li><a href="">Štampači</a></li>
-                            <li><a href="">Skeneri</a></li>
+                            <li><a href="{{route('monitori.modeli')}}">Monitori</a></li>
+                            <li><a href="{{route('stampaci.modeli')}}">Štampači</a></li>
+                            <li><a href="{{route('skeneri.modeli')}}">Skeneri</a></li>
                             <li><a href="">UPS-evi</a></li>
                         </ul>
                     </li>
@@ -110,19 +110,3 @@
         </div>
     </div>
 </nav>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
