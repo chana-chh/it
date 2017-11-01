@@ -32,7 +32,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="">Računari</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="">Procesori</a></li>
+                            <li><a href="{{route('procesori.oprema')}}">Procesori</a></li>
                             <li><a href="">Memorije</a></li>
                             <li><a href="">Matične ploče</a></li>
                             <li><a href="">Hard diskovi</a></li>

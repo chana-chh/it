@@ -3,10 +3,14 @@
 namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Procesor extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'procesori';
+    protected $dates = ['deleted_at'];
     public $timestamps = false;
 
     public function procesorModel()

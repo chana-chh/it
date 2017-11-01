@@ -296,3 +296,6 @@ Route::get('modeli/skeneri/detalj/{id}', 'Modeli\SkeneriKontroler@getDetalj')->n
 Route::post('modeli/skeneri/brisanje', 'Modeli\SkeneriKontroler@postBrisanje')->name('skeneri.modeli.brisanje');
 Route::get('modeli/skeneri/uredjaji/{id}', 'Modeli\SkeneriKontroler@getUredjaji')->name('skeneri.modeli.uredjaji');
 Route::get('modeli/skeneri/racunari/{id}', 'Modeli\SkeneriKontroler@getRacunari')->name('skeneri.modeli.racunari');
+
+//OPREMA
+Route::get('oprema/procesori/', 'Oprema\ProcesoriKontroler@getLista')->name('procesori.oprema');
