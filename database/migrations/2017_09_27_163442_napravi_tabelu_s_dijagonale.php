@@ -6,11 +6,12 @@ use Illuminate\Database\Migrations\Migration;
 
 class NapraviTabeluSDijagonale extends Migration
 {
+
     public function up()
     {
         Schema::create('s_dijagonale', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('naziv', 10, 2);
+            $table->decimal('naziv', 8, 1);
         });
     }
 
@@ -18,4 +19,5 @@ class NapraviTabeluSDijagonale extends Migration
     {
         Schema::dropIfExists('s_dijagonale');
     }
+
 }

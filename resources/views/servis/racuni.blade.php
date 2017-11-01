@@ -7,6 +7,7 @@
 @endsection
 
 @section('naslov')
+<!--{{ gethostbyaddr($_SERVER['REMOTE_ADDR']) }}-->
 <div class="row">
     <div class="col-md-8">
         <h1>
