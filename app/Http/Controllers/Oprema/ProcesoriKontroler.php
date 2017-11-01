@@ -22,4 +22,11 @@ class ProcesoriKontroler extends Kontroler
     	return view('oprema.procesori')->with(compact ('oprema'));
     }
 
+    public function getDetalj($id)
+    {
+        $oprema = Procesor::find($id);
+        $brojno_stanje = Procesor::where('procesor_model_id', '=', $oprema->procesor_model_id)->count();
+        return view('oprema.procesori_detalj')->with(compact ('oprema', 'brojno_stanje'));
+    }
+
 }
