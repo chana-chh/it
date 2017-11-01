@@ -62,7 +62,7 @@
                             <li><a href="{{route('monitori.modeli')}}">Monitori</a></li>
                             <li><a href="{{route('stampaci.modeli')}}">Štampači</a></li>
                             <li><a href="{{route('skeneri.modeli')}}">Skeneri</a></li>
-                            <li><a href="">UPS-evi</a></li>
+                            <li><a href="{{route('upsevi.modeli')}}">UPS-evi</a></li>
                         </ul>
                     </li>
 

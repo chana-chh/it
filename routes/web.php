@@ -283,3 +283,14 @@ Route::get('modeli/skeneri/detalj/{id}', 'Modeli\SkeneriKontroler@getDetalj')->n
 Route::post('modeli/skeneri/brisanje', 'Modeli\SkeneriKontroler@postBrisanje')->name('skeneri.modeli.brisanje');
 Route::get('modeli/skeneri/uredjaji/{id}', 'Modeli\SkeneriKontroler@getUredjaji')->name('skeneri.modeli.uredjaji');
 Route::get('modeli/skeneri/racunari/{id}', 'Modeli\SkeneriKontroler@getRacunari')->name('skeneri.modeli.racunari');
+
+//Upsevi
+Route::get('modeli/upsevi/', 'Modeli\UpseviKontroler@getLista')->name('upsevi.modeli');
+Route::get('modeli/upsevi/dodavanje', 'Modeli\UpseviKontroler@getDodavanje')->name('upsevi.modeli.dodavanje.get');
+Route::post('modeli/upsevi/dodavanje', 'Modeli\UpseviKontroler@postDodavanje')->name('upsevi.modeli.dodavanje.post');
+Route::get('modeli/upsevi/izmena/{id}', 'Modeli\UpseviKontroler@getIzmena')->name('upsevi.modeli.izmena.get');
+Route::post('modeli/upsevi/izmena/{id}', 'Modeli\UpseviKontroler@postIzmena')->name('upsevi.modeli.izmena.post');
+Route::get('modeli/upsevi/detalj/{id}', 'Modeli\UpseviKontroler@getDetalj')->name('upsevi.modeli.detalj');
+Route::post('modeli/upsevi/brisanje', 'Modeli\UpseviKontroler@postBrisanje')->name('upsevi.modeli.brisanje');
+Route::get('modeli/upsevi/uredjaji/{id}', 'Modeli\UpseviKontroler@getUredjaji')->name('upsevi.modeli.uredjaji');
+Route::get('modeli/upsevi/baterije/{id}', 'Modeli\UpseviKontroler@getBaterije')->name('upsevi.modeli.baterije');
