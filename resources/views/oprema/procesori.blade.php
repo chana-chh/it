@@ -43,19 +43,19 @@
             <td>
                 <strong>{{$o->serijski_broj}}</strong>
             </td>
-            <td><a href="{{route('procesori.modeli.detalj', $o->procesorModel->id)}}">{{$o->procesorModel->naziv}}, {{$o->procesorModel->takt}}</a></td>
+            <td><a href="{{route('procesori.modeli.detalj', $o->procesorModel->id)}}">{{$o->procesorModel->proizvodjac->naziv}} {{$o->procesorModel->naziv}}, {{$o->procesorModel->takt}} MHz</a></td>
             <td>{{$o->racunar->ime}}</td>
             <td>{{$o->stavkaOtpremnice->otpremnica->broj}}</td>
 
             <td style="text-align:right; vertical-align: middle; line-height: normal;">
-                <a class="btn btn-success btn-sm" id="dugmeDetalj" href="">
+                <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('procesori.oprema.detalj', $o->procesorModel->id)}}">
                     <i class="fa fa-eye"></i>
                 </a>
                 <a class="btn btn-info btn-sm" id="dugmeIzmena" href="">
                     <i class="fa fa-pencil"></i>
                 </a>
                 <button class="btn btn-danger btn-sm otvori-brisanje" data-toggle="modal" data-target="#brisanjeModal" value="{{$o->id}}">
-                    <i class="fa fa-trash"></i>
+                    <i class="fa fa-recycle"></i>
                 </button>
             </td>
         </tr>
