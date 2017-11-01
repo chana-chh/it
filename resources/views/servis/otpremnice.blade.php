@@ -1,19 +1,18 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Računi')
+@section('naziv', 'Otpremnice')
 
 @section('meni')
 @include('sabloni.inc.meni')
 @endsection
 
 @section('naslov')
-<!--{{ gethostbyaddr($_SERVER['REMOTE_ADDR']) }}-->
 <div class="row">
     <div class="col-md-8">
         <h1>
             <img class="slicica_animirana" alt="Ugovori"
-                 src="{{ url('/images/ugovor.png') }}" style="height:64px;">
-            &emsp;Računi
+                 src="{{ url('/images/otpremnice.png') }}" style="height:64px;">
+            &emsp;Otpremnice
         </h1>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
@@ -22,8 +21,8 @@
         </button>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <a class="btn btn-primary btn-block ono" href="{{ route('racuni.dodavanje.get') }}">
-            <i class="fa fa-plus-circle fa-fw"></i> Dodaj račun
+        <a class="btn btn-primary btn-block ono" href="{{ route('otpremnice.dodavanje.get') }}">
+            <i class="fa fa-plus-circle fa-fw"></i> Dodaj otpremnicu
         </a>
     </div>
 </div>
@@ -31,49 +30,52 @@
 <div id="pretraga" class="well" style="display: none;">
     NAPREDNA PRETRAGA
 </div>
-
 <div class="row">
     <div class="col-md-12">
-        @if($racuni->isEmpty())
-        <h3 class="text-danger">Trenutno nema računa</h3>
+        @if($otpremnice->isEmpty())
+        <h3 class="text-danger">Trenutno nema otprmnica</h3>
         @else
         <table class="table table-striped display" cellspacing="0" width="100%" id="tabela">
             <thead>
             <th style="width: 5%;">#</th>
-            <th style="width: 20%;">Broj računa</th>
+            <th style="width: 20%;">Broj otpremnice</th>
             <th style="width: 15%;">Datum</th>
-            <th style="width: 15%; text-align: right;">Iznos</th>
-            <th style="width: 15%; text-align: right;">PDV</th>
-            <th style="width: 15%; text-align: right;">Ukupno</th>
+            <th style="width: 15%;">Broj računa</th>
+            <th style="width: 15%;">Dobavljač</th>
+            <th style="width: 15%;">Broj profakture</th>
             <th style="width: 15%; text-align:right;">
                 <i class="fa fa-cogs"></i>&emsp;Akcije
             </th>
             </thead>
             <tbody>
-                @foreach ($racuni as $racun)
+                @foreach ($otpremnice as $otpremnica)
                 <tr>
-                    <td>{{ $racun->id }}</td>
+                    <td>{{ $otpremnica->id }}</td>
                     <td>
-                        <a href="{{ route('racuni.detalj', $racun->id) }}">
-                            <strong>{{ $racun->broj }}</strong>
+                        <a href="{{ route('otpremnice.detalj', $otpremnica->id) }}">
+                            <strong>{{ $otpremnica->broj }}</strong>
                         </a>
                     </td>
-                    <td>{{ \Carbon\Carbon::parse($racun->datum)->format('d.m.Y') }}</td>
-                    <td class="text-right">{{ number_format($racun->iznos, 2, ',', '.') }}</td>
-                    <td class="text-right">{{ number_format($racun->pdv, 2, ',', '.') }}</td>
-                    <td class="text-right">{{ number_format($racun->ukupno, 2, ',', '.') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($otpremnica->datum)->format('d.m.Y') }}</td>
+                    @if($otpremnica->racun === null)
+                    <td></td>
+                    @else
+                    <td>{{ $otpremnica->racun->broj }}</td>
+                    @endif
+                    <td>{{ $otpremnica->dobavljac->naziv }}</td>
+                    <td>{{ $otpremnica->broj_profakture }}</td>
                     <td class="text-right">
                         <a class="btn btn-success btn-sm"
-                           href="{{ route('racuni.detalj', $racun->id) }}">
+                           href="{{ route('otpremnice.detalj', $otpremnica->id) }}">
                             <i class="fa fa-eye"></i>
                         </a>
                         <a class="btn btn-info btn-sm"
-                           href="{{ route('racuni.izmena.get', $racun->id) }}">
+                           href="{{ route('otpremnice.izmena.get', $otpremnica->id) }}">
                             <i class="fa fa-pencil"></i>
                         </a>
                         <button class="btn btn-danger btn-sm otvori-brisanje"
                                 data-toggle="modal" data-target="#brisanjeModal"
-                                value="{{ $racun->id }}">
+                                value="{{ $otpremnica->id }}">
                             <i class="fa fa-trash"></i>
                         </button>
                     </td>
@@ -121,7 +123,7 @@
     $(document).on('click', '.otvori-brisanje', function () {
         var id = $(this).val();
         $('#idBrisanje').val(id);
-        var ruta = "{{ route('racuni.brisanje') }}";
+        var ruta = "{{ route('otpremnice.brisanje') }}";
         $('#brisanje-forma').attr('action', ruta);
     });
 

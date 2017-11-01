@@ -1,9 +1,6 @@
 # TODO
 
-Kad se naprave racuni povezati tabelu racuna u pregledu ugovora.
-
 Optpremnica 0 Stara oprema
-
 Stavke:
 
 1. HDD
@@ -24,9 +21,12 @@ Ocene od 1 do 4 za modele Cpu, Mem, Hdd, Ploca, a za racunar zbir. Ako je ocena 
 
 Dodati kombinovan kljuc za spratove
 
-dijagonala da ima jednu decimalu
 
-Fizicko brisanje slike i dodavanje imena zapolsenog zbog lakseg snalazenja u folderu. Nas admina.
 
-DODATI PIVOT ZA GRAFICKI ADAPTER MODEL I POVEZIVANJE !!!!
+DODATI PIVOT ZA GRAFICKI_ADAPTER_MODEL I POVEZIVANJE !!!!
 
+dodati lozinke za emailove
+dodati pivot za stampaci_toneri
+ticketing system: s_kvarovi, s_statusi, prijave(broj_prijave, zaposleni, kancelarija, datum_prijave, status)
+
+servis posebna tabela za svaku vrstu uredjaja

@@ -36,55 +36,55 @@ class Racunar extends Model
 
     // odavde
     public function monitori()
-	{
-	    return $this->hasMany('App\Modeli\Monitor', 'racunar_id', 'id');
+    {
+        return $this->hasMany('App\Modeli\Monitor', 'racunar_id', 'id');
     }
 
     public function stampaci()
-	{
-	    return $this->hasMany('App\Modeli\Stampac', 'racunar_id', 'id');
+    {
+        return $this->hasMany('App\Modeli\Stampac', 'racunar_id', 'id');
     }
 
     public function skeneri()
-	{
-	    return $this->hasMany('App\Modeli\Skener', 'racunar_id', 'id');
+    {
+        return $this->hasMany('App\Modeli\Skener', 'racunar_id', 'id');
     }
 
     public function osnovnaPloca()
-	{
-	    return $this->hasOne('App\Modeli\OsnovnaPloca', 'racunar_id', 'id');
+    {
+        return $this->hasOne('App\Modeli\OsnovnaPloca', 'racunar_id', 'id');
     }
-    
+
     public function memorije()
-	{
-		return $this->hasMany('App\Modeli\Memorija', 'racunar_id', 'id');
-	}
+    {
+        return $this->hasMany('App\Modeli\Memorija', 'racunar_id', 'id');
+    }
 
-	public function hddovi()
-	{
-		return $this->hasMany('App\Modeli\Hdd', 'racunar_id', 'id');
-	}
+    public function hddovi()
+    {
+        return $this->hasMany('App\Modeli\Hdd', 'racunar_id', 'id');
+    }
 
-	public function procesori()
-	{
-	    return $this->hasMany('App\Modeli\Procesor', 'racunar_id', 'id');
-	}
+    public function procesori()
+    {
+        return $this->hasMany('App\Modeli\Procesor', 'racunar_id', 'id');
+    }
 
-	public function grafickiAdapteri()
-	{
-	    return $this->hasMany('App\Modeli\GrafickiAdapter', 'racunar_id', 'id');
+    public function grafickiAdapteri()
+    {
+        return $this->hasMany('App\Modeli\GrafickiAdapter', 'racunar_id', 'id');
     }
 
     public function napajanja()
-	{
-	    return $this->hasMany('App\Modeli\Napajanje', 'racunar_id', 'id');
+    {
+        return $this->hasMany('App\Modeli\Napajanje', 'racunar_id', 'id');
     }
-    
+
     public function servisi()
-	{
-	    return $this->hasMany('App\Modeli\Servis', 'racunar_id', 'id');
+    {
+        return $this->hasMany('App\Modeli\Servis', 'racunar_id', 'id');
     }
-    
+
     public function aplikacije()
     {
         return $this->belongsToMany('App\Modeli\Aplikacija', 'aplikacije_racunari', 'racunar_id', 'aplikacija_id');
@@ -104,4 +104,5 @@ class Racunar extends Model
     {
         return $query->where('brend', 1);
     }
+
 }

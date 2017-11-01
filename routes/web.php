@@ -36,6 +36,19 @@ Route::post('racuni/brisanje', 'Servis\RacuniKontroler@postBrisanje')->name('rac
 Route::post('racuni/dodavanje/slike/{id}', 'Servis\RacuniKontroler@postDodavanjeSlike')->name('racuni.dodavanje.slike');
 Route::post('racuni/brisanje/slike', 'Servis\RacuniKontroler@postBrisanjeSlike')->name('racuni.brisanje.slike');
 
+// Otpremnice
+Route::get('otpremnice', 'Servis\OtpremniceKontroler@getLista')->name('otpremnice');
+Route::get('otpremnice/dodavanje/{id_racuna?}', 'Servis\OtpremniceKontroler@getDodavanje')->name('otpremnice.dodavanje.get');
+Route::post('otpremnice/dodavanje', 'Servis\OtpremniceKontroler@postDodavanje')->name('otpremnice.dodavanje.post');
+Route::get('otpremnice/izmena/{id}', 'Servis\OtpremniceKontroler@getIzmena')->name('otpremnice.izmena.get');
+Route::post('otpremnice/izmena/{id}', 'Servis\OtpremniceKontroler@postIzmena')->name('otpremnice.izmena.post');
+Route::get('otpremnice/detalj/{id}', 'Servis\OtpremniceKontroler@getDetalj')->name('otpremnice.detalj');
+Route::post('otpremnice/brisanje', 'Servis\OtpremniceKontroler@postBrisanje')->name('otpremnice.brisanje');
+// Otpremnice slike
+Route::post('otpremnice/dodavanje/slike/{id}', 'Servis\otpremniceKontroler@postDodavanjeSlike')->name('otpremnice.dodavanje.slike');
+Route::post('otpremnice/brisanje/slike', 'Servis\otpremniceKontroler@postBrisanjeSlike')->name('otpremnice.brisanje.slike');
+
+// Otpremnice stavke
 // SIFARNICI
 // Proizvodjaci
 Route::get('sifarnici/proizvodjaci', 'Sifarnici\ProizvodjaciKontroler@getLista')->name('proizvodjaci');
@@ -284,6 +297,7 @@ Route::post('modeli/skeneri/brisanje', 'Modeli\SkeneriKontroler@postBrisanje')->
 Route::get('modeli/skeneri/uredjaji/{id}', 'Modeli\SkeneriKontroler@getUredjaji')->name('skeneri.modeli.uredjaji');
 Route::get('modeli/skeneri/racunari/{id}', 'Modeli\SkeneriKontroler@getRacunari')->name('skeneri.modeli.racunari');
 
+
 //Upsevi
 Route::get('modeli/upsevi/', 'Modeli\UpseviKontroler@getLista')->name('upsevi.modeli');
 Route::get('modeli/upsevi/dodavanje', 'Modeli\UpseviKontroler@getDodavanje')->name('upsevi.modeli.dodavanje.get');
@@ -294,3 +308,8 @@ Route::get('modeli/upsevi/detalj/{id}', 'Modeli\UpseviKontroler@getDetalj')->nam
 Route::post('modeli/upsevi/brisanje', 'Modeli\UpseviKontroler@postBrisanje')->name('upsevi.modeli.brisanje');
 Route::get('modeli/upsevi/uredjaji/{id}', 'Modeli\UpseviKontroler@getUredjaji')->name('upsevi.modeli.uredjaji');
 Route::get('modeli/upsevi/baterije/{id}', 'Modeli\UpseviKontroler@getBaterije')->name('upsevi.modeli.baterije');
+
+
+//OPREMA
+Route::get('oprema/procesori/', 'Oprema\ProcesoriKontroler@getLista')->name('procesori.oprema');
+
