@@ -36,7 +36,8 @@
             </a>
             <button id="brisanjeRacuna" class="btn btn-primary"
                     data-toggle="modal" data-target="#brisanjeModal"
-                    value="{{$racun->id}}">
+                    value="{{$racun->id}}"
+                    title="Brisanje računa">
                 <i class="fa fa-trash"></i>
             </button>
         </div>
@@ -84,10 +85,53 @@
 </div>
 <hr>
 <div class="row well" style="overflow: auto;">
-    TABELA OTPREMNICA ZA OVAJ RACUN
+    <h3>Otpremnice</h3>
+    <hr style="border-top: 1px solid #18BC9C">
+    @if($otpremnice->isEmpty())
+    <p class="text-danger">Trenutno nema podataka o otpremnicama za ovaj račun</p>
+    @else
+    <table class="table table-striped table-responsive">
+        <thead>
+            <tr>
+                <th style="width: 25%;">Broj</th>
+                <th style="width: 15%;">Datum</th>
+                <th style="width: 15%">Dobavljač</th>
+                <th style="width: 15%;">Broj profakture</th>
+                <th style="width: 15%; text-align: right;">Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($otpremnice as $otpremnica)
+            <tr>
+                <td>
+                    <a href="{{ route('otpremnice.detalj', $otpremnica->id) }}">
+                        <strong>{{ $otpremnica->broj }}</strong>
+                    </a>
+                </td>
+                <td>{{ \Carbon\Carbon::parse($otpremnica->datum)->format('d.m.Y') }}</td>
+                <td class="text-right">{{ $otpremnica->dobavljac->naziv }}</td>
+                <td class="text-right">{{ $otpremnica->broj_profakture }}</td>
+                <td class="text-right">
+                    <a href="{{ route('otpremnice.detalj', $otpremnica->id) }}" class="btn btn-success btn-xs">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+    @endif
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{{ route('otpremnice.dodavanje.get', $racun->id) }}" class="btn btn-primary btn-sm">
+                <i class="fa fa-plus-circle"></i> Dodaj otpremnicu
+            </a>
+        </div>
+        <div class="col-md-6 text-right">
+            {{ $otpremnice->links() }}
+        </div>
+    </div>
 </div>
-<hr>
-
 @endsection
 
 @section('traka')
@@ -163,11 +207,11 @@
         $('#brisanje-forma').attr('action', ruta);
     });
 
-    $(document).on('click', '#brisanjeRacuna', function () {
-        var id = $(this).val();
-        $('#idBrisanje').val(id);
-        var ruta = "{{ route('racuni.brisanje') }}";
-        $('#brisanje-forma').attr('action', ruta);
-    });
+//    $(document).on('click', '#brisanjeRacuna', function () {
+//        var id = $(this).val();
+//        $('#idBrisanje').val(id);
+//        var ruta = "{{ route('racuni.brisanje') }}";
+//        $('#brisanje-forma').attr('action', ruta);
+//    });
 </script>
 @endsection

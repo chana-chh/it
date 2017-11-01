@@ -10,6 +10,7 @@ use App\Http\Controllers\Kontroler;
 use App\Modeli\Racun;
 use App\Modeli\RacunSlika;
 use App\Modeli\UgovorOdrzavanje;
+use App\Modeli\Otpremnica;
 
 class RacuniKontroler extends Kontroler
 {
@@ -123,7 +124,8 @@ class RacuniKontroler extends Kontroler
     public function getDetalj($id)
     {
         $racun = Racun::find($id);
-        return view('servis.racuni_detalj')->with(compact('racun'));
+        $otpremnice = Racun::find($id)->otpremnice()->paginate(10);
+        return view('servis.racuni_detalj')->with(compact('racun', 'otpremnice'));
     }
 
     public function postIzmena(Request $request, $id)
