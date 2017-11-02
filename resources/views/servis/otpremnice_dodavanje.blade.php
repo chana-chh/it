@@ -8,7 +8,7 @@
 
 @section('naslov')
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <h1>
             <img class="slicica_animirana" alt="Ugovori"
                  src="{{ url('/images/otpremnice.png') }}" style="height:64px;">

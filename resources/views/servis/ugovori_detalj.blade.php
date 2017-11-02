@@ -159,7 +159,7 @@
 @endsection
 
 @section('traka')
-<div class="well">
+<div class="well" style="margin-top: 5rem;">
     <p>
         Ukupna sredstva po ugovoru:
         <strong class="text-info">{{ number_format($data->iznos_sredstava, 2, ',', '.') }}</strong>
