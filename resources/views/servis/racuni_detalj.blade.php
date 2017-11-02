@@ -207,11 +207,11 @@
         $('#brisanje-forma').attr('action', ruta);
     });
 
-//    $(document).on('click', '#brisanjeRacuna', function () {
-//        var id = $(this).val();
-//        $('#idBrisanje').val(id);
-//        var ruta = "{{ route('racuni.brisanje') }}";
-//        $('#brisanje-forma').attr('action', ruta);
-//    });
+    $(document).on('click', '#brisanjeRacuna', function () {
+        var id = $(this).val();
+        $('#idBrisanje').val(id);
+        var ruta = "{{ route('racuni.brisanje') }}";
+        $('#brisanje-forma').attr('action', ruta);
+    });
 </script>
 @endsection

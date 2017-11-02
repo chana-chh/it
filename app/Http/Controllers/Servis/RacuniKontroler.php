@@ -85,9 +85,6 @@ class RacuniKontroler extends Kontroler
         $img = $request->slika;
         $ime_slike = $id . '_' . $racun->broj . '_' . time() . '.' . $request->slika->getClientOriginalExtension();
         $lokacija = public_path('images/racuni/' . $ime_slike);
-//        $resize_img = Image::make($img)->heighten(300, function ($constraint) {
-//            $constraint->upsize();
-//        });
         $image = Image::make($img);
         $image->save($lokacija);
 

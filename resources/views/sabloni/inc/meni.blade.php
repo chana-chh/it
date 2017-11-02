@@ -9,14 +9,17 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ route('pocetna') }}">
-                    <span><img alt="IT oprema" src="{{url('/images/c.png')}}" style="height:32px;  width:32px"></span>&emsp;{{ config('app.name') }}</a>
+                    <span>
+                        <img alt="IT oprema" src="{{url('/images/c.png')}}" style="height:32px;  width:32px">
+                    </span>&emsp;{{ config('app.name') }}</a>
             </div>
 
             <div class="collapse navbar-collapse" id="kolaps">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href=""> <i class="fa fa-bar-chart fa-fw" style="color: #18BC9C"></i> Statistika</a></li>
                     <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-cog fa-spin fa-fw" style="color: #18BC9C"></i>  Servis<span class="caret">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="fa fa-cog fa-fw" style="color: #18BC9C"></i> Servis<span class="caret">
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="">Servis</a></li>
@@ -27,7 +30,8 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-server fa-fw" style="color: #18BC9C"></i>  Oprema<span class="caret">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="fa fa-server fa-fw" style="color: #18BC9C"></i> Oprema<span class="caret">
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="">Računari</a></li>
@@ -49,7 +53,8 @@
                     </li>
 
                     <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-server fa-fw" style="color: #18BC9C"></i>  Modeli<span class="caret">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="fa fa-server fa-fw" style="color: #18BC9C"></i> Modeli<span class="caret">
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{route('procesori.modeli')}}">Procesori</a></li>
@@ -67,8 +72,8 @@
                     </li>
 
                     <li class="dropdown">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-wrench fa-fw" style="color: #18BC9C"></i>
-                            Šifarnici <span class="caret">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="fa fa-wrench fa-fw" style="color: #18BC9C"></i> Šifarnici<span class="caret">
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('proizvodjaci') }}">Proizvođači</a></li>
