@@ -21,12 +21,12 @@
         <tbody style="font-size: 2rem;">
             <tr>
                 <th style="width: 20%;">Serijski broj:</th>
-                <td style="width: 80%;">{{$oprema->serijski_broj}}</td>
+                <td style="width: 80%;">{{$uredjaj->serijski_broj}}</td>
             </tr>
 
             <tr>
                 <th style="width: 20%;">Otpremnica:</th>
-                <td style="width: 80%;">{{$oprema->stavkaOtpremnice->otpremnica->broj}}
+                <td style="width: 80%;">{{$uredjaj->stavkaOtpremnice->otpremnica->broj}}
                 </td>
             </tr>
         </tbody>
@@ -36,9 +36,9 @@
 
 <div class="row">
     <div class="col-md-12">
-<h3>Ugrađen je u računar {{$oprema->racunar->ime}} koji se nalazi u {{$oprema->racunar->kancelarija->lokacija->naziv}}, kancelarija {{$oprema->racunar->kancelarija->naziv}}</h3>
-@if ($oprema->racunar->zaposleni)
-<h4>Ovaj računar koristi {{$oprema->racunar->zaposleni->prezime}} {{$oprema->racunar->zaposleni->ime}}</h4>
+<h3>Ugrađen je u računar {{$uredjaj->racunar->ime}} koji se nalazi u {{$uredjaj->racunar->kancelarija->lokacija->naziv}}, kancelarija {{$uredjaj->racunar->kancelarija->naziv}}</h3>
+@if ($uredjaj->racunar->zaposleni)
+<h4>Ovaj računar koristi {{$uredjaj->racunar->zaposleni->prezime}} {{$uredjaj->racunar->zaposleni->ime}}</h4>
 @else
 <h4>Ovaj računar ne koristi nijedan činovnik</h4>
 @endif
@@ -51,7 +51,7 @@
 <h5>Napomena: 
     <br>
     <hr>
-    <em>{{$oprema->napomena}}</em>
+    <em>{{$uredjaj->napomena}}</em>
 </h5>
 </div>
 </div>
@@ -78,7 +78,7 @@
             <button id="brisanjeUgovora" class="btn btn-primary"
                     title="Reciklaža procesora"
                     data-toggle="modal" data-target="#brisanjeModal"
-                    value="{{$oprema->id}}">
+                    value="{{$uredjaj->id}}">
                 <i class="fa fa-recycle"></i>
             </button>
         </div>
@@ -102,45 +102,45 @@
         <tbody>
             <tr>
                 <th style="width: 40%;">Naziv:</th>
-                <td style="width: 60%;">{{$oprema->procesorModel->naziv}}</td>
+                <td style="width: 60%;">{{$uredjaj->procesorModel->naziv}}</td>
             </tr>
             <tr>
                 <th style="width: 40%;">Proizvođač:</th>
-                <td style="width: 60%;">{{$oprema->procesorModel->proizvodjac->naziv}}</td>
+                <td style="width: 60%;">{{$uredjaj->procesorModel->proizvodjac->naziv}}</td>
             </tr>
 
              <tr>
                 <th style="width: 40%;">Soket:</th>
-                <td style="width: 60%;">{{$oprema->procesorModel->soket->naziv}}
+                <td style="width: 60%;">{{$uredjaj->procesorModel->soket->naziv}}
                 </td>
             </tr>
 
             <tr>
                 <th style="width: 40%;">Takt:</th>
-                <td style="width: 60%;">{{$oprema->procesorModel->takt}}
+                <td style="width: 60%;">{{$uredjaj->procesorModel->takt}}
                 </td>
             </tr>
 
             <tr>
                 <th style="width: 40%;">Keš:</th>
-                <td style="width: 60%;">{{$oprema->procesorModel->kes}}
+                <td style="width: 60%;">{{$uredjaj->procesorModel->kes}}
                 </td>
             </tr>
 
             <tr>
                 <th style="width: 40%;">Broj jezgara:</th>
-                <td style="width: 60%;">{{$oprema->procesorModel->broj_jezgara}}
+                <td style="width: 60%;">{{$uredjaj->procesorModel->broj_jezgara}}
                 </td>
             </tr>
 
             <tr>
                 <th style="width: 40%;">Broj niti:</th>
-                <td style="width: 60%;">{{$oprema->procesorModel->broj_niti}}
+                <td style="width: 60%;">{{$uredjaj->procesorModel->broj_niti}}
                 </td>
             </tr> 
             <tr>
                 <th style="width: 40%;">Ocena:</th>
-                <td style="width: 60%;">{{$oprema->procesorModel->ocena}}
+                <td style="width: 60%;">{{$uredjaj->procesorModel->ocena}}
                 </td>
             </tr>
         </tbody>
@@ -152,13 +152,13 @@
 
 <div class="row well" style="margin-right: 1px; margin-left: 1px">
     <div class="col-md-12">
-<h3>Broj procesora ovog modela: <a href="{{route('procesori.modeli.uredjaji', $oprema->id) }}" title="Pregled svih uređaja ovog modela procesora"> {{$brojno_stanje}} </a></h3>
+<h3>Broj procesora ovog modela: <a href="{{route('procesori.modeli.uredjaji', $uredjaj->id) }}" title="Pregled svih uređaja ovog modela procesora"> {{$brojno_stanje}} </a></h3>
 </div>
 </div>
 
 <div class="row" style="margin-top: 50px">
 <div class="col-md-12 text-center">
-    <a href="{{$oprema->procesorModel->link}}" target="_blank"><img alt="link" src="{{url('/images/link.png')}}" style="height:32px;"></a>
+    <a href="{{$uredjaj->procesorModel->link}}" target="_blank"><img alt="link" src="{{url('/images/link.png')}}" style="height:32px;"></a>
 </div>
 </div>
 

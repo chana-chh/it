@@ -33,8 +33,10 @@ class UpseviKontroler extends Kontroler
     {
 
         $this->validate($request, [
-               'naziv' => ['required','unique:upsevi_modeli,naziv'],
-               'proizvodjac_id' => ['required']
+               'naziv' => ['required','unique:ups_modeli,naziv'],
+               'proizvodjac_id' => ['required'],
+               'baterija' => ['required'],
+               'broj_baterija' => ['required']
             ]);
 
         $data = new UpsModel();
@@ -67,8 +69,10 @@ class UpseviKontroler extends Kontroler
     {
 
             $this->validate($request, [
-                'naziv' => ['required','max:50','unique:upsevi_modeli,naziv,' .$id],
-                'proizvodjac_id' => ['required']
+                'naziv' => ['required','max:50','unique:ups_modeli,naziv,' .$id],
+                 'proizvodjac_id' => ['required'],
+               'baterija' => ['required'],
+               'broj_baterija' => ['required']
             ]);
         
         $data = UpsModel::find($id);

@@ -23,7 +23,7 @@
         <hr>
 <div class="row">
     <div class="col-md-12">
-@if($oprema->isEmpty())
+@if($uredjaj->isEmpty())
             <h3 class="text-danger">Trenutno nema stavki u bazi podataka</h3>
         @else
 <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
@@ -37,7 +37,7 @@
             <i class="fa fa-cogs"></i>&emsp;Akcije</th>
     </thead>
     <tbody>
-        @foreach ($oprema as $o)
+        @foreach ($uredjaj as $o)
         <tr>
             <td>{{$o->id}}</td>
             <td>

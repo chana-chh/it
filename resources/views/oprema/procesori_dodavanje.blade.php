@@ -30,26 +30,26 @@
                 </div>
                 </div>
 
-                <div class="col-md-4">
-                   <div class="form-group{{ $errors->has('otpremnica_id') ? ' has-error' : '' }}">
-                    <label for="otpremnica_id">Otpremnica:</label>
-                    <select name="otpremnica_id" id="otpremnica_id" class="chosen-select form-control" data-placeholder="otpremnice ..." >
+                <div class="col-md-5">
+                   <div class="form-group{{ $errors->has('stavka_otpremnica_id') ? ' has-error' : '' }}">
+                    <label for="stavka_otpremnica_id">Stavka otpremnice:</label>
+                    <select name="stavka_otpremnica_id" id="stavka_otpremnica_id" class="chosen-select form-control" data-placeholder="otpremnice ..." >
                         <option value=""></option>
                         @foreach($otpremnice as $o)
-                        <option value="{{ $o->id }}"{{ old('otpremnica_id') == $o->id ? ' selected' : '' }}>
-                            {{ $o->dobavljac->naziv }}, {{ $o->broj }} od {{ $o->datum }}
+                        <option value="{{ $o->id }}"{{ old('stavka_otpremnica_id') == $o->id ? ' selected' : '' }}>
+                            {{ $o->otpremnica->dobavljac->naziv }}, {{ $o->otpremnica->broj }} od {{ $o->otpremnica->datum }}, {{$o->naziv}}
                         </option>
                         @endforeach
                     </select>
-                    @if ($errors->has('otpremnica_id'))
+                    @if ($errors->has('stavka_otpremnica_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('otpremnica_id') }}</strong>
+                            <strong>{{ $errors->first('stavka_otpremnica_id') }}</strong>
                         </span>
                     @endif
                 </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                    <div class="form-group{{ $errors->has('procesor_model_id') ? ' has-error' : '' }}">
                     <label for="procesor_model_id">Model procesora:</label>
                     <select name="procesor_model_id" id="procesor_model_id" class="chosen-select form-control" data-placeholder="model ..." required>

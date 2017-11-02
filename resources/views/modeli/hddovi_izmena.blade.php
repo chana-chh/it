@@ -3,18 +3,35 @@
 @section('meni') 
 @include('sabloni.inc.meni')
 @endsection @section('naslov')
-
 <div class="row">
-    <div class="col-md-10 col-md-offset-1">
-        <div class="row">
-            <div class="col-md-12">
-
-                <h1 class="page-header">
-                    <span>
-                        <img class="slicica_animirana" alt="Modeli čvrstih diskova - izmena" src="{{url('/images/hdd.png')}}" style="height:64px;">
-                    </span>&emsp;Izmena detalja modela čvrstog diska</h1>
-            </div>
+    <div class="col-md-8">
+        <h1>
+            <img class="slicica_animirana" alt="Modeli čvrstih diskova - izmena"
+                  src="{{url('/images/hdd.png')}}" style="height:64px;">
+            &emsp;Izmena detalja modela čvrstog diska
+        </h1>
+    </div>
+</div>
+<hr>
+<div class="row" style="margin-bottom: 16px;">
+    <div class="col-md-12">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="window.history.back();"
+               title="Povratak na prethodnu stranu">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('hddovi.modeli') }}"
+               title="Povratak na listu modela čvrstih diskova">
+                <i class="fa fa-list"></i>
+            </a>
         </div>
+    </div>
+</div>
+
         <div class="row ceo_dva">
             <div class="col-md-12 boxic">
 
@@ -154,26 +171,7 @@
             </div>
                 </form>
             </div>
-            
-            <div class="row dugmici">
-                <div class="col-md-12" style="margin-top: 20px">
-                    <div class="form-group">
-                        <div class="col-md-6 text-left">
-                            <a class="btn btn-info" href="{{route('hddovi.modeli')}}" title="Povratak na listu modela čvrstih diskova">
-                                <i class="fa fa-list" style="color:#2C3E50"></i>
-                            </a>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <a class="btn btn-info" href="{{route('pocetna')}}" title="Povratak na početnu stranu">
-                                <i class="fa fa-home" style="color:#2C3E50"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
-</div>
 @endsection
 
 @section('skripte')
