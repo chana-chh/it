@@ -57,6 +57,13 @@ Route::post('sifarnici/proizvodjaci/brisanje', 'Sifarnici\ProizvodjaciKontroler@
 Route::post('sifarnici/proizvodjaci/izmena', 'Sifarnici\ProizvodjaciKontroler@postIzmena')->name('proizvodjaci.izmena');
 Route::post('sifarnici/proizvodjaci/detalj', 'Sifarnici\ProizvodjaciKontroler@postDetalj')->name('proizvodjaci.detalj');
 
+// Dobavljaci
+Route::get('sifarnici/dobavljaci', 'Sifarnici\DobavljaciKontroler@getLista')->name('dobavljaci');
+Route::post('sifarnici/dobavljaci/dodavanje', 'Sifarnici\DobavljaciKontroler@postDodavanje')->name('dobavljaci.dodavanje');
+Route::post('sifarnici/dobavljaci/brisanje', 'Sifarnici\DobavljaciKontroler@postBrisanje')->name('dobavljaci.brisanje');
+Route::post('sifarnici/dobavljaci/izmena', 'Sifarnici\DobavljaciKontroler@postIzmena')->name('dobavljaci.izmena');
+Route::post('sifarnici/dobavljaci/detalj', 'Sifarnici\DobavljaciKontroler@postDetalj')->name('dobavljaci.detalj');
+
 // Lokacije
 Route::get('sifarnici/lokacije', 'Sifarnici\LokacijeKontroler@getLista')->name('lokacije');
 Route::post('sifarnici/lokacije/dodavanje', 'Sifarnici\LokacijeKontroler@postDodavanje')->name('lokacije.dodavanje');
