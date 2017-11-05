@@ -49,6 +49,10 @@ Route::post('otpremnice/dodavanje/slike/{id}', 'Servis\otpremniceKontroler@postD
 Route::post('otpremnice/brisanje/slike', 'Servis\otpremniceKontroler@postBrisanjeSlike')->name('otpremnice.brisanje.slike');
 
 // Otpremnice stavke
+Route::get('otpremnice/stavke/{id_otpremnice}', 'Servis\OtpremniceStavkeKontroler@getLista')->name('otpremnice.stavke');
+
+
+
 // SIFARNICI
 // Proizvodjaci
 Route::get('sifarnici/proizvodjaci', 'Sifarnici\ProizvodjaciKontroler@getLista')->name('proizvodjaci');

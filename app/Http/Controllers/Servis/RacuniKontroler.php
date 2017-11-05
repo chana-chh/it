@@ -121,7 +121,7 @@ class RacuniKontroler extends Kontroler
     public function getDetalj($id)
     {
         $racun = Racun::find($id);
-        $otpremnice = Racun::find($id)->otpremnice()->paginate(10);
+        $otpremnice = Racun::find($id)->otpremnice()->paginate(5);
         return view('servis.racuni_detalj')->with(compact('racun', 'otpremnice'));
     }
 

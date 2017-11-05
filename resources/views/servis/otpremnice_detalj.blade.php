@@ -81,9 +81,46 @@
 </div>
 <hr>
 <div class="row well" style="overflow: auto;">
-    <h3>Stavke otpremnice</h3>
-    <hr style="border-top: 1px solid #18BC9C">
 
+    <a href="{{ route('otpremnice.stavke', $otpremnica->id) }}" class="btn btn-primary btn-lg">
+        Stavke otpremnice <i class="fa fa-arrow-right fa-fw"></i>
+    </a>
+    <hr style="border-top: 1px solid #18BC9C">
+    @if($stavke->isEmpty())
+    <p class="text-danger">Trenutno nema stavki za ovu otpremnicu</p>
+    @else
+    <table class="table table-striped table-responsive">
+        <thead>
+            <tr>
+                <th style="width: 10%;">#</th>
+                <th style="width: 45%;">Naziv</th>
+                <th style="width: 15%;">Jedinica mere</th>
+                <th style="width: 15%; text-align: right;">Količina</th>
+                <th style="width: 15%; text-align: right;">Akcije</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($stavke as $stavka)
+            <tr>
+                <td>{{ $stavka->id }}</td>
+                <td>{{ $stavka->naziv }}</td>
+                <td>{{ $stavka->jedinica_mere }}</td>
+                <td class="text-right">{{ $stavka->kolicina }}</td>
+                <td class="text-right">
+                    <a href="" class="btn btn-success btn-xs">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+    @endif
+    <div class="row">
+        <div class="col-md-6 col-md-offset-6 text-right">
+            {{ $stavke->links() }}
+        </div>
+    </div>
 </div>
 @endsection
 

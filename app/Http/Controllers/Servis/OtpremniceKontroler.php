@@ -34,6 +34,7 @@ class OtpremniceKontroler extends Kontroler
             'broj' => [
                 'required',
                 'max:50',
+                'unique:otpremnice,broj'
             ],
             'datum' => [
                 'required',
@@ -44,14 +45,14 @@ class OtpremniceKontroler extends Kontroler
             ],
         ]);
 
-        $data = new Otpremnica();
-        $data->broj = $request->broj;
-        $data->racun_id = $request->racun_id;
-        $data->datum = $request->datum;
-        $data->dobavljac_id = $request->dobavljac_id;
-        $data->broj_profakture = $request->broj_profakture;
-        $data->napomena = $request->napomena;
-        $data->save();
+        $otpremnica = new Otpremnica();
+        $otpremnica->broj = $request->broj;
+        $otpremnica->racun_id = $request->racun_id;
+        $otpremnica->datum = $request->datum;
+        $otpremnica->dobavljac_id = $request->dobavljac_id;
+        $otpremnica->broj_profakture = $request->broj_profakture;
+        $otpremnica->napomena = $request->napomena;
+        $otpremnica->save();
 
         Session::flash('uspeh', 'Otpremnica je uspešno dodata!');
         return redirect()->route('otpremnice');
@@ -71,7 +72,7 @@ class OtpremniceKontroler extends Kontroler
         $otpremnica = Otpremnica::find($id);
 
         $img = $request->slika;
-        $ime_slike = $id . '_' . $otpremnica->broj . '_' . time() . '.' . $request->slika->getClientOriginalExtension();
+        $ime_slike = $id . '_' . time() . '.' . $request->slika->getClientOriginalExtension();
         $lokacija = public_path('images/otpremnice/' . $ime_slike);
         $image = Image::make($img);
         $image->save($lokacija);
@@ -110,7 +111,8 @@ class OtpremniceKontroler extends Kontroler
     public function getDetalj($id)
     {
         $otpremnica = Otpremnica::find($id);
-        return view('servis.otpremnice_detalj')->with(compact('otpremnica'));
+        $stavke = Otpremnica::find($id)->stavke()->paginate(5);
+        return view('servis.otpremnice_detalj')->with(compact('otpremnica', 'stavke'));
     }
 
     public function postIzmena(Request $request, $id)
@@ -119,6 +121,7 @@ class OtpremniceKontroler extends Kontroler
             'broj' => [
                 'required',
                 'max:50',
+                'unique:otpremnice,broj,' . $id
             ],
             'datum' => [
                 'required',

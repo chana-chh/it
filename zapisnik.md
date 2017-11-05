@@ -30,3 +30,5 @@ dodati pivot za stampaci_toneri
 ticketing system: s_kvarovi, s_statusi, prijave(broj_prijave, zaposleni, kancelarija, datum_prijave, status)
 
 servis posebna tabela za svaku vrstu uredjaja
+
+Razmotriti skidanje unique index-a na poljima nziva u tabelema gde je softDelete (racuna brisane kao vec zauzete).
