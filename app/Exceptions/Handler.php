@@ -46,14 +46,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        
-                if($exception instanceof PDOException)
-            {
-            if (strpos($exception->getMessage(),'1451') !== true) {
-            Session::flash('greska', 'Ova stavka je vezana za druge objekte zbog toga je nije moguće obrisati !!!');
-            return redirect()->back();
+
+        if ($exception instanceof PDOException) {
+            // dd($exception->getMessage());
+            if (strpos($exception->getMessage(), '1451') !== true) {
+                Session::flash('greska', 'Ova stavka je vezana za druge objekte zbog toga je nije moguće obrisati !!!');
+                return redirect()->back();
             }
-        
         }
         return parent::render($request, $exception);
     }
@@ -68,9 +67,11 @@ class Handler extends ExceptionHandler
     protected function unauthenticated($request, AuthenticationException $exception)
     {
         if ($request->expectsJson()) {
-            return response()->json(['error' => 'Unauthenticated.'], 401);
+            return response()->json([
+                        'error' => 'Unauthenticated.'], 401);
         }
 
         return redirect()->guest(route('login'));
     }
+
 }

@@ -31,6 +31,10 @@ ticketing system: s_kvarovi, s_statusi, prijave(broj_prijave, zaposleni, kancela
 
 servis posebna tabela za svaku vrstu uredjaja
 
+
 https://github.com/yajra/laravel-datatables
 https://yajrabox.com/docs/laravel-datatables/master/releases
 https://datatables.yajrabox.com/starter
+
+Razmotriti skidanje unique index-a na poljima nziva u tabelema gde je softDelete (racuna brisane kao vec zauzete).
+
