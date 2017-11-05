@@ -59,10 +59,12 @@ Route::post('sifarnici/proizvodjaci/detalj', 'Sifarnici\ProizvodjaciKontroler@po
 
 // Dobavljaci
 Route::get('sifarnici/dobavljaci', 'Sifarnici\DobavljaciKontroler@getLista')->name('dobavljaci');
-Route::post('sifarnici/dobavljaci/dodavanje', 'Sifarnici\DobavljaciKontroler@postDodavanje')->name('dobavljaci.dodavanje');
+Route::get('sifarnici/dobavljaci/dodavanje', 'Sifarnici\DobavljaciKontroler@getDodavanje')->name('dobavljaci.dodavanje.get');
+Route::post('sifarnici/dobavljaci/dodavanje', 'Sifarnici\DobavljaciKontroler@postDodavanje')->name('dobavljaci.dodavanje.post');
+Route::get('sifarnici/dobavljaci/izmena/{id}', 'Sifarnici\DobavljaciKontroler@getIzmena')->name('dobavljaci.izmena.get');
+Route::post('sifarnici/dobavljaci/izmena/{id}', 'Sifarnici\DobavljaciKontroler@postIzmena')->name('dobavljaci.izmena.post');
+Route::get('sifarnici/dobavljaci/detalj/{id}', 'Sifarnici\DobavljaciKontroler@getDetalj')->name('dobavljaci.detalj');
 Route::post('sifarnici/dobavljaci/brisanje', 'Sifarnici\DobavljaciKontroler@postBrisanje')->name('dobavljaci.brisanje');
-Route::post('sifarnici/dobavljaci/izmena', 'Sifarnici\DobavljaciKontroler@postIzmena')->name('dobavljaci.izmena');
-Route::post('sifarnici/dobavljaci/detalj', 'Sifarnici\DobavljaciKontroler@postDetalj')->name('dobavljaci.detalj');
 
 // Lokacije
 Route::get('sifarnici/lokacije', 'Sifarnici\LokacijeKontroler@getLista')->name('lokacije');
@@ -100,6 +102,7 @@ Route::get('sifarnici/zaposleni/izmena/{id}', 'Sifarnici\ZaposleniKontroler@getI
 Route::post('sifarnici/zaposleni/izmena/{id}', 'Sifarnici\ZaposleniKontroler@postIzmena')->name('zaposleni.izmena.post');
 Route::get('sifarnici/zaposleni/detalj/{id}', 'Sifarnici\ZaposleniKontroler@getDetalj')->name('zaposleni.detalj');
 Route::post('sifarnici/zaposleni/brisanje', 'Sifarnici\ZaposleniKontroler@postBrisanje')->name('zaposleni.brisanje');
+Route::get('sifarnici/zaposleni/ajax', 'Sifarnici\ZaposleniKontroler@getAjax')->name('zaposleni.ajax');
 
 // Zaposleni Mobilni
 Route::post('sifarnici/zaposleni/mobilni/dodavanje', 'Sifarnici\ZaposleniMobilniKontroler@postDodavanje')->name('zaposleni.mobilni.dodavanje.post');

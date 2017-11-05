@@ -30,3 +30,7 @@ dodati pivot za stampaci_toneri
 ticketing system: s_kvarovi, s_statusi, prijave(broj_prijave, zaposleni, kancelarija, datum_prijave, status)
 
 servis posebna tabela za svaku vrstu uredjaja
+
+https://github.com/yajra/laravel-datatables
+https://yajrabox.com/docs/laravel-datatables/master/releases
+https://datatables.yajrabox.com/starter

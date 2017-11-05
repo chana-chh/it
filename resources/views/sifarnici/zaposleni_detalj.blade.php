@@ -15,6 +15,34 @@
 @endsection
 
 @section('sadrzaj')
+<div class="row" style="margin-bottom: 16px;">
+    <div class="col-md-12">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="window.history.back();"
+               title="Povratak na prethodnu stranu">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+            <a class="btn btn-primary" href="{{route('zaposleni')}}"
+               title="Povratak na listu zaposlenih">
+                <i class="fa fa-list"></i>
+            </a>
+            <a class="btn btn-primary" href="{{route('zaposleni.izmena.get', $zaposleni->id) }}"
+               title="Izmena podataka o zaposlenom">
+                <i class="fa fa-pencil"></i>
+            </a>
+            <button id="brisanjeOtpremnice" class="btn btn-primary"
+                    data-toggle="modal" data-target="#brisanjeModal"
+                    value="{{$zaposleni->id}}"
+                    title="Brisanje zaposlenog">
+                <i class="fa fa-trash"></i>
+            </button>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
 <table class="table table-striped" style="table-layout: fixed;">
@@ -56,7 +84,7 @@
 </div>
     
     {{--  POCETAK REDOVI MOB/Email  --}}
-    <div class="row well" style="overflow: auto; margin-top: 40px">
+    <div class="row well" style="margin: 40px 0px 0px 5px">
         {{--  POCETAK MOBILNI  --}}
         <div class="col-md-6">
         <h3>Brojevi mobilnog telefona:</h3>
@@ -417,29 +445,13 @@
 
 </div> {{-- Kraj reda sa well-om --}}
 
-<hr>
-
-<div class="row dugmici">
-        <div class="col-md-10 col-md-offset-1" style="margin-top: 20px">
-
-            <div class="col-md-4 text-left">
-                <a class="btn btn-info" href="{{route('zaposleni')}}" title="Povratak na listu zaposlenih"><i class="fa fa-list" style="color:#2C3E50"></i></a>
-            </div>
-
-            <div class="col-md-4 text-center">
-                <a class="btn btn-info" href="{{route('zaposleni.izmena.get', $zaposleni->id) }}" title="Izmena osnovnih podataka o zaposlenom"><i class="fa fa-pencil" style="color:#2C3E50"></i></a>
-            </div>
-
-            <div class="col-md-4 text-right">
-                <a class="btn btn-info" href="{{route('pocetna')}}" title="Povratak na početnu stranu"><i class="fa fa-home" style="color:#2C3E50"></i></a>
-            </div>
-
-        </div>
-    </div>
+<!--  POCETAK brisanjeModal  -->
+@include('sifarnici.inc.modal_brisanje')
+<!--  KRAJ brisanjeModal  -->
 @endsection
 
 @section('traka')
-<div class="panel panel-default" style="margin: 0px 20px 0px 0px;">
+<div class="panel panel-default" style="margin-top: 5rem;">
   <div class="panel-heading">
     <h3 class="panel-title">Fotografija zaposlenog:</h3>
   </div>

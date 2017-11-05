@@ -63,4 +63,9 @@ class Kancelarija extends Model
 	{
 		return $this->hasMany('App\Modeli\Telefon', 'kancelarija_id', 'id');
 	}
+
+	public function sviPodaci()
+    {
+        return $this->naziv . ', ' . $this->lokacija->naziv. ' - ' . $this->sprat->naziv;
+    }
 }

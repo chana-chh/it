@@ -17,6 +17,11 @@ class DobavljaciKontroler extends Kontroler
     	return view('sifarnici.dobavljaci')->with(compact ('data'));
     }
 
+    public function getDodavanje()
+    {
+        return view('sifarnici.dobavljaci_dodavanje');
+    }
+
     public function postDodavanje(Request $request)
     {
         $this->validate($request, [
@@ -29,22 +34,31 @@ class DobavljaciKontroler extends Kontroler
 
         $data = new Dobavljac();
         $data->naziv = $request->naziv;
+        $data->adresa_mesto = $request->adresa_mesto;
         $data->adresa_ulica = $request->adresa_ulica;
         $data->adresa_broj = $request->adresa_broj;
+        $data->telefon = $request->telefon;
+        $data->email = $request->email;
+        $data->link = $request->link;
         $data->napomena = $request->napomena;
         $data->save();
 
-        Session::flash('uspeh','Stavka je uspešno dodata!');
+        Session::flash('uspeh','Dovaljač je uspešno dodat!');
         return redirect()->route('dobavljaci');
     }
 
-        public function postDetalj(Request $request)
-        {
-            if($request->ajax()){
-                $data = Dobavljac::find($request->id);
-                return response()->json($data);
-            }
-        }
+        public function getDetalj($id)
+    {
+        $model = Dobavljac::find($id);
+        return view('sifarnici.dobavljaci_detalj')->with(compact ('model'));
+    }
+
+    public function getIzmena($id)
+    {
+        $model = Dobavljac::find($id);
+
+        return view('sifarnici.dobavljaci_izmena')->with(compact ('model'));
+    }
 
         public function postIzmena(Request $request)
         {
@@ -57,10 +71,14 @@ class DobavljaciKontroler extends Kontroler
 
             $data = Dobavljac::find($id);
             $data -> naziv = $request -> nazivModal;
-            $data->adresa_ulica = $request->adresaModal;
-        	$data->adresa_broj = $request->brojModal;
-        	$data->napomena = $request->napomenaModal;
-            $data -> save();
+            $data->adresa_mesto = $request->adresa_mesto;
+            $data->adresa_ulica = $request->adresa_ulica;
+            $data->adresa_broj = $request->adresa_broj;
+            $data->telefon = $request->telefon;
+            $data->email = $request->email;
+            $data->link = $request->link;
+            $data->napomena = $request->napomena;
+            $data->save();
 
             Session::flash('uspeh','Stavka je uspešno izmenjena!');
             return Redirect::back();

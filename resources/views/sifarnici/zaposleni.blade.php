@@ -22,67 +22,18 @@
 <hr>
 <div class="row">
     <div class="col-md-12">
-        @if($data->isEmpty())
-        <h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
-        @else
         <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
             <thead>
-                <th style="width: 5%;">#</th>
-                <th style="width: 22%;">Prezime i ime</th>
-                <th style="width: 23%;">Uprava</th>
-                <th style="width: 10%;">Kancelarija</th>
-                <th style="width: 10%;">Mobilni</th>
-                <th style="width: 15%;">E-mail</th>
-                <th style="width: 15%;text-align:right">
-                    <i class="fa fa-cogs"></i>&emsp;Akcije</th>
+                <th style="width: 10%;">#</th>
+                <th style="width: 20%;">Ime</th>
+                <th style="width: 20%;">Uprava</th>
+                <th style="width: 20%;">Kancelarija</th>
+                <th style="width: 20%;">Email</th>
+                <th style="width: 10%; text-align:right;">
+                <i class="fa fa-cogs"></i>&emsp;Akcije
+            </th>
             </thead>
-            <tbody>
-                @foreach ($data as $d)
-                <tr>
-                    <td style="vertical-align: middle; line-height: normal;">{{$d->id}}</td>
-                    <td style="vertical-align: middle; line-height: normal;">
-                        <strong>{{$d->imePrezime()}}</strong>
-                    </td>
-                    <td style="vertical-align: middle; line-height: normal;">{{$d->uprava->naziv}}</td>
-                    <td style="vertical-align: middle; line-height: normal;">{{$d->kancelarija->naziv}}</td>
-                    <td style="vertical-align: middle; line-height: normal;">
-                        <ul class="liste_bez">
-                            @foreach ($d->mobilni as $mobilni)
-                            <li>
-                                {{ $mobilni->broj }}
-                            </li>
-                            @endforeach
-                        </ul>
-                    </td>
-                    <td style="vertical-align: middle; line-height: normal;">
-                        <ul class="liste_bez">
-                            @foreach ($d->emailovi as $email)
-                            <li>
-                                {{ $email->adresa }}
-                            </li>
-                            @endforeach
-                        </ul>
-                    </td>
-                    <td style="text-align:right; vertical-align: middle; line-height: normal;">
-                        <a class="btn btn-success btn-sm" 
-                            id="dugmeDetalj" href="{{ route('zaposleni.detalj', $d->id) }}">
-                            <i class="fa fa-eye"></i>
-                        </a>
-                        <a class="btn btn-info btn-sm" 
-                            id="dugmeIzmena" href="{{ route('zaposleni.izmena.get', $d->id) }}">
-                            <i class="fa fa-pencil"></i>
-                        </a>
-                        <button class="btn btn-danger btn-sm otvori-brisanje" 
-                            data-toggle="modal" data-target="#brisanjeModal"
-                            value="{{ $d->id }}">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
         </table>
-        @endif
     </div>
 </div>
 
@@ -102,14 +53,19 @@
             $('#brisanje-forma').attr('action', ruta);
         });
 
-
         var tabela = $('#tabela').DataTable({
 
-            columnDefs: [{
-                orderable: false,
-                searchable: false,
-                "targets": -1
-            }],
+        processing: true,
+        serverSide: true,
+        ajax: '{!! route('zaposleni.ajax') !!}',
+        columns: [
+            {data: 'id', name: 'id'},
+            {data: 'ime', name: 'ime'},
+            {data: 'uprava.naziv', name: 'uprava'},
+            {data: 'kancelarija.naziv', name: 'kancelarija'},
+            {data: 'email', name: 'email'},
+            {data: 'akcije', name: 'akcije', orderable: false, searchable: false},
+        ],
             responsive: true,
             stateSave: true,
             language: {

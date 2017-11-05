@@ -10,12 +10,40 @@
     <h1 class="page-header">
         <img class="slicica_animirana" alt="Model procesora detaljno" src="{{url('/images/cpu.png')}}" style="height:64px;">
         Detaljni pregled modela 
-         <i>{{ $procesor->naziv }}</i>
+         <em>{{ $procesor->naziv }}</em>
          procesora
     </h1>
 @endsection
 
 @section('sadrzaj')
+<div class="row" style="margin-bottom: 16px;">
+    <div class="col-md-12">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="window.history.back();"
+               title="Povratak na prethodnu stranu">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+            <a class="btn btn-primary" href="{{route('procesori.modeli')}}"
+                title="Povratak na listu modela procesora">
+                <i class="fa fa-list"></i>
+            </a>
+            <a class="btn btn-primary" href="{{route('procesori.modeli.izmena.get', $procesor->id) }}"
+           title="Izmena osnovnih podataka o modelu procesora">
+                <i class="fa fa-pencil"></i>
+            </a>
+            <button id="brisanjeModelaProcesora" class="btn btn-primary"
+                    title="Brisanje modela procesora"
+                    data-toggle="modal" data-target="#brisanjeModal"
+                    value="{{$procesor->id}}">
+                <i class="fa fa-trash"></i>
+            </button>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
 <table class="table table-striped" style="table-layout: fixed;">
@@ -69,32 +97,13 @@
 </div>
 </div>
 
-    <div class="row dugmici">
-        <div class="col-md-12" style="margin-top: 20px">
-    <div class="col-md-4 text-left">
-        <a class="btn btn-info" href="{{route('procesori.modeli')}}"
-           title="Povratak na listu modela procesora">
-            <i class="fa fa-list" style="color:#2C3E50"></i>
-        </a>
-    </div>
-    <div class="col-md-4 text-center">
-        <a class="btn btn-info" href="{{route('procesori.modeli.izmena.get', $procesor->id) }}"
-           title="Izmena osnovnih podataka o modelu procesora">
-            <i class="fa fa-pencil" style="color:#2C3E50"></i>
-        </a>
-    </div>
-    <div class="col-md-4 text-right">
-        <a class="btn btn-info" href="{{route('pocetna')}}"
-           title="Povratak na početnu stranu">
-            <i class="fa fa-home" style="color:#2C3E50"></i>
-        </a>
-    </div>
-</div>
-</div>
+<!--  POCETAK brisanjeModal -->
+@include('sifarnici.inc.modal_brisanje')
+<!--  KRAJ brisanjeModal  -->
 @endsection
 
 @section('traka')
-<div class="row">
+<div class="row" style="margin-top: 5rem;">
 <div class="col-md-6 col-md-offset-4">
 <p class="tankoza krug_mali">{{$procesor->ocena}}</p>
 </div>
@@ -121,4 +130,15 @@
 </div>
 </div>
 
+@endsection
+
+@section('skripte')
+<script>
+    $(document).on('click', '#brisanjeModelaProcesora', function () {
+        var id = $(this).val();
+        $('#idBrisanje').val(id);
+        var ruta = "{{ route('procesori.modeli.brisanje') }}";
+        $('#brisanje-forma').attr('action', ruta);
+    });
+</script>
 @endsection
