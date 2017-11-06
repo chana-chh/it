@@ -36,6 +36,9 @@
             <td>{{$kancelarija->lokacija->naziv}}</td>
             <td>{{$kancelarija->napomena}}</td>
             <td style="text-align:right;">
+                <a class="btn btn-primary btn-sm" id="dugmeDetalj" href="{{route('kancelarije.detalj.get', $kancelarija->id)}}">
+                    <i class="fa fa-eye"></i>
+                </a>
                 <button class="btn btn-success btn-sm otvori-izmenu"
                         data-toggle="modal" data-target="#editModal"
                         value="{{ $kancelarija->id }}">

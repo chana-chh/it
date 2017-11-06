@@ -31,6 +31,11 @@ class KancelarijeKontroler extends Kontroler
             }
         }
 
+        public function getDetalj($id){
+            $kancelarija = Kancelarija::find($id);
+            return view('sifarnici.kancelarije_detalj')->with(compact('kancelarija'));
+        }
+
 
         public function postDodavanje(Request $request)
     {

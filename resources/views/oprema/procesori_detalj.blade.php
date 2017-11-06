@@ -14,49 +14,7 @@
 @endsection
 
 @section('sadrzaj')
-<div class="row">
-    <div class="col-md-12">
-        
-<table class="table table-striped" style="table-layout: fixed;">
-        <tbody style="font-size: 2rem;">
-            <tr>
-                <th style="width: 20%;">Serijski broj:</th>
-                <td style="width: 80%;">{{$uredjaj->serijski_broj}}</td>
-            </tr>
-
-            <tr>
-                <th style="width: 20%;">Otpremnica:</th>
-                <td style="width: 80%;">{{$uredjaj->stavkaOtpremnice->otpremnica->broj}}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-<h3>Ugrađen je u računar {{$uredjaj->racunar->ime}} koji se nalazi u {{$uredjaj->racunar->kancelarija->lokacija->naziv}}, kancelarija {{$uredjaj->racunar->kancelarija->naziv}}</h3>
-@if ($uredjaj->racunar->zaposleni)
-<h4>Ovaj računar koristi {{$uredjaj->racunar->zaposleni->prezime}} {{$uredjaj->racunar->zaposleni->ime}}</h4>
-@else
-<h4>Ovaj računar ne koristi nijedan činovnik</h4>
-@endif
-
-</div>
-</div>
-    
-<div class="row ceo_dva">
-<div class="col-md-12 boxic">
-<h5>Napomena: 
-    <br>
-    <hr>
-    <em>{{$uredjaj->napomena}}</em>
-</h5>
-</div>
-</div>
-
-<div class="row" style="margin-top: 16px;">
+<div class="row" style="margin-bottom: 16px;">
     <div class="col-md-12">
         <div class="btn-group">
             <a class="btn btn-primary" onclick="window.history.back();"
@@ -75,8 +33,8 @@
                title="Izmena podataka procesora">
                 <i class="fa fa-pencil"></i>
             </a>
-            <button id="brisanjeUgovora" class="btn btn-primary"
-                    title="Reciklaža procesora"
+            <button id="idBrisanje" class="btn btn-primary"
+                    title="Otpis procesora"
                     data-toggle="modal" data-target="#brisanjeModal"
                     value="{{$uredjaj->id}}">
                 <i class="fa fa-recycle"></i>
@@ -85,13 +43,69 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-12">
+        
+<table class="table table-striped" style="table-layout: fixed;">
+        <tbody style="font-size: 2rem;">
+            <tr>
+                <th style="width: 20%;">Serijski broj:</th>
+                <td style="width: 80%;">{{$uredjaj->serijski_broj}}</td>
+            </tr>
+
+            <tr>
+                <th style="width: 20%;">Otpremnica:</th>
+                <td style="width: 80%;"><a
+                           href="{{ route('otpremnice.detalj', $uredjaj->stavkaOtpremnice->otpremnica->id) }}">
+                            {{$uredjaj->stavkaOtpremnice->otpremnica->broj}} 
+                        </a>
+                </td>
+            </tr>
+
+            <tr>
+                <th style="width: 20%;">Računar:</th>
+                <td style="width: 80%;">{{$uredjaj->racunar->ime}}
+                </td>
+            </tr>
+
+            <tr>
+                <th style="width: 20%;">Lokacija:</th>
+                <td style="width: 80%;"><a href="{{route('kancelarije.detalj.get', $uredjaj->racunar->kancelarija->id)}}">{{$uredjaj->racunar->kancelarija->lokacija->naziv}}, kancelarija {{$uredjaj->racunar->kancelarija->naziv}}</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+@if ($uredjaj->racunar->zaposleni)
+<h4>Ovaj računar koristi: <a href="{{ route('zaposleni.detalj', $uredjaj->racunar->zaposleni->id) }}">{{$uredjaj->racunar->zaposleni->imePrezime()}}</a></h4>
+@else
+<h4>Ovaj računar ne koristi nijedan činovnik</h4>
+@endif
+
+</div>
+</div>
+    
+<div class="row ceo_dva">
+<div class="col-md-12 boxic">
+<h5>Napomena: 
+    <br>
+    <hr>
+    <em>{{$uredjaj->napomena}}</em>
+</h5>
+</div>
+</div>
+
 <!--  POCETAK brisanjeModal  -->
 @include('sifarnici.inc.modal_brisanje')
 <!--  KRAJ brisanjeModal  -->
 @endsection
 
 @section('traka')
-<div class="row">
+<div class="row" style="margin-top: 5rem;">
     <div class="col-md-12">
 <div class="panel panel-info noborder">
   <div class="panel-heading">
@@ -145,6 +159,13 @@
             </tr>
         </tbody>
     </table>
+    <div class="row">
+    <div class="col-md-12 text-right">
+                <a class="btn btn-primary btn-sm" id="dugmeDetalj" href="{{route('procesori.modeli.detalj', $uredjaj->procesorModel->id)}}">
+                    <i class="fa fa-eye"></i>
+                </a>
+            </div>
+        </div>
   </div>
 </div>
 </div>
