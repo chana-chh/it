@@ -9,8 +9,7 @@
 @section('naslov')
 <h1 class="page-header">
     <img class="slicica_animirana" alt="Racun" src="{{ url('/images/otpremnice.png') }}" style="height:64px;">
-    Detaljni pregled otpremnice broj:
-    <em>{{ $otpremnica->broj }}</em>
+    Pregled otpremnice: <em>{{ $otpremnica->broj }}</em>
 </h1>
 @endsection
 
@@ -58,9 +57,11 @@
                 <tr>
                     <th style="width: 20%;">Račun:</th>
                     <td style="width: 80%;">
+                        @if($otpremnica->racun)
                         <a href="{{ route('racuni.detalj', $otpremnica->racun->id)}}">
                             <strong>{{ $otpremnica->racun->broj }}</strong>
                         </a>
+                        @endif
                     </td>
                 </tr>
                 <tr>

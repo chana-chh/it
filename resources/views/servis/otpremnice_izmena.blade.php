@@ -12,7 +12,7 @@
         <h1>
             <img class="slicica_animirana" alt="Ugovori"
                  src="{{ url('/images/otpremnice.png') }}" style="height:64px;">
-            &emsp;Izmena otpremnice
+            &emsp;Izmena otpremnice: <em>{{ $data->broj }}</em>
         </h1>
     </div>
 </div>

@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Šifarnici | Ugovor o održavanju')
+@section('naziv', 'Ugovor o održavanju')
 
 @section('meni')
 @include('sabloni.inc.meni')
@@ -17,8 +17,7 @@
 @section('naslov')
 <h1 class="page-header">
     <img class="slicica_animirana" alt="Ugovor" src="{{ url('/images/ugovor.png') }}" style="height:64px;">
-    Detaljni pregled ugovora broj:
-    <em>{{ $data->broj }}</em>
+    Pregled ugovora: <em>{{ $data->broj }}</em>
 </h1>
 @endsection
 

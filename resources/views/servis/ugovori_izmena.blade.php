@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Sifarnici | Ugovori dodavanje')
+@section('naziv', 'Ugovor o održavanju | Izmena')
 
 @section('meni')
 @include('sabloni.inc.meni')
@@ -12,7 +12,7 @@
         <h1>
             <img class="slicica_animirana" alt="Ugovori"
                  src="{{ url('/images/ugovor.png') }}" style="height:64px;">
-            &emsp;Izmena ugovora o održavanju
+            &emsp;Izmena ugovora o održavanju: <em>{{ $data->broj }}</em>
         </h1>
     </div>
 </div>

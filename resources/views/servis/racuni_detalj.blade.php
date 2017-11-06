@@ -9,8 +9,7 @@
 @section('naslov')
 <h1 class="page-header">
     <img class="slicica_animirana" alt="Racun" src="{{ url('/images/ugovor.png') }}" style="height:64px;">
-    Detaljni pregled računa broj:
-    <em>{{ $racun->broj }}</em>
+    Pregled računa: <em>{{ $racun->broj }}</em>
 </h1>
 @endsection
 

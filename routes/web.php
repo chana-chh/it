@@ -50,6 +50,12 @@ Route::post('otpremnice/brisanje/slike', 'Servis\otpremniceKontroler@postBrisanj
 
 // Otpremnice stavke
 Route::get('otpremnice/stavke/{id_otpremnice}', 'Servis\OtpremniceStavkeKontroler@getLista')->name('otpremnice.stavke');
+Route::get('otpremnice/stavke/dodavanje/{id_otpremnice}', 'Servis\OtpremniceStavkeKontroler@getDodavanje')->name('otpremnice.stavke.dodavanje.get');
+Route::post('otpremnice/stavke/dodavanje', 'Servis\OtpremniceStavkeKontroler@postDodavanje')->name('otpremnice.stavke.dodavanje.post');
+Route::get('otpremnice/stavke/izmena/{id}', 'Servis\OtpremniceStavkeKontroler@getIzmena')->name('otpremnice.stavke.izmena.get');
+Route::post('otpremnice/stavke/izmena/{id}', 'Servis\OtpremniceStavkeKontroler@postIzmena')->name('otpremnice.stavke.izmena.post');
+Route::get('otpremnice/stavke/detalj/{id}', 'Servis\OtpremniceStavkeKontroler@getDetalj')->name('otpremnice.stavke.detalj');
+Route::post('otpremnice/stavke/brisanje', 'Servis\OtpremniceStavkeKontroler@postBrisanje')->name('otpremnice.stavke.brisanje');
 
 
 

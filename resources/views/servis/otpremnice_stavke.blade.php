@@ -12,7 +12,7 @@
         <h1>
             <img class="slicica_animirana" alt="Stavke otpremnice"
                  src="{{ url('/images/otpremnice.png') }}" style="height:64px;">
-            &emsp;Stavke otpremnice broj: {{ $otpremnica->broj }}
+            &emsp;Stavke otpremnice: <em>{{ $otpremnica->broj }}</em>
         </h1>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
@@ -21,7 +21,7 @@
         </a>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <a class="btn btn-primary btn-block ono" href="">
+        <a class="btn btn-primary btn-block ono" href="{{ route('otpremnice.stavke.dodavanje.get', $otpremnica->id) }}">
             <i class="fa fa-plus-circle fa-fw"></i> Dodaj stavku otpremnice
         </a>
     </div>
@@ -56,7 +56,7 @@
                             <i class="fa fa-eye"></i>
                         </a>
                         <a class="btn btn-info btn-sm"
-                           href="">
+                           href="{{ route('otpremnice.stavke.izmena.get', $stavka->id) }}">
                             <i class="fa fa-pencil"></i>
                         </a>
                         <button class="btn btn-danger btn-sm otvori-brisanje"
@@ -109,7 +109,7 @@
         $(document).on('click', '.otvori-brisanje', function () {
             var id = $(this).val();
             $('#idBrisanje').val(id);
-            var ruta = "";
+            var ruta = "{{ route('otpremnice.stavke.brisanje') }}";
             $('#brisanje-forma').attr('action', ruta);
         });
     });
