@@ -35,7 +35,7 @@
            title="Izmena osnovnih podataka o modelu procesora">
                 <i class="fa fa-pencil"></i>
             </a>
-            <button id="brisanjeModelaProcesora" class="btn btn-primary"
+            <button id="idBrisanje" class="btn btn-primary"
                     title="Brisanje modela procesora"
                     data-toggle="modal" data-target="#brisanjeModal"
                     value="{{$procesor->id}}">

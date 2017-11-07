@@ -109,7 +109,7 @@ class MemorijeKontroler extends Kontroler
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
         }
-        return Redirect::back();
+        return view('modeli.memorije');
     }
 
     public function getRacunari($id)
