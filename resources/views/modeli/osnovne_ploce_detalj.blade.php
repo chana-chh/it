@@ -35,8 +35,8 @@
                 title="Izmena osnovnih podataka o modelu osnovne ploče">
                 <i class="fa fa-pencil"></i>
             </a>
-            <button id="idBrisanjeModela" class="btn btn-primary otvori-brisanje"
-                    title="Brisanje modela memorije"
+            <button id="idBrisanjeModela" class="btn btn-primary"
+                    title="Brisanje modela osnovne ploče"
                     data-toggle="modal" data-target="#brisanjeModal"
                     value="{{$osnovna_ploca->id}}">
                 <i class="fa fa-trash"></i>
@@ -141,7 +141,7 @@
 
 @section('skripte')
 <script>
-    $(document).on('click', '.otvori-brisanje', function () {
+    $(document).on('click', '#idBrisanjeModela', function () {
         var id = $(this).val();
         $('#idBrisanje').val(id);
         var ruta = "{{ route('osnovne_ploce.modeli.brisanje') }}";

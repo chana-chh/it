@@ -189,6 +189,20 @@
     $(document).ready(function () {
 
         $('#tabela').DataTable({
+            dom: 'Bflrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',{
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'A4',
+                exportOptions: {
+        columns: [ 1, 2, 3, 4 ]
+        }
+            }
+                
+        ],
             columnDefs: [
                 {
                     orderable: false,

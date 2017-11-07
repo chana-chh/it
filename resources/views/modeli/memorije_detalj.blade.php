@@ -33,7 +33,7 @@
                 title="Izmena osnovnih podataka o modelu memorije">
                 <i class="fa fa-pencil"></i>
             </a>
-            <button class="btn btn-primary otvori-brisanje"
+            <button id="idBrisanjeModela" class="btn btn-primary"
                     title="Brisanje modela memorije"
                     data-toggle="modal" data-target="#brisanjeModal"
                     value="{{$memorija->id}}">
@@ -120,7 +120,7 @@
 
 @section('skripte')
 <script>
-    $(document).on('click', '.otvori-brisanje', function () {
+    $(document).on('click', '#idBrisanjeModela', function () {
         var id = $(this).val();
         $('#idBrisanje').val(id);
         var ruta = "{{ route('memorije.modeli.brisanje') }}";

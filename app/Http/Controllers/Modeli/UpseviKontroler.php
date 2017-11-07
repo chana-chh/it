@@ -109,7 +109,7 @@ class UpseviKontroler extends Kontroler
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
         }
-        return Redirect::back();
+        return redirect()->route('upsevi.modeli');
     }
 
     public function getBaterije($id)

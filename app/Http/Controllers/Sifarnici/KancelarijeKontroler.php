@@ -85,6 +85,6 @@ class KancelarijeKontroler extends Kontroler
         		else{
         		Session::flash('greska','Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
         		}
-                 return Redirect::back();
+                return redirect()->route('kancelarije');
     }
 }

@@ -81,7 +81,7 @@ class DobavljaciKontroler extends Kontroler
             $data->save();
 
             Session::flash('uspeh','Stavka je uspešno izmenjena!');
-            return Redirect::back();
+            return redirect()->route('dobavljaci');
         }
 
         public function postBrisanje(Request $request)
@@ -94,6 +94,6 @@ class DobavljaciKontroler extends Kontroler
             } else {
                 Session::flash('greska','Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
             }
-            return Redirect::back();
+            return redirect()->route('dobavljaci');
         }
 }

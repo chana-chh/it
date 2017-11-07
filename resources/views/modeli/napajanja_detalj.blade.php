@@ -16,6 +16,34 @@
 @endsection
 
 @section('sadrzaj')
+<div class="row" style="margin-bottom: 16px;">
+    <div class="col-md-12">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="window.history.back();"
+               title="Povratak na prethodnu stranu">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+            <a class="btn btn-primary" href="{{route('napajanja.modeli')}}"
+                title="Povratak na listu modela napajanja">
+                <i class="fa fa-list"></i>
+            </a>
+            <a class="btn btn-primary" href="{{route('napajanja.modeli.izmena.get', $model->id) }}"
+                title="Izmena osnovnih podataka o modelu napajanja">
+                <i class="fa fa-pencil"></i>
+            </a>
+            <button id="idBrisanjeModela" class="btn btn-primary"
+                    title="Brisanje modela napajanja"
+                    data-toggle="modal" data-target="#brisanjeModal"
+                    value="{{$model->id}}">
+                <i class="fa fa-trash"></i>
+            </button>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
 <table class="table table-striped" style="table-layout: fixed;">
@@ -44,37 +72,17 @@
 </h5>
 </div>
 </div>
-
-    <div class="row dugmici">
-        <div class="col-md-12" style="margin-top: 20px">
-    <div class="col-md-4 text-left">
-        <a class="btn btn-info" href="{{route('napajanja.modeli')}}"
-           title="Povratak na listu modela napajanja">
-            <i class="fa fa-list" style="color:#2C3E50"></i>
-        </a>
-    </div>
-    <div class="col-md-4 text-center">
-        <a class="btn btn-info" href="{{route('napajanja.modeli.izmena.get', $model->id) }}"
-           title="Izmena osnovnih podataka o modelu napajanja">
-            <i class="fa fa-pencil" style="color:#2C3E50"></i>
-        </a>
-    </div>
-    <div class="col-md-4 text-right">
-        <a class="btn btn-info" href="{{route('pocetna')}}"
-           title="Povratak na početnu stranu">
-            <i class="fa fa-home" style="color:#2C3E50"></i>
-        </a>
-    </div>
-</div>
-</div>
+<!--  POCETAK brisanjeModal -->
+@include('sifarnici.inc.modal_brisanje')
+<!--  KRAJ brisanjeModal  -->
 @endsection
 
 @section('traka')
-<div class="row well">
+<div class="row well" style="margin-top: 5rem;">
     <div class="col-md-12">
-<h3>Broj napajanja ovog modela: <a href="{{route('napajanja.modeli.uredjaji', $model->id) }}" title="Pregled svih uređaja ovog modela napajanja"> {{$model->napajanja->count()}} </a></h3>
+<h4>Broj napajanja ovog modela: <a href="{{route('napajanja.modeli.uredjaji', $model->id) }}" title="Pregled svih uređaja ovog modela napajanja"> {{$model->napajanja->count()}} </a></h4>
 
-<h3>Broj računara sa ovim modelom napajanja: <a href="{{route('napajanja.modeli.racunari', $model->id) }}" title="Pregled svih računara sa ovim modelom napajanja"> {{$racunari}} </a></h3>
+<h4>Broj računara sa ovim modelom napajanja: <a href="{{route('napajanja.modeli.racunari', $model->id) }}" title="Pregled svih računara sa ovim modelom napajanja"> {{$racunari}} </a></h4>
 </div>
 </div>
 
@@ -84,4 +92,15 @@
 </div>
 </div>
 
+@endsection
+
+@section('skripte')
+<script>
+    $(document).on('click', '#idBrisanjeModela', function () {
+        var id = $(this).val();
+        $('#idBrisanje').val(id);
+        var ruta = "{{ route('napajanja.modeli.brisanje') }}";
+        $('#brisanje-forma').attr('action', ruta);
+    });
+</script>
 @endsection

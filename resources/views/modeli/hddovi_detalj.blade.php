@@ -14,6 +14,34 @@
 @endsection
 
 @section('sadrzaj')
+<div class="row" style="margin-bottom: 16px;">
+    <div class="col-md-12">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="window.history.back();"
+               title="Povratak na prethodnu stranu">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+            <a class="btn btn-primary" href="{{route('hddovi.modeli')}}" 
+                title="Povratak na listu modela čvrstih diskova">
+                <i class="fa fa-list"></i>
+            </a>
+            <a class="btn btn-primary" href="{{route('hddovi.modeli.izmena.get', $hdd->id) }}"
+                title="Izmena osnovnih podataka o modelu čvrstog diska">
+                <i class="fa fa-pencil"></i>
+            </a>
+            <button id="idBrisanjeModela" class="btn btn-primary"
+                    title="Brisanje modela čvrstog diska"
+                    data-toggle="modal" data-target="#brisanjeModal"
+                    value="{{$hdd->id}}">
+                <i class="fa fa-trash"></i>
+            </button>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
 <table class="table table-striped" style="table-layout: fixed;">
@@ -58,34 +86,13 @@
         </h5>
     </div>
 </div>
-
-<div class="row dugmici">
-    <div class="col-md-12" style="margin-top: 20px">
-
-        <div class="col-md-4 text-left">
-            <a class="btn btn-info" href="{{route('hddovi.modeli')}}" title="Povratak na listu modela čvrstih diskova">
-                <i class="fa fa-list" style="color:#2C3E50"></i>
-            </a>
-        </div>
-
-        <div class="col-md-4 text-center">
-            <a class="btn btn-info" href="{{route('hddovi.modeli.izmena.get', $hdd->id) }}" title="Izmena osnovnih podataka o modelu čvrstog diska">
-                <i class="fa fa-pencil" style="color:#2C3E50"></i>
-            </a>
-        </div>
-
-        <div class="col-md-4 text-right">
-            <a class="btn btn-info" href="{{route('pocetna')}}" title="Povratak na početnu stranu">
-                <i class="fa fa-home" style="color:#2C3E50"></i>
-            </a>
-        </div>
-
-    </div>
-</div>
+<!--  POCETAK brisanjeModal -->
+@include('sifarnici.inc.modal_brisanje')
+<!--  KRAJ brisanjeModal  -->
 @endsection
 
 @section('traka')
-<div class="row">
+<div class="row" style="margin-top: 5rem;">
     <div class="col-md-6 col-md-offset-4">
         <p class="tankoza krug_mali">{{$hdd->ocena}}</p>
     </div>
@@ -120,4 +127,15 @@
     </div>
 </div>
 
+@endsection
+
+@section('skripte')
+<script>
+    $(document).on('click', '#idBrisanjeModela', function () {
+        var id = $(this).val();
+        $('#idBrisanje').val(id);
+        var ruta = "{{ route('hddovi.modeli.brisanje') }}";
+        $('#brisanje-forma').attr('action', ruta);
+    });
+</script>
 @endsection

@@ -112,7 +112,7 @@ class MonitoriKontroler extends Kontroler
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
         }
-        return Redirect::back();
+        return redirect()->route('monitori.modeli');
     }
 
     public function getRacunari($id)

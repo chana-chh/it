@@ -35,7 +35,7 @@
                title="Izmena podataka o dobavljaču">
                 <i class="fa fa-pencil"></i>
             </a>
-            <button id="brisanjeOtpremnice" class="btn btn-primary"
+            <button id="idBrisanjeDobavljaca" class="btn btn-primary"
                     data-toggle="modal" data-target="#brisanjeModal"
                     value="{{$model->id}}"
                     title="Brisanje dobavljača">
@@ -93,4 +93,15 @@
 </div>
 </div>
 
+@endsection
+
+@section('skripte')
+<script>
+    $(document).on('click', '#idBrisanjeDobavljaca', function () {
+        var id = $(this).val();
+        $('#idBrisanje').val(id);
+        var ruta = "{{ route('dobavljaci.brisanje') }}";
+        $('#brisanje-forma').attr('action', ruta);
+    });
+</script>
 @endsection

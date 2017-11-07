@@ -35,7 +35,7 @@
            title="Izmena osnovnih podataka o modelu procesora">
                 <i class="fa fa-pencil"></i>
             </a>
-            <button id="idBrisanje" class="btn btn-primary"
+            <button id="idBrisanjeModela" class="btn btn-primary"
                     title="Brisanje modela procesora"
                     data-toggle="modal" data-target="#brisanjeModal"
                     value="{{$procesor->id}}">
@@ -134,7 +134,7 @@
 
 @section('skripte')
 <script>
-    $(document).on('click', '#brisanjeModelaProcesora', function () {
+    $(document).on('click', '#idBrisanjeModela', function () {
         var id = $(this).val();
         $('#idBrisanje').val(id);
         var ruta = "{{ route('procesori.modeli.brisanje') }}";

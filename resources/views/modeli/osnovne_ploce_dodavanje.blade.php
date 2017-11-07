@@ -170,7 +170,7 @@
         <div class="row">
             <div class="col-md-7">
                 <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
-            <label for="link">Link modela procesora: </label>
+            <label for="link">Link modela osnovna ploče: </label>
             <input type="url" name="link" id="link" class="form-control" value="{{ old('link') }}" maxlenght="255">
             @if ($errors->has('link'))
                 <span class="help-block">

@@ -145,7 +145,7 @@ class OsnovnePloceKontroler extends Kontroler
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
         }
-        return Redirect::back();
+        return redirect()->route('osnovne_ploce.modeli');
     }
 
     public function getRacunari($id)

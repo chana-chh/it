@@ -29,9 +29,12 @@
         <tr>
             <td>{{$d->id}}</td>
             <td><strong>{{ $d->naziv }}</strong></td>
-            <td><a href="{{ $d->link }}" target="_blank" style="font-size: 2rem;">
+            <td>
+                @if($d->link)
+                <a href="{{ $d->link }}" target="_blank" style="font-size: 2rem;">
                     <i class="fa fa-link"></i>
                 </a>
+                @endif
             </td>
             <td style="text-align:right;">
                 <button class="btn btn-success btn-sm otvori-izmenu"

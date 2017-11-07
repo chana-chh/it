@@ -34,7 +34,7 @@
                title="Izmena podataka kancelarije">
                 <i class="fa fa-pencil"></i>
             </a>
-            <button id="idBrisanje" class="btn btn-primary"
+            <button id="idBrisanjeKancelarije" class="btn btn-primary"
                     title="Brisanje kancelarije"
                     data-toggle="modal" data-target="#brisanjeModal"
                     value="{{$kancelarija->id}}">
@@ -136,7 +136,7 @@
 <script>
 $( document ).ready(function() {
 
-    $(document).on('click', '.otvori-brisanje', function () {
+    $(document).on('click', '#idBrisanjeKancelarije', function () {
             var id = $(this).val();
             $('#idBrisanje').val(id);
             var ruta = "{{ route('kancelarije.brisanje') }}";
