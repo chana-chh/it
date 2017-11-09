@@ -34,6 +34,11 @@ class OtpremnicaStavka extends Model
         return $this->hasMany('App\Modeli\Memorija', 'stavka_otpremnice_id', 'id');
     }
 
+    public function procesori()
+    {
+        return $this->hasMany('App\Modeli\Procesor', 'stavka_otpremnice_id', 'id');
+    }
+
     public function osnovnePloce()
     {
         return $this->hasMany('App\Modeli\OsnovnaPloca', 'stavka_otpremnice_id', 'id');
@@ -68,6 +73,8 @@ class OtpremnicaStavka extends Model
     {
         if (!$this->monitori->isEmpty()) {
             return $this->monitori();
+        } elseif (!$this->procesori->isEmpty()) {
+            return $this->procesori();
         } elseif (!$this->stampaci->isEmpty()) {
             return $this->stampaci();
         } elseif (!$this->skeneri->isEmpty()) {
@@ -100,7 +107,7 @@ class OtpremnicaStavka extends Model
         if (!$this->monitori->isEmpty() || !$this->stampaci->isEmpty() || !$this->skeneri->isEmpty() || !$this->upsovi->isEmpty()) {
             return 1;
         };
-        if (!$this->memorije->isEmpty() || !$this->osnovnePloce->isEmpty() || !$this->hddovi->isEmpty() || !$this->napajanja->isEmpty()) {
+        if (!$this->memorije->isEmpty() || !$this->osnovnePloce->isEmpty() || !$this->hddovi->isEmpty() || !$this->napajanja->isEmpty() || !$this->procesori->isEmpty()) {
             return 2;
         };
         if (!$this->mrezniUredjaji->isEmpty()) {

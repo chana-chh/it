@@ -28,8 +28,6 @@ class Procesor extends Model
         return $this->belongsTo('App\Modeli\OtpremnicaStavka', 'stavka_otpremnice_id', 'id');
     }
 
-    public function ego(){
-
-        return class_basename(get_class($this));
-    }
+    public $naziv_modela_jednina = "Procesor";
+    public $naziv_modela_mnozina = "Procesori";
 }

@@ -46,15 +46,15 @@ class ProcesoriKontroler extends Kontroler
                 'serijski_broj' => ['max:50'],
                 'procesor_model_id' => ['required'],
             ]);
-        $procesori_racunari_id = Procesor::all()->pluck('racunar_id');
+        // $procesori_racunari_id = Procesor::all()->pluck('racunar_id');
 
-        if ($procesori_racunari_id->contains($request->racunar_id)) {
-            Session::flash('greska','Ovaj računar već ima procesor!');
-            $racunar_greska = Racunar::find($request->racunar_id);
-            DB::table('podesavanja')->insert([
-            ['naziv' => 'racunar_procesor', 'vrednost' => $racunar_greska->ime]
-        ]);
-        }
+        // if ($procesori_racunari_id->contains($request->racunar_id)) {
+        //     Session::flash('greska','Ovaj računar već ima procesor!');
+        //     $racunar_greska = Racunar::find($request->racunar_id);
+        //     DB::table('podesavanja')->insert([
+        //     ['naziv' => 'racunar_procesor', 'vrednost' => $racunar_greska->ime]
+        // ]);
+        // }
 
         $uredjaj = new Procesor();
         $uredjaj->serijski_broj = $request->serijski_broj;

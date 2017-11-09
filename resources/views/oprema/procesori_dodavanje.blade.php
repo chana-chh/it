@@ -64,7 +64,7 @@
                         <optgroup label="{{ $o->dobavljac->naziv }}, {{ $o->broj }} od {{ $o->datum }}">
                             @foreach($o->stavke as $s)
                         <option value="{{ $s->id }}"{{ old('stavka_otpremnice_id') == $s->id ? ' selected' : '' }}>
-                            {{$s->naziv}}
+                            {{$s->naziv}} (popunjeno je {{$s->procesori->count() }} od {{$s->kolicina}} {{$s->jedinica_mere}})
                         </option>
                             @endforeach
                         </optgroup>
@@ -112,7 +112,8 @@
                     <select name="racunar_id" id="racunar_id" class="chosen-select form-control" data-placeholder="računar ..." >
                         <option value=""></option>
                         @foreach($racunari as $r)
-                        <option data-procesor="{{ $r->procesori() ? ' Ovaj računar već ima ugrađen-a '. $r->procesori()->count().' procesor-a!' : 'Računar je bezprocesora.'}}" value="{{ $r->id }}"{{ old('racunar_id') == $r->id ? ' selected' : '' }}>
+                        <option data-procesor="{{ $r->procesori() ? ' Ovaj računar već ima ugrađen-a '. $r->procesori()->count().' procesor-a!' : 'Računar je bezprocesora.'}}" 
+                            value="{{ $r->id }}"{{ old('racunar_id') == $r->id ? ' selected' : '' }}>
                             {{ $r->ime }}
                         </option>
                         @endforeach
