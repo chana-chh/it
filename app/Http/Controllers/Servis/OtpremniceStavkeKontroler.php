@@ -55,11 +55,15 @@ class OtpremniceStavkeKontroler extends Kontroler
         return view('servis.otpremnice_stavke_izmena')->with(compact('data'));
     }
 
-//    public function getDetalj($id)
-//    {
-//        $otpremnica = Otpremnica::find($id);
-//        return view('servis.otpremnice_detalj')->with(compact('otpremnica'));
-//    }
+    public function getDetalj($id)
+    {
+        $uredjaji = null;
+        $stavka = OtpremnicaStavka::find($id);
+        if (OtpremnicaStavka::find($id)->uredjaji()) {
+            $uredjaji = OtpremnicaStavka::find($id)->uredjaji()->paginate(5);
+        }
+        return view('servis.otpremnice_stavke_detalj')->with(compact('stavka', 'uredjaji'));
+    }
 
     public function postIzmena(Request $request, $id)
     {

@@ -52,7 +52,7 @@
                     <td class="text-right">{{ $stavka->kolicina }}</td>
                     <td>{{ $stavka->napomena }}</td>
                     <td class="text-right">
-                        <a href="" class="btn btn-success btn-sm">
+                        <a href="{{ route('otpremnice.stavke.detalj', $stavka->id) }}" class="btn btn-success btn-sm">
                             <i class="fa fa-eye"></i>
                         </a>
                         <a class="btn btn-info btn-sm"

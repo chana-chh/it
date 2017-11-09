@@ -38,3 +38,4 @@ https://datatables.yajrabox.com/starter
 
 Razmotriti skidanje unique index-a na poljima nziva u tabelema gde je softDelete (racuna brisane kao vec zauzete).
 
+U tabeli UPS dodati racunar_id
