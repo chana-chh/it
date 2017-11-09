@@ -6,13 +6,14 @@ use Illuminate\Database\Migrations\Migration;
 
 class NapraviTabeluNabavke extends Migration
 {
+
     public function up()
     {
         Schema::create('nabavke', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('dobavljac_id')->unsigned();
             $table->date('datum');
-            $table->integer('garancija')->unsigned()->nullable();
+            $table->integer('garancija')->unsigned()->nullable(); // garancija u mesecima
             $table->text('napomena')->nullable();
 
             $table->foreign('dobavljac_id')->references('id')->on('s_dobavljaci')->onUpdate('cascade')->onDelete('restrict');
@@ -21,7 +22,9 @@ class NapraviTabeluNabavke extends Migration
 
     public function down()
     {
-        Schema::dropForeign(['dobavljac_id']);
+        Schema::dropForeign([
+            'dobavljac_id']);
         Schema::dropIfExists('nabavke');
     }
+
 }

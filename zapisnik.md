@@ -19,10 +19,6 @@ Stavke:
 
 Ocene od 1 do 4 za modele Cpu, Mem, Hdd, Ploca, a za racunar zbir. Ako je ocena < 7 OTPIS
 
-Dodati kombinovan kljuc za spratove
-
-
-
 DODATI PIVOT ZA GRAFICKI_ADAPTER_MODEL I POVEZIVANJE !!!!
 
 dodati lozinke za emailove
@@ -39,3 +35,18 @@ https://datatables.yajrabox.com/starter
 Razmotriti skidanje unique index-a na poljima nziva u tabelema gde je softDelete (racuna brisane kao vec zauzete).
 
 U tabeli UPS dodati racunar_id
+
+DB
+
+NABAVKE nisu odradjene (dodati u meni). Stara oprema komplet ide u nabavku [jedna stavka stara oprema]
+(rac, mon, stamp, sken, ups, proj, mrezna)
+
+UGOVORI_ODRZAVANJA skinuti unique na broj (iznos default ne radi proveriti). Dodati dobavljac_id
+
+RACUNI skinuti unique na broj (iznos default ne radi proveriti)
+
+OTPREMNICE skinuti unique na broj
+
+OTPREMNICE_STAVKE kolicina default ???
+
+SPRATOVI Dodati kombinovan kljuc za spratove ('naziv' => 'unique_with:sprat_id,lokacija_id')
