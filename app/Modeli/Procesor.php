@@ -29,6 +29,7 @@ class Procesor extends Model
     }
 
     public function ego(){
-        return get_class($this);
+
+        return class_basename(get_class($this));
     }
 }

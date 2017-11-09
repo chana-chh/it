@@ -14,6 +14,7 @@
 @endsection
 
 @section('sadrzaj')
+<h3>{{$uredjaj->ego()}}</h3>
 <div class="row" style="margin-bottom: 16px;">
     <div class="col-md-12">
         <div class="btn-group">

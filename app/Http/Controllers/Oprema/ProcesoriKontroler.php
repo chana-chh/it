@@ -12,6 +12,7 @@ Use App\Modeli\Procesor;
 Use App\Modeli\ProcesorModel;
 Use App\Modeli\Racunar;
 Use App\Modeli\OtpremnicaStavka;
+Use App\Modeli\Otpremnica;
 
 
 
@@ -34,7 +35,7 @@ class ProcesoriKontroler extends Kontroler
     {
         $modeli = ProcesorModel::all();
         $racunari = Racunar::all();
-        $otpremnice = OtpremnicaStavka::all();
+        $otpremnice = Otpremnica::all();
         return view('oprema.procesori_dodavanje')->with(compact ('modeli', 'racunari', 'otpremnice'));
     }
 
@@ -42,20 +43,29 @@ class ProcesoriKontroler extends Kontroler
     {
 
         $this->validate($request, [
-                'naziv' => ['required'],
+                'serijski_broj' => ['max:50'],
                 'procesor_model_id' => ['required'],
             ]);
+        $procesori_racunari_id = Procesor::all()->pluck('racunar_id');
+
+        if ($procesori_racunari_id->contains($request->racunar_id)) {
+            Session::flash('greska','Ovaj računar već ima procesor!');
+            $racunar_greska = Racunar::find($request->racunar_id);
+            DB::table('podesavanja')->insert([
+            ['naziv' => 'racunar_procesor', 'vrednost' => $racunar_greska->ime]
+        ]);
+        }
 
         $uredjaj = new Procesor();
         $uredjaj->serijski_broj = $request->serijski_broj;
         $uredjaj->procesor_model_id = $request->procesor_model_id;
         $uredjaj->racunar_id = $request->racunar_id;
-        $uredjaj->stavka_otpremnica_id = $request->stavka_otpremnica_id;
+        $uredjaj->stavka_otpremnice_id = $request->stavka_otpremnice_id;
         $uredjaj->napomena = $request->napomena;
 
         $uredjaj->save();
 
-        Session::flash('uspeh','Procesora je uspešno dodat!');
+        Session::flash('uspeh','Procesor je uspešno dodat!');
         return redirect()->route('procesori.oprema');
     }
 

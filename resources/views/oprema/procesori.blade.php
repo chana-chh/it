@@ -29,10 +29,10 @@
 <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
     <thead>
         <th style="width: 5%;">#</th>
-        <th style="width: 20%;">Serijski broj</th>
+        <th style="width: 15%;">Serijski broj</th>
         <th style="width: 20%;">Model</th>
         <th style="width: 20%;">Racunar</th>
-        <th style="width: 20%;">Otpremnica</th>
+        <th style="width: 25%;">Otpremnica</th>
         <th style="width: 15%;text-align:right">
             <i class="fa fa-cogs"></i>&emsp;Akcije</th>
     </thead>
@@ -44,8 +44,18 @@
                 <strong>{{$o->serijski_broj}}</strong>
             </td>
             <td><a href="{{route('procesori.modeli.detalj', $o->procesorModel->id)}}">{{$o->procesorModel->proizvodjac->naziv}} {{$o->procesorModel->naziv}}, {{$o->procesorModel->takt}} MHz</a></td>
-            <td>{{$o->racunar->ime}}</td>
-            <td>{{$o->stavkaOtpremnice->otpremnica->broj}}</td>
+            <td> @if($o->racunar)
+                {{$o->racunar->ime}}
+                @endif
+
+            </td>
+            <td>
+                @if($o->stavkaOtpremnice)
+                <a href="{{route('otpremnice.detalj', $o->stavkaOtpremnice->otpremnica->id)}}">
+                {{$o->stavkaOtpremnice->otpremnica->broj}}, {{$o->stavkaOtpremnice->otpremnica->dobavljac->naziv}} od {{$o->stavkaOtpremnice->otpremnica->datum}}
+                </a>
+                @endif
+            </td>
 
             <td style="text-align:right; vertical-align: middle; line-height: normal;">
                 <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('procesori.oprema.detalj', $o->id)}}">

@@ -7,18 +7,43 @@
 @endsection
 
 @section('naslov')
+<div class="row">
+    <div class="col-md-8">
+        <h1>
+            <img class="slicica_animirana" alt="Dodavanje procesora"
+                  src="{{url('/images/cpu.png')}}" style="height:64px;">
+            &emsp;Dodavanje procesora
+        </h1>
+    </div>
+</div>
+<hr>
+<div class="row" style="margin-bottom: 16px;">
+    <div class="col-md-12">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="window.history.back();"
+               title="Povratak na prethodnu stranu">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('procesori.oprema') }}"
+               title="Povratak na listu procesora">
+                <i class="fa fa-list"></i>
+            </a>
+        </div>
+    </div>
+</div>
         
         <div class="row ceo_dva">
-        <div class="col-md-10 col-md-offset-1 boxic">
-
-        <h1 class="page-header"><span><img class="slicica_animirana" alt="Dodavanje procesora" src="{{url('/images/cpu.png')}}" style="height:64px;"></span>&emsp;Dodavanje procesora</h1>
-
+        <div class="col-md-12 boxic">
         <form action="{{ route('procesori.oprema.dodavanje.post') }}" method="POST" data-parsley-validate>
         {{ csrf_field() }}
 
         <div class="row">
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                     <div class="form-group{{ $errors->has('serijski_broj') ? ' has-error' : '' }}">
                     <label for="serijski_broj">Serijski broj:</label>
                     <input type="text" name="serijski_broj" id="serijski_broj" class="form-control" value="{{ old('serijski_broj') }}" maxlength="50">
@@ -31,25 +56,29 @@
                 </div>
 
                 <div class="col-md-5">
-                   <div class="form-group{{ $errors->has('stavka_otpremnica_id') ? ' has-error' : '' }}">
-                    <label for="stavka_otpremnica_id">Stavka otpremnice:</label>
-                    <select name="stavka_otpremnica_id" id="stavka_otpremnica_id" class="chosen-select form-control" data-placeholder="otpremnice ..." >
+                   <div class="form-group{{ $errors->has('stavka_otpremnice_id') ? ' has-error' : '' }}">
+                    <label for="stavka_otpremnice_id">Stavka otpremnice:</label>
+                    <select name="stavka_otpremnice_id" id="stavka_otpremnice_id" class="chosen-select form-control" data-placeholder="otpremnice ..." >
                         <option value=""></option>
                         @foreach($otpremnice as $o)
-                        <option value="{{ $o->id }}"{{ old('stavka_otpremnica_id') == $o->id ? ' selected' : '' }}>
-                            {{ $o->otpremnica->dobavljac->naziv }}, {{ $o->otpremnica->broj }} od {{ $o->otpremnica->datum }}, {{$o->naziv}}
+                        <optgroup label="{{ $o->dobavljac->naziv }}, {{ $o->broj }} od {{ $o->datum }}">
+                            @foreach($o->stavke as $s)
+                        <option value="{{ $s->id }}"{{ old('stavka_otpremnice_id') == $s->id ? ' selected' : '' }}>
+                            {{$s->naziv}}
                         </option>
+                            @endforeach
+                        </optgroup>
                         @endforeach
                     </select>
-                    @if ($errors->has('stavka_otpremnica_id'))
+                    @if ($errors->has('stavka_otpremnice_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('stavka_otpremnica_id') }}</strong>
+                            <strong>{{ $errors->first('stavka_otpremnice_id') }}</strong>
                         </span>
                     @endif
                 </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                    <div class="form-group{{ $errors->has('procesor_model_id') ? ' has-error' : '' }}">
                     <label for="procesor_model_id">Model procesora:</label>
                     <select name="procesor_model_id" id="procesor_model_id" class="chosen-select form-control" data-placeholder="model ..." required>
@@ -70,6 +99,11 @@
         </div>
 
         <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <p id="obavestenje" class="text-primary" style="font-size: 150%;"></p>
+            </div>
+        </div>
         {{-- Red II --}}
         <div class="row">
             <div class="col-md-6">
@@ -78,7 +112,7 @@
                     <select name="racunar_id" id="racunar_id" class="chosen-select form-control" data-placeholder="računar ..." >
                         <option value=""></option>
                         @foreach($racunari as $r)
-                        <option value="{{ $r->id }}"{{ old('racunar_id') == $r->id ? ' selected' : '' }}>
+                        <option data-procesor="{{ $r->procesori() ? ' Ovaj računar već ima ugrađen-a '. $r->procesori()->count().' procesor-a!' : 'Računar je bezprocesora.'}}" value="{{ $r->id }}"{{ old('racunar_id') == $r->id ? ' selected' : '' }}>
                             {{ $r->ime }}
                         </option>
                         @endforeach
@@ -123,18 +157,6 @@
     </form>
             
 </div>
-    <div class="row dugmici">
-        <div class="col-md-10 col-md-offset-1" style="margin-top: 20px">
-            <div class="form-group">
-            <div class="col-md-6 text-left">
-                <a class="btn btn-info" href="{{route('procesori.oprema')}}" title="Povratak na listu modela procesora"><i class="fa fa-list" style="color:#2C3E50"></i></a>
-            </div>
-            <div class="col-md-6 text-right">
-                <a class="btn btn-info" href="{{route('pocetna')}}" title="Povratak na početnu stranu"><i class="fa fa-home" style="color:#2C3E50"></i></a>
-            </div>
-            </div>
-        </div>
-    </div>
 </div>
 @endsection
 
@@ -153,6 +175,11 @@ $( document ).ready(function() {
 
    });
    };
+
+   $("#racunar_id").on('change', function() {
+    var ima_nema = $(this).find(":selected").data("procesor");
+    $("#obavestenje").html(ima_nema);
+});
    });
 
 </script>
