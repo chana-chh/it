@@ -36,7 +36,7 @@
                             <i class="fa fa-server fa-fw" style="color: #18BC9C"></i> Oprema<span class="caret">
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="">Računari</a></li>
+                            <li><a href="{{route('racunari.oprema')}}">Računari</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{route('procesori.oprema')}}">Procesori</a></li>
                             <li><a href="">Memorije</a></li>
