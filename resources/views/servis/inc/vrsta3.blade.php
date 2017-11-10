@@ -1,4 +1,5 @@
 <h1>Vrsta 3</h1>
+{{ dd($uredjaji) }}
 <table class="table table-striped table-responsive">
     <thead>
         <tr>

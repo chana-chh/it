@@ -57,7 +57,8 @@ Route::post('otpremnice/stavke/izmena/{id}', 'Servis\OtpremniceStavkeKontroler@p
 Route::get('otpremnice/stavke/detalj/{id}', 'Servis\OtpremniceStavkeKontroler@getDetalj')->name('otpremnice.stavke.detalj');
 Route::post('otpremnice/stavke/brisanje', 'Servis\OtpremniceStavkeKontroler@postBrisanje')->name('otpremnice.stavke.brisanje');
 
-
+// Nabavke
+Route::get('nabavke', 'Servis\NabavkeKontroler@getLista')->name('nabavke');
 
 // SIFARNICI
 // Proizvodjaci

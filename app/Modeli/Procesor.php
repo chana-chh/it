@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Procesor extends Model
 {
-    use SoftDeletes;
 
+    use SoftDeletes;
     protected $table = 'procesori';
-    protected $dates = ['deleted_at'];
+    protected $dates = [
+        'deleted_at'];
     public $timestamps = false;
 
     public function procesorModel()
@@ -30,4 +31,5 @@ class Procesor extends Model
 
     public $naziv_modela_jednina = "Procesor";
     public $naziv_modela_mnozina = "Procesori";
+
 }

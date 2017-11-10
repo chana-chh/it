@@ -8,6 +8,9 @@ class Monitor extends Model
 {
     protected $table = 'monitori';
     public $timestamps = false;
+    public $nazivModelaJednina = 'monitor';
+    public $nazivModelaMnozina = 'monitori';
+    public $vezaNaPogled = 'monitori';
 
     public function monitorModel()
     {
@@ -33,4 +36,5 @@ class Monitor extends Model
     {
         return $this->belongsTo('App\Modeli\Nabavka', 'nabavka_id', 'id');
     }
+
 }

@@ -8,6 +8,9 @@ class Hdd extends Model
 {
     protected $table = 'hdd';
     public $timestamps = false;
+    public $nazivModelaJednina = 'HDD';
+    public $nazivModelaMnozina = 'HDD-ovi';
+    public $vezaNaPogled = 'hdd';
 
     public function procesorModel()
     {
@@ -23,4 +26,5 @@ class Hdd extends Model
     {
         return $this->belongsTo('App\Modeli\OtpremnicaStavka', 'stavka_otpremnice_id', 'id');
     }
+
 }

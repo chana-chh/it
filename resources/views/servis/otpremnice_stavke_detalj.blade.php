@@ -77,10 +77,9 @@
 <!--  KRAJ brisanjeModal  -->
 <hr>
 <div class="row well" style="overflow: auto;">
-
+    @if($stavka->vrstaUredjaja() == 0)
     <h3>Oprema povezana sa ovom stavkom otpremnice</h3>
     <hr style="border-top: 1px solid #18BC9C">
-    @if($stavka->vrstaUredjaja() == 0)
     <p class="text-danger">Trenutno nema povezane opreme za ovu stavku otpremnice</p>
     @else
     @if($stavka->vrstaUredjaja() == 1)
