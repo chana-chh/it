@@ -49,5 +49,11 @@ class RacunariKontroler extends Kontroler
         ->make(true);
     }
 
+    public function getDetalj($id)
+    {
+        $uredjaj = Racunar::find($id);
+        return view('oprema.racunari_detalj')->with(compact ('uredjaj'));
+    }
+
 
 }
