@@ -14,8 +14,6 @@
 @endsection
 
 @section('sadrzaj')
-<h3>{{$uredjaj->naziv_modela_jednina}}</h3>
-<h3>{{$uredjaj->naziv_modela_mnozina}}</h3>
 <div class="row" style="margin-bottom: 16px;">
     <div class="col-md-12">
         <div class="btn-group">

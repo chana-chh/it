@@ -342,5 +342,6 @@ Route::post('oprema/procesori/dodavanje', 'Oprema\ProcesoriKontroler@postDodavan
 //Racunari
 Route::get('oprema/racunari/', 'Oprema\RacunariKontroler@getLista')->name('racunari.oprema');
 Route::get('oprema/racunari/ajax', 'Oprema\RacunariKontroler@getAjax')->name('racunari.ajax');
+Route::get('oprema/racunari/detalj/{id}', 'Oprema\RacunariKontroler@getDetalj')->name('racunari.oprema.detalj');
 
 
