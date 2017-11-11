@@ -26,7 +26,7 @@ class NapraviTabeluServis extends Migration
             $table->integer('status_id')->unsigned();
             $table->text('napomena')->nullable();
 
-            $table->foreign('vrsta_uredjaja_id')->references('id')->on('vrsta_uredjaja')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('vrsta_uredjaja_id')->references('id')->on('s_vrste_uredjaja')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('status_id')->references('id')->on('s_statusi')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('zaposleni_id')->references('id')->on('zaposleni')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('kancelarija_id')->references('id')->on('s_kancelarije')->onUpdate('cascade')->onDelete('restrict');

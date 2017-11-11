@@ -14,8 +14,8 @@ class NapraviTabeluUpsModeli extends Migration
             $table->string('naziv', 50)->unique();
             $table->string('kapacitet', 30)->nullable();
             $table->string('snaga', 30)->nullable();
-            $table->string('tip_baterije_id')->unsigned();
-            $table->integer('broj_baterija');
+            $table->integer('tip_baterije_id')->unsigned();
+            $table->integer('broj_baterija')->unsigned()->default(0);
             $table->integer('proizvodjac_id')->unsigned();
             $table->text('link')->nullable();
             $table->text('napomena')->nullable();

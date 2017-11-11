@@ -23,8 +23,8 @@ class NapraviTabeluUps extends Migration
             $table->integer('vrsta_uredjaja_id')->unsigned();
             $table->integer('racunar_id')->unsigned();
 
-            $table->foreign('racunar_id')->references('id')->on('racunar')->onUpdate('cascade')->onDelete('restrict');
-            $table->foreign('vrsta_uredjaja_id')->references('id')->on('vrsta_uredjaja')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('racunar_id')->references('id')->on('racunari')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('vrsta_uredjaja_id')->references('id')->on('s_vrste_uredjaja')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('nabavka_id')->references('id')->on('nabavke')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('stavka_otpremnice_id')->references('id')->on('otpremnice_stavke')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('kancelarija_id')->references('id')->on('s_kancelarije')->onUpdate('cascade')->onDelete('restrict');
