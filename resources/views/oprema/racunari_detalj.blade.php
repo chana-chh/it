@@ -8,7 +8,7 @@
 
 @section('naslov')
     <h1 class="page-header">
-        <img class="slicica_animirana" alt="Računar detaljno" src="{{url('/images/kompjuterici.png')}}" style="height:64px;">&emsp;
+        <img class="slicica_animirana" alt="Računar detaljno" src="{{url('/images/kompaS.png')}}" style="height:64px;">&emsp;
         Detaljni pregled računara <span style="color: #18bc9c">{{$uredjaj->ime}}</span>
     </h1>
 @endsection
@@ -47,9 +47,14 @@
     <div class="col-md-12">
         
 <table class="table table-striped" style="table-layout: fixed;">
-        <tbody style="font-size: 2rem;">
+        <tbody style="font-size: 1.875rem;">
             <tr>
-                <th style="width: 20%;">Da li se radi o <em>BRAND</em> računaru:</th>
+                <th style="width: 40%;">Operativni sistem:</th>
+                <td style="width: 60%;">{{$uredjaj->operativniSistem->naziv}}
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 40%;">Da li se radi o <em>BRAND</em> računaru:</th>
                 <td style="width: 80%;">
                         @if($uredjaj->brend == 1)
                         <i class="fa fa-check" aria-hidden="true" style="color: #18bc9c"></i>
@@ -57,9 +62,16 @@
                 </td>
             </tr>
 
+            @if ($uredjaj->brend == 1)
+            <tr>
+                <th style="width: 40%;">Proizvođač:</th>
+                <td style="width: 80%;">{{$uredjaj->proizvodjac->naziv}}</td>
+            </tr>
+            @endif
+
              <tr>
-                <th style="width: 20%;">Da li se radi o <em>LAPTOP</em> računaru:</th>
-                <td style="width: 80%;">
+                <th style="width: 40%;">Da li se radi o <em>LAPTOP</em> računaru:</th>
+                <td style="width: 60%;">
                      @if($uredjaj->laptop == 1)
                         <i class="fa fa-check" aria-hidden="true" style="color: #18bc9c"></i>
                         @endif
@@ -67,8 +79,8 @@
             </tr>
 
                  <tr>
-                <th style="width: 20%;">Da li se radi o <em>SERVERU</em>:</th>
-                <td style="width: 80%;">
+                <th style="width: 40%;">Da li se radi o <em>SERVERU</em> :</th>
+                <td style="width: 60%;">
                      @if($uredjaj->server == 1)
                         <i class="fa fa-check" aria-hidden="true" style="color: #18bc9c"></i>
                         @endif
@@ -76,48 +88,44 @@
             </tr>
 
             <tr>
-                <th style="width: 20%;">Otpremnica:</th>
-                <td style="width: 80%;"><a
-                           href="{{ route('otpremnice.detalj', $uredjaj->stavkaOtpremnice->otpremnica->id) }}">
-                            {{$uredjaj->stavkaOtpremnice->otpremnica->broj}} 
-                        </a>
+                <th style="width: 40%;">Naziv računara (Aktivni direktorijum):</th>
+                <td style="width: 60%;">{{$uredjaj->ime}}</td>
+            </tr>
+
+            <tr>
+                <th style="width: 40%;">Broj odeljenja za IKT:</th>
+                <td style="width: 60%;">{{$uredjaj->erc_broj}}
                 </td>
             </tr>
 
             <tr>
-                <th style="width: 20%;">Računar:</th>
-                <td style="width: 80%;">{{$uredjaj->racunar->ime}}
+                <th style="width: 40%;">Lokacija:</th>
+                <td style="width: 60%;"><a href="{{route('kancelarije.detalj.get', $uredjaj->kancelarija->id)}}">{{$uredjaj->kancelarija->lokacija->naziv}}, kancelarija {{$uredjaj->kancelarija->naziv}}</a>
                 </td>
             </tr>
-
-            <tr>
-                <th style="width: 20%;">Lokacija:</th>
-                <td style="width: 80%;"><a href="{{route('kancelarije.detalj.get', $uredjaj->racunar->kancelarija->id)}}">{{$uredjaj->racunar->kancelarija->lokacija->naziv}}, kancelarija {{$uredjaj->racunar->kancelarija->naziv}}</a>
+                        <tr>
+                <th style="width: 40%;">Podaci o nabavci:</th>
+                <td style="width: 60%;">{{$uredjaj->nabavka->dobavljac->naziv}}, {{$uredjaj->nabavka->datum}} sa garancijom u mesecima - {{$uredjaj->nabavka->garancija}}
+                </td>
+            </tr>
+                  <tr>
+                <th style="width: 40%;">Napomena:</th>
+                <td style="width: 60%;">{{$uredjaj->napomena}}
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
 </div>
-
+<hr style="border-top: 1px solid #18BC9C">
 <div class="row">
-    <div class="col-md-12">
-@if ($uredjaj->racunar->zaposleni)
-<h4>Ovaj računar koristi: <a href="{{ route('zaposleni.detalj', $uredjaj->racunar->zaposleni->id) }}">{{$uredjaj->racunar->zaposleni->imePrezime()}}</a></h4>
+    <div class="col-md-12 text-center">
+@if ($uredjaj->zaposleni)
+<h3><img alt="Zaposleni" src="{{ url('/images/korisnik.png') }}" style="height:32px;">&emsp;Ovaj računar koristi: <a href="{{ route('zaposleni.detalj', $uredjaj->zaposleni->id) }}">{{$uredjaj->zaposleni->imePrezime()}}</a></h3>
 @else
 <h4>Ovaj računar ne koristi nijedan činovnik</h4>
 @endif
 
-</div>
-</div>
-    
-<div class="row ceo_dva">
-<div class="col-md-12 boxic">
-<h5>Napomena: 
-    <br>
-    <hr>
-    <em>{{$uredjaj->napomena}}</em>
-</h5>
 </div>
 </div>
 
@@ -127,81 +135,52 @@
 @endsection
 
 @section('traka')
-<div class="row" style="margin-top: 5rem;">
-    <div class="col-md-12">
-<div class="panel panel-info noborder">
-  <div class="panel-heading">
-    <h4 class="panel-title" style="color: #2c3e50">Podaci o modelu:</h4>
-  </div>
-  <div class="panel-body">
-    <table class="table">
-        <tbody>
-            <tr>
-                <th style="width: 40%;">Naziv:</th>
-                <td style="width: 60%;">{{$uredjaj->procesorModel->naziv}}</td>
-            </tr>
-            <tr>
-                <th style="width: 40%;">Proizvođač:</th>
-                <td style="width: 60%;">{{$uredjaj->procesorModel->proizvodjac->naziv}}</td>
-            </tr>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h4>Komponente:</h4>
+        <ul class="list-group">
+  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
+        Osnovna ploča <i class="fa fa-arrow-right fa-fw"></i>
+</a></li>
+  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
+        Procesori<i class="fa fa-arrow-right fa-fw"></i>
+</a></li>
+  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
+        Memorija <i class="fa fa-arrow-right fa-fw"></i>
+</a></li>
+  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
+        Čvrsti diskovi <i class="fa fa-arrow-right fa-fw"></i>
+</a></li>
+  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
+        Grafički adapteri <i class="fa fa-arrow-right fa-fw"></i>
+</a></li>
+  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
+        Napajanje <i class="fa fa-arrow-right fa-fw"></i>
+</a></li>
+</ul>
+<hr style="border-top: 1px solid #18BC9C">
+<h4>Periferija:</h4>
+<ul class="list-group">
+  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
+        Monitori <i class="fa fa-arrow-right fa-fw"></i>
+</a></li>
+  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
+        Štampači <i class="fa fa-arrow-right fa-fw"></i>
+</a></li>
+  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
+        Skeneri <i class="fa fa-arrow-right fa-fw"></i>
+</a></li>
+</ul>
+<hr style="border-top: 1px solid #18BC9C">
+<ul class="list-group">
+  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
+        Aplikacije <i class="fa fa-arrow-right fa-fw"></i>
+</a></li>
+</ul>
 
-             <tr>
-                <th style="width: 40%;">Soket:</th>
-                <td style="width: 60%;">{{$uredjaj->procesorModel->soket->naziv}}
-                </td>
-            </tr>
 
-            <tr>
-                <th style="width: 40%;">Takt:</th>
-                <td style="width: 60%;">{{$uredjaj->procesorModel->takt}}
-                </td>
-            </tr>
 
-            <tr>
-                <th style="width: 40%;">Keš:</th>
-                <td style="width: 60%;">{{$uredjaj->procesorModel->kes}}
-                </td>
-            </tr>
 
-            <tr>
-                <th style="width: 40%;">Broj jezgara:</th>
-                <td style="width: 60%;">{{$uredjaj->procesorModel->broj_jezgara}}
-                </td>
-            </tr>
-
-            <tr>
-                <th style="width: 40%;">Broj niti:</th>
-                <td style="width: 60%;">{{$uredjaj->procesorModel->broj_niti}}
-                </td>
-            </tr> 
-            <tr>
-                <th style="width: 40%;">Ocena:</th>
-                <td style="width: 60%;">{{$uredjaj->procesorModel->ocena}}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="row">
-    <div class="col-md-12 text-right">
-                <a class="btn btn-primary btn-sm" id="dugmeDetalj" href="{{route('procesori.modeli.detalj', $uredjaj->procesorModel->id)}}">
-                    <i class="fa fa-eye"></i>
-                </a>
-            </div>
-        </div>
-  </div>
-</div>
-</div>
-</div>
-
-<div class="row well" style="margin-right: 1px; margin-left: 1px">
-    <div class="col-md-12">
-<h3>Broj procesora ovog modela: <a href="{{route('procesori.modeli.uredjaji', $uredjaj->id) }}" title="Pregled svih uređaja ovog modela procesora"> {{$brojno_stanje}} </a></h3>
-</div>
-</div>
-
-<div class="row" style="margin-top: 50px">
-<div class="col-md-12 text-center">
-    <a href="{{$uredjaj->procesorModel->link}}" target="_blank"><img alt="link" src="{{url('/images/link.png')}}" style="height:32px;"></a>
 </div>
 </div>
 
