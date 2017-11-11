@@ -12,6 +12,11 @@ class Monitor extends Model
     public $nazivModelaMnozina = 'monitori';
     public $vezaNaPogled = 'monitori';
 
+    public function vrstaUredjaja()
+    {
+        return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
+    }
+
     public function monitorModel()
     {
         return $this->belongsTo('App\Modeli\MonitorModel', 'monitor_model_id', 'id');

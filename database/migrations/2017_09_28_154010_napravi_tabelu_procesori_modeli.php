@@ -6,11 +6,12 @@ use Illuminate\Database\Migrations\Migration;
 
 class NapraviTabeluProcesoriModeli extends Migration
 {
+
     public function up()
     {
         Schema::create('procesori_modeli', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('naziv', 50);
+            $table->string('naziv', 50)->unique();
             $table->integer('proizvodjac_id')->unsigned();
             $table->integer('soket_id')->unsigned();
             $table->integer('takt')->unsigned();
@@ -28,7 +29,10 @@ class NapraviTabeluProcesoriModeli extends Migration
 
     public function down()
     {
-        Schema::dropForeign(['soket_id', 'proizvodjac_id']);
+        Schema::dropForeign([
+            'soket_id',
+            'proizvodjac_id']);
         Schema::dropIfExists('procesori_modeli');
     }
+
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class NapraviTabeluAdreseEPoste extends Migration
 {
+
     public function up()
     {
         Schema::create('adrese_e_poste', function (Blueprint $table) {
@@ -14,6 +15,7 @@ class NapraviTabeluAdreseEPoste extends Migration
             $table->boolean('sluzbena')->default(1);
             $table->integer('zaposleni_id')->unsigned();
             $table->string('napomena')->nullable();
+            $table->text('lozinka')->nullable();
 
             $table->foreign('zaposleni_id')->references('id')->on('zaposleni')->onUpdate('cascade')->onDelete('restrict');
         });
@@ -21,7 +23,9 @@ class NapraviTabeluAdreseEPoste extends Migration
 
     public function down()
     {
-        Schema::dropForeign(['zaposleni_id']);
+        Schema::dropForeign([
+            'zaposleni_id']);
         Schema::dropIfExists('adrese_e_poste');
     }
+
 }

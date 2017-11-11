@@ -9,6 +9,11 @@ class Stampac extends Model
     protected $table = 'stampaci';
     public $timestamps = false;
 
+    public function vrstaUredjaja()
+    {
+        return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
+    }
+
     public function stampacModel()
     {
         return $this->belongsTo('App\Modeli\StampacModel', 'stampac_model_id', 'id');
@@ -23,4 +28,5 @@ class Stampac extends Model
     {
         return $this->belongsTo('App\Modeli\OtpremnicaStavka', 'stavka_otpremnice_id', 'id');
     }
+
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class NapraviTabeluSKancelarije extends Migration
 {
+
     public function up()
     {
         Schema::create('s_kancelarije', function (Blueprint $table) {
@@ -15,6 +16,11 @@ class NapraviTabeluSKancelarije extends Migration
             $table->integer('lokacija_id')->unsigned();
             $table->text('napomena')->nullable();
 
+            $table->unique([
+                'naziv',
+                'sprat_id',
+                'lokacija_id']);
+
             $table->foreign('lokacija_id')->references('id')->on('s_lokacije')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('sprat_id')->references('id')->on('s_spratovi')->onUpdate('cascade')->onDelete('restrict');
         });
@@ -22,7 +28,10 @@ class NapraviTabeluSKancelarije extends Migration
 
     public function down()
     {
-        Schema::dropForeign(['lokacija_id', 'sprat_id']);
+        Schema::dropForeign([
+            'lokacija_id',
+            'sprat_id']);
         Schema::dropIfExists('s_kancelarije');
     }
+
 }

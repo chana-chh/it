@@ -23,4 +23,10 @@ class UgovorOdrzavanje extends Model
     {
         return $this->iznos_sredstava - $this->utroseno();
     }
+
+    public function dobavljac()
+    {
+        return $this->belongsTo('App\Modeli\Dobavljac', 'dobavljac_id', 'id');
+    }
+
 }

@@ -9,6 +9,11 @@ class Racunar extends Model
     protected $table = 'racunari';
     public $timestamps = false;
 
+    public function vrstaUredjaja()
+    {
+        return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
+    }
+
     public function proizvodjac()
     {
         return $this->belongsTo('App\Modeli\Proizvodjac', 'proizvodjac_id', 'id');
@@ -83,6 +88,11 @@ class Racunar extends Model
     public function servisi()
     {
         return $this->hasMany('App\Modeli\Servis', 'racunar_id', 'id');
+    }
+
+    public function upsevi()
+    {
+        return $this->hasMany('App\Modeli\Ups', 'racunar_id', 'id');
     }
 
     public function aplikacije()

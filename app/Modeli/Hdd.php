@@ -12,6 +12,11 @@ class Hdd extends Model
     public $nazivModelaMnozina = 'HDD-ovi';
     public $vezaNaPogled = 'hdd';
 
+    public function vrstaUredjaja()
+    {
+        return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
+    }
+
     public function procesorModel()
     {
         return $this->belongsTo('App\Modeli\HddModel', 'hdd_model_id', 'id');

@@ -14,9 +14,9 @@ class StampacModel extends Model
         return $this->belongsTo('App\Modeli\Proizvodjac', 'proizvodjac_id', 'id');
     }
 
-    public function toner()
+    public function tipTonera()
     {
-        return $this->belongsTo('App\Modeli\Toner', 'toner_id', 'id');
+        return $this->belongsTo('App\Modeli\Toner', 'tip_tonera_id', 'id');
     }
 
     public function tip()
@@ -28,4 +28,5 @@ class StampacModel extends Model
     {
         return $this->hasMany('App\Modeli\Stampac', 'stampac_model_id', 'id');
     }
+
 }

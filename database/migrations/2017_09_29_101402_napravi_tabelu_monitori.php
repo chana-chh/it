@@ -6,11 +6,12 @@ use Illuminate\Database\Migrations\Migration;
 
 class NapraviTabeluMonitori extends Migration
 {
+
     public function up()
     {
         Schema::create('monitori', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('inventarski_broj', 10)->unique();
+            $table->string('inventarski_broj', 10);
             $table->string('serijski_broj', 50)->nullable();
             $table->integer('monitor_model_id')->unsigned();
             $table->integer('racunar_id')->unsigned()->nullable();
@@ -20,7 +21,9 @@ class NapraviTabeluMonitori extends Migration
             $table->text('napomena')->nullable();
             $table->integer('stavka_otpremnice_id')->unsigned()->nullable();
             $table->integer('nabavka_id')->unsigned()->nullable();
+            $table->integer('vrsta_uredjaja_id')->unsigned();
 
+            $table->foreign('vrsta_uredjaja_id')->references('id')->on('vrsta_uredjaja')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('kancelarija_id')->references('id')->on('s_kancelarije')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('nabavka_id')->references('id')->on('nabavke')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('stavka_otpremnice_id')->references('id')->on('otpremnice_stavke')->onUpdate('cascade')->onDelete('restrict');
@@ -31,7 +34,13 @@ class NapraviTabeluMonitori extends Migration
 
     public function down()
     {
-        Schema::dropForeign(['racunar_id', 'monitor_model_id', 'stavka_otpremnice_id', 'nabavka_id', 'kancelarija_id']);
+        Schema::dropForeign([
+            'racunar_id',
+            'monitor_model_id',
+            'stavka_otpremnice_id',
+            'nabavka_id',
+            'kancelarija_id']);
         Schema::dropIfExists('monitori');
     }
+
 }

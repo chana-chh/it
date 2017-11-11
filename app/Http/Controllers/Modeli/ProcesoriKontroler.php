@@ -7,36 +7,37 @@ use Session;
 use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
-
 Use App\Modeli\ProcesorModel;
 Use App\Modeli\Proizvodjac;
 Use App\Modeli\Soket;
 Use App\Modeli\Procesor;
 Use App\Modeli\Racunar;
 
-
-
 class ProcesoriKontroler extends Kontroler
 {
+
     public function getLista()
     {
-    	$procesori = ProcesorModel::all();
-    	return view('modeli.procesori')->with(compact ('procesori'));
+        $procesori = ProcesorModel::all();
+        return view('modeli.procesori')->with(compact('procesori'));
     }
 
     public function getDodavanje()
     {
         $proizvodjaci = Proizvodjac::all();
         $soketi = Soket::all();
-        return view('modeli.procesori_dodavanje')->with(compact ('proizvodjaci', 'soketi'));
+        return view('modeli.procesori_dodavanje')->with(compact('proizvodjaci', 'soketi'));
     }
 
     public function postDodavanje(Request $request)
     {
 
         $this->validate($request, [
-                'naziv' => ['required', 'max:50'],
-            ]);
+            'naziv' => [
+                'required',
+                'max:50',
+                'unique:procesori_modeli,naziv'],
+        ]);
 
         $procesor = new ProcesorModel();
         $procesor->naziv = $request->naziv;
@@ -52,7 +53,7 @@ class ProcesoriKontroler extends Kontroler
 
         $procesor->save();
 
-        Session::flash('uspeh','Model procesora je uspešno dodata!');
+        Session::flash('uspeh', 'Model procesora je uspešno dodata!');
         return redirect()->route('procesori.modeli');
     }
 
@@ -61,16 +62,19 @@ class ProcesoriKontroler extends Kontroler
         $procesor = ProcesorModel::find($id);
         $proizvodjaci = Proizvodjac::all();
         $soketi = Soket::all();
-        return view('modeli.procesori_izmena')->with(compact ('procesor', 'proizvodjaci', 'soketi'));
+        return view('modeli.procesori_izmena')->with(compact('procesor', 'proizvodjaci', 'soketi'));
     }
 
     public function postIzmena(Request $request, $id)
     {
 
-            $this->validate($request, [
-                'naziv' => ['required', 'max:50'],
-            ]);
-        
+        $this->validate($request, [
+            'naziv' => [
+                'required',
+                'max:50',
+                'unique:procesori_modeli,naziv,' . $id],
+        ]);
+
         $procesor = ProcesorModel::find($id);
         $procesor->naziv = $request->naziv;
         $procesor->proizvodjac_id = $request->proizvodjac_id;
@@ -85,7 +89,7 @@ class ProcesoriKontroler extends Kontroler
 
         $procesor->save();
 
-        Session::flash('uspeh','Podaci o modelu procesora su uspešno izmenjeni!');
+        Session::flash('uspeh', 'Podaci o modelu procesora su uspešno izmenjeni!');
         return redirect()->route('procesori.modeli');
     }
 
@@ -93,14 +97,21 @@ class ProcesoriKontroler extends Kontroler
     {
         $procesor = ProcesorModel::find($id);
         $racunari = DB::table('procesori')->where([
-            ['procesor_model_id', '=', $id],
-            ['racunar_id', '<>', null],
-        ])->count();
-        return view('modeli.procesori_detalj')->with(compact ('procesor', 'racunari'));
+                    [
+                        'procesor_model_id',
+                        '=',
+                        $id],
+                    [
+                        'racunar_id',
+                        '<>',
+                        null],
+                ])->count();
+        return view('modeli.procesori_detalj')->with(compact('procesor', 'racunari'));
     }
 
-    public function postBrisanje(Request $request) {
-        
+    public function postBrisanje(Request $request)
+    {
+
         $data = ProcesorModel::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -112,21 +123,23 @@ class ProcesoriKontroler extends Kontroler
     }
 
     public function getRacunari($id)
-    {   
+    {
         // Dobra fora za uvlachenje id u funkciju, kao i eliminisanje sa WhereHas
         $model = ProcesorModel::find($id);
-        $racunari = Racunar::whereHas('procesori', function($query) use ($id){
-            $query->where('procesori.procesor_model_id', '=', $id);
-        })->get();
-        return view('modeli.procesori_racunari')->with(compact ('racunari', 'model'));
+        $racunari = Racunar::whereHas('procesori', function($query) use ($id) {
+                    $query->where('procesori.procesor_model_id', '=', $id);
+                })->get();
+        return view('modeli.procesori_racunari')->with(compact('racunari', 'model'));
     }
 
     public function getUredjaji($id)
-    {   
+    {
         //Dobra fora za pozivanje dodatnih relacija sa Tockicom.SledecaRElacija
-        $procesori = Procesor::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('procesor_model_id', '=', $id)->get();
+        $procesori = Procesor::with([
+                    'racunar',
+                    'stavkaOtpremnice.otpremnica'])->where('procesor_model_id', '=', $id)->get();
         $model = ProcesorModel::find($id);
-        return view('modeli.procesori_uredjaji')->with(compact ('procesori', 'model'));
+        return view('modeli.procesori_uredjaji')->with(compact('procesori', 'model'));
     }
 
 }

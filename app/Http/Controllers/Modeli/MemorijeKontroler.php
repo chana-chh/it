@@ -7,40 +7,49 @@ use Session;
 use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
-
 Use App\Modeli\MemorijaModel;
 Use App\Modeli\Proizvodjac;
 Use App\Modeli\TipMemorije;
 Use App\Modeli\Memorija;
 Use App\Modeli\Racunar;
 
-
-
 class MemorijeKontroler extends Kontroler
 {
+
     public function getLista()
     {
-    	$memorije = MemorijaModel::all();
-    	return view('modeli.memorije')->with(compact ('memorije'));
+        $memorije = MemorijaModel::all();
+        return view('modeli.memorije')->with(compact('memorije'));
     }
 
     public function getDodavanje()
     {
         $proizvodjaci = Proizvodjac::all();
         $tip = TipMemorije::all();
-        return view('modeli.memorije_dodavanje')->with(compact ('proizvodjaci', 'tip'));
+        return view('modeli.memorije_dodavanje')->with(compact('proizvodjaci', 'tip'));
     }
 
     public function postDodavanje(Request $request)
     {
 
         $this->validate($request, [
-                'proizvodjac_id' => ['required'],
-                'tip_memorije_id' => ['required'],
-                'brzina' => ['required', 'integer'],
-                'kapacitet' => ['required', 'integer'],
-                'ocena' => ['required', 'integer'],
-            ]);
+            'naziv' => [
+                'required',
+                'unique:memorije_modeli,naziv'],
+            'proizvodjac_id' => [
+                'required'],
+            'tip_memorije_id' => [
+                'required'],
+            'brzina' => [
+                'required',
+                'integer'],
+            'kapacitet' => [
+                'required',
+                'integer'],
+            'ocena' => [
+                'required',
+                'integer'],
+        ]);
 
         $data = new MemorijaModel();
         $data->proizvodjac_id = $request->proizvodjac_id;
@@ -53,7 +62,7 @@ class MemorijeKontroler extends Kontroler
 
         $data->save();
 
-        Session::flash('uspeh','Model memorije je uspešno dodata!');
+        Session::flash('uspeh', 'Model memorije je uspešno dodata!');
         return redirect()->route('memorije.modeli');
     }
 
@@ -62,20 +71,31 @@ class MemorijeKontroler extends Kontroler
         $memorija = MemorijaModel::find($id);
         $proizvodjaci = Proizvodjac::all();
         $tip = TipMemorije::all();
-        return view('modeli.memorije_izmena')->with(compact ('memorija', 'proizvodjaci', 'tip'));
+        return view('modeli.memorije_izmena')->with(compact('memorija', 'proizvodjaci', 'tip'));
     }
 
     public function postIzmena(Request $request, $id)
     {
 
-            $this->validate($request, [
-                'proizvodjac_id' => ['required'],
-                'tip_memorije_id' => ['required'],
-                'brzina' => ['required', 'integer'],
-                'kapacitet' => ['required', 'integer'],
-                'ocena' => ['required', 'integer'],
-            ]);
-        
+        $this->validate($request, [
+            'naziv' => [
+                'required',
+                'unique:memorije_modeli,naziv,' . $id],
+            'proizvodjac_id' => [
+                'required'],
+            'tip_memorije_id' => [
+                'required'],
+            'brzina' => [
+                'required',
+                'integer'],
+            'kapacitet' => [
+                'required',
+                'integer'],
+            'ocena' => [
+                'required',
+                'integer'],
+        ]);
+
         $data = MemorijaModel::find($id);
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->tip_memorije_id = $request->tip_memorije_id;
@@ -87,21 +107,22 @@ class MemorijeKontroler extends Kontroler
 
         $data->save();
 
-        Session::flash('uspeh','Podaci o modelu memorije su uspešno izmenjeni!');
+        Session::flash('uspeh', 'Podaci o modelu memorije su uspešno izmenjeni!');
         return redirect()->route('memorije.modeli');
     }
 
     public function getDetalj($id)
     {
         $memorija = MemorijaModel::find($id);
-        $racunari = Racunar::whereHas('memorije', function($query) use ($id){
-            $query->where('memorije.memorija_model_id', '=', $id);
-        })->count();
-        return view('modeli.memorije_detalj')->with(compact ('memorija', 'racunari'));
+        $racunari = Racunar::whereHas('memorije', function($query) use ($id) {
+                    $query->where('memorije.memorija_model_id', '=', $id);
+                })->count();
+        return view('modeli.memorije_detalj')->with(compact('memorija', 'racunari'));
     }
 
-    public function postBrisanje(Request $request) {
-        
+    public function postBrisanje(Request $request)
+    {
+
         $data = MemorijaModel::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -113,21 +134,23 @@ class MemorijeKontroler extends Kontroler
     }
 
     public function getRacunari($id)
-    {   
+    {
         // Dobra fora za uvlachenje id u funkciju, kao i eliminisanje sa WhereHas
         $model = MemorijaModel::find($id);
-        $racunari = Racunar::whereHas('memorije', function($query) use ($id){
-            $query->where('memorije.memorija_model_id', '=', $id);
-        })->get();
-        return view('modeli.memorije_racunari')->with(compact ('racunari', 'model'));
+        $racunari = Racunar::whereHas('memorije', function($query) use ($id) {
+                    $query->where('memorije.memorija_model_id', '=', $id);
+                })->get();
+        return view('modeli.memorije_racunari')->with(compact('racunari', 'model'));
     }
 
     public function getUredjaji($id)
-    {   
+    {
         //Dobra fora za pozivanje dodatnih relacija sa Tockicom.SledecaRElacija
-        $memorije = Memorija::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('memorija_model_id', '=', $id)->get();
+        $memorije = Memorija::with([
+                    'racunar',
+                    'stavkaOtpremnice.otpremnica'])->where('memorija_model_id', '=', $id)->get();
         $model = MemorijaModel::find($id);
-        return view('modeli.memorije_uredjaji')->with(compact ('memorije', 'model'));
+        return view('modeli.memorije_uredjaji')->with(compact('memorije', 'model'));
     }
 
 }

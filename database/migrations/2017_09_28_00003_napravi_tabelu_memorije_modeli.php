@@ -6,10 +6,12 @@ use Illuminate\Database\Migrations\Migration;
 
 class NapraviTabeluMemorijeModeli extends Migration
 {
+
     public function up()
     {
         Schema::create('memorije_modeli', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('naziv', 50)->unique();
             $table->integer('proizvodjac_id')->unsigned();
             $table->integer('tip_memorije_id')->unsigned();
             $table->integer('brzina')->unsigned();
@@ -25,7 +27,10 @@ class NapraviTabeluMemorijeModeli extends Migration
 
     public function down()
     {
-        Schema::dropForeign(['proizvodjac_id', 'tip_memorije_id']);
+        Schema::dropForeign([
+            'proizvodjac_id',
+            'tip_memorije_id']);
         Schema::dropIfExists('memorije_modeli');
     }
+
 }

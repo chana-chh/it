@@ -6,11 +6,13 @@ use Illuminate\Database\Migrations\Migration;
 
 class NapraviTabeluSToneri extends Migration
 {
+
     public function up()
     {
         Schema::create('s_toneri', function (Blueprint $table) {
             $table->increments('id');
             $table->string('naziv', 50)->unique();
+            $table->text('modeli_tonera');
         });
     }
 
@@ -18,4 +20,5 @@ class NapraviTabeluSToneri extends Migration
     {
         Schema::dropIfExists('s_toneri');
     }
+
 }

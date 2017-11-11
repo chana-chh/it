@@ -11,6 +11,7 @@ class Toner extends Model
 
     public function stampaciModeli()
     {
-        return $this->hasMany('App\Modeli\StampacModel', 'toner_id', 'id');
+        return $this->hasMany('App\Modeli\StampacModel', 'tip_tonera_id', 'id');
     }
+
 }

@@ -14,22 +14,22 @@ class NapraviTabeluUpsModeli extends Migration
             $table->string('naziv', 50)->unique();
             $table->string('kapacitet', 30)->nullable();
             $table->string('snaga', 30)->nullable();
-            $table->string('baterija', 50);
-            $table->string('baterija_kapacitet', 30)->nullable();
-            $table->string('baterija_napon', 30)->nullable();
-            $table->string('baterija_dimenzije', 30)->nullable();
+            $table->string('tip_baterije_id')->unsigned();
             $table->integer('broj_baterija');
             $table->integer('proizvodjac_id')->unsigned();
             $table->text('link')->nullable();
             $table->text('napomena')->nullable();
 
             $table->foreign('proizvodjac_id')->references('id')->on('s_proizvodjaci')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('tip_baterije_id')->references('id')->on('s_baterije')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 
     public function down()
     {
-        Schema::dropForeign(['proizvodjac_id']);
+        Schema::dropForeign([
+            'proizvodjac_id']);
         Schema::dropIfExists('ups_modeli');
     }
+
 }

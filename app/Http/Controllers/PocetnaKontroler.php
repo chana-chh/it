@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Gate;
 use Carbon\Carbon;
-
 use App\Modeli\Racunar;
 use App\Modeli\Monitor;
 use App\Modeli\Stampac;
@@ -18,6 +16,7 @@ use App\Modeli\Aplikacija;
 
 class PocetnaKontroler extends Kontroler
 {
+
     public function pocetna()
     {
         $racunara = Racunar::count();
@@ -30,14 +29,8 @@ class PocetnaKontroler extends Kontroler
         $aplikacija = Aplikacija::count();
 
         return view('pocetna')->with(compact(
-            'racunara',
-            'monitora',
-            'stampaca',
-            'skenera',
-            'upseva',
-            'mreznih_uredjaja',
-            'projektora',
-            'aplikacija'
+                                'racunara', 'monitora', 'stampaca', 'skenera', 'upseva', 'mreznih_uredjaja', 'projektora', 'aplikacija'
         ));
     }
+
 }

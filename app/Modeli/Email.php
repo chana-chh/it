@@ -3,6 +3,7 @@
 namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Crypt;
 
 class Email extends Model
 {
@@ -11,6 +12,17 @@ class Email extends Model
 
     public function zaposleni()
     {
-    	return $this->belongsTo('App\Modeli\Zaposleni', 'zaposleni_id', 'id');
+        return $this->belongsTo('App\Modeli\Zaposleni', 'zaposleni_id', 'id');
     }
+
+    public function setLozinka($value)
+    {
+        $this->attributes['lozinka'] = Crypt::encryptString($value);
+    }
+
+    public function getLozinka($value)
+    {
+        return Crypt::decryptString($value);
+    }
+
 }

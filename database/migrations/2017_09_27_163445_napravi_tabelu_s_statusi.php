@@ -4,20 +4,20 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class NapraviTabeluSDijagonale extends Migration
+class NapraviTabeluSStatusi extends Migration
 {
 
     public function up()
     {
-        Schema::create('s_dijagonale', function (Blueprint $table) {
+        Schema::create('s_statusi', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('naziv', 8, 1)->unique();
+            $table->string('naziv', 50)->unique();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('s_dijagonale');
+        Schema::dropIfExists('s_statusi');
     }
 
 }

@@ -9,6 +9,11 @@ class Projektor extends Model
     protected $table = 'projektori';
     public $timestamps = false;
 
+    public function vrstaUredjaja()
+    {
+        return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
+    }
+
     public function proizvodjac()
     {
         return $this->belongsTo('App\Modeli\Proizvodjac', 'proizvodjac_id', 'id');
@@ -38,4 +43,5 @@ class Projektor extends Model
     {
         return $this->belongsToMany('App\Modeli\MonitorPovezivanje', 'projektor_povezivanje', 'projektor_id', 'povezivanje_id');
     }
+
 }

@@ -6,11 +6,12 @@ use Illuminate\Database\Migrations\Migration;
 
 class NapraviTabeluOtpremnice extends Migration
 {
+
     public function up()
     {
         Schema::create('otpremnice', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('broj', 50)->unique();
+            $table->string('broj', 50);
             $table->integer('racun_id')->unsigned()->nullable();
             $table->date('datum');
             $table->text('napomena')->nullable();
@@ -25,7 +26,10 @@ class NapraviTabeluOtpremnice extends Migration
 
     public function down()
     {
-        Schema::dropForeign(['dobavljac_id', 'racun_id']);
+        Schema::dropForeign([
+            'dobavljac_id',
+            'racun_id']);
         Schema::dropIfExists('otpremnice');
     }
+
 }

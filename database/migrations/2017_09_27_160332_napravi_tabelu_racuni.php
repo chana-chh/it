@@ -6,11 +6,12 @@ use Illuminate\Database\Migrations\Migration;
 
 class NapraviTabeluRacuni extends Migration
 {
+
     public function up()
     {
         Schema::create('racuni', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('broj', 50)->unique();
+            $table->string('broj', 50);
             $table->date('datum');
             $table->decimal('iznos', 15, 2)->default(0);
             $table->decimal('pdv', 15, 2)->default(0);
@@ -24,7 +25,9 @@ class NapraviTabeluRacuni extends Migration
 
     public function down()
     {
-        Schema::dropForeign(['ugovor_id']);
+        Schema::dropForeign([
+            'ugovor_id']);
         Schema::dropIfExists('racuni');
     }
+
 }

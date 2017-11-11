@@ -10,7 +10,8 @@ class Lokacija extends Model
     public $timestamps = false;
 
     public function kancelarije()
-	{
-		return $this->hasMany('App\Modeli\Kancelarija', 'lokacija_id', 'id');
-	}
+    {
+        return $this->hasMany('App\Modeli\Kancelarija', 'lokacija_id', 'id');
+    }
+
 }

@@ -9,6 +9,11 @@ class Skener extends Model
     protected $table = 'skeneri';
     public $timestamps = false;
 
+    public function vrstaUredjaja()
+    {
+        return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
+    }
+
     public function skenerModel()
     {
         return $this->belongsTo('App\Modeli\SkenerModel', 'skener_model_id', 'id');
@@ -28,4 +33,5 @@ class Skener extends Model
     {
         return $this->belongsTo('App\Modeli\Kancelarija', 'kancelarija_id', 'id');
     }
+
 }

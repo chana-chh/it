@@ -34,7 +34,6 @@ class OtpremniceKontroler extends Kontroler
             'broj' => [
                 'required',
                 'max:50',
-                'unique:otpremnice,broj'
             ],
             'datum' => [
                 'required',
@@ -121,7 +120,6 @@ class OtpremniceKontroler extends Kontroler
             'broj' => [
                 'required',
                 'max:50',
-                'unique:otpremnice,broj,' . $id
             ],
             'datum' => [
                 'required',

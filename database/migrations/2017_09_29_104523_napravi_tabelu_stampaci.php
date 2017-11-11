@@ -6,6 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class NapraviTabeluStampaci extends Migration
 {
+
     public function up()
     {
         Schema::create('stampaci', function (Blueprint $table) {
@@ -16,11 +17,13 @@ class NapraviTabeluStampaci extends Migration
             $table->integer('kancelarija_id')->unsigned()->nullable();
             $table->integer('racunar_id')->unsigned()->nullable();
             $table->text('napomena')->nullable();
-			$table->softDeletes();
+            $table->softDeletes();
             $table->boolean('reciklirano')->default(false);
             $table->integer('stavka_otpremnice_id')->unsigned()->nullable();
             $table->integer('nabavka_id')->unsigned()->nullable();
-            
+            $table->integer('vrsta_uredjaja_id')->unsigned();
+
+            $table->foreign('vrsta_uredjaja_id')->references('id')->on('vrsta_uredjaja')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('nabavka_id')->references('id')->on('nabavke')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('stavka_otpremnice_id')->references('id')->on('otpremnice_stavke')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('kancelarija_id')->references('id')->on('s_kancelarije')->onUpdate('cascade')->onDelete('restrict');
@@ -31,7 +34,13 @@ class NapraviTabeluStampaci extends Migration
 
     public function down()
     {
-        Schema::dropForeign(['racunar_id', 'stampac_model_id', 'stavka_otpremnice_id', 'kancelarija_id', 'nabavka_id']);
+        Schema::dropForeign([
+            'racunar_id',
+            'stampac_model_id',
+            'stavka_otpremnice_id',
+            'kancelarija_id',
+            'nabavka_id']);
         Schema::dropIfExists('stampaci');
     }
+
 }

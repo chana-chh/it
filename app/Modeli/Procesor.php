@@ -14,6 +14,11 @@ class Procesor extends Model
         'deleted_at'];
     public $timestamps = false;
 
+    public function vrstaUredjaja()
+    {
+        return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
+    }
+
     public function procesorModel()
     {
         return $this->belongsTo('App\Modeli\ProcesorModel', 'procesor_model_id', 'id');

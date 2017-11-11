@@ -17,10 +17,14 @@ class NapraviTabeluUps extends Migration
             $table->text('napomena')->nullable();
             $table->integer('stavka_otpremnice_id')->unsigned()->nullable();
             $table->integer('kancelarija_id')->unsigned();
-			$table->softDeletes();
+            $table->softDeletes();
             $table->boolean('reciklirano')->default(false);
             $table->integer('nabavka_id')->unsigned()->nullable();
+            $table->integer('vrsta_uredjaja_id')->unsigned();
+            $table->integer('racunar_id')->unsigned();
 
+            $table->foreign('racunar_id')->references('id')->on('racunar')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('vrsta_uredjaja_id')->references('id')->on('vrsta_uredjaja')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('nabavka_id')->references('id')->on('nabavke')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('stavka_otpremnice_id')->references('id')->on('otpremnice_stavke')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('kancelarija_id')->references('id')->on('s_kancelarije')->onUpdate('cascade')->onDelete('restrict');
@@ -30,7 +34,12 @@ class NapraviTabeluUps extends Migration
 
     public function down()
     {
-        Schema::dropForeign(['ups_model_id', 'stavka_otpremnice_id', 'kancelarija_id', 'nabavka_id']);
+        Schema::dropForeign([
+            'ups_model_id',
+            'stavka_otpremnice_id',
+            'kancelarija_id',
+            'nabavka_id']);
         Schema::dropIfExists('ups');
     }
+
 }

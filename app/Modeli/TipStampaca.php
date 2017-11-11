@@ -9,8 +9,9 @@ class TipStampaca extends Model
     protected $table = 's_tipovi_stampaca';
     public $timestamps = false;
 
-    public function stampaciiModeli()
-	{
-		return $this->hasMany('App\Modeli\StampacModel', 'tip_stampaca_id', 'id');
+    public function stampaciModeli()
+    {
+        return $this->hasMany('App\Modeli\StampacModel', 'tip_stampaca_id', 'id');
     }
+
 }
