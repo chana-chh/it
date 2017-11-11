@@ -27,3 +27,15 @@ https://datatables.yajrabox.com/starter
 ADRESE_E_POSTE Prikazati lozinku na tooltip da dilejom
 
 S_TONERI dodati modeli_tonera polje
+Dodati meni i CRUD za vrste uredjaja
+
+DB ================== NE KORISTITI NOVE MIGRACIJE DOK SE NE ZAVRSI OVO DOLE NAVEDENO =================================
+
+Napravio NABAVKE_STAVKE - da se izmene sve migracije koje se vezuju na NABAVKE i da se vezu na NABAVKE_STAVKE, a samo
+NABAVKE_STAVKE da se vezu na nabavke. Naravno treba izmeniti i sve Modele :(
+
+Proveriti sve migracije i to polja otpremnica_stavka_id, nabavka_stavka_id (trenitno je to nabavka_id), racunar_id i
+kancelarija_id. Koje polje iskljucuje neko drugo polje (sva nabrojana polja treba da budu nullable).
+
+LICENCE videti sta treba da bude nullable
+

@@ -13,7 +13,7 @@ class NapraviTabeluNabavke extends Migration
             $table->increments('id');
             $table->integer('dobavljac_id')->unsigned();
             $table->date('datum');
-            $table->integer('garancija')->unsigned()->nullable(); // garancija u mesecima
+            $table->integer('garancija')->unsigned()->default(0);
             $table->text('napomena')->nullable();
 
             $table->foreign('dobavljac_id')->references('id')->on('s_dobavljaci')->onUpdate('cascade')->onDelete('restrict');

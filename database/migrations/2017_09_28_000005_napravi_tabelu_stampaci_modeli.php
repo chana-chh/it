@@ -11,8 +11,8 @@ class NapraviTabeluStampaciModeli extends Migration
     {
         Schema::create('stampaci_modeli', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('tip_tonera_id')->unsigned();
             $table->string('naziv');
+            $table->integer('tip_tonera_id')->unsigned();
             $table->integer('proizvodjac_id')->unsigned();
             $table->integer('tip_stampaca_id')->unsigned();
             $table->text('link')->nullable();

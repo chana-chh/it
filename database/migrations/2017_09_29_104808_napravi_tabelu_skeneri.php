@@ -11,17 +11,17 @@ class NapraviTabeluSkeneri extends Migration
     {
         Schema::create('skeneri', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('skener_model_id')->unsigned();
-            $table->string('inventarski_broj', 10)->unique();
+            $table->integer('vrsta_uredjaja_id')->unsigned();
+            $table->string('inventarski_broj', 10)->nullable();
             $table->string('serijski_broj', 50)->nullable();
-            $table->integer('kancelarija_id')->unsigned();
+            $table->integer('skener_model_id')->unsigned();
             $table->integer('racunar_id')->unsigned()->nullable();
-            $table->string('napomena')->nullable();
+            $table->integer('kancelarija_id')->unsigned()->nullable();
             $table->integer('stavka_otpremnice_id')->unsigned()->nullable();
+            $table->integer('nabavka_id')->unsigned()->nullable();
+            $table->string('napomena')->nullable();
             $table->softDeletes();
             $table->boolean('reciklirano')->default(false);
-            $table->integer('nabavka_id')->unsigned()->nullable();
-            $table->integer('vrsta_uredjaja_id')->unsigned();
 
             $table->foreign('vrsta_uredjaja_id')->references('id')->on('s_vrste_uredjaja')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('nabavka_id')->references('id')->on('nabavke')->onUpdate('cascade')->onDelete('restrict');

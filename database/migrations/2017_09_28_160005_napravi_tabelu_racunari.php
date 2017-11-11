@@ -11,11 +11,12 @@ class NapraviTabeluRacunari extends Migration
     {
         Schema::create('racunari', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('vrsta_uredjaja_id')->unsigned();
             $table->boolean('laptop')->default(0);
             $table->boolean('server')->default(0);
             $table->boolean('brend')->default(0);
             $table->integer('proizvodjac_id')->unsigned()->nullable();
-            $table->string('inventarski_broj', 10);
+            $table->string('inventarski_broj', 10)->nullable();
             $table->string('erc_broj', 100)->unique(); // dodati datum kod otpisa
             $table->string('ime', 100)->unique(); // dodati datum kod otpisa
             $table->integer('zaposleni_id')->unsigned()->nullable();
@@ -25,9 +26,8 @@ class NapraviTabeluRacunari extends Migration
             $table->integer('ocena')->unsigned();
             $table->text('link')->nullable();
             $table->softDeletes(); // datum otpisa
-            $table->boolean('reciklirano')->default(false);
+            $table->boolean('reciklirano')->default(false); // treba da upise 0
             $table->text('napomena')->nullable();
-            $table->integer('vrsta_uredjaja_id')->unsigned();
 
             $table->foreign('vrsta_uredjaja_id')->references('id')->on('s_vrste_uredjaja')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('zaposleni_id')->references('id')->on('zaposleni')->onUpdate('cascade')->onDelete('restrict');

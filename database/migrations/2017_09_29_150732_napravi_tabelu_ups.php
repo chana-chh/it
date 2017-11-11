@@ -11,17 +11,17 @@ class NapraviTabeluUps extends Migration
     {
         Schema::create('ups', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('vrsta_uredjaja_id')->unsigned();
+            $table->string('inventarski_broj', 10)->nullable();
             $table->string('serijski_broj', 50)->nullable();
-            $table->string('inventarski_broj', 10)->unique();
             $table->integer('ups_model_id')->unsigned();
-            $table->text('napomena')->nullable();
+            $table->integer('racunar_id')->unsigned();
             $table->integer('stavka_otpremnice_id')->unsigned()->nullable();
-            $table->integer('kancelarija_id')->unsigned();
+            $table->integer('nabavka_id')->unsigned()->nullable();
+            $table->integer('kancelarija_id')->unsigned()->nullable();
+            $table->text('napomena')->nullable();
             $table->softDeletes();
             $table->boolean('reciklirano')->default(false);
-            $table->integer('nabavka_id')->unsigned()->nullable();
-            $table->integer('vrsta_uredjaja_id')->unsigned();
-            $table->integer('racunar_id')->unsigned();
 
             $table->foreign('racunar_id')->references('id')->on('racunari')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('vrsta_uredjaja_id')->references('id')->on('s_vrste_uredjaja')->onUpdate('cascade')->onDelete('restrict');

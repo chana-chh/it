@@ -4,19 +4,17 @@ use Illuminate\Database\Seeder;
 
 class Stampaci extends Seeder
 {
+
     public function run()
     {
         DB::table('stampaci')->insert([
-            'inventarski_broj' => '25140',
-            'serijski_broj' => '333555111',
+            'vrsta_uredjaja_id' => 3,
+            'inventarski_broj' => 'nn',
+            'serijski_broj' => 'nn',
             'stampac_model_id' => 1,
-            'kancelarija_id' => 2,
-            'racunar_id' => 3,
-            'napomena' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            'deleted_at' => null,
-            'reciklirano' => 0,
-            'stavka_otpremnice_id' => 11,
-            'nabavka_id' => null,
+            'kancelarija_id' => 1,
+            'nabavka_id' => 1,
         ]);
     }
+
 }

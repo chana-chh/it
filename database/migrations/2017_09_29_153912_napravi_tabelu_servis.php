@@ -11,7 +11,7 @@ class NapraviTabeluServis extends Migration
     {
         Schema::create('servis', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('broj_prijave');
+            $table->string('broj_prijave', 100);
             $table->integer('zaposleni_id')->unsigned();
             $table->integer('kancelarija_id')->unsigned();
             $table->date('datum_prijave');
@@ -19,6 +19,7 @@ class NapraviTabeluServis extends Migration
             $table->string('ime_racunara_prijave');
             $table->text('opis_kvara_zaposleni');
             $table->date('datum_prijema');
+            $table->date('datum_popravke');
             $table->date('datum_isporuke');
             $table->text('opis_kvara_servis');
             $table->integer('vrsta_uredjaja_id')->unsigned();

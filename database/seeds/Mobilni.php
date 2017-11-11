@@ -8,22 +8,15 @@ class Mobilni extends Seeder
     public function run()
     {
         DB::table('mobilni')->insert([
-            'broj' => '0602340111',
+            'broj' => '065 205 1230',
             'sluzbeni' => 0,
-            'zaposleni_id' => 4,
-            'napomena' => 'Bla bla bla'
-            ]);
+            'zaposleni_id' => 1,
+        ]);
         DB::table('mobilni')->insert([
-            'broj' => '0602340112',
-            'sluzbeni' => 0,
-            'zaposleni_id' => 11,
-            'napomena' => 'Bla bla bla'
-            ]);
-        DB::table('mobilni')->insert([
-            'broj' => '0602340113',
-            'sluzbeni' => 0,
-            'zaposleni_id' => 35,
-            'napomena' => 'Bla bla bla'
-            ]);
+            'broj' => '060 234 0111',
+            // 'sluzbeni' => 1,
+            'zaposleni_id' => 1,
+        ]);
     }
+
 }

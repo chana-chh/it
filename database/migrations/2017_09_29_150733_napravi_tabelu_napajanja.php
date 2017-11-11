@@ -11,14 +11,14 @@ class NapraviTabeluNapajanja extends Migration
     {
         Schema::create('napajanja', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('vrsta_uredjaja_id')->unsigned();
             $table->string('serijski_broj', 50)->nullable();
             $table->integer('napajanje_model_id')->unsigned();
             $table->integer('racunar_id')->unsigned()->nullable();
-            $table->text('napomena')->nullable();
             $table->integer('stavka_otpremnice_id')->unsigned()->nullable();
+            $table->text('napomena')->nullable();
             $table->softDeletes();
             $table->boolean('reciklirano')->default(false);
-            $table->integer('vrsta_uredjaja_id')->unsigned();
 
             $table->foreign('vrsta_uredjaja_id')->references('id')->on('s_vrste_uredjaja')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('stavka_otpremnice_id')->references('id')->on('otpremnice_stavke')->onUpdate('cascade')->onDelete('restrict');

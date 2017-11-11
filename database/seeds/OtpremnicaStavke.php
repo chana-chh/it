@@ -9,101 +9,46 @@ class OtpremnicaStavke extends Seeder
     {
         DB::table('otpremnice_stavke')->insert([
             'otpremnica_id' => 1,
-            'naziv' => 'Hard diskovi',
+            'naziv' => 'MBD',
             'kolicina' => 0,
             'jedinica_mere' => 1,
-            'napomena' => 'Stari hard diskovi',
-        ]);
-        DB::table('otpremnice_stavke')->insert([
-            'otpremnica_id' => 1,
-            'naziv' => 'Memorija',
-            'kolicina' => 0,
-            'jedinica_mere' => 1,
-            'napomena' => 'Stara memorija',
-        ]);
-        DB::table('otpremnice_stavke')->insert([
-            'otpremnica_id' => 1,
-            'naziv' => 'Osnovne Ploce',
-            'kolicina' => 0,
-            'jedinica_mere' => 1,
-            'napomena' => 'Stare ploce',
-        ]);
-        DB::table('otpremnice_stavke')->insert([
-            'otpremnica_id' => 1,
-            'naziv' => 'VGA',
-            'kolicina' => 0,
-            'jedinica_mere' => 1,
-            'napomena' => 'Stari VGA',
-        ]);
-        DB::table('otpremnice_stavke')->insert([
-            'otpremnica_id' => 1,
-            'naziv' => 'Monitori',
-            'kolicina' => 0,
-            'jedinica_mere' => 1,
-            'napomena' => 'Stari Monitori',
-        ]);
-        DB::table('otpremnice_stavke')->insert([
-            'otpremnica_id' => 1,
-            'naziv' => 'Napajanja',
-            'kolicina' => 0,
-            'jedinica_mere' => 1,
-            'napomena' => 'Stari Napajanja',
-        ]);
-        DB::table('otpremnice_stavke')->insert([
-            'otpremnica_id' => 1,
-            'naziv' => 'Stamapaci',
-            'kolicina' => 0,
-            'jedinica_mere' => 1,
-            'napomena' => 'Stari Stamapaci',
-        ]);
-        DB::table('otpremnice_stavke')->insert([
-            'otpremnica_id' => 1,
-            'naziv' => 'UPS',
-            'kolicina' => 0,
-            'jedinica_mere' => 1,
-            'napomena' => 'Stari UPS',
-        ]);
-        DB::table('otpremnice_stavke')->insert([
-            'otpremnica_id' => 1,
-            'naziv' => 'Projektori',
-            'kolicina' => 0,
-            'jedinica_mere' => 1,
-            'napomena' => 'Stari Projektori',
+            'vrsta_uredjaja_id' => 6,
         ]);
         DB::table('otpremnice_stavke')->insert([
             'otpremnica_id' => 1,
             'naziv' => 'CPU',
             'kolicina' => 0,
             'jedinica_mere' => 1,
-            'napomena' => 'Stari CPU',
+            'vrsta_uredjaja_id' => 7,
         ]);
         DB::table('otpremnice_stavke')->insert([
             'otpremnica_id' => 1,
-            'naziv' => 'Skeneri',
+            'naziv' => 'VGA',
             'kolicina' => 0,
             'jedinica_mere' => 1,
-            'napomena' => 'Stari Skeneri',
+            'vrsta_uredjaja_id' => 8,
         ]);
         DB::table('otpremnice_stavke')->insert([
             'otpremnica_id' => 1,
-            'naziv' => 'Mrezni uredjaji',
+            'naziv' => 'RAM',
             'kolicina' => 0,
             'jedinica_mere' => 1,
-            'napomena' => 'Stari Mrezni uredjaji',
+            'vrsta_uredjaja_id' => 9,
         ]);
         DB::table('otpremnice_stavke')->insert([
-            'otpremnica_id' => 2,
-            'naziv' => 'Hard disk',
-            'kolicina' => 80,
+            'otpremnica_id' => 1,
+            'naziv' => 'HDD',
+            'kolicina' => 0,
             'jedinica_mere' => 1,
-            'napomena' => 'hard diskov novi',
+            'vrsta_uredjaja_id' => 10,
         ]);
         DB::table('otpremnice_stavke')->insert([
-            'otpremnica_id' => 2,
-            'naziv' => 'memorija',
-            'kolicina' => 80,
+            'otpremnica_id' => 1,
+            'naziv' => 'Napajanje',
+            'kolicina' => 0,
             'jedinica_mere' => 1,
-            'napomena' => 'Memorija nova',
+            'vrsta_uredjaja_id' => 11,
         ]);
     }
+
 }

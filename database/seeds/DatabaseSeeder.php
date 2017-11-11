@@ -4,16 +4,19 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+
     public function run()
     {
         $this->call(TabelaKorisniciSeeder::class);
         $this->call(Dobavljaci::class);
+        $this->call(VrsteUredjaja::class);
         $this->call(Nabavka::class);
+        $this->call(NabavkaStavka::class);
         $this->call(Ugovori::class);
         $this->call(Racuni::class);
-        $this->call(RacuniSlike::class);
+        // $this->call(RacuniSlike::class);
         $this->call(Otpremnica::class);
-        $this->call(OtpremnicaSlika::class);
+        // $this->call(OtpremnicaSlika::class);
         $this->call(OtpremnicaStavke::class);
         $this->call(Proizvodjaci::class);
         $this->call(Lokacija::class);
@@ -25,6 +28,8 @@ class DatabaseSeeder extends Seeder
         $this->call(Mobilni::class);
         $this->call(Email::class);
         $this->call(MonitorDijagonala::class);
+        $this->call(Status::class);
+        $this->call(Baterije::class);
         $this->call(MonitorPovezivanje::class);
         $this->call(Soketi::class);
         $this->call(TipoviMemorije::class);
@@ -42,10 +47,12 @@ class DatabaseSeeder extends Seeder
         $this->call(OsnovnaPlocaModel::class);
         $this->call(ProcesoriModeli::class);
         $this->call(GrafickiAdapterModel::class);
+        $this->call(GrafickiAdapteriPovezivanje::class);
         $this->call(NapajanjaModeli::class);
         $this->call(OperativniSistemi::class);
         $this->call(Racunari::class);
         $this->call(Monitor::class);
+        $this->call(OsnovnaPloca::class);
         $this->call(Procesor::class);
         $this->call(GrafickiAdapter::class);
         $this->call(Stampaci::class);
@@ -60,5 +67,9 @@ class DatabaseSeeder extends Seeder
         $this->call(MrezniUredjaj::class);
         $this->call(Aplikacije::class);
         $this->call(AplikacijeRacunari::class);
+        $this->call(Podesavanja::class);
+        $this->call(Licence::class);
+        $this->call(Greske::class);
     }
+
 }

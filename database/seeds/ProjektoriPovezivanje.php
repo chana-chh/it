@@ -16,4 +16,5 @@ class ProjektoriPovezivanje extends Seeder
             'povezivanje_id' => 2,
         ]);
     }
+
 }

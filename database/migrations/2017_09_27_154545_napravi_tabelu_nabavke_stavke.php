@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class NapraviTabeluOtpremniceStavke extends Migration
+class NapraviTabeluNabavkeStavke extends Migration
 {
 
     public function up()
     {
-        Schema::create('otpremnice_stavke', function (Blueprint $table) {
+        Schema::create('nabavke_stavke', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('otpremnica_id')->unsigned();
+            $table->integer('nabavka_id')->unsigned();
             $table->integer('vrsta_uredjaja_id')->unsigned();
             $table->string('naziv');
             $table->decimal('kolicina', 10, 2)->default(0);
@@ -22,7 +22,7 @@ class NapraviTabeluOtpremniceStavke extends Migration
                 'kilogram'])->nullable();
             $table->string('napomena')->nullable();
 
-            $table->foreign('otpremnica_id')->references('id')->on('otpremnice')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('nabavka_id')->references('id')->on('nabavke')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('vrsta_uredjaja_id')->references('id')->on('s_vrste_uredjaja')->onUpdate('cascade')->onDelete('restrict');
         });
     }
@@ -30,8 +30,9 @@ class NapraviTabeluOtpremniceStavke extends Migration
     public function down()
     {
         Schema::dropForeign([
-            'otpremnica_id']);
-        Schema::dropIfExists('otpremnice_stavke');
+            'nabavka_id',
+            'vrsta_uredjaja_id']);
+        Schema::dropIfExists('nabavke_stavke');
     }
 
 }

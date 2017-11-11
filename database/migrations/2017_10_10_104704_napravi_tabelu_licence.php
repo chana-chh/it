@@ -17,13 +17,13 @@ class NapraviTabeluLicence extends Migration
             $table->integer('broj_aktivacija')->unsigned()->nullable();
             $table->date('datum_pocetka_vazenja');
             $table->date('datum_prestanka_vazenja');
-            $table->text('napomena');
+            $table->text('napomena')->nullable();
         });
     }
-
 
     public function down()
     {
         Schema::dropIfExists('licence');
     }
+
 }
