@@ -173,7 +173,6 @@
         });
 
         chsn.on('change', function (evt, params) {
-            console.log(evt.currentTarget.id);
             if (params == undefined && evt.currentTarget.id == 'racunar_id') {
                 $('#obavestenje').hide();
             } else {
