@@ -311,12 +311,6 @@ class Kancelarija extends Seeder
             'napomena' => '306 164',
         ]);
         DB::table('s_kancelarije')->insert([
-            'naziv' => '312',
-            'sprat_id' => 6,
-            'lokacija_id' => 1,
-            'napomena' => '306 164',
-        ]);
-        DB::table('s_kancelarije')->insert([
             'naziv' => '313',
             'sprat_id' => 6,
             'lokacija_id' => 1,

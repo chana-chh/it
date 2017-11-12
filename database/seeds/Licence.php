@@ -12,8 +12,8 @@ class Licence extends Seeder
             'proizvod' => 'Neki proizvod',
             'kljuc' => 'nullable',
             'broj_aktivacija' => 50,
-            'datum_pocetka_vazenja' => 'nullable',
-            'datum_prestanka_vazenja' => 'nullable',
+            'datum_pocetka_vazenja' => '1970-01-01',
+            'datum_prestanka_vazenja' => '1970-01-01',
         ]);
     }
 

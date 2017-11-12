@@ -14,7 +14,7 @@ class Projektori extends Seeder
             'serijski_broj' => 'nn',
             'proizvodjac_id' => 1,
             'kancelarija_id' => 1,
-            'nabavka_id' => 1,
+            'stavka_nabavke_id' => 1,
         ]);
     }
 

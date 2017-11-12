@@ -11,7 +11,6 @@ class MonitorModel extends Seeder
             'naziv' => 'nn',
             'proizvodjac_id' => 1,
             'dijagonala_id' => 1,
-            'link' => 'https://google.com',
         ]);
     }
 

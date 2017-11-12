@@ -11,6 +11,7 @@ class Ugovori extends Seeder
             'broj' => 'Stara oprema',
             'datum_zakljucivanja' => '1970-01-01',
             'datum_raskida' => '1970-01-04',
+            'dobavljac_id' => 1,
         ]);
     }
 

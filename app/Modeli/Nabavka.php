@@ -3,49 +3,26 @@
 namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Nabavka extends Model
 {
+
+    use SoftDeletes;
     protected $table = 'nabavke';
     public $timestamps = false;
+    protected $dates = [
+        'deleted_at'
+    ];
 
     public function dobavljac()
     {
         return $this->belongsTo('App\Modeli\Dobavljac', 'dobavljac_id', 'id');
     }
 
-    public function racunari()
+    public function stavke()
     {
-        return $this->hasMany('App\Modeli\Racunar', 'nabavka_id', 'id');
+        return $this->hasMany('App\Modeli\NabavkaStavka', 'nabavka_id', 'id');
     }
 
-    public function monitori()
-    {
-        return $this->hasMany('App\Modeli\Monitor', 'nabavka_id', 'id');
-    }
-
-    public function stampaci()
-    {
-        return $this->hasMany('App\Modeli\Stampac', 'nabavka_id', 'id');
-    }
-
-    public function skeneri()
-    {
-        return $this->hasMany('App\Modeli\Skener', 'nabavka_id', 'id');
-    }
-
-    public function upsevi()
-    {
-        return $this->hasMany('App\Modeli\Ups', 'nabavka_id', 'id');
-    }
-
-    public function projektori()
-    {
-        return $this->hasMany('App\Modeli\Projektor', 'nabavka_id', 'id');
-    }
-
-    public function mrezniUredjaji()
-    {
-        return $this->hasMany('App\Modeli\MrezniUredjaj', 'nabavka_id', 'id');
-    }
 }

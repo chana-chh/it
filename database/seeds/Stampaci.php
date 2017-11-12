@@ -13,7 +13,7 @@ class Stampaci extends Seeder
             'serijski_broj' => 'nn',
             'stampac_model_id' => 1,
             'kancelarija_id' => 1,
-            'nabavka_id' => 1,
+            'stavka_nabavke_id' => 1,
         ]);
     }
 

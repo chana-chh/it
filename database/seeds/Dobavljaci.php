@@ -9,13 +9,6 @@ class Dobavljaci extends Seeder
     {
         DB::table('s_dobavljaci')->insert([
             'naziv' => 'Stara oprema',
-//                'adresa_mesto' => '',
-//                'adresa_ulica' => '',
-//                'adresa_broj' => '',
-//                'telefon' => '',
-//                'email' => '',
-//                'link' => '',
-//                'napomena' => ''
         ]);
         DB::table('s_dobavljaci')->insert([
             'naziv' => 'Džin solutions doo',

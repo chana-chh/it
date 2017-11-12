@@ -12,16 +12,17 @@ class NapraviTabeluRacunari extends Migration
         Schema::create('racunari', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('vrsta_uredjaja_id')->unsigned();
-            $table->boolean('laptop')->default(0);
-            $table->boolean('server')->default(0);
-            $table->boolean('brend')->default(0);
+            $table->boolean('laptop')->default(false);
+            $table->boolean('server')->default(false);
+            $table->boolean('brend')->default(false);
             $table->integer('proizvodjac_id')->unsigned()->nullable();
             $table->string('inventarski_broj', 10)->nullable();
+            $table->string('serijski_broj', 50)->nullable();
             $table->string('erc_broj', 100)->unique(); // dodati datum kod otpisa
             $table->string('ime', 100)->unique(); // dodati datum kod otpisa
             $table->integer('zaposleni_id')->unsigned()->nullable();
             $table->integer('kancelarija_id')->unsigned()->nullable();
-            $table->integer('nabavka_id')->unsigned();
+            $table->integer('stavka_nabavke_id')->unsigned();
             $table->integer('os_id')->unsigned()->nullable();
             $table->integer('ocena')->unsigned();
             $table->text('link')->nullable();
@@ -33,7 +34,7 @@ class NapraviTabeluRacunari extends Migration
             $table->foreign('zaposleni_id')->references('id')->on('zaposleni')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('kancelarija_id')->references('id')->on('s_kancelarije')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('os_id')->references('id')->on('operativni_sistemi')->onUpdate('cascade')->onDelete('restrict');
-            $table->foreign('nabavka_id')->references('id')->on('nabavke')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('stavka_nabavke_id')->references('id')->on('nabavke_stavke')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('proizvodjac_id')->references('id')->on('s_proizvodjaci')->onUpdate('cascade')->onDelete('restrict');
         });
     }
@@ -44,7 +45,7 @@ class NapraviTabeluRacunari extends Migration
             'zaposleni_id',
             'kancelarija_id',
             'os_id',
-            'nabavka_id',
+            'stavka_nabavke_id',
             'proizvodjac_id']);
         Schema::dropIfExists('racunari');
     }

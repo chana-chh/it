@@ -14,7 +14,7 @@ class Mobilni extends Seeder
         ]);
         DB::table('mobilni')->insert([
             'broj' => '060 234 0111',
-            // 'sluzbeni' => 1,
+            // 'sluzbeni' => 1, // jeste sluzbeni
             'zaposleni_id' => 1,
         ]);
     }
