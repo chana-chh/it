@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class Toneri extends Seeder
+class Baterije extends Seeder
 {
 
     public function run()

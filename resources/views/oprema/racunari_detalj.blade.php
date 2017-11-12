@@ -136,7 +136,19 @@
 
 @section('traka')
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-12">
+        <h4>Komponente:</h4>
+        <table class="table" style="table-layout: fixed;">
+        <tbody>
+            <tr>
+                <th style="width: 50%;">{{$uredjaj->osnovnaPloca->osnovnaPlocaModel->naziv}}</th>
+                <td style="width: 50%;"><a href="#" class="btn btn-primary btn-block">
+        Osnovna ploča <i class="fa fa-arrow-right fa-fw"></i>
+</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
         <h4>Komponente:</h4>
         <ul class="list-group">
   <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
