@@ -34,8 +34,24 @@ DB ================== NE KORISTITI NOVE MIGRACIJE DOK SE NE ZAVRSI OVO DOLE NAVE
 Napravio NABAVKE_STAVKE - da se izmene sve migracije koje se vezuju na NABAVKE i da se vezu na NABAVKE_STAVKE, a samo
 NABAVKE_STAVKE da se vezu na nabavke. Naravno treba izmeniti i sve Modele :(
 
-Proveriti sve migracije i to polja otpremnica_stavka_id, nabavka_stavka_id (trenitno je to nabavka_id), racunar_id i
-kancelarija_id. Koje polje iskljucuje neko drugo polje (sva nabrojana polja treba da budu nullable).
-
 LICENCE videti sta treba da bude nullable
 
+"I" \ "ILI"
+RACUNAR
+zaposleni_id
+kancelarija_id
+
+UREDJAJI
+racunar
+kancelarija
+otpremnica
+nabavka
+
+KOMPONENTE
+racunar
+otpremnica
+
+SPECIJALNI
+kancelarija
+otpremnica
+nabavka

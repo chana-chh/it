@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class Podesavanja extends Seeder
+class Greske extends Seeder
 {
 
     public function run()

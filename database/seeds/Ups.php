@@ -13,6 +13,7 @@ class Ups extends Seeder
             'serijski_broj' => 'nn',
             'ups_model_id' => 1,
             'kancelarija_id' => 1,
+            'stavka_nabavke_id' => 1,
         ]);
     }
 

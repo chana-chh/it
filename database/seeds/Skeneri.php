@@ -13,7 +13,7 @@ class Skeneri extends Seeder
             'inventarski_broj' => 'nn',
             'serijski_broj' => 'nn',
             'kancelarija_id' => 1,
-            'nabavka_id' => 1,
+            'stavka_nabavke_id' => 1,
         ]);
     }
 

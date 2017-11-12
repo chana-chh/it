@@ -2,12 +2,12 @@
 
 use Illuminate\Database\Seeder;
 
-class Toneri extends Seeder
+class Baterije extends Seeder
 {
 
     public function run()
     {
-        DB::table('s_toneri')->insert([
+        DB::table('s_baterije')->insert([
             'naziv' => 'Tip baterije 1',
             'kapacitet' => 'veliki',
             'napon' => 'trese',
