@@ -12,6 +12,8 @@ Use App\Modeli\Racunar;
 use App\Modeli\Zaposleni;
 use App\Modeli\Uprava;
 use App\Modeli\Kancelarija;
+use App\Modeli\Proizvodjac;
+use App\Modeli\Nabavka;
 
 class RacunariKontroler extends Kontroler
 {
@@ -52,6 +54,15 @@ class RacunariKontroler extends Kontroler
     {
         $uredjaj = Racunar::find($id);
         return view('oprema.racunari_detalj')->with(compact('uredjaj'));
+    }
+
+    public function getDodavanje()
+    {
+        $proizvodjaci = Proizvodjac::all();
+        $zaposleni = Zaposleni::all();
+        $kancelarije = Kancelarija::all();
+        $nabavke = Nabavka::all();
+        return view('oprema.racunari_dodavanje')->with(compact ('proizvodjaci', 'zaposleni', 'kancelarije', 'nabavke'));
     }
 
 }
