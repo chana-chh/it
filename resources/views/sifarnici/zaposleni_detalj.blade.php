@@ -54,13 +54,18 @@
             <tr>
                 <th style="width: 20%;">Kancelarija:</th>
                 <td style="width: 80%;">{{$zaposleni->kancelarija->naziv}}, {{$zaposleni->kancelarija->lokacija->naziv}}, {{$zaposleni->kancelarija->sprat->naziv}}, 
-                    <span class="text-primary">Telefoni: &emsp;
-                        @foreach ($zaposleni->kancelarija->telefoni as $lokal)
-                            {{$lokal->broj}}, {{$lokal->vrsta}} &emsp;
-                    @endforeach
-                </span>
                 </td>
             </tr>
+            @if ($zaposleni->kancelarija->telefoni)
+            <tr>
+                <th style="width: 20%;">Telefoni:</th>
+                <td style="width: 80%;">@foreach ($zaposleni->kancelarija->telefoni as $lokal)
+                            {{$lokal->broj}}, {{$lokal->vrsta}} &emsp;
+                    @endforeach
+                </td>
+            </tr>
+            @endif
+
             @if (count($zaposleni->racunar)>0)
              <tr>
                 <th style="width: 20%;">Računar:</th>

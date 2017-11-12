@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class NabavkaStavka extends Model
 {
-    protected $table = 'otpremnice_stavke';
+    protected $table = 'nabavke_stavke';
     public $timestamps = false;
 
     public function nabavka()

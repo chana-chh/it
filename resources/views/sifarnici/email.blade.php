@@ -31,7 +31,7 @@
     <tr>
         <td>{{ $d->id }}</td>
         <td>
-            <a href="mailto:{{ $d->adresa }}"><strong class="text-info">{{ $d->adresa }}</strong></a>
+            <a href="mailto:{{ $d->adresa }}"><strong class="text-info lozinka" data-toggle="lozinka" title="Lozinka:" data-content="{{$d->lozinka}}">{{ $d->adresa }}</strong></a>
         </td>
         <td>
             <span title="U pitanju je služben elektronska adresa" style="color: #18bc9c;">
@@ -186,6 +186,14 @@
 @section('skripte')
 <script>
     $(document).ready(function () {
+        
+        $('.lozinka').popover({
+            placement : 'right',
+            trigger : 'hover',
+            delay: { 
+                show: "2000"
+            }
+        });
 
         $('#tabela').DataTable({
             columnDefs: [

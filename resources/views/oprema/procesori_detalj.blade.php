@@ -55,10 +55,11 @@
 
             <tr>
                 <th style="width: 20%;">Otpremnica:</th>
-                <td style="width: 80%;"><a
+                <td style="width: 80%;">@if($uredjaj->stavkaOtpremnice)<a
                            href="{{ route('otpremnice.detalj', $uredjaj->stavkaOtpremnice->otpremnica->id) }}">
                             {{$uredjaj->stavkaOtpremnice->otpremnica->broj}} 
                         </a>
+                        @endif
                 </td>
             </tr>
 

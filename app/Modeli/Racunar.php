@@ -29,9 +29,9 @@ class Racunar extends Model
         return $this->belongsTo('App\Modeli\Zaposleni', 'zaposleni_id', 'id');
     }
 
-    public function nabavka()
+    public function nabavkaStavka()
     {
-        return $this->belongsTo('App\Modeli\Nabavka', 'nabavka_id', 'id');
+        return $this->belongsTo('App\Modeli\NabavkaStavka', 'stavka_nabavke_id', 'id');
     }
 
     public function operativniSistem()

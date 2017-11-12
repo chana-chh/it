@@ -105,9 +105,10 @@
             </tr>
                         <tr>
                 <th style="width: 40%;">Podaci o nabavci:</th>
-                <td style="width: 60%;">{{$uredjaj->nabavka->dobavljac->naziv}}, {{$uredjaj->nabavka->datum}} sa garancijom u mesecima - {{$uredjaj->nabavka->garancija}}
+                <td style="width: 60%;">{{$uredjaj->nabavkaStavka->nabavka->dobavljac->naziv}}, {{$uredjaj->nabavkaStavka->nabavka->datum}} 
+                    sa garancijom od {{$uredjaj->nabavkaStavka->nabavka->garancija}} u mesecima
                 </td>
-            </tr>
+                </tr>
                   <tr>
                 <th style="width: 40%;">Napomena:</th>
                 <td style="width: 60%;">{{$uredjaj->napomena}}
@@ -138,61 +139,188 @@
 <div class="row">
     <div class="col-md-12">
         <h4>Komponente:</h4>
-        <table class="table" style="table-layout: fixed;">
+        <table class="table table-condensed table-hover" style="table-layout: fixed;">
         <tbody>
-            <tr>
-                <th style="width: 50%;">{{$uredjaj->osnovnaPloca->osnovnaPlocaModel->naziv}}</th>
-                <td style="width: 50%;"><a href="#" class="btn btn-primary btn-block">
-        Osnovna ploča <i class="fa fa-arrow-right fa-fw"></i>
-</a>
-                </td>
-            </tr>
+<tr>
+    <th style="width: 70%;">@if ($uredjaj->osnovnaPloca) {{$uredjaj->osnovnaPloca->osnovnaPlocaModel->naziv}} 
+                            @else Komponenta nije dodata ili nema podataka o njoj
+                            @endif
+    </th>
+    <td style="width: 30%;">
+        <a href="#" class="btn btn-primary btn-block">
+            Osnovna ploča
+            
+        </a>
+    </td>
+</tr>
+<tr>
+    <th style="width: 70%;">
+        @if (!$uredjaj->procesori->isEmpty())
+            <ul>
+                @foreach($uredjaj->procesori as $p)
+                    <li>{{$p->procesorModel->proizvodjac->naziv}}, {{$p->procesorModel->naziv}}</li>
+                @endforeach     
+            </ul>
+        @else Komponenta nije dodata ili nema podataka o njoj
+        @endif
+    </th>
+    <td style="width: 30%;">
+        <a href="#" class="btn btn-primary btn-block">
+            Procesori
+            
+        </a>
+    </td>
+</tr>
+<tr>
+    <th style="width: 70%;">
+        @if (!$uredjaj->memorije->isEmpty())
+            <ul>
+                @foreach($uredjaj->memorije as $m)
+                    <li>{{$m->memorijaModel->proizvodjac->naziv}}, {{$m->memorijaModel->kapacitet}}</li>
+                @endforeach     
+            </ul>
+        @else Komponenta nije dodata ili nema podataka o njoj
+        @endif
+    </th>
+    <td style="width: 30%;">
+        <a href="#" class="btn btn-primary btn-block">
+            Memorijski moduli
+            
+        </a>
+    </td>
+</tr>
+<tr>
+    <th style="width: 70%;">
+        @if (!$uredjaj->hddovi->isEmpty())
+            <ul>
+                @foreach($uredjaj->hddovi as $h)
+                    <li>{{$h->hddModel->proizvodjac->naziv}}, {{$h->hddModel->kapacitet}}</li>
+                @endforeach     
+            </ul>
+        @else Komponenta nije dodata ili nema podataka o njoj
+        @endif
+    </th>
+    <td style="width: 30%;">
+        <a href="#" class="btn btn-primary btn-block">
+            Čvrsti diskovi
+            
+        </a>
+    </td>
+</tr>
+<tr>
+    <th style="width: 70%;">
+        @if (!$uredjaj->grafickiAdapteri->isEmpty())
+            <ul>
+                @foreach($uredjaj->grafickiAdapteri as $g)
+                    <li>{{$g->grafickiAdapterModel->proizvodjac->naziv}}, {{$g->grafickiAdapterModel->cip}}</li>
+                @endforeach     
+            </ul>
+        @else Komponenta nije dodata ili nema podataka o njoj
+        @endif
+    </th>
+    <td style="width: 30%;">
+        <a href="#" class="btn btn-primary btn-block">
+            Grafički adapteri
+            
+        </a>
+    </td>
+</tr>
+<tr>
+    <th style="width: 70%;">
+        @if (!$uredjaj->napajanja->isEmpty())
+            <ul>
+                @foreach($uredjaj->napajanja as $n)
+                    <li>{{$n->napajanjeModel->proizvodjac->naziv}}, {{$n->napajanjeModel->snaga}} W</li>
+                @endforeach     
+            </ul>
+        @else Komponenta nije dodata ili nema podataka o njoj
+        @endif
+    </th>
+    <td style="width: 30%;">
+        <a href="#" class="btn btn-primary btn-block">
+            Napajanja
+            
+        </a>
+    </td>
+</tr>
         </tbody>
     </table>
-        <h4>Komponente:</h4>
-        <ul class="list-group">
-  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
-        Osnovna ploča <i class="fa fa-arrow-right fa-fw"></i>
-</a></li>
-  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
-        Procesori<i class="fa fa-arrow-right fa-fw"></i>
-</a></li>
-  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
-        Memorija <i class="fa fa-arrow-right fa-fw"></i>
-</a></li>
-  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
-        Čvrsti diskovi <i class="fa fa-arrow-right fa-fw"></i>
-</a></li>
-  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
-        Grafički adapteri <i class="fa fa-arrow-right fa-fw"></i>
-</a></li>
-  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
-        Napajanje <i class="fa fa-arrow-right fa-fw"></i>
-</a></li>
-</ul>
 <hr style="border-top: 1px solid #18BC9C">
 <h4>Periferija:</h4>
-<ul class="list-group">
-  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
-        Monitori <i class="fa fa-arrow-right fa-fw"></i>
-</a></li>
-  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
-        Štampači <i class="fa fa-arrow-right fa-fw"></i>
-</a></li>
-  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
-        Skeneri <i class="fa fa-arrow-right fa-fw"></i>
-</a></li>
-</ul>
+<table class="table table-condensed table-hover" style="table-layout: fixed;">
+        <tbody>
+<tr>
+    <th style="width: 70%;">
+        @if (!$uredjaj->monitori->isEmpty())
+            <ul>
+                @foreach($uredjaj->monitori as $mo)
+                    <li>{{$mo->monitorModel->proizvodjac->naziv}}, {{$mo->monitorModel->dijagonala->naziv}} "</li>
+                @endforeach     
+            </ul>
+        @else Uređaj nije povezan ili nema podataka o njemu
+        @endif
+    </th>
+    <td style="width: 30%;">
+        <a href="#" class="btn btn-primary btn-block">
+            Monitori
+            
+        </a>
+    </td>
+</tr>
+<tr>
+    <th style="width: 70%;">
+        @if (!$uredjaj->stampaci->isEmpty())
+            <ul>
+                @foreach($uredjaj->stampaci as $st)
+                    <li>{{$st->stampacModel->proizvodjac->naziv}}, {{$st->stampacModel->naziv}}</li>
+                @endforeach     
+            </ul>
+        @else Uređaj nije povezan ili nema podataka o njemu
+        @endif
+    </th>
+    <td style="width: 30%;">
+        <a href="#" class="btn btn-primary btn-block">
+            Štampači
+            
+        </a>
+    </td>
+</tr>
+<tr>
+    <th style="width: 70%;">
+        @if (!$uredjaj->skeneri->isEmpty())
+            <ul>
+                @foreach($uredjaj->skeneri as $st)
+                    <li>{{$st->skenerModel->proizvodjac->naziv}}, {{$st->skenerModel->naziv}}</li>
+                @endforeach     
+            </ul>
+        @else Uređaj nije povezan ili nema podataka o njemu
+        @endif
+    </th>
+    <td style="width: 30%;">
+        <a href="#" class="btn btn-primary btn-block">
+            Skeneri
+            
+        </a>
+    </td>
+</tr>
+</tbody>
+</table>
 <hr style="border-top: 1px solid #18BC9C">
-<ul class="list-group">
-  <li class="list-group-item"><a href="#" class="btn btn-primary btn-block">
-        Aplikacije <i class="fa fa-arrow-right fa-fw"></i>
-</a></li>
-</ul>
-
-
-
-
+<table class="table" style="table-layout: fixed;">
+        <tbody>
+<tr>
+    <th style="width: 50%; text-align:left"><a href="#" class="btn btn-primary btn-block">
+        Aplikacije
+</a>
+    </th>
+    <td style="width: 50%;">
+        <a href="#" class="btn btn-primary btn-block">
+            Servis
+        </a>
+    </td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
