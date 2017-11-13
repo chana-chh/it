@@ -72,6 +72,11 @@ class VrsteUredjaja extends Seeder
             'mnozina' => 'Mrežni uređaji',
             'ruta' => 'mrezni_uredjaji.oprema.detalj',
         ]);
+        DB::table('s_vrste_uredjaja')->insert([
+            'naziv' => 'Ostali uređaji', // 14
+            'mnozina' => 'Ostali uređaji',
+            'ruta' => ' ',
+        ]);
     }
 
 }

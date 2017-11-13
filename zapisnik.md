@@ -24,24 +24,19 @@ https://yajrabox.com/docs/laravel-datatables/master/releases
 https://datatables.yajrabox.com/starter
 
 
-ADRESE_E_POSTE Prikazati lozinku na tooltip da dilejom
-
 S_TONERI dodati modeli_tonera polje
-Dodati meni i CRUD za vrste uredjaja
+Dodati meni i CRUD za vrste uredjaja i Baterije
 
-DB ================== NE KORISTITI NOVE MIGRACIJE DOK SE NE ZAVRSI OVO DOLE NAVEDENO =================================
 
-Napravio NABAVKE_STAVKE - da se izmene sve migracije koje se vezuju na NABAVKE i da se vezu na NABAVKE_STAVKE, a samo
-NABAVKE_STAVKE da se vezu na nabavke. Naravno treba izmeniti i sve Modele :(
 
 LICENCE videti sta treba da bude nullable
 
 "I" \ "ILI"
-RACUNAR
+RACUNAR	Mogu oba
 zaposleni_id
-kancelarija_id
+kancelarija_id 
 
-UREDJAJI
+UREDJAJI	Ne mogu otpremnica i nabavka
 racunar
 kancelarija
 otpremnica

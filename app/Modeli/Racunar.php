@@ -3,6 +3,7 @@
 namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Racunar extends Model
 {
@@ -113,6 +114,56 @@ class Racunar extends Model
     public function scopeBrendovi($query)
     {
         return $query->where('brend', 1);
+    }
+
+    public function ocena()
+    {
+        
+        $procesor_zbir = 0;
+        $memorija_zbir = 0;
+        $hdd_zbir = 0;
+        $procesor_ocena = 0;
+        $memorija_ocena = 0;
+        $hdd_ocena = 0;
+        $osnovnaPloca_ocena = 0;
+
+        if ($this->osnovnaPloca) {
+            $osnovnaPloca_ocena = $this->osnovnaPloca->osnovnaPlocaModel->ocena;
+        }
+        if (!$this->procesori->isEmpty()) {
+            foreach ($this->procesori as $procesor) {
+            $procesor_zbir += $procesor->procesorModel->ocena;
+        }
+            $procesor_ocena = $procesor_zbir / $this->procesori->count();
+        }
+        if (!$this->memorije->isEmpty()) {
+        foreach ($this->memorije as $memorija) {
+           $memorija_zbir += $memorija->memorijaModel->ocena;
+        }
+        $memorija_ocena = $memorija_zbir / $this->memorije->count();
+        }
+        if (!$this->hddovi->isEmpty()) {
+        foreach ($this->hddovi as $hdd) {
+           $hdd_zbir += $hdd->hddModel->ocena;
+        }
+        $hdd_ocena = $hdd_zbir / $this->hddovi->count();
+        }
+        
+        $s = ($procesor_ocena  + $memorija_ocena + $hdd_ocena + $osnovnaPloca_ocena);
+
+        return $s;
+    }
+
+    public function garancija()
+    {
+        $u_garanciji = 0;
+
+        $sada = Carbon::now()->startOfMonth();
+        $datum_nabavke = Carbon::parse($this->nabavkaStavka->nabavka->datum);
+        $razlika_meseci = $sada->diffInMonths($datum_nabavke);
+        $u_garanciji = $this->nabavkaStavka->nabavka->garancija -  $razlika_meseci;
+        
+        return $u_garanciji;
     }
 
 }

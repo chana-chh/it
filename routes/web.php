@@ -344,5 +344,7 @@ Route::get('oprema/racunari/', 'Oprema\RacunariKontroler@getLista')->name('racun
 Route::get('oprema/racunari/ajax', 'Oprema\RacunariKontroler@getAjax')->name('racunari.ajax');
 Route::get('oprema/racunari/detalj/{id}', 'Oprema\RacunariKontroler@getDetalj')->name('racunari.oprema.detalj');
 Route::get('oprema/racunari/dodavanje', 'Oprema\RacunariKontroler@getDodavanje')->name('racunari.oprema.dodavanje.get');
+Route::post('oprema/racunari/dodavanje', 'Oprema\RacunariKontroler@postDodavanje')->name('racunari.oprema.dodavanje.post');
+Route::get('oprema/racunari/aplikacije/{id}', 'Oprema\RacunariKontroler@getAplikacije')->name('racunari.oprema.aplikacije');
 
 

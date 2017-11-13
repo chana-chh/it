@@ -33,6 +33,7 @@ class ZaposleniEmailoviKontroler extends Kontroler
         $email = new Email();
         $email->adresa = $req->email_dodavanje_adresa;
         $email->sluzbena = $sluzbenac;
+        $email->lozinka = $req->lozinka;
         $email->zaposleni_id = $zaposleni_id;
         $email->napomena = $req->email_dodavanje_napomena;
 
@@ -81,6 +82,7 @@ class ZaposleniEmailoviKontroler extends Kontroler
         $mobilni = Email::find($req->email_id);
         $mobilni->adresa = $req->email_izmena_adresa;
         $mobilni->sluzbena = $sluzbenic;
+        $email->lozinka = $req->lozinka;
         $mobilni->zaposleni_id = $req->zaposleni_id;
         $mobilni->napomena = $req->email_izmena_napomena;
 

@@ -42,10 +42,14 @@
         </div>
     </div>
 </div>
-
+@if ($uredjaj->garancija()>0)
+<div class="alert alert-info alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Obavštenje: </strong> Uređaj je još uvek u garanciji, još {{$uredjaj->garancija()}} meseca(i).
+</div>    
+@endif
 <div class="row">
     <div class="col-md-12">
-        
 <table class="table table-striped" style="table-layout: fixed;">
         <tbody style="font-size: 1.875rem;">
             <tr>
@@ -136,6 +140,13 @@
 @endsection
 
 @section('traka')
+<h4>Ocena:</h4>
+<div class="row">
+<div class="col-md-6 col-md-offset-4">
+<p class="tankoza krug_mali">{{$uredjaj->ocena()}}</p>
+</div>
+</div>
+
 <div class="row">
     <div class="col-md-12">
         <h4>Komponente:</h4>
@@ -309,7 +320,7 @@
 <table class="table" style="table-layout: fixed;">
         <tbody>
 <tr>
-    <th style="width: 50%; text-align:left"><a href="#" class="btn btn-primary btn-block">
+    <th style="width: 50%; text-align:left"><a href="{{ route('racunari.oprema.aplikacije', $uredjaj->id) }}" class="btn btn-primary btn-block">
         Aplikacije
 </a>
     </th>

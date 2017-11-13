@@ -14,6 +14,7 @@ use App\Modeli\Uprava;
 use App\Modeli\Kancelarija;
 use App\Modeli\Proizvodjac;
 use App\Modeli\Nabavka;
+use App\Modeli\OperativniSistem;
 
 class RacunariKontroler extends Kontroler
 {
@@ -53,7 +54,7 @@ class RacunariKontroler extends Kontroler
     public function getDetalj($id)
     {
         $uredjaj = Racunar::find($id);
-        return view('oprema.racunari_detalj')->with(compact('uredjaj'));
+        return view('oprema.racunari_detalj')->with(compact('uredjaj', 'ocena'));
     }
 
     public function getDodavanje()
@@ -62,7 +63,68 @@ class RacunariKontroler extends Kontroler
         $zaposleni = Zaposleni::all();
         $kancelarije = Kancelarija::all();
         $nabavke = Nabavka::all();
-        return view('oprema.racunari_dodavanje')->with(compact ('proizvodjaci', 'zaposleni', 'kancelarije', 'nabavke'));
+        $os = OperativniSistem::all();
+        return view('oprema.racunari_dodavanje')->with(compact ('proizvodjaci', 'zaposleni', 'kancelarije', 'nabavke', 'os'));
+    }
+
+    public function postDodavanje(Request $request)
+    {
+
+        $this->validate($request, [
+                'serijski_broj' => ['max:50'],
+                'stavka_nabavke_id' => ['required'],
+                'erc_broj' => ['required', 'max:100'],
+                'ime' => ['required', 'max:100'],
+            ]);
+
+            if ($request->laptop) {
+                $laptopc = 1;
+            } else {
+                $laptopc = 0;
+            }
+            if ($request->server) {
+                $serverc = 1;
+            } else {
+                $serverc = 0;
+            }
+             if ($request->brend) {
+                $brendc = 1;
+            } else {
+                $brendc = 0;
+            }
+
+
+        $uredjaj = new Racunar();
+        $uredjaj->vrsta_uredjaja_id = 1; //Računari imaju šifru 1
+        $uredjaj->laptop = $laptopc;
+        $uredjaj->brend = $brendc;
+        $uredjaj->server = $serverc;
+        $uredjaj->proizvodjac_id = $request->proizvodjac_id;
+        $uredjaj->inventarski_broj = $request->inventarski_broj;
+        $uredjaj->serijski_broj = $request->serijski_broj;
+        $uredjaj->erc_broj = $request->erc_broj;
+        $uredjaj->ime = $request->ime;
+        $uredjaj->zaposleni_id = $request->zaposleni_id;
+        $uredjaj->kancelarija_id = $request->kancelarija_id;
+        $uredjaj->stavka_nabavke_id = $request->stavka_nabavke_id;
+        $uredjaj->os_id = $request->os_id;
+        $uredjaj->ocena = 0;
+        $uredjaj->link = $request->link;
+        $uredjaj->napomena = $request->napomena;
+        $uredjaj->reciklirano = 0;
+
+        $uredjaj->save();
+
+        Session::flash('uspeh','Računar je uspešno dodat!');
+        return redirect()->route('racunari.oprema');
+    }
+
+    public function getAplikacije($id){
+
+        $uredjaj = Racunar::find($id);
+        $aplikacije = $uredjaj->aplikacije;
+
+        return view('oprema.racunari_aplikacije')->with(compact('aplikacije', 'uredjaj'));
     }
 
 }

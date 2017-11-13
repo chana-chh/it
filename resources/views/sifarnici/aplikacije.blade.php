@@ -70,7 +70,7 @@
               {{ csrf_field() }}
               
                 <div class="form-group">
-                  <label for="nazivModal">Naziv/broj:</label>
+                  <label for="nazivModal">Naziv:</label>
                   <input type="text" class="form-control" id="nazivModal" name="nazivModal" required>
                 </div>
 
@@ -112,7 +112,7 @@
         {{ csrf_field() }}
 
         <div class="form-group{{ $errors->has('naziv') ? ' has-error' : '' }}">
-            <label for="naziv">Naziv/broj: </label>
+            <label for="naziv">Naziv: </label>
             <input type="text" name="naziv" id="naziv" class="form-control" value="{{ old('naziv') }}" required> @if ($errors->has('naziv'))
             <span class="help-block">
                 <strong>{{ $errors->first('naziv') }}</strong>

@@ -449,3 +449,9 @@ th{
     100% {transform: scale(1);}
 }
 
+.alert-info {
+    color: #2C3E50;
+    background-color: #ffffff;
+    border-color: #2C3E50;
+}
+

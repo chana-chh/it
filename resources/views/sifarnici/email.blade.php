@@ -27,11 +27,12 @@
     <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
 </thead>
 <tbody>
+
     @foreach ($data as $d)
     <tr>
         <td>{{ $d->id }}</td>
         <td>
-            <a href="mailto:{{ $d->adresa }}"><strong class="text-info lozinka" data-toggle="lozinka" title="Lozinka:" data-content="{{$d->lozinka}}">{{ $d->adresa }}</strong></a>
+            <a href="mailto:{{ $d->adresa }}"><strong class="text-info lozinka" data-toggle="lozinka" title="Lozinka:" data-content="{{ $d->lozinka }}">{{ $d->adresa }}</strong></a>
         </td>
         <td>
             <span title="U pitanju je služben elektronska adresa" style="color: #18bc9c;">
@@ -130,6 +131,15 @@
             </span>
             @endif
         </div>
+               <div class="form-group{{ $errors->has('lozinka') ? ' has-error' : '' }}">
+            <label for="lozinka">Lozinka: </label>
+            <input  type="text" id="lozinka" name="lozinka" class="form-control" value="{{ old('lozinka') }}" required>
+            @if ($errors->has('lozinka'))
+            <span class="help-block">
+                <strong>{{ $errors->first('lozinka') }}</strong>
+            </span>
+            @endif
+        </div>
        <div class="form-group checkboxoviforme">
             <label>
                 <input type="checkbox" name="sluzbena" id="sluzbena">
@@ -172,7 +182,7 @@
                         </button>
                     </div>
                     <div class="col-md-6">
-                        <a class="btn btn-danger btn-block ono" href="{{route('mobilni')}}">
+                        <a class="btn btn-danger btn-block ono" href="{{route('email')}}">
                             <i class="fa fa-ban"></i>&emsp;Otkaži
                         </a>
                     </div>

@@ -15,14 +15,16 @@ class Email extends Model
         return $this->belongsTo('App\Modeli\Zaposleni', 'zaposleni_id', 'id');
     }
 
-    public function setLozinka($value)
+    public function setLozinkaAttribute($value)
     {
         $this->attributes['lozinka'] = Crypt::encryptString($value);
     }
 
-    public function getLozinka($value)
+    public function getLozinkaAttribute($value)
     {
-        return Crypt::decryptString($value);
+        if ($value) {
+           return Crypt::decryptString($value);
+        }
+        return "Nije uneta lozinka";
     }
-
 }

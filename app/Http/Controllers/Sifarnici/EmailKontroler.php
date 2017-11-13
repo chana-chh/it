@@ -36,12 +36,13 @@ class EmailKontroler extends Kontroler {
         $data = new Email();
         $data->adresa = $request->adresa;
         $data->sluzbena = $sluzbenic;
+        $data->lozinka = $request->lozinka;
         $data->zaposleni_id = $request->zaposleni_id;
         $data->napomena = $request->napomena;
         $data->save();
 
         Session::flash('uspeh', 'Stavka je uspešno dodata!');
-        return redirect()->route('mobilni');
+        return redirect()->route('email');
     }
 
     public function postDetalj(Request $request) {
@@ -73,6 +74,7 @@ class EmailKontroler extends Kontroler {
         $data = Email::find($id);
         $data->adresa = $request->adresaModal;
         $data->sluzbena = $sluzbenic;
+        $data->lozinka = $request->lozinka;
         $data->zaposleni_id = $request->zaposleniIdModal;
         $data->napomena = $request->napomenaModal;
         $data->save();
