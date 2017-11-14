@@ -11,7 +11,7 @@
     <div class="col-md-8">
         <h1>
             <img class="slicica_animirana" alt="Nabavke"
-                 src="{{ url('/images/ugovor.png') }}" style="height:64px;">
+                 src="{{ url('/images/nabavke.png') }}" style="height:64px;">
             &emsp;Nabavke opreme
         </h1>
     </div>
@@ -21,7 +21,7 @@
         </button>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <a class="btn btn-primary btn-block ono" href="{{-- route('ugovori.dodavanje.get') --}}">
+        <a class="btn btn-primary btn-block ono" href="{{ route('nabavke.dodavanje.get') }}">
             <i class="fa fa-plus-circle fa-fw"></i> Dodaj nabavku
         </a>
     </div>
@@ -60,11 +60,11 @@
                     <td>{{ $nabavka->napomena }}</td>
                     <td class="text-right">
                         <a class="btn btn-success btn-sm"
-                           href="{{-- route('nabavke.detalj', $nabavka->id) --}}">
+                           href="{{ route('nabavke.detalj', $nabavka->id) }}">
                             <i class="fa fa-eye"></i>
                         </a>
                         <a class="btn btn-info btn-sm"
-                           href="{{-- route('nabavke.izmena.get', $nabavka->id) --}}">
+                           href="{{ route('nabavke.izmena.get', $nabavka->id) }}">
                             <i class="fa fa-pencil"></i>
                         </a>
                         <button class="btn btn-danger btn-sm otvori-brisanje"
@@ -117,7 +117,7 @@
         $(document).on('click', '.otvori-brisanje', function () {
             var id = $(this).val();
             $('#idBrisanje').val(id);
-            var ruta = "{{-- route('ugovori.brisanje') --}}";
+            var ruta = "{{ route('nabavke.brisanje') }}";
             $('#brisanje-forma').attr('action', ruta);
         });
 

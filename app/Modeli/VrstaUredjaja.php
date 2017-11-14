@@ -79,4 +79,9 @@ class VrstaUredjaja extends Model
         return $this->hasMany('App\Modeli\Servis', 'vrsta_uredjaja_id', 'id');
     }
 
+    public function nabavke()
+    {
+        return $this->hasMany('App\Modeli\Nabavka', 'vrsta_uredjaja_id', 'id');
+    }
+
 }

@@ -59,6 +59,12 @@ Route::post('otpremnice/stavke/brisanje', 'Servis\OtpremniceStavkeKontroler@post
 
 // Nabavke
 Route::get('nabavke', 'Servis\NabavkeKontroler@getLista')->name('nabavke');
+Route::get('nabavke/dodavanje', 'Servis\NabavkeKontroler@getDodavanje')->name('nabavke.dodavanje.get');
+Route::post('nabavke/dodavanje', 'Servis\NabavkeKontroler@postDodavanje')->name('nabavke.dodavanje.post');
+Route::get('nabavke/izmena/{id}', 'Servis\NabavkeKontroler@getIzmena')->name('nabavke.izmena.get');
+Route::post('nabavke/izmena/{id}', 'Servis\NabavkeKontroler@postIzmena')->name('nabavke.izmena.post');
+Route::get('nabavke/detalj/{id}', 'Servis\NabavkeKontroler@getDetalj')->name('nabavke.detalj');
+Route::post('nabavke/brisanje', 'Servis\NabavkeKontroler@postBrisanje')->name('nabavke.brisanje');
 
 // SIFARNICI
 // Proizvodjaci

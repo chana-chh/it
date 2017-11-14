@@ -7,6 +7,9 @@ use Session;
 use Redirect;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\Nabavka;
+use App\Modeli\Dobavljac;
+
+// use URL;
 
 class NabavkeKontroler extends Kontroler
 {
@@ -17,97 +20,87 @@ class NabavkeKontroler extends Kontroler
         return view('servis.nabavke')->with(compact('nabavke'));
     }
 
-//
-//    public function getDodavanje()
-//    {
-//        return view('servis.ugovori_dodavanje');
-//    }
-//
-//    public function postDodavanje(Request $request)
-//    {
-//        $this->validate($request, [
-//            'broj' => [
-//                'required',
-//                'max:50',
-//            ],
-//            'iznos_sredstava' => [
-//                'required',
-//                'min:0',
-//            ],
-//            'datum_zakljucivanja' => [
-//                'required',
-//            ],
-//            'datum_raskida' => [
-//                'required',
-//            ],
-//        ]);
-//
-//        $data = new UgovorOdrzavanje();
-//        $data->broj = $request->broj;
-//        $data->iznos_sredstava = $request->iznos_sredstava;
-//        $data->datum_zakljucivanja = $request->datum_zakljucivanja;
-//        $data->datum_raskida = $request->datum_raskida;
-//        $data->napomena = $request->napomena;
-//        $data->save();
-//
-//        Session::flash('uspeh', 'Ugovor o održavanju je uspešno dodat!');
-//        return redirect()->route('ugovori');
-//    }
-//
-//    public function getIzmena($id)
-//    {
-//        $data = UgovorOdrzavanje::find($id);
-//
-//        return view('servis.ugovori_izmena')->with(compact('data'));
-//    }
-//
-//    public function getDetalj($id)
-//    {
-//        $data = UgovorOdrzavanje::find($id);
-//        $racuni = UgovorOdrzavanje::find($id)->racuni()->paginate(10);
-//        return view('servis.ugovori_detalj')->with(compact('data', 'racuni'));
-//    }
-//
-//    public function postIzmena(Request $request, $id)
-//    {
-//        $this->validate($request, [
-//            'broj' => [
-//                'required',
-//                'max:50',
-//            ],
-//            'iznos_sredstava' => [
-//                'required',
-//                'min:0',
-//            ],
-//            'datum_zakljucivanja' => [
-//                'required',
-//            ],
-//            'datum_raskida' => [
-//                'required',
-//            ],
-//        ]);
-//
-//        $data = UgovorOdrzavanje::find($id);
-//        $data->broj = $request->broj;
-//        $data->iznos_sredstava = $request->iznos_sredstava;
-//        $data->datum_zakljucivanja = $request->datum_zakljucivanja;
-//        $data->datum_raskida = $request->datum_raskida;
-//        $data->napomena = $request->napomena;
-//        $data->save();
-//
-//        Session::flash('uspeh', 'Ugovor o održavanju je uspešno izmenjen!');
-//        return redirect()->route('ugovori');
-//    }
-//
-//    public function postBrisanje(Request $request)
-//    {
-//        $data = UgovorOdrzavanje::find($request->idBrisanje);
-//        $odgovor = $data->delete();
-//        if ($odgovor) {
-//            Session::flash('uspeh', 'Stavka je uspešno obrisana!');
-//        } else {
-//            Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
-//        }
-//        return redirect()->route('ugovori');
-//    }
+    public function getDodavanje(Request $request)
+    {
+        $dobavljaci = Dobavljac::all();
+        return view('servis.nabavke_dodavanje')->with(compact('dobavljaci'));
+    }
+
+    public function postDodavanje(Request $request)
+    {
+        $this->validate($request, [
+            'dobavljac_id' => [
+                'required',
+            ],
+            'datum' => [
+                'required',
+            ],
+            'garancija' => [
+                'required',
+                'integer',
+            ],
+        ]);
+
+        $nabavka = new Nabavka();
+        $nabavka->dobavljac_id = $request->dobavljac_id;
+        $nabavka->datum = $request->datum;
+        $nabavka->garancija = $request->garancija;
+        $nabavka->napomena = $request->napomena;
+        $nabavka->save();
+
+        Session::flash('uspeh', 'Nabavka je uspešno dodata!');
+        return redirect()->route('nabavke');
+    }
+
+    public function getIzmena($id)
+    {
+        $data = Nabavka::find($id);
+        $dobavljaci = Dobavljac::all();
+        return view('servis.nabavke_izmena')->with(compact('data', 'dobavljaci'));
+    }
+
+    public function getDetalj($id)
+    {
+        $nabavka = Nabavka::find($id);
+        return view('servis.nabavke_detalj')->with(compact('nabavka'));
+    }
+
+    public function postIzmena(Request $request, $id)
+    {
+        $this->validate($request, [
+            'dobavljac_id' => [
+                'required',
+            ],
+            'datum' => [
+                'required',
+            ],
+            'garancija' => [
+                'required',
+                'integer',
+            ],
+        ]);
+
+        $nabavka = Nabavka::find($id);
+        $nabavka->dobavljac_id = $request->dobavljac_id;
+        $nabavka->datum = $request->datum;
+        $nabavka->garancija = $request->garancija;
+        $nabavka->napomena = $request->napomena;
+        $nabavka->save();
+
+        Session::flash('uspeh', 'Nabavka je uspešno izmenjena!');
+        return redirect()->route('nabavke');
+    }
+
+    public function postBrisanje(Request $request)
+    {
+        $data = Nabavka::find($request->idBrisanje);
+        $odgovor = $data->delete();
+        if ($odgovor) {
+            Session::flash('uspeh', 'Stavka je uspešno obrisana!');
+        } else {
+            Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
+        }
+        return redirect()->route('nabavke');
+    }
+
 }

@@ -80,20 +80,7 @@ class NabavkaStavka extends Model
 
     public function vrstaUredjaja()
     {
-
-        if (!$this->monitori->isEmpty() || !$this->stampaci->isEmpty() || !$this->skeneri->isEmpty() || !$this->upsovi->isEmpty()) {
-            return 1;
-        };
-        if (!$this->memorije->isEmpty() || !$this->osnovnePloce->isEmpty() || !$this->hddovi->isEmpty() || !$this->napajanja->isEmpty() || !$this->procesori->isEmpty()) {
-            return 2;
-        };
-        if (!$this->mrezniUredjaji->isEmpty()) {
-            return 3;
-        };
-        if (!$this->projektori->isEmpty()) {
-            return 4;
-        };
-        return 0;
+        return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
     }
 
 }
