@@ -42,28 +42,28 @@
             {{ csrf_field() }} 
             {{-- Red I --}}
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="form-group checkboxoviforme">
             <label>
                 <input type="checkbox" name="laptop" id="laptop"> &emsp;Da li se radi o laptop računaru?
             </label>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="form-group checkboxoviforme">
             <label>
                 <input type="checkbox" name="brend" id="brend"> &emsp;Da li se radi o brend računaru?
             </label>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
         <div class="form-group checkboxoviforme">
             <label>
                 <input type="checkbox" name="server" id="server"> &emsp;Da li se radi o serveru?
             </label>
         </div>
     </div>
-    <div class="col-md-3 proizvodjac">
+    <div class="col-md-6 nevidljivi">
         <div class="form-group{{ $errors->has('proizvodjac_id') ? ' has-error' : '' }}">
             <label for="proizvodjac_id">Proizvođač:</label>
             <select name="proizvodjac_id" id="proizvodjac_id" class="chosen-select form-control" data-placeholder="proizvođač ...">
@@ -86,7 +86,7 @@
             {{-- Red II --}}
 <div class="row">
 
-    <div class="col-md-3 serijski_broj">
+    <div class="col-md-3 nevidljivi">
         <div class="form-group{{ $errors->has('serijski_broj') ? ' has-error' : '' }}">
             <label for="serijski_broj">Serijski broj:</label>
             <input type="text" name="serijski_broj" id="serijski_broj" class="form-control" value="{{ old('serijski_broj') }}" maxlength="50"> @if ($errors->has('serijski_broj'))
@@ -216,7 +216,7 @@
             @endif
         </div>
     </div>
-    <div class="col-md-4 link">
+    <div class="col-md-4 nevidljivi">
         <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
             <label for="link">Link proizvođača: </label>
             <input type="url" name="link" id="link" class="form-control" value="{{ old('link') }}" maxlenght="255"> @if ($errors->has('link'))
@@ -265,44 +265,30 @@
 @section('skripte')
 <script>
     $(document).ready(function () {
-        $(".proizvodjac").hide();
-        $(".link").hide();
-        $(".serijski_broj").hide();
+        $(".nevidljivi").hide();
 
         $("#laptop").click(function () {
             if (($(this).is(":checked")) || ($("#brend").is(":checked")) || ($("#server").is(":checked"))) {
-                $(".proizvodjac").show(300);
-                $(".link").show(300);
-                $(".serijski_broj").show(300);
+                $(".nevidljivi").show(300);
                 resizeChosen();
             } else {
-                $(".proizvodjac").hide(200);
-                $(".link").hide(200);
-                $(".serijski_broj").hide(200);
+                $(".nevidljivi").hide(200);
             }
         });
         $("#brend").click(function () {
             if ($(this).is(":checked") || ($("#laptop").is(":checked")) || ($("#server").is(":checked"))) {
-                $(".proizvodjac").show(300);
-                $(".link").show(300);
-                $(".serijski_broj").show(300);
+                $(".nevidljivi").show(300);
                 resizeChosen();
             } else {
-                $(".proizvodjac").hide(200);
-                $(".link").hide(200);
-                $(".serijski_broj").hide(200);
+                $(".nevidljivi").hide(200);
             }
         });
         $("#server").click(function () {
             if ($(this).is(":checked") || ($("#brend").is(":checked")) || ($("#laptop").is(":checked"))) {
-                $(".proizvodjac").show(300);
-                $(".link").show(300);
-                $(".serijski_broj").show(300);
+                $(".nevidljivi").show(300);
                 resizeChosen();
             } else {
-                $(".proizvodjac").hide(200);
-                $(".link").hide(200);
-                $(".serijski_broj").hide(200);
+                $(".nevidljivi").hide(200);
             }
         });
 
