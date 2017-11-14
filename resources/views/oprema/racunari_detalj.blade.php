@@ -143,11 +143,19 @@
 <h4>Ocena:</h4>
 <div class="row">
 <div class="col-md-6 col-md-offset-4">
-<p class="tankoza krug_mali">{{$uredjaj->ocena()}}</p>
+<p class="{{ $uredjaj->ocena() < 7 ? ' tankoza_danger' : ' tankoza' }} krug_mali">{{$uredjaj->ocena()}}</p>
 </div>
 </div>
 
 <div class="row">
+    <div class="col-md-12">
+@if($uredjaj->ocena() < 7)
+<h4>OTPIS</h4>
+@endif
+    </div>
+</div>
+
+        <div class="row">
     <div class="col-md-12">
         <h4>Komponente:</h4>
         <table class="table table-condensed table-hover" style="table-layout: fixed;">

@@ -101,7 +101,7 @@
     <hr>
     <div class="row">
         <div class="col-md-6">
-            <p id="obavestenje" class="text-primary" style="font-size: 150%;"></p>
+            <p id="obavestenje" class="text-primary" style="font-size: 120%;"></p>
         </div>
     </div>
     {{-- Red II --}}
@@ -112,7 +112,7 @@
                 <select name="racunar_id" id="racunar_id" class="chosen-select form-control" data-placeholder="računar ..." >
                     <option value=""></option>
                     @foreach($racunari as $r)
-                    <option data-procesor="{{ $r->procesori() ? ' Ovaj računar već ima ugrađen-a '. $r->procesori()->count().' procesor-a!' : 'Računar je bezprocesora.'}}"
+                    <option data-procesor="{{ $r->procesori()->count() > 0 ? 'Ovaj računar već ima ugrađen-a '. $r->procesori()->count().' procesor-a!' : 'Računar je bez procesora.'}}"
                             value="{{ $r->id }}"{{ old('racunar_id') == $r->id ? ' selected' : '' }}>
                             {{ $r->ime }}
                 </option>

@@ -25,6 +25,8 @@
             <i class="fa fa-plus-circle fa-fw"></i> Dodaj aplikaciju na računar
         </a>
     </div>
+    <div class="row">
+    <div class="col-md-12">
 @if($aplikacije->isEmpty())
 <h3 class="text-danger">Trenutno nema instaliranih aplikacija</h3>
 @else
@@ -59,6 +61,8 @@
     @endforeach
 </tbody>
 </table>
+</div>
+</div>
 @endif
  
  <!--  POCETAK brisanjeModal  -->
