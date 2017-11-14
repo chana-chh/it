@@ -16,6 +16,7 @@ use App\Modeli\Proizvodjac;
 use App\Modeli\Nabavka;
 use App\Modeli\OperativniSistem;
 use App\Modeli\OsnovnaPlocaModel;
+use App\Modeli\OsnovnaPloca;
 
 class RacunariKontroler extends Kontroler
 {
@@ -128,11 +129,12 @@ class RacunariKontroler extends Kontroler
         return view('oprema.racunari_aplikacije')->with(compact('aplikacije', 'uredjaj'));
     }
 
-        public function getPloce()
+        public function getPloce($id)
     {
+        $uredjaj = Racunar::find($id);
         $modeli = OsnovnaPlocaModel::all();
-
-        return view('oprema.racunari_dodavanje_ploce')->with(compact ('modeli'));
+        $ploce = OsnovnaPloca::neraspordjeni()->get();
+        return view('oprema.racunari_dodavanje_ploce')->with(compact ('modeli', 'uredjaj', 'ploce'));
     }
 
 }

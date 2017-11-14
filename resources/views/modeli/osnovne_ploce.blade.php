@@ -25,13 +25,13 @@
             <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
                 <thead>
                         <th style="width: 5%;">#</th>
-                        <th style="width: 10%;">Naziv</th>
+                        <th style="width: 20%;">Naziv</th>
                         <th style="width: 10%;">Proizvođač</th>
                         <th style="width: 10%;">Čipset</th>
                         <th style="width: 10%;">Soket</th>
                         <th style="width: 10%;">USB 3.0</th>
-                        <th style="width: 15%;">Ocena</th>
-                        <th style="width: 15%;">Link</th>
+                        <th style="width: 10%;">Ocena</th>
+                        <th style="width: 10%;">Link</th>
                         <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
                 </thead>
                 <tbody>

@@ -29,4 +29,9 @@ class OsnovnaPloca extends Model
         return $this->belongsTo('App\Modeli\OtpremnicaStavka', 'stavka_otpremnice_id', 'id');
     }
 
+    public function scopeNeraspordjeni($query)
+    {
+        return $query->where('racunar_id', null);
+    }
+
 }
