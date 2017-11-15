@@ -141,8 +141,8 @@ class RacunariKontroler extends Kontroler
     {
         $uredjaj = Racunar::find($id);
         $ploca = OsnovnaPloca::find($uredjaj->osnovnaPloca->id);
-        $ploca->racunar_id = null;
-        $odgovor = $ploca->save();
+        $uredjaj->ploca_id = null;
+        $odgovor = $uredjaj->save();
         
         if ($odgovor) {
             Session::flash('uspeh', 'Osnovna ploča je uspešno izvađena!');
@@ -153,18 +153,45 @@ class RacunariKontroler extends Kontroler
         return Redirect::back();
     }
 
-    public function getDodajPlocuNovu( $id)
+    public function postDodajPlocuNovu(Request $request, $id)
     {
-  
+        $racunar = Racunar::find($id);
+
+        if ($racunar->osnovnaPloca) {
+            Session::flash('greska', 'Prvo izvadite staru plocu da biste dodali novu!');
+        }
+        else{
+            $this->validate($request, [
+                'serijski_broj' => ['max:50'],
+                'osnovna_ploca_model_id' => ['required']
+            ]);
+        $ploca = new OsnovnaPloca();
+        $ploca->serijski_broj = $request->serijski_broj;
+        $ploca->vrsta_uredjaja_id = 6;
+        $ploca->osnovna_ploca_model_id = $request->osnovna_ploca_model_id;
+        $ploca->napomena = $request->napomena;
+        $ploca->save();
+
+        $racunar->ploca_id = $ploca->id;
+        $racunar->save();
+        Session::flash('uspeh', 'Osnovna ploča je uspešno dodata!');
+        }
+        return Redirect::back();
     }
 
     public function postDodajPlocuPostojecu(Request $request, $id)
     {
         $racunar = Racunar::find($id);
+        if ($racunar->osnovnaPloca) {
+            Session::flash('greska', 'Prvo izvadite staru plocu da biste dodali novu!');
+        }
+        else{
         $ploca = OsnovnaPloca::find($request->ploca_id);
-        $racunar->osnovnaPloca()->associate($ploca);
+        $racunar->ploca_id = $ploca->id;
         $racunar->save();
-
+        Session::flash('uspeh', 'Osnovna ploča je uspešno dodata!');
+        }
+        
         return Redirect::back();
     }
 
