@@ -50,9 +50,9 @@ class DatabaseSeeder extends Seeder
         $this->call(GrafickiAdapteriPovezivanje::class);
         $this->call(NapajanjaModeli::class);
         $this->call(OperativniSistemi::class);
+        $this->call(OsnovnaPloca::class);
         $this->call(Racunari::class);
         $this->call(Monitor::class);
-        $this->call(OsnovnaPloca::class);
         $this->call(Procesor::class);
         $this->call(GrafickiAdapter::class);
         $this->call(Stampaci::class);
