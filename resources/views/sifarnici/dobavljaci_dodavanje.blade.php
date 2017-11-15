@@ -40,7 +40,7 @@
     <div class="col-md-12 boxic">
         <form action="{{ route('dobavljaci.dodavanje.post') }}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
-            <input type="hidden" name="povratna_veza" value="{{ $povratna_veza }}">
+            <!--<input type="hidden" name="povratna_veza" value="{{-- $povratna_veza --}}">-->
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group{{ $errors->has('naziv') ? ' has-error' : '' }}">

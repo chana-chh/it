@@ -66,6 +66,10 @@ Route::post('nabavke/izmena/{id}', 'Servis\NabavkeKontroler@postIzmena')->name('
 Route::get('nabavke/detalj/{id}', 'Servis\NabavkeKontroler@getDetalj')->name('nabavke.detalj');
 Route::post('nabavke/brisanje', 'Servis\NabavkeKontroler@postBrisanje')->name('nabavke.brisanje');
 
+// Nabavke stavke
+Route::post('nabavke/stavke/dodavanje', 'Servis\NabavkeStavkeKontroler@postDodavanje')->name('nabavke.stavke.dodavanje.post');
+
+
 // SIFARNICI
 // Proizvodjaci
 Route::get('sifarnici/proizvodjaci', 'Sifarnici\ProizvodjaciKontroler@getLista')->name('proizvodjaci');

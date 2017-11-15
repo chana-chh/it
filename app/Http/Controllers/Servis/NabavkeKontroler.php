@@ -8,6 +8,7 @@ use Redirect;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\Nabavka;
 use App\Modeli\Dobavljac;
+use App\Modeli\VrstaUredjaja;
 
 // use URL;
 
@@ -62,7 +63,17 @@ class NabavkeKontroler extends Kontroler
     public function getDetalj($id)
     {
         $nabavka = Nabavka::find($id);
-        return view('servis.nabavke_detalj')->with(compact('nabavka'));
+        $vrste = VrstaUredjaja::whereIn('id', [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    12,
+                    13,
+                    14
+                ])->get();
+        return view('servis.nabavke_detalj')->with(compact('nabavka', 'vrste'));
     }
 
     public function postIzmena(Request $request, $id)
@@ -93,12 +104,18 @@ class NabavkeKontroler extends Kontroler
 
     public function postBrisanje(Request $request)
     {
-        $data = Nabavka::find($request->idBrisanje);
-        $odgovor = $data->delete();
-        if ($odgovor) {
-            Session::flash('uspeh', 'Stavka je uspešno obrisana!');
-        } else {
-            Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
+        $nabavka = Nabavka::find($request->idBrisanje);
+        $nema_stavke = $nabavka->stavke->isEmpty();
+        if ($nema_stavke) {
+            $odgovor = $nabavka->delete();
+            if ($odgovor) {
+                Session::flash('uspeh', 'Stavka je uspešno obrisana!');
+            } else {
+                Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
+            }
+        }
+        if (!$nema_stavke) {
+            Session::flash('greska', 'Nije moguće obrisati nabavku jer postoje stavke koje su vezane za nju!');
         }
         return redirect()->route('nabavke');
     }

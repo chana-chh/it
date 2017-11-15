@@ -18,10 +18,10 @@ class DobavljaciKontroler extends Kontroler
         return view('sifarnici.dobavljaci')->with(compact('data'));
     }
 
-    public function getDodavanje()
+    public function getDodavanje(Request $request)
     {
-        $povratna_veza = URL::previous();
-        return view('sifarnici.dobavljaci_dodavanje')->with(compact('povratna_veza'));
+        $request->session()->put('povratna_veza', URL::previous());
+        return view('sifarnici.dobavljaci_dodavanje'); // ->with(compact('povratna_veza'));
     }
 
     public function postDodavanje(Request $request)
@@ -46,7 +46,7 @@ class DobavljaciKontroler extends Kontroler
         $data->save();
 
         Session::flash('uspeh', 'Dovaljač je uspešno dodat!');
-        return redirect($request->povratna_veza);
+        return redirect($request->session()->pull('povratna_veza', 'dobavljaci'));
     }
 
     public function getDetalj($id)
