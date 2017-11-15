@@ -21,7 +21,7 @@ class OsnovnaPloca extends Model
 
     public function racunar()
     {
-        return $this->belongsTo('App\Modeli\Racunar', 'racunar_id', 'id');
+        return $this->belongsTo('App\Modeli\Racunar', 'id', 'ploca_id');
     }
 
     public function stavkaOtpremnice()
@@ -29,9 +29,10 @@ class OsnovnaPloca extends Model
         return $this->belongsTo('App\Modeli\OtpremnicaStavka', 'stavka_otpremnice_id', 'id');
     }
 
-    public function scopeNeraspordjeni($query)
+    public function scopeNeraspordjeni()
     {
-        return $query->where('racunar_id', null);
+        $ploce = $this->doesntHave('racunar');
+        return $ploce;
     }
 
 }

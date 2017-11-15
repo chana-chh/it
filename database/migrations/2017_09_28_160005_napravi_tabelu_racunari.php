@@ -23,6 +23,7 @@ class NapraviTabeluRacunari extends Migration
             $table->integer('zaposleni_id')->unsigned()->nullable();
             $table->integer('kancelarija_id')->unsigned()->nullable();
             $table->integer('stavka_nabavke_id')->unsigned();
+            $table->integer('ploca_id')->unsigned()->nullable();
             $table->integer('os_id')->unsigned()->nullable();
             $table->integer('ocena')->unsigned();
             $table->text('link')->nullable();
@@ -34,6 +35,7 @@ class NapraviTabeluRacunari extends Migration
             $table->foreign('zaposleni_id')->references('id')->on('zaposleni')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('kancelarija_id')->references('id')->on('s_kancelarije')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('os_id')->references('id')->on('operativni_sistemi')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('ploca_id')->references('id')->on('osnovne_ploce')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('stavka_nabavke_id')->references('id')->on('nabavke_stavke')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('proizvodjac_id')->references('id')->on('s_proizvodjaci')->onUpdate('cascade')->onDelete('restrict');
         });
@@ -45,6 +47,7 @@ class NapraviTabeluRacunari extends Migration
             'zaposleni_id',
             'kancelarija_id',
             'os_id',
+            'ploca_id',
             'stavka_nabavke_id',
             'proizvodjac_id']);
         Schema::dropIfExists('racunari');

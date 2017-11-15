@@ -11,7 +11,6 @@ class OsnovnaPloca extends Seeder
             'vrsta_uredjaja_id' => 6,
             'serijski_broj' => 'nn',
             'osnovna_ploca_model_id' => 1,
-            'racunar_id' => 1,
         ]);
     }
 

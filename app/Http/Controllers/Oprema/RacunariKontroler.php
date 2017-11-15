@@ -56,7 +56,7 @@ class RacunariKontroler extends Kontroler
     public function getDetalj($id)
     {
         $uredjaj = Racunar::find($id);
-        return view('oprema.racunari_detalj')->with(compact('uredjaj', 'ocena'));
+        return view('oprema.racunari_detalj')->with(compact('uredjaj'));
     }
 
     public function getDodavanje()
@@ -134,7 +134,38 @@ class RacunariKontroler extends Kontroler
         $uredjaj = Racunar::find($id);
         $modeli = OsnovnaPlocaModel::all();
         $ploce = OsnovnaPloca::neraspordjeni()->get();
-        return view('oprema.racunari_dodavanje_ploce')->with(compact ('modeli', 'uredjaj', 'ploce'));
+        return view('oprema.racunari_ploce')->with(compact ('modeli', 'uredjaj', 'ploce'));
+    }
+
+    public function getIzvadiPlocu($id)
+    {
+        $uredjaj = Racunar::find($id);
+        $ploca = OsnovnaPloca::find($uredjaj->osnovnaPloca->id);
+        $ploca->racunar_id = null;
+        $odgovor = $ploca->save();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Osnovna ploča je uspešno izvađena!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom vađenja ploče. Pokušajte ponovo, kasnije!');
+        }
+        
+        return Redirect::back();
+    }
+
+    public function getDodajPlocuNovu( $id)
+    {
+  
+    }
+
+    public function postDodajPlocuPostojecu(Request $request, $id)
+    {
+        $racunar = Racunar::find($id);
+        $ploca = OsnovnaPloca::find($request->ploca_id);
+        $racunar->osnovnaPloca()->associate($ploca);
+        $racunar->save();
+
+        return Redirect::back();
     }
 
 }

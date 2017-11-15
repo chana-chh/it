@@ -58,7 +58,7 @@ class Racunar extends Model
 
     public function osnovnaPloca()
     {
-        return $this->hasOne('App\Modeli\OsnovnaPloca', 'racunar_id', 'id');
+        return $this->hasOne('App\Modeli\OsnovnaPloca', 'id', 'ploca_id');
     }
 
     public function memorije()

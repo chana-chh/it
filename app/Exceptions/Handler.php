@@ -48,7 +48,7 @@ class Handler extends ExceptionHandler
     {
 
         if ($exception instanceof PDOException) {
-            //dd($exception->getMessage());
+            dd($exception->getMessage());
             if (strpos($exception->getMessage(), '1451') !== true) {
                 Session::flash('greska', 'Ova stavka je vezana za druge objekte zbog toga je nije moguće obrisati !!!');
                 return redirect()->back();
