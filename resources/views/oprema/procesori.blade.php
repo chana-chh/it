@@ -8,17 +8,22 @@
 
 @section('naslov')
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-4">
         <h1>
             <span>
                 <img class="slicica_animirana" alt="Procesori" src="{{url('/images/cpu.png')}}" style="height:64px;">
             </span>&emsp;Procesori</h1>
     </div>
-
-    <div class="col-md-2 text-right" style="padding-top: 50px;">
+    <div class="col-md-8 text-right" style="padding-top: 50px; font-size: 1.25rem;;">
+    <div class="alert alert-info alert-dismissible ono" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Obavštenje: </strong> Dodavanje procesora se obavlja kroz nabavku, otpremnicu ili direktno u računar.
+</div>  
+</div>  
+{{--     <div class="col-md-4 text-right" style="padding-top: 50px;">
         <a class="btn btn-primary ono" href="{{route('procesori.oprema.dodavanje.get')}}">
-            <i class="fa fa-plus-circle fa-fw"></i> Dodaj procesor</a>
-    </div>
+            <i class="fa fa-plus-circle fa-fw"></i> Dodavanje procesora se obavlja kroz nabavku, otpremnicu ili direktno u računar</a>
+    </div> --}}
 </div>
         <hr>
 <div class="row">

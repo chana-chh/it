@@ -142,11 +142,12 @@
         </form>
     </div>
 </div>
-<h4> Dodavanje osnovne ploče u bazu i vezivanje za računar</h4>
+<hr>
+<h4> Dodavanje nove osnovne ploče u bazu i vezivanje za računar</h4>
 <div class="row">
 
     <div class="col-md-12 well">
-        <form action="#" method="POST" data-parsley-validate>
+        <form action="{{route('racunari.oprema.ploce.dodaj.novu', $uredjaj->id)}}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row">
 
