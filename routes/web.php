@@ -358,6 +358,7 @@ Route::post('oprema/racunari/dodavanje', 'Oprema\RacunariKontroler@postDodavanje
 Route::get('oprema/racunari/aplikacije/{id}', 'Oprema\RacunariKontroler@getAplikacije')->name('racunari.oprema.aplikacije');
 Route::get('oprema/racunari/ploce/{id}', 'Oprema\RacunariKontroler@getPloce')->name('racunari.oprema.ploce');
 Route::get('oprema/racunari/ploce/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiPlocu')->name('racunari.oprema.ploce.izvadi');
+Route::get('oprema/racunari/ploce/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiPlocu')->name('racunari.oprema.ploce.izvadi.obrisi');
 Route::post('oprema/racunari/ploce/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajPlocuNovu')->name('racunari.oprema.ploce.dodaj.novu');
 Route::post('oprema/racunari/ploce/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajPlocuPostojecu')->name('racunari.oprema.ploce.dodaj.postojecu');
 

@@ -3,11 +3,17 @@
 namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OsnovnaPloca extends Model
 {
+     use SoftDeletes;
+
     protected $table = 'osnovne_ploce';
     public $timestamps = false;
+    protected $dates = [
+        'deleted_at'
+    ];
 
     public function vrstaUredjaja()
     {
@@ -31,8 +37,7 @@ class OsnovnaPloca extends Model
 
     public function scopeNeraspordjeni()
     {
-        $ploce = $this->doesntHave('racunar');
-        return $ploce;
+        return $this->doesntHave('racunar');
     }
 
 }

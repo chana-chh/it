@@ -153,6 +153,25 @@ class RacunariKontroler extends Kontroler
         return Redirect::back();
     }
 
+     public function getIzvadiObrisiPlocu($id)
+    {
+        $uredjaj = Racunar::find($id);
+        $ploca = OsnovnaPloca::find($uredjaj->osnovnaPloca->id);
+        $uredjaj->ploca_id = null;
+        $uredjaj->save();
+        $ploca->napomena .= ' PODACI O OTPISU: naziv računara '.$uredjaj->ime .', kancelarija '. $uredjaj->kancelarija->naziv;
+        $ploca->save();
+        $odgovor = $ploca->delete();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Osnovna ploča je uspešno izvađena i pripremljena za reciklažu!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom vađenja ploče. Pokušajte ponovo, kasnije!');
+        }
+        
+        return Redirect::back();
+    }
+
     public function postDodajPlocuNovu(Request $request, $id)
     {
         $racunar = Racunar::find($id);

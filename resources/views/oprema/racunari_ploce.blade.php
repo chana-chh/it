@@ -85,9 +85,15 @@
             </tbody>
         </table>
 <div class="row">
-            <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <a class="btn btn-primary ono" href="{{ route('racunari.oprema.ploce.izvadi', $uredjaj->id) }}">
+            <div class="col-md-3 text-right" style="padding-top: 50px;">
+        <a class="btn btn-primary ono btn-block" href="{{ route('racunari.oprema.ploce.izvadi', $uredjaj->id) }}">
             <i class="fa fa-minus-circle fa-fw"></i> Izvadi iz računara</a>
+    </div>
+</div>
+<div class="row">
+            <div class="col-md-3 text-right" style="padding-top: 50px;">
+        <a class="btn btn-danger ono btn-block" href="{{ route('racunari.oprema.ploce.izvadi.obrisi', $uredjaj->id) }}">
+            <i class="fa fa-minus-circle fa-fw"></i> Izvadi i otpiši</a>
     </div>
 </div>
         @else
