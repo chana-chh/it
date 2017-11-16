@@ -79,9 +79,57 @@ class VrstaUredjaja extends Model
         return $this->hasMany('App\Modeli\Servis', 'vrsta_uredjaja_id', 'id');
     }
 
-    public function nabavke()
+    public function nabavkeStavke()
     {
-        return $this->hasMany('App\Modeli\Nabavka', 'vrsta_uredjaja_id', 'id');
+        return $this->hasMany('App\Modeli\NabavkaStavka', 'vrsta_uredjaja_id', 'id');
+    }
+
+    public function uredjaji()
+    {
+        switch ($this->id) {
+            case 1:
+                return $this->racunari;
+                break;
+            case 2:
+                return $this->monitori;
+                break;
+            case 3:
+                return $this->stampaci;
+                break;
+            case 4:
+                return $this->skeneri;
+                break;
+            case 5:
+                return $this->upsevi;
+                break;
+            case 6:
+                return $this->osnovnePloce;
+                break;
+            case 7:
+                return $this->procesori;
+                break;
+            case 8:
+                return $this->grafickiAdapteri;
+                break;
+            case 9:
+                return $this->memorije;
+                break;
+            case 10:
+                return $this->hddovi;
+                break;
+            case 11:
+                return $this->napajanja;
+                break;
+            case 12:
+                return $this->projektori;
+                break;
+            case 13:
+                return $this->mrezniUredjaji;
+                break;
+            default :
+                return null;
+                break;
+        }
     }
 
 }

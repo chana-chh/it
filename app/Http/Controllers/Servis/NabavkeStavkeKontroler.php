@@ -55,20 +55,19 @@ class NabavkeStavkeKontroler extends Kontroler
         return redirect()->route('nabavke.detalj', $request->nabavka_id);
     }
 
+    public function getDetalj($id)
+    {
+        $stavka = NabavkaStavka::find($id);
+//        if (NabavkaStavka::find($id)->uredjaji()) {
+//            $uredjaji = NabavkaStavka::find($id)->uredjaji()->paginate(5);
+//        }
+        return view('servis.nabavke_stavke_detalj')->with(compact('stavka'));
+    }
+
     public function getIzmena($id)
     {
         $data = OtpremnicaStavka::find($id);
         return view('servis.otpremnice_stavke_izmena')->with(compact('data'));
-    }
-
-    public function getDetalj($id)
-    {
-        $uredjaji = null;
-        $stavka = OtpremnicaStavka::find($id);
-        if (OtpremnicaStavka::find($id)->uredjaji()) {
-            $uredjaji = OtpremnicaStavka::find($id)->uredjaji()->paginate(5);
-        }
-        return view('servis.otpremnice_stavke_detalj')->with(compact('stavka', 'uredjaji'));
     }
 
     public function postIzmena(Request $request, $id)

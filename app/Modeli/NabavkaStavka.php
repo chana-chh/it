@@ -14,6 +14,16 @@ class NabavkaStavka extends Model
         return $this->belongsTo('App\Modeli\Nabavka', 'nabavka_id', 'id');
     }
 
+    public function vrstaUredjaja()
+    {
+        return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
+    }
+
+    public function uredjaji()
+    {
+        return $this->vrstaUredjaja->uredjaji();
+    }
+
     public function racunari()
     {
         return $this->hasMany('App\Modeli\Racunar', 'stavka_nabavke_id', 'id');
@@ -47,40 +57,6 @@ class NabavkaStavka extends Model
     public function mrezniUredjaji()
     {
         return $this->hasMany('App\Modeli\MrezniUredjaj', 'stavka_nabavke_id', 'id');
-    }
-
-    public function uredjaji()
-    {
-        if (!$this->monitori->isEmpty()) {
-            return $this->monitori();
-        } elseif (!$this->procesori->isEmpty()) {
-            return $this->procesori();
-        } elseif (!$this->stampaci->isEmpty()) {
-            return $this->stampaci();
-        } elseif (!$this->skeneri->isEmpty()) {
-            return $this->skeneri();
-        } elseif (!$this->upsovi->isEmpty()) {
-            return $this->upsovi();
-        } elseif (!$this->memorije->isEmpty()) {
-            return $this->memorije();
-        } elseif (!$this->osnovnePloce->isEmpty()) {
-            return $this->osnovnePloce();
-        } elseif (!$this->hddovi->isEmpty()) {
-            return $this->hddovi();
-        } elseif (!$this->napajanja->isEmpty()) {
-            return $this->napajanja();
-        } elseif (!$this->mrezniUredjaji->isEmpty()) {
-            return $this->mrezniUredjaji();
-        } elseif (!$this->projektori->isEmpty()) {
-            return $this->projektori();
-        } else {
-            return null;
-        }
-    }
-
-    public function vrstaUredjaja()
-    {
-        return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
     }
 
 }
