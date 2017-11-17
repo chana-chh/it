@@ -16,7 +16,7 @@ Use App\Modeli\Otpremnica;
 
 
 
-class ProcesoriKontroler extends Kontroler
+class OsnovnePloceKontroler extends Kontroler
 {
     public function getLista()
     {
@@ -37,36 +37,6 @@ class ProcesoriKontroler extends Kontroler
         $racunari = Racunar::all();
         $otpremnice = Otpremnica::all();
         return view('oprema.procesori_dodavanje')->with(compact ('modeli', 'racunari', 'otpremnice'));
-    }
-
-    public function getIzmena($id)
-    {
-        $uredjaj = Procesor::find($id);
-        $modeli = ProcesorModel::all();
-        $racunari = Racunar::all();
-        $otpremnice = Otpremnica::all();
-        return view('oprema.procesori_izmena')->with(compact ('uredjaj', 'modeli', 'racunari', 'otpremnice'));
-    }
-
-    public function postIzmena(Request $request, $id)
-    {
-
-        $this->validate($request, [
-                'serijski_broj' => ['max:50'],
-                'procesor_model_id' => ['required'],
-            ]);
-
-        $uredjaj = Procesor::find($id);
-        $uredjaj->serijski_broj = $request->serijski_broj;
-        $uredjaj->procesor_model_id = $request->procesor_model_id;
-        $uredjaj->racunar_id = $request->racunar_id;
-        $uredjaj->stavka_otpremnice_id = $request->stavka_otpremnice_id;
-        $uredjaj->napomena = $request->napomena;
-
-        $uredjaj->save();
-
-        Session::flash('uspeh','Procesor je uspešno izmenjen!');
-        return redirect()->route('procesori.oprema');
     }
 
     public function postDodavanje(Request $request)

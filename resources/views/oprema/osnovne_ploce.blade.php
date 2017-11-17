@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Oprema | Procesori')
+@section('naziv', 'Oprema | Osnovne ploče')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -8,44 +8,21 @@
 
 @section('naslov')
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-4">
         <h1>
             <span>
-                <img class="slicica_animirana" alt="Procesori" src="{{url('/images/cpu.png')}}" style="height:64px;">
+                <img class="slicica_animirana" alt="Osnovne ploče" src="{{url('/images/mbd.png')}}" style="height:64px;">
             </span>&emsp;Procesori</h1>
     </div>
-    <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <button id="pretragaDugme" class="btn btn-success btn-block ono">
-            <i class="fa fa-search fa-fw"></i> Napredna pretraga
-        </button>
-    </div>
-
+    <div class="col-md-8 text-right" style="padding-top: 50px; font-size: 1.25rem;;">
+    <div class="alert alert-info alert-dismissible ono" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Obavštenje: </strong> Dodavanje osnovne ploče se obavlja kroz otpremnicu ili direktno u računar.
+</div>  
+</div>  
 
 </div>
-<hr>
-<div class="row">
-    <div class="col-md-10 col-md-offset-1 text-center" style="font-size: 1rem;;">
-        <div class="alert alert-info alert-dismissible ono" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <strong>Obavštenje: </strong> Dodavanje procesora se obavlja kroz otpremnicu ili sa detaljnog pregleda računara.
-        </div>
-    </div>
-</div>
-<div class="row well" id="pretraga" style="display: none;">
-    <div class="col-md-2">
-        <button id="pretragaDugme" class="btn btn-success btn-block ono">
-            <i class="fa fa-recycle fa-fw"></i> Otpisani
-        </button>
-    </div>
-    <div class="col-md-10">
-        Ostalo
-    </div>
-    
-</div>
-
-
+        <hr>
 <div class="row">
     <div class="col-md-12">
 @if($uredjaj->isEmpty())
@@ -86,7 +63,7 @@
                 <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('procesori.oprema.detalj', $o->id)}}">
                     <i class="fa fa-eye"></i>
                 </a>
-                <a class="btn btn-info btn-sm" id="dugmeIzmena" href="{{route('procesori.oprema.izmena.get', $o->id)}}">
+                <a class="btn btn-info btn-sm" id="dugmeIzmena" href="">
                     <i class="fa fa-pencil"></i>
                 </a>
                 <button class="btn btn-danger btn-sm otvori-brisanje" data-toggle="modal" data-target="#brisanjeModal" value="{{$o->id}}">
@@ -145,10 +122,6 @@ $( document ).ready(function() {
     });
 
         new $.fn.dataTable.FixedHeader( tabela );
-
-        $('#pretragaDugme').click(function () {
-            $('#pretraga').toggle();
-        });
 
 });
 </script>
