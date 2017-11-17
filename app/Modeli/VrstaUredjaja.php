@@ -87,48 +87,20 @@ class VrstaUredjaja extends Model
     public function uredjaji()
     {
         switch ($this->id) {
-            case 1:
-                return $this->racunari;
-                break;
-            case 2:
-                return $this->monitori;
-                break;
-            case 3:
-                return $this->stampaci;
-                break;
-            case 4:
-                return $this->skeneri;
-                break;
-            case 5:
-                return $this->upsevi;
-                break;
-            case 6:
-                return $this->osnovnePloce;
-                break;
-            case 7:
-                return $this->procesori;
-                break;
-            case 8:
-                return $this->grafickiAdapteri;
-                break;
-            case 9:
-                return $this->memorije;
-                break;
-            case 10:
-                return $this->hddovi;
-                break;
-            case 11:
-                return $this->napajanja;
-                break;
-            case 12:
-                return $this->projektori;
-                break;
-            case 13:
-                return $this->mrezniUredjaji;
-                break;
-            default :
-                return null;
-                break;
+            case 1: return $this->racunari;
+            case 2: return $this->monitori;
+            case 3: return $this->stampaci;
+            case 4: return $this->skeneri;
+            case 5: return $this->upsevi;
+            case 6: return $this->osnovnePloce;
+            case 7: return $this->procesori;
+            case 8: return $this->grafickiAdapteri;
+            case 9: return $this->memorije;
+            case 10: return $this->hddovi;
+            case 11: return $this->napajanja;
+            case 12: return $this->projektori;
+            case 13: return $this->mrezniUredjaji;
+            default : return null;
         }
     }
 
