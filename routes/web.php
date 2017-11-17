@@ -68,6 +68,7 @@ Route::post('nabavke/brisanje', 'Servis\NabavkeKontroler@postBrisanje')->name('n
 
 // Nabavke stavke
 Route::post('nabavke/stavke/dodavanje', 'Servis\NabavkeStavkeKontroler@postDodavanje')->name('nabavke.stavke.dodavanje.post');
+Route::get('nabavke/stavke/detalj/{id}', 'Servis\NabavkeStavkeKontroler@getDetalj')->name('nabavke.stavke.detalj');
 
 
 // SIFARNICI

@@ -9,7 +9,7 @@
 @section('naslov')
 <h1 class="page-header">
     <img class="slicica_animirana" alt="Nabavka" src="{{ url('/images/nabavke.png') }}" style="height:64px;">
-    Pregled nabavke:
+    Nabavka:
     <em class="text-success">
         {{ $nabavka->dobavljac->naziv }} od {{ \Carbon\Carbon::parse($nabavka->datum)->format('d.m.Y') }}
     </em>
@@ -100,7 +100,7 @@
                 <td>{{ $stavka->jedinica_mere }}</td>
                 <td class="text-right">{{ $stavka->kolicina }}</td>
                 <td class="text-right">
-                    <a href="" class="btn btn-success btn-xs">
+                    <a href="{{ route('nabavke.stavke.detalj', $stavka->id) }}" class="btn btn-success btn-xs">
                         <i class="fa fa-eye"></i>
                     </a>
                 </td>
@@ -207,7 +207,7 @@
     </form>
 </div>
 
-<!--  POCETAK brisanjeModal [brisanje slike] -->
+<!--  POCETAK brisanjeModal -->
 @include('sifarnici.inc.modal_brisanje')
 <!--  KRAJ brisanjeModal  -->
 @endsection
