@@ -346,6 +346,7 @@ Route::get('modeli/upsevi/baterije/{id}', 'Modeli\UpseviKontroler@getBaterije')-
 //OPREMA
 //Procesori
 Route::get('oprema/procesori/', 'Oprema\ProcesoriKontroler@getLista')->name('procesori.oprema');
+Route::get('oprema/procesori/otpisani/', 'Oprema\ProcesoriKontroler@getListaOtpisani')->name('procesori.oprema.otpisani');
 Route::get('oprema/procesori/detalj/{id}', 'Oprema\ProcesoriKontroler@getDetalj')->name('procesori.oprema.detalj');
 Route::get('oprema/procesori/dodavanje', 'Oprema\ProcesoriKontroler@getDodavanje')->name('procesori.oprema.dodavanje.get');
 Route::post('oprema/procesori/dodavanje', 'Oprema\ProcesoriKontroler@postDodavanje')->name('procesori.oprema.dodavanje.post');

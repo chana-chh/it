@@ -12,7 +12,7 @@
         <h1>
             <img class="slicica_animirana" alt="Dodavanje osnovne ploče u računar"
                  src="{{url('/images/mbd.png')}}" style="height:64px;">
-            &emsp;Dodavanje osnovne ploče u računar
+            &emsp;Rad sa osnovnom pločom u računar {{$uredjaj->ime}}
         </h1>
     </div>
 </div>

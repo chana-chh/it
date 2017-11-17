@@ -24,9 +24,17 @@ class ProcesoriKontroler extends Kontroler
     	return view('oprema.procesori')->with(compact ('uredjaj'));
     }
 
+    public function getListaOtpisani()
+    {
+        $uredjaj = Procesor::onlyTrashed()->get();
+        return view('oprema.procesori_otpisani')->with(compact ('uredjaj'));
+    }
+
     public function getDetalj($id)
     {
-        $uredjaj = Procesor::find($id);
+        $uredjaji = Procesor::withTrashed()->get();
+
+        $uredjaj = $uredjaji->find($id);
         $brojno_stanje = Procesor::where('procesor_model_id', '=', $uredjaj->procesor_model_id)->count();
         return view('oprema.procesori_detalj')->with(compact ('uredjaj', 'brojno_stanje'));
     }

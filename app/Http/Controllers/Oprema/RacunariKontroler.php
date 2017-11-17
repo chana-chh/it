@@ -159,7 +159,7 @@ class RacunariKontroler extends Kontroler
         $ploca = OsnovnaPloca::find($uredjaj->osnovnaPloca->id);
         $uredjaj->ploca_id = null;
         $uredjaj->save();
-        $ploca->napomena .= ' PODACI O OTPISU: naziv računara '.$uredjaj->ime .', kancelarija '. $uredjaj->kancelarija->naziv;
+        $ploca->napomena .= 'q#q# PODACI O OTPISU: naziv računara '.$uredjaj->ime .', kancelarija '. $uredjaj->kancelarija->naziv;
         $ploca->save();
         $odgovor = $ploca->delete();
         

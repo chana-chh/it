@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Oprema | Procesori')
+@section('naziv', 'Oprema | Otpisani procesori')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -11,8 +11,8 @@
     <div class="col-md-10">
         <h1>
             <span>
-                <img class="slicica_animirana" alt="Procesori" src="{{url('/images/cpu.png')}}" style="height:64px;">
-            </span>&emsp;Procesori</h1>
+                <img class="slicica_animirana" alt="Otpisani procesori" src="{{url('/images/cpu.png')}}" style="height:64px;">
+            </span>&emsp;Otpisani procesori</h1>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
         <button id="pretragaDugme" class="btn btn-success btn-block ono">
@@ -20,21 +20,10 @@
         </button>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-10 col-md-offset-1 text-center" style="font-size: 1rem;;">
-        <div class="alert alert-info alert-dismissible ono" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <strong>Obavštenje: </strong> Dodavanje procesora se obavlja kroz otpremnicu ili sa detaljnog pregleda računara.
-        </div>
-    </div>
-</div>
+
 <div class="row well" id="pretraga" style="display: none;">
     <div class="col-md-2">
-        <a id="pretragaDugme" href="{{route('procesori.oprema.otpisani')}}" class="btn btn-success btn-block ono">
-            <i class="fa fa-recycle fa-fw"></i> Otpisani
-        </a>
+    Nesto
     </div>
     <div class="col-md-10">
         Ostalo
@@ -42,7 +31,7 @@
     
 </div>
 
-
+<hr>
 <div class="row">
     <div class="col-md-12">
 @if($uredjaj->isEmpty())
@@ -53,8 +42,8 @@
         <th style="width: 5%;">#</th>
         <th style="width: 15%;">Serijski broj</th>
         <th style="width: 20%;">Model</th>
-        <th style="width: 20%;">Racunar</th>
-        <th style="width: 25%;">Otpremnica</th>
+        <th style="width: 20%;">Datum otpisa</th>
+        <th style="width: 25%;">Napomena</th>
         <th style="width: 15%;text-align:right">
             <i class="fa fa-cogs"></i>&emsp;Akcije</th>
     </thead>
@@ -66,17 +55,11 @@
                 <strong>{{$o->serijski_broj}}</strong>
             </td>
             <td><a href="{{route('procesori.modeli.detalj', $o->procesorModel->id)}}">{{$o->procesorModel->proizvodjac->naziv}} {{$o->procesorModel->naziv}}, {{$o->procesorModel->takt}} MHz</a></td>
-            <td> @if($o->racunar)
-                {{$o->racunar->ime}}
-                @endif
-
+            <td> 
+                {{$o->deleted_at}}
             </td>
             <td>
-                @if($o->stavkaOtpremnice)
-                <a href="{{route('otpremnice.detalj', $o->stavkaOtpremnice->otpremnica->id)}}">
-                {{$o->stavkaOtpremnice->otpremnica->broj}}, {{$o->stavkaOtpremnice->otpremnica->dobavljac->naziv}} od {{$o->stavkaOtpremnice->otpremnica->datum}}
-                </a>
-                @endif
+                {{$o->napomena}}
             </td>
 
             <td style="text-align:right; vertical-align: middle; line-height: normal;">
