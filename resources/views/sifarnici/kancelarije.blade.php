@@ -132,7 +132,11 @@
         </div>
 
         <div class="form-group{{ $errors->has('lokacija_id') ? ' has-error' : '' }}">
-            <label for="lokacija_id">Lokacija</label>
+            <label for="lokacija_id">Lokacija</label>&emsp;
+            <button type="button" class="btn btn-primary btn-xs otvori-lokacije"
+                        data-toggle="modal" data-target="#lokacijaModal">
+                    <i class="fa fa-plus-circle"></i>
+                </button>
             <select name="lokacija_id" id="lokacija_id" class="chosen-select form-control" data-placeholder="lokacija ..." required>
                 <option value=""></option>
                 @foreach($lokacije as $lokacija)
@@ -166,7 +170,7 @@
         </div>
 
         <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
-            <label for="napomena">Напомена: </label>
+            <label for="napomena">Napomena: </label>
             <textarea name="napomena" id="napomena" maxlength="255" class="form-control">{{ old('napomena') }}</textarea>
             @if ($errors->has('napomena'))
             <span class="help-block">
@@ -193,6 +197,52 @@
         </div>
     </form>
 </div>
+{{-- Pocetak Modala za dodavanje lokacije--}}
+<div class="modal fade" id="lokacijaModal">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-primary">Dodaj lokaciju</h4>
+      </div>
+      <div class="modal-body">
+        <form id="lokacijaForma">
+
+            <div class="form-group nazivLokacije">
+              <label for="nazivLokacije">Naziv:</label>
+              <input type="text" class="form-control" id="nazivLokacije" name="nazivLokacije">
+            </div>
+
+            <div class="form-group">
+              <label for="adresaLokacije">Adresa:</label>
+              <input type="text" class="form-control" id="adresaLokacije" name="adresaLokacije">
+            </div>
+
+             <div class="form-group">
+              <label for="brojLokacije">Broj:</label>
+              <input type="text" class="form-control" id="brojLokacije" name="brojLokacije">
+            </div>
+
+            <div class="form-group">
+              <label for="napomenaLokacije">Napomena:</label>
+              <textarea class="form-control" id="napomenaLokacije" name="napomenaLokacije"></textarea>
+            </div>
+                <button type="button" class="btn btn-success dodajLokaciju">
+                    <i class="fa fa-plus-circle"></i> Dodaj
+                </button>
+            </form>
+        </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    <i class="fa fa-ban"></i> Otkaži
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- Kraj Modala za dodavanje lokacije--}}
 @endsection
 
 @section('skripte')
@@ -275,6 +325,41 @@ $( document ).ready(function() {
       });     
 
     });
+
+    $(document).on('click', '.dodajLokaciju', function () {
+            
+            var ruta = "{{ route('lokacije.dodavanje.ajax') }}";
+
+            var nazivLokacije = $('#nazivLokacije').val();
+            var adresaLokacije = $('#adresaLokacije').val();
+            var brojLokacije = $('#brojLokacije').val();
+            var napomenaLokacije = $('#napomenaLokacije').val();
+
+            if (!$('#nazivLokacije').val()) {
+                $('.nazivLokacije').addClass('has-error');
+                alert("Polje sa nazivom lokacije je obavezno i jedinstveno!")
+            }
+            else{
+            $.ajax({
+                url: ruta,
+                type: 'POST',
+                dataType: 'json',
+                data: { _token: "{!! csrf_token() !!}", nazivLokacije: nazivLokacije, adresaLokacije: adresaLokacije, brojLokacije: brojLokacije, napomenaLokacije: napomenaLokacije},
+                success: function(data){
+                    if(data.status == "1")
+                        $('#lokacijaForma').trigger("reset");
+                        $('#lokacijaModal').modal('hide');
+                        var novaLokacija = $('<option value="'+data.novi_id+'">'+data.novi_naziv+'</option>');
+                        $('#lokacija_id').append(novaLokacija);
+                        $('#lokacija_id').trigger("chosen:updated");
+                },
+
+            });
+
+        }
+                
+        });
+
 
 });
 </script>

@@ -126,7 +126,7 @@
 
         <div class="form-group{{ $errors->has('adresa_ulica') ? ' has-error' : '' }}">
             <label for="adresa_ulica">Adresa lokacije: </label>
-            <input type="text" name="adresa_ulica" id="adresa_ulica" class="form-control" value="{{ old('adresa_ulica') }}" maxlength="100" required>
+            <input type="text" name="adresa_ulica" id="adresa_ulica" class="form-control" value="{{ old('adresa_ulica') }}" maxlength="100">
             @if ($errors->has('adresa_ulica'))
                 <span class="help-block">
                     <strong>{{ $errors->first('adresa_ulica') }}</strong>
@@ -136,7 +136,7 @@
 
         <div class="form-group{{ $errors->has('adresa_broj') ? ' has-error' : '' }}">
             <label for="adresa_broj">Broj: </label>
-            <input type="text" name="adresa_broj" id="adresa_broj" class="form-control" value="{{ old('adresa_broj') }}" maxlength="50" required>
+            <input type="text" name="adresa_broj" id="adresa_broj" class="form-control" value="{{ old('adresa_broj') }}" maxlength="50">
             @if ($errors->has('adresa_broj'))
                 <span class="help-block">
                     <strong>{{ $errors->first('adresa_broj') }}</strong>

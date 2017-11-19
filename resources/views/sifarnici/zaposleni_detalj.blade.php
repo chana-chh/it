@@ -10,7 +10,7 @@
     <h1 class="page-header">
         <img class="slicica_animirana" alt="Zaposleni detalj" src="{{url('/images/korisnik_jedan.png')}}" style="height:50px;">
         Detaljni pregled zaposlenog &emsp;
-         <i>{{ $zaposleni->imePrezime() }}</i>
+         <em class="text-success">{{ $zaposleni->imePrezime() }}</em>
     </h1>
 @endsection
 

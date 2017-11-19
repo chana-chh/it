@@ -13,6 +13,7 @@ use App\Modeli\Ups;
 use App\Modeli\MrezniUredjaj;
 use App\Modeli\Projektor;
 use App\Modeli\Aplikacija;
+use App\Modeli\Greska;
 
 class PocetnaKontroler extends Kontroler
 {
@@ -27,9 +28,10 @@ class PocetnaKontroler extends Kontroler
         $mreznih_uredjaja = MrezniUredjaj::count();
         $projektora = Projektor::count();
         $aplikacija = Aplikacija::count();
+        $greske = Greska::all();
 
         return view('pocetna')->with(compact(
-                                'racunara', 'monitora', 'stampaca', 'skenera', 'upseva', 'mreznih_uredjaja', 'projektora', 'aplikacija'
+                                'racunara', 'monitora', 'stampaca', 'skenera', 'upseva', 'mreznih_uredjaja', 'projektora', 'aplikacija', 'greske'
         ));
     }
 

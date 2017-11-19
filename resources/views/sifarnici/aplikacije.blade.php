@@ -138,7 +138,7 @@
         </div>
 
         <div class="form-group{{ $errors->has('opis') ? ' has-error' : '' }}">
-            <label for="opis">Napomena: </label>
+            <label for="opis">Opis: </label>
             <textarea name="opis" id="opis" maxlength="255" class="form-control">{{ old('opis') }}</textarea>
             @if ($errors->has('opis'))
             <span class="help-block">

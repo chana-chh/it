@@ -9,8 +9,9 @@
 @section('naslov')
     <h1 class="page-header">
         <img class="slicica_animirana" alt="Model štampača detaljno" src="{{url('/images/stampac.png')}}" style="height:64px;">&emsp;
-        Detaljni pregled modela 
-         <i>{{ $model->naziv }}</i>
+        Detaljni pregled modela
+        <em class="text-success">
+         {{ $model->naziv }}</em>
          štampača
     </h1>
 @endsection
@@ -60,8 +61,13 @@
             </tr>
 
              <tr>
-                <th style="width: 20%;">Toner:</th>
-                <td style="width: 80%;">{{$model->toner->naziv}}
+                <th style="width: 20%;">Toner (grupa):</th>
+                <td style="width: 80%;"><strong>{{$model->tipTonera->naziv}}</strong>
+                </td>
+            </tr>
+             <tr>
+                <th style="width: 20%;">Toner (članovi):</th>
+                <td style="width: 80%;">{{$model->tipTonera->modeli_tonera}}
                 </td>
             </tr>
         </tbody>

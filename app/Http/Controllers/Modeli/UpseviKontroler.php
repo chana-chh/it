@@ -10,6 +10,7 @@ use App\Http\Controllers\Kontroler;
 
 Use App\Modeli\UpsModel;
 Use App\Modeli\Proizvodjac;
+Use App\Modeli\TipBaterije;
 Use App\Modeli\Ups;
 Use App\Modeli\Racunar;
 
@@ -26,7 +27,8 @@ class UpseviKontroler extends Kontroler
     public function getDodavanje()
     {
         $proizvodjaci = Proizvodjac::all();
-        return view('modeli.upsevi_dodavanje')->with(compact ('proizvodjaci'));
+        $baterije = TipBaterije::all();
+        return view('modeli.upsevi_dodavanje')->with(compact ('proizvodjaci', 'baterije'));
     }
 
     public function postDodavanje(Request $request)
@@ -35,7 +37,7 @@ class UpseviKontroler extends Kontroler
         $this->validate($request, [
                'naziv' => ['required','unique:ups_modeli,naziv'],
                'proizvodjac_id' => ['required'],
-               'baterija' => ['required'],
+               'tip_baterije_id' => ['required'],
                'broj_baterija' => ['required']
             ]);
 
@@ -44,10 +46,7 @@ class UpseviKontroler extends Kontroler
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->snaga = $request->snaga;
         $data->kapacitet = $request->kapacitet;
-        $data->baterija = $request->baterija;
-        $data->baterija_kapacitet = $request->baterija_kapacitet;
-        $data->baterija_napon = $request->baterija_napon;
-        $data->baterija_dimenzije = $request->baterija_dimenzije;
+        $data->tip_baterije_id = $request->tip_baterije_id;
         $data->broj_baterija = $request->broj_baterija;
         $data->link = $request->link;
         $data->napomena = $request->napomena;
@@ -62,7 +61,8 @@ class UpseviKontroler extends Kontroler
     {
         $model = UpsModel::find($id);
         $proizvodjaci = Proizvodjac::all();
-        return view('modeli.upsevi_izmena')->with(compact ('model', 'proizvodjaci'));
+        $baterije = TipBaterije::all();
+        return view('modeli.upsevi_izmena')->with(compact ('model', 'proizvodjaci', 'baterije'));
     }
 
     public function postIzmena(Request $request, $id)
@@ -71,7 +71,7 @@ class UpseviKontroler extends Kontroler
             $this->validate($request, [
                 'naziv' => ['required','max:50','unique:ups_modeli,naziv,' .$id],
                  'proizvodjac_id' => ['required'],
-               'baterija' => ['required'],
+               'tip_baterije_id' => ['required'],
                'broj_baterija' => ['required']
             ]);
         
@@ -80,10 +80,7 @@ class UpseviKontroler extends Kontroler
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->snaga = $request->snaga;
         $data->kapacitet = $request->kapacitet;
-        $data->baterija = $request->baterija;
-        $data->baterija_kapacitet = $request->baterija_kapacitet;
-        $data->baterija_napon = $request->baterija_napon;
-        $data->baterija_dimenzije = $request->baterija_dimenzije;
+        $data->tip_baterije_id = $request->tip_baterije_id;
         $data->broj_baterija = $request->broj_baterija;
         $data->link = $request->link;
         $data->napomena = $request->napomena;
@@ -112,20 +109,6 @@ class UpseviKontroler extends Kontroler
         return redirect()->route('upsevi.modeli');
     }
 
-    public function getBaterije($id)
-    {   
-        $data = UpsModel::find($id);
-        $trazi = trim($data->baterija);
-
-        $idModeli[] = UpsModel::where('baterija', 'LIKE', '%'.$trazi.'%')->pluck('id');
-
-        
-        foreach ($idModeli as $idM) {
-            
-        }
-
-        return view('modeli.upsevi_baterije')->with(compact ('baterije', 'suma'));
-    }
 
     public function getUredjaji($id)
     {   

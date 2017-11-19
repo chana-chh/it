@@ -47,7 +47,7 @@ class KancelarijeKontroler extends Kontroler
             'naziv' => [
                 'required',
                 'max:50',
-                'unique_with:sprat_id,lokacija_id',
+                // 'unique_with:sprat_id,lokacija_id',
             ],
         ]);
 

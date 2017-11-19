@@ -10,7 +10,7 @@
     <h1 class="page-header">
         <img class="slicica_animirana" alt="Model osnovne ploče detaljno" src="{{url('/images/mbd.png')}}" style="height:64px;">
         Detaljni pregled modela 
-         <i>{{ $osnovna_ploca->naziv }}</i>
+         <em class="text-success">{{ $osnovna_ploca->naziv }}</em>
          osnovne ploče
     </h1>
 @endsection

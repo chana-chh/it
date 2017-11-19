@@ -10,7 +10,7 @@
     <h1 class="page-header">
         <img class="slicica_animirana" alt="Model procesora detaljno" src="{{url('/images/cpu.png')}}" style="height:64px;">
         Detaljni pregled modela 
-         <em>{{ $procesor->naziv }}</em>
+         <em class="text-success">{{ $procesor->naziv }}</em>
          procesora
     </h1>
 @endsection

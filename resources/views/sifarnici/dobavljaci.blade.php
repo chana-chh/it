@@ -46,15 +46,25 @@
                     <td>
                         <strong>{{ $d->naziv }}</strong>
                     </td>
-                    <td>{{ $d->adresa_ulica }} {{ $d->adresa_broj }}, {{ $d->adresa_mesto }}</td>
+                    <td>@if($d->adresa_ulica)
+                            {{ $d->adresa_ulica }} 
+                        @elseif($d->adresa_ulica && $d->adresa_broj)
+                            {{ $d->adresa_ulica }} {{ $d->adresa_broj }}
+                        @elseif($d->adresa_ulica && $d->adresa_broj && $d->adresa_mesto)
+                            {{ $d->adresa_ulica }} {{ $d->adresa_broj }}, {{ $d->adresa_mesto }}
+                        @else ()
+                            {{ $d->adresa_mesto }}
+                        @endif
+                        </td>
                     <td>{{ $d->telefon }}</td>
                     <td>
                         <a href="mailto:{{$d->email}}">{{$d->email}}</a>
                     </td>
-                    <td>
+                    <td>@if($d->link)
                         <a href="{{$d->link}}" target="_blank" style="font-size: 2rem;">
                             <i class="fa fa-link"></i>
                         </a>
+                        @endif
                     </td>
                     <td>{{ str_limit($d->napomena, 80) }}</td>
                     <td style="text-align:right; vertical-align: middle; line-height: normal;">

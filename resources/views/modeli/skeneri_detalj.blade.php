@@ -10,7 +10,7 @@
     <h1 class="page-header">
         <img class="slicica_animirana" alt="Model skenera detaljno" src="{{url('/images/scanner.png')}}" style="height:64px;">&emsp;
         Detaljni pregled modela 
-         <i>{{ $model->naziv }}</i>
+         <em class="text-success">{{ $model->naziv }}</em>
          skenera
     </h1>
 @endsection

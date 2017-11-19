@@ -10,7 +10,7 @@
     <h1 class="page-header">
         <img class="slicica_animirana" alt="Šifarnik dobavljača" src="{{url('/images/kamion.png')}}" style="height:64px;">&emsp;
         Detaljni pregled dobavljača
-         <i>{{ $model->naziv }}</i>
+         <em class="text-success">{{ $model->naziv }}</em>
          
     </h1>
 @endsection
@@ -50,7 +50,15 @@
         <tbody style="font-size: 2rem;">
             <tr>
                 <th style="width: 20%;">Adresa:</th>
-                <td style="width: 80%;">{{$model->adresa_ulica}} {{$model->adresa_broj}}, {{$model->adresa_mesto}}</td>
+                <td style="width: 80%;">@if($model->adresa_ulica)
+                            {{ $model->adresa_ulica }} 
+                        @elseif($model->adresa_ulica && $model->adresa_broj)
+                            {{ $model->adresa_ulica }} {{ $model->adresa_broj }}
+                        @elseif($model->adresa_ulica && $model->adresa_broj && $model->adresa_mesto)
+                            {{ $model->adresa_ulica }} {{ $model->adresa_broj }}, {{ $model->adresa_mesto }}
+                        @else ()
+                            {{ $model->adresa_mesto }}
+                        @endif</td>
             </tr>
 
             <tr>
@@ -86,12 +94,46 @@
 @endsection
 
 @section('traka')
+<div class="row" style="margin-top: 5rem">
+<div class="col-md-12">
+@if($nabavke->isEmpty())
+        <h4 class="text-center">Do sada nije bilo nabavki od ovog dobavljača</h4>
+        @else
+        <table class="table table-striped display" cellspacing="0" width="100%" id="tabela" style="font-size: 1.25rem;">
+            <thead>
+            <th>Datum</th>
+            <th class="text-center">Garancija (mes)</th>
 
-<div class="row" style="margin-top: 50px">
+            <th style="text-align:right;">
+                <i class="fa fa-cogs"></i>&emsp;Akcije
+            </th>
+            </thead>
+            <tbody>
+                @foreach ($nabavke as $nabavka)
+                <tr>
+
+                    <td>{{ \Carbon\Carbon::parse($nabavka->datum)->format('d.m.Y') }}</td>
+                    <td class="text-center">{{ $nabavka->garancija }}</td>
+                    <td class="text-right">
+                        <a class="btn btn-success btn-xs"
+                           href="{{ route('nabavke.detalj', $nabavka->id) }}">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        @endif
+</div>
+</div>
+@if($model->link)
+<div class="row" style="margin-top: 5rem">
 <div class="col-md-12 text-center">
     <a href="{{$model->link}}" target="_blank"><img alt="link" src="{{url('/images/link.png')}}" style="height:32px;"></a>
 </div>
 </div>
+@endif
 
 @endsection
 

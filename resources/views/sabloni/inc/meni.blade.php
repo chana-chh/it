@@ -99,9 +99,11 @@
                             <li><a href="{{ route('vga_slotovi') }}">VGA slotovi (mbd, vga)</a></li>
                             <li><a href="{{ route('tipovi_stampaca') }}">Tipovi štampača</a></li>
                             <li><a href="{{ route('toneri') }}">Toneri</a></li>
+                            <li><a href="{{ route('baterije') }}">Baterije</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('operativni_sistemi') }}">Operativni sistemi</a></li>
                             <li><a href="{{route('aplikacije')}}">Aplikacije</a></li>
+                            <li><a href="{{route('licence')}}">Licence</a></li>
                         </ul>
                     </li>
                     <li style="margin-left: 40px; opacity: 0.7;">

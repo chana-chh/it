@@ -6,39 +6,42 @@ use Illuminate\Http\Request;
 use Session;
 use Redirect;
 use App\Http\Controllers\Kontroler;
-use App\Modeli\Toner;
+use App\Modeli\TipBaterije;
 
-class ToneriKontroler extends Kontroler
+class BaterijeKontroler extends Kontroler
 {
 
     public function getLista()
     {
-        $data = Toner::all();
-        return view('sifarnici.toneri')->with(compact('data'));
+        $data = TipBaterije::all();
+        return view('sifarnici.baterije')->with(compact('data'));
     }
 
     public function postDodavanje(Request $request)
     {
         $this->validate($request, [
-            'naziv' => [
-                'required',
-                'unique:s_toneri,naziv',
-            ],
+            'naziv' => ['required', 'max:50'],
+            'kapacitet' => ['required', 'max:30'],
+            'napon' => ['required', 'max:30'],
+            'dimenzije' => ['required', 'max:30'],
         ]);
 
-        $data = new Toner();
+        $data = new TipBaterije();
         $data->naziv = $request->naziv;
-        $data->modeli_tonera = $request->modeli_tonera;
+        $data->modeli_baterija = $request->modeli_baterija;
+        $data->kapacitet = $request->kapacitet;
+        $data->napon = $request->napon;
+        $data->dimenzije = $request->dimenzije;
         $data->save();
 
         Session::flash('uspeh', 'Stavka je uspešno dodata!');
-        return redirect()->route('toneri');
+        return redirect()->route('baterije');
     }
 
     public function postDetalj(Request $request)
     {
         if ($request->ajax()) {
-            $data = Toner::find($request->id);
+            $data = TipBaterije::find($request->id);
             return response()->json($data);
         }
     }
@@ -47,15 +50,18 @@ class ToneriKontroler extends Kontroler
     {
         $id = $request->idModal;
         $this->validate($request, [
-            'nazivModal' => [
-                'required',
-                'unique:s_toneri,naziv,' . $id,
-            ],
+            'nazivModal' => ['required', 'max:50'],
+            'kapacitetModal' => ['required', 'max:30'],
+            'naponModal' => ['required', 'max:30'],
+            'dimenzijeModal' => ['required', 'max:30'],
         ]);
 
-        $data = Toner::find($id);
+        $data = TipBaterije::find($id);
         $data->naziv = $request->nazivModal;
-        $data->modeli_tonera = $request->modeliModal;
+        $data->modeli_baterija = $request->modeliModal;
+        $data->kapacitet = $request->kapacitetModal;
+        $data->napon = $request->naponModal;
+        $data->dimenzije = $request->dimenzijeModal;
         $data->save();
 
         Session::flash('uspeh', 'Stavka je uspešno izmenjena!');
@@ -64,7 +70,7 @@ class ToneriKontroler extends Kontroler
 
     public function postBrisanje(Request $request)
     {
-        $data = Toner::find($request->idBrisanje);
+        $data = TipBaterije::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Stavka je uspešno obrisana!');
@@ -75,4 +81,3 @@ class ToneriKontroler extends Kontroler
     }
 
 }
-

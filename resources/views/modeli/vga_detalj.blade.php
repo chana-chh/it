@@ -9,7 +9,7 @@
 @section('naslov')
     <h1 class="page-header">
         <img class="slicica_animirana" alt="Model grafičkog adaptera detaljno" src="{{url('/images/vga.png')}}" style="height:64px;">
-        Detaljni pregled modela grafičkog adaptera &emsp;<span style="color: #18bc9c">{{$vga->naziv}}</span>
+        Detaljni pregled modela grafičkog adaptera &emsp;<em class="text-success">{{$vga->naziv}}</em>
     </h1>
 @endsection
 

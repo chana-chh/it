@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 use Session;
 use Redirect;
 use App\Http\Controllers\Kontroler;
-use App\Modeli\Toner;
+use App\Modeli\Greska;
 
-class ToneriKontroler extends Kontroler
+class GreskeKontroler extends Kontroler
 {
 
     public function getLista()
     {
-        $data = Toner::all();
-        return view('sifarnici.toneri')->with(compact('data'));
+        $data = Greska::all();
+        return view('sifarnici.dijagonale')->with(compact('data'));
     }
 
     public function postDodavanje(Request $request)
@@ -22,23 +22,22 @@ class ToneriKontroler extends Kontroler
         $this->validate($request, [
             'naziv' => [
                 'required',
-                'unique:s_toneri,naziv',
+                'unique:s_dijagonale,naziv',
             ],
         ]);
 
-        $data = new Toner();
+        $data = new Greska();
         $data->naziv = $request->naziv;
-        $data->modeli_tonera = $request->modeli_tonera;
         $data->save();
 
         Session::flash('uspeh', 'Stavka je uspešno dodata!');
-        return redirect()->route('toneri');
+        return redirect()->route('dijagonale');
     }
 
     public function postDetalj(Request $request)
     {
         if ($request->ajax()) {
-            $data = Toner::find($request->id);
+            $data = Greska::find($request->id);
             return response()->json($data);
         }
     }
@@ -49,13 +48,12 @@ class ToneriKontroler extends Kontroler
         $this->validate($request, [
             'nazivModal' => [
                 'required',
-                'unique:s_toneri,naziv,' . $id,
+                'unique:s_dijagonale,naziv,' . $id,
             ],
         ]);
 
-        $data = Toner::find($id);
+        $data = Greska::find($id);
         $data->naziv = $request->nazivModal;
-        $data->modeli_tonera = $request->modeliModal;
         $data->save();
 
         Session::flash('uspeh', 'Stavka je uspešno izmenjena!');
@@ -64,7 +62,7 @@ class ToneriKontroler extends Kontroler
 
     public function postBrisanje(Request $request)
     {
-        $data = Toner::find($request->idBrisanje);
+        $data = Greska::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Stavka je uspešno obrisana!');
@@ -75,4 +73,3 @@ class ToneriKontroler extends Kontroler
     }
 
 }
-

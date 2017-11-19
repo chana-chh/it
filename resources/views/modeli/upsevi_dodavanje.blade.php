@@ -78,9 +78,9 @@
         <hr>
         {{-- Red II --}}
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                     <div class="form-group{{ $errors->has('kapacitet') ? ' has-error' : '' }}">
-                    <label for="kapacitet">Kapacitet u VA:</label>
+                    <label for="kapacitet">Kapacitet (modela) u VA:</label>
                     <input type="text" name="kapacitet" id="kapacitet" class="form-control" value="{{ old('kapacitet') }}" maxlength="30">
                     @if ($errors->has('kapacitet'))
                         <span class="help-block">
@@ -90,9 +90,9 @@
                 </div>
                 </div>
 
-                            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="form-group{{ $errors->has('snaga') ? ' has-error' : '' }}">
-            <label for="snaga">Snaga u W: </label>
+            <label for="snaga">Snaga (modela) u W: </label>
             <input type="text" name="snaga" id="snaga" class="form-control" value="{{ old('snaga') }}" maxlenght="30">
             @if ($errors->has('snaga'))
                 <span class="help-block">
@@ -102,59 +102,25 @@
         </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="form-group{{ $errors->has('baterija') ? ' has-error' : '' }}">
-            <label for="baterija">Naziv baterije (fabričke): </label>
-            <input type="text" name="baterija" id="baterija" class="form-control" value="{{ old('baterija') }}" maxlenght="50">
-            @if ($errors->has('baterija'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('baterija') }}</strong>
-                </span>
-            @endif
-        </div>
-            </div>
-
-
-        </div>
-
-        <hr>
-        {{-- Red III --}}
-        <div class="row">
-            <div class="col-md-4">
-                    <div class="form-group{{ $errors->has('baterija_kapacitet') ? ' has-error' : '' }}">
-                    <label for="baterija_kapacitet">Kapacitet baterije u VA:</label>
-                    <input type="text" name="baterija_kapacitet" id="baterija_kapacitet" class="form-control" value="{{ old('baterija_kapacitet') }}" maxlength="30">
-                    @if ($errors->has('baterija_kapacitet'))
+            <div class="col-md-6">
+                <div class="form-group{{ $errors->has('tip_baterije_id') ? ' has-error' : '' }}">
+                    <label for="tip_baterije_id">Baterija:</label>
+                    <select name="tip_baterije_id" id="tip_baterije_id" class="chosen-select form-control" data-placeholder="baterija ..." required>
+                        <option value=""></option>
+                        @foreach($baterije as $baterija)
+                        <option value="{{ $baterija->id }}"{{ old('tip_baterije_id') == $baterija->id ? ' selected' : '' }}>
+                            {{ $baterija->naziv }}, {{ $baterija->kapacitet }} Ah, {{ $baterija->napon }} V, {{ $baterija->dimenzije }}
+                        </option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('tip_baterije_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('baterija_kapacitet') }}</strong>
+                            <strong>{{ $errors->first('tip_baterije_id') }}</strong>
                         </span>
                     @endif
                 </div>
-                </div>
-
-                            <div class="col-md-4">
-                <div class="form-group{{ $errors->has('baterija_napon') ? ' has-error' : '' }}">
-            <label for="baterija_napon">Napon baterije u V: </label>
-            <input type="text" name="baterija_napon" id="baterija_napon" class="form-control" value="{{ old('baterija_napon') }}" maxlenght="30">
-            @if ($errors->has('baterija_napon'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('baterija_napon') }}</strong>
-                </span>
-            @endif
-        </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="form-group{{ $errors->has('baterija_dimenzije') ? ' has-error' : '' }}">
-            <label for="baterija_dimenzije">Dimenzije baterije: </label>
-            <input type="text" name="baterija_dimenzije" id="baterija_dimenzije" class="form-control" value="{{ old('baterija_dimenzije') }}" maxlenght="30">
-            @if ($errors->has('baterija_dimenzije'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('baterija_dimenzije') }}</strong>
-                </span>
-            @endif
-        </div>
-            </div>
 
         </div>
 

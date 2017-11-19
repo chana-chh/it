@@ -10,7 +10,7 @@
     <h1 class="page-header">
         <img class="slicica_animirana" alt="Model napajanja detaljno" src="{{url('/images/napajanje.png')}}" style="height:64px;">&emsp;
         Detaljni pregled modela 
-         <i>{{ $model->naziv }}</i>
+         <em class="text-success">{{ $model->naziv }}</em>
          napajanja
     </h1>
 @endsection

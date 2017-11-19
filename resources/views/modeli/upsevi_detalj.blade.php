@@ -10,7 +10,7 @@
     <h1 class="page-header">
         <img class="slicica_animirana" alt="Model UPS uređaja detaljno" src="{{url('/images/ups1.jpg')}}" style="height:64px;">&emsp;
         Detaljni pregled modela 
-         <em>{{ $model->naziv }}</em>
+         <em class="text-success">{{ $model->naziv }}</em>
          UPS uređaja
     </h1>
 @endsection
@@ -92,10 +92,7 @@
 
             <tr>
                 <th style="width: 40%;">Baterija (naziv):</th>
-                <td style="width: 60%;"><a href="{{route('upsevi.modeli.baterije', $model->id)}}"
-           title="Brojno stanje ovog modela baterije">{{$model->baterija}}&emsp;
-            <i class="fa fa-search" style="color:#2C3E50"></i>
-        </a></td>
+                <td style="width: 60%;">{{$model->tipBaterije->naziv}}</td>
             </tr>
             <tr>
                 <th style="width: 40%;">Broj baterija:</th>
@@ -104,19 +101,19 @@
 
             <tr>
                 <th style="width: 40%;">Kapacitet baterije:</th>
-                <td style="width: 60%;">{{$model->baterija_kapacitet}} Ah
+                <td style="width: 60%;">{{$model->tipBaterije->kapacitet}} Ah
                 </td>
             </tr>
 
                         <tr>
                 <th style="width: 40%;">Napon baterije:</th>
-                <td style="width: 60%;">{{$model->baterija_napon}} V
+                <td style="width: 60%;">{{$model->tipBaterije->napon}} V
                 </td>
             </tr>
 
              <tr>
                 <th style="width: 40%;">Dimenzije baterije:</th>
-                <td style="width: 60%;">{{$model->baterija_dimenzije}}
+                <td style="width: 60%;">{{$model->tipBaterije->dimenzije}}
                 </td>
             </tr>
         </tbody>

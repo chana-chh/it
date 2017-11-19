@@ -35,8 +35,29 @@ class LokacijeKontroler extends Kontroler
         $data->save();
 
         Session::flash('uspeh','Stavka je uspešno dodata!');
-        return redirect()->route('lokacije');
+        return Redirect::back();
     }
+
+    public function postAjax(Request $request)
+    {
+        $this->validate($request, [
+            'nazivLokacije' => [
+                'required',
+                'max:190',
+                'unique:s_lokacije,naziv',
+            ],
+        ]);
+
+        $data = new Lokacija();
+        $data->naziv = $request->nazivLokacije;
+        $data->adresa_ulica = $request->ulicaLokacije;
+        $data->adresa_broj = $request->brojLokacije;
+        $data->napomena = $request->napomenaLokacije;
+        $data->save();
+        
+        return response()->json(['status' => '1', 'novi_id' => $data->id, 'novi_naziv' => $data->naziv]);
+    }
+
 
         public function postDetalj(Request $request)
         {

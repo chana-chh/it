@@ -7,6 +7,8 @@ use Session;
 use Redirect;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\Dobavljac;
+use App\Modeli\Nabavka;
+use DB;
 use URL;
 
 class DobavljaciKontroler extends Kontroler
@@ -52,7 +54,8 @@ class DobavljaciKontroler extends Kontroler
     public function getDetalj($id)
     {
         $model = Dobavljac::find($id);
-        return view('sifarnici.dobavljaci_detalj')->with(compact('model'));
+        $nabavke = DB::table('nabavke')->where('dobavljac_id', '=', $id)->get();
+        return view('sifarnici.dobavljaci_detalj')->with(compact('model', 'nabavke'));
     }
 
     public function getIzmena($id)
@@ -64,16 +67,16 @@ class DobavljaciKontroler extends Kontroler
 
     public function postIzmena(Request $request)
     {
-        $id = $request->idModal;
+        $id = $request->id;
         $this->validate($request, [
-            'nazivModal' => [
+            'naziv' => [
                 'required',
                 'max:190',
                 'unique:s_dobavljaci,naziv,' . $id,]
         ]);
 
         $data = Dobavljac::find($id);
-        $data->naziv = $request->nazivModal;
+        $data->naziv = $request->naziv;
         $data->adresa_mesto = $request->adresa_mesto;
         $data->adresa_ulica = $request->adresa_ulica;
         $data->adresa_broj = $request->adresa_broj;

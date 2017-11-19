@@ -21,7 +21,8 @@
 <table class="table table-striped" id="tabela">
     <thead>
     <th style="width: 15%;">#</th>
-    <th style="width: 70%;">Naziv</th>
+    <th style="width: 20%;">Naziv grupe</th>
+    <th style="width: 50%;">Kompatibilni modeli</th>
     <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
 </thead>
 <tbody>
@@ -29,6 +30,7 @@
     <tr>
         <td>{{ $d->id }}</td>
         <td><strong>{{ $d->naziv }}</strong></td>
+        <td><strong>{{ $d->modeli_tonera }}</strong></td>
         <td style="text-align:right;">
             <button class="btn btn-success btn-sm otvori-izmenu"
                     data-toggle="modal" data-target="#editModal"
@@ -63,8 +65,12 @@
                 <form action="{{ route('toneri.izmena') }}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="nazivModal">Naziv:</label>
+                        <label for="nazivModal">Naziv grupe:</label>
                         <input type="text" id="nazivModal" name="nazivModal" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modeliModal">Kompatibilni modeli:</label>
+                        <input type="text" id="modeliModal" name="modeliModal" class="form-control" required>
                     </div>
                     <input type="hidden" id="idModal" name="idModal">
                     <button type="submit" class="btn btn-success">
@@ -90,11 +96,20 @@
     <form action="{{ route('toneri.dodavanje') }}" method="POST" data-parsley-validate>
         {{ csrf_field() }}
         <div class="form-group{{ $errors->has('naziv') ? ' has-error' : '' }}">
-            <label for="naziv">Naziv tonera:</label>
+            <label for="naziv">Naziv grupe:</label>
             <input  type="text" name="naziv" id="naziv" class="form-control" value="{{ old('naziv') }}" required>
             @if ($errors->has('naziv'))
             <span class="help-block">
                 <strong>{{ $errors->first('naziv') }}</strong>
+            </span>
+            @endif
+        </div>
+        <div class="form-group{{ $errors->has('modeli_tonera') ? ' has-error' : '' }}">
+            <label for="modeli_tonera">Kompatibilni modeli:</label>
+            <input  type="text" name="modeli_tonera" id="modeli_tonera" class="form-control" value="{{ old('modeli_tonera') }}" required>
+            @if ($errors->has('modeli_tonera'))
+            <span class="help-block">
+                <strong>{{ $errors->first('modeli_tonera') }}</strong>
             </span>
             @endif
         </div>
@@ -166,6 +181,7 @@
                 success: function (data) {
                     $("#idModal").val(data.id);
                     $("#nazivModal").val(data.naziv);
+                    $("#modeliModal").val(data.modeli_tonera);
                 }
             });
         });

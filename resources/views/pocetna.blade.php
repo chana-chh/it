@@ -7,9 +7,11 @@
 @endsection
 
 @section('naslov')
-    <h1 class="text-center" style="font-size: 64px;">{{config('app.name')}}</h1>
-    <hr>
-    <div class="row" style="margin-top: 72px;">
+    <h1 class="text-center page-header">{{config('app.name')}}</h1>
+@endsection
+
+@section('sadrzaj')
+    <div class="row">
         <div class="col-md-3">
             <div class="panel panel-info noborder">
                 <div class="panel-heading">
@@ -19,7 +21,7 @@
                 </div>
                 <div class="panel-body">
                     <a href="{{route('racunari.oprema')}}">
-                    <img class="grow center-block responsive" alt="računari" src="{{url('/images/kompaS.png')}}" style="height: 128px;">
+                    <img class="grow center-block responsive" alt="računari" src="{{url('/images/kompaS.png')}}" style="height: 64px;">
                     </a>
                 </div>
                 <div class="panel-footer text-center">
@@ -41,7 +43,7 @@
                 </div>
                 <div class="panel-body">
                     <a href="">
-                    <img class="grow center-block responsive" alt="računari" src="{{url('/images/monitorS.png')}}" style="height: 128px;">
+                    <img class="grow center-block responsive" alt="računari" src="{{url('/images/monitorS.png')}}" style="height: 64px;">
                     </a>
                 </div>
                 <div class="panel-footer text-center">
@@ -63,7 +65,7 @@
                 </div>
                 <div class="panel-body">
                     <a href="">
-                    <img class="grow center-block responsive" alt="računari" src="{{url('/images/stampac.png')}}" style="height: 128px;">
+                    <img class="grow center-block responsive" alt="računari" src="{{url('/images/stampac.png')}}" style="height: 64px;">
                     </a>
                 </div>
                 <div class="panel-footer text-center">
@@ -85,7 +87,7 @@
                 </div>
                 <div class="panel-body">
                     <a href="">
-                    <img class="grow center-block responsive" alt="računari" src="{{url('/images/scanner.png')}}" style="height: 128px;">
+                    <img class="grow center-block responsive" alt="računari" src="{{url('/images/scanner.png')}}" style="height: 64px;">
                     </a>
                 </div>
                 <div class="panel-footer text-center">
@@ -109,7 +111,7 @@
                 </div>
                 <div class="panel-body">
                     <a href="">
-                    <img class="grow center-block responsive" alt="računari" src="{{url('/images/ups1.jpg')}}" style="height: 128px;">
+                    <img class="grow center-block responsive" alt="računari" src="{{url('/images/ups1.jpg')}}" style="height: 64px;">
                     </a>
                 </div>
                 <div class="panel-footer text-center">
@@ -131,12 +133,12 @@
                 </div>
                 <div class="panel-body">
                     <a href="">
-                    <img class="grow center-block responsive" alt="Mrežni uređaji" src="{{url('/images/mrezniUredjaji.png')}}" style="height: 128px;">
+                    <img class="grow center-block responsive" alt="Mrežni uređaji" src="{{url('/images/mrezniUredjaji.png')}}" style="height: 64px;">
                     </a>
                 </div>
                 <div class="panel-footer text-center">
                     <h4>
-                        Ukupno mrežnih uređaja:
+                        Ukupno uređaja:
                         <a href=""  style="text-decoration: none;">
                             <strong>{{ $mreznih_uredjaja }}</strong>
                         </a>
@@ -153,7 +155,7 @@
                 </div>
                 <div class="panel-body">
                     <a href="">
-                    <img class="grow center-block responsive" alt="Projektori" src="{{url('/images/projektor.png')}}" style="height: 128px;">
+                    <img class="grow center-block responsive" alt="Projektori" src="{{url('/images/projektor.png')}}" style="height: 64px;">
                     </a>
                 </div>
                 <div class="panel-footer text-center">
@@ -175,7 +177,7 @@
                 </div>
                 <div class="panel-body">
                     <a href="">
-                    <img class="grow center-block responsive" alt="Aplikacije" src="{{url('/images/aplikacije.png')}}" style="height: 128px;">
+                    <img class="grow center-block responsive" alt="Aplikacije" src="{{url('/images/aplikacije.png')}}" style="height: 64px;">
                     </a>
                 </div>
                 <div class="panel-footer text-center">
@@ -189,6 +191,26 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('traka')
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title">Problemi/greške</h3>
+  </div>
+  <div class="panel-body">
+    <table class="table" style="table-layout: fixed; margin-top: 2rem">
+        <tbody>
+            @foreach($greske as $greska)
+            <tr>
+                <th style="width: 20%;">Greška {{$loop->iteration}}:</th>
+                <td style="width: 80%;"><a href="" style="text-decoration: none;">{{ str_limit($greska->greska, 50) }}</a></td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+  </div>
+</div>
 @endsection
 
 @section('skripte')

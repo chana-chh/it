@@ -91,6 +91,7 @@ Route::post('sifarnici/dobavljaci/brisanje', 'Sifarnici\DobavljaciKontroler@post
 // Lokacije
 Route::get('sifarnici/lokacije', 'Sifarnici\LokacijeKontroler@getLista')->name('lokacije');
 Route::post('sifarnici/lokacije/dodavanje', 'Sifarnici\LokacijeKontroler@postDodavanje')->name('lokacije.dodavanje');
+Route::post('sifarnici/lokacije/dodavanje/ajax', 'Sifarnici\LokacijeKontroler@postAjax')->name('lokacije.dodavanje.ajax');
 Route::post('sifarnici/lokacije/brisanje', 'Sifarnici\LokacijeKontroler@postBrisanje')->name('lokacije.brisanje');
 Route::post('sifarnici/lokacije/izmena', 'Sifarnici\LokacijeKontroler@postIzmena')->name('lokacije.izmena');
 Route::post('sifarnici/lokacije/detalj', 'Sifarnici\LokacijeKontroler@postDetalj')->name('lokacije.detalj');
@@ -166,6 +167,22 @@ Route::post('sifarnici/dijagonale/dodavanje', 'Sifarnici\DijagonaleKontroler@pos
 Route::post('sifarnici/dijagonale/brisanje', 'Sifarnici\DijagonaleKontroler@postBrisanje')->name('dijagonale.brisanje');
 Route::post('sifarnici/dijagonale/izmena', 'Sifarnici\DijagonaleKontroler@postIzmena')->name('dijagonale.izmena');
 Route::post('sifarnici/dijagonale/detalj', 'Sifarnici\DijagonaleKontroler@postDetalj')->name('dijagonale.detalj');
+
+// Licence
+Route::get('sifarnici/licence', 'Sifarnici\LicenceKontroler@getLista')->name('licence');
+Route::get('sifarnici/licence/dodavanje', 'Sifarnici\LicenceKontroler@getDodavanje')->name('licence.dodavanje.get');
+Route::post('sifarnici/licence/dodavanje', 'Sifarnici\LicenceKontroler@postDodavanje')->name('licence.dodavanje.post');
+Route::get('sifarnici/licence/izmena/{id}', 'Sifarnici\LicenceKontroler@getIzmena')->name('licence.izmena.get');
+Route::post('sifarnici/licence/izmena/{id}', 'Sifarnici\LicenceKontroler@postIzmena')->name('licence.izmena.post');
+Route::get('sifarnici/licence/detalj/{id}', 'Sifarnici\LicenceKontroler@getDetalj')->name('licence.detalj');
+Route::post('sifarnici/licence/brisanje', 'Sifarnici\LicenceKontroler@postBrisanje')->name('licence.brisanje');
+
+// Baterije
+Route::get('sifarnici/baterije', 'Sifarnici\BaterijeKontroler@getLista')->name('baterije');
+Route::post('sifarnici/baterije/dodavanje', 'Sifarnici\BaterijeKontroler@postDodavanje')->name('baterije.dodavanje');
+Route::post('sifarnici/baterije/brisanje', 'Sifarnici\BaterijeKontroler@postBrisanje')->name('baterije.brisanje');
+Route::post('sifarnici/baterije/izmena', 'Sifarnici\BaterijeKontroler@postIzmena')->name('baterije.izmena');
+Route::post('sifarnici/baterije/detalj', 'Sifarnici\BaterijeKontroler@postDetalj')->name('baterije.detalj');
 
 // Povezivanje vga
 Route::get('sifarnici/povezivanje_vga', 'Sifarnici\PovezivanjeVgaKontroler@getLista')->name('povezivanje_vga');
@@ -340,7 +357,6 @@ Route::post('modeli/upsevi/izmena/{id}', 'Modeli\UpseviKontroler@postIzmena')->n
 Route::get('modeli/upsevi/detalj/{id}', 'Modeli\UpseviKontroler@getDetalj')->name('upsevi.modeli.detalj');
 Route::post('modeli/upsevi/brisanje', 'Modeli\UpseviKontroler@postBrisanje')->name('upsevi.modeli.brisanje');
 Route::get('modeli/upsevi/uredjaji/{id}', 'Modeli\UpseviKontroler@getUredjaji')->name('upsevi.modeli.uredjaji');
-Route::get('modeli/upsevi/baterije/{id}', 'Modeli\UpseviKontroler@getBaterije')->name('upsevi.modeli.baterije');
 
 
 //OPREMA
