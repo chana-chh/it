@@ -381,5 +381,10 @@ Route::get('oprema/racunari/ploce/izvadi/{id}', 'Oprema\RacunariKontroler@getIzv
 Route::get('oprema/racunari/ploce/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiPlocu')->name('racunari.oprema.ploce.izvadi.obrisi');
 Route::post('oprema/racunari/ploce/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajPlocuNovu')->name('racunari.oprema.ploce.dodaj.novu');
 Route::post('oprema/racunari/ploce/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajPlocuPostojecu')->name('racunari.oprema.ploce.dodaj.postojecu');
+Route::get('oprema/racunari/procesori/{id}', 'Oprema\RacunariKontroler@getProcesore')->name('racunari.oprema.procesori');
+Route::get('oprema/racunari/procesori/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiProcesor')->name('racunari.oprema.procesori.izvadi');
+Route::get('oprema/racunari/procesori/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiProcesor')->name('racunari.oprema.procesori.izvadi.obrisi');
+Route::post('oprema/racunari/procesori/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajProcesorNovi')->name('racunari.oprema.procesori.dodaj.novu');
+Route::post('oprema/racunari/procesori/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajProcesorPostojeci')->name('racunari.oprema.procesori.dodaj.postojecu');
 
 

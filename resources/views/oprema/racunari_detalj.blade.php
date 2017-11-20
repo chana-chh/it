@@ -184,7 +184,7 @@
         @endif
     </th>
     <td style="width: 30%;">
-        <a href="#" class="btn btn-primary btn-block">
+        <a href="{{ route('racunari.oprema.procesori', $uredjaj->id) }}" class="btn btn-primary btn-block">
             Procesori
             
         </a>

@@ -17,6 +17,8 @@ use App\Modeli\Nabavka;
 use App\Modeli\OperativniSistem;
 use App\Modeli\OsnovnaPlocaModel;
 use App\Modeli\OsnovnaPloca;
+use App\Modeli\ProcesorModel;
+use App\Modeli\Procesor;
 
 class RacunariKontroler extends Kontroler
 {
@@ -210,7 +212,89 @@ class RacunariKontroler extends Kontroler
         $racunar->save();
         Session::flash('uspeh', 'Osnovna ploča je uspešno dodata!');
         }
+        return Redirect::back();
+    }
+
+    public function getProcesore($id)
+    {
+        $uredjaj = Racunar::find($id);
+        $modeli = ProcesorModel::all();
+        $procesori = Procesor::neraspordjeni()->get();
+        return view('oprema.racunari_procesori')->with(compact ('modeli', 'uredjaj', 'procesori'));
+    }
+
+    public function getIzvadiProcesor($id)
+    {
+        $procesor = Procesor::find($id);
+        $procesor->racunar_id = null;
+        $odgovor = $procesor->save();
         
+        if ($odgovor) {
+            Session::flash('uspeh', 'Procesor je uspešno izvađena!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom vađenja procesora. Pokušajte ponovo, kasnije!');
+        }
+        
+        return Redirect::back();
+    }
+
+     public function getIzvadiObrisiProcesor($id)
+    {
+        $uredjaj = Racunar::find($id);
+        $ploca = OsnovnaPloca::find($uredjaj->osnovnaPloca->id);
+        $uredjaj->ploca_id = null;
+        $uredjaj->save();
+        $ploca->napomena .= 'q#q# PODACI O OTPISU: naziv računara '.$uredjaj->ime .', kancelarija '. $uredjaj->kancelarija->naziv;
+        $ploca->save();
+        $odgovor = $ploca->delete();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Osnovna ploča je uspešno izvađena i pripremljena za reciklažu!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom vađenja ploče. Pokušajte ponovo, kasnije!');
+        }
+        
+        return Redirect::back();
+    }
+
+    public function postDodajProcesorNovi(Request $request, $id)
+    {
+        $racunar = Racunar::find($id);
+
+        if ($racunar->osnovnaPloca) {
+            Session::flash('greska', 'Prvo izvadite staru plocu da biste dodali novu!');
+        }
+        else{
+            $this->validate($request, [
+                'serijski_broj' => ['max:50'],
+                'osnovna_ploca_model_id' => ['required']
+            ]);
+        $ploca = new OsnovnaPloca();
+        $ploca->serijski_broj = $request->serijski_broj;
+        $ploca->vrsta_uredjaja_id = 6;
+        $ploca->osnovna_ploca_model_id = $request->osnovna_ploca_model_id;
+        $ploca->napomena = $request->napomena;
+        $ploca->save();
+
+        $racunar->ploca_id = $ploca->id;
+        $racunar->save();
+        Session::flash('uspeh', 'Osnovna ploča je uspešno dodata!');
+        }
+        return Redirect::back();
+    }
+
+    public function postDodajProcesorPostojeci(Request $request, $id)
+    {
+        $racunar = Racunar::find($id);
+        if ($racunar->osnovnaPloca) {
+            Session::flash('greska', 'Prvo izvadite staru plocu da biste dodali novu!');
+        }
+        else{
+        $ploca = OsnovnaPloca::find($request->ploca_id);
+        $racunar->ploca_id = $ploca->id;
+        $racunar->save();
+        Session::flash('uspeh', 'Osnovna ploča je uspešno dodata!');
+        }
         return Redirect::back();
     }
 

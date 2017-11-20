@@ -214,7 +214,7 @@
 </div>
 @endif
 
-@if($isticu)
+@if(!$isticu->isEmpty())
 <div class="panel panel-info">
   <div class="panel-heading">
     <h3 class="panel-title">Licence koje uskoro ističu</h3>

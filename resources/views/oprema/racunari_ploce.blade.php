@@ -12,7 +12,7 @@
         <h1>
             <img class="slicica_animirana" alt="Dodavanje osnovne ploče u računar"
                  src="{{url('/images/mbd.png')}}" style="height:64px;">
-            &emsp;Rad sa osnovnom pločom u računar {{$uredjaj->ime}}
+            &emsp;Rad sa osnovnom pločom na računaru {{$uredjaj->ime}}
         </h1>
     </div>
 </div>
@@ -84,16 +84,14 @@
 
             </tbody>
         </table>
-<div class="row">
-            <div class="col-md-3 text-right" style="padding-top: 50px;">
+<div class="row" style="padding-top: 20px;">
+            <div class="col-md-3">
         <a class="btn btn-primary ono btn-block" href="{{ route('racunari.oprema.ploce.izvadi', $uredjaj->id) }}">
             <i class="fa fa-minus-circle fa-fw"></i> Izvadi iz računara</a>
     </div>
-</div>
-<div class="row">
-            <div class="col-md-3 text-right" style="padding-top: 50px;">
+    <div class="col-md-3 col-md-offset-6">
         <a class="btn btn-danger ono btn-block" href="{{ route('racunari.oprema.ploce.izvadi.obrisi', $uredjaj->id) }}">
-            <i class="fa fa-minus-circle fa-fw"></i> Izvadi i otpiši</a>
+            <i class="fa fa-trash fa-fw"></i> Izvadi i otpiši</a>
     </div>
 </div>
         @else
@@ -234,24 +232,12 @@
             allow_single_deselect: true
         });
 
-        chsn.on('change', function (evt, params) {
-            if (params == undefined && evt.currentTarget.id == 'racunar_id') {
-                $('#obavestenje').hide();
-            } else {
-                $('#obavestenje').show();
-            }
-        });
-
         function resizeChosen() {
             $(".chosen-container").each(function () {
                 $(this).attr('style', 'width: 100%');
             });
         }
 
-        $("#racunar_id").on('change', function () {
-            var ima_nema = $(this).find(":selected").data("procesor");
-            $("#obavestenje").html(ima_nema);
-        });
     });
 
 </script>

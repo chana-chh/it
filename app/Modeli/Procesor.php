@@ -34,6 +34,11 @@ class Procesor extends Model
         return $this->belongsTo('App\Modeli\OtpremnicaStavka', 'stavka_otpremnice_id', 'id');
     }
 
+    public function scopeNeraspordjeni()
+    {
+        return $this->doesntHave('racunar');
+    }
+
     public $naziv_modela_jednina = "Procesor";
     public $naziv_modela_mnozina = "Procesori";
 
