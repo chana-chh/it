@@ -14,6 +14,7 @@ use App\Modeli\MrezniUredjaj;
 use App\Modeli\Projektor;
 use App\Modeli\Aplikacija;
 use App\Modeli\Greska;
+use App\Modeli\Licenca;
 
 class PocetnaKontroler extends Kontroler
 {
@@ -30,8 +31,11 @@ class PocetnaKontroler extends Kontroler
         $aplikacija = Aplikacija::count();
         $greske = Greska::all();
 
+         $isticu = Licenca::whereBetween('datum_prestanka_vazenja', [Carbon::now(), Carbon::now()->addMonths(2)])->get();
+
+
         return view('pocetna')->with(compact(
-                                'racunara', 'monitora', 'stampaca', 'skenera', 'upseva', 'mreznih_uredjaja', 'projektora', 'aplikacija', 'greske'
+                                'racunara', 'monitora', 'stampaca', 'skenera', 'upseva', 'mreznih_uredjaja', 'projektora', 'aplikacija', 'greske', 'isticu'
         ));
     }
 

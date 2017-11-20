@@ -194,6 +194,7 @@
 @endsection
 
 @section('traka')
+@if($greske)
 <div class="panel panel-danger">
   <div class="panel-heading">
     <h3 class="panel-title">Problemi/greške</h3>
@@ -211,6 +212,27 @@
     </table>
   </div>
 </div>
+@endif
+
+@if($isticu)
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Licence koje uskoro ističu</h3>
+  </div>
+  <div class="panel-body">
+    <table class="table" style="table-layout: fixed; margin-top: 2rem">
+        <tbody>
+            @foreach($isticu as $licenca)
+            <tr>
+                <th style="width: 5%;">{{$loop->iteration}}.</th>
+                <td style="width: 95%;"><a href="{{route('licence.detalj', $licenca->id)}}" style="text-decoration: none;"> <strong>{{ $licenca->proizvod }}</strong> - {{ $licenca->tip_licence }}, datum prestanka važenja:{{ $licenca->datum_prestanka_vazenja }}</a></td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+  </div>
+</div>
+@endif
 @endsection
 
 @section('skripte')

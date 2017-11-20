@@ -103,8 +103,9 @@
                     <select name="toner_id" id="toner_id" class="chosen-select form-control" data-placeholder="toneri ..." required>
                         <option value=""></option>
                         @foreach($toneri as $t)
+                        <optgroup label="{{ $t->naziv }}">
                         <option value="{{ $t->id }}"{{ old('toner_id') == $t->id ? ' selected' : '' }}>
-                            {{ $t->naziv }}
+                            {{ $t->modeli_tonera }}
                         </option>
                         @endforeach
                     </select>
