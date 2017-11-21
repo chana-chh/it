@@ -51,7 +51,7 @@
 <div class="row">
     <div class="col-md-12">
 <table class="table table-striped" style="table-layout: fixed;">
-        <tbody style="font-size: 1.875rem;">
+        <tbody style="font-size: 1.5rem;">
             <tr>
                 <th style="width: 40%;">Operativni sistem:</th>
                 <td style="width: 60%;">{{$uredjaj->operativniSistem->naziv}}
@@ -150,7 +150,7 @@
 <div class="row">
     <div class="col-md-12">
 @if($uredjaj->ocena() < 8)
-<h4>OTPIS</h4>
+<div class="alert alert-danger text-center" role="alert">Planirati otpis i zamenu uređaja!</div>
 @endif
     </div>
 </div>
@@ -202,7 +202,7 @@
         @endif
     </th>
     <td style="width: 30%;">
-        <a href="#" class="btn btn-primary btn-block">
+        <a href="{{ route('racunari.oprema.memorije', $uredjaj->id) }}" class="btn btn-primary btn-block">
             Memorijski moduli
             
         </a>
@@ -220,7 +220,7 @@
         @endif
     </th>
     <td style="width: 30%;">
-        <a href="#" class="btn btn-primary btn-block">
+        <a href="{{ route('racunari.oprema.hddovi', $uredjaj->id) }}" class="btn btn-primary btn-block">
             Čvrsti diskovi
             
         </a>

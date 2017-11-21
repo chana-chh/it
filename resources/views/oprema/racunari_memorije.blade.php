@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Oprema | Dodavanje procesora u računar')
+@section('naziv', 'Oprema | Dodavanje memorije u računar')
 
 @section('meni')
 @include('sabloni.inc.meni')
@@ -10,9 +10,9 @@
 <div class="row">
     <div class="col-md-12">
         <h1>
-            <img class="slicica_animirana" alt="Dodavanje osnovne ploče u računar"
-                 src="{{url('/images/mbd.png')}}" style="height:64px;">
-            &emsp;Rad sa procesorima na računaru {{$uredjaj->ime}}
+            <img class="slicica_animirana" alt="Dodavanje memorije u računar"
+                 src="{{url('/images/memorija.png')}}" style="height:64px;">
+            &emsp;Rad sa memorijom na računaru {{$uredjaj->ime}}
         </h1>
     </div>
 </div>
@@ -41,9 +41,9 @@
 <h3>Podaci o već ugrađenoj komponenti:</h3>
 <div class="row">
     <div class="col-md-12">
-        @if ($uredjaj->procesori)
-        @foreach($uredjaj->procesori as $procesor)
-        <h4><em class="text-success">Procesor {{$loop->iteration}}</em></h4>
+        @if ($uredjaj->memorije)
+        @foreach($uredjaj->memorije as $mem)
+        <h4><em class="text-success">Memorijski modul {{$loop->iteration}}</em></h4>
         <table class="table table-striped" style="table-layout: fixed;">
             <tbody>
                 <tr>
@@ -52,7 +52,7 @@
                         Serijski broj:
                     </th>
                     <td style="width: 60%;">
-                        {{$procesor->serijski_broj}}
+                        {{$mem->serijski_broj}}
                     </td>
                 </tr>
                 <tr>
@@ -61,7 +61,27 @@
                         Model:
                     </th>
                     <td style="width: 60%;">
-                        {{$procesor->procesorModel->naziv}}
+                        {{$mem->memorijaModel->naziv}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th style="width: 40%;">
+
+                        Tip:
+                    </th>
+                    <td style="width: 60%;">
+                        {{$mem->memorijaModel->tipMemorije->naziv}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th style="width: 40%;">
+
+                        Kapacitet:
+                    </th>
+                    <td style="width: 60%;">
+                        {{$mem->memorijaModel->kapacitet}} MB
                     </td>
                 </tr>
 
@@ -71,16 +91,16 @@
                         Proizvođač:
                     </th>
                     <td style="width: 60%;">
-                        {{$procesor->procesorModel->proizvodjac->naziv}}
+                        {{$mem->memorijaModel->proizvodjac->naziv}}
                     </td>
                 </tr>
                 <tr>
                     <th style="width: 40%;">
 
-                        Slot/Socket:
+                        Brzina:
                     </th>
                     <td style="width: 60%;">
-                        {{$procesor->procesorModel->soket->naziv}}
+                        {{$mem->memorijaModel->brzina}} MHz
                     </td>
                 </tr>
 
@@ -88,11 +108,11 @@
         </table>
 <div class="row" style="padding-top: 20px;">
             <div class="col-md-3">
-        <a class="btn btn-primary ono btn-block" href="{{ route('racunari.oprema.procesori.izvadi', $procesor->id) }}">
+        <a class="btn btn-primary ono btn-block" href="{{ route('racunari.oprema.memorije.izvadi', $mem->id) }}">
             <i class="fa fa-minus-circle fa-fw"></i> Izvadi iz računara</a>
     </div>
     <div class="col-md-3 col-md-offset-6">
-        <a class="btn btn-danger ono btn-block" href="{{ route('racunari.oprema.procesori.izvadi.obrisi', $procesor->id) }}">
+        <a class="btn btn-danger ono btn-block" href="{{ route('racunari.oprema.memorije.izvadi.obrisi', $mem->id) }}">
             <i class="fa fa-trash fa-fw"></i> Izvadi i otpiši</a>
     </div>
 </div>
@@ -110,24 +130,24 @@
 <h4> Dodavanje već postojećih, neraspoređenih komponenti</h4>
 <div class="row">
     <div class="col-md-12">
-        <form action="{{route('racunari.oprema.procesori.dodaj.postojecu',  $uredjaj->id)}}" method="POST" data-parsley-validate>
+        <form action="{{route('racunari.oprema.memorije.dodaj.postojecu',  $uredjaj->id)}}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row" style="margin-top: 1rem">
 
                 <div class="col-md-12">
-                    <div class="form-group{{ $errors->has('procesor_id') ? ' has-error' : '' }}">
-                        <label for="procesor_id">Procesori:</label>
-                        <select name="procesor_id" id="procesor_id" class="chosen-select form-control" data-placeholder="cpu ..." required>
+                    <div class="form-group{{ $errors->has('memorija_id') ? ' has-error' : '' }}">
+                        <label for="memorija_id">Memorija:</label>
+                        <select name="memorija_id" id="memorija_id" class="chosen-select form-control" data-placeholder="mem ..." required>
                             <option value=""></option>
-                            @foreach($procesori as $p)
-                            <option value="{{ $p->id }}" {{ old( 'procesor_id')== $p->id ? ' selected' : '' }}> sn: {{ $p->serijski_broj }}, {{ $p->procesorModel->proizvodjac->naziv }}, 
-                                {{ $p->procesorModel->naziv }}, {{ $p->procesorModel->takt }} MHz
+                            @foreach($memorije as $p)
+                            <option value="{{ $p->id }}" {{ old( 'memorija_id')== $p->id ? ' selected' : '' }}> sn: {{ $p->serijski_broj }}, {{ $p->memorijaModel->proizvodjac->naziv }}, 
+                                {{ $p->memorijaModel->naziv }}, {{ $p->memorijaModel->tipMemorije->naziv }} ( {{ $p->memorijaModel->brzina }} MHz,  {{ $p->memorijaModel->kapacitet }} MB)
                             </option>
                             @endforeach
                         </select>
-                        @if ($errors->has('procesor_id'))
+                        @if ($errors->has('memorija_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('procesor_id') }}</strong>
+                            <strong>{{ $errors->first('memorija_id') }}</strong>
                         </span>
                         @endif
                     </div>
@@ -150,9 +170,9 @@
     </div>
 </div>
 <hr>
-<h4> Dodavanje novog procesora u bazu i vezivanje za računar</h4>
+<h4> Dodavanje nove memorije u bazu i vezivanje za računar</h4>
     <div class="col-md-12 well" style="margin-top: 1rem">
-        <form action="{{route('racunari.oprema.procesori.dodaj.novu', $uredjaj->id)}}" method="POST" data-parsley-validate>
+        <form action="{{route('racunari.oprema.memorije.dodaj.novu', $uredjaj->id)}}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row">
 
@@ -172,20 +192,20 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="form-group{{ $errors->has('procesor_model_id') ? ' has-error' : '' }}">
-                        <label for="procesor_model_id">Modeli procesora:</label>
-                        <select name="procesor_model_id" id="procesor_model_id" class="chosen-select form-control" data-placeholder="model ..."
+                    <div class="form-group{{ $errors->has('memorija_model_id') ? ' has-error' : '' }}">
+                        <label for="memorija_model_id">Modeli memorije:</label>
+                        <select name="memorija_model_id" id="memorija_model_id" class="chosen-select form-control" data-placeholder="model ..."
                             required>
                             <option value=""></option>
                             @foreach($modeli as $m)
-                            <option value="{{ $m->id }}" {{ old( 'procesor_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }}, {{ $m->naziv }} sa taktom {{ $m->takt
-                                }} i {{ $m->kes}} MB keša
+                            <option value="{{ $m->id }}" {{ old( 'memorija_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }}, {{ $m->naziv }} {{ $m->tipMemorije->naziv
+                                }} sa {{ $m->kapacitet}} MB, na {{ $m->brzina}} MHz
                             </option>
                             @endforeach
                         </select>
-                        @if ($errors->has('procesor_model_id'))
+                        @if ($errors->has('memorija_model_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('procesor_model_id') }}</strong>
+                            <strong>{{ $errors->first('memorija_model_id') }}</strong>
                         </span>
                         @endif
                     </div>

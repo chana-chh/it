@@ -38,9 +38,9 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{route('racunari.oprema')}}">Računari</a></li>
                             <li role="separator" class="divider"></li>
+                            <li><a href="">Osnovne ploče</a></li>
                             <li><a href="{{route('procesori.oprema')}}">Procesori</a></li>
                             <li><a href="">Memorije</a></li>
-                            <li><a href="">Matične ploče</a></li>
                             <li><a href="">Hard diskovi</a></li>
                             <li><a href="">Grafički adapteri</a></li>
                             <li><a href="">Napajanja</a></li>
@@ -59,9 +59,9 @@
                             <i class="fa fa-server fa-fw" style="color: #18BC9C"></i> Modeli<span class="caret">
                         </a>
                         <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{route('osnovne_ploce.modeli')}}">Osnovne ploče</a></li>
                             <li><a href="{{route('procesori.modeli')}}">Procesori</a></li>
                             <li><a href="{{route('memorije.modeli')}}">Memorije</a></li>
-                            <li><a href="{{route('osnovne_ploce.modeli')}}">Matične ploče</a></li>
                             <li><a href="{{route('hddovi.modeli')}}">Hard diskovi</a></li>
                             <li><a href="{{route('vga.modeli')}}">Grafički adapteri</a></li>
                             <li><a href="{{route('napajanja.modeli')}}">Napajanja</a></li>

@@ -204,8 +204,8 @@
         <tbody>
             @foreach($greske as $greska)
             <tr>
-                <th style="width: 20%;">Greška {{$loop->iteration}}:</th>
-                <td style="width: 80%;"><a href="" style="text-decoration: none;">{{ str_limit($greska->greska, 50) }}</a></td>
+                <th style="width: 25%;">Greška {{$loop->iteration}}:</th>
+                <td style="width: 75%;"><a href="" style="text-decoration: none;">{{$greska->greska}}</a></td>
             </tr>
             @endforeach
         </tbody>
@@ -224,8 +224,8 @@
         <tbody>
             @foreach($isticu as $licenca)
             <tr>
-                <th style="width: 5%;">{{$loop->iteration}}.</th>
-                <td style="width: 95%;"><a href="{{route('licence.detalj', $licenca->id)}}" style="text-decoration: none;"> <strong>{{ $licenca->proizvod }}</strong> - {{ $licenca->tip_licence }}, datum prestanka važenja:{{ $licenca->datum_prestanka_vazenja }}</a></td>
+                <th style="width: 20%;">{{$loop->iteration}}.</th>
+                <td style="width: 80%;"><a href="{{route('licence.detalj', $licenca->id)}}" style="text-decoration: none;"> <strong>{{ $licenca->proizvod }}</strong> - {{ $licenca->tip_licence }}, <br>datum prestanka važenja:&emsp;<strong>{{ $licenca->datum_prestanka_vazenja }}</strong></a></td>
             </tr>
             @endforeach
         </tbody>

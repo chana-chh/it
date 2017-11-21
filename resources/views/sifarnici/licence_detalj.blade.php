@@ -100,9 +100,9 @@
 <div class="row" style="margin-top: 5rem">
 <div class="col-md-12">
     @if ( \Carbon\Carbon::parse($model->datum_prestanka_vazenja)->isPast() ) 
-    <div class="alert alert-danger" role="alert">Licenca je istekla: {{$model->datum_prestanka_vazenja}}</div>
+    <div class="alert alert-danger text-center" role="alert">Licenca je istekla: {{$model->datum_prestanka_vazenja}}</div>
     @else
-    <div class="alert alert-success" role="alert">Licenca važi do: {{$model->datum_prestanka_vazenja}}</div>
+    <div class="alert alert-success text-center" role="alert">Licenca važi do: {{$model->datum_prestanka_vazenja}}</div>
     @endif
 </div>
 </div>

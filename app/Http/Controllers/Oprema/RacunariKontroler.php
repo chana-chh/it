@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Oprema;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Session;
 use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
 use Yajra\Datatables\Datatables;
+use Carbon\Carbon;
 Use App\Modeli\Racunar;
 use App\Modeli\Zaposleni;
 use App\Modeli\Uprava;
@@ -19,6 +21,11 @@ use App\Modeli\OsnovnaPlocaModel;
 use App\Modeli\OsnovnaPloca;
 use App\Modeli\ProcesorModel;
 use App\Modeli\Procesor;
+use App\Modeli\MemorijaModel;
+use App\Modeli\Memorija;
+use App\Modeli\HddModel;
+use App\Modeli\Hdd;
+use App\Modeli\Greska;
 
 class RacunariKontroler extends Kontroler
 {
@@ -130,7 +137,8 @@ class RacunariKontroler extends Kontroler
 
         return view('oprema.racunari_aplikacije')->with(compact('aplikacije', 'uredjaj'));
     }
-
+    
+    //OSNOVNE PLOCE
         public function getPloce($id)
     {
         $uredjaj = Racunar::find($id);
@@ -147,9 +155,9 @@ class RacunariKontroler extends Kontroler
         $odgovor = $uredjaj->save();
         
         if ($odgovor) {
-            Session::flash('uspeh', 'Osnovna ploča je uspešno izvađena!');
+            Session::flash('uspeh', 'Osnovna ploča je uspešno uklonjena!');
         }else {
-            Session::flash('greska', 'Došlo je do greške prilikom vađenja ploče. Pokušajte ponovo, kasnije!');
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja ploče. Pokušajte ponovo, kasnije!');
         }
         
         return Redirect::back();
@@ -166,9 +174,9 @@ class RacunariKontroler extends Kontroler
         $odgovor = $ploca->delete();
         
         if ($odgovor) {
-            Session::flash('uspeh', 'Osnovna ploča je uspešno izvađena i pripremljena za reciklažu!');
+            Session::flash('uspeh', 'Osnovna ploča je uspešno uklonjena i pripremljena za reciklažu!');
         }else {
-            Session::flash('greska', 'Došlo je do greške prilikom vađenja ploče. Pokušajte ponovo, kasnije!');
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja ploče. Pokušajte ponovo, kasnije!');
         }
         
         return Redirect::back();
@@ -215,6 +223,7 @@ class RacunariKontroler extends Kontroler
         return Redirect::back();
     }
 
+    //PROCESORI
     public function getProcesore($id)
     {
         $uredjaj = Racunar::find($id);
@@ -230,9 +239,9 @@ class RacunariKontroler extends Kontroler
         $odgovor = $procesor->save();
         
         if ($odgovor) {
-            Session::flash('uspeh', 'Procesor je uspešno izvađena!');
+            Session::flash('uspeh', 'Procesor je uspešno uklonjen!');
         }else {
-            Session::flash('greska', 'Došlo je do greške prilikom vađenja procesora. Pokušajte ponovo, kasnije!');
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja procesora. Pokušajte ponovo, kasnije!');
         }
         
         return Redirect::back();
@@ -240,62 +249,257 @@ class RacunariKontroler extends Kontroler
 
      public function getIzvadiObrisiProcesor($id)
     {
-        $uredjaj = Racunar::find($id);
-        $ploca = OsnovnaPloca::find($uredjaj->osnovnaPloca->id);
-        $uredjaj->ploca_id = null;
-        $uredjaj->save();
-        $ploca->napomena .= 'q#q# PODACI O OTPISU: naziv računara '.$uredjaj->ime .', kancelarija '. $uredjaj->kancelarija->naziv;
-        $ploca->save();
-        $odgovor = $ploca->delete();
+        $procesor = Procesor::find($id);
+        $uredjaj = $procesor->racunar;
+        $procesor->napomena .= 'q#q# PODACI O OTPISU: naziv računara '.$uredjaj->ime .', kancelarija '. $uredjaj->kancelarija->naziv." Dana: ".Carbon::now();
+        $procesor->racunar_id = null;
+        $procesor->save();
+
+        $odgovor = $procesor->delete();
         
         if ($odgovor) {
-            Session::flash('uspeh', 'Osnovna ploča je uspešno izvađena i pripremljena za reciklažu!');
+            Session::flash('uspeh', 'Procesor je uspešno uklonjen i pripremljen za reciklažu!');
         }else {
-            Session::flash('greska', 'Došlo je do greške prilikom vađenja ploče. Pokušajte ponovo, kasnije!');
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja procesora. Pokušajte ponovo, kasnije!');
         }
-        
         return Redirect::back();
     }
 
     public function postDodajProcesorNovi(Request $request, $id)
     {
+
         $racunar = Racunar::find($id);
 
-        if ($racunar->osnovnaPloca) {
-            Session::flash('greska', 'Prvo izvadite staru plocu da biste dodali novu!');
-        }
-        else{
             $this->validate($request, [
                 'serijski_broj' => ['max:50'],
-                'osnovna_ploca_model_id' => ['required']
+                'procesor_model_id' => ['required']
             ]);
-        $ploca = new OsnovnaPloca();
-        $ploca->serijski_broj = $request->serijski_broj;
-        $ploca->vrsta_uredjaja_id = 6;
-        $ploca->osnovna_ploca_model_id = $request->osnovna_ploca_model_id;
-        $ploca->napomena = $request->napomena;
-        $ploca->save();
+        $procesor = new Procesor();
+        $procesor->serijski_broj = $request->serijski_broj;
+        $procesor->vrsta_uredjaja_id = 7;
+        $procesor->procesor_model_id = $request->procesor_model_id;
+        $procesor->napomena = $request->napomena;
+        $procesor->racunar_id = $id;
+        $procesor->save();
 
-        $racunar->ploca_id = $ploca->id;
-        $racunar->save();
-        Session::flash('uspeh', 'Osnovna ploča je uspešno dodata!');
+        if ($racunar->procesori->count() > 1 && $racunar->server == 0) {
+            $greska = new Greska();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog procesora! Dana: ".Carbon::now();
+            $greska->save();
+            Session::flash('upozorenje', 'Procesor je uspešno dodat, ali to nije jedini procesor u ovom računaru!');
+            return Redirect::back();
+        } else{
+            Session::flash('uspeh', 'Procesor je uspešno dodat!');
+            return Redirect::back();
         }
-        return Redirect::back();
+        
     }
 
     public function postDodajProcesorPostojeci(Request $request, $id)
     {
+        
         $racunar = Racunar::find($id);
-        if ($racunar->osnovnaPloca) {
-            Session::flash('greska', 'Prvo izvadite staru plocu da biste dodali novu!');
+        
+        $procesor = Procesor::find($request->procesor_id);
+        $procesor->racunar_id = $id;;
+        $procesor->save();
+
+        if ($racunar->procesori->count() > 1 && $racunar->server == 0) {
+            $greska = new Greska();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog procesora! Dana: ".Carbon::now();
+            $greska->save();
+            Session::flash('upozorenje', 'Procesor je uspešno dodat, ali to nije jedini procesor u ovom računaru!');
+            return Redirect::back();
+        } else{
+            Session::flash('uspeh', 'Procesor je uspešno dodat!');
+            return Redirect::back();
         }
-        else{
-        $ploca = OsnovnaPloca::find($request->ploca_id);
-        $racunar->ploca_id = $ploca->id;
-        $racunar->save();
-        Session::flash('uspeh', 'Osnovna ploča je uspešno dodata!');
+    }
+
+     //Memorija
+    public function getMemorije($id)
+    {
+        $uredjaj = Racunar::find($id);
+        $modeli = MemorijaModel::all();
+        $memorije = Memorija::neraspordjeni()->get();
+        return view('oprema.racunari_memorije')->with(compact ('modeli', 'uredjaj', 'memorije'));
+    }
+
+    public function getIzvadiMemoriju($id)
+    {
+        $memorija = Memorija::find($id);
+        $memorija->racunar_id = null;
+        $odgovor = $memorija->save();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Memorija je uspešno uklonjena!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja memorije. Pokušajte ponovo, kasnije!');
+        }
+        
+        return Redirect::back();
+    }
+
+     public function getIzvadiObrisiMemoriju($id)
+    {
+        $memorija = Memorija::find($id);
+        $uredjaj = $memorija->racunar;
+        $memorija->napomena .= 'q#q# PODACI O OTPISU: naziv računara '.$uredjaj->ime .', kancelarija '. $uredjaj->kancelarija->naziv." Dana: ".Carbon::now();
+        $memorija->racunar_id = null;
+        $memorija->save();
+
+        $odgovor = $memorija->delete();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Memorija je uspešno izvađen i pripremljen za reciklažu!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja memorije. Pokušajte ponovo, kasnije!');
         }
         return Redirect::back();
+    }
+
+    public function postDodajMemorijuNovu(Request $request, $id)
+    {
+
+        $racunar = Racunar::find($id);
+
+            $this->validate($request, [
+                'serijski_broj' => ['max:50'],
+                'memorija_model_id' => ['required']
+            ]);
+        $memorija = new Memorija();
+        $memorija->serijski_broj = $request->serijski_broj;
+        $memorija->vrsta_uredjaja_id = 9;
+        $memorija->memorija_model_id = $request->memorija_model_id;
+        $memorija->napomena = $request->napomena;
+        $memorija->racunar_id = $id;
+        $memorija->save();
+
+        if ($racunar->memorije->count() > 1 && $racunar->server == 0) {
+            $greska = new Greska();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog memorijskog modula! Dana: ".Carbon::now();
+            $greska->save();
+            Session::flash('upozorenje', 'Memorija je uspešno dodata, ali to nije jedini modul u ovom računaru!');
+            return Redirect::back();
+        } else{
+            Session::flash('uspeh', 'Memorija je uspešno dodata!');
+            return Redirect::back();
+        }
+        
+    }
+
+    public function postDodajMemorijuPostojecu(Request $request, $id)
+    {
+        
+        $racunar = Racunar::find($id);
+        
+        $memorija = Memorija::find($request->memorija_id);
+        $memorija->racunar_id = $id;;
+        $memorija->save();
+
+        if ($racunar->memorije->count() > 1 && $racunar->server == 0) {
+            $greska = new Greska();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog memorijskog modula! Dana: ".Carbon::now();
+            $greska->save();
+            Session::flash('upozorenje', 'Memorija je uspešno dodata, ali to nije jedini modul u ovom računaru!');
+            return Redirect::back();
+        } else{
+            Session::flash('uspeh', 'Memorija je uspešno dodata!');
+            return Redirect::back();
+        }
+    }
+
+    //Hard diskovi
+    public function getHddove($id)
+    {
+        $uredjaj = Racunar::find($id);
+        $modeli = HddModel::all();
+        $hddovi = Hdd::neraspordjeni()->get();
+        return view('oprema.racunari_hddovi')->with(compact ('modeli', 'uredjaj', 'hddovi'));
+    }
+
+    public function getIzvadiHdd($id)
+    {
+        $hdd = Hdd::find($id);
+        $hdd->racunar_id = null;
+        $odgovor = $hdd->save();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Čvrsti disk je uspešno uklonjen!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja čvrstog diska. Pokušajte ponovo, kasnije!');
+        }
+        
+        return Redirect::back();
+    }
+
+     public function getIzvadiObrisiHdd($id)
+    {
+        $hdd = Hdd::find($id);
+        $uredjaj = $hdd->racunar;
+        $hdd->napomena .= 'q#q# PODACI O OTPISU: naziv računara '.$uredjaj->ime .', kancelarija '. $uredjaj->kancelarija->naziv." Dana: ".Carbon::now();
+        $hdd->racunar_id = null;
+        $hdd->save();
+
+        $odgovor = $hdd->delete();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Čvrsti disk je uspešno uklonjen i pripremljen za reciklažu!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja čvrstog diska. Pokušajte ponovo, kasnije!');
+        }
+        return Redirect::back();
+    }
+
+    public function postDodajHddNovi(Request $request, $id)
+    {
+
+        $racunar = Racunar::find($id);
+
+            $this->validate($request, [
+                'serijski_broj' => ['max:50'],
+                'hdd_model_id' => ['required']
+            ]);
+        $hdd = new Hdd();
+        $hdd->serijski_broj = $request->serijski_broj;
+        $hdd->vrsta_uredjaja_id = 10;
+        $hdd->hdd_model_id = $request->hdd_model_id;
+        $hdd->napomena = $request->napomena;
+        $hdd->racunar_id = $id;
+        $hdd->save();
+
+        if ($racunar->hddovi->count() > 1 && $racunar->server == 0) {
+            $greska = new Greska();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog memorijskog modula! Dana: ".Carbon::now();
+            $greska->save();
+            Session::flash('upozorenje', 'Čvrsti disk je uspešno dodat, ali nije jedini u ovom računaru!');
+            return Redirect::back();
+        } else{
+            Session::flash('uspeh', 'Čvrsti disk je uspešno dodat!');
+            return Redirect::back();
+        }
+        
+    }
+
+    public function postDodajHddPostojeci(Request $request, $id)
+    {
+        
+        $racunar = Racunar::find($id);
+        
+        $hdd = Hdd::find($request->hdd_id);
+        $hdd->racunar_id = $id;;
+        $hdd->save();
+
+        if ($racunar->hddovi->count() > 1 && $racunar->server == 0) {
+            $greska = new Greska();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog memorijskog modula! Dana: ".Carbon::now();
+            $greska->save();
+            Session::flash('upozorenje', 'Čvrsti disk je uspešno dodat, ali nije jedini u ovom računaru!');
+            return Redirect::back();
+        } else{
+            Session::flash('uspeh', 'Čvrsti disk je uspešno dodata!');
+            return Redirect::back();
+        }
     }
 
 }

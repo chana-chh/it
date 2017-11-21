@@ -386,5 +386,15 @@ Route::get('oprema/racunari/procesori/izvadi/{id}', 'Oprema\RacunariKontroler@ge
 Route::get('oprema/racunari/procesori/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiProcesor')->name('racunari.oprema.procesori.izvadi.obrisi');
 Route::post('oprema/racunari/procesori/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajProcesorNovi')->name('racunari.oprema.procesori.dodaj.novu');
 Route::post('oprema/racunari/procesori/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajProcesorPostojeci')->name('racunari.oprema.procesori.dodaj.postojecu');
+Route::get('oprema/racunari/memorije/{id}', 'Oprema\RacunariKontroler@getMemorije')->name('racunari.oprema.memorije');
+Route::get('oprema/racunari/memorije/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiMemoriju')->name('racunari.oprema.memorije.izvadi');
+Route::get('oprema/racunari/memorije/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiMemoriju')->name('racunari.oprema.memorije.izvadi.obrisi');
+Route::post('oprema/racunari/memorije/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajMemorijuNovu')->name('racunari.oprema.memorije.dodaj.novu');
+Route::post('oprema/racunari/memorije/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajMemorijuPostojecu')->name('racunari.oprema.memorije.dodaj.postojecu');
+Route::get('oprema/racunari/hddovi/{id}', 'Oprema\RacunariKontroler@getHddove')->name('racunari.oprema.hddovi');
+Route::get('oprema/racunari/hddovi/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiHdd')->name('racunari.oprema.hddovi.izvadi');
+Route::get('oprema/racunari/hddovi/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiHdd')->name('racunari.oprema.hddovi.izvadi.obrisi');
+Route::post('oprema/racunari/hddovi/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajHddNovi')->name('racunari.oprema.hddovi.dodaj.novu');
+Route::post('oprema/racunari/hddovi/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajHddPostojeci')->name('racunari.oprema.hddovi.dodaj.postojecu');
 
 

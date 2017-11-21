@@ -3,14 +3,19 @@
 namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Hdd extends Model
 {
+    use SoftDeletes;
     protected $table = 'hdd';
     public $timestamps = false;
     public $nazivModelaJednina = 'HDD';
     public $nazivModelaMnozina = 'HDD-ovi';
     public $vezaNaPogled = 'hdd';
+    protected $dates = [
+        'deleted_at'
+    ];
 
     public function vrstaUredjaja()
     {
@@ -30,6 +35,11 @@ class Hdd extends Model
     public function stavkaOtpremnice()
     {
         return $this->belongsTo('App\Modeli\OtpremnicaStavka', 'stavka_otpremnice_id', 'id');
+    }
+
+    public function scopeNeraspordjeni()
+    {
+        return $this->doesntHave('racunar');
     }
 
 }

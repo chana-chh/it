@@ -38,7 +38,7 @@
 @endsection
 
 @section('sadrzaj')
-<h4>Podaci o već ugrađenoj komponenti:</h4>
+<h3>Podaci o već ugrađenoj komponenti:</h3>
 <div class="row">
     <div class="col-md-12">
         @if ($uredjaj->osnovnaPloca)
@@ -84,7 +84,7 @@
 
             </tbody>
         </table>
-<div class="row" style="padding-top: 20px;">
+<div class="row">
             <div class="col-md-3">
         <a class="btn btn-primary ono btn-block" href="{{ route('racunari.oprema.ploce.izvadi', $uredjaj->id) }}">
             <i class="fa fa-minus-circle fa-fw"></i> Izvadi iz računara</a>
@@ -105,11 +105,10 @@
 @section('traka')
 <h4> Dodavanje već postojećih, neraspoređenih komponenti</h4>
 <div class="row">
-
     <div class="col-md-12">
         <form action="{{route('racunari.oprema.ploce.dodaj.postojecu',  $uredjaj->id)}}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
-            <div class="row">
+            <div class="row" style="margin-top: 2rem">
 
                 <div class="col-md-12">
                     <div class="form-group{{ $errors->has('ploca_id') ? ' has-error' : '' }}">

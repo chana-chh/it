@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Oprema | Dodavanje procesora u računar')
+@section('naziv', 'Oprema | Dodavanje čvrstih diskova u računar')
 
 @section('meni')
 @include('sabloni.inc.meni')
@@ -10,9 +10,9 @@
 <div class="row">
     <div class="col-md-12">
         <h1>
-            <img class="slicica_animirana" alt="Dodavanje osnovne ploče u računar"
+            <img class="slicica_animirana" alt="Dodavanje čvrstih diskova u računar"
                  src="{{url('/images/mbd.png')}}" style="height:64px;">
-            &emsp;Rad sa procesorima na računaru {{$uredjaj->ime}}
+            &emsp;Rad sa čvrstim diskovima na računaru {{$uredjaj->ime}}
         </h1>
     </div>
 </div>
@@ -41,9 +41,9 @@
 <h3>Podaci o već ugrađenoj komponenti:</h3>
 <div class="row">
     <div class="col-md-12">
-        @if ($uredjaj->procesori)
-        @foreach($uredjaj->procesori as $procesor)
-        <h4><em class="text-success">Procesor {{$loop->iteration}}</em></h4>
+        @if ($uredjaj->hddovi)
+        @foreach($uredjaj->hddovi as $hdd)
+        <h4><em class="text-success">Čvrsti disk {{$loop->iteration}}</em></h4>
         <table class="table table-striped" style="table-layout: fixed;">
             <tbody>
                 <tr>
@@ -52,16 +52,16 @@
                         Serijski broj:
                     </th>
                     <td style="width: 60%;">
-                        {{$procesor->serijski_broj}}
+                        {{$hdd->serijski_broj}}
                     </td>
                 </tr>
                 <tr>
                     <th style="width: 40%;">
 
-                        Model:
+                        Kapacitet:
                     </th>
                     <td style="width: 60%;">
-                        {{$procesor->procesorModel->naziv}}
+                        {{$hdd->hddModel->kapacitet}} GB
                     </td>
                 </tr>
 
@@ -71,28 +71,27 @@
                         Proizvođač:
                     </th>
                     <td style="width: 60%;">
-                        {{$procesor->procesorModel->proizvodjac->naziv}}
+                        {{$hdd->hddModel->proizvodjac->naziv}}
                     </td>
                 </tr>
-                <tr>
-                    <th style="width: 40%;">
-
-                        Slot/Socket:
-                    </th>
-                    <td style="width: 60%;">
-                        {{$procesor->procesorModel->soket->naziv}}
-                    </td>
-                </tr>
+            <tr>
+                <th style="width: 40%;">Da li se radi o <em>SSD</em> disku:</th>
+                <td style="width: 80%;">
+                        @if($hdd->hddModel->ssd == 1)
+                        <i class="fa fa-check" aria-hidden="true" style="color: #18bc9c"></i>
+                        @endif
+                </td>
+            </tr>
 
             </tbody>
         </table>
 <div class="row" style="padding-top: 20px;">
             <div class="col-md-3">
-        <a class="btn btn-primary ono btn-block" href="{{ route('racunari.oprema.procesori.izvadi', $procesor->id) }}">
+        <a class="btn btn-primary ono btn-block" href="{{ route('racunari.oprema.hddovi.izvadi', $hdd->id) }}">
             <i class="fa fa-minus-circle fa-fw"></i> Izvadi iz računara</a>
     </div>
     <div class="col-md-3 col-md-offset-6">
-        <a class="btn btn-danger ono btn-block" href="{{ route('racunari.oprema.procesori.izvadi.obrisi', $procesor->id) }}">
+        <a class="btn btn-danger ono btn-block" href="{{ route('racunari.oprema.hddovi.izvadi.obrisi', $hdd->id) }}">
             <i class="fa fa-trash fa-fw"></i> Izvadi i otpiši</a>
     </div>
 </div>
@@ -110,24 +109,24 @@
 <h4> Dodavanje već postojećih, neraspoređenih komponenti</h4>
 <div class="row">
     <div class="col-md-12">
-        <form action="{{route('racunari.oprema.procesori.dodaj.postojecu',  $uredjaj->id)}}" method="POST" data-parsley-validate>
+        <form action="{{route('racunari.oprema.hddovi.dodaj.postojecu',  $uredjaj->id)}}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row" style="margin-top: 1rem">
 
                 <div class="col-md-12">
-                    <div class="form-group{{ $errors->has('procesor_id') ? ' has-error' : '' }}">
-                        <label for="procesor_id">Procesori:</label>
-                        <select name="procesor_id" id="procesor_id" class="chosen-select form-control" data-placeholder="cpu ..." required>
+                    <div class="form-group{{ $errors->has('hdd_id') ? ' has-error' : '' }}">
+                        <label for="hdd_id">Čvrsti diskovi:</label>
+                        <select name="hdd_id" id="hdd_id" class="chosen-select form-control" data-placeholder="hdd ..." required>
                             <option value=""></option>
-                            @foreach($procesori as $p)
-                            <option value="{{ $p->id }}" {{ old( 'procesor_id')== $p->id ? ' selected' : '' }}> sn: {{ $p->serijski_broj }}, {{ $p->procesorModel->proizvodjac->naziv }}, 
-                                {{ $p->procesorModel->naziv }}, {{ $p->procesorModel->takt }} MHz
+                            @foreach($hddovi as $p)
+                            <option value="{{ $p->id }}" {{ old( 'hdd_id')== $p->id ? ' selected' : '' }}> sn: {{ $p->serijski_broj }}, {{ $p->hddModel->proizvodjac->naziv }}, 
+                                {{ $p->hddModel->kapacitet }} GB
                             </option>
                             @endforeach
                         </select>
-                        @if ($errors->has('procesor_id'))
+                        @if ($errors->has('hdd_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('procesor_id') }}</strong>
+                            <strong>{{ $errors->first('hdd_id') }}</strong>
                         </span>
                         @endif
                     </div>
@@ -150,9 +149,9 @@
     </div>
 </div>
 <hr>
-<h4> Dodavanje novog procesora u bazu i vezivanje za računar</h4>
+<h4> Dodavanje novog čvrstog diska u bazu i vezivanje za računar</h4>
     <div class="col-md-12 well" style="margin-top: 1rem">
-        <form action="{{route('racunari.oprema.procesori.dodaj.novu', $uredjaj->id)}}" method="POST" data-parsley-validate>
+        <form action="{{route('racunari.oprema.hddovi.dodaj.novu', $uredjaj->id)}}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row">
 
@@ -172,20 +171,19 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="form-group{{ $errors->has('procesor_model_id') ? ' has-error' : '' }}">
-                        <label for="procesor_model_id">Modeli procesora:</label>
-                        <select name="procesor_model_id" id="procesor_model_id" class="chosen-select form-control" data-placeholder="model ..."
+                    <div class="form-group{{ $errors->has('hdd_model_id') ? ' has-error' : '' }}">
+                        <label for="hdd_model_id">Modeli čvrstih diskova:</label>
+                        <select name="hdd_model_id" id="hdd_model_id" class="chosen-select form-control" data-placeholder="model ..."
                             required>
                             <option value=""></option>
                             @foreach($modeli as $m)
-                            <option value="{{ $m->id }}" {{ old( 'procesor_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }}, {{ $m->naziv }} sa taktom {{ $m->takt
-                                }} i {{ $m->kes}} MB keša
+                            <option value="{{ $m->id }}" {{ old( 'hdd_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }}, {{ $m->kapacitet }} GB
                             </option>
                             @endforeach
                         </select>
-                        @if ($errors->has('procesor_model_id'))
+                        @if ($errors->has('hdd_model_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('procesor_model_id') }}</strong>
+                            <strong>{{ $errors->first('hdd_model_id') }}</strong>
                         </span>
                         @endif
                     </div>
