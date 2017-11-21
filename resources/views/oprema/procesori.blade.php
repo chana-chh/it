@@ -26,7 +26,7 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <strong>Obavštenje: </strong> Dodavanje procesora se obavlja kroz otpremnicu ili sa detaljnog pregleda računara.
+            <strong>Obavštenje: </strong> Dodavanje procesora se obavlja kroz <a href="{{ route('otpremnice') }}" style="color: #18BC9C"><strong>otpremnicu</strong></a>  ili sa detaljnog pregleda <a href="{{route('racunari.oprema')}}" style="color: #18BC9C"><strong>računara</strong></a>.
         </div>
     </div>
 </div>

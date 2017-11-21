@@ -26,15 +26,15 @@
                 <i class="fa fa-home"></i>
             </a>
             <a class="btn btn-primary" href="{{route('racunari.oprema')}}"
-               title="Povratak na listu procesora">
+               title="Povratak na listu računara">
                 <i class="fa fa-list"></i>
             </a>
             <a class="btn btn-primary" href=""
-               title="Izmena podataka procesora">
+               title="Izmena podataka računara">
                 <i class="fa fa-pencil"></i>
             </a>
             <button id="idBrisanje" class="btn btn-primary"
-                    title="Otpis procesora"
+                    title="Otpis računara"
                     data-toggle="modal" data-target="#brisanjeModal"
                     value="{{$uredjaj->id}}">
                 <i class="fa fa-recycle"></i>
