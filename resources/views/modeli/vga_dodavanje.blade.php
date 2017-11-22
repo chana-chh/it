@@ -135,7 +135,40 @@
                     </div>
                     <hr> {{-- Red III --}}
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
+        <div class="form-group roditelj">
+        <div class="row naslovi">
+        <div class="col-md-10">
+        <p><strong>Vrsta povezivanja:</strong></p>
+        <button class="btn btn-primary dodaj_polje" title="Moguće je dodati ukupno 4 polja za unos vrste povezivanja na ovoj formi."><i class="fa fa-plus-circle"></i>&emsp;Dodaj polje za unos vrste povezivanja</button>
+        </div>
+
+        <div class="col-md-2">
+        <p hidden> A</p>
+        </div>
+        </div>
+
+        <div class="row checkboxoviforme">
+        <div class="col-md-10">
+                    <select name="povezivanja[]" class="form-control" >
+                    <option value=""></option>
+                    <option value="" disabled selected>Odaberi odgovarajuću vrstu povezivanja</option>
+                    @foreach($povezivanje as $p)
+                    <option value="{{ $p->id }}"><strong>{{ $p->naziv }}</strong></option>
+                    @endforeach
+                    </select>
+                </div>
+
+        <div class="col-md-2">
+        <p hidden> A</p>
+        </div>
+
+                </div>
+       
+        </div>
+        </div>
+
+                        <div class="col-md-3">
                             <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
                                 <label for="link">Link modela grafičkog adaptera: </label>
                                 <input type="url" name="link" id="link" class="form-control" value="{{ old('link') }}" maxlenght="255"> @if ($errors->has('link'))
@@ -198,6 +231,26 @@ $(document).ready(function () {
 
         });
     };
+
+    var max_polja   = 4;
+    var wrapper     = $(".roditelj");
+    var dodaj       = $(".dodaj_polje");
+    
+    var x = 1;
+    $(dodaj).click(function(e){
+        e.preventDefault();
+        if(x < max_polja){ 
+            x++;
+            $(wrapper).append('<div class="row checkboxoviforme"><div class="col-md-10"><select name="povezivanja[]" class="form-control"><option value=""><option value="" disabled selected>Odaberi odgovarajuću vrstu povezivanja</option></option>@foreach($povezivanje as $p)<option value="{{ $p->id }}"><strong>{{ $p->naziv }}</strong></option>@endforeach</select></div><div class="col-md-2"><a href="#" class="ukloni_polje"><i class="fa fa-times" style="vertical-align: bottom;"></i></a></div></div>');
+        }
+    });
+    
+    $(wrapper).on("click",".ukloni_polje", function(e){
+        e.preventDefault();
+        var $row    = $(this).parents('.checkboxoviforme'),
+        $option = $row.find('[name="povezivanja[]"]');
+        $row.remove(); x--;
+    })
 });
 </script>
 @endsection

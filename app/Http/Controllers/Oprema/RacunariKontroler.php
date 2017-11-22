@@ -25,6 +25,10 @@ use App\Modeli\MemorijaModel;
 use App\Modeli\Memorija;
 use App\Modeli\HddModel;
 use App\Modeli\Hdd;
+use App\Modeli\GrafickiAdapter;
+use App\Modeli\GrafickiAdapterModel;
+use App\Modeli\Napajanje;
+use App\Modeli\NapajanjeModel;
 use App\Modeli\Greska;
 
 class RacunariKontroler extends Kontroler
@@ -498,6 +502,192 @@ class RacunariKontroler extends Kontroler
             return Redirect::back();
         } else{
             Session::flash('uspeh', 'Čvrsti disk je uspešno dodata!');
+            return Redirect::back();
+        }
+    }
+
+    //VGA
+    public function getVga($id)
+    {
+        $uredjaj = Racunar::find($id);
+        $modeli = GrafickiAdapterModel::all();
+        $vga_uredjaji = GrafickiAdapter::neraspordjeni()->get();
+        return view('oprema.racunari_vga')->with(compact ('modeli', 'uredjaj', 'vga_uredjaji'));
+    }
+
+    public function getIzvadiVga($id)
+    {
+        $vga = GrafickiAdapter::find($id);
+        $vga->racunar_id = null;
+        $odgovor = $vga->save();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Grafički adapter je uspešno uklonjen!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja grafičkog adaptera. Pokušajte ponovo, kasnije!');
+        }
+        
+        return Redirect::back();
+    }
+
+     public function getIzvadiObrisiVga($id)
+    {
+        $vga = GrafickiAdapter::find($id);
+        $uredjaj = $vga->racunar;
+        $vga->napomena .= 'q#q# PODACI O OTPISU: naziv računara '.$uredjaj->ime .', kancelarija '. $uredjaj->kancelarija->naziv." Dana: ".Carbon::now();
+        $vga->racunar_id = null;
+        $vga->save();
+
+        $odgovor = $vga->delete();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Grafički adapter je uspešno uklonjen i pripremljen za reciklažu!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja grafičkog adaptera. Pokušajte ponovo, kasnije!');
+        }
+        return Redirect::back();
+    }
+
+    public function postDodajVgaNovi(Request $request, $id)
+    {
+
+        $racunar = Racunar::find($id);
+
+            $this->validate($request, [
+                'serijski_broj' => ['max:50'],
+                'graficki_adapter_model_id' => ['required']
+            ]);
+        $vga = new GrafickiAdapter();
+        $vga->serijski_broj = $request->serijski_broj;
+        $vga->vrsta_uredjaja_id = 8;
+        $vga->graficki_adapter_model_id = $request->graficki_adapter_model_id;
+        $vga->napomena = $request->napomena;
+        $vga->racunar_id = $id;
+        $vga->save();
+
+        if ($racunar->grafickiAdapteri->count() > 1) {
+            $greska = new Greska();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog grafičkog adaptera! Dana: ".Carbon::now();
+            $greska->save();
+            Session::flash('upozorenje', 'Grafički adapter je uspešno dodat, ali nije jedini u ovom računaru!');
+            return Redirect::back();
+        } else{
+            Session::flash('uspeh', 'Grafički adapter je uspešno dodat!');
+            return Redirect::back();
+        }
+        
+    }
+
+    public function postDodajVgaPostojeci(Request $request, $id)
+    {
+        
+        $racunar = Racunar::find($id);
+        
+        $vga = GrafickiAdapter::find($request->vga_id);
+        $vga->racunar_id = $id;;
+        $vga->save();
+
+        if ($racunar->grafickiAdapteri->count() > 1) {
+            $greska = new Greska();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog grafičkog adaptera! Dana: ".Carbon::now();
+            $greska->save();
+            Session::flash('upozorenje', 'Grafički adapter je uspešno dodat, ali nije jedini u ovom računaru!');
+            return Redirect::back();
+        } else{
+            Session::flash('uspeh', 'Grafički adapter je uspešno dodata!');
+            return Redirect::back();
+        }
+    }
+
+     //Napajanja
+    public function getNapajanja($id)
+    {
+        $uredjaj = Racunar::find($id);
+        $modeli = NapajanjeModel::all();
+        $napajanja = Napajanje::neraspordjeni()->get();
+        return view('oprema.racunari_napajanja')->with(compact ('modeli', 'uredjaj', 'napajanja'));
+    }
+
+    public function getIzvadiNapajanje($id)
+    {
+        $napajanje = Napajanje::find($id);
+        $napajanje->racunar_id = null;
+        $odgovor = $napajanje->save();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Napajanje je uspešno uklonjeno!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja napajanja. Pokušajte ponovo, kasnije!');
+        }
+        
+        return Redirect::back();
+    }
+
+     public function getIzvadiObrisiNapajanje($id)
+    {
+        $napajanje = Napajanje::find($id);
+        $uredjaj = $napajanje->racunar;
+        $napajanje->napomena .= 'q#q# PODACI O OTPISU: naziv računara '.$uredjaj->ime .', kancelarija '. $uredjaj->kancelarija->naziv." Dana: ".Carbon::now();
+        $napajanje->racunar_id = null;
+        $napajanje->save();
+
+        $odgovor = $napajanje->delete();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Napajanje je uspešno uklonjeno i pripremljeno za reciklažu!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja napajanja. Pokušajte ponovo, kasnije!');
+        }
+        return Redirect::back();
+    }
+
+    public function postDodajNapajanjeNovo(Request $request, $id)
+    {
+
+        $racunar = Racunar::find($id);
+
+            $this->validate($request, [
+                'serijski_broj' => ['max:50'],
+                'napajanje_model_id' => ['required']
+            ]);
+        $napajanje = new Napajanje();
+        $napajanje->serijski_broj = $request->serijski_broj;
+        $napajanje->vrsta_uredjaja_id = 11;
+        $napajanje->napajanje_model_id = $request->napajanje_model_id;
+        $napajanje->napomena = $request->napomena;
+        $napajanje->racunar_id = $id;
+        $napajanje->save();
+
+        if ($racunar->napajanja->count() > 1) {
+            $greska = new Greska();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog grafičkog adaptera! Dana: ".Carbon::now();
+            $greska->save();
+            Session::flash('upozorenje', 'Napajanje je uspešno dodato, ali nije jedino u ovom računaru!');
+            return Redirect::back();
+        } else{
+            Session::flash('uspeh', 'Napajanje je uspešno dodato!');
+            return Redirect::back();
+        }
+        
+    }
+
+    public function postDodajNapajanjePostojece(Request $request, $id)
+    {
+        
+        $racunar = Racunar::find($id);
+        
+        $napajanje = Napajanje::find($request->napajanje_id);
+        $napajanje->racunar_id = $id;;
+        $napajanje->save();
+
+        if ($racunar->napajanja->count() > 1) {
+            $greska = new Greska();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog grafičkog adaptera! Dana: ".Carbon::now();
+            $greska->save();
+            Session::flash('upozorenje', 'Napajanje je uspešno dodato, ali nije jedino u ovom računaru!');
+            return Redirect::back();
+        } else{
+            Session::flash('uspeh', 'Napajanje je uspešno dodato!');
             return Redirect::back();
         }
     }

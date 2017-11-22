@@ -3,11 +3,16 @@
 namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Napajanje extends Model
 {
+    use SoftDeletes;
     protected $table = 'napajanja';
     public $timestamps = false;
+    protected $dates = [
+        'deleted_at'
+    ];
 
     public function vrstaUredjaja()
     {
@@ -27,6 +32,11 @@ class Napajanje extends Model
     public function stavkaOtpremnice()
     {
         return $this->belongsTo('App\Modeli\OtpremnicaStavka', 'stavka_otpremnice_id', 'id');
+    }
+
+    public function scopeNeraspordjeni()
+    {
+        return $this->doesntHave('racunar');
     }
 
 }

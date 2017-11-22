@@ -145,7 +145,42 @@
                     </div>
                     <hr> {{-- Red III --}}
                     <div class="row">
-                        <div class="col-md-6">
+                                <div class="col-md-3">
+        <div class="form-group roditelj">
+        <div class="row naslovi">
+        <div class="col-md-10">
+        <p><strong>Vrsta povezivanja:</strong></p>
+        <button type="button" class="btn btn-primary dodaj_polje" title="Moguće je dodati ukupno 4 polja za unos vrste povezivanja na ovoj formi."><i class="fa fa-plus-circle"></i>&emsp;Dodaj polje za unos vrste povezivanja</button>
+        </div>
+
+        <div class="col-md-2">
+        <p hidden> A</p>
+        </div>
+        </div>
+        @foreach ($vga->povezivanja as $p)
+        <div class="row checkboxoviforme">
+        <div class="col-md-10">
+                    <select name="povezivanja[]" class="form-control" >
+                    <option value=""></option>
+                    @foreach($povezivanje as $d)
+                         <option value="{{ $d->id }}"
+                            {{ $d->id == old('povezivanje_id')   ? ' selected' : '' }}
+                            {{ $p->id == $d->id ? ' selected' : '' }}>
+                            {{ $d->naziv }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+
+        <div class="col-md-2">
+        <a href="#" class="ukloni_polje"><i class="fa fa-times" style="vertical-align: bottom;"></i></a>
+        </div>
+        </div>
+        @endforeach
+       
+        </div>
+        </div>
+                        <div class="col-md-3">
                             <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
                                 <label for="link">Link modela grafičkog adaptera: </label>
                                 <input type="url" name="link" id="link" class="form-control" value="{{ old('link', $vga->link) }}" maxlenght="255"> @if ($errors->has('link'))

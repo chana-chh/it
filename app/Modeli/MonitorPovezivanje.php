@@ -17,5 +17,9 @@ class MonitorPovezivanje extends Model {
         return $this->belongsToMany('App\Modeli\Projektor', 'projektor_povezivanje', 'povezivanje_id', 'projektor_id');
     }
 
+    public function grafickiAdapteriModeli() {
+        return $this->belongsToMany('App\Modeli\GrafickiAdapterModel', 'graficki_adapteri_povezivanje', 'povezivanje_id', 'graficki_adapter_model_id');
+    }
+
 }
 

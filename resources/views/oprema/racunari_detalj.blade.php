@@ -175,7 +175,7 @@
 <tr>
     <th style="width: 70%;">
         @if (!$uredjaj->procesori->isEmpty())
-            <ul>
+            <ul class="liste_bez">
                 @foreach($uredjaj->procesori as $p)
                     <li>{{$p->procesorModel->proizvodjac->naziv}}, {{$p->procesorModel->naziv}}</li>
                 @endforeach     
@@ -193,7 +193,7 @@
 <tr>
     <th style="width: 70%;">
         @if (!$uredjaj->memorije->isEmpty())
-            <ul>
+            <ul class="liste_bez">
                 @foreach($uredjaj->memorije as $m)
                     <li>{{$m->memorijaModel->proizvodjac->naziv}}, {{$m->memorijaModel->kapacitet}}</li>
                 @endforeach     
@@ -211,7 +211,7 @@
 <tr>
     <th style="width: 70%;">
         @if (!$uredjaj->hddovi->isEmpty())
-            <ul>
+            <ul class="liste_bez">
                 @foreach($uredjaj->hddovi as $h)
                     <li>{{$h->hddModel->proizvodjac->naziv}}, {{$h->hddModel->kapacitet}}</li>
                 @endforeach     
@@ -229,7 +229,7 @@
 <tr>
     <th style="width: 70%;">
         @if (!$uredjaj->grafickiAdapteri->isEmpty())
-            <ul>
+            <ul class="liste_bez">
                 @foreach($uredjaj->grafickiAdapteri as $g)
                     <li>{{$g->grafickiAdapterModel->proizvodjac->naziv}}, {{$g->grafickiAdapterModel->cip}}</li>
                 @endforeach     
@@ -238,7 +238,7 @@
         @endif
     </th>
     <td style="width: 30%;">
-        <a href="#" class="btn btn-primary btn-block">
+        <a href="{{ route('racunari.oprema.vga', $uredjaj->id) }}" class="btn btn-primary btn-block">
             Grafički adapteri
             
         </a>
@@ -247,7 +247,7 @@
 <tr>
     <th style="width: 70%;">
         @if (!$uredjaj->napajanja->isEmpty())
-            <ul>
+            <ul class="liste_bez">
                 @foreach($uredjaj->napajanja as $n)
                     <li>{{$n->napajanjeModel->proizvodjac->naziv}}, {{$n->napajanjeModel->snaga}} W</li>
                 @endforeach     

@@ -73,6 +73,19 @@
                 <td style="width: 80%;">{{$vga->vgaSlot->naziv}}
             </td>
             </tr>
+
+                        <tr>
+                <th style="width: 20%;">Vrste povezivanja:</th>
+                <td style="width: 80%;">
+                    @php
+                        $rezultat = array();
+                        foreach ($vga->povezivanja as $p){
+                            $rezultat[] = $p->naziv;
+                        }
+                        echo implode(", ",$rezultat);
+                    @endphp
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

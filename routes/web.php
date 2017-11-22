@@ -396,5 +396,11 @@ Route::get('oprema/racunari/hddovi/izvadi/{id}', 'Oprema\RacunariKontroler@getIz
 Route::get('oprema/racunari/hddovi/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiHdd')->name('racunari.oprema.hddovi.izvadi.obrisi');
 Route::post('oprema/racunari/hddovi/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajHddNovi')->name('racunari.oprema.hddovi.dodaj.novu');
 Route::post('oprema/racunari/hddovi/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajHddPostojeci')->name('racunari.oprema.hddovi.dodaj.postojecu');
+Route::get('oprema/racunari/napajanja/{id}', 'Oprema\RacunariKontroler@getNapajanja')->name('racunari.oprema.napajanja');
+Route::get('oprema/racunari/napajanja/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiNapajanje')->name('racunari.oprema.napajanja.izvadi');
+Route::get('oprema/racunari/napajanja/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiNapajanje')->name('racunari.oprema.napajanja.izvadi.obrisi');
+Route::post('oprema/racunari/napajanja/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajNapajanjeNovo')->name('racunari.oprema.napajanja.dodaj.novu');
+Route::post('oprema/racunari/napajanja/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajNapajanjePostojece')->name('racunari.oprema.napajanja.dodaj.postojecu');
+
 
 

@@ -24,6 +24,11 @@ class GrafickiAdapterModel extends Model
         return $this->belongsTo('App\Modeli\VgaSlot', 'vga_slot_id', 'id');
     }
 
+        public function povezivanja()
+    {
+        return $this->belongsToMany('App\Modeli\MonitorPovezivanje', 'graficki_adapteri_povezivanje', 'graficki_adapter_model_id', 'povezivanje_id');
+    }
+
     public function grafickiAdapteri()
     {
         return $this->hasMany('App\Modeli\GrafickiAdapter', 'graficki_adapter_model_id', 'id');

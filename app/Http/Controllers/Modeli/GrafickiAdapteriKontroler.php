@@ -14,6 +14,7 @@ Use App\Modeli\TipMemorije;
 Use App\Modeli\VgaSlot;
 Use App\Modeli\GrafickiAdapter;
 Use App\Modeli\Racunar;
+Use App\Modeli\MonitorPovezivanje;
 
 
 
@@ -30,7 +31,8 @@ class GrafickiAdapteriKontroler extends Kontroler
         $proizvodjaci = Proizvodjac::all();
         $tip = TipMemorije::all();
         $slotovi = VgaSlot::all();
-        return view('modeli.vga_dodavanje')->with(compact ('proizvodjaci', 'tip', 'slotovi'));
+        $povezivanje = MonitorPovezivanje::all();
+        return view('modeli.vga_dodavanje')->with(compact ('proizvodjaci', 'tip', 'slotovi', 'povezivanje'));
     }
 
     public function postDodavanje(Request $request)
@@ -57,6 +59,8 @@ class GrafickiAdapteriKontroler extends Kontroler
 
         $data->save();
 
+        $data->povezivanja()->attach($request->povezivanja);
+
         Session::flash('uspeh','Model grafičkog adaptera je uspešno dodat!');
         return redirect()->route('vga.modeli');
     }
@@ -67,7 +71,8 @@ class GrafickiAdapteriKontroler extends Kontroler
         $proizvodjaci = Proizvodjac::all();
         $tip = TipMemorije::all();
         $slotovi = VgaSlot::all();
-        return view('modeli.vga_izmena')->with(compact ('vga', 'proizvodjaci', 'tip', 'slotovi'));
+        $povezivanje = MonitorPovezivanje::all();
+        return view('modeli.vga_izmena')->with(compact ('vga', 'proizvodjaci', 'tip', 'slotovi', 'povezivanje'));
     }
 
     public function postIzmena(Request $request, $id)
@@ -83,6 +88,9 @@ class GrafickiAdapteriKontroler extends Kontroler
             ]);
         
         $data = GrafickiAdapterModel::find($id);
+
+        $data->povezivanja()->detach();
+
         $data->naziv = $request->naziv;
         $data->cip = $request->cip;
         $data->proizvodjac_id = $request->proizvodjac_id;
@@ -93,6 +101,8 @@ class GrafickiAdapteriKontroler extends Kontroler
         $data->napomena = $request->napomena;
 
         $data->save();
+
+        $data->povezivanja()->attach($request->povezivanja);
 
         Session::flash('uspeh','Podaci o modelu grafičkog adaptera su uspešno izmenjeni!');
         return redirect()->route('vga.modeli');
