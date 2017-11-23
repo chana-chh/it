@@ -3,14 +3,20 @@
 namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Monitor extends Model
 {
+    use SoftDeletes;
     protected $table = 'monitori';
     public $timestamps = false;
     public $nazivModelaJednina = 'monitor';
     public $nazivModelaMnozina = 'monitori';
     public $vezaNaPogled = 'monitori';
+    protected $dates = [
+        'deleted_at'
+    ];
+
 
     public function vrstaUredjaja()
     {
@@ -40,6 +46,11 @@ class Monitor extends Model
     public function nabavka()
     {
         return $this->belongsTo('App\Modeli\Nabavka', 'nabavka_id', 'id');
+    }
+
+     public function scopeNeraspordjeni()
+    {
+        return $this->doesntHave('racunar');
     }
 
 }

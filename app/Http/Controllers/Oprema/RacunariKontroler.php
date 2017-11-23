@@ -29,6 +29,8 @@ use App\Modeli\GrafickiAdapter;
 use App\Modeli\GrafickiAdapterModel;
 use App\Modeli\Napajanje;
 use App\Modeli\NapajanjeModel;
+use App\Modeli\Monitor;
+use App\Modeli\MonitorModel;
 use App\Modeli\Greska;
 
 class RacunariKontroler extends Kontroler
@@ -474,7 +476,7 @@ class RacunariKontroler extends Kontroler
 
         if ($racunar->hddovi->count() > 1 && $racunar->server == 0) {
             $greska = new Greska();
-            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog memorijskog modula! Dana: ".Carbon::now();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog čvrstog diska! Dana: ".Carbon::now();
             $greska->save();
             Session::flash('upozorenje', 'Čvrsti disk je uspešno dodat, ali nije jedini u ovom računaru!');
             return Redirect::back();
@@ -496,7 +498,7 @@ class RacunariKontroler extends Kontroler
 
         if ($racunar->hddovi->count() > 1 && $racunar->server == 0) {
             $greska = new Greska();
-            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog memorijskog modula! Dana: ".Carbon::now();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog čvrstog diska! Dana: ".Carbon::now();
             $greska->save();
             Session::flash('upozorenje', 'Čvrsti disk je uspešno dodat, ali nije jedini u ovom računaru!');
             return Redirect::back();
@@ -604,8 +606,8 @@ class RacunariKontroler extends Kontroler
     {
         $uredjaj = Racunar::find($id);
         $modeli = NapajanjeModel::all();
-        $napajanja = Napajanje::neraspordjeni()->get();
-        return view('oprema.racunari_napajanja')->with(compact ('modeli', 'uredjaj', 'napajanja'));
+        $napajanja_uredjaji = Napajanje::neraspordjeni()->get();
+        return view('oprema.racunari_napajanja')->with(compact ('modeli', 'uredjaj', 'napajanja_uredjaji'));
     }
 
     public function getIzvadiNapajanje($id)
@@ -688,6 +690,99 @@ class RacunariKontroler extends Kontroler
             return Redirect::back();
         } else{
             Session::flash('uspeh', 'Napajanje je uspešno dodato!');
+            return Redirect::back();
+        }
+    }
+
+    // Monitori
+    public function getMonitor($id)
+    {
+        $uredjaj = Racunar::find($id);
+        $modeli = MonitorModel::all();
+        $monitori_uredjaji = Monitor::neraspordjeni()->get();
+        return view('oprema.racunari_monitori')->with(compact ('modeli', 'uredjaj', 'monitori_uredjaji'));
+    }
+
+    public function getIzvadiMonitor($id)
+    {
+        $monitor = Monitor::find($id);
+        $monitor->racunar_id = null;
+        $odgovor = $monitor->save();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Monitor je uspešno uklonjeno!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja monitora. Pokušajte ponovo, kasnije!');
+        }
+        
+        return Redirect::back();
+    }
+
+     public function getIzvadiObrisiMonitor($id)
+    {
+        $monitor = Monitor::find($id);
+        $uredjaj = $monitor->racunar;
+        $monitor->napomena .= 'q#q# PODACI O OTPISU: naziv računara '.$uredjaj->ime .', kancelarija '. $uredjaj->kancelarija->naziv." Dana: ".Carbon::now();
+        $monitor->racunar_id = null;
+        $monitor->save();
+
+        $odgovor = $monitor->delete();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Monitor je uspešno uklonjeno i pripremljeno za reciklažu!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja monitora. Pokušajte ponovo, kasnije!');
+        }
+        return Redirect::back();
+    }
+
+    public function postDodajMonitorNovi(Request $request, $id)
+    {
+
+        $racunar = Racunar::find($id);
+
+            $this->validate($request, [
+                'serijski_broj' => ['max:50'],
+                'monitor_model_id' => ['required']
+            ]);
+        $monitor = new Monitor();
+        $monitor->serijski_broj = $request->serijski_broj;
+        $monitor->vrsta_uredjaja_id = 2;
+        $monitor->monitor_model_id = $request->monitor_model_id;
+        $monitor->napomena = $request->napomena;
+        $monitor->racunar_id = $id;
+        $monitor->save();
+
+        if ($racunar->monitori->count() > 1) {
+            $greska = new Greska();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog monitora! Dana: ".Carbon::now();
+            $greska->save();
+            Session::flash('upozorenje', 'Monitor je uspešno dodato, ali nije jedino u ovom računaru!');
+            return Redirect::back();
+        } else{
+            Session::flash('uspeh', 'Monitor je uspešno dodato!');
+            return Redirect::back();
+        }
+        
+    }
+
+    public function postDodajMonitorPostojeci(Request $request, $id)
+    {
+        
+        $racunar = Racunar::find($id);
+        
+        $monitor = Monitor::find($request->monitor_id);
+        $monitor->racunar_id = $id;;
+        $monitor->save();
+
+        if ($racunar->monitori->count() > 1) {
+            $greska = new Greska();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog monitora! Dana: ".Carbon::now();
+            $greska->save();
+            Session::flash('upozorenje', 'Monitor je uspešno dodato, ali nije jedino u ovom računaru!');
+            return Redirect::back();
+        } else{
+            Session::flash('uspeh', 'Monitor je uspešno dodato!');
             return Redirect::back();
         }
     }

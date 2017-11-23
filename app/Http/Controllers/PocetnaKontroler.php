@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
+use Redirect;
 use Gate;
 use Carbon\Carbon;
 use App\Modeli\Racunar;
@@ -37,6 +39,18 @@ class PocetnaKontroler extends Kontroler
         return view('pocetna')->with(compact(
                                 'racunara', 'monitora', 'stampaca', 'skenera', 'upseva', 'mreznih_uredjaja', 'projektora', 'aplikacija', 'greske', 'isticu'
         ));
+    }
+
+        public function postBrisanje(Request $request)
+    {
+        $data = Greska::find($request->idBrisanje);
+        $odgovor = $data->delete();
+        if ($odgovor) {
+            Session::flash('uspeh', 'Greška je uspešno obrisana!');
+        } else {
+            Session::flash('greska', 'Došlo je do greške prilikom brisanja greške. Pokušajte ponovo, kasnije!');
+        }
+        return Redirect::back();
     }
 
 }

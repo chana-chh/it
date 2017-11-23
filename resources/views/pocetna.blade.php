@@ -205,7 +205,10 @@
             @foreach($greske as $greska)
             <tr>
                 <th style="width: 25%;">Greška {{$loop->iteration}}:</th>
-                <td style="width: 75%;"><a href="" style="text-decoration: none;">{{$greska->greska}}</a></td>
+                <td style="width: 68%;"><a href="" style="text-decoration: none;">{{$greska->greska}}</a></td>
+                <td style="width: 7%;"> <button class="btn btn-danger btn-xs otvori-brisanje" data-toggle="modal" data-target="#brisanjeModal" value="{{ $greska->id }}">
+                            <i class="fa fa-trash"></i>
+                        </button></td>
             </tr>
             @endforeach
         </tbody>
@@ -233,10 +236,46 @@
   </div>
 </div>
 @endif
+
+<div id = "brisanjeModal" class = "modal fade">
+    <div class = "modal-dialog">
+        <div class = "modal-content">
+            <div class = "modal-header">
+                <button class = "close" data-dismiss = "modal">&times;</button>
+                <h1 class = "modal-title text-danger">Upozorenje!</h1>
+            </div>
+            <div class = "modal-body">
+                <h3>Da li želite trajno da obrišete grešku? </h3>
+                <p class = "text-danger">* Ova akcija je nepovratna!</p>
+                <form id="brisanje-forma" action="" method="POST">
+                    {{ csrf_field() }}
+                    <input type="hidden" id="idBrisanje" name="idBrisanje">
+                    <button id = "btn-brisanje-obrisi" class = "btn btn-danger">
+                        <i class = "fa fa-trash"></i> Obriši
+                    </button>
+                </form>
+            </div>
+            <div class = "modal-footer">
+                <button class = "btn btn-primary" data-dismiss="modal">
+                    <i class = "fa fa-ban"></i> Otkaži
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('skripte')
 <script>
+$( document ).ready(function() {
 
+   $(document).on('click', '.otvori-brisanje', function () {
+            var id = $(this).val();
+            $('#idBrisanje').val(id);
+            var ruta = "{{ route('greska.brisanje') }}";
+            $('#brisanje-forma').attr('action', ruta);
+        });
+
+});
 </script>
 @endsection

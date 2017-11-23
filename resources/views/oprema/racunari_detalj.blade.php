@@ -256,7 +256,7 @@
         @endif
     </th>
     <td style="width: 30%;">
-        <a href="#" class="btn btn-primary btn-block">
+        <a href="{{ route('racunari.oprema.napajanja', $uredjaj->id) }}" class="btn btn-primary btn-block">
             Napajanja
             
         </a>
@@ -280,7 +280,7 @@
         @endif
     </th>
     <td style="width: 30%;">
-        <a href="#" class="btn btn-primary btn-block">
+        <a href="{{ route('racunari.oprema.monitori', $uredjaj->id) }}" class="btn btn-primary btn-block">
             Monitori
             
         </a>

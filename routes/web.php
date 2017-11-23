@@ -1,6 +1,7 @@
 <?php
 
 Route::get('/', 'PocetnaKontroler@pocetna')->name('pocetna');
+Route::post('greska/brisanje', 'PocetnaKontroler@postBrisanje')->name('greska.brisanje');
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
@@ -401,6 +402,16 @@ Route::get('oprema/racunari/napajanja/izvadi/{id}', 'Oprema\RacunariKontroler@ge
 Route::get('oprema/racunari/napajanja/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiNapajanje')->name('racunari.oprema.napajanja.izvadi.obrisi');
 Route::post('oprema/racunari/napajanja/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajNapajanjeNovo')->name('racunari.oprema.napajanja.dodaj.novu');
 Route::post('oprema/racunari/napajanja/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajNapajanjePostojece')->name('racunari.oprema.napajanja.dodaj.postojecu');
+Route::get('oprema/racunari/vga/{id}', 'Oprema\RacunariKontroler@getVga')->name('racunari.oprema.vga');
+Route::get('oprema/racunari/vga/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiVga')->name('racunari.oprema.vga.izvadi');
+Route::get('oprema/racunari/vga/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiVga')->name('racunari.oprema.vga.izvadi.obrisi');
+Route::post('oprema/racunari/vga/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajVgaNovi')->name('racunari.oprema.vga.dodaj.novu');
+Route::post('oprema/racunari/vga/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajVgaPostojeci')->name('racunari.oprema.vga.dodaj.postojecu');
+Route::get('oprema/racunari/monitori/{id}', 'Oprema\RacunariKontroler@getMonitor')->name('racunari.oprema.monitori');
+Route::get('oprema/racunari/monitori/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiMonitor')->name('racunari.oprema.monitori.izvadi');
+Route::get('oprema/racunari/monitori/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiMonitor')->name('racunari.oprema.monitori.izvadi.obrisi');
+Route::post('oprema/racunari/monitori/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajMonitorNovi')->name('racunari.oprema.monitori.dodaj.novu');
+Route::post('oprema/racunari/monitori/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajMonitorPostojeci')->name('racunari.oprema.monitori.dodaj.postojecu');
 
 
 

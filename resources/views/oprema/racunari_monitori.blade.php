@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Oprema | Dodavanje grafičkih adaptera u računar')
+@section('naziv', 'Oprema | Vezivanje monitora za računar')
 
 @section('meni')
 @include('sabloni.inc.meni')
@@ -10,9 +10,9 @@
 <div class="row">
     <div class="col-md-12">
         <h1>
-            <img class="slicica_animirana" alt="Dodavanje grafičkih adaptera u računar"
-                 src="{{url('/images/vga.png')}}" style="height:64px;">
-            &emsp;Rad sa grafičkim adapterima na računaru {{$uredjaj->ime}}
+            <img class="slicica_animirana" alt="Vezivanje monitora za računar"
+                 src="{{url('/images/monitorS.png')}}" style="height:64px;">
+            &emsp;Rad sa monitoroma i računarom {{$uredjaj->ime}}
         </h1>
     </div>
 </div>
@@ -38,12 +38,12 @@
 @endsection
 
 @section('sadrzaj')
-<h3>Podaci o već ugrađenoj komponenti:</h3>
+<h3>Podaci o već povezanom uređaju:</h3>
 <div class="row">
     <div class="col-md-12">
-        @if ($uredjaj->grafickiAdapteri)
-        @foreach($uredjaj->grafickiAdapteri as $vga)
-        <h4><em class="text-success">Grafički adapter {{$loop->iteration}}</em></h4>
+        @if ($uredjaj->monitori->count()>0)
+        @foreach($uredjaj->monitori as $mon)
+        <h4><em class="text-success">Monitor {{$loop->iteration}}</em></h4>
         <table class="table table-striped" style="table-layout: fixed;">
             <tbody>
                 <tr>
@@ -52,7 +52,7 @@
                         Serijski broj:
                     </th>
                     <td style="width: 60%;">
-                        {{$vga->serijski_broj}}
+                        {{$mon->serijski_broj}}
                     </td>
                 </tr>
                 <tr>
@@ -60,39 +60,23 @@
                         Proizvođač:
                     </th>
                     <td style="width: 60%;">
-                        {{$vga->grafickiAdapterModel->proizvodjac->naziv}}
+                        {{$mon->monitorModel->proizvodjac->naziv}}
                     </td>
                 </tr>
                 <tr>
                     <th style="width: 40%;">
-                        Kapacitet:
+                        Dijagonala:
                     </th>
                     <td style="width: 60%;">
-                        {{$vga->grafickiAdapterModel->cip}}
+                        {{$mon->monitorModel->dijagonala->naziv}}"
                     </td>
                 </tr>
-                <tr>
-                    <th style="width: 40%;">
-                        Tip memorije:
-                    </th>
-                    <td style="width: 60%;">
-                        {{$vga->grafickiAdapterModel->tipMemorije->naziv}}
-                    </td>
-                </tr>
-                <tr>
-                    <th style="width: 40%;">
-                        Kapacitet memorije:
-                    </th>
-                    <td style="width: 60%;">
-                        {{$vga->grafickiAdapterModel->kapacitet_memorije}}
-                    </td>
-                </tr>
-                <tr>
+               <tr>
                 <th style="width: 20%;">Vrste povezivanja:</th>
                 <td style="width: 80%;">
                     @php
                         $rezultat = array();
-                        foreach ($vga->grafickiAdapterModel->povezivanja as $p){
+                        foreach ($mon->monitorModel->povezivanja as $p){
                             $rezultat[] = $p->naziv;
                         }
                         echo implode(", ",$rezultat);
@@ -103,18 +87,18 @@
         </table>
 <div class="row" style="padding-top: 20px;">
             <div class="col-md-3">
-        <a class="btn btn-primary ono btn-block" href="{{ route('racunari.oprema.vga.izvadi', $vga->id) }}">
-            <i class="fa fa-minus-circle fa-fw"></i> Izvadi iz računara</a>
+        <a class="btn btn-primary ono btn-block" href="{{ route('racunari.oprema.monitori.izvadi', $mon->id) }}">
+            <i class="fa fa-minus-circle fa-fw"></i> Otkači od računara</a>
     </div>
     <div class="col-md-3 col-md-offset-6">
-        <a class="btn btn-danger ono btn-block" href="{{ route('racunari.oprema.vga.izvadi.obrisi', $vga->id) }}">
-            <i class="fa fa-trash fa-fw"></i> Izvadi i otpiši</a>
+        <a class="btn btn-danger ono btn-block" href="{{ route('racunari.oprema.monitori.izvadi.obrisi', $mon->id) }}">
+            <i class="fa fa-trash fa-fw"></i> Otkači i otpiši</a>
     </div>
 </div>
 <hr style="border-top: 1px solid #18BC9C">
     @endforeach
         @else
-        <h4> Komponenta nije dodata ili nema podataka o njoj </h4>
+        <h4> Komponenta nije povezana ili nema podataka o njoj </h4>
         @endif
     </div>
 </div>
@@ -122,27 +106,27 @@
 @endsection
 
 @section('traka')
-<h4> Dodavanje već postojećih, neraspoređenih komponenti</h4>
+<h4> Povezivanje već postojećih, neraspoređenih uređaja</h4>
 <div class="row">
     <div class="col-md-12">
-        <form action="{{route('racunari.oprema.vga.dodaj.postojecu',  $uredjaj->id)}}" method="POST" data-parsley-validate>
+        <form action="{{route('racunari.oprema.monitori.dodaj.postojecu',  $uredjaj->id)}}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row" style="margin-top: 1rem">
 
                 <div class="col-md-12">
-                    <div class="form-group{{ $errors->has('vga_id') ? ' has-error' : '' }}">
-                        <label for="vga_id">Grafički adapteri:</label>
-                        <select name="vga_id" id="vga_id" class="chosen-select form-control" data-placeholder="vga ..." required>
+                    <div class="form-group{{ $errors->has('monitor_id') ? ' has-error' : '' }}">
+                        <label for="monitor_id">Monitori:</label>
+                        <select name="monitor_id" id="monitor_id" class="chosen-select form-control" data-placeholder="monitori ..." required>
                             <option value=""></option>
-                            @foreach($vga_uredjaji as $p)
-                            <option value="{{ $p->id }}" {{ old( 'vga_id')== $p->id ? ' selected' : '' }}> sn: {{ $p->serijski_broj }}, {{ $p->grafickiAdapterModel->proizvodjac->naziv }}, 
-                                {{ $p->grafickiAdapterModel->kapacitet_memorije }} MB
+                            @foreach($monitori_uredjaji as $p)
+                            <option value="{{ $p->id }}" {{ old( 'monitor_id')== $p->id ? ' selected' : '' }}> sn: {{ $p->serijski_broj }}, {{ $p->monitorModel->proizvodjac->naziv }}, 
+                                {{ $p->monitorModel->dijagonala->naziv }}"
                             </option>
                             @endforeach
                         </select>
-                        @if ($errors->has('vga_id'))
+                        @if ($errors->has('monitor_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('vga_id') }}</strong>
+                            <strong>{{ $errors->first('monitor_id') }}</strong>
                         </span>
                         @endif
                     </div>
@@ -165,9 +149,9 @@
     </div>
 </div>
 <hr>
-<h4> Dodavanje novog grafičkog adaptera u bazu i vezivanje za računar</h4>
+<h4> Dodavanje novog monitora u bazu i vezivanje za računar</h4>
     <div class="col-md-12 well" style="margin-top: 1rem">
-        <form action="{{route('racunari.oprema.vga.dodaj.novu', $uredjaj->id)}}" method="POST" data-parsley-validate>
+        <form action="{{route('racunari.oprema.monitori.dodaj.novu', $uredjaj->id)}}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row">
 
@@ -187,19 +171,19 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="form-group{{ $errors->has('graficki_adapter_model_id') ? ' has-error' : '' }}">
-                        <label for="graficki_adapter_model_id">Modeli grafičkih adaptera:</label>
-                        <select name="graficki_adapter_model_id" id="graficki_adapter_model_id" class="chosen-select form-control" data-placeholder="model ..."
+                    <div class="form-group{{ $errors->has('monitor_model_id') ? ' has-error' : '' }}">
+                        <label for="monitor_model_id">Modeli grafičkih adaptera:</label>
+                        <select name="monitor_model_id" id="monitor_model_id" class="chosen-select form-control" data-placeholder="model ..."
                             required>
                             <option value=""></option>
                             @foreach($modeli as $m)
-                            <option value="{{ $m->id }}" {{ old( 'graficki_adapter_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }}, {{ $m->cip }} ({{ $m->tipMemorije->naziv }}))
+                            <option value="{{ $m->id }}" {{ old( 'monitor_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }},  {{ $m->dijagonala->naziv }}"
                             </option>
                             @endforeach
                         </select>
-                        @if ($errors->has('graficki_adapter_model_id'))
+                        @if ($errors->has('monitor_model_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('graficki_adapter_model_id') }}</strong>
+                            <strong>{{ $errors->first('monitor_model_id') }}</strong>
                         </span>
                         @endif
                     </div>
