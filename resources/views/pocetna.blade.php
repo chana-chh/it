@@ -205,7 +205,7 @@
             @foreach($greske as $greska)
             <tr>
                 <th style="width: 25%;">Greška {{$loop->iteration}}:</th>
-                <td style="width: 68%;"><a href="" style="text-decoration: none;">{{$greska->greska}}</a></td>
+                <td style="width: 68%;"><em>{{$greska->greska}}</em></td>
                 <td style="width: 7%;"> <button class="btn btn-danger btn-xs otvori-brisanje" data-toggle="modal" data-target="#brisanjeModal" value="{{ $greska->id }}">
                             <i class="fa fa-trash"></i>
                         </button></td>

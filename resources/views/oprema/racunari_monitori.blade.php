@@ -12,7 +12,7 @@
         <h1>
             <img class="slicica_animirana" alt="Vezivanje monitora za računar"
                  src="{{url('/images/monitorS.png')}}" style="height:64px;">
-            &emsp;Rad sa monitoroma i računarom {{$uredjaj->ime}}
+            &emsp;Rad sa monitoroma povezanih sa računarom {{$uredjaj->ime}}
         </h1>
     </div>
 </div>
