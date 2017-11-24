@@ -143,7 +143,7 @@
 <h4>Ocena:</h4>
 <div class="row">
 <div class="col-md-6 col-md-offset-4">
-<p class="{{ $uredjaj->ocena() < 8 ? ' tankoza_danger' : ' tankoza' }} krug_mali">{{$uredjaj->ocena()}}</p>
+<p class="{{ $uredjaj->ocena() < 8 ? ' tankoza_danger' : ' tankoza' }} krug_mali">{{number_format($uredjaj->ocena(), 2, '.', ',')}}</p>
 </div>
 </div>
 
@@ -298,7 +298,7 @@
         @endif
     </th>
     <td style="width: 30%;">
-        <a href="#" class="btn btn-primary btn-block">
+        <a href="{{ route('racunari.oprema.stampaci', $uredjaj->id) }}" class="btn btn-primary btn-block">
             Štampači
             
         </a>

@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Oprema | Vezivanje monitora za računar')
+@section('naziv', 'Oprema | Vezivanje štampača za računar')
 
 @section('meni')
 @include('sabloni.inc.meni')
@@ -10,9 +10,9 @@
 <div class="row">
     <div class="col-md-12">
         <h1>
-            <img class="slicica_animirana" alt="Vezivanje monitora za računar"
-                 src="{{url('/images/monitorS.png')}}" style="height:64px;">
-            &emsp;Rad sa monitoroma povezanih sa računarom {{$uredjaj->ime}}
+            <img class="slicica_animirana" alt="Vezivanje štampača za računar"
+                 src="{{url('/images/stampac.png')}}" style="height:64px;">
+            &emsp;Rad sa štampačima povezanih sa računarom {{$uredjaj->ime}}
         </h1>
     </div>
 </div>
@@ -41,18 +41,25 @@
 <h3>Podaci o već povezanom uređaju:</h3>
 <div class="row">
     <div class="col-md-12">
-        @if ($uredjaj->monitori->count()>0)
-        @foreach($uredjaj->monitori as $mon)
-        <h4><em class="text-success">Monitor {{$loop->iteration}}</em></h4>
+        @if ($uredjaj->stampaci->count()>0)
+        @foreach($uredjaj->stampaci as $st)
+        <h4><em class="text-success">Štampač {{$loop->iteration}}</em></h4>
         <table class="table table-striped" style="table-layout: fixed;">
             <tbody>
                 <tr>
                     <th style="width: 40%;">
-
                         Serijski broj:
                     </th>
                     <td style="width: 60%;">
-                        {{$mon->serijski_broj}}
+                        {{$st->serijski_broj}}
+                    </td>
+                </tr>
+                <tr>
+                    <th style="width: 40%;">
+                        Inventarski broj:
+                    </th>
+                    <td style="width: 60%;">
+                        {{$st->inventarski_broj}}
                     </td>
                 </tr>
                 <tr>
@@ -60,38 +67,33 @@
                         Proizvođač:
                     </th>
                     <td style="width: 60%;">
-                        {{$mon->monitorModel->proizvodjac->naziv}}
+                        {{$st->stampacModel->proizvodjac->naziv}}
                     </td>
                 </tr>
                 <tr>
                     <th style="width: 40%;">
-                        Dijagonala:
+                        Tip:
                     </th>
                     <td style="width: 60%;">
-                        {{$mon->monitorModel->dijagonala->naziv}}"
+                        {{$st->stampacModel->tip->naziv}}
                     </td>
                 </tr>
                <tr>
-                <th style="width: 20%;">Vrste povezivanja:</th>
+                <th style="width: 20%;">Toner:</th>
                 <td style="width: 80%;">
-                    @php
-                        $rezultat = array();
-                        foreach ($mon->monitorModel->povezivanja as $p){
-                            $rezultat[] = $p->naziv;
-                        }
-                        echo implode(", ",$rezultat);
-                    @endphp
+                    <strong>{{$st->stampacModel->tipTonera->naziv}}</strong><br>
+                    {{$st->stampacModel->tipTonera->modeli_tonera}}
                 </td>
             </tr>
             </tbody>
         </table>
 <div class="row" style="padding-top: 20px;">
             <div class="col-md-3">
-        <a class="btn btn-primary ono btn-block" href="{{ route('racunari.oprema.monitori.izvadi', $mon->id) }}">
+        <a class="btn btn-primary ono btn-block" href="{{ route('racunari.oprema.stampaci.izvadi', $st->id) }}">
             <i class="fa fa-minus-circle fa-fw"></i> Otkači od računara</a>
     </div>
     <div class="col-md-3 col-md-offset-6">
-        <a class="btn btn-danger ono btn-block" href="{{ route('racunari.oprema.monitori.izvadi.obrisi', $mon->id) }}">
+        <a class="btn btn-danger ono btn-block" href="{{ route('racunari.oprema.stampaci.izvadi.obrisi', $st->id) }}">
             <i class="fa fa-trash fa-fw"></i> Otkači i otpiši</a>
     </div>
 </div>
@@ -109,24 +111,24 @@
 <h4> Povezivanje već postojećih, neraspoređenih uređaja</h4>
 <div class="row">
     <div class="col-md-12">
-        <form action="{{route('racunari.oprema.monitori.dodaj.postojecu',  $uredjaj->id)}}" method="POST" data-parsley-validate>
+        <form action="{{route('racunari.oprema.stampaci.dodaj.postojecu',  $uredjaj->id)}}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row" style="margin-top: 1rem">
 
                 <div class="col-md-12">
-                    <div class="form-group{{ $errors->has('monitor_id') ? ' has-error' : '' }}">
-                        <label for="monitor_id">Monitori:</label>
-                        <select name="monitor_id" id="monitor_id" class="chosen-select form-control" data-placeholder="monitori ..." required>
+                    <div class="form-group{{ $errors->has('stampac_id') ? ' has-error' : '' }}">
+                        <label for="stampac_id">Štampači:</label>
+                        <select name="stampac_id" id="stampac_id" class="chosen-select form-control" data-placeholder="štampači ..." required>
                             <option value=""></option>
-                            @foreach($monitori_uredjaji as $p)
-                            <option value="{{ $p->id }}" {{ old( 'monitor_id')== $p->id ? ' selected' : '' }}> sn: {{ $p->serijski_broj }}, {{ $p->monitorModel->proizvodjac->naziv }}, 
-                                {{ $p->monitorModel->dijagonala->naziv }}"
+                            @foreach($stampaci_uredjaji as $p)
+                            <option value="{{ $p->id }}" {{ old( 'stampac_id')== $p->id ? ' selected' : '' }}> sn: {{ $p->serijski_broj }}, {{ $p->stampacModel->proizvodjac->naziv }}, {{ $p->stampacModel->naziv }}
+                                {{ $p->stampacModel->tip->naziv }}
                             </option>
                             @endforeach
                         </select>
-                        @if ($errors->has('monitor_id'))
+                        @if ($errors->has('stampac_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('monitor_id') }}</strong>
+                            <strong>{{ $errors->first('stampac_id') }}</strong>
                         </span>
                         @endif
                     </div>
@@ -149,9 +151,9 @@
     </div>
 </div>
 <hr>
-<h4> Dodavanje novog monitora u bazu i vezivanje za računar</h4>
+<h4> Dodavanje novog štampača u bazu i vezivanje za računar</h4>
     <div class="col-md-12 well" style="margin-top: 1rem">
-        <form action="{{route('racunari.oprema.monitori.dodaj.novu', $uredjaj->id)}}" method="POST" data-parsley-validate>
+        <form action="{{route('racunari.oprema.stampaci.dodaj.novu', $uredjaj->id)}}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row">
 
@@ -171,19 +173,19 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="form-group{{ $errors->has('monitor_model_id') ? ' has-error' : '' }}">
-                        <label for="monitor_model_id">Modeli monitora:</label>
-                        <select name="monitor_model_id" id="monitor_model_id" class="chosen-select form-control" data-placeholder="model ..."
+                    <div class="form-group{{ $errors->has('stampac_model_id') ? ' has-error' : '' }}">
+                        <label for="stampac_model_id">Modeli štampača:</label>
+                        <select name="stampac_model_id" id="stampac_model_id" class="chosen-select form-control" data-placeholder="model ..."
                             required>
                             <option value=""></option>
                             @foreach($modeli as $m)
-                            <option value="{{ $m->id }}" {{ old( 'monitor_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }},  {{ $m->dijagonala->naziv }}"
+                            <option value="{{ $m->id }}" {{ old( 'stampac_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }},  {{ $m->tip->naziv }}, {{ $m->tipTonera->modeli_tonera }}
                             </option>
                             @endforeach
                         </select>
-                        @if ($errors->has('monitor_model_id'))
+                        @if ($errors->has('stampac_model_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('monitor_model_id') }}</strong>
+                            <strong>{{ $errors->first('stampac_model_id') }}</strong>
                         </span>
                         @endif
                     </div>

@@ -31,6 +31,8 @@ use App\Modeli\Napajanje;
 use App\Modeli\NapajanjeModel;
 use App\Modeli\Monitor;
 use App\Modeli\MonitorModel;
+use App\Modeli\Stampac;
+use App\Modeli\StampacModel;
 use App\Modeli\Greska;
 
 class RacunariKontroler extends Kontroler
@@ -783,6 +785,99 @@ class RacunariKontroler extends Kontroler
             return Redirect::back();
         } else{
             Session::flash('uspeh', 'Monitor je uspešno dodato!');
+            return Redirect::back();
+        }
+    }
+
+     // Stampaci
+    public function getStampac($id)
+    {
+        $uredjaj = Racunar::find($id);
+        $modeli = StampacModel::all();
+        $stampaci_uredjaji = Stampac::neraspordjeni()->get();
+        return view('oprema.racunari_stampaci')->with(compact ('modeli', 'uredjaj', 'stampaci_uredjaji'));
+    }
+
+    public function getIzvadiStampac($id)
+    {
+        $stampac = Stampac::find($id);
+        $stampac->racunar_id = null;
+        $odgovor = $stampac->save();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Štampač je uspešno uklonjeno!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja štampača. Pokušajte ponovo, kasnije!');
+        }
+        
+        return Redirect::back();
+    }
+
+     public function getIzvadiObrisiStampac($id)
+    {
+        $stampac = Stampac::find($id);
+        $uredjaj = $stampac->racunar;
+        $stampac->napomena .= 'q#q# PODACI O OTPISU: naziv računara '.$uredjaj->ime .', kancelarija '. $uredjaj->kancelarija->naziv." Dana: ".Carbon::now();
+        $stampac->racunar_id = null;
+        $stampac->save();
+
+        $odgovor = $stampac->delete();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Štampač je uspešno uklonjeno i pripremljeno za reciklažu!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja štampača. Pokušajte ponovo, kasnije!');
+        }
+        return Redirect::back();
+    }
+
+    public function postDodajStampacNovi(Request $request, $id)
+    {
+
+        $racunar = Racunar::find($id);
+
+            $this->validate($request, [
+                'serijski_broj' => ['max:50'],
+                'stampac_model_id' => ['required']
+            ]);
+        $stampac = new Stampac();
+        $stampac->serijski_broj = $request->serijski_broj;
+        $stampac->vrsta_uredjaja_id = 3;
+        $stampac->stampac_model_id = $request->stampac_model_id;
+        $stampac->napomena = $request->napomena;
+        $stampac->racunar_id = $id;
+        $stampac->save();
+
+        if ($racunar->stampaci->count() > 1) {
+            $greska = new Greska();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog monitora! Dana: ".Carbon::now();
+            $greska->save();
+            Session::flash('upozorenje', 'Štampač je uspešno dodato, ali nije jedino na ovom računaru!');
+            return Redirect::back();
+        } else{
+            Session::flash('uspeh', 'Štampač je uspešno dodato!');
+            return Redirect::back();
+        }
+        
+    }
+
+    public function postDodajStampacPostojeci(Request $request, $id)
+    {
+        
+        $racunar = Racunar::find($id);
+        
+        $stampac = Stampac::find($request->stampac_id);
+        $stampac->racunar_id = $id;;
+        $stampac->save();
+
+        if ($racunar->monitori->count() > 1) {
+            $greska = new Greska();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog monitora! Dana: ".Carbon::now();
+            $greska->save();
+            Session::flash('upozorenje', 'Štampač je uspešno dodato, ali nije jedino u ovom računaru!');
+            return Redirect::back();
+        } else{
+            Session::flash('uspeh', 'Štampač je uspešno dodato!');
             return Redirect::back();
         }
     }
