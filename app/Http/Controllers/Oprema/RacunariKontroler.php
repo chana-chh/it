@@ -33,6 +33,8 @@ use App\Modeli\Monitor;
 use App\Modeli\MonitorModel;
 use App\Modeli\Stampac;
 use App\Modeli\StampacModel;
+use App\Modeli\Skener;
+use App\Modeli\SkenerModel;
 use App\Modeli\Greska;
 
 class RacunariKontroler extends Kontroler
@@ -850,7 +852,7 @@ class RacunariKontroler extends Kontroler
 
         if ($racunar->stampaci->count() > 1) {
             $greska = new Greska();
-            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog monitora! Dana: ".Carbon::now();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog skenera! Dana: ".Carbon::now();
             $greska->save();
             Session::flash('upozorenje', 'Štampač je uspešno dodato, ali nije jedino na ovom računaru!');
             return Redirect::back();
@@ -872,12 +874,105 @@ class RacunariKontroler extends Kontroler
 
         if ($racunar->monitori->count() > 1) {
             $greska = new Greska();
-            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog monitora! Dana: ".Carbon::now();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog skenera! Dana: ".Carbon::now();
             $greska->save();
             Session::flash('upozorenje', 'Štampač je uspešno dodato, ali nije jedino u ovom računaru!');
             return Redirect::back();
         } else{
             Session::flash('uspeh', 'Štampač je uspešno dodato!');
+            return Redirect::back();
+        }
+    }
+
+    // Skeneri
+    public function getSkener($id)
+    {
+        $uredjaj = Racunar::find($id);
+        $modeli = SkenerModel::all();
+        $stampaci_uredjaji = Skener::neraspordjeni()->get();
+        return view('oprema.racunari_skeneri')->with(compact ('modeli', 'uredjaj', 'skeneri_uredjaji'));
+    }
+
+    public function getIzvadiSkener($id)
+    {
+        $skener = Skener::find($id);
+        $skener->racunar_id = null;
+        $odgovor = $skener->save();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Skener je uspešno uklonjeno!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja skenera. Pokušajte ponovo, kasnije!');
+        }
+        
+        return Redirect::back();
+    }
+
+     public function getIzvadiObrisiSkener($id)
+    {
+        $skener = Skener::find($id);
+        $uredjaj = $skener->racunar;
+        $skener->napomena .= 'q#q# PODACI O OTPISU: naziv računara '.$uredjaj->ime .', kancelarija '. $uredjaj->kancelarija->naziv." Dana: ".Carbon::now();
+        $skener->racunar_id = null;
+        $skener->save();
+
+        $odgovor = $skener->delete();
+        
+        if ($odgovor) {
+            Session::flash('uspeh', 'Skener je uspešno uklonjeno i pripremljeno za reciklažu!');
+        }else {
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja skenera. Pokušajte ponovo, kasnije!');
+        }
+        return Redirect::back();
+    }
+
+    public function postDodajSkenerNovi(Request $request, $id)
+    {
+
+        $racunar = Racunar::find($id);
+
+            $this->validate($request, [
+                'serijski_broj' => ['max:50'],
+                'skener_model_id' => ['required']
+            ]);
+        $skener = new Skener();
+        $skener->serijski_broj = $request->serijski_broj;
+        $skener->vrsta_uredjaja_id = 3;
+        $skener->skener_model_id = $request->skener_model_id;
+        $skener->napomena = $request->napomena;
+        $skener->racunar_id = $id;
+        $skener->save();
+
+        if ($racunar->skeneri->count() > 1) {
+            $greska = new Greska();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog skenera! Dana: ".Carbon::now();
+            $greska->save();
+            Session::flash('upozorenje', 'Skener je uspešno dodato, ali nije jedino na ovom računaru!');
+            return Redirect::back();
+        } else{
+            Session::flash('uspeh', 'Skener je uspešno dodato!');
+            return Redirect::back();
+        }
+        
+    }
+
+    public function postDodajStampacPostojeci(Request $request, $id)
+    {
+        
+        $racunar = Racunar::find($id);
+        
+        $skener = Skener::find($request->skener_id);
+        $skener->racunar_id = $id;;
+        $skener->save();
+
+        if ($racunar->monitori->count() > 1) {
+            $greska = new Greska();
+            $greska->greska = "U računar ".$racunar->ime." je ".Auth::user()->name ." dodao više od jednog skenera! Dana: ".Carbon::now();
+            $greska->save();
+            Session::flash('upozorenje', 'Skener je uspešno dodato, ali nije jedino u ovom računaru!');
+            return Redirect::back();
+        } else{
+            Session::flash('uspeh', 'Skener je uspešno dodato!');
             return Redirect::back();
         }
     }

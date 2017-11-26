@@ -417,6 +417,11 @@ Route::get('oprema/racunari/stampaci/izvadi/{id}', 'Oprema\RacunariKontroler@get
 Route::get('oprema/racunari/stampaci/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiStampac')->name('racunari.oprema.stampaci.izvadi.obrisi');
 Route::post('oprema/racunari/stampaci/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajStampacNovi')->name('racunari.oprema.stampaci.dodaj.novu');
 Route::post('oprema/racunari/stampaci/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajStampacPostojeci')->name('racunari.oprema.stampaci.dodaj.postojecu');
+Route::get('oprema/racunari/skeneri/{id}', 'Oprema\RacunariKontroler@getSkener')->name('racunari.oprema.skeneri');
+Route::get('oprema/racunari/skeneri/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiSkener')->name('racunari.oprema.skeneri.izvadi');
+Route::get('oprema/racunari/skeneri/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiSkener')->name('racunari.oprema.skeneri.izvadi.obrisi');
+Route::post('oprema/racunari/skeneri/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajSkenerNovi')->name('racunari.oprema.skeneri.dodaj.novu');
+Route::post('oprema/racunari/skeneri/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajSkenerPostojeci')->name('racunari.oprema.skeneri.dodaj.postojecu');
 
 
 
