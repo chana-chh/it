@@ -12,7 +12,7 @@
         <h1>
             <span>
                 <img class="slicica_animirana" alt="Osnovne ploče" src="{{url('/images/mbd.png')}}" style="height:64px;">
-            </span>&emsp;Procesori</h1>
+            </span>&emsp;Osnovne ploče</h1>
     </div>
     <div class="col-md-8 text-right" style="padding-top: 50px; font-size: 1.25rem;;">
     <div class="alert alert-info alert-dismissible ono" role="alert">
@@ -45,7 +45,7 @@
             <td>
                 <strong>{{$o->serijski_broj}}</strong>
             </td>
-            <td><a href="{{route('procesori.modeli.detalj', $o->procesorModel->id)}}">{{$o->procesorModel->proizvodjac->naziv}} {{$o->procesorModel->naziv}}, {{$o->procesorModel->takt}} MHz</a></td>
+            <td><a href="{{route('osnovne_ploce.modeli.detalj', $o->osnovnaPlocaModel->id)}}">{{$o->osnovnaPlocaModel->proizvodjac->naziv}} {{$o->osnovnaPlocaModel->naziv}}, {{$o->osnovnaPlocaModel->cipset}}</a></td>
             <td> @if($o->racunar)
                 {{$o->racunar->ime}}
                 @endif
@@ -60,7 +60,7 @@
             </td>
 
             <td style="text-align:right; vertical-align: middle; line-height: normal;">
-                <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('procesori.oprema.detalj', $o->id)}}">
+                <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('osnovne_ploce.oprema.detalj', $o->id)}}">
                     <i class="fa fa-eye"></i>
                 </a>
                 <a class="btn btn-info btn-sm" id="dugmeIzmena" href="">

@@ -170,6 +170,22 @@
             </div>
 
             <div class="row">
+
+                <div class="col-md-12">
+                    <div class="form-group{{ $errors->has('inventarski_broj') ? ' has-error' : '' }}">
+                        <label for="inventarski_broj">Inventarski broj:</label>
+                        <input type="text" name="inventarski_broj" id="inventarski_broj" class="form-control" value="{{ old('inventarski_broj') }}" maxlength="10"
+                            required> @if ($errors->has('inventarski_broj'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('inventarski_broj') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-md-12">
                     <div class="form-group{{ $errors->has('monitor_model_id') ? ' has-error' : '' }}">
                         <label for="monitor_model_id">Modeli monitora:</label>

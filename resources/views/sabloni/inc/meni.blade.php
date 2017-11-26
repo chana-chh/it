@@ -38,7 +38,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{route('racunari.oprema')}}">Računari</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="">Osnovne ploče</a></li>
+                            <li><a href="{{route('osnovne_ploce.oprema')}}">Osnovne ploče</a></li>
                             <li><a href="{{route('procesori.oprema')}}">Procesori</a></li>
                             <li><a href="">Memorije</a></li>
                             <li><a href="">Hard diskovi</a></li>

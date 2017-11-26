@@ -38,5 +38,9 @@ class Skener extends Model
     {
         return $this->belongsTo('App\Modeli\Kancelarija', 'kancelarija_id', 'id');
     }
+    public function scopeNeraspordjeni()
+    {
+        return $this->doesntHave('racunar');
+    }
 
 }

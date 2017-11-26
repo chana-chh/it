@@ -889,7 +889,7 @@ class RacunariKontroler extends Kontroler
     {
         $uredjaj = Racunar::find($id);
         $modeli = SkenerModel::all();
-        $stampaci_uredjaji = Skener::neraspordjeni()->get();
+        $skeneri_uredjaji = Skener::neraspordjeni()->get();
         return view('oprema.racunari_skeneri')->with(compact ('modeli', 'uredjaj', 'skeneri_uredjaji'));
     }
 
@@ -937,6 +937,7 @@ class RacunariKontroler extends Kontroler
             ]);
         $skener = new Skener();
         $skener->serijski_broj = $request->serijski_broj;
+        $skener->inventarski_broj = $request->inventarski_broj;
         $skener->vrsta_uredjaja_id = 3;
         $skener->skener_model_id = $request->skener_model_id;
         $skener->napomena = $request->napomena;
@@ -956,7 +957,7 @@ class RacunariKontroler extends Kontroler
         
     }
 
-    public function postDodajStampacPostojeci(Request $request, $id)
+    public function postDodajSkenerPostojeci(Request $request, $id)
     {
         
         $racunar = Racunar::find($id);

@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Oprema | Vezivanje štampača za računar')
+@section('naziv', 'Oprema | Vezivanje skenera za računar')
 
 @section('meni')
 @include('sabloni.inc.meni')
@@ -10,9 +10,9 @@
 <div class="row">
     <div class="col-md-12">
         <h1>
-            <img class="slicica_animirana" alt="Vezivanje štampača za računar"
+            <img class="slicica_animirana" alt="Vezivanje skenera za računar"
                  src="{{url('/images/stampac.png')}}" style="height:64px;">
-            &emsp;Rad sa štampačima povezanim sa računarom {{$uredjaj->ime}}
+            &emsp;Rad sa skenerima povezanim sa računarom {{$uredjaj->ime}}
         </h1>
     </div>
 </div>
@@ -41,9 +41,9 @@
 <h3>Podaci o već povezanim uređajima:</h3>
 <div class="row">
     <div class="col-md-12">
-        @if ($uredjaj->stampaci->count()>0)
-        @foreach($uredjaj->stampaci as $st)
-        <h4><em class="text-success">Štampač {{$loop->iteration}}</em></h4>
+        @if ($uredjaj->skeneri->count()>0)
+        @foreach($uredjaj->skeneri as $st)
+        <h4><em class="text-success">Skener {{$loop->iteration}}</em></h4>
         <table class="table table-striped" style="table-layout: fixed;">
             <tbody>
                 <tr>
@@ -64,36 +64,43 @@
                 </tr>
                 <tr>
                     <th style="width: 40%;">
-                        Proizvođač:
+                        Naziv modela:
                     </th>
                     <td style="width: 60%;">
-                        {{$st->stampacModel->proizvodjac->naziv}}
+                        {{$st->skenerModel->naziv}}
                     </td>
                 </tr>
                 <tr>
                     <th style="width: 40%;">
-                        Tip:
+                        Proizvođač:
                     </th>
                     <td style="width: 60%;">
-                        {{$st->stampacModel->tip->naziv}}
+                        {{$st->skenerModel->proizvodjac->naziv}}
+                    </td>
+                </tr>
+                <tr>
+                    <th style="width: 40%;">
+                        Format:
+                    </th>
+                    <td style="width: 60%;">
+                        {{$st->skenerModel->format}}
                     </td>
                 </tr>
                <tr>
-                <th style="width: 20%;">Toner:</th>
+                <th style="width: 20%;">Rezolucija:</th>
                 <td style="width: 80%;">
-                    <strong>{{$st->stampacModel->tipTonera->naziv}}</strong><br>
-                    {{$st->stampacModel->tipTonera->modeli_tonera}}
+                    <strong>{{$st->skenerModel->rezolucija}}</strong><br>
                 </td>
             </tr>
             </tbody>
         </table>
 <div class="row" style="padding-top: 20px;">
             <div class="col-md-3">
-        <a class="btn btn-primary ono btn-block" href="{{ route('racunari.oprema.stampaci.izvadi', $st->id) }}">
+        <a class="btn btn-primary ono btn-block" href="{{ route('racunari.oprema.skeneri.izvadi', $st->id) }}">
             <i class="fa fa-minus-circle fa-fw"></i> Otkači od računara</a>
     </div>
     <div class="col-md-3 col-md-offset-6">
-        <a class="btn btn-danger ono btn-block" href="{{ route('racunari.oprema.stampaci.izvadi.obrisi', $st->id) }}">
+        <a class="btn btn-danger ono btn-block" href="{{ route('racunari.oprema.skeneri.izvadi.obrisi', $st->id) }}">
             <i class="fa fa-trash fa-fw"></i> Otkači i otpiši</a>
     </div>
 </div>
@@ -111,24 +118,24 @@
 <h4> Povezivanje već postojećih, neraspoređenih uređaja</h4>
 <div class="row">
     <div class="col-md-12">
-        <form action="{{route('racunari.oprema.stampaci.dodaj.postojecu',  $uredjaj->id)}}" method="POST" data-parsley-validate>
+        <form action="{{route('racunari.oprema.skeneri.dodaj.postojecu',  $uredjaj->id)}}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row" style="margin-top: 1rem">
 
                 <div class="col-md-12">
-                    <div class="form-group{{ $errors->has('stampac_id') ? ' has-error' : '' }}">
-                        <label for="stampac_id">Štampači:</label>
-                        <select name="stampac_id" id="stampac_id" class="chosen-select form-control" data-placeholder="štampači ..." required>
+                    <div class="form-group{{ $errors->has('skener_id') ? ' has-error' : '' }}">
+                        <label for="skener_id">Skeneri:</label>
+                        <select name="skener_id" id="skener_id" class="chosen-select form-control" data-placeholder="skeneri ..." required>
                             <option value=""></option>
-                            @foreach($stampaci_uredjaji as $p)
-                            <option value="{{ $p->id }}" {{ old( 'stampac_id')== $p->id ? ' selected' : '' }}> sn: {{ $p->serijski_broj }}, {{ $p->stampacModel->proizvodjac->naziv }}, {{ $p->stampacModel->naziv }}
-                                {{ $p->stampacModel->tip->naziv }}
+                            @foreach($skeneri_uredjaji as $p)
+                            <option value="{{ $p->id }}" {{ old( 'skener_id')== $p->id ? ' selected' : '' }}> sn: {{ $p->serijski_broj }}, {{ $p->skenerModel->proizvodjac->naziv }}, {{ $p->skenerModel->naziv }}
+                                {{ $p->skenerModel->format }}, {{ $p->skenerModel->rezolucija }}
                             </option>
                             @endforeach
                         </select>
-                        @if ($errors->has('stampac_id'))
+                        @if ($errors->has('skener_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('stampac_id') }}</strong>
+                            <strong>{{ $errors->first('skener_id') }}</strong>
                         </span>
                         @endif
                     </div>
@@ -151,9 +158,9 @@
     </div>
 </div>
 <hr>
-<h4> Dodavanje novog štampača u bazu i vezivanje za računar</h4>
+<h4> Dodavanje novog skenera u bazu i vezivanje za računar</h4>
     <div class="col-md-12 well" style="margin-top: 1rem">
-        <form action="{{route('racunari.oprema.stampaci.dodaj.novu', $uredjaj->id)}}" method="POST" data-parsley-validate>
+        <form action="{{route('racunari.oprema.skeneri.dodaj.novu', $uredjaj->id)}}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row">
 
@@ -172,20 +179,36 @@
             </div>
 
             <div class="row">
+
                 <div class="col-md-12">
-                    <div class="form-group{{ $errors->has('stampac_model_id') ? ' has-error' : '' }}">
-                        <label for="stampac_model_id">Modeli štampača:</label>
-                        <select name="stampac_model_id" id="stampac_model_id" class="chosen-select form-control" data-placeholder="model ..."
+                    <div class="form-group{{ $errors->has('inventarski_broj') ? ' has-error' : '' }}">
+                        <label for="inventarski_broj">Inventarski broj:</label>
+                        <input type="text" name="inventarski_broj" id="inventarski_broj" class="form-control" value="{{ old('inventarski_broj') }}" maxlength="10"
+                            required> @if ($errors->has('inventarski_broj'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('inventarski_broj') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group{{ $errors->has('skener_model_id') ? ' has-error' : '' }}">
+                        <label for="skener_model_id">Modeli skenera:</label>
+                        <select name="skener_model_id" id="skener_model_id" class="chosen-select form-control" data-placeholder="model ..."
                             required>
                             <option value=""></option>
                             @foreach($modeli as $m)
-                            <option value="{{ $m->id }}" {{ old( 'stampac_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }},  {{ $m->tip->naziv }}, {{ $m->tipTonera->modeli_tonera }}
+                            <option value="{{ $m->id }}" {{ old( 'skener_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }},  {{ $m->naziv }}, {{ $m->format }}, {{ $m->rezolucija }}
                             </option>
                             @endforeach
                         </select>
-                        @if ($errors->has('stampac_model_id'))
+                        @if ($errors->has('skener_model_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('stampac_model_id') }}</strong>
+                            <strong>{{ $errors->first('skener_model_id') }}</strong>
                         </span>
                         @endif
                     </div>

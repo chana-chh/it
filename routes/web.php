@@ -365,10 +365,14 @@ Route::get('modeli/upsevi/uredjaji/{id}', 'Modeli\UpseviKontroler@getUredjaji')-
 Route::get('oprema/procesori/', 'Oprema\ProcesoriKontroler@getLista')->name('procesori.oprema');
 Route::get('oprema/procesori/otpisani/', 'Oprema\ProcesoriKontroler@getListaOtpisani')->name('procesori.oprema.otpisani');
 Route::get('oprema/procesori/detalj/{id}', 'Oprema\ProcesoriKontroler@getDetalj')->name('procesori.oprema.detalj');
-Route::get('oprema/procesori/dodavanje', 'Oprema\ProcesoriKontroler@getDodavanje')->name('procesori.oprema.dodavanje.get');
-Route::post('oprema/procesori/dodavanje', 'Oprema\ProcesoriKontroler@postDodavanje')->name('procesori.oprema.dodavanje.post');
 Route::get('oprema/procesori/izmena/{id}', 'Oprema\ProcesoriKontroler@getIzmena')->name('procesori.oprema.izmena.get');
 Route::post('oprema/procesori/izmena/{id}', 'Oprema\ProcesoriKontroler@postIzmena')->name('procesori.oprema.izmena.post');
+//Osnovne ploce
+Route::get('oprema/osnovne_ploce/', 'Oprema\OsnovnePloceKontroler@getLista')->name('osnovne_ploce.oprema');
+Route::get('oprema/osnovne_ploce/otpisani/', 'Oprema\OsnovnePloceKontroler@getListaOtpisani')->name('osnovne_ploce.oprema.otpisani');
+Route::get('oprema/osnovne_ploce/detalj/{id}', 'Oprema\OsnovnePloceKontroler@getDetalj')->name('osnovne_ploce.oprema.detalj');
+Route::get('oprema/osnovne_ploce/izmena/{id}', 'Oprema\OsnovnePloceKontroler@getIzmena')->name('osnovne_ploce.oprema.izmena.get');
+Route::post('oprema/osnovne_ploce/izmena/{id}', 'Oprema\OsnovnePloceKontroler@postIzmena')->name('osnovne_ploce.oprema.izmena.post');
 
 //Racunari
 Route::get('oprema/racunari/', 'Oprema\RacunariKontroler@getLista')->name('racunari.oprema');
@@ -376,47 +380,57 @@ Route::get('oprema/racunari/ajax', 'Oprema\RacunariKontroler@getAjax')->name('ra
 Route::get('oprema/racunari/detalj/{id}', 'Oprema\RacunariKontroler@getDetalj')->name('racunari.oprema.detalj');
 Route::get('oprema/racunari/dodavanje', 'Oprema\RacunariKontroler@getDodavanje')->name('racunari.oprema.dodavanje.get');
 Route::post('oprema/racunari/dodavanje', 'Oprema\RacunariKontroler@postDodavanje')->name('racunari.oprema.dodavanje.post');
+//Racunari - aplikacije
 Route::get('oprema/racunari/aplikacije/{id}', 'Oprema\RacunariKontroler@getAplikacije')->name('racunari.oprema.aplikacije');
+//Racunari - skeneriploce
 Route::get('oprema/racunari/ploce/{id}', 'Oprema\RacunariKontroler@getPloce')->name('racunari.oprema.ploce');
 Route::get('oprema/racunari/ploce/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiPlocu')->name('racunari.oprema.ploce.izvadi');
 Route::get('oprema/racunari/ploce/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiPlocu')->name('racunari.oprema.ploce.izvadi.obrisi');
 Route::post('oprema/racunari/ploce/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajPlocuNovu')->name('racunari.oprema.ploce.dodaj.novu');
 Route::post('oprema/racunari/ploce/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajPlocuPostojecu')->name('racunari.oprema.ploce.dodaj.postojecu');
+//Racunari - procesori
 Route::get('oprema/racunari/procesori/{id}', 'Oprema\RacunariKontroler@getProcesore')->name('racunari.oprema.procesori');
 Route::get('oprema/racunari/procesori/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiProcesor')->name('racunari.oprema.procesori.izvadi');
 Route::get('oprema/racunari/procesori/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiProcesor')->name('racunari.oprema.procesori.izvadi.obrisi');
 Route::post('oprema/racunari/procesori/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajProcesorNovi')->name('racunari.oprema.procesori.dodaj.novu');
 Route::post('oprema/racunari/procesori/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajProcesorPostojeci')->name('racunari.oprema.procesori.dodaj.postojecu');
+//Racunari - memorija
 Route::get('oprema/racunari/memorije/{id}', 'Oprema\RacunariKontroler@getMemorije')->name('racunari.oprema.memorije');
 Route::get('oprema/racunari/memorije/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiMemoriju')->name('racunari.oprema.memorije.izvadi');
 Route::get('oprema/racunari/memorije/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiMemoriju')->name('racunari.oprema.memorije.izvadi.obrisi');
 Route::post('oprema/racunari/memorije/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajMemorijuNovu')->name('racunari.oprema.memorije.dodaj.novu');
 Route::post('oprema/racunari/memorije/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajMemorijuPostojecu')->name('racunari.oprema.memorije.dodaj.postojecu');
+//Racunari - hdd
 Route::get('oprema/racunari/hddovi/{id}', 'Oprema\RacunariKontroler@getHddove')->name('racunari.oprema.hddovi');
 Route::get('oprema/racunari/hddovi/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiHdd')->name('racunari.oprema.hddovi.izvadi');
 Route::get('oprema/racunari/hddovi/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiHdd')->name('racunari.oprema.hddovi.izvadi.obrisi');
 Route::post('oprema/racunari/hddovi/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajHddNovi')->name('racunari.oprema.hddovi.dodaj.novu');
 Route::post('oprema/racunari/hddovi/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajHddPostojeci')->name('racunari.oprema.hddovi.dodaj.postojecu');
+//Racunari - napajanja
 Route::get('oprema/racunari/napajanja/{id}', 'Oprema\RacunariKontroler@getNapajanja')->name('racunari.oprema.napajanja');
 Route::get('oprema/racunari/napajanja/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiNapajanje')->name('racunari.oprema.napajanja.izvadi');
 Route::get('oprema/racunari/napajanja/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiNapajanje')->name('racunari.oprema.napajanja.izvadi.obrisi');
 Route::post('oprema/racunari/napajanja/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajNapajanjeNovo')->name('racunari.oprema.napajanja.dodaj.novu');
 Route::post('oprema/racunari/napajanja/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajNapajanjePostojece')->name('racunari.oprema.napajanja.dodaj.postojecu');
+//Racunari - vga
 Route::get('oprema/racunari/vga/{id}', 'Oprema\RacunariKontroler@getVga')->name('racunari.oprema.vga');
 Route::get('oprema/racunari/vga/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiVga')->name('racunari.oprema.vga.izvadi');
 Route::get('oprema/racunari/vga/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiVga')->name('racunari.oprema.vga.izvadi.obrisi');
 Route::post('oprema/racunari/vga/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajVgaNovi')->name('racunari.oprema.vga.dodaj.novu');
 Route::post('oprema/racunari/vga/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajVgaPostojeci')->name('racunari.oprema.vga.dodaj.postojecu');
+//Racunari - monitori
 Route::get('oprema/racunari/monitori/{id}', 'Oprema\RacunariKontroler@getMonitor')->name('racunari.oprema.monitori');
 Route::get('oprema/racunari/monitori/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiMonitor')->name('racunari.oprema.monitori.izvadi');
 Route::get('oprema/racunari/monitori/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiMonitor')->name('racunari.oprema.monitori.izvadi.obrisi');
 Route::post('oprema/racunari/monitori/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajMonitorNovi')->name('racunari.oprema.monitori.dodaj.novu');
 Route::post('oprema/racunari/monitori/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajMonitorPostojeci')->name('racunari.oprema.monitori.dodaj.postojecu');
+//Racunari - stampaci
 Route::get('oprema/racunari/stampaci/{id}', 'Oprema\RacunariKontroler@getStampac')->name('racunari.oprema.stampaci');
 Route::get('oprema/racunari/stampaci/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiStampac')->name('racunari.oprema.stampaci.izvadi');
 Route::get('oprema/racunari/stampaci/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiStampac')->name('racunari.oprema.stampaci.izvadi.obrisi');
 Route::post('oprema/racunari/stampaci/dodaj/novu/{id}', 'Oprema\RacunariKontroler@postDodajStampacNovi')->name('racunari.oprema.stampaci.dodaj.novu');
 Route::post('oprema/racunari/stampaci/dodaj/postojecu/{id}', 'Oprema\RacunariKontroler@postDodajStampacPostojeci')->name('racunari.oprema.stampaci.dodaj.postojecu');
+//Racunari - skeneri
 Route::get('oprema/racunari/skeneri/{id}', 'Oprema\RacunariKontroler@getSkener')->name('racunari.oprema.skeneri');
 Route::get('oprema/racunari/skeneri/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiSkener')->name('racunari.oprema.skeneri.izvadi');
 Route::get('oprema/racunari/skeneri/izvadi/obrisi/{id}', 'Oprema\RacunariKontroler@getIzvadiObrisiSkener')->name('racunari.oprema.skeneri.izvadi.obrisi');

@@ -39,14 +39,6 @@ class ProcesoriKontroler extends Kontroler
         return view('oprema.procesori_detalj')->with(compact ('uredjaj', 'brojno_stanje'));
     }
 
-    public function getDodavanje()
-    {
-        $modeli = ProcesorModel::all();
-        $racunari = Racunar::all();
-        $otpremnice = Otpremnica::all();
-        return view('oprema.procesori_dodavanje')->with(compact ('modeli', 'racunari', 'otpremnice'));
-    }
-
     public function getIzmena($id)
     {
         $uredjaj = Procesor::find($id);
@@ -74,36 +66,6 @@ class ProcesoriKontroler extends Kontroler
         $uredjaj->save();
 
         Session::flash('uspeh','Procesor je uspešno izmenjen!');
-        return redirect()->route('procesori.oprema');
-    }
-
-    public function postDodavanje(Request $request)
-    {
-
-        $this->validate($request, [
-                'serijski_broj' => ['max:50'],
-                'procesor_model_id' => ['required'],
-            ]);
-        // $procesori_racunari_id = Procesor::all()->pluck('racunar_id');
-
-        // if ($procesori_racunari_id->contains($request->racunar_id)) {
-        //     Session::flash('greska','Ovaj računar već ima procesor!');
-        //     $racunar_greska = Racunar::find($request->racunar_id);
-        //     DB::table('podesavanja')->insert([
-        //     ['naziv' => 'racunar_procesor', 'vrednost' => $racunar_greska->ime]
-        // ]);
-        // }
-
-        $uredjaj = new Procesor();
-        $uredjaj->serijski_broj = $request->serijski_broj;
-        $uredjaj->procesor_model_id = $request->procesor_model_id;
-        $uredjaj->racunar_id = $request->racunar_id;
-        $uredjaj->stavka_otpremnice_id = $request->stavka_otpremnice_id;
-        $uredjaj->napomena = $request->napomena;
-
-        $uredjaj->save();
-
-        Session::flash('uspeh','Procesor je uspešno dodat!');
         return redirect()->route('procesori.oprema');
     }
 
