@@ -8,21 +8,39 @@
 
 @section('naslov')
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-10">
         <h1>
             <span>
-                <img class="slicica_animirana" alt="Osnovne ploče" src="{{url('/images/mbd.png')}}" style="height:64px;">
+                <img class="slicica_animirana" alt="Procesori" src="{{url('/images/mbd.png')}}" style="height:64px;">
             </span>&emsp;Osnovne ploče</h1>
     </div>
-    <div class="col-md-8 text-right" style="padding-top: 50px; font-size: 1.25rem;;">
-    <div class="alert alert-info alert-dismissible ono" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-<strong>Obavštenje: </strong> Dodavanje osnovne ploče se obavlja kroz otpremnicu ili direktno u računar.
-</div>  
-</div>  
-
+    <div class="col-md-2 text-right" style="padding-top: 50px;">
+        <button id="pretragaDugme" class="btn btn-success btn-block ono">
+            <i class="fa fa-search fa-fw"></i> Napredna pretraga
+        </button>
+    </div>
 </div>
-        <hr>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1 text-center" style="font-size: 1rem;;">
+        <div class="alert alert-info alert-dismissible ono" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Obavštenje: </strong> Dodavanje osnovnih ploča se obavlja kroz <a href="{{ route('otpremnice') }}" style="color: #18BC9C"><strong>otpremnicu</strong></a>  ili sa detaljnog pregleda <a href="{{route('racunari.oprema')}}" style="color: #18BC9C"><strong>računara</strong></a>.
+        </div>
+    </div>
+</div>
+<div class="row well" id="pretraga" style="display: none;">
+    <div class="col-md-2">
+        <a id="pretragaDugme" href="{{route('osnovne_ploce.oprema.otpisani')}}" class="btn btn-success btn-block ono">
+            <i class="fa fa-recycle fa-fw"></i> Otpisani
+        </a>
+    </div>
+    <div class="col-md-10">
+        Ostalo
+    </div>
+    
+</div>
 <div class="row">
     <div class="col-md-12">
 @if($uredjaj->isEmpty())
@@ -122,6 +140,10 @@ $( document ).ready(function() {
     });
 
         new $.fn.dataTable.FixedHeader( tabela );
+
+        $('#pretragaDugme').click(function () {
+            $('#pretraga').toggle();
+        });
 
 });
 </script>
