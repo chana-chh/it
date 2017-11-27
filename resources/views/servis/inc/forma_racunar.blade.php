@@ -137,46 +137,11 @@
 
 <script>
     $(document).ready(function () {
-        $(".nevidljivi").hide();
-
-        $("#laptop").click(function () {
-            if (($(this).is(":checked")) || ($("#brend").is(":checked")) || ($("#server").is(":checked"))) {
-                $(".nevidljivi").show(300);
-                resizeChosen();
-            } else {
-                $(".nevidljivi").hide(200);
-            }
-        });
-        $("#brend").click(function () {
-            if ($(this).is(":checked") || ($("#laptop").is(":checked")) || ($("#server").is(":checked"))) {
-                $(".nevidljivi").show(300);
-                resizeChosen();
-            } else {
-                $(".nevidljivi").hide(200);
-            }
-        });
-        $("#server").click(function () {
-            if ($(this).is(":checked") || ($("#brend").is(":checked")) || ($("#laptop").is(":checked"))) {
-                $(".nevidljivi").show(300);
-                resizeChosen();
-            } else {
-                $(".nevidljivi").hide(200);
-            }
-        });
-
         resizeChosen();
         jQuery(window).on('resize', resizeChosen);
 
-        var chsn = $('.chosen-select').chosen({
+        $('.chosen-select').chosen({
             allow_single_deselect: true
-        });
-
-        chsn.on('change', function (evt, params) {
-            if (params == undefined && evt.currentTarget.id == 'racunar_id') {
-                $('#obavestenje').hide();
-            } else {
-                $('#obavestenje').show();
-            }
         });
 
         function resizeChosen() {
@@ -184,11 +149,5 @@
                 $(this).attr('style', 'width: 100%');
             });
         }
-
-        $("#racunar_id").on('change', function () {
-            var ima_nema = $(this).find(":selected").data("procesor");
-            $("#obavestenje").html(ima_nema);
-        });
     });
-
 </script>

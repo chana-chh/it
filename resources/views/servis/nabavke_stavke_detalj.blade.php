@@ -78,7 +78,7 @@
 <div class="row well" style="overflow: auto;">
     <h3>Uređaju vezani za stavku: <span class="text-success">{{ $stavka->naziv }}</span></h3>
     <hr style="border-top: 1px solid #18BC9C">
-    @if($stavka->uredjaji()->isEmpty())
+    @if(!$stavka->uredjaji() || $stavka->uredjaji()->isEmpty())
     <p class="text-danger">Trenutno nema uređaja vezanih za ovu stavku</p>
     @else
 
@@ -104,7 +104,7 @@
 
 @section('traka')
 <div class="well">
-    <h3>Dodavanje uređaja: <span class="text-success">{{ $stavka->naziv }}</span></h3>
+    <h3>Dodavanje uređaja: <span class="text-success">{{ $stavka->vrstaUredjaja->naziv }}</span></h3>
     <hr style="border-top: 1px solid #18BC9C">
     @if($stavka->vrstaUredjaja->id === 1)
     @include('servis.inc.forma_racunar')
@@ -152,7 +152,7 @@
     $(document).on('click', '#brisanjeStavkeNabavke', function () {
         var id = $(this).val();
         $('#idBrisanje').val(id);
-        var ruta = "{{-- route('nabavke.stavke.brisanje') --}}";
+        var ruta = "{{ route('nabavke.stavke.brisanje') }}";
         $('#brisanje-forma').attr('action', ruta);
     });
 </script>

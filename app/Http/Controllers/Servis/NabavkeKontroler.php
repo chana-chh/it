@@ -91,7 +91,7 @@ class NabavkeKontroler extends Kontroler
         $nabavka->save();
 
         Session::flash('uspeh', 'Nabavka je uspešno izmenjena!');
-        return redirect()->route('nabavke');
+        return redirect()->route('nabavke.detalj', $id);
     }
 
     public function postBrisanje(Request $request)
