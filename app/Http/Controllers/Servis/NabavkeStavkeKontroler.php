@@ -9,6 +9,7 @@ use Image;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\NabavkaStavka;
 use App\Modeli\Nabavka;
+use App\Modeli\Proizvodjac;
 
 class NabavkeStavkeKontroler extends Kontroler
 {
@@ -58,10 +59,8 @@ class NabavkeStavkeKontroler extends Kontroler
     public function getDetalj($id)
     {
         $stavka = NabavkaStavka::find($id);
-//        if (NabavkaStavka::find($id)->uredjaji()) {
-//            $uredjaji = NabavkaStavka::find($id)->uredjaji()->paginate(5);
-//        }
-        return view('servis.nabavke_stavke_detalj')->with(compact('stavka'));
+        $proizvodjaci = Proizvodjac::all();
+        return view('servis.nabavke_stavke_detalj')->with(compact('stavka', 'proizvodjaci'));
     }
 
     public function getIzmena($id)
