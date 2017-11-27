@@ -32,7 +32,7 @@
 </div>
 <div class="row well" id="pretraga" style="display: none;">
     <div class="col-md-2">
-        <a id="pretragaDugme" href="{{route('procesori.oprema.otpisani')}}" class="btn btn-success btn-block ono">
+        <a href="{{route('procesori.oprema.otpisani')}}" class="btn btn-success btn-block ono">
             <i class="fa fa-recycle fa-fw"></i> Otpisani
         </a>
     </div>
@@ -86,9 +86,6 @@
                 <a class="btn btn-info btn-sm" id="dugmeIzmena" href="{{route('procesori.oprema.izmena.get', $o->id)}}">
                     <i class="fa fa-pencil"></i>
                 </a>
-                <button class="btn btn-danger btn-sm otvori-brisanje" data-toggle="modal" data-target="#brisanjeModal" value="{{$o->id}}">
-                    <i class="fa fa-recycle"></i>
-                </button>
             </td>
         </tr>
         @endforeach
@@ -108,12 +105,6 @@
 @section('skripte')
 <script>
 $( document ).ready(function() {
-
-    $(document).on('click', '.otvori-brisanje', function () {
-            var id = $(this).val();
-            $('#idBrisanje').val(id);
-            /*var ruta = " route('procesori.oprema.brisanje') }}";*/
-            $('#brisanje-forma').attr('action', ruta); });
 
         var tabela = $('#tabela').DataTable({
 

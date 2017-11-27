@@ -30,13 +30,13 @@
                 <i class="fa fa-list"></i>
             </a>
             @if(!$uredjaj->deleted_at)
-            <a class="btn btn-primary" href=""
+            <a class="btn btn-primary" href="{{route('procesori.oprema.izmena.get', $uredjaj->id)}}"
                title="Izmena podataka procesora">
                 <i class="fa fa-pencil"></i>
             </a>
-            <button id="idBrisanje" class="btn btn-primary"
+            <button class="btn btn-primary otvori-brisanje"
                     title="Otpis procesora"
-                    data-toggle="modal" data-target="#brisanjeModal"
+                    data-toggle="modal" data-target="#otpisModal"
                     value="{{$uredjaj->id}}">
                 <i class="fa fa-recycle"></i>
             </button>
@@ -116,7 +116,7 @@
 </div>
 
 <!--  POCETAK brisanjeModal  -->
-@include('sifarnici.inc.modal_brisanje')
+@include('sifarnici.inc.modal_otpis')
 <!--  KRAJ brisanjeModal  -->
 @endsection
 
@@ -206,11 +206,11 @@
 $( document ).ready(function() {
 
     $(document).on('click', '.otvori-brisanje', function () {
-            var id = $(this).val();
-            $('#idBrisanje').val(id);
-            /*var ruta = " route('procesori.oprema.brisanje') }}";*/
-            $('#brisanje-forma').attr('action', ruta); });
 
+            var id = $(this).val();
+            $('#idOtpis').val(id);
+            var ruta = " {{route('procesori.oprema.otpis') }}";
+            $('#brisanje-forma').attr('action', ruta); });
 });
 </script>
 @endsection

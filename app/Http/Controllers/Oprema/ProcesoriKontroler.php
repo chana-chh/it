@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Oprema;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Session;
 use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
+use Carbon\Carbon;
 
 Use App\Modeli\Procesor;
 Use App\Modeli\ProcesorModel;
@@ -67,6 +69,41 @@ class ProcesoriKontroler extends Kontroler
 
         Session::flash('uspeh','Procesor je uspešno izmenjen!');
         return redirect()->route('procesori.oprema');
+    }
+
+    public function postOtpis(Request $request)
+    {
+
+        $data = Procesor::find($request->idOtpis);
+        $uredjaj = $data->racunar;
+        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .'je dana:'. Carbon::now().' otpisao  procesor koji je bio u računaru: '. $uredjaj->ime . ', kancelarija ' . $uredjaj->kancelarija->naziv;
+        $data->racunar_id = null;
+        $data->save();
+        $odgovor = $data->delete();
+        if ($odgovor) {
+            Session::flash('uspeh', 'Procesor je uspešno otpisan!');
+        } else {
+            Session::flash('greska', 'Došlo je do greške prilikom otpisa procesora. Pokušajte ponovo, kasnije!');
+        }
+        return redirect()->route('procesori.oprema');
+    }
+
+    public function postOtpisVracanje(Request $request)
+    {
+
+        $data = Procesor::withTrashed()->find($request->idVracanje);
+        $data->restore();
+        if (!$data->stavkaOtpremnice) {
+              $data->stavka_otpremnice_id = 2; //Stavka otpremnice rezervisana za stare procesore
+          }
+        $odgovor = $data->save();
+
+        if ($odgovor) {
+            Session::flash('uspeh', 'Procesor je uspešno vraćen u ponovnu upotrebu iz otpisa!');
+        } else {
+            Session::flash('greska', 'Došlo je do greške prilikom vraćanja iz otpisa procesora. Pokušajte ponovo, kasnije!');
+        }
+        return redirect()->route('procesori.oprema.otpisani');
     }
 
 }

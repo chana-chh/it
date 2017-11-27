@@ -63,14 +63,8 @@
             </td>
 
             <td style="text-align:right; vertical-align: middle; line-height: normal;">
-                <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('procesori.oprema.detalj', $o->id)}}">
-                    <i class="fa fa-eye"></i>
-                </a>
-                <a class="btn btn-info btn-sm" id="dugmeIzmena" href="{{route('procesori.oprema.izmena.get', $o->id)}}">
-                    <i class="fa fa-pencil"></i>
-                </a>
-                <button class="btn btn-danger btn-sm otvori-brisanje" data-toggle="modal" data-target="#brisanjeModal" value="{{$o->id}}">
-                    <i class="fa fa-recycle"></i>
+                <button title="Vrati iz otpisa za ponovnu uppotrebu" class="btn btn-warning btn-sm vracanje" data-toggle="modal" data-target="#vracanjeModal" value="{{$o->id}}">
+                    <i class="fa fa-retweet"></i>
                 </button>
             </td>
         </tr>
@@ -82,21 +76,20 @@
 </div>
 
 <!--  POCETAK brisanjeModal  -->
-@include('sifarnici.inc.modal_brisanje')
+@include('sifarnici.inc.modal_vracanje')
 <!--  KRAJ brisanjeModal  -->
-
-
 @endsection
 
 @section('skripte')
 <script>
 $( document ).ready(function() {
 
-    $(document).on('click', '.otvori-brisanje', function () {
+    $(document).on('click', '.vracanje', function () {
             var id = $(this).val();
-            $('#idBrisanje').val(id);
-            /*var ruta = " route('procesori.oprema.brisanje') }}";*/
-            $('#brisanje-forma').attr('action', ruta); });
+            alert(id);
+            $('#idVracanje').val(id);
+            var ruta = " {{route('procesori.oprema.vracanje_otpis') }}";
+            $('#vracanje-forma').attr('action', ruta); });
 
         var tabela = $('#tabela').DataTable({
 
