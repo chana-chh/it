@@ -31,3 +31,6 @@ S_TONERI dodati modeli_tonera polje
 Dodati meni i CRUD za vrste uredjaja i Baterije
 
 LICENCE videti sta treba da bude nullable
+
+Nabavke stavke izmena modal ili nova strana (nije odradjeno).
+Nabavke stavke uredjaj forsirano brisanje.

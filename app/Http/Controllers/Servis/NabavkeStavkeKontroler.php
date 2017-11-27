@@ -10,20 +10,10 @@ use App\Http\Controllers\Kontroler;
 use App\Modeli\NabavkaStavka;
 use App\Modeli\Nabavka;
 use App\Modeli\Proizvodjac;
+use App\Modeli\MonitorModel;
 
 class NabavkeStavkeKontroler extends Kontroler
 {
-
-//    public function getLista($id_otpremnice)
-//    {
-//        $otpremnica = Otpremnica::find($id_otpremnice);
-//        return view('servis.otpremnice_stavke')->with(compact('otpremnica'));
-//    }
-//    public function getDodavanje($id_otpremnice)
-//    {
-//        $otpremnica = Otpremnica::find($id_otpremnice);
-//        return view('servis.otpremnice_stavke_dodavanje')->with(compact('otpremnica'));
-//    }
 
     public function postDodavanje(Request $request)
     {
@@ -60,7 +50,8 @@ class NabavkeStavkeKontroler extends Kontroler
     {
         $stavka = NabavkaStavka::find($id);
         $proizvodjaci = Proizvodjac::all();
-        return view('servis.nabavke_stavke_detalj')->with(compact('stavka', 'proizvodjaci'));
+        $modeli_monitora = MonitorModel::all();
+        return view('servis.nabavke_stavke_detalj')->with(compact('stavka', 'proizvodjaci', 'modeli_monitora'));
     }
 
     public function getIzmena($id)
@@ -89,19 +80,20 @@ class NabavkeStavkeKontroler extends Kontroler
         $stavka->save();
 
         Session::flash('uspeh', 'Stavka otpremnice je uspešno izmenjena!');
-        return redirect()->route('otpremnice.stavke', $stavka->otpremnica_id);
+        return redirect()->route('nabavke.stavke', $stavka->nabavka_id);
     }
 
     public function postBrisanje(Request $request)
     {
-        $data = OtpremnicaStavka::find($request->idBrisanje);
+        $data = NabavkaStavka::find($request->idBrisanje);
+        $id_nabavke = $data->nabavka_id;
         $odgovor = $data->delete();
         if ($odgovor) {
-            Session::flash('uspeh', 'Satvka otpremince je uspešno obrisana!');
+            Session::flash('uspeh', 'Satvka je uspešno obrisana!');
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
         }
-        return redirect()->back();
+        return redirect()->route('nabavke.detalj', $id_nabavke);
     }
 
 }

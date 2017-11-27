@@ -70,6 +70,7 @@ Route::post('nabavke/brisanje', 'Servis\NabavkeKontroler@postBrisanje')->name('n
 // Nabavke stavke
 Route::post('nabavke/stavke/dodavanje', 'Servis\NabavkeStavkeKontroler@postDodavanje')->name('nabavke.stavke.dodavanje.post');
 Route::get('nabavke/stavke/detalj/{id}', 'Servis\NabavkeStavkeKontroler@getDetalj')->name('nabavke.stavke.detalj');
+Route::post('nabavke/stavke/brisanje', 'Servis\NabavkeStavkeKontroler@postBrisanje')->name('nabavke.stavke.brisanje');
 
 
 // SIFARNICI

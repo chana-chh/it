@@ -38,11 +38,11 @@
         <table class="table table-striped display" cellspacing="0" width="100%" id="tabela">
             <thead>
             <th style="width: 5%;">#</th>
-            <th style="width: 15%;">Dobavljač</th>
+            <th style="width: 20%;">Dobavljač</th>
             <th style="width: 10%;">Datum</th>
             <th style="width: 10%; text-align: right;">Garancija (mes)</th>
             <th style="width: 45%;">Napomena</th>
-            <th style="width: 15%; text-align:right;">
+            <th style="width: 10%; text-align:right;">
                 <i class="fa fa-cogs"></i>&emsp;Akcije
             </th>
             </thead>
@@ -50,11 +50,7 @@
                 @foreach ($nabavke as $nabavka)
                 <tr>
                     <td>{{ $nabavka->id }}</td>
-                    <td>
-                        <a href="{{ route('dobavljaci.detalj', $nabavka->dobavljac->id) }}">
-                            <strong>{{ $nabavka->dobavljac->naziv }}</strong>
-                        </a>
-                    </td>
+                    <td>{{ $nabavka->dobavljac->naziv }}</td>
                     <td>{{ \Carbon\Carbon::parse($nabavka->datum)->format('d.m.Y') }}</td>
                     <td class="text-right">{{ $nabavka->garancija }}</td>
                     <td>{{ $nabavka->napomena }}</td>
@@ -63,15 +59,15 @@
                            href="{{ route('nabavke.detalj', $nabavka->id) }}">
                             <i class="fa fa-eye"></i>
                         </a>
-                        <a class="btn btn-info btn-sm"
-                           href="{{ route('nabavke.izmena.get', $nabavka->id) }}">
-                            <i class="fa fa-pencil"></i>
-                        </a>
-                        <button class="btn btn-danger btn-sm otvori-brisanje"
-                                data-toggle="modal" data-target="#brisanjeModal"
-                                value="{{ $nabavka->id }}">
-                            <i class="fa fa-trash"></i>
-                        </button>
+                        <!--                        <a class="btn btn-info btn-sm"
+                                                   href="{{-- route('nabavke.izmena.get', $nabavka->id) --}}">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>-->
+                        <!--                        <button class="btn btn-danger btn-sm otvori-brisanje"
+                                                        data-toggle="modal" data-target="#brisanjeModal"
+                                                        value="{{-- $nabavka->id --}}">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>-->
                     </td>
                 </tr>
                 @endforeach
