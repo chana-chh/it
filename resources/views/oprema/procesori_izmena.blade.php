@@ -135,7 +135,7 @@
     <div class="col-md-6">
         <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
             <label for="napomena">Napomena:</label>
-            <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena', $uredjaj->napomena) }}</textarea>
+            <textarea rows="2" cols="50" name="napomena" id="napomena" class="form-control">{{ old('napomena', $uredjaj->napomena) }}</textarea>
             @if ($errors->has('napomena'))
             <span class="help-block">
                 <strong>{{ $errors->first('napomena') }}</strong>

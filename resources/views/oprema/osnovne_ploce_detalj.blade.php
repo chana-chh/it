@@ -25,7 +25,7 @@
                title="Povratak na početnu stranu">
                 <i class="fa fa-home"></i>
             </a>
-            <a class="btn btn-primary" href="{{route('procesori.oprema')}}"
+            <a class="btn btn-primary" href="{{route('osnovne_ploce.oprema')}}"
                title="Povratak na listu osnovne ploče">
                 <i class="fa fa-list"></i>
             </a>
@@ -144,11 +144,37 @@
                 <td style="width: 60%;">{{$uredjaj->osnovnaPlocaModel->cipset}}
                 </td>
             </tr>
+
+             <tr>
+                <th style="width: 20%;">Soket:</th>
+                <td style="width: 80%;">{{$uredjaj->osnovnaPlocaModel->soket->naziv}}
+                </td>
+            </tr>
+
+           <tr>
+                <th style="width: 20%;">Tip memorije:</th>
+                <td style="width: 80%;">{{$uredjaj->osnovnaPlocaModel->tipMemorije->naziv}}
+                </td>
+            </tr>
+
             <tr>
                 <th style="width: 40%;">Ocena:</th>
                 <td style="width: 60%;">{{$uredjaj->osnovnaPlocaModel->ocena}}
                 </td>
             </tr>
+
+            <tr>
+                <th style="width: 40%;">USB 3.0 port:</th>
+                <td style="width: 60%;">{!! $uredjaj->osnovnaPlocaModel->usb_tri == 1 ? "<i class=\"fa fa-check-square-o\"></i>" : " " !!}
+                </td>
+            </tr>
+
+            <tr>
+                <th style="width: 40%;">Integrisan grafički adapter:</th>
+                <td style="width: 60%;">{!!  $uredjaj->osnovnaPlocaModel->integrisana_grafika == 1 ? "<i class=\"fa fa-check-square-o\"></i>" : " " !!}
+                </td>
+            </tr>
+
         </tbody>
     </table>
     <div class="row">
