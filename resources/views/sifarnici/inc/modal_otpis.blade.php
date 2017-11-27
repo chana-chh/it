@@ -10,15 +10,25 @@
                 <form id="brisanje-forma" action="" method="POST">
                     {{ csrf_field() }}
                     <input type="hidden" id="idOtpis" name="idOtpis">
-                    <button id = "btn-brisanje-obrisi" class = "btn btn-danger">
-                        <i class = "fa fa-trash"></i> Otpiši
-                    </button>
-                </form>
+                    <hr style="margin-top: 30px;">
+
+            <div class="row dugmici" style="margin-top: 30px;">
+            <div class="col-md-12" >
+                <div class="form-group">
+                    <div class="col-md-6 snimi">
+                        <button id = "btn-brisanje-obrisi" type="submit" class="btn btn-danger btn-block ono">
+                            <i class="fa fa-recycle"></i>&emsp;Otpiši
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-primary btn-block ono" data-dismiss="modal">
+                            <i class="fa fa-ban"></i>&emsp;Otkaži
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class = "modal-footer">
-                <button class = "btn btn-primary" data-dismiss="modal">
-                    <i class = "fa fa-ban"></i> Otkaži
-                </button>
+        </div>
+                </form>
             </div>
         </div>
     </div>
