@@ -1,4 +1,4 @@
-<form action="{{-- route('monitori.oprema.dodavanje.post') --}}" method="POST" data-parsley-validate>
+<form action="{{ route('nabavke.stavke.monitori.dodavanje') }}" method="POST" data-parsley-validate>
     {{ csrf_field() }}
     <input type="hidden" name="stavka_nabavke_id" id="stavka_nabavke_id" value="{{ $stavka->id }}">
     <input type="hidden" name="vrsta_uredjaja_id" id="vrsta_uredjaja_id" value="{{ $stavka->vrstaUredjaja->id }}">
@@ -6,7 +6,7 @@
         <div class="form-group{{ $errors->has('inventarski_broj') ? ' has-error' : '' }}">
             <label for="inventarski_broj">Inventarski broj:</label>
             <input type="text" name="inventarski_broj" id="inventarski_broj" class="form-control"
-                   value="{{ old('inventarski_broj') }}" maxlength="50">
+                   value="{{ old('inventarski_broj') }}" maxlength="10">
             @if($errors->has('inventarski_broj'))
             <span class="help-block">
                 <strong>{{ $errors->first('inventarski_broj') }}</strong>
@@ -18,7 +18,8 @@
         <div class="form-group{{ $errors->has('serijski_broj') ? ' has-error' : '' }}">
             <label for="serijski_broj">Serijski broj:</label>
             <input type="text" name="serijski_broj" id="serijski_broj" class="form-control"
-                   value="{{ old('serijski_broj') }}" maxlength="50">
+                   value="{{ old('serijski_broj') }}"
+                   maxlength="50" required>
             @if($errors->has('serijski_broj'))
             <span class="help-block">
                 <strong>{{ $errors->first('serijski_broj') }}</strong>
@@ -30,7 +31,7 @@
         <div class="form-group{{ $errors->has('monitor_model_id') ? ' has-error' : '' }}">
             <label for="monitor_model_id">Model monitora:</label>
             <select name="monitor_model_id" id="monitor_model_id" class="chosen-select form-control"
-                    data-placeholder="Model monitora ...">
+                    data-placeholder="Model monitora ..." required>
                 <option value=""></option>
                 @foreach($modeli_monitora as $mm)
                 <option value="{{ $mm->id }}"

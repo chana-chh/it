@@ -43,7 +43,7 @@
                 <div class="col-md-4">
                     <div class="form-group{{ $errors->has('dobavljac_id') ? ' has-error' : '' }}">
                         <label for="dobavljac_id">Dobavljač:</label>
-                        &emsp;<a href="{{ route('dobavljaci.dodavanje.get') }}">+</a>
+                        <!--&emsp;<a href="{{-- route('dobavljaci.dodavanje.get') --}}">+</a>-->
                         <select id="dobavljac_id" name="dobavljac_id"
                                 class="chosen-select form-control"
                                 data-placeholder="dobavljač ..." required>

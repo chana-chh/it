@@ -69,9 +69,16 @@ Route::post('nabavke/brisanje', 'Servis\NabavkeKontroler@postBrisanje')->name('n
 
 // Nabavke stavke
 Route::post('nabavke/stavke/dodavanje', 'Servis\NabavkeStavkeKontroler@postDodavanje')->name('nabavke.stavke.dodavanje.post');
+Route::get('nabavke/stavke/izmena/{id}', 'Servis\NabavkeStavkeKontroler@getIzmena')->name('nabavke.stavke.izmena.get');
+Route::post('nabavke/stavke/izmena/{id}', 'Servis\NabavkeStavkeKontroler@postIzmena')->name('nabavke.stavke.izmena.post');
 Route::get('nabavke/stavke/detalj/{id}', 'Servis\NabavkeStavkeKontroler@getDetalj')->name('nabavke.stavke.detalj');
 Route::post('nabavke/stavke/brisanje', 'Servis\NabavkeStavkeKontroler@postBrisanje')->name('nabavke.stavke.brisanje');
 
+// Nabavke stavke dodavanje opreme
+Route::post('nabavke/stavke/monitori/dodavanje', 'Servis\NabavkeStavkeKontroler@postMonitoriDodavanje')->name('nabavke.stavke.monitori.dodavanje');
+Route::post('nabavke/stavke/stampaci/dodavanje', 'Servis\NabavkeStavkeKontroler@postStampaciDodavanje')->name('nabavke.stavke.stampaci.dodavanje');
+Route::post('nabavke/stavke/skeneri/dodavanje', 'Servis\NabavkeStavkeKontroler@postSkeneriDodavanje')->name('nabavke.stavke.skeneri.dodavanje');
+Route::post('nabavke/stavke/upsevi/dodavanje', 'Servis\NabavkeStavkeKontroler@postUpseviDodavanje')->name('nabavke.stavke.upsevi.dodavanje');
 
 // SIFARNICI
 // Proizvodjaci
