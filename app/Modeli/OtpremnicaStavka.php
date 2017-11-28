@@ -69,54 +69,9 @@ class OtpremnicaStavka extends Model
         return $this->hasMany('App\Modeli\Projektor', 'stavka_otpremnice_id', 'id');
     }
 
-    public function uredjaji()
+    public function grafickiAdapteri()
     {
-        if (!$this->monitori->isEmpty()) {
-            return $this->monitori();
-        } elseif (!$this->procesori->isEmpty()) {
-            return $this->procesori();
-        } elseif (!$this->stampaci->isEmpty()) {
-            return $this->stampaci();
-        } elseif (!$this->skeneri->isEmpty()) {
-            return $this->skeneri();
-        } elseif (!$this->upsovi->isEmpty()) {
-            return $this->upsovi();
-        } elseif (!$this->memorije->isEmpty()) {
-            return $this->memorije();
-        } elseif (!$this->osnovnePloce->isEmpty()) {
-            return $this->osnovnePloce();
-        } elseif (!$this->hddovi->isEmpty()) {
-            return $this->hddovi();
-        } elseif (!$this->napajanja->isEmpty()) {
-            return $this->napajanja();
-        } elseif (!$this->mrezniUredjaji->isEmpty()) {
-            return $this->mrezniUredjaji();
-        } elseif (!$this->projektori->isEmpty()) {
-            return $this->projektori();
-        } else {
-            return null;
-        }
-    }
-
-    public function vrstaUredjaja()
-    {
-        /*
-         * Pod uslovom da nema dva uredjaja
-         * razlicitog tipa na istoj stavci otpremnice
-         */
-        if (!$this->monitori->isEmpty() || !$this->stampaci->isEmpty() || !$this->skeneri->isEmpty() || !$this->upsovi->isEmpty()) {
-            return 1;
-        };
-        if (!$this->memorije->isEmpty() || !$this->osnovnePloce->isEmpty() || !$this->hddovi->isEmpty() || !$this->napajanja->isEmpty() || !$this->procesori->isEmpty()) {
-            return 2;
-        };
-        if (!$this->mrezniUredjaji->isEmpty()) {
-            return 3;
-        };
-        if (!$this->projektori->isEmpty()) {
-            return 4;
-        };
-        return 0;
+        return $this->hasMany('App\Modeli\GrafickiAdapter', 'stavka_otpremnice_id', 'id');
     }
 
 }

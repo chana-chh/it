@@ -33,7 +33,7 @@
                title="Povratak na nabavku">
                 <i class="fa fa-list"></i>
             </a>
-            <a class="btn btn-primary" href="{{-- route('nabavke.stavke.izmena.get', $stavka->id) --}}"
+            <a class="btn btn-primary" href="{{ route('nabavke.stavke.izmena.get', $stavka->id) }}"
                title="Izmena stavke nabavke">
                 <i class="fa fa-pencil"></i>
             </a>
