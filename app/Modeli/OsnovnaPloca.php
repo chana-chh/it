@@ -20,6 +20,11 @@ class OsnovnaPloca extends Model
         return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
     }
 
+     public function reciklirano()
+    {
+        return $this->belongsTo('App\Modeli\Reciklaza', 'reciklirano_id', 'id');
+    }
+
     public function osnovnaPlocaModel()
     {
         return $this->belongsTo('App\Modeli\OsnovnaPlocaModel', 'osnovna_ploca_model_id', 'id');

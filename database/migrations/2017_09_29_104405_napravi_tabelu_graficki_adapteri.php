@@ -18,8 +18,9 @@ class NapraviTabeluGrafickiAdapteri extends Migration
             $table->integer('stavka_otpremnice_id')->unsigned()->nullable();
             $table->text('napomena')->nullable();
             $table->softDeletes();
-            $table->boolean('reciklirano')->default(false);
+            $table->integer('reciklirano_id')->unsigned()->nullable();
 
+            $table->foreign('reciklirano_id')->references('id')->on('reciklaza')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('vrsta_uredjaja_id')->references('id')->on('s_vrste_uredjaja')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('stavka_otpremnice_id')->references('id')->on('otpremnice_stavke')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('racunar_id')->references('id')->on('racunari')->onUpdate('cascade')->onDelete('restrict');
@@ -31,6 +32,8 @@ class NapraviTabeluGrafickiAdapteri extends Migration
     {
         Schema::dropForeign([
             'racunar_id',
+            'reciklirano_id',
+            'vrsta_uredjaja_id',
             'graficki_adapter_model_id',
             'stavka_otpremnice_id']);
         Schema::dropIfExists('graficki_adapteri');

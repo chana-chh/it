@@ -17,8 +17,9 @@ class NapraviTabeluOsnovnePloce extends Migration
             $table->integer('stavka_otpremnice_id')->unsigned()->nullable();
             $table->text('napomena')->nullable();
             $table->softDeletes();
-            $table->boolean('reciklirano')->default(false);
+            $table->integer('reciklirano_id')->unsigned()->nullable();
 
+            $table->foreign('reciklirano_id')->references('id')->on('reciklaza')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('vrsta_uredjaja_id')->references('id')->on('s_vrste_uredjaja')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('stavka_otpremnice_id')->references('id')->on('otpremnice_stavke')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('osnovna_ploca_model_id')->references('id')->on('osnovne_ploce_modeli')->onUpdate('cascade')->onDelete('restrict');
@@ -29,6 +30,7 @@ class NapraviTabeluOsnovnePloce extends Migration
     {
         Schema::dropForeign([
             'vrsta_uredjaja_id',
+            'reciklirano_id',
             'osnovna_ploca_model_id',
             'stavka_otpremnice_id']);
         Schema::dropIfExists('osnovne_ploce');

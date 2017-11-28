@@ -19,6 +19,11 @@ class Procesor extends Model
         return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
     }
 
+     public function reciklirano()
+    {
+        return $this->belongsTo('App\Modeli\Reciklaza', 'reciklirano_id', 'id');
+    }
+
     public function procesorModel()
     {
         return $this->belongsTo('App\Modeli\ProcesorModel', 'procesor_model_id', 'id');

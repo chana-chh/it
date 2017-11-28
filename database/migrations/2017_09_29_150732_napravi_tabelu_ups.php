@@ -21,8 +21,9 @@ class NapraviTabeluUps extends Migration
             $table->integer('stavka_nabavke_id')->unsigned()->nullable();
             $table->text('napomena')->nullable();
             $table->softDeletes();
-            $table->boolean('reciklirano')->default(false);
+            $table->integer('reciklirano_id')->unsigned()->nullable();
 
+            $table->foreign('reciklirano_id')->references('id')->on('reciklaza')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('racunar_id')->references('id')->on('racunari')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('vrsta_uredjaja_id')->references('id')->on('s_vrste_uredjaja')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('stavka_nabavke_id')->references('id')->on('nabavke_stavke')->onUpdate('cascade')->onDelete('restrict');
@@ -36,6 +37,8 @@ class NapraviTabeluUps extends Migration
     {
         Schema::dropForeign([
             'ups_model_id',
+            'reciklirano_id',
+            'vrsta_uredjaja_id',
             'stavka_otpremnice_id',
             'kancelarija_id',
             'stavka_nabavke_id']);

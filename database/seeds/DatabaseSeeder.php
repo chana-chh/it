@@ -8,6 +8,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(TabelaKorisniciSeeder::class);
+        $this->call(Reciklaze::class);
         $this->call(Dobavljaci::class);
         $this->call(VrsteUredjaja::class);
         $this->call(Nabavka::class);

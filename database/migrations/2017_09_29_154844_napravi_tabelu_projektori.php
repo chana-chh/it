@@ -25,8 +25,9 @@ class NapraviTabeluProjektori extends Migration
             $table->text('link')->nullable();
             $table->string('napomena')->nullable();
             $table->softDeletes();
-            $table->boolean('reciklirano')->default(false);
+            $table->integer('reciklirano_id')->unsigned()->nullable();
 
+            $table->foreign('reciklirano_id')->references('id')->on('reciklaza')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('vrsta_uredjaja_id')->references('id')->on('s_vrste_uredjaja')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('stavka_nabavke_id')->references('id')->on('nabavke_stavke')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('stavka_otpremnice_id')->references('id')->on('otpremnice_stavke')->onUpdate('cascade')->onDelete('restrict');
@@ -39,6 +40,8 @@ class NapraviTabeluProjektori extends Migration
     {
         Schema::dropForeign([
             'proizvodjac_id',
+            'reciklirano_id',
+            'vrsta_uredjaja_id',
             'kancelarija_id',
             'stavka_otpremnice_id',
             'stavka_nabavke_id']);

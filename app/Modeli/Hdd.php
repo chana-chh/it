@@ -22,6 +22,11 @@ class Hdd extends Model
         return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
     }
 
+     public function reciklirano()
+    {
+        return $this->belongsTo('App\Modeli\Reciklaza', 'reciklirano_id', 'id');
+    }
+
     public function hddModel()
     {
         return $this->belongsTo('App\Modeli\HddModel', 'hdd_model_id', 'id');

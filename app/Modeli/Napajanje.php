@@ -19,6 +19,11 @@ class Napajanje extends Model
         return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
     }
 
+     public function reciklirano()
+    {
+        return $this->belongsTo('App\Modeli\Reciklaza', 'reciklirano_id', 'id');
+    }
+
     public function napajanjeModel()
     {
         return $this->belongsTo('App\Modeli\NapajanjeModel', 'napajanje_model_id', 'id');

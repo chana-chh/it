@@ -191,6 +191,23 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <h3>Spoljne aplikacije</h3>
+        <dir class="col-md-6">
+            
+            <img alt="postfix" src="{{url('/images/postfix.png')}}" style="height: 64px;">&emsp;
+            <a href="https://195.178.40.109:8080/">
+                     Administracija servera za elektronsku poštu
+                </a>
+            </dir>
+                <dir class="col-md-6">
+                     <img alt="eset" src="{{url('/images/eset.png')}}" style="height: 64px;">&emsp;
+                <a href="https://192.168.13.10/era/webconsole/">
+                    Administracija antivirusnog servera i klijenata
+                </a>
+            </dir>
+        </dir>
+    </div>
 @endsection
 
 @section('traka')

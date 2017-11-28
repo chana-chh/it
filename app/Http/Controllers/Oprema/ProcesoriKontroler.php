@@ -28,7 +28,7 @@ class ProcesoriKontroler extends Kontroler
 
     public function getListaOtpisani()
     {
-        $uredjaj = Procesor::onlyTrashed()->get();
+        $uredjaj = Procesor::onlyTrashed()->whereNull('reciklirano_id')->get();
         return view('oprema.procesori_otpisani')->with(compact ('uredjaj'));
     }
 
@@ -75,8 +75,18 @@ class ProcesoriKontroler extends Kontroler
     {
 
         $data = Procesor::find($request->idOtpis);
-        $uredjaj = $data->racunar;
-        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .'je dana:'. Carbon::now().' otpisao  procesor koji je bio u računaru: '. $uredjaj->ime . ', kancelarija ' . $uredjaj->kancelarija->naziv;
+
+        if ($data->racunar) {
+            $uredjaj = $data->racunar;
+            $ime = $uredjaj->ime;
+            $kanc = $uredjaj->kancelarija->naziv;
+        }
+        else{
+            $ime = " nije bio u računaru";
+            $kanc = " nema podataka";
+        }
+
+        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .'je dana:'. Carbon::now().' otpisao  procesor koji je bio u računaru: '. $ime . ', kancelarija: ' . $kanc;
         $data->racunar_id = null;
         $data->save();
         $odgovor = $data->delete();
@@ -104,6 +114,12 @@ class ProcesoriKontroler extends Kontroler
             Session::flash('greska', 'Došlo je do greške prilikom vraćanja iz otpisa procesora. Pokušajte ponovo, kasnije!');
         }
         return redirect()->route('procesori.oprema.otpisani');
+    }
+
+    public function postRecikliraj(Request $request){
+
+        $data = Procesor::withTrashed()->find($request->idReciklaza);
+
     }
 
 }

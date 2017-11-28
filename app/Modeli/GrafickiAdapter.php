@@ -19,6 +19,11 @@ class GrafickiAdapter extends Model
         return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
     }
 
+    public function reciklirano()
+    {
+        return $this->belongsTo('App\Modeli\Reciklaza', 'reciklirano_id', 'id');
+    }
+
     public function grafickiAdapterModel()
     {
         return $this->belongsTo('App\Modeli\GrafickiAdapterModel', 'graficki_adapter_model_id', 'id');

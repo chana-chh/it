@@ -28,9 +28,10 @@ class NapraviTabeluRacunari extends Migration
             $table->integer('ocena')->unsigned();
             $table->text('link')->nullable();
             $table->softDeletes(); // datum otpisa
-            $table->boolean('reciklirano')->default(false); // treba da upise 0
             $table->text('napomena')->nullable();
+            $table->integer('reciklirano_id')->unsigned()->nullable();
 
+            $table->foreign('reciklirano_id')->references('id')->on('reciklaza')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('vrsta_uredjaja_id')->references('id')->on('s_vrste_uredjaja')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('zaposleni_id')->references('id')->on('zaposleni')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('kancelarija_id')->references('id')->on('s_kancelarije')->onUpdate('cascade')->onDelete('restrict');
@@ -45,6 +46,8 @@ class NapraviTabeluRacunari extends Migration
     {
         Schema::dropForeign([
             'zaposleni_id',
+            'vrsta_uredjaja_id',
+            'reciklirano_id',
             'kancelarija_id',
             'os_id',
             'ploca_id',
