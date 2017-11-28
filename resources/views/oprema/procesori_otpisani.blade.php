@@ -15,18 +15,39 @@
             </span>&emsp;Otpisani procesori</h1>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <button id="pretragaDugme" class="btn btn-success btn-block ono">
-            <i class="fa fa-search fa-fw"></i> Napredna pretraga
+        <button id="reciklazaDugme" class="btn btn-danger btn-block ono">
+            <i class="fa fa-trash fa-fw"></i> Reciklaža
         </button>
     </div>
 </div>
 
-<div class="row well" id="pretraga" style="display: none;">
-    <div class="col-md-2">
-    Nesto
+<div class="row well" id="reciklaza_div" style="display: none;">
+    <div class="col-md-6">
+    <h3 class="text-danger">Molimo, odaberite odgovarajući datum reciklaže !!!</h3>
     </div>
-    <div class="col-md-10">
-        Ostalo
+    <div class="col-md-6">
+            
+        <form class="form-inline" action="{{route('procesori.oprema.recikliranje.lista')}}" method="POST" data-parsley-validate style="margin-top: 1.4rem">
+            {{ csrf_field() }}
+  <div class="form-group">
+    <div class="input-group" >
+      <select name="reciklirano_id" id="reciklirano_id" class="form-control" data-placeholder="reciklaže ..."  required>
+                            <option value=""></option>
+                                @foreach($reciklaze as $s)
+                                <option value="{{ $s->id }}"{{ old('reciklirano_id') == $s->id ? ' selected' : '' }}>
+                                        Dana: {{$s->datum}}; &emsp;Sa napomenom: {{$s->napomena }}
+                                </option>
+                            @endforeach
+                    </select>
+                    @if ($errors->has('reciklirano_id'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('reciklirano_id') }}</strong>
+                    </span>
+                    @endif
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Formiraj lista za reciklažu <i class="fa fa-arrow-circle-o-right fa-fw"></i> </button>
+</form>
     </div>
     
 </div>
@@ -40,10 +61,11 @@
 <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
     <thead>
         <th style="width: 5%;">#</th>
-        <th style="width: 15%;">Serijski broj</th>
+        <th style="width: 10%;">Serijski broj</th>
         <th style="width: 20%;">Model</th>
-        <th style="width: 20%;">Datum otpisa</th>
-        <th style="width: 25%;">Napomena</th>
+        <th style="width: 15%;">Datum otpisa</th>
+        <th style="width: 15%;">Datum reciklaže</th>
+        <th style="width: 20%;">Napomena</th>
         <th style="width: 15%;text-align:right">
             <i class="fa fa-cogs"></i>&emsp;Akcije</th>
     </thead>
@@ -57,6 +79,11 @@
             <td><a href="{{route('procesori.modeli.detalj', $o->procesorModel->id)}}">{{$o->procesorModel->proizvodjac->naziv}} {{$o->procesorModel->naziv}}, {{$o->procesorModel->takt}} MHz</a></td>
             <td> 
                 {{$o->deleted_at}}
+            </td>
+            <td>
+                @if ($o->reciklirano)
+                    <strong  class="text-danger">{{$o->reciklirano->datum}}</strong>
+                @endif
             </td>
             <td>
                 {{$o->napomena}}
@@ -83,6 +110,7 @@
 @section('skripte')
 <script>
 $( document ).ready(function() {
+
 
     $(document).on('click', '.vracanje', function () {
             var id = $(this).val();
@@ -119,8 +147,8 @@ $( document ).ready(function() {
 
         new $.fn.dataTable.FixedHeader( tabela );
 
-        $('#pretragaDugme').click(function () {
-            $('#pretraga').toggle();
+        $('#reciklazaDugme').click(function () {
+            $('#reciklaza_div').toggle();
         });
 
 });

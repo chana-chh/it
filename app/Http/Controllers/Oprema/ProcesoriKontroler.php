@@ -15,6 +15,7 @@ Use App\Modeli\ProcesorModel;
 Use App\Modeli\Racunar;
 Use App\Modeli\OtpremnicaStavka;
 Use App\Modeli\Otpremnica;
+Use App\Modeli\Reciklaza;
 
 
 
@@ -28,8 +29,9 @@ class ProcesoriKontroler extends Kontroler
 
     public function getListaOtpisani()
     {
-        $uredjaj = Procesor::onlyTrashed()->whereNull('reciklirano_id')->get();
-        return view('oprema.procesori_otpisani')->with(compact ('uredjaj'));
+        $uredjaj = Procesor::onlyTrashed()->get();
+        $reciklaze = Reciklaza::all();
+        return view('oprema.procesori_otpisani')->with(compact ('uredjaj', 'reciklaze'));
     }
 
     public function getDetalj($id)
@@ -116,10 +118,12 @@ class ProcesoriKontroler extends Kontroler
         return redirect()->route('procesori.oprema.otpisani');
     }
 
-    public function postRecikliraj(Request $request){
+    public function postReciklirajLista(Request $request){
 
-        $data = Procesor::withTrashed()->find($request->idReciklaza);
+        $uredjaj = Procesor::onlyTrashed()->whereNull('reciklirano_id')->get();
+        $reciklaza = Reciklaza::find($request->reciklirano_id);
 
+        return view('oprema.procesori_recikliranje_lista')->with(compact ('uredjaj', 'reciklaza'));
     }
 
 }
