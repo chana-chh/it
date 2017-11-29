@@ -378,6 +378,7 @@ Route::post('oprema/procesori/izmena/{id}', 'Oprema\ProcesoriKontroler@postIzmen
 Route::post('oprema/procesori/otpis/', 'Oprema\ProcesoriKontroler@postOtpis')->name('procesori.oprema.otpis');
 Route::post('oprema/procesori/vracanje_otpis/', 'Oprema\ProcesoriKontroler@postOtpisVracanje')->name('procesori.oprema.vracanje_otpis');
 Route::post('oprema/procesori/recikliranje/lista/', 'Oprema\ProcesoriKontroler@postReciklirajLista')->name('procesori.oprema.recikliranje.lista');
+Route::post('oprema/procesori/recikliranje/{id_reciklaze}', 'Oprema\ProcesoriKontroler@postRecikliraj')->name('procesori.oprema.recikliranje');
 //Osnovne ploce
 Route::get('oprema/osnovne_ploce/', 'Oprema\OsnovnePloceKontroler@getLista')->name('osnovne_ploce.oprema');
 Route::get('oprema/osnovne_ploce/otpisani/', 'Oprema\OsnovnePloceKontroler@getListaOtpisani')->name('osnovne_ploce.oprema.otpisani');

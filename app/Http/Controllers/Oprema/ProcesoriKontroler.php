@@ -126,4 +126,23 @@ class ProcesoriKontroler extends Kontroler
         return view('oprema.procesori_recikliranje_lista')->with(compact ('uredjaj', 'reciklaza'));
     }
 
+    public function postRecikliraj(Request $request, $id_reciklaze){
+
+        DB::beginTransaction();
+        foreach ($request->id_uredjaji as $id) {
+            try{
+            $data = Procesor::withTrashed()->find($id);
+            $data->reciklirano_id = $id_reciklaze;
+            $data->save();
+        }catch (\Exception $e){
+                DB::rollback();
+                Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
+                return redirect()->route('procesori.oprema.otpisani');
+        }
+        }
+        DB::commit();
+        Session::flash('uspeh', 'Procesor je uspešno stavljen na listu reciklaže!');
+       return redirect()->route('procesori.oprema.otpisani');
+    }
+
 }

@@ -90,9 +90,11 @@
             </td>
 
             <td style="text-align:right; vertical-align: middle; line-height: normal;">
+                @if (!$o->reciklirano)
                 <button title="Vrati iz otpisa za ponovnu uppotrebu" class="btn btn-warning btn-sm vracanje" data-toggle="modal" data-target="#vracanjeModal" value="{{$o->id}}">
                     <i class="fa fa-retweet"></i>
                 </button>
+                @endif
             </td>
         </tr>
         @endforeach
