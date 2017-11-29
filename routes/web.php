@@ -79,6 +79,8 @@ Route::post('nabavke/stavke/monitori/dodavanje', 'Servis\NabavkeStavkeKontroler@
 Route::post('nabavke/stavke/stampaci/dodavanje', 'Servis\NabavkeStavkeKontroler@postStampaciDodavanje')->name('nabavke.stavke.stampaci.dodavanje');
 Route::post('nabavke/stavke/skeneri/dodavanje', 'Servis\NabavkeStavkeKontroler@postSkeneriDodavanje')->name('nabavke.stavke.skeneri.dodavanje');
 Route::post('nabavke/stavke/upsevi/dodavanje', 'Servis\NabavkeStavkeKontroler@postUpseviDodavanje')->name('nabavke.stavke.upsevi.dodavanje');
+Route::post('nabavke/stavke/projektori/dodavanje', 'Servis\NabavkeStavkeKontroler@postProjektoriDodavanje')->name('nabavke.stavke.projektori.dodavanje');
+Route::post('nabavke/stavke/mrezni/dodavanje', 'Servis\NabavkeStavkeKontroler@postMrezniDodavanje')->name('nabavke.stavke.mrezni.dodavanje');
 
 // SIFARNICI
 // Proizvodjaci

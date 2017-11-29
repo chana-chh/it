@@ -32,5 +32,5 @@ Dodati meni i CRUD za vrste uredjaja i Baterije
 
 LICENCE videti sta treba da bude nullable
 
-Nabavke stavke izmena modal ili nova strana (nije odradjeno).
-Nabavke stavke uredjaj forsirano brisanje.
+Nabavke stavke dodavanje projektora kancelarija_id nullable
+Nabavke stavke dodavanje mrezne opreme kancelarija_id nullable

@@ -18,6 +18,8 @@ use App\Modeli\Skener;
 use App\Modeli\SkenerModel;
 use App\Modeli\Ups;
 use App\Modeli\UpsModel;
+use App\Modeli\Projektor;
+use App\Modeli\MrezniUredjaj;
 
 class NabavkeStavkeKontroler extends Kontroler
 {
@@ -113,22 +115,250 @@ class NabavkeStavkeKontroler extends Kontroler
 
     public function postMonitoriDodavanje(Request $request)
     {
-        dump('MONITORI', $request->request);
+        $this->validate($request, [
+            'stavka_nabavke_id' => [
+                'required',
+                'integer',
+            ],
+            'vrsta_uredjaja_id' => [
+                'required',
+                'integer',
+            ],
+            'inventarski_broj' => [
+                'max:10',
+            ],
+            'serijski_broj' => [
+                'required',
+                'max:10',
+            ],
+            'monitor_model_id' => [
+                'required',
+                'integer',
+            ],
+        ]);
+
+        $monitor = new Monitor();
+        $monitor->stavka_nabavke_id = $request->stavka_nabavke_id;
+        $monitor->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
+        $monitor->inventarski_broj = $request->inventarski_broj;
+        $monitor->serijski_broj = $request->serijski_broj;
+        $monitor->monitor_model_id = $request->monitor_model_id;
+        $monitor->save();
+
+        Session::flash('uspeh', 'Monitor je uspešno dodat!');
+        return redirect()->route('nabavke.stavke.detalj', $request->stavka_nabavke_id);
     }
 
     public function postStampaciDodavanje(Request $request)
     {
-        dump('STAMPACI', $request->request);
+        $this->validate($request, [
+            'stavka_nabavke_id' => [
+                'required',
+                'integer',
+            ],
+            'vrsta_uredjaja_id' => [
+                'required',
+                'integer',
+            ],
+            'inventarski_broj' => [
+                'max:10',
+            ],
+            'serijski_broj' => [
+                'required',
+                'max:10',
+            ],
+            'stampac_model_id' => [
+                'required',
+                'integer',
+            ],
+        ]);
+
+        $stampac = new Stampac();
+        $stampac->stavka_nabavke_id = $request->stavka_nabavke_id;
+        $stampac->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
+        $stampac->inventarski_broj = $request->inventarski_broj;
+        $stampac->serijski_broj = $request->serijski_broj;
+        $stampac->stampac_model_id = $request->stampac_model_id;
+        $stampac->save();
+
+        Session::flash('uspeh', 'Štampač je uspešno dodat!');
+        return redirect()->route('nabavke.stavke.detalj', $request->stavka_nabavke_id);
     }
 
     public function postSkeneriDodavanje(Request $request)
     {
-        dump('SKENERI', $request->request);
+        $this->validate($request, [
+            'stavka_nabavke_id' => [
+                'required',
+                'integer',
+            ],
+            'vrsta_uredjaja_id' => [
+                'required',
+                'integer',
+            ],
+            'inventarski_broj' => [
+                'max:10',
+            ],
+            'serijski_broj' => [
+                'required',
+                'max:10',
+            ],
+            'skener_model_id' => [
+                'required',
+                'integer',
+            ],
+        ]);
+
+        $skener = new Skener();
+        $skener->stavka_nabavke_id = $request->stavka_nabavke_id;
+        $skener->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
+        $skener->inventarski_broj = $request->inventarski_broj;
+        $skener->serijski_broj = $request->serijski_broj;
+        $skener->skener_model_id = $request->skener_model_id;
+        $skener->save();
+
+        Session::flash('uspeh', 'Skener je uspešno dodat!');
+        return redirect()->route('nabavke.stavke.detalj', $request->stavka_nabavke_id);
     }
 
     public function postUpseviDodavanje(Request $request)
     {
-        dump('UPSEVI', $request->request);
+        $this->validate($request, [
+            'stavka_nabavke_id' => [
+                'required',
+                'integer',
+            ],
+            'vrsta_uredjaja_id' => [
+                'required',
+                'integer',
+            ],
+            'inventarski_broj' => [
+                'max:10',
+            ],
+            'serijski_broj' => [
+                'required',
+                'max:10',
+            ],
+            'ups_model_id' => [
+                'required',
+                'integer',
+            ],
+        ]);
+
+        $ups = new Ups();
+        $ups->stavka_nabavke_id = $request->stavka_nabavke_id;
+        $ups->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
+        $ups->inventarski_broj = $request->inventarski_broj;
+        $ups->serijski_broj = $request->serijski_broj;
+        $ups->ups_model_id = $request->ups_model_id;
+        $ups->save();
+
+        Session::flash('uspeh', 'UPS je uspešno dodat!');
+        return redirect()->route('nabavke.stavke.detalj', $request->stavka_nabavke_id);
+    }
+
+    public function postProjektoriDodavanje(Request $request)
+    {
+        $this->validate($request, [
+            'stavka_nabavke_id' => [
+                'required',
+                'integer',
+            ],
+            'vrsta_uredjaja_id' => [
+                'required',
+                'integer',
+            ],
+            'naziv' => [
+                'required',
+                'max:100',
+            ],
+            'proizvodjac_id' => [
+                'required',
+                'integer',
+            ],
+            'inventarski_broj' => [
+                'max:10',
+            ],
+            'serijski_broj' => [
+                'required',
+                'max:10',
+            ],
+            'tip_lampe' => [
+                'max:50',
+            ],
+            'rezolucija' => [
+                'max:255',
+            ],
+            'kontrast' => [
+                'max:255',
+            ],
+        ]);
+
+        $projektor = new Projektor();
+        $projektor->stavka_nabavke_id = $request->stavka_nabavke_id;
+        $projektor->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
+        $projektor->naziv = $request->naziv;
+        $projektor->proizvodjac_id = $request->proizvodjac_id;
+        $projektor->inventarski_broj = $request->inventarski_broj;
+        $projektor->serijski_broj = $request->serijski_broj;
+        $projektor->tip_lampe = $request->tip_lampe;
+        $projektor->rezolucija = $request->rezolucija;
+        $projektor->kontrast = $request->kontrast;
+        $projektor->link = $request->link;
+        $projektor->save();
+
+        Session::flash('uspeh', 'Projektor je uspešno dodat!');
+        return redirect()->route('nabavke.stavke.detalj', $request->stavka_nabavke_id);
+    }
+
+    public function postMrezniDodavanje(Request $request)
+    {
+        $this->validate($request, [
+            'stavka_nabavke_id' => [
+                'required',
+                'integer',
+            ],
+            'vrsta_uredjaja_id' => [
+                'required',
+                'integer',
+            ],
+            'naziv' => [
+                'required',
+                'max:100',
+            ],
+            'proizvodjac_id' => [
+                'required',
+                'integer',
+            ],
+            'inventarski_broj' => [
+                'max:10',
+            ],
+            'serijski_broj' => [
+                'required',
+                'max:10',
+            ],
+            'broj_portova' => [
+                'required',
+                'integer',
+            ],
+        ]);
+
+        $upravljiv = ($request->upravljiv) ? 1 : 0;
+
+        $mrezni = new MrezniUredjaj();
+        $mrezni->stavka_nabavke_id = $request->stavka_nabavke_id;
+        $mrezni->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
+        $mrezni->naziv = $request->naziv;
+        $mrezni->proizvodjac_id = $request->proizvodjac_id;
+        $mrezni->inventarski_broj = $request->inventarski_broj;
+        $mrezni->serijski_broj = $request->serijski_broj;
+        $mrezni->broj_portova = $request->broj_portova;
+        $mrezni->upravljiv = $upravljiv;
+        $mrezni->link = $request->link;
+        $mrezni->save();
+
+        Session::flash('uspeh', 'Mrežni uređaj je uspešno dodat!');
+        return redirect()->route('nabavke.stavke.detalj', $request->stavka_nabavke_id);
     }
 
 }
