@@ -104,6 +104,7 @@
                             <li><a href="{{ route('operativni_sistemi') }}">Operativni sistemi</a></li>
                             <li><a href="{{route('aplikacije')}}">Aplikacije</a></li>
                             <li><a href="{{route('licence')}}">Licence</a></li>
+                            <li><a href="{{route('reciklaze')}}">Reciklaže</a></li>
                         </ul>
                     </li>
                     <li style="margin-left: 40px; opacity: 0.7;">

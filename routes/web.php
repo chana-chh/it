@@ -114,6 +114,13 @@ Route::post('sifarnici/spratovi/brisanje', 'Sifarnici\SpratoviKontroler@postBris
 Route::post('sifarnici/spratovi/izmena', 'Sifarnici\SpratoviKontroler@postIzmena')->name('spratovi.izmena');
 Route::post('sifarnici/spratovi/detalj', 'Sifarnici\SpratoviKontroler@postDetalj')->name('spratovi.detalj');
 
+// Reciklaza
+Route::get('sifarnici/reciklaze', 'Sifarnici\ReciklazeKontroler@getLista')->name('reciklaze');
+Route::post('sifarnici/reciklaze/dodavanje', 'Sifarnici\ReciklazeKontroler@postDodavanje')->name('reciklaze.dodavanje');
+Route::post('sifarnici/reciklaze/brisanje', 'Sifarnici\ReciklazeKontroler@postBrisanje')->name('reciklaze.brisanje');
+Route::post('sifarnici/reciklaze/izmena', 'Sifarnici\ReciklazeKontroler@postIzmena')->name('reciklaze.izmena');
+Route::post('sifarnici/reciklaze/detalj', 'Sifarnici\ReciklazeKontroler@postDetalj')->name('reciklaze.detalj');
+
 // Kancelarije
 Route::get('sifarnici/kancelarije', 'Sifarnici\KancelarijeKontroler@getLista')->name('kancelarije');
 Route::get('sifarnici/kancelarije/detaljno/{id}', 'Sifarnici\KancelarijeKontroler@getDetalj')->name('kancelarije.detalj.get');

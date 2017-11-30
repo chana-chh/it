@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Šifarnici | Spratovi')
+@section('naziv', 'Šifarnici | Reciklaže')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -9,8 +9,8 @@
 @section('naslov')
         <h1 class="page-header">
         <img alt="Šifarnik spratova" class="slicica_animirana"
-        src="{{url('/images/spratovi.jpg')}}" style="height:64px;">
-        &emsp;Spratovi
+        src="{{url('/images/reciklaze.png')}}" style="height:64px;">
+        &emsp;Reciklaže
         </h1>
 @endsection
 
@@ -21,14 +21,16 @@
     		<table id="tabela" class="table table-striped" >
         		<thead>
             		<th style="width: 15%;">#</th>
-            		<th style="width: 70%;">Naziv</th>
+                                <th style="width: 30%;">Datum</th>
+            		<th style="width: 40%;">Napomena</th>
             		<th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
         		</thead>
         		<tbody>
             	@foreach ($data as $d)
                     <tr>
                         <td>{{$d->id}}</td>
-                        <td><strong>{{ $d->naziv }}</strong></td>
+                        <td><strong>{{ $d->datum }}</strong></td>
+                        <td><em>{{ $d->napomena }}</em></td>
                         <td style="text-align:right;">
                             <button class="btn btn-success btn-sm otvori-izmenu" 
                                 data-toggle="modal" data-target="#editModal" 
@@ -61,13 +63,18 @@
             <h4 class="modal-title text-primary">Izmeni stavku</h4>
           </div>
           <div class="modal-body">
-            <form action="{{ route('spratovi.izmena') }}" method="post">
+            <form action="{{ route('reciklaze.izmena') }}" method="post">
               {{ csrf_field() }}
 
                 <div class="form-group">
-                  <label for="nazivModal">Naziv:</label>
-                  <input type="text" class="form-control" id="nazivModal" name="nazivModal">
+                  <label for="datumModal">Datum:</label>
+                  <input type="date" class="form-control" id="datumModal" name="datumModal">
                 </div>
+
+                <div class="form-group">
+              <label for="napomenaModal">Napomena:</label>
+              <textarea class="form-control" id="napomenaModal" name="napomenaModal"></textarea>
+            </div>
                 <input type="hidden" id="idModal" name="idModal">
                         <button type="submit" class="btn btn-success">
                             <i class="fa fa-save"></i> Snimi izmene
@@ -89,17 +96,26 @@
 @endsection
 
 @section('traka')
-<h4>Dodavanje spratova</h4>
+<h4>Dodavanje reciklaže</h4>
 <hr>
 <div class="well">
-    <form action="{{ route('spratovi.dodavanje') }}" method="POST" data-parsley-validate>
+    <form action="{{ route('reciklaze.dodavanje') }}" method="POST" data-parsley-validate>
         {{ csrf_field() }}
-        <div class="form-group{{ $errors->has('naziv') ? ' has-error' : '' }}">
-            <label for="naziv">Naziv: </label>
-            <input type="text" name="naziv" id="naziv" class="form-control" value="{{ old('naziv') }}" required>
-            @if ($errors->has('naziv'))
+        <div class="form-group{{ $errors->has('datum') ? ' has-error' : '' }}">
+            <label for="datum">Datum: </label>
+            <input type="date" name="datum" id="datum" class="form-control" value="{{ old('datum') }}" required>
+            @if ($errors->has('datum'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('naziv') }}</strong>
+                    <strong>{{ $errors->first('datum') }}</strong>
+                </span>
+            @endif
+        </div>
+                <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
+            <label for="napomena">Napomena: </label>
+            <textarea name="napomena" id="napomena" maxlength="255" class="form-control">{{ old('napomena') }}</textarea>
+            @if ($errors->has('napomena'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('napomena') }}</strong>
                 </span>
             @endif
         </div>
@@ -110,7 +126,7 @@
                         <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-plus-circle"></i> Dodaj</button>
                     </div>
                     <div class="col-md-6">
-                        <a class="btn btn-danger btn-block ono" href="{{route('spratovi')}}"><i class="fa fa-ban"></i> Otkaži</a>
+                        <a class="btn btn-danger btn-block ono" href="{{route('reciklaze')}}"><i class="fa fa-ban"></i> Otkaži</a>
                     </div>
                 </div>
             </div>
@@ -144,20 +160,21 @@ $( document ).ready(function() {
      $(document).on('click', '.otvori-brisanje', function () {
         var id = $(this).val();
         $('#idBrisanje').val(id);
-        var ruta = "{{ route('spratovi.brisanje') }}";
+        var ruta = "{{ route('reciklaze.brisanje') }}";
         $('#brisanje-forma').attr('action', ruta);
     });
 
    $(document).on('click','.otvori-izmenu',function(){
         var id = $(this).val();
-        var ruta = "{{ route('spratovi.detalj') }}";
+        var ruta = "{{ route('reciklaze.detalj') }}";
         $.ajax({
             url: ruta,
             type:"POST",
             data: {"id":id, _token: "{!! csrf_token() !!}"},
             success: function(data){
                   $("#idModal").val(data.id);
-                  $("#nazivModal").val(data.naziv);
+                  $("#datumModal").val(data.datum);
+                  $("#napomenaModal").val(data.napomena);
             }
         });
     });
