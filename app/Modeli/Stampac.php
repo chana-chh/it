@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Stampac extends Model
 {
-     use SoftDeletes;
+
+    use SoftDeletes;
     protected $table = 'stampaci';
     public $timestamps = false;
     protected $dates = [
@@ -19,7 +20,7 @@ class Stampac extends Model
         return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
     }
 
-     public function reciklirano()
+    public function reciklirano()
     {
         return $this->belongsTo('App\Modeli\Reciklaza', 'reciklirano_id', 'id');
     }
@@ -37,6 +38,11 @@ class Stampac extends Model
     public function stavkaOtpremnice()
     {
         return $this->belongsTo('App\Modeli\OtpremnicaStavka', 'stavka_otpremnice_id', 'id');
+    }
+
+    public function stavkaNabavke()
+    {
+        return $this->belongsTo('App\Modeli\NabavkaStavka', 'stavka_nabavke_id', 'id');
     }
 
     public function scopeNeraspordjeni()

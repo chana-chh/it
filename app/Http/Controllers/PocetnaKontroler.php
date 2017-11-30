@@ -17,12 +17,16 @@ use App\Modeli\Projektor;
 use App\Modeli\Aplikacija;
 use App\Modeli\Greska;
 use App\Modeli\Licenca;
+use App\Helpers\Uredjaj;
 
 class PocetnaKontroler extends Kontroler
 {
 
     public function pocetna()
     {
+        $uredjaji = \App\Helpers\UredjajiHelper::sviUredjaji();
+        dd($uredjaji);
+
         $racunara = Racunar::count();
         $monitora = Monitor::count();
         $stampaca = Stampac::count();
@@ -33,7 +37,10 @@ class PocetnaKontroler extends Kontroler
         $aplikacija = Aplikacija::count();
         $greske = Greska::all();
 
-         $isticu = Licenca::whereBetween('datum_prestanka_vazenja', [Carbon::now(), Carbon::now()->addMonths(2)])->get();
+        $isticu = Licenca::whereBetween('datum_prestanka_vazenja', [
+                    Carbon::now(),
+                    Carbon::now()->addMonths(2)
+                ])->get();
 
 
         return view('pocetna')->with(compact(
@@ -41,7 +48,7 @@ class PocetnaKontroler extends Kontroler
         ));
     }
 
-        public function postBrisanje(Request $request)
+    public function postBrisanje(Request $request)
     {
         $data = Greska::find($request->idBrisanje);
         $odgovor = $data->delete();
