@@ -14,7 +14,7 @@ class Projektor extends Model
         return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
     }
 
-     public function reciklirano()
+    public function reciklirano()
     {
         return $this->belongsTo('App\Modeli\Reciklaza', 'reciklirano_id', 'id');
     }
@@ -39,9 +39,9 @@ class Projektor extends Model
         return $this->belongsTo('App\Modeli\OtpremnicaStavka', 'stavka_otpremnice_id', 'id');
     }
 
-    public function nabavka()
+    public function nabavkaStavka()
     {
-        return $this->belongsTo('App\Modeli\Nabavka', 'nabavka_id', 'id');
+        return $this->belongsTo('App\Modeli\NabavkaStavka', 'stavka_nabavke_id', 'id');
     }
 
     public function povezivanja()

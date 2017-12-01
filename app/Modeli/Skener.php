@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Skener extends Model
 {
+
     use SoftDeletes;
     protected $table = 'skeneri';
     public $timestamps = false;
@@ -19,7 +20,7 @@ class Skener extends Model
         return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
     }
 
-     public function reciklirano()
+    public function reciklirano()
     {
         return $this->belongsTo('App\Modeli\Reciklaza', 'reciklirano_id', 'id');
     }
@@ -39,10 +40,16 @@ class Skener extends Model
         return $this->belongsTo('App\Modeli\OtpremnicaStavka', 'stavka_otpremnice_id', 'id');
     }
 
+    public function nabavkaStavka()
+    {
+        return $this->belongsTo('App\Modeli\NabavkaStavka', 'stavka_nabavke_id', 'id');
+    }
+
     public function kancelarija()
     {
         return $this->belongsTo('App\Modeli\Kancelarija', 'kancelarija_id', 'id');
     }
+
     public function scopeNeraspordjeni()
     {
         return $this->doesntHave('racunar');

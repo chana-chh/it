@@ -40,7 +40,7 @@ class Stampac extends Model
         return $this->belongsTo('App\Modeli\OtpremnicaStavka', 'stavka_otpremnice_id', 'id');
     }
 
-    public function stavkaNabavke()
+    public function nabavkaStavka()
     {
         return $this->belongsTo('App\Modeli\NabavkaStavka', 'stavka_nabavke_id', 'id');
     }
