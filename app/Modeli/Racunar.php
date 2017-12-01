@@ -171,4 +171,27 @@ class Racunar extends Model
         return $u_garanciji;
     }
 
+    public function tehnickiDetalji()
+    {
+            $iteracija = 0;
+            $procesor_data = " ";
+
+        foreach ($this->procesori as $procesor) {
+            $iteracija += 1;
+            $procesor_data .= $iteracija.". ".$procesor->procesorModel->naziv.", ". $procesor->procesorModel->proizvodjac->naziv .", ". $procesor->procesorModel->takt. " MHz; ";
+        }   
+
+            $iteracija = 0;
+            $memorija_data = " ";
+
+        foreach ($this->memorije as $memorija) {
+            $iteracija += 1;
+            $memorija_data .= $iteracija.". ".$memorija->memorijaModel->tipMemorije->naziv.", ". $memorija->memorijaModel->kapacitet." MB; ";
+        }
+
+        $podaci = "Procesori: ".$procesor_data." Memorija: ".$memorija_data." Osnovna ploča: ".$this->osnovnaPloca->osnovnaPlocaModel->cipset.", ".$this->osnovnaPloca->osnovnaPlocaModel->proizvodjac->naziv; 
+        
+        return $podaci;
+    }
+
 }
