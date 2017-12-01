@@ -33,8 +33,7 @@ class UredjajiHelper
             $uredjaj->naziv = $racunar->ime;
             $uredjaj->inventarski_broj = $racunar->inventarski_broj;
             $uredjaj->serijski_broj = $racunar->serijski_broj;
-            // Srediti tehnicke detalje (napraviti u modelu)
-            $uredjaj->tehnicki_detalji = $racunar->link;
+            $uredjaj->tehnicki_detalji = $racunar->tehnickiDetalji();
             if ($racunar->kancelarija && $racunar->zaposleni) {
                 $uredjaj->lokacija = $racunar->kancelarija->sviPodaci() . ', ' . $racunar->zaposleni->imePrezime();
             } else if ($racunar->kancelarija && !$racunar->zaposleni) {
