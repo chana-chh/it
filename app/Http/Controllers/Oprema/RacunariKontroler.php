@@ -42,7 +42,6 @@ class RacunariKontroler extends Kontroler
 
     public function getLista()
     {
-
         return view('oprema.racunari')->with(compact('uredjaj'));
     }
 

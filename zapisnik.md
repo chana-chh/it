@@ -34,3 +34,5 @@ LICENCE videti sta treba da bude nullable
 
 Nabavke stavke dodavanje projektora kancelarija_id nullable
 Nabavke stavke dodavanje mrezne opreme kancelarija_id nullable
+
+Zbog GITA
