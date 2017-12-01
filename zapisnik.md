@@ -26,13 +26,4 @@ https://github.com/yajra/laravel-datatables
 https://yajrabox.com/docs/laravel-datatables/master/releases
 https://datatables.yajrabox.com/starter
 
-
-S_TONERI dodati modeli_tonera polje
-Dodati meni i CRUD za vrste uredjaja i Baterije
-
-LICENCE videti sta treba da bude nullable
-
-Nabavke stavke dodavanje projektora kancelarija_id nullable
-Nabavke stavke dodavanje mrezne opreme kancelarija_id nullable
-
-Zbog GITA
+Dodati WithTrashed u Uredjaj Helper
