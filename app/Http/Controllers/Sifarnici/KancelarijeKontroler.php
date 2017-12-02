@@ -111,4 +111,19 @@ class KancelarijeKontroler extends Kontroler
     return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
 }
 
+//Ovu nisam probao
+// function paginate($items, $perPage)
+// {
+//     if(is_array($items)){
+//         $items = collect($items);
+//     }
+
+//     return new LengthAwarePaginator(
+//         $items->forPage(Paginator::resolveCurrentPage() , $perPage),
+//         $items->count(), $perPage,
+//         Paginator::resolveCurrentPage(),
+//         ['path' => Paginator::resolveCurrentPath()]
+//     );
+// }
+
 }
