@@ -44,7 +44,7 @@ class KancelarijeKontroler extends Kontroler
         $kancelarija = Kancelarija::find($id);
         $uredjaji_svi = UredjajiHelper::sviUredjaji();
         $uredjaji_kanc = $uredjaji_svi->where('kancelarija_id', $id);
-        $uredjaji = $this->paginate($uredjaji_kanc, $perPage = 2, $page = null, $options = []);
+        $uredjaji = $this->paginate($uredjaji_kanc, 2);
         return view('sifarnici.kancelarije_detalj')->with(compact('kancelarija', 'uredjaji'));
     }
 
@@ -54,8 +54,7 @@ class KancelarijeKontroler extends Kontroler
         $this->validate($request, [
             'naziv' => [
                 'required',
-                'max:50',
-                // 'unique_with:sprat_id,lokacija_id',
+                'max:50'
             ],
         ]);
 
@@ -75,8 +74,7 @@ class KancelarijeKontroler extends Kontroler
         $this->validate($request, [
             'nazivModal' => [
                 'required',
-                'max:50',
-            // 'unique_with:sprat_id,lokacija_id', ???????????????
+                'max:50'
             ]
         ]);
 
@@ -104,26 +102,19 @@ class KancelarijeKontroler extends Kontroler
         return redirect()->route('kancelarije');
     }
 
-    public function paginate($items, $perPage = 15, $page = null, $options = [])
+
+function paginate($kolekcija, $poStrani)
 {
-    $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
-    $items = $items instanceof Collection ? $items : Collection::make($items);
-    return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    if(is_array($kolekcija)){
+        $kolekcija = collect($kolekcija);
+    }
+
+    return new LengthAwarePaginator(
+        $kolekcija->forPage(Paginator::resolveCurrentPage() , $poStrani),
+        $kolekcija->count(), $poStrani,
+        Paginator::resolveCurrentPage(),
+        ['path' => Paginator::resolveCurrentPath()]
+    );
 }
-
-//Ovu nisam probao
-// function paginate($items, $perPage)
-// {
-//     if(is_array($items)){
-//         $items = collect($items);
-//     }
-
-//     return new LengthAwarePaginator(
-//         $items->forPage(Paginator::resolveCurrentPage() , $perPage),
-//         $items->count(), $perPage,
-//         Paginator::resolveCurrentPage(),
-//         ['path' => Paginator::resolveCurrentPath()]
-//     );
-// }
 
 }

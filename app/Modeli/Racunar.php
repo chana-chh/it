@@ -188,8 +188,14 @@ class Racunar extends Model
             $iteracija += 1;
             $memorija_data .= $iteracija.". ".$memorija->memorijaModel->tipMemorije->naziv.", ". $memorija->memorijaModel->kapacitet." MB; ";
         }
+        $ploca_data = " ";
+        if($this->osnovnaPloca)
+            {
+                $ploca_data = $this->osnovnaPloca->osnovnaPlocaModel->cipset.", ".$this->osnovnaPloca->osnovnaPlocaModel->proizvodjac->naziv;
+            }
 
-        $podaci = "Procesori: ".$procesor_data." Memorija: ".$memorija_data." Osnovna ploča: ".$this->osnovnaPloca->osnovnaPlocaModel->cipset.", ".$this->osnovnaPloca->osnovnaPlocaModel->proizvodjac->naziv; 
+
+        $podaci = "Procesori: ".$procesor_data." Memorija: ".$memorija_data." Osnovna ploča: ".$ploca_data; 
         
         return $podaci;
     }
