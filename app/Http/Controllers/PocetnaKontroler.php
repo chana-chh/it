@@ -24,8 +24,8 @@ class PocetnaKontroler extends Kontroler
 
     public function pocetna()
     {
-        $uredjaji = \App\Helpers\UredjajiHelper::sviUredjaji();
-        dd($uredjaji);
+        // $uredjaji = \App\Helpers\UredjajiHelper::sviUredjaji();
+        // dd($uredjaji);
 
         $racunara = Racunar::count();
         $monitora = Monitor::count();

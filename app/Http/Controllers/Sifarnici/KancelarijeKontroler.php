@@ -9,6 +9,11 @@ use App\Http\Controllers\Kontroler;
 use App\Modeli\Kancelarija;
 use App\Modeli\Sprat;
 use App\Modeli\Lokacija;
+use App\Helpers\UredjajiHelper;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 
 class KancelarijeKontroler extends Kontroler
 {
@@ -37,7 +42,10 @@ class KancelarijeKontroler extends Kontroler
     public function getDetalj($id)
     {
         $kancelarija = Kancelarija::find($id);
-        return view('sifarnici.kancelarije_detalj')->with(compact('kancelarija'));
+        $uredjaji_svi = UredjajiHelper::sviUredjaji();
+        $uredjaji_kanc = $uredjaji_svi->where('kancelarija_id', $id);
+        $uredjaji = $this->paginate($uredjaji_kanc, $perPage = 2, $page = null, $options = []);
+        return view('sifarnici.kancelarije_detalj')->with(compact('kancelarija', 'uredjaji'));
     }
 
     public function postDodavanje(Request $request)
@@ -95,5 +103,12 @@ class KancelarijeKontroler extends Kontroler
         }
         return redirect()->route('kancelarije');
     }
+
+    public function paginate($items, $perPage = 15, $page = null, $options = [])
+{
+    $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+    $items = $items instanceof Collection ? $items : Collection::make($items);
+    return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+}
 
 }

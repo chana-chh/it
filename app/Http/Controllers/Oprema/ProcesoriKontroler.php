@@ -36,9 +36,7 @@ class ProcesoriKontroler extends Kontroler
 
     public function getDetalj($id)
     {
-        $uredjaji = Procesor::withTrashed()->get();
-
-        $uredjaj = $uredjaji->find($id);
+        $uredjaj = Procesor::find($id);
         $brojno_stanje = Procesor::where('procesor_model_id', '=', $uredjaj->procesor_model_id)->count();
         return view('oprema.procesori_detalj')->with(compact ('uredjaj', 'brojno_stanje'));
     }

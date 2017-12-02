@@ -77,28 +77,29 @@
 
 <div class="row">
     <div class="col-md-12">
-    <h4>Računari:</h4>
-    @if($kancelarija->racunari->isEmpty())
-    <p class="text-danger">U ovoj kancelariji nema računara</p>
+    <h4>IKT oprema u kancelariji:</h4>
+    @if($uredjaji->isEmpty())
+    <p class="text-danger">U ovoj kancelariji nema IKT opreme</p>
     @else
     <table class="table table-striped table-responsive">
         <thead>
             <tr>
-                <th>#</th>
+                <th>Vrsta</th>
                 <th>Naziv</th>
                 <th>Inventarski broj</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($kancelarija->racunari as $stavka)
+            @foreach($uredjaji as $uredjaj)
             <tr>
-                <td>{{ $stavka->id }}</td>
-                <td>{{ $stavka->ime }}</td>
-                <td>{{ $stavka->inventarski_broj }}</td>
+                <td>{{ $uredjaj->vrsta_uredjaja }}</td>
+                <td>{{ $uredjaj->naziv }}</td>
+                <td>{{ $uredjaj->inventarski_broj }}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
+    {{ $uredjaji->render() }}
     @endif
 </div>
 </div>

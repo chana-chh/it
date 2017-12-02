@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\Collection;
 class UredjajiHelper
 {
 
+    
+
     public static function sviUredjaji()
     {
         $kolekcija = new Collection();
@@ -36,6 +38,7 @@ class UredjajiHelper
             $uredjaj->tehnicki_detalji = $racunar->tehnickiDetalji();
             if ($racunar->kancelarija && $racunar->zaposleni) {
                 $uredjaj->lokacija = $racunar->kancelarija->sviPodaci() . ', ' . $racunar->zaposleni->imePrezime();
+                $uredjaj->kancelarija_id = $racunar->kancelarija_id;
             } else if ($racunar->kancelarija && !$racunar->zaposleni) {
                 $uredjaj->lokacija = $racunar->kancelarija->sviPodaci();
                 $uredjaj->kancelarija_id = $racunar->kancelarija_id;
@@ -64,6 +67,7 @@ class UredjajiHelper
             $uredjaj->tehnicki_detalji = 'Dijagonala: ' . $monitor->monitorModel->dijagonala->naziv . '"';
             if ($monitor->kancelarija && $monitor->racunar) {
                 $uredjaj->lokacija = $monitor->kancelarija->sviPodaci() . ', ' . $monitor->racunar->ime;
+                $uredjaj->kancelarija_id = $monitor->kancelarija->id;
             } else if ($monitor->kancelarija && !$monitor->racunar) {
                 $uredjaj->lokacija = $monitor->kancelarija->sviPodaci();
                 $uredjaj->kancelarija_id = $monitor->kancelarija->id;
@@ -97,6 +101,7 @@ class UredjajiHelper
             $uredjaj->tehnicki_detalji = 'Tip štampača: ' . $stampac->stampacModel->tip->naziv . '.';
             if ($stampac->kancelarija && $stampac->racunar) {
                 $uredjaj->lokacija = $stampac->kancelarija->sviPodaci() . ', ' . $stampac->racunar->ime;
+                $uredjaj->kancelarija_id = $stampac->kancelarija->id;
             } else if ($stampac->kancelarija && !$stampac->racunar) {
                 $uredjaj->lokacija = $stampac->kancelarija->sviPodaci();
                 $uredjaj->kancelarija_id = $stampac->kancelarija->id;

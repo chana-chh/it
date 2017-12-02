@@ -394,6 +394,10 @@ Route::get('oprema/osnovne_ploce/otpisani/', 'Oprema\OsnovnePloceKontroler@getLi
 Route::get('oprema/osnovne_ploce/detalj/{id}', 'Oprema\OsnovnePloceKontroler@getDetalj')->name('osnovne_ploce.oprema.detalj');
 Route::get('oprema/osnovne_ploce/izmena/{id}', 'Oprema\OsnovnePloceKontroler@getIzmena')->name('osnovne_ploce.oprema.izmena.get');
 Route::post('oprema/osnovne_ploce/izmena/{id}', 'Oprema\OsnovnePloceKontroler@postIzmena')->name('osnovne_ploce.oprema.izmena.post');
+Route::post('oprema/osnovne_ploce/otpis/', 'Oprema\OsnovnePloceKontroler@postOtpis')->name('osnovne_ploce.oprema.otpis');
+Route::post('oprema/osnovne_ploce/vracanje_otpis/', 'Oprema\OsnovnePloceKontroler@postOtpisVracanje')->name('osnovne_ploce.oprema.vracanje_otpis');
+Route::post('oprema/osnovne_ploce/recikliranje/lista/', 'Oprema\OsnovnePloceKontroler@postReciklirajLista')->name('osnovne_ploce.oprema.recikliranje.lista');
+Route::post('oprema/osnovne_ploce/recikliranje/{id_reciklaze}', 'Oprema\OsnovnePloceKontroler@postRecikliraj')->name('osnovne_ploce.oprema.recikliranje');
 
 //Racunari
 Route::get('oprema/racunari/', 'Oprema\RacunariKontroler@getLista')->name('racunari.oprema');

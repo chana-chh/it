@@ -84,9 +84,6 @@
                 <a class="btn btn-info btn-sm" id="dugmeIzmena" href="">
                     <i class="fa fa-pencil"></i>
                 </a>
-                <button class="btn btn-danger btn-sm otvori-brisanje" data-toggle="modal" data-target="#brisanjeModal" value="{{$o->id}}">
-                    <i class="fa fa-recycle"></i>
-                </button>
             </td>
         </tr>
         @endforeach

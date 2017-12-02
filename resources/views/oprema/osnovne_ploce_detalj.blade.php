@@ -29,35 +29,20 @@
                title="Povratak na listu osnovne ploče">
                 <i class="fa fa-list"></i>
             </a>
-            @if(!$uredjaj->deleted_at)
             <a class="btn btn-primary" href=""
                title="Izmena podataka osnovne ploče">
                 <i class="fa fa-pencil"></i>
             </a>
-            <button id="idBrisanje" class="btn btn-primary"
+            <button id="idBrisanje" class="btn btn-warning otvori-brisanje"
                     title="Otpis osnovne ploče"
-                    data-toggle="modal" data-target="#brisanjeModal"
+                    data-toggle="modal" data-target="#otpisModal"
                     value="{{$uredjaj->id}}">
                 <i class="fa fa-recycle"></i>
             </button>
-            @else
-            <button id="idPovratiti" class="btn btn-primary"
-                    title="Povrati osnovnu ploču"
-                    data-toggle="modal" data-target="#povratitiModal"
-                    value="{{$uredjaj->id}}">
-                <i class="fa fa-retweet"></i>
-            </button>
-            @endif
+           
         </div>
     </div>
 </div>
-@if($uredjaj->deleted_at)
-<div class="row">
-    <div class="col-md-12">
-        <div class="alert alert-danger text-center" role="alert">Osnovna ploča je otpisana {{$uredjaj->deleted_at}}</div>
-    </div>
-</div>
-@endif
 <div class="row">
     <div class="col-md-12">
         
@@ -116,7 +101,7 @@
 </div>
 
 <!--  POCETAK brisanjeModal  -->
-@include('sifarnici.inc.modal_brisanje')
+@include('sifarnici.inc.modal_otpis')
 <!--  KRAJ brisanjeModal  -->
 @endsection
 
@@ -208,11 +193,11 @@
 $( document ).ready(function() {
 
     $(document).on('click', '.otvori-brisanje', function () {
-            var id = $(this).val();
-            $('#idBrisanje').val(id);
-            /*var ruta = " route('procesori.oprema.brisanje') }}";*/
-            $('#brisanje-forma').attr('action', ruta); });
 
+            var id = $(this).val();
+            $('#idOtpis').val(id);
+            var ruta = " {{route('osnovne_ploce.oprema.otpis') }}";
+            $('#brisanje-forma').attr('action', ruta); });
 });
 </script>
 @endsection

@@ -29,35 +29,19 @@
                title="Povratak na listu procesora">
                 <i class="fa fa-list"></i>
             </a>
-            @if(!$uredjaj->deleted_at)
             <a class="btn btn-primary" href="{{route('procesori.oprema.izmena.get', $uredjaj->id)}}"
                title="Izmena podataka procesora">
                 <i class="fa fa-pencil"></i>
             </a>
-            <button class="btn btn-primary otvori-brisanje"
+            <button class="btn btn-warning otvori-brisanje"
                     title="Otpis procesora"
                     data-toggle="modal" data-target="#otpisModal"
                     value="{{$uredjaj->id}}">
                 <i class="fa fa-recycle"></i>
             </button>
-            @else
-            <button id="idPovratiti" class="btn btn-primary"
-                    title="Povrati procesor"
-                    data-toggle="modal" data-target="#povratitiModal"
-                    value="{{$uredjaj->id}}">
-                <i class="fa fa-retweet"></i>
-            </button>
-            @endif
         </div>
     </div>
 </div>
-@if($uredjaj->deleted_at)
-<div class="row">
-    <div class="col-md-12">
-        <div class="alert alert-danger text-center" role="alert">Procesor je otpisan {{$uredjaj->deleted_at}}</div>
-    </div>
-</div>
-@endif
 <div class="row">
     <div class="col-md-12">
         
