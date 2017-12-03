@@ -1,0 +1,36 @@
+html,body,.container {
+    height:100%;
+}
+.container {
+    display:table;
+    width: 100%;
+    margin-top: -50px;
+    padding: 50px 0 0 0; /*set left/right padding according to needs*/
+    box-sizing: border-box;
+}
+
+.row {
+    height: 100%;
+    display: table-row;
+}
+
+.row .no-float {
+  display: table-cell;
+  float: none;
+}
+
+.btn-success {
+    background-color: #18BC9C;
+    border-color: #18BC9C;
+    color: #FFFFFF;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.open .dropdown-toggle.btn-success {
+    color: #FFFFFF;
+    background-color: #007D65 !important;
+    border-color: #007D65 !important;
+}

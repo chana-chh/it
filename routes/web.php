@@ -3,6 +3,9 @@
 Route::get('/', 'PocetnaKontroler@pocetna')->name('pocetna');
 Route::post('greska/brisanje', 'PocetnaKontroler@postBrisanje')->name('greska.brisanje');
 
+Route::get('pretraga', 'PretragaKontroler@getPretraga')->name('pretraga');
+Route::post('pretraga/rezultati', 'PretragaKontroler@postRezultati')->name('pretraga.rezultati');
+
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
