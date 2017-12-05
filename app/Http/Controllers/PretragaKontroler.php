@@ -12,20 +12,21 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
-
+use App\Modeli\Zaposleni;
+use App\Modeli\Kancelarija;
 
 class PretragaKontroler extends Kontroler
 {
 
     public function getPretraga()
     {
-
-
-        return view('pretraga');
+        $zap = Zaposleni::all();
+        $kanc = Kancelarija::all();
+        return view('pretraga1')->with(compact('zap', 'kanc'));
     }
 
-    public function postRezultati(Request $request){
-
+    public function postRezultati(Request $request)
+    {
         $upit = $request->upit;
         $rezultat = null;
         $zaposleni_svi = ImenikHelper::zaImenik();
@@ -38,17 +39,13 @@ class PretragaKontroler extends Kontroler
     }
 
     function paginate($kolekcija, $poStrani)
-{
-    if(is_array($kolekcija)){
-        $kolekcija = collect($kolekcija);
+    {
+        if (is_array($kolekcija)) {
+            $kolekcija = collect($kolekcija);
+        }
+        return new LengthAwarePaginator($kolekcija->forPage(Paginator::resolveCurrentPage(), $poStrani), $kolekcija->count(), $poStrani, Paginator::resolveCurrentPage(), [
+            'path' => Paginator::resolveCurrentPath()]
+        );
     }
-
-    return new LengthAwarePaginator(
-        $kolekcija->forPage(Paginator::resolveCurrentPage() , $poStrani),
-        $kolekcija->count(), $poStrani,
-        Paginator::resolveCurrentPage(),
-        ['path' => Paginator::resolveCurrentPath()]
-    );
-}
 
 }

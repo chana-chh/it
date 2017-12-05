@@ -27,3 +27,5 @@ https://yajrabox.com/docs/laravel-datatables/master/releases
 https://datatables.yajrabox.com/starter
 
 Dodati WithTrashed u Uredjaj Helper
+
+Pretraga po email-u
