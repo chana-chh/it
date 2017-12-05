@@ -29,8 +29,10 @@ class PretragaKontroler extends Kontroler
         $upit = $request->upit;
         $rezultat = null;
         $zaposleni_svi = ImenikHelper::zaImenik();
-        $zaposleni_upit = $zaposleni_svi->where('zaposleni_id', '<', $upit);
-        $rezultat = $this->paginate($zaposleni_upit, 5);
+        
+        $zaposleni_upit = $zaposleni_svi->where('zaposleni_ime', 'like', '%'.$upit.'%');
+        $rezultat = $this->paginate($zaposleni_svi, 10);
+        dd($rezultat);
 
         return view('rezultati')->with(compact('rezultat'));
     }
