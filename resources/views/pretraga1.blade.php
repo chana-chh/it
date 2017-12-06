@@ -52,6 +52,9 @@
             </div>
         </div>
     </div>
+    <div class="col-md-2 text-right">
+        <img alt="Kvar" src="{{url('/images/kvar.png')}}" style="height: 128px;">
+    </div>
 </div>
 <hr>
 <div id="sviZaposleni">
