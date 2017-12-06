@@ -1,13 +1,12 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Rezultati')
-
-@section('meni')
-@include('sabloni.inc.meni')
-@endsection
+@section('naziv', 'Imenik')
 
 @section('stilovi')
 <style>
+    body {
+        padding-top: 3rem;
+    }
     #sviZaposleni {
         display: none;
     }
@@ -55,15 +54,16 @@
     </div>
 </div>
 <hr>
-
 <div id="sviZaposleni">
     @if($zap)
     @foreach($zap as $zaposleni)
-    <div class="row">
+    <div class="row redZaposleni">
         <div class="col-md-8 col-md-offset-2">
             <div class="row">
                 <div class="col-md-8">
-                    <h3>{{ $zaposleni->imePrezime() }}, <small>{{ $zaposleni->uprava->naziv }}</small></h3>
+                    <h3>
+                        <span class="zaposleniImePrezime">{{ $zaposleni->imePrezime() }}</span>
+                        , <small>{{ $zaposleni->uprava->naziv }}</small></h3>
                     <h4>
                         Kancelarija: {{ $zaposleni->kancelarija->naziv }},
                         <small>
@@ -103,12 +103,15 @@
 <div id="sveKancelarije">
     @if($kanc)
     @foreach($kanc as $kancelarija)
-    <div class="row">
+    <div class="row redKancelarija">
         <div class="col-md-8 col-md-offset-2">
             <div class="row">
                 <div class="col-md-12">
                     <h3>
-                        Kancelarija: {{ $kancelarija->naziv }},
+                        Kancelarija:
+                        <span class="kancelarijaNazivBroj">
+                            {{ $kancelarija->naziv }}
+                        </span> ,
                         <small>
                             {{ $kancelarija->lokacija->naziv }},
                             {{ $kancelarija->sprat->naziv }}
@@ -142,6 +145,7 @@
         var sveKancelarije = $('#sveKancelarije');
         var vrstaPretrage = $('#vrstaPretrage');
         var tekstPretrage = $('#tekstPretrage');
+        var opcije, skrivalica;
 
         $('#dugmeZaposleni').on('click', function () {
             sviZaposleni.show();
@@ -150,6 +154,8 @@
             tekstPretrage.attr('placeholder', 'Kucajte ovde za pretragu zaposlenog');
             vrstaPretrage.text('Zaposleni');
             tekstPretrage.focus();
+            opcije = $('#sviZaposleni').find('.zaposleniImePrezime');
+            skrivalica = '.redZaposleni';
         });
 
         $('#dugmeKancelarije').on('click', function () {
@@ -159,6 +165,21 @@
             tekstPretrage.attr('placeholder', 'Kucajte ovde za pretragu kancelarije');
             vrstaPretrage.text('Kancelarije');
             tekstPretrage.focus();
+            opcije = $('#sveKancelarije').find('.kancelarijaNazivBroj');
+            skrivalica = '.redKancelarija';
+        });
+
+        tekstPretrage.on('keyup', function () {
+            var tekst;
+            var filter = tekstPretrage.val().toUpperCase();
+            for (var i = 0; i < opcije.length; i++) {
+                tekst = $(opcije[i]).text();
+                if (tekst.toUpperCase().indexOf(filter) > -1) {
+                    $(opcije[i]).parents(skrivalica).show();
+                } else {
+                    $(opcije[i]).parents(skrivalica).hide();
+                }
+            }
         });
     });
 </script>
