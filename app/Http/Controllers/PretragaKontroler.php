@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 //use Session;
 //use Redirect;
 //use Gate;
@@ -27,7 +27,14 @@ class PretragaKontroler extends Controller
 
     public function getPrijavaKvara()
     {
-        return view('kvar');
+        $zap = Zaposleni::orderBy('ime', 'asc')->orderBy('prezime', 'asc')->get();
+        $kanc = Kancelarija::orderBy('naziv', 'asc')->get();
+        return view('kvar')->with(compact('zap', 'kanc'));
+    }
+
+    public function postPrijavaKvara(Request $request)
+    {
+        return "PRIJAVLJEN JE KVAR";
     }
 
 //    public function postRezultati(Request $request)

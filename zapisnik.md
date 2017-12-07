@@ -25,7 +25,3 @@ Ocene od 1 do 4 za modele Cpu, Mem, Hdd, Ploca, a za racunar zbir. Ako je ocena 
 https://github.com/yajra/laravel-datatables
 https://yajrabox.com/docs/laravel-datatables/master/releases
 https://datatables.yajrabox.com/starter
-
-Dodati WithTrashed u Uredjaj Helper
-
-Pretraga po email-u

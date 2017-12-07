@@ -5,7 +5,7 @@
 @section('stilovi')
 <style>
     body {
-        padding-top: 3rem;
+        padding-top: 1rem;
     }
     #sviZaposleni {
         display: none;
@@ -18,14 +18,14 @@
 
 @section('naslov')
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-2 text-center">
         <a href="{{ route('imenik') }}">
-            <img alt="Imenik" src="{{url('/images/imenik.png')}}" style="height: 128px;" id="popImenik"
-                 data-toggle="popover"
-                 data-content="Pretraga imenika">
+            <img alt="Imenik" src="{{url('/images/imenik.png')}}" style="height: 128px;">
         </a>
+        <h4>Pretraživanje imenika</h4>
     </div>
     <div class="col-md-8">
+        <h1 class="text-center">Pretraživanje imenika</h1>
         <div class="row">
             <div class="col-md-6">
                 <button id="dugmeZaposleni" class="btn btn-primary btn-lg btn-block">
@@ -56,12 +56,11 @@
             </div>
         </div>
     </div>
-    <div class="col-md-2 text-right">
+    <div class="col-md-2 text-center">
         <a href="{{ route('kvar') }}">
-            <img alt="Kvar" src="{{url('/images/kvar.png')}}" style="height: 128px;" id="popKvar"
-                 data-toggle="popover"
-                 data-content="Prijava kvara">
+            <img alt="Kvar" src="{{url('/images/kvar.png')}}" style="height: 128px;">
         </a>
+        <h4>Prijava/status kvara</h4>
     </div>
 </div>
 <hr>
@@ -102,7 +101,8 @@
                     </ul>
                 </div>
                 <div class="col-md-4 text-right">
-                    <img src="{{url('/images/sara.jpg')}}" alt="sara" class="img-circle" style="height:128px;">
+                    <img src="{{url('/images/sara.jpg')}}" alt="sara" class="img-circle"
+                         style="height:128px; margin-top: 18px;">
                 </div>
             </div>
             <hr style="border:none; border-top:1px dotted #18BC9C; color:#18BC9C; height:1px;">
@@ -190,15 +190,6 @@
             }
         });
 
-        $('#popImenik').popover({
-            trigger: 'hover',
-            placement: 'bottom'
-        });
-
-        $('#popKvar').popover({
-            trigger: 'hover',
-            placement: 'bottom'
-        });
     });
 
 </script>
