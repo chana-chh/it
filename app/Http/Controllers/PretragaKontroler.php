@@ -22,7 +22,12 @@ class PretragaKontroler extends Controller
     {
         $zap = Zaposleni::all();
         $kanc = Kancelarija::all();
-        return view('pretraga1')->with(compact('zap', 'kanc'));
+        return view('pretraga')->with(compact('zap', 'kanc'));
+    }
+
+    public function getPrijavaKvara()
+    {
+        return view('kvar');
     }
 
 //    public function postRezultati(Request $request)
