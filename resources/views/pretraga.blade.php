@@ -49,8 +49,8 @@
                         </span>
                     </div>
                     <input type="text" id="tekstPretrage" class="form-control input-lg" disabled>
-                    <div class="input-group-addon">
-                        <span class="text-info"><i class="fa fa-search fa-fw"></i></span>
+                    <div class="input-group-addon" style="width: 10rem;">
+                        <span id="brojRezultata" class="text-info"><i class="fa fa-search fa-fw"></i></span>
                     </div>
                 </div>
             </div>
@@ -156,7 +156,9 @@
         var sveKancelarije = $('#sveKancelarije');
         var vrstaPretrage = $('#vrstaPretrage');
         var tekstPretrage = $('#tekstPretrage');
+        var brojRezultata = $('#brojRezultata');
         var opcije, skrivalica;
+
         $('#dugmeZaposleni').on('click', function () {
             sviZaposleni.show();
             sveKancelarije.hide();
@@ -166,6 +168,7 @@
             tekstPretrage.focus();
             opcije = $('#sviZaposleni').find('.zaposleniImePrezime');
             skrivalica = '.redZaposleni';
+            brojRezultata.text('0');
         });
         $('#dugmeKancelarije').on('click', function () {
             sveKancelarije.show();
@@ -176,18 +179,23 @@
             tekstPretrage.focus();
             opcije = $('#sveKancelarije').find('.kancelarijaNazivBroj');
             skrivalica = '.redKancelarija';
+            brojRezultata.text('0');
         });
+
         tekstPretrage.on('keyup', function () {
             var tekst;
             var filter = tekstPretrage.val().toUpperCase();
+            var broj = 0;
             for (var i = 0; i < opcije.length; i++) {
                 tekst = $(opcije[i]).text();
                 if (tekst.toUpperCase().indexOf(filter) > -1) {
                     $(opcije[i]).parents(skrivalica).show();
+                    broj += 1;
                 } else {
                     $(opcije[i]).parents(skrivalica).hide();
                 }
             }
+            brojRezultata.text(broj);
         });
 
     });

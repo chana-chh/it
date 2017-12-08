@@ -20,6 +20,9 @@
     </div>
     <div class="col-md-8">
         <h1 class="text-center">Prijava/status kvara</h1>
+        <div class="row">
+            <a href="{{ route('status', 1) }}">status</a>
+        </div>
     </div>
     <div class="col-md-2 text-center">
         <a href="{{ route('kvar') }}">
