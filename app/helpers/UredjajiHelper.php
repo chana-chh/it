@@ -21,13 +21,11 @@ use Illuminate\Database\Eloquent\Collection;
 class UredjajiHelper
 {
 
-    
-
     public static function sviUredjaji()
     {
         $kolekcija = new Collection();
 
-        $racunari = Racunar::all();
+        $racunari = Racunar::withTrashed()->get();
         foreach ($racunari as $racunar) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $racunar->vrstaUredjaja->id;
@@ -56,7 +54,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $monitori = Monitor::all();
+        $monitori = Monitor::withTrashed()->get();
         foreach ($monitori as $monitor) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $monitor->vrstaUredjaja->id;
@@ -90,7 +88,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $stampaci = Stampac::all();
+        $stampaci = Stampac::withTrashed()->get();
         foreach ($stampaci as $stampac) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $stampac->vrstaUredjaja->id;
@@ -124,7 +122,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $skeneri = Skener::all();
+        $skeneri = Skener::withTrashed()->get();
         foreach ($skeneri as $skener) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $skener->vrstaUredjaja->id;
@@ -158,7 +156,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $upsevi = Ups::all();
+        $upsevi = Ups::withTrashed()->get();
         foreach ($upsevi as $ups) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $ups->vrstaUredjaja->id;
@@ -194,7 +192,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $projektori = Projektor::all();
+        $projektori = Projektor::withTrashed()->get();
         foreach ($projektori as $projektor) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $projektor->vrstaUredjaja->id;
@@ -229,7 +227,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $mrezni_uredjaji = MrezniUredjaj::all();
+        $mrezni_uredjaji = MrezniUredjaj::withTrashed()->get();
         foreach ($mrezni_uredjaji as $mu) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $mu->vrstaUredjaja->id;
@@ -264,7 +262,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $osnovne_ploce = OsnovnaPloca::all();
+        $osnovne_ploce = OsnovnaPloca::withTrashed()->get();
         foreach ($osnovne_ploce as $mbd) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $mbd->vrstaUredjaja->id;
@@ -288,7 +286,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $hddovi = Hdd::all();
+        $hddovi = Hdd::withTrashed()->get();
         foreach ($hddovi as $hdd) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $hdd->vrstaUredjaja->id;
@@ -312,7 +310,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $procesori = Procesor::all();
+        $procesori = Procesor::withTrashed()->get();
         foreach ($procesori as $cpu) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $cpu->vrstaUredjaja->id;
@@ -336,7 +334,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $memorije = Memorija::all();
+        $memorije = Memorija::withTrashed()->get();
         foreach ($memorije as $ram) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $ram->vrstaUredjaja->id;
@@ -360,7 +358,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $graficke = GrafickiAdapter::all();
+        $graficke = GrafickiAdapter::withTrashed()->get();
         foreach ($graficke as $vga) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $vga->vrstaUredjaja->id;
@@ -384,7 +382,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $napajanja = Napajanje::all();
+        $napajanja = Napajanje::withTrashed()->get();
         foreach ($napajanja as $napajanje) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $napajanje->vrstaUredjaja->id;

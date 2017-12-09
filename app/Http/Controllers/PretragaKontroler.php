@@ -3,49 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session;
-use Redirect;
-use Gate;
-use Carbon\Carbon;
-use App\Helpers\ImenikHelper;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
+//use Session;
+//use Redirect;
+//use Gate;
+//use Carbon\Carbon;
+//use App\Helpers\ImenikHelper;
+//use Illuminate\Support\Facades\DB;
+//use Illuminate\Pagination\Paginator;
+//use Illuminate\Pagination\LengthAwarePaginator;
+//use Illuminate\Database\Eloquent\Collection;
 use App\Modeli\Zaposleni;
 use App\Modeli\Kancelarija;
+use App\Modeli\Servis;
 
-class PretragaKontroler extends Kontroler
+class PretragaKontroler extends Controller
 {
 
     public function getPretraga()
     {
         $zap = Zaposleni::all();
         $kanc = Kancelarija::all();
-        return view('pretraga1')->with(compact('zap', 'kanc'));
+        return view('pretraga')->with(compact('zap', 'kanc'));
     }
 
-    public function postRezultati(Request $request)
+    public function getPrijavaKvara()
     {
-        $upit = $request->upit;
-        $rezultat = null;
-        $zaposleni_svi = ImenikHelper::zaImenik();
-        
-        $zaposleni_upit = $zaposleni_svi->where('zaposleni_ime', 'like', '%'.$upit.'%');
-        $rezultat = $this->paginate($zaposleni_svi, 10);
-        dd($rezultat);
-
-        return view('rezultati')->with(compact('rezultat'));
+        $zap = Zaposleni::orderBy('ime', 'asc')->orderBy('prezime', 'asc')->get();
+        $kanc = Kancelarija::orderBy('naziv', 'asc')->get();
+        return view('kvar')->with(compact('zap', 'kanc'));
     }
 
-    function paginate($kolekcija, $poStrani)
+    public function postPrijavaKvara(Request $request)
     {
-        if (is_array($kolekcija)) {
-            $kolekcija = collect($kolekcija);
-        }
-        return new LengthAwarePaginator($kolekcija->forPage(Paginator::resolveCurrentPage(), $poStrani), $kolekcija->count(), $poStrani, Paginator::resolveCurrentPage(), [
-            'path' => Paginator::resolveCurrentPath()]
-        );
+        return "PRIJAVLJEN JE KVAR";
+    }
+
+    public function getStatus($id)
+    {
+        $servis = Servis::find($id);
+        return view('status')->with(compact('servis'));
     }
 
 }
