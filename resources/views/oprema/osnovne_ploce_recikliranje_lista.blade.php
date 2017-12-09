@@ -1,6 +1,6 @@
 .@extends('sabloni.app')
 
-@section('naziv', 'Oprema | Lista procesora za reciklažu')
+@section('naziv', 'Oprema | Lista osnovnih ploča za reciklažu')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -13,7 +13,7 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <strong>Obavštenje: </strong>Čekirajte <input type="checkbox" onclick="return false;"/> uz procesore koje želite da reciklirate u navedenoj reciklaži</a>.
+            <strong>Obavštenje: </strong>Čekirajte <input type="checkbox" onclick="return false;"/> uz osnovne ploče koje želite da reciklirate u navedenoj reciklaži</a>.
         </div>
     </div>
 </div>
@@ -21,11 +21,11 @@
     <div class="col-md-10">
         <h2>
             <span>
-                <img class="slicica_animirana" alt="Otpisani procesori" src="{{url('/images/cpu.png')}}" style="height:64px;">
-            </span>&emsp;Lista procesora za reciklažu koja je planirana za <span class="text-success">{{$reciklaza->datum}}</span></h2>
+                <img class="slicica_animirana" alt="Otpisani snovne ploče" src="{{url('/images/cpu.png')}}" style="height:64px;">
+            </span>&emsp;Lista osnovnih ploča za reciklažu koja je planirana za <span class="text-success">{{$reciklaza->datum}}</span></h2>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <form action="{{route('procesori.oprema.recikliranje', $reciklaza->id)}}" method="POST" id="forma_reciklaza">
+        <form action="{{route('osnovne_ploce.oprema.recikliranje', $reciklaza->id)}}" method="POST" id="forma_reciklaza">
             {{ csrf_field() }}
         <button id="reciklazaDugme" type="submit" class="btn btn-danger btn-block ono">
             <i class="fa fa-trash fa-fw"></i> Reciklaža
@@ -37,7 +37,7 @@
 <div class="row" style="margin-bottom: 25px; margin-top: 25px">
     <div class="col-md-12">
         <div class="btn-group">
-            <a class="btn btn-primary" href="{{route('procesori.oprema.otpisani')}}"
+            <a class="btn btn-primary" href="{{route('osnovne_ploce.oprema.otpisani')}}"
                title="Povratak na prethodnu stranu">
                 <i class="fa fa-arrow-left"></i>
             </a>
@@ -45,8 +45,8 @@
                title="Povratak na početnu stranu">
                 <i class="fa fa-home"></i>
             </a>
-            <a class="btn btn-primary" href="{{route('procesori.oprema')}}"
-               title="Povratak na listu procesora">
+            <a class="btn btn-primary" href="{{route('osnovne_ploce.oprema')}}"
+               title="Povratak na listu snovnih ploča">
                 <i class="fa fa-list"></i>
             </a>
         </div>
@@ -57,7 +57,7 @@
 <div class="row">
     <div class="col-md-12">
 @if($uredjaj->isEmpty())
-            <h3 class="text-danger">Trenutno nema procesora za reciklažu</h3>
+            <h3 class="text-danger">Trenutno nema osnovnih ploča za reciklažu</h3>
         @else
 <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
     <thead>
@@ -74,7 +74,7 @@
             <td>
                 <strong>{{$o->serijski_broj}}</strong>
             </td>
-            <td><a href="{{route('procesori.modeli.detalj', $o->procesorModel->id)}}">{{$o->procesorModel->proizvodjac->naziv}} {{$o->procesorModel->naziv}}, {{$o->procesorModel->takt}} MHz</a></td>
+            <td><a href="{{route('osnovne_ploce.modeli.detalj', $o->osnovnaPlocaModel->id)}}">{{$o->osnovnaPlocaModel->proizvodjac->naziv}} {{$o->osnovnaPlocaModel->naziv}}, {{$o->osnovnaPlocaModel->cipset}}</a></td>
             <td> 
                 {{$o->deleted_at}}
             </td>

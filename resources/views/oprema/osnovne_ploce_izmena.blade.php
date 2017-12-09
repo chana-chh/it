@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Oprema | Izmena procesora')
+@section('naziv', 'Oprema | Izmena osnovne ploče')
 
 @section('meni')
 @include('sabloni.inc.meni')
@@ -10,9 +10,9 @@
 <div class="row">
     <div class="col-md-8">
         <h1>
-            <img class="slicica_animirana" alt="Izmena procesora"
-                 src="{{url('/images/cpu.png')}}" style="height:64px;">
-            &emsp;Izmena podataka procesora
+            <img class="slicica_animirana" alt="Izmena osnovne ploče"
+                 src="{{url('/images/mbd.png')}}" style="height:64px;">
+            &emsp;Izmena podataka osnovne ploče
         </h1>
     </div>
 </div>
@@ -28,8 +28,8 @@
                title="Povratak na početnu stranu">
                 <i class="fa fa-home"></i>
             </a>
-            <a class="btn btn-primary" href="{{ route('procesori.oprema') }}"
-               title="Povratak na listu procesora">
+            <a class="btn btn-primary" href="{{ route('osnovne_ploce.oprema') }}"
+               title="Povratak na listu osnovnih ploča">
                 <i class="fa fa-list"></i>
             </a>
         </div>
@@ -38,7 +38,7 @@
 
 <div class="row ceo_dva">
     <div class="col-md-12 boxic">
-        <form action="{{ route('procesori.oprema.izmena.post', $uredjaj->id) }}" method="POST" data-parsley-validate>
+        <form action="{{ route('osnovne_ploce.oprema.izmena.post', $uredjaj->id) }}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
 
             <div class="row">
@@ -81,21 +81,21 @@
             </div>
 
             <div class="col-md-4">
-                <div class="form-group{{ $errors->has('procesor_model_id') ? ' has-error' : '' }}">
-                    <label for="procesor_model_id">Model procesora:</label>
-                    <select name="procesor_model_id" id="procesor_model_id" class="chosen-select form-control" data-placeholder="model ..." required>
+                <div class="form-group{{ $errors->has('osnovna_ploca_model_id') ? ' has-error' : '' }}">
+                    <label for="osnovna_ploca_model_id">Model procesora:</label>
+                    <select name="osnovna_ploca_model_id" id="osnovna_ploca_model_id" class="chosen-select form-control" data-placeholder="model ..." required>
                         <option value=""></option>
                         @foreach($modeli as $m)
                         <option value="{{ $m->id }}"
-                            {{ $m->id == old('procesor_model_id') ? ' selected' : '' }}
-                            {{ $uredjaj->procesor_model_id == $m->id ? ' selected' : '' }}>
-                            {{ $m->proizvodjac->naziv }}, {{ $m->naziv }} na {{ $m->takt }} MHz
+                            {{ $m->id == old('osnovna_ploca_model_id') ? ' selected' : '' }}
+                            {{ $uredjaj->osnovna_ploca_model_id == $m->id ? ' selected' : '' }}>
+                            {{ $m->proizvodjac->naziv }}, {{ $m->naziv }} na {{ $m->cipset }}
                     </option>
                     @endforeach
                 </select>
-                @if ($errors->has('procesor_model_id'))
+                @if ($errors->has('osnovna_ploca_model_id'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('procesor_model_id') }}</strong>
+                    <strong>{{ $errors->first('osnovna_ploca_model_id') }}</strong>
                 </span>
                 @endif
             </div>
@@ -116,7 +116,7 @@
                 <select name="racunar_id" id="racunar_id" class="chosen-select form-control" data-placeholder="računar ..." >
                     <option value=""></option>
                     @foreach($racunari as $r)
-                    <option data-procesor="{{ $r->procesori()->count() > 0 ? 'Ovaj računar već ima ugrađen-a '. $r->procesori()->count().' procesor-a!' : 'Računar je bez procesora.'}}"
+                    <option data-procesor="{{ $r->procesori()->count() > 0 ? 'Ovaj računar već ima ugrađenu osnovnu ploču!' : 'Računar je bez procesora.'}}"
                             value="{{ $r->id }}"
                             {{ $r->id == old('racunar_id') ? ' selected' : '' }}
                             {{ $uredjaj->racunar_id == $r->id ? ' selected' : '' }}>
@@ -156,7 +156,7 @@
                 <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-floppy-o"></i>&emsp;&emsp;Snimi izmene</button>
             </div>
             <div class="col-md-6">
-                <a class="btn btn-danger btn-block ono" href="{{route('procesori.oprema')}}"><i class="fa fa-ban"></i>&emsp;&emsp;Otkaži</a>
+                <a class="btn btn-danger btn-block ono" href="{{route('osnovne_ploce.oprema')}}"><i class="fa fa-ban"></i>&emsp;&emsp;Otkaži</a>
             </div>
         </div>
     </div>

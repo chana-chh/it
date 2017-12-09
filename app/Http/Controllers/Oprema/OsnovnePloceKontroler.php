@@ -98,4 +98,53 @@ class OsnovnePloceKontroler extends Kontroler
         return redirect()->route('osnovne_ploce.oprema');
     }
 
+    public function postOtpisVracanje(Request $request)
+    {
+
+        $data = OsnovnaPloca::withTrashed()->find($request->idVracanje);
+        $data->restore();
+        if (!$data->stavkaOtpremnice) {
+              $data->stavka_otpremnice_id = 1; //Stavka otpremnice rezervisana za stare ploce
+          }
+        $odgovor = $data->save();
+
+        if ($odgovor) {
+            Session::flash('uspeh', 'Osnovna ploča je uspešno vraćena u ponovnu upotrebu iz otpisa!');
+        } else {
+            Session::flash('greska', 'Došlo je do greške prilikom vraćanja iz otpisa osnovne ploče. Pokušajte ponovo, kasnije!');
+        }
+        return redirect()->route('osnovne_ploce.oprema.otpisani');
+    }
+
+    public function postReciklirajLista(Request $request){
+
+        $uredjaj = OsnovnaPloca::onlyTrashed()->whereNull('reciklirano_id')->get();
+        $reciklaza = Reciklaza::find($request->reciklirano_id);
+
+        return view('oprema.osnovne_ploce_recikliranje_lista')->with(compact ('uredjaj', 'reciklaza'));
+    }
+
+    public function postRecikliraj(Request $request, $id_reciklaze){
+
+        if (!$request->id_uredjaji) {
+            Session::flash('greska', 'Niste odabrali nijedanu osnovnu ploču!');
+            return redirect()->route('osnovne_ploce.oprema.otpisani');
+        }else{
+        DB::beginTransaction();
+        foreach ($request->id_uredjaji as $id) {
+            try{
+            $data = OsnovnaPloca::withTrashed()->find($id);
+            $data->reciklirano_id = $id_reciklaze;
+            $data->save();
+        }catch (\Exception $e){
+                DB::rollback();
+                Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
+                return redirect()->route('osnovne_ploce.oprema.otpisani');
+        }
+        }
+        DB::commit();
+        Session::flash('uspeh', 'Osnovna ploča je uspešno stavljen na listu reciklaže!');}
+       return redirect()->route('osnovne_ploce.oprema.otpisani');
+    }
+
 }

@@ -32,7 +32,7 @@
             </div>
             <div class="col-md-6">
                 <button id="dugmeKancelarije" class="btn btn-primary btn-lg btn-block">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-building"></i>
                     Kancelarije
                 </button>
             </div>

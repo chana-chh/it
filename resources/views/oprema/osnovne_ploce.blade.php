@@ -81,7 +81,7 @@
                 <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('osnovne_ploce.oprema.detalj', $o->id)}}">
                     <i class="fa fa-eye"></i>
                 </a>
-                <a class="btn btn-info btn-sm" id="dugmeIzmena" href="">
+                <a class="btn btn-info btn-sm" id="dugmeIzmena" href="{{route('osnovne_ploce.oprema.izmena.get', $o->id)}}">
                     <i class="fa fa-pencil"></i>
                 </a>
             </td>

@@ -75,7 +75,7 @@
                         <select name="uprava_id" id="uprava_id" class="chosen-select form-control" data-placeholder="uprava ..." required>
                             <option value=""></option>
                             @foreach($uprave as $uprava)
-                            <option value="{{ $uprava->id }}" {{ old( 'uprava_id')==$ uprava->id ? ' selected' : '' }}> {{ $uprava->naziv }}
+                            <option value="{{ $uprava->id }}" {{ old( 'uprava_id')==$uprava->id ? ' selected' : '' }}> {{ $uprava->naziv }}
                             </option>
                             @endforeach
                         </select>
@@ -93,7 +93,7 @@
                         <select name="kancelarija_id" id="kancelarija_id" class="chosen-select form-control" data-placeholder="kancelarija ..." required>
                             <option value=""></option>
                             @foreach($kancelarije as $kancelarija)
-                            <option value="{{ $kancelarija->id }}" {{ old( 'kancelarija_id')==$ kancelarija->id ? ' selected' : '' }}> {{ $kancelarija->naziv }}, {{$kancelarija->lokacija->naziv}}, {{$kancelarija->sprat->naziv}}
+                            <option value="{{ $kancelarija->id }}" {{ old( 'kancelarija_id')==$kancelarija->id ? ' selected' : '' }}> {{ $kancelarija->naziv }}, {{$kancelarija->lokacija->naziv}}, {{$kancelarija->sprat->naziv}}
                             </option>
                             @endforeach
                         </select>
@@ -175,7 +175,7 @@ $( document ).ready(function() {
    };
    });
 
-    // Petljanje sa slikom ou jeee :)
+    // Petljanje sa slikom ou jeee
 
     $(document).on('click', '#close-preview', function(){ 
     $('.image-preview').popover('hide');

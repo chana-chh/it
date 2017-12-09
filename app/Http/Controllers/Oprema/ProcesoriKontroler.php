@@ -126,6 +126,10 @@ class ProcesoriKontroler extends Kontroler
 
     public function postRecikliraj(Request $request, $id_reciklaze){
 
+        if (!$request->id_uredjaji) {
+            Session::flash('greska', 'Niste odabrali nijedan procesor!');
+            return redirect()->route('procesori.oprema.otpisani');
+        }else{
         DB::beginTransaction();
         foreach ($request->id_uredjaji as $id) {
             try{
@@ -139,7 +143,7 @@ class ProcesoriKontroler extends Kontroler
         }
         }
         DB::commit();
-        Session::flash('uspeh', 'Procesor je uspešno stavljen na listu reciklaže!');
+        Session::flash('uspeh', 'Procesor je uspešno stavljen na listu reciklaže!');}
        return redirect()->route('procesori.oprema.otpisani');
     }
 
