@@ -66,7 +66,7 @@
                                 <option value="{{ $s->id }}"
                                     {{ $s->id == old('stavka_otpremnice_id') ? ' selected' : '' }}
                                     {{ $uredjaj->stavka_otpremnice_id == $s->id ? ' selected' : '' }}>
-                                    {{$s->naziv}} (popunjeno je {{$s->procesori->count() }} od {{$s->kolicina}} {{$s->jedinica_mere}})
+                                    {{$s->naziv}} (popunjeno je {{$s->osnovnePloce->count() }} od {{$s->kolicina}} {{$s->jedinica_mere}})
                             </option>
                             @endforeach
                         </optgroup>
@@ -82,7 +82,7 @@
 
             <div class="col-md-4">
                 <div class="form-group{{ $errors->has('osnovna_ploca_model_id') ? ' has-error' : '' }}">
-                    <label for="osnovna_ploca_model_id">Model procesora:</label>
+                    <label for="osnovna_ploca_model_id">Model osnovne ploče:</label>
                     <select name="osnovna_ploca_model_id" id="osnovna_ploca_model_id" class="chosen-select form-control" data-placeholder="model ..." required>
                         <option value=""></option>
                         @foreach($modeli as $m)
@@ -116,10 +116,12 @@
                 <select name="racunar_id" id="racunar_id" class="chosen-select form-control" data-placeholder="računar ..." >
                     <option value=""></option>
                     @foreach($racunari as $r)
-                    <option data-procesor="{{ $r->procesori()->count() > 0 ? 'Ovaj računar već ima ugrađenu osnovnu ploču!' : 'Računar je bez procesora.'}}"
+                    <option data-procesor="{{ $r->osnovnaPloca()->count() > 0 ? 'Ovaj računar već ima ugrađenu osnovnu ploču!' : 'Računar je bez osnovne ploče.'}}"
                             value="{{ $r->id }}"
                             {{ $r->id == old('racunar_id') ? ' selected' : '' }}
-                            {{ $uredjaj->racunar_id == $r->id ? ' selected' : '' }}>
+                            @if($uredjaj->racunar)
+                            {{ $uredjaj->racunar->id  == $r->id ? ' selected' : '' }}
+                            @endif>
                             {{ $r->ime }}
                 </option>
                 @endforeach

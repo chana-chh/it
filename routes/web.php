@@ -403,6 +403,16 @@ Route::post('oprema/osnovne_ploce/otpis/', 'Oprema\OsnovnePloceKontroler@postOtp
 Route::post('oprema/osnovne_ploce/vracanje_otpis/', 'Oprema\OsnovnePloceKontroler@postOtpisVracanje')->name('osnovne_ploce.oprema.vracanje_otpis');
 Route::post('oprema/osnovne_ploce/recikliranje/lista/', 'Oprema\OsnovnePloceKontroler@postReciklirajLista')->name('osnovne_ploce.oprema.recikliranje.lista');
 Route::post('oprema/osnovne_ploce/recikliranje/{id_reciklaze}', 'Oprema\OsnovnePloceKontroler@postRecikliraj')->name('osnovne_ploce.oprema.recikliranje');
+//Memorije
+Route::get('oprema/memorije/', 'Oprema\MemorijeKontroler@getLista')->name('memorije.oprema');
+Route::get('oprema/memorije/otpisani/', 'Oprema\MemorijeKontroler@getListaOtpisani')->name('memorije.oprema.otpisani');
+Route::get('oprema/memorije/detalj/{id}', 'Oprema\MemorijeKontroler@getDetalj')->name('memorije.oprema.detalj');
+Route::get('oprema/memorije/izmena/{id}', 'Oprema\MemorijeKontroler@getIzmena')->name('memorije.oprema.izmena.get');
+Route::post('oprema/memorije/izmena/{id}', 'Oprema\MemorijeKontroler@postIzmena')->name('memorije.oprema.izmena.post');
+Route::post('oprema/memorije/otpis/', 'Oprema\MemorijeKontroler@postOtpis')->name('memorije.oprema.otpis');
+Route::post('oprema/memorije/vracanje_otpis/', 'Oprema\MemorijeKontroler@postOtpisVracanje')->name('memorije.oprema.vracanje_otpis');
+Route::post('oprema/memorije/recikliranje/lista/', 'Oprema\MemorijeKontroler@postReciklirajLista')->name('memorije.oprema.recikliranje.lista');
+Route::post('oprema/memorije/recikliranje/{id_reciklaze}', 'Oprema\MemorijeKontroler@postRecikliraj')->name('memorije.oprema.recikliranje');
 
 //Racunari
 Route::get('oprema/racunari/', 'Oprema\RacunariKontroler@getLista')->name('racunari.oprema');
