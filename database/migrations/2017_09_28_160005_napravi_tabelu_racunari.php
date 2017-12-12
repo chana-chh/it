@@ -23,7 +23,7 @@ class NapraviTabeluRacunari extends Migration
             $table->integer('zaposleni_id')->unsigned()->nullable();
             $table->integer('kancelarija_id')->unsigned()->nullable();
             $table->integer('stavka_nabavke_id')->unsigned();
-            $table->integer('ploca_id')->unsigned()->nullable();
+            $table->integer('ploca_id')->unsigned()->unique()->nullable();
             $table->integer('os_id')->unsigned()->nullable();
             $table->integer('ocena')->unsigned();
             $table->text('link')->nullable();

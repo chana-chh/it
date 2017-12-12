@@ -136,7 +136,7 @@ class RacunariKontroler extends Kontroler
         $uredjaj->ocena = 0;
         $uredjaj->link = $request->link;
         $uredjaj->napomena = $request->napomena;
-        $uredjaj->reciklirano = 0;
+
 
         $uredjaj->save();
 
@@ -228,7 +228,7 @@ class RacunariKontroler extends Kontroler
     {
         $racunar = Racunar::find($id);
         if ($racunar->osnovnaPloca) {
-            Session::flash('greska', 'Prvo izvadite staru plocu da biste dodali novu!');
+            Session::flash('greska', 'Prvo izvadite staru ploču da biste dodali novu!');
         } else {
             $ploca = OsnovnaPloca::find($request->ploca_id);
             $racunar->ploca_id = $ploca->id;
