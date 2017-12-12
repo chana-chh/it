@@ -133,7 +133,7 @@ class ZaposleniKontroler extends Kontroler
                     'required',
                     'max:100'],
             ]);
-            $ime_slike = null;
+            $ime_slike = $zaposleni->src;
         }
 
         $zaposleni->ime = $request->ime;
