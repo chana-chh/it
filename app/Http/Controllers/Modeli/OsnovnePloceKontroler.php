@@ -129,7 +129,9 @@ class OsnovnePloceKontroler extends Kontroler
     public function getDetalj($id)
     {
         $osnovna_ploca = OsnovnaPlocaModel::find($id);
-        $racunari = Racunar::where('ploca_id', '=', $id)->count();
+        $ploce_id = OsnovnaPloca::where('osnovna_ploca_model_id', '=',  $id)->pluck('id');
+
+        $racunari = Racunar::whereIn('ploca_id', $ploce_id)->count();
         return view('modeli.osnovne_ploce_detalj')->with(compact ('osnovna_ploca', 'racunari'));
     }
 

@@ -10,15 +10,33 @@
 <div class="row">
     <div class="col-md-12">
         <h1>
-            <span>
-                <img class="slicica_animirana" alt="Računari ..." src="{{url('/images/hdd.png')}}" style="height:64px;">
-            </span>&emsp;Računari u kojima je čvrsti disk model
+
+            <img class="slicica_animirana" alt="Računari ..." src="{{url('/images/hdd.png')}}" style="height:64px;">
+            &emsp;Računari u kojima je čvrsti disk model
             <span style="color: #18bc9c">{{$model->proizvodjac->naziv}} {{$model->kapacitet}} GB</span>
         </h1>
     </div>
 </div>
 <hr>
 <div class="row">
+    <div class="col-md-12">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="{{route('hddovi.modeli.detalj', $model->id)}}"
+               title="Povratak na detaljni pregled modela čvrstog diska">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+            <a class="btn btn-primary" href="{{route('hddovi.modeli')}}" 
+                title="Povratak na listu modela čvrstih diskova">
+                <i class="fa fa-list"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 24px">
     <div class="col-md-12">
         @if($racunari->isEmpty())
         <h3 class="text-danger">Trenutno nema računara sa ovim modelom čvrstog diska</h3>
@@ -60,26 +78,6 @@
             </tbody>
         </table>
         @endif
-    </div>
-</div>
-
-<hr>
-
-<div class="row dugmici">
-    <div class="col-md-12" style="margin-top: 20px">
-
-        <div class="col-md-6 text-left">
-            <a class="btn btn-info" href="{{route('hddovi.modeli.detalj', $model->id)}}" title="Povratak na detaljni pregled modela čvrstog diska {{$model->proizvodjac->naziv}} {{$model->kapacitet}} GB">
-                <i class="fa fa-arrow-left" style="color:#2C3E50"></i>
-            </a>
-        </div>
-
-        <div class="col-md-6 text-right">
-            <a class="btn btn-info" href="{{route('pocetna')}}" title="Povratak na početnu stranu">
-                <i class="fa fa-home" style="color:#2C3E50"></i>
-            </a>
-        </div>
-
     </div>
 </div>
 @endsection

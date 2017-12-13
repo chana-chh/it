@@ -3,11 +3,16 @@
 namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ups extends Model
 {
+    use SoftDeletes;
     protected $table = 'ups';
     public $timestamps = false;
+        protected $dates = [
+        'deleted_at'
+    ];
 
     public function vrstaUredjaja()
     {

@@ -29,7 +29,7 @@
                title="Povratak na listu osnovne ploče">
                 <i class="fa fa-list"></i>
             </a>
-            <a class="btn btn-primary" href=""
+            <a class="btn btn-primary" href="{{route('osnovne_ploce.oprema.izmena.get', $uredjaj->id)}}"
                title="Izmena podataka osnovne ploče">
                 <i class="fa fa-pencil"></i>
             </a>
@@ -176,7 +176,7 @@
 
 <div class="row well" style="margin-right: 1px; margin-left: 1px">
     <div class="col-md-12">
-<h3>Broj osnovnih ploča ovog modela: <a href="{{route('osnovne_ploce.modeli.uredjaji', $uredjaj->id) }}" title="Pregled svih uređaja ovog modela osnovne ploče"> {{$brojno_stanje}} </a></h3>
+<h3>Broj osnovnih ploča ovog modela: <a href="{{route('osnovne_ploce.modeli.uredjaji', $uredjaj->osnovnaPlocaModel->id) }}" title="Pregled svih uređaja ovog modela osnovne ploče"> {{$brojno_stanje}} </a></h3>
 </div>
 </div>
 

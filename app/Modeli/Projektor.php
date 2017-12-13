@@ -3,11 +3,16 @@
 namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Projektor extends Model
 {
+    use SoftDeletes;
     protected $table = 'projektori';
     public $timestamps = false;
+    protected $dates = [
+        'deleted_at'
+    ];
 
     public function vrstaUredjaja()
     {

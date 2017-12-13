@@ -8,16 +8,33 @@
 
 @section('naslov')
     <div class="row">
-        <div class="col-md-10">
-            <h1><span><img class="slicica_animirana" alt="Memorije ..." src="{{url('/images/memorija.png')}}" style="height:64px;"></span>&emsp;Memorije čiji je model <span style="color: #18bc9c">{{$model->proizvodjac->naziv}} {{$model->kapacitet}}, {{$model->brzina}} MHz</span>  </h1>
-        </div>
-
-         <div class="col-md-2 text-right" style="padding-top: 50px;">
-            <a class="btn btn-primary ono" href=""><i class="fa fa-plus-circle fa-fw"></i> Dodaj memoriju</a>
+        <div class="col-md-12">
+            <h1>
+                <img class="slicica_animirana" alt="Memorije ..." src="{{url('/images/memorija.png')}}" style="height:64px;">
+                &emsp;Memorije čiji je model <span style="color: #18bc9c">{{$model->proizvodjac->naziv}} {{$model->kapacitet}}, {{$model->brzina}} MHz</span>  
+            </h1>
         </div>
         </div>
         <hr>
 <div class="row">
+    <div class="col-md-12">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="{{route('memorije.modeli.detalj', $model->id)}}"
+               title="Povratak na detaljni pregled modela memorije">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+            <a class="btn btn-primary" href="{{route('memorije.modeli')}}" 
+                title="Povratak na listu modela memorije">
+                <i class="fa fa-list"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 24px">
     <div class="col-md-12">
 @if($memorije->isEmpty())
             <h3 class="text-danger">Trenutno nema ovakvih uređaja</h3>
@@ -52,20 +69,6 @@
         @endif
     </div>
 </div>
-
-<div class="row dugmici">
-        <div class="col-md-10 col-md-offset-1" style="margin-top: 20px">
-
-            <div class="col-md-6 text-left">
-                <a class="btn btn-info" href="{{route('memorije.modeli.detalj', $model->id)}}" title="Povratak na detaljni pregled modela memorije {{$model->proizvodjac->naziv}} {{$model->kapacitet}}, {{$model->brzina}} MHz"><i class="fa fa-arrow-left" style="color:#2C3E50"></i></a>
-            </div>
-
-            <div class="col-md-6 text-right">
-                <a class="btn btn-info" href="{{route('pocetna')}}" title="Povratak na početnu stranu"><i class="fa fa-home" style="color:#2C3E50"></i></a>
-            </div>
-
-        </div>
-    </div>
 @endsection
 
 @section('skripte')

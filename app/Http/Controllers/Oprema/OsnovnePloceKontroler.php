@@ -76,7 +76,7 @@ class OsnovnePloceKontroler extends Kontroler
             $novi_racunar->ploca_id = $id;
             $novi_racunar->save();
             $greska = new Greska();
-            $greska->greska = "Prilikom izmene osnovne pločesa id-jem ".$uredjaj->id.", ploča u računaru ".$stari_racunar->ime." je premeštena u računar ".$novi_racunar->ime;
+            $greska->greska = "Prilikom izmene osnovne ploče sa id-jem ".$uredjaj->id.", ista je iz računara ".$stari_racunar->ime."  premeštena u računar ".$novi_racunar->ime;
             $greska->save();
         }elseif (!$uredjaj->racunar && $request->racunar_id) {
             $novi_racunar->ploca_id = $id;
