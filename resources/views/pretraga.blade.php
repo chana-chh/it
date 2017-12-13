@@ -73,7 +73,8 @@
                 <div class="col-md-8">
                     <h3>
                         <span class="zaposleniImePrezime">{{ $zaposleni->imePrezime() }}</span>
-                        , <small>{{ $zaposleni->uprava->naziv }}</small></h3>
+                        , <small>{{ $zaposleni->uprava->naziv }}</small>
+                    </h3>
                     <h4>
                         Kancelarija: {{ $zaposleni->kancelarija->naziv }},
                         <small>
@@ -117,7 +118,7 @@
     <div class="row redKancelarija">
         <div class="col-md-8 col-md-offset-2">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <h3>
                         Kancelarija:
                         <span class="kancelarijaNazivBroj">
@@ -133,10 +134,32 @@
                         <li><i class="fa fa-phone fa-fw text-success"></i>&emsp;{{ $tel->broj }}</li>
                         @endforeach
                     </ul>
+                </div>
+                <div class="col-md-4">
                     <h4>Zaposleni</h4>
-                    <ul style="list-style-type: none;">
+                    <ul style="list-style-type: none; padding-left: 0;">
                         @foreach($kancelarija->zaposleni as $z)
-                        <li><i class="fa fa-user fa-fw text-info"></i>&emsp;{{ $z->imePrezime() }}</li>
+                        <?php
+                        $mobilni = '<ul style="list-style-type: none; padding-left: 0;">';
+                        foreach ($z->mobilni as $mb) {
+                            $mobilni .= '<li><i class="fa fa-mobile fa-fw text-danger"></i>&emsp;' . $mb->broj . '</li>';
+                        }
+                        $mobilni .= '</ul>';
+                        $email = '<ul style="list-style-type: none; padding-left: 0;">';
+                        foreach ($z->emailovi as $em) {
+                            $email .= '<li><i class="fa fa-envelope fa-fw text-info"></i>&emsp;<a href="mailto:' . $em->adresa . '">' . $em->adresa . '</a></li>';
+                        }
+                        $email .= '</ul>';
+                        $url = url('/images/sara.jpg');
+                        $slika = '<div style="text-align: center; margin-top: 2rem;">';
+                        $slika .= '<img src="' . $url . '" class="img-circle" style="height: 128px;">';
+                        $slika .= '</div>';
+                        ?>
+                        <li class="zaposleniPopover"  style="cursor: pointer;"
+                            data-title="{{ $z->imePrezime() }}"
+                            data-content="{{ $mobilni }} {{ $email }} {{ $slika }}">
+                            <i class="fa fa-user fa-fw text-info"></i>&emsp;{{ $z->imePrezime() }}
+                        </li>
                         @endforeach
                     </ul>
                 </div>
@@ -165,10 +188,9 @@
             tekstPretrage.prop('disabled', false);
             tekstPretrage.attr('placeholder', 'Kucajte ovde za pretragu zaposlenog');
             vrstaPretrage.text('Zaposleni');
-            tekstPretrage.focus();
             opcije = $('#sviZaposleni').find('.zaposleniImePrezime');
             skrivalica = '.redZaposleni';
-            brojRezultata.text('0');
+            ponistiPretragu();
         });
         $('#dugmeKancelarije').on('click', function () {
             sveKancelarije.show();
@@ -176,10 +198,9 @@
             tekstPretrage.prop('disabled', false);
             tekstPretrage.attr('placeholder', 'Kucajte ovde za pretragu kancelarije');
             vrstaPretrage.text('Kancelarije');
-            tekstPretrage.focus();
             opcije = $('#sveKancelarije').find('.kancelarijaNazivBroj');
             skrivalica = '.redKancelarija';
-            brojRezultata.text('0');
+            ponistiPretragu();
         });
 
         tekstPretrage.on('keyup', function () {
@@ -196,6 +217,21 @@
                 }
             }
             brojRezultata.text(broj);
+        });
+
+        function ponistiPretragu() {
+            tekstPretrage.focus().val('');
+            var broj = 0;
+            for (var i = 0; i < opcije.length; i++) {
+                $(opcije[i]).parents(skrivalica).show();
+                broj += 1;
+            }
+            brojRezultata.text(broj);
+        }
+
+        $('.zaposleniPopover').popover({
+            placement: 'left',
+            html: true
         });
 
     });
