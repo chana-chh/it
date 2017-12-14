@@ -139,26 +139,24 @@
                     <h4>Zaposleni</h4>
                     <ul style="list-style-type: none; padding-left: 0;">
                         @foreach($kancelarija->zaposleni as $z)
-                        <?php
-                        $mobilni = '<ul style="list-style-type: none; padding-left: 0;">';
-                        foreach ($z->mobilni as $mb) {
-                            $mobilni .= '<li><i class="fa fa-mobile fa-fw text-danger"></i>&emsp;' . $mb->broj . '</li>';
-                        }
-                        $mobilni .= '</ul>';
-                        $email = '<ul style="list-style-type: none; padding-left: 0;">';
-                        foreach ($z->emailovi as $em) {
-                            $email .= '<li><i class="fa fa-envelope fa-fw text-info"></i>&emsp;<a href="mailto:' . $em->adresa . '">' . $em->adresa . '</a></li>';
-                        }
-                        $email .= '</ul>';
-                        $url = url('/images/sara.jpg');
-                        $slika = '<div style="text-align: center; margin-top: 2rem;">';
-                        $slika .= '<img src="' . $url . '" class="img-circle" style="height: 128px;">';
-                        $slika .= '</div>';
-                        ?>
                         <li class="zaposleniPopover"  style="cursor: pointer;"
                             data-title="{{ $z->imePrezime() }}"
-                            data-content="{{ $mobilni }} {{ $email }} {{ $slika }}">
-                            <i class="fa fa-user fa-fw text-info"></i>&emsp;{{ $z->imePrezime() }}
+                            data-content="<img src='{{ $z->src ? url($z->src) : '' }}' class='img-circle' style='height: 128px;'>">
+                            <h4><i class="fa fa-user fa-fw text-success"></i>&emsp;{{ $z->imePrezime() }}</h4>
+                            <ul style="list-style-type: none;">
+                                @foreach($z->mobilni as $m)
+                                <li>
+                                    <i class="fa fa-mobile fa-fw text-danger"></i>&emsp;{{ $m->broj }}
+                                </li>
+                                @endforeach
+                            </ul>
+                            <ul style="list-style-type: none;">
+                                @foreach($z->emailovi as $e)
+                                <li>
+                                    <i class="fa fa-envelope fa-fw text-info"></i>&emsp;{{ $e->adresa }}
+                                </li>
+                                @endforeach
+                            </ul>
                         </li>
                         @endforeach
                     </ul>
@@ -231,6 +229,7 @@
 
         $('.zaposleniPopover').popover({
             placement: 'left',
+            trigger: 'hover',
             html: true
         });
 
