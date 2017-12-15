@@ -41,9 +41,9 @@
                             <li role="separator" class="divider"></li>
                             <li><a href="{{route('osnovne_ploce.oprema')}}">Osnovne ploče</a></li>
                             <li><a href="{{route('procesori.oprema')}}">Procesori</a></li>
-                            <li><a href="">Memorije</a></li>
-                            <li><a href="">Hard diskovi</a></li>
-                            <li><a href="">Grafički adapteri</a></li>
+                            <li><a href="{{route('memorije.oprema')}}">Memorije</a></li>
+                            <li><a href="{{route('hddovi.oprema')}}">Hard diskovi</a></li>
+                            <li><a href="{{route('vga.oprema')}}">Grafički adapteri</a></li>
                             <li><a href="">Napajanja</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="">Monitori</a></li>

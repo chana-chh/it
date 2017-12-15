@@ -52,6 +52,7 @@ class MemorijeKontroler extends Kontroler
         ]);
 
         $data = new MemorijaModel();
+        $data->naziv = $request->naziv;
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->tip_memorije_id = $request->tip_memorije_id;
         $data->brzina = $request->brzina;

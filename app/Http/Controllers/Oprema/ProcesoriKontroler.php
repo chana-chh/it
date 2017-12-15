@@ -86,7 +86,7 @@ class ProcesoriKontroler extends Kontroler
             $kanc = " nema podataka";
         }
 
-        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .'je dana:'. Carbon::now().' otpisao  procesor koji je bio u računaru: '. $ime . ', kancelarija: ' . $kanc;
+        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao  procesor koji je bio u računaru: '. $ime . ', kancelarija: ' . $kanc;
         $data->racunar_id = null;
         $data->save();
         $odgovor = $data->delete();

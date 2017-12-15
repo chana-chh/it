@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Oprema | Otpisane osnovne ploče')
+@section('naziv', 'Oprema | Otpisane memorije')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -11,8 +11,8 @@
     <div class="col-md-10">
         <h1>
             <span>
-                <img class="slicica_animirana" alt="Otpisane osnovne ploče" src="{{url('/images/mbd.png')}}" style="height:64px;">
-            </span>&emsp;Otpisane osnovne ploče</h1>
+                <img class="slicica_animirana" alt="Otpisane memorije" src="{{url('/images/memorija.png')}}" style="height:64px;">
+            </span>&emsp;Otpisane memorije</h1>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
         <button id="reciklazaDugme" class="btn btn-danger btn-block ono">
@@ -23,8 +23,8 @@
 <div class="row" style="margin-bottom: 25px; margin-top: 20px;">
     <div class="col-md-12">
         <div class="btn-group">
-            <a class="btn btn-primary" href="{{ route('osnovne_ploce.oprema') }}"
-               title="Povratak na listu aktivnih osnovnih ploča">
+            <a class="btn btn-primary" href="{{ route('memorije.oprema') }}"
+               title="Povratak na listu aktivnih memorijskih modula">
                 <i class="fa fa-list"></i>
             </a>
             <a class="btn btn-primary" href="{{ route('pocetna') }}"
@@ -41,7 +41,7 @@
     </div>
     <div class="col-md-6">
             
-        <form class="form-inline" action="{{route('osnovne_ploce.oprema.recikliranje.lista')}}" method="POST" data-parsley-validate style="margin-top: 1.4rem">
+        <form class="form-inline" action="{{route('memorije.oprema.recikliranje.lista')}}" method="POST" data-parsley-validate style="margin-top: 1.4rem">
             {{ csrf_field() }}
   <div class="form-group">
     <div class="input-group" >
@@ -90,7 +90,7 @@
             <td>
                 <strong>{{$o->serijski_broj}}</strong>
             </td>
-            <td><a href="{{route('osnovne_ploce.modeli.detalj', $o->osnovnaPlocaModel->id)}}">{{$o->osnovnaPlocaModel->proizvodjac->naziv}} {{$o->osnovnaPlocaModel->naziv}}, {{$o->osnovnaPlocaModel->cipset}}</a></td>
+            <td><a href="{{route('memorije.modeli.detalj', $o->memorijaModel->id)}}">{{$o->memorijaModel->proizvodjac->naziv}} {{$o->memorijaModel->naziv}}, {{$o->memorijaModel->kapacitet}} MB</a></td>
             <td> 
                 {{$o->deleted_at}}
             </td>
@@ -127,6 +127,13 @@
 <script>
 $( document ).ready(function() {
 
+    $(document).on('click', '.vracanje', function () {
+            var id = $(this).val();
+            alert(id);
+            $('#idVracanje').val(id);
+            var ruta = " {{route('memorije.oprema.vracanje_otpis') }}";
+            $('#vracanje-forma').attr('action', ruta); });
+
         var tabela = $('#tabela').DataTable({
 
         columnDefs: [
@@ -153,16 +160,7 @@ $( document ).ready(function() {
     },
     });
 
-        if ( $( "#tabela" ).length ) {
         new $.fn.dataTable.FixedHeader( tabela );
-        $(document).on('click', '.vracanje', function () {
-            var id = $(this).val();
-            alert(id);
-            $('#idVracanje').val(id);
-            var ruta = " {{route('osnovne_ploce.oprema.vracanje_otpis') }}";
-            $('#vracanje-forma').attr('action', ruta); });
-    };
-
 
         $('#reciklazaDugme').click(function () {
             $('#reciklaza_div').toggle();

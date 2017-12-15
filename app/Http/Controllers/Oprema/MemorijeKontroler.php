@@ -19,7 +19,7 @@ Use App\Modeli\Reciklaza;
 
 
 
-class OsnovnePloceKontroler extends Kontroler
+class MemorijeKontroler extends Kontroler
 {
     public function getLista()
     {
@@ -67,7 +67,7 @@ class OsnovnePloceKontroler extends Kontroler
 
         $uredjaj->save();
 
-        Session::flash('uspeh','Osnovna ploča je uspešno izmenjena!');
+        Session::flash('uspeh','Memorijski modul je uspešno izmenjena!');
         return redirect()->route('memorije.oprema');
     }
 
@@ -87,13 +87,13 @@ class OsnovnePloceKontroler extends Kontroler
             $kanc = " nema podataka";
         }
 
-        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .'je dana:'. Carbon::now().' otpisao  osnovnu ploču koja je bila u računaru: '. $ime . ', kancelarija: ' . $kanc;
+        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao memorijski modul koji je bio u računaru: '. $ime . ', kancelarija: ' . $kanc;
         $data->save();
         $odgovor = $data->delete();
         if ($odgovor) {
-            Session::flash('uspeh', 'Osnovna ploča je uspešno otpisana!');
+            Session::flash('uspeh', 'Memorijski modul je uspešno otpisan!');
         } else {
-            Session::flash('greska', 'Došlo je do greške prilikom otpisa osnovne ploče. Pokušajte ponovo, kasnije!');
+            Session::flash('greska', 'Došlo je do greške prilikom otpisa memorijskog modula. Pokušajte ponovo, kasnije!');
         }
         return redirect()->route('memorije.oprema');
     }
@@ -104,14 +104,14 @@ class OsnovnePloceKontroler extends Kontroler
         $data = Memorija::withTrashed()->find($request->idVracanje);
         $data->restore();
         if (!$data->stavkaOtpremnice) {
-              $data->stavka_otpremnice_id = 1; //Stavka otpremnice rezervisana za stare ploce
+              $data->stavka_otpremnice_id = 4; //Stavka otpremnice rezervisana za stare memorije
           }
         $odgovor = $data->save();
 
         if ($odgovor) {
-            Session::flash('uspeh', 'Osnovna ploča je uspešno vraćena u ponovnu upotrebu iz otpisa!');
+            Session::flash('uspeh', 'Memorijski modul je uspešno vraćen u ponovnu upotrebu iz otpisa!');
         } else {
-            Session::flash('greska', 'Došlo je do greške prilikom vraćanja iz otpisa osnovne ploče. Pokušajte ponovo, kasnije!');
+            Session::flash('greska', 'Došlo je do greške prilikom vraćanja iz otpisa memorijskog modula. Pokušajte ponovo, kasnije!');
         }
         return redirect()->route('memorije.oprema.otpisani');
     }
@@ -127,7 +127,7 @@ class OsnovnePloceKontroler extends Kontroler
     public function postRecikliraj(Request $request, $id_reciklaze){
 
         if (!$request->id_uredjaji) {
-            Session::flash('greska', 'Niste odabrali nijedanu osnovnu ploču!');
+            Session::flash('greska', 'Niste odabrali nijedan memorijski modul!');
             return redirect()->route('memorije.oprema.otpisani');
         }else{
         DB::beginTransaction();
@@ -143,7 +143,7 @@ class OsnovnePloceKontroler extends Kontroler
         }
         }
         DB::commit();
-        Session::flash('uspeh', 'Osnovna ploča je uspešno stavljen na listu reciklaže!');}
+        Session::flash('uspeh', 'Memorijski modul je uspešno stavljen na listu reciklaže!');}
        return redirect()->route('memorije.oprema.otpisani');
     }
 

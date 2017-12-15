@@ -202,7 +202,7 @@ class RacunariKontroler extends Kontroler
         $racunar = Racunar::find($id);
 
         if ($racunar->osnovnaPloca) {
-            Session::flash('greska', 'Prvo izvadite staru plocu da biste dodali novu!');
+            Session::flash('greska', 'Prvo izvadite staru ploču da biste dodali novu!');
         } else {
             $this->validate($request, [
                 'serijski_broj' => [

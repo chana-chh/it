@@ -393,6 +393,7 @@ Route::post('oprema/procesori/otpis/', 'Oprema\ProcesoriKontroler@postOtpis')->n
 Route::post('oprema/procesori/vracanje_otpis/', 'Oprema\ProcesoriKontroler@postOtpisVracanje')->name('procesori.oprema.vracanje_otpis');
 Route::post('oprema/procesori/recikliranje/lista/', 'Oprema\ProcesoriKontroler@postReciklirajLista')->name('procesori.oprema.recikliranje.lista');
 Route::post('oprema/procesori/recikliranje/{id_reciklaze}', 'Oprema\ProcesoriKontroler@postRecikliraj')->name('procesori.oprema.recikliranje');
+
 //Osnovne ploce
 Route::get('oprema/osnovne_ploce/', 'Oprema\OsnovnePloceKontroler@getLista')->name('osnovne_ploce.oprema');
 Route::get('oprema/osnovne_ploce/otpisani/', 'Oprema\OsnovnePloceKontroler@getListaOtpisani')->name('osnovne_ploce.oprema.otpisani');
@@ -403,6 +404,7 @@ Route::post('oprema/osnovne_ploce/otpis/', 'Oprema\OsnovnePloceKontroler@postOtp
 Route::post('oprema/osnovne_ploce/vracanje_otpis/', 'Oprema\OsnovnePloceKontroler@postOtpisVracanje')->name('osnovne_ploce.oprema.vracanje_otpis');
 Route::post('oprema/osnovne_ploce/recikliranje/lista/', 'Oprema\OsnovnePloceKontroler@postReciklirajLista')->name('osnovne_ploce.oprema.recikliranje.lista');
 Route::post('oprema/osnovne_ploce/recikliranje/{id_reciklaze}', 'Oprema\OsnovnePloceKontroler@postRecikliraj')->name('osnovne_ploce.oprema.recikliranje');
+
 //Memorije
 Route::get('oprema/memorije/', 'Oprema\MemorijeKontroler@getLista')->name('memorije.oprema');
 Route::get('oprema/memorije/otpisani/', 'Oprema\MemorijeKontroler@getListaOtpisani')->name('memorije.oprema.otpisani');
@@ -413,6 +415,28 @@ Route::post('oprema/memorije/otpis/', 'Oprema\MemorijeKontroler@postOtpis')->nam
 Route::post('oprema/memorije/vracanje_otpis/', 'Oprema\MemorijeKontroler@postOtpisVracanje')->name('memorije.oprema.vracanje_otpis');
 Route::post('oprema/memorije/recikliranje/lista/', 'Oprema\MemorijeKontroler@postReciklirajLista')->name('memorije.oprema.recikliranje.lista');
 Route::post('oprema/memorije/recikliranje/{id_reciklaze}', 'Oprema\MemorijeKontroler@postRecikliraj')->name('memorije.oprema.recikliranje');
+
+//HDDovi
+Route::get('oprema/hddovi/', 'Oprema\HddKontroler@getLista')->name('hddovi.oprema');
+Route::get('oprema/hddovi/otpisani/', 'Oprema\HddKontroler@getListaOtpisani')->name('hddovi.oprema.otpisani');
+Route::get('oprema/hddovi/detalj/{id}', 'Oprema\HddKontroler@getDetalj')->name('hddovi.oprema.detalj');
+Route::get('oprema/hddovi/izmena/{id}', 'Oprema\HddKontroler@getIzmena')->name('hddovi.oprema.izmena.get');
+Route::post('oprema/hddovi/izmena/{id}', 'Oprema\HddKontroler@postIzmena')->name('hddovi.oprema.izmena.post');
+Route::post('oprema/hddovi/otpis/', 'Oprema\HddKontroler@postOtpis')->name('hddovi.oprema.otpis');
+Route::post('oprema/hddovi/vracanje_otpis/', 'Oprema\HddKontroler@postOtpisVracanje')->name('hddovi.oprema.vracanje_otpis');
+Route::post('oprema/hddovi/recikliranje/lista/', 'Oprema\HddKontroler@postReciklirajLista')->name('hddovi.oprema.recikliranje.lista');
+Route::post('oprema/hddovi/recikliranje/{id_reciklaze}', 'Oprema\HddKontroler@postRecikliraj')->name('hddovi.oprema.recikliranje');
+
+//VGA
+Route::get('oprema/vga/', 'Oprema\GrafickiAdapteriKontroler@getLista')->name('vga.oprema');
+Route::get('oprema/vga/otpisani/', 'Oprema\GrafickiAdapteriKontroler@getListaOtpisani')->name('vga.oprema.otpisani');
+Route::get('oprema/vga/detalj/{id}', 'Oprema\GrafickiAdapteriKontroler@getDetalj')->name('vga.oprema.detalj');
+Route::get('oprema/vga/izmena/{id}', 'Oprema\GrafickiAdapteriKontroler@getIzmena')->name('vga.oprema.izmena.get');
+Route::post('oprema/vga/izmena/{id}', 'Oprema\GrafickiAdapteriKontroler@postIzmena')->name('vga.oprema.izmena.post');
+Route::post('oprema/vga/otpis/', 'Oprema\GrafickiAdapteriKontroler@postOtpis')->name('vga.oprema.otpis');
+Route::post('oprema/vga/vracanje_otpis/', 'Oprema\GrafickiAdapteriKontroler@postOtpisVracanje')->name('vga.oprema.vracanje_otpis');
+Route::post('oprema/vga/recikliranje/lista/', 'Oprema\GrafickiAdapteriKontroler@postReciklirajLista')->name('vga.oprema.recikliranje.lista');
+Route::post('oprema/vga/recikliranje/{id_reciklaze}', 'Oprema\GrafickiAdapteriKontroler@postRecikliraj')->name('vga.oprema.recikliranje');
 
 //Racunari
 Route::get('oprema/racunari/', 'Oprema\RacunariKontroler@getLista')->name('racunari.oprema');

@@ -46,6 +46,11 @@
     <div class="col-md-12">
 <table class="table table-striped" style="table-layout: fixed;">
         <tbody style="font-size: 2rem;">
+
+            <tr>
+                <th style="width: 20%;">Naziv:</th>
+                <td style="width: 80%;">{{$memorija->naziv}}</td>
+            </tr>
             <tr>
                 <th style="width: 20%;">Proizvođač:</th>
                 <td style="width: 80%;">{{$memorija->proizvodjac->naziv}}</td>

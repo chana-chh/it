@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Oprema | Procesori')
+@section('naziv', 'Oprema | Memorije')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -11,8 +11,8 @@
     <div class="col-md-10">
         <h1>
             <span>
-                <img class="slicica_animirana" alt="Procesori" src="{{url('/images/cpu.png')}}" style="height:64px;">
-            </span>&emsp;Procesori</h1>
+                <img class="slicica_animirana" alt="Memorije" src="{{url('/images/memorija.png')}}" style="height:64px;">
+            </span>&emsp;Memorije</h1>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
         <button id="pretragaDugme" class="btn btn-success btn-block ono">
@@ -26,13 +26,13 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <strong>Obavštenje: </strong> Dodavanje procesora se obavlja kroz <a href="{{ route('otpremnice') }}" style="color: #18BC9C"><strong>otpremnicu</strong></a>  ili sa detaljnog pregleda <a href="{{route('racunari.oprema')}}" style="color: #18BC9C"><strong>računara</strong></a>.
+            <strong>Obavštenje: </strong> Dodavanje memorijskih modula se obavlja kroz <a href="{{ route('otpremnice') }}" style="color: #18BC9C"><strong>otpremnicu</strong></a>  ili sa detaljnog pregleda <a href="{{route('racunari.oprema')}}" style="color: #18BC9C"><strong>računara</strong></a>.
         </div>
     </div>
 </div>
 <div class="row well" id="pretraga" style="display: none;">
     <div class="col-md-2">
-        <a href="{{route('procesori.oprema.otpisani')}}" class="btn btn-success btn-block ono">
+        <a id="pretragaDugme" href="{{route('memorije.oprema.otpisani')}}" class="btn btn-success btn-block ono">
             <i class="fa fa-recycle fa-fw"></i> Otpisani
         </a>
     </div>
@@ -41,8 +41,6 @@
     </div>
     
 </div>
-
-
 <div class="row">
     <div class="col-md-12">
 @if($uredjaj->isEmpty())
@@ -65,7 +63,7 @@
             <td>
                 <strong>{{$o->serijski_broj}}</strong>
             </td>
-            <td><a href="{{route('procesori.modeli.detalj', $o->procesorModel->id)}}">{{$o->procesorModel->proizvodjac->naziv}} {{$o->procesorModel->naziv}}, {{$o->procesorModel->takt}} MHz</a></td>
+            <td><a href="{{route('memorije.modeli.detalj', $o->memorijaModel->id)}}">{{$o->memorijaModel->proizvodjac->naziv}} {{$o->memorijaModel->naziv}}, {{$o->memorijaModel->kapacitet}}</a></td>
             <td> @if($o->racunar)
                 {{$o->racunar->ime}}
                 @endif
@@ -80,10 +78,10 @@
             </td>
 
             <td style="text-align:right; vertical-align: middle; line-height: normal;">
-                <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('procesori.oprema.detalj', $o->id)}}">
+                <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('memorije.oprema.detalj', $o->id)}}">
                     <i class="fa fa-eye"></i>
                 </a>
-                <a class="btn btn-info btn-sm" id="dugmeIzmena" href="{{route('procesori.oprema.izmena.get', $o->id)}}">
+                <a class="btn btn-info btn-sm" id="dugmeIzmena" href="{{route('memorije.oprema.izmena.get', $o->id)}}">
                     <i class="fa fa-pencil"></i>
                 </a>
             </td>

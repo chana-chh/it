@@ -92,23 +92,11 @@
         @endif
     </div>
 </div>
-
-<!--  POCETAK brisanjeModal  -->
-@include('sifarnici.inc.modal_brisanje')
-<!--  KRAJ brisanjeModal  -->
-
-
 @endsection
 
 @section('skripte')
 <script>
 $( document ).ready(function() {
-
-    $(document).on('click', '.otvori-brisanje', function () {
-            var id = $(this).val();
-            $('#idBrisanje').val(id);
-            /*var ruta = " route('procesori.oprema.brisanje') }}";*/
-            $('#brisanje-forma').attr('action', ruta); });
 
         var tabela = $('#tabela').DataTable({
 

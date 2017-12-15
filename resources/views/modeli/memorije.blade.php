@@ -25,18 +25,20 @@
             <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
                 <thead>
                         <th style="width: 5%;">#</th>
+                        <th style="width: 15%;">Naziv</th>
                         <th style="width: 10%;">Proizvođač</th>
                         <th style="width: 10%;">Tip</th>
                         <th style="width: 15%;">Brzina</th>
-                        <th style="width: 15%;">Kapacitet</th>
-                        <th style="width: 15%;">Ocena</th>
-                        <th style="width: 15%;">Link</th>
+                        <th style="width: 10%;">Kapacitet</th>
+                        <th style="width: 10%;">Ocena</th>
+                        <th style="width: 10%;">Link</th>
                         <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
                 </thead>
                 <tbody>
                 @foreach ($memorije as $m)
                         <tr>
                             <td>{{$m->id}}</td>
+                            <td>{{$m->naziv}}</td>
                             <td>{{$m->proizvodjac->naziv}}</td>
                             <td>{{$m->tipMemorije->naziv}}</td>
                             <td>{{$m->brzina}} MHz</td>

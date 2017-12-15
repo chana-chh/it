@@ -110,7 +110,7 @@ class OsnovnePloceKontroler extends Kontroler
             $kanc = " nema podataka";
         }
 
-        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .'je dana:'. Carbon::now().' otpisao  osnovnu ploču koja je bila u računaru: '. $ime . ', kancelarija: ' . $kanc;
+        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao  osnovnu ploču koja je bila u računaru: '. $ime . ', kancelarija: ' . $kanc;
         $data->save();
         $odgovor = $data->delete();
         if ($odgovor) {
