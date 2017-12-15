@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use Session;
+use Session;
 //use Redirect;
 //use Gate;
 //use Carbon\Carbon;
@@ -28,14 +28,47 @@ class PretragaKontroler extends Controller
 
     public function getPrijavaKvara()
     {
+        $kvarovi = Servis::all();
         $zap = Zaposleni::orderBy('ime', 'asc')->orderBy('prezime', 'asc')->get();
         $kanc = Kancelarija::orderBy('naziv', 'asc')->get();
-        return view('kvar')->with(compact('zap', 'kanc'));
+        return view('kvar')->with(compact('zap', 'kanc', 'kvarovi'));
     }
 
     public function postPrijavaKvara(Request $request)
     {
-        return "PRIJAVLJEN JE KVAR";
+        $this->validate($request, [
+            'zaposleni_id' => [
+                'required',
+                'integer',
+            ],
+            'kancelarija_id' => [
+                'required',
+                'integer',
+            ],
+            'opis_kvara' => [
+                'required',
+            ],
+        ]);
+
+        $broj_prijave = $request->zaposleni_id . '-' . $request->kancelarija_id . '-' . time();
+        $datum_prijave = date('Y-m-d', time());
+        $ip_prijave = $request->ip();
+        $racunar_prijave = gethostbyaddr($ip_prijave);
+        $opis_kvara = $request->opis_kvara . ' - ' . $request->napomena;
+
+        $servis = new Servis();
+        $servis->broj_prijave = $broj_prijave;
+        $servis->zaposleni_id = $request->zaposleni_id;
+        $servis->kancelarija_id = $request->kancelarija_id;
+        $servis->datum_prijave = $datum_prijave;
+        $servis->ip_prijave = $ip_prijave;
+        $servis->ime_racunara_prijave = $racunar_prijave;
+        $servis->opis_kvara_zaposleni = $opis_kvara;
+        $servis->status_id = 1;
+        $servis->save();
+
+        Session::flash('uspeh', 'Kvar je uspešno prijavljen.');
+        return redirect()->route('status', $servis->id);
     }
 
     public function getStatus($id)
