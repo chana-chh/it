@@ -15,15 +15,15 @@ class NapraviTabeluServis extends Migration
             $table->integer('zaposleni_id')->unsigned();
             $table->integer('kancelarija_id')->unsigned();
             $table->date('datum_prijave');
-            $table->string('ip_prijave', 50);
-            $table->string('ime_racunara_prijave');
+            $table->string('ip_prijave', 50)->nullable();
+            $table->string('ime_racunara_prijave')->nullable();
             $table->text('opis_kvara_zaposleni');
-            $table->date('datum_prijema');
-            $table->date('datum_popravke');
-            $table->date('datum_isporuke');
-            $table->text('opis_kvara_servis');
-            $table->integer('vrsta_uredjaja_id')->unsigned();
-            $table->integer('uredjaj_id')->unsigned();
+            $table->date('datum_prijema')->nullable();
+            $table->date('datum_popravke')->nullable();
+            $table->date('datum_isporuke')->nullable();
+            $table->text('opis_kvara_servis')->nullable();
+            $table->integer('vrsta_uredjaja_id')->unsigned()->nullable();
+            $table->integer('uredjaj_id')->unsigned()->nullable();
             $table->integer('status_id')->unsigned();
             $table->text('napomena')->nullable();
 

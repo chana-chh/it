@@ -7,6 +7,12 @@
     body {
         padding-top: 1rem;
     }
+    #formaPrijava {
+        display: none;
+    }
+    #formaStatus {
+        display: none;
+    }
 </style>
 @endsection
 
@@ -21,7 +27,16 @@
     <div class="col-md-8">
         <h1 class="text-center">Prijava/status kvara</h1>
         <div class="row">
-            <a href="{{ route('status', 1) }}">status</a>
+            <div class="col-md-6">
+                <button id="dugmeStatus" class="btn btn-primary btn-lg btn-block">
+                    <i class="fa fa-info-circle"></i>&emsp;Provera statusa prijave kvara
+                </button>
+            </div>
+            <div class="col-md-6">
+                <button id="dugmePrijava" class="btn btn-primary btn-lg btn-block">
+                    <i class="fa fa-exclamation-triangle"></i>&emsp;Prijava kvara
+                </button>
+            </div>
         </div>
     </div>
     <div class="col-md-2 text-center">
@@ -32,7 +47,7 @@
     </div>
 </div>
 <hr>
-<div class="row ceo_dva">
+<div class="row ceo_dva" id="formaPrijava">
     <div class="col-md-8 col-md-offset-2 boxic">
         <form action="{{ route('kvar.post') }}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
@@ -110,7 +125,12 @@
                 @endif
             </div>
             <div class="row dugmici">
-                <div class="col-md-6 col-md-offset-6">
+                <div class="col-md-6">
+                    <p class="text-danger text-left">
+                        * Nakon prijave kvara obavezno zapamtiti (zapisati) broj prijave kako bi se kasnije mogao pratiti status.
+                    </p>
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
                         <div class="col-md-6 snimi">
                             <button type="submit" class="btn btn-success btn-block ono">
@@ -125,9 +145,34 @@
                     </div>
                 </div>
             </div>
+        </form>
     </div>
-</form>
 </div>
+
+<div class="row ceo_dva" id="formaStatus">
+    <div class="col-md-8 col-md-offset-2 boxic">
+        <div class="col-md-9">
+            <div class="form-group">
+                <label for="kvar_id">Broj prijave kvara:</label>
+                <select id="kvar_id" name="kvar_id"
+                        class="chosen-select form-control">
+                    @foreach($kvarovi as $kvar)
+                    <option value="{{ $kvar->id }}">
+                        {{ $kvar->broj_prijave }},
+                        {{ $kvar->zaposleni->imePrezime() }},
+                        {{ $kvar->kancelarija->naziv }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3" style="margin-top: 2.5rem;">
+            <div class="form-group">
+                <a class="btn btn-success btn-block" id="dugmeLinkProvere" href="{{route('status', $kvar->first()->id)}}">
+                    <i class="fa fa-info-circle fa-fw"></i> Proveri status prijave
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 
@@ -146,6 +191,25 @@
                 $(this).attr('style', 'width: 100%');
             });
         }
+
+        $('#dugmePrijava').on('click', function () {
+            $('#formaStatus').hide();
+            $('#formaPrijava').show();
+            resizeChosen();
+        });
+
+        $('#dugmeStatus').on('click', function () {
+            $('#formaPrijava').hide();
+            $('#formaStatus').show();
+            resizeChosen();
+        });
+
+        $('#kvar_id').on('change', function () {
+            var id = $('#kvar_id').val();
+            var ruta = "{{route('status', ':id')}}";
+            ruta = ruta.replace(':id', id);
+            $('#dugmeLinkProvere').attr('href', ruta);
+        });
     });
 </script>
 @endsection
