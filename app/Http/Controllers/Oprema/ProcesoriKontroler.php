@@ -80,6 +80,7 @@ class ProcesoriKontroler extends Kontroler
             $uredjaj = $data->racunar;
             $ime = $uredjaj->ime;
             $kanc = $uredjaj->kancelarija->naziv;
+            $data->racunar_id = null;
         }
         else{
             $ime = " nije bio u računaru";
@@ -87,7 +88,6 @@ class ProcesoriKontroler extends Kontroler
         }
 
         $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao  procesor koji je bio u računaru: '. $ime . ', kancelarija: ' . $kanc;
-        $data->racunar_id = null;
         $data->save();
         $odgovor = $data->delete();
         if ($odgovor) {

@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Oprema | Grafički adapteri')
+@section('naziv', 'Oprema | Napajanja')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -11,8 +11,8 @@
     <div class="col-md-10">
         <h1>
             <span>
-                <img class="slicica_animirana" alt="Grafički adapteri" src="{{url('/images/vga.png')}}" style="height:64px;">
-            </span>&emsp;Grafički adapteri</h1>
+                <img class="slicica_animirana" alt="Napajanja" src="{{url('/images/napajanje.png')}}" style="height:64px;">
+            </span>&emsp;Napajanja</h1>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
         <button id="pretragaDugme" class="btn btn-success btn-block ono">
@@ -20,19 +20,20 @@
         </button>
     </div>
 </div>
-<div class="row">
+<div class="row obavestenje">
     <div class="col-md-10 col-md-offset-1 text-center" style="font-size: 1rem;;">
         <div class="alert alert-info alert-dismissible ono" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <strong>Obavštenje: </strong> Dodavanje grafičkih adaptera se obavlja kroz <a href="{{ route('otpremnice') }}" style="color: #18BC9C"><strong>otpremnicu</strong></a>  ili sa detaljnog pregleda <a href="{{route('racunari.oprema')}}" style="color: #18BC9C"><strong>računara</strong></a>.
+            <strong>Obavštenje: </strong> Dodavanje napajanja se obavlja kroz <a href="{{ route('otpremnice') }}" style="color: #18BC9C"><strong>otpremnicu</strong></a>  ili sa detaljnog pregleda <a href="{{route('racunari.oprema')}}" style="color: #18BC9C"><strong>računara</strong></a>.
         </div>
     </div>
 </div>
+<hr class="linija" style="display: none;">
 <div class="row well" id="pretraga" style="display: none;">
     <div class="col-md-2">
-        <a id="pretragaDugme" href="{{route('vga.oprema.otpisani')}}" class="btn btn-success btn-block ono">
+        <a id="pretragaDugme" href="{{route('napajanja.oprema.otpisani')}}" class="btn btn-success btn-block ono">
             <i class="fa fa-recycle fa-fw"></i> Otpisani
         </a>
     </div>
@@ -64,7 +65,7 @@
             <td>
                 <strong>{{$o->serijski_broj}}</strong>
             </td>
-            <td><a href="{{route('vga.modeli.detalj', $o->grafickiAdapterModel->id)}}">{{$o->grafickiAdapterModel->proizvodjac->naziv}}, {{$o->grafickiAdapterModel->naziv}} - {{$o->grafickiAdapterModel->cip}}</a></td>
+            <td><a href="{{route('napajanja.modeli.detalj', $o->napajanjeModel->id)}}">{{$o->napajanjeModel->proizvodjac->naziv}}, {{$o->napajanjeModel->naziv}} - {{$o->napajanjeModel->snaga}} W</a></td>
             <td> @if($o->racunar)
                 {{$o->racunar->ime}}
                 @endif
@@ -79,10 +80,10 @@
             </td>
             <td><em>{{$o->napomena}}</em></td>
             <td style="text-align:right; vertical-align: middle; line-height: normal;">
-                <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('vga.oprema.detalj', $o->id)}}">
+                <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('napajanja.oprema.detalj', $o->id)}}">
                     <i class="fa fa-eye"></i>
                 </a>
-                <a class="btn btn-info btn-sm" id="dugmeIzmena" href="{{route('vga.oprema.izmena.get', $o->id)}}">
+                <a class="btn btn-info btn-sm" id="dugmeIzmena" href="{{route('napajanja.oprema.izmena.get', $o->id)}}">
                     <i class="fa fa-pencil"></i>
                 </a>
             </td>
@@ -98,6 +99,11 @@
 @section('skripte')
 <script>
 $( document ).ready(function() {
+
+            setTimeout(function(){
+            $('.obavestenje').hide();
+            $('.linija').show();
+            }, 5000);
 
         var tabela = $('#tabela').DataTable({
 

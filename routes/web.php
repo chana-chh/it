@@ -438,6 +438,28 @@ Route::post('oprema/vga/vracanje_otpis/', 'Oprema\GrafickiAdapteriKontroler@post
 Route::post('oprema/vga/recikliranje/lista/', 'Oprema\GrafickiAdapteriKontroler@postReciklirajLista')->name('vga.oprema.recikliranje.lista');
 Route::post('oprema/vga/recikliranje/{id_reciklaze}', 'Oprema\GrafickiAdapteriKontroler@postRecikliraj')->name('vga.oprema.recikliranje');
 
+//Napajanja
+Route::get('oprema/napajanja/', 'Oprema\NapajanjaKontroler@getLista')->name('napajanja.oprema');
+Route::get('oprema/napajanja/otpisani/', 'Oprema\NapajanjaKontroler@getListaOtpisani')->name('napajanja.oprema.otpisani');
+Route::get('oprema/napajanja/detalj/{id}', 'Oprema\NapajanjaKontroler@getDetalj')->name('napajanja.oprema.detalj');
+Route::get('oprema/napajanja/izmena/{id}', 'Oprema\NapajanjaKontroler@getIzmena')->name('napajanja.oprema.izmena.get');
+Route::post('oprema/napajanja/izmena/{id}', 'Oprema\NapajanjaKontroler@postIzmena')->name('napajanja.oprema.izmena.post');
+Route::post('oprema/napajanja/otpis/', 'Oprema\NapajanjaKontroler@postOtpis')->name('napajanja.oprema.otpis');
+Route::post('oprema/napajanja/vracanje_otpis/', 'Oprema\NapajanjaKontroler@postOtpisVracanje')->name('napajanja.oprema.vracanje_otpis');
+Route::post('oprema/napajanja/recikliranje/lista/', 'Oprema\NapajanjaKontroler@postReciklirajLista')->name('napajanja.oprema.recikliranje.lista');
+Route::post('oprema/napajanja/recikliranje/{id_reciklaze}', 'Oprema\NapajanjaKontroler@postRecikliraj')->name('napajanja.oprema.recikliranje');
+
+//Monitori
+Route::get('oprema/monitori/', 'Oprema\MonitoriKontroler@getLista')->name('monitori.oprema');
+Route::get('oprema/monitori/otpisani/', 'Oprema\MonitoriKontroler@getListaOtpisani')->name('monitori.oprema.otpisani');
+Route::get('oprema/monitori/detalj/{id}', 'Oprema\MonitoriKontroler@getDetalj')->name('monitori.oprema.detalj');
+Route::get('oprema/monitori/izmena/{id}', 'Oprema\MonitoriKontroler@getIzmena')->name('monitori.oprema.izmena.get');
+Route::post('oprema/monitori/izmena/{id}', 'Oprema\MonitoriKontroler@postIzmena')->name('monitori.oprema.izmena.post');
+Route::post('oprema/monitori/otpis/', 'Oprema\MonitoriKontroler@postOtpis')->name('monitori.oprema.otpis');
+Route::post('oprema/monitori/vracanje_otpis/', 'Oprema\MonitoriKontroler@postOtpisVracanje')->name('monitori.oprema.vracanje_otpis');
+Route::post('oprema/monitori/recikliranje/lista/', 'Oprema\MonitoriKontroler@postReciklirajLista')->name('monitori.oprema.recikliranje.lista');
+Route::post('oprema/monitori/recikliranje/{id_reciklaze}', 'Oprema\MonitoriKontroler@postRecikliraj')->name('monitori.oprema.recikliranje');
+
 //Racunari
 Route::get('oprema/racunari/', 'Oprema\RacunariKontroler@getLista')->name('racunari.oprema');
 Route::get('oprema/racunari/ajax', 'Oprema\RacunariKontroler@getAjax')->name('racunari.ajax');

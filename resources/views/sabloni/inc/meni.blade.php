@@ -44,9 +44,9 @@
                             <li><a href="{{route('memorije.oprema')}}">Memorije</a></li>
                             <li><a href="{{route('hddovi.oprema')}}">Hard diskovi</a></li>
                             <li><a href="{{route('vga.oprema')}}">Grafički adapteri</a></li>
-                            <li><a href="">Napajanja</a></li>
+                            <li><a href="{{route('napajanja.oprema')}}">Napajanja</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="">Monitori</a></li>
+                            <li><a href="{{route('monitori.oprema')}}">Monitori</a></li>
                             <li><a href="">Štampači</a></li>
                             <li><a href="">Skeneri</a></li>
                             <li><a href="">UPS-evi</a></li>

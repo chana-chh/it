@@ -80,7 +80,7 @@ class HddKontroler extends Kontroler
             $uredjaj = $data->racunar;
             $ime = $uredjaj->ime;
             $kanc = $uredjaj->kancelarija->naziv;
-            $uredjaj->ploca_id=null;
+            $data->racunar_id=null;
         }
         else{
             $ime = " nije bio u računaru";
