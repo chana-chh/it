@@ -65,6 +65,8 @@ Route::post('otpremnice/stavke/brisanje', 'Servis\OtpremniceStavkeKontroler@post
 
 // Nabavke
 Route::get('nabavke', 'Servis\NabavkeKontroler@getLista')->name('nabavke');
+Route::get('nabavke/pretraga', 'Servis\NabavkeKontroler@getListaPretraga')->name('nabavke.pretraga');
+Route::post('nabavke/pretraga', 'Servis\NabavkeKontroler@postListaPretraga')->name('nabavke.pretraga.post');
 Route::get('nabavke/dodavanje', 'Servis\NabavkeKontroler@getDodavanje')->name('nabavke.dodavanje.get');
 Route::post('nabavke/dodavanje', 'Servis\NabavkeKontroler@postDodavanje')->name('nabavke.dodavanje.post');
 Route::get('nabavke/izmena/{id}', 'Servis\NabavkeKontroler@getIzmena')->name('nabavke.izmena.get');

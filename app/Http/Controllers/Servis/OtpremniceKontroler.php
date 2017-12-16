@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Servis;
 
 use Illuminate\Http\Request;
 use Session;
-use Redirect;
+// use Redirect;
 use Image;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\Otpremnica;
@@ -96,7 +96,7 @@ class OtpremniceKontroler extends Kontroler
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom brisanja. Pokušajte ponovo, kasnije!');
         }
-        return Redirect::back();
+        return redirect()->back();
     }
 
     public function getIzmena($id)
