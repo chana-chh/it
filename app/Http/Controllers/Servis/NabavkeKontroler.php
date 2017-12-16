@@ -4,14 +4,11 @@ namespace App\Http\Controllers\Servis;
 
 use Illuminate\Http\Request;
 use Session;
-use Redirect;
 use URL;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\Nabavka;
 use App\Modeli\Dobavljac;
 use App\Modeli\VrstaUredjaja;
-
-// use URL;
 
 class NabavkeKontroler extends Kontroler
 {
@@ -19,10 +16,67 @@ class NabavkeKontroler extends Kontroler
     public function getLista()
     {
         $nabavke = Nabavka::all();
-        return view('servis.nabavke')->with(compact('nabavke'));
+        $dobavljaci = Dobavljac::all();
+        return view('servis.nabavke')->with(compact('nabavke', 'dobavljaci'));
     }
 
-    public function getDodavanje(Request $request)
+    public function getListaPretraga(Request $request)
+    {
+        $parametri = $request->session()->get('parametri_za_filter_nabavki', null);
+        $nabavke = $this->naprednaPretraga($parametri);
+        return view('servis.nabavke_pretraga')->with(compact('nabavke'));
+    }
+
+    public function postListaPretraga(Request $request)
+    {
+        $request->session()->put('parametri_za_filter_nabavki', $request->all());
+        return redirect()->route('nabavke.pretraga');
+    }
+
+    private function naprednaPretraga($params)
+    {
+        $nabavke = null;
+        $where = [];
+        if ($params['dobavljac_id'] !== null) {
+            $where[] = [
+                'dobavljac_id',
+                '=',
+                $params['dobavljac_id']
+            ];
+        }
+        if ($params['garancija']) {
+            $operator = $params['operator_garancija'] ? $params['operator_garancija'] : '=';
+            $where[] = [
+                'garancija',
+                $operator,
+                $params['garancija']];
+        }
+        if ($params['napomena']) {
+            $where[] = [
+                'napomena',
+                'like',
+                '%' . $params['napomena'] . '%'];
+        }
+        if (!$params['datum_1'] && !$params['datum_2']) {
+            $nabavke = Nabavka::where($where)->get();
+        }
+        if ($params['datum_1'] && !$params['datum_2']) {
+            $where[] = [
+                'datum',
+                '=',
+                $params['datum_1']];
+            $nabavke = Nabavka::where($where)->get();
+        }
+        if ($params['datum_1'] && $params['datum_2']) {
+            $nabavke = Nabavka::where($where)->whereBetween('datum', [
+                        $params['datum_1'],
+                        $params['datum_2']
+                    ])->get();
+        }
+        return $nabavke;
+    }
+
+    public function getDodavanje()
     {
         $dobavljaci = Dobavljac::all();
         return view('servis.nabavke_dodavanje')->with(compact('dobavljaci'));

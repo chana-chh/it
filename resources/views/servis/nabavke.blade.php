@@ -28,7 +28,84 @@
 </div>
 <hr>
 <div id="pretraga" class="well" style="display: none;">
-    NAPREDNA PRETRAGA
+    <form id="pretraga" action="{{ route('nabavke.pretraga') }}" method="POST">
+        {{ csrf_field() }}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="dobavljac_id">Dobavljač:</label>
+                    <select id="dobavljac_id" name="dobavljac_id"
+                            class="chosen-select form-control"
+                            data-placeholder="Dobavljač ...">
+                        <option value=""></option>
+                        @foreach($dobavljaci as $dobavljac)
+                        <option value="{{ $dobavljac->id }}">
+                            {{ $dobavljac->naziv }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="operator_garancija">Garancija je:</label>
+                <select name="operator_garancija" id="operator_garancija" class="chosen-select form-control"
+                        data-placeholder="Odaberite kriterijum ...">
+                    <option value=""></option>
+                    <option value=">=">veća ili jednaka</option>
+                    <option value="<=">manja ili jednaka</option>
+                    <option value="=">jednaka</option>
+                    <option value=">">veća</option>
+                    <option value="<">manja</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="garancija">Meseci:</label>
+                    <input type="number" id="garancija" name="garancija" class="form-control"
+                           value="0" min="0" step="1">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label for="opis">Datum 1</label>
+                <input type="date" name="datum_1" id="datum_1" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="opis">Datum 2</label>
+                <input type="date" name="datum_2" id="datum_2" class="form-control" readonly>
+            </div>
+            <div class="col-md-6">
+                <label class="text-warning">Napomena</label>
+                <p class="text-warning">
+                    Ako se unese samo prvi datum pretraga će se vršiti za predmete sa tim datumom. Ako se unesu oba datuma pretraga će se vršiti za predmete između ta dva datuma.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="napomena">Napomena</label>
+                <textarea
+                    name="napomena" id="napomena"
+                    class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="row dugmici">
+            <div class="col-md-6 col-md-offset-6">
+                <div class="form-group text-right ceo_dva">
+                    <div class="col-md-6 snimi">
+                        <button type="submit" id="dugme_pretrazi" class="btn btn-success btn-block">
+                            <i class="fa fa-search"></i>&emsp;Претражи
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-danger btn-block" href="{{ route('nabavke') }}">
+                            <i class="fa fa-ban"></i>&emsp;Откажи
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -59,15 +136,6 @@
                            href="{{ route('nabavke.detalj', $nabavka->id) }}">
                             <i class="fa fa-eye"></i>
                         </a>
-                        <!--                        <a class="btn btn-info btn-sm"
-                                                   href="{{-- route('nabavke.izmena.get', $nabavka->id) --}}">
-                                                    <i class="fa fa-pencil"></i>
-                                                </a>-->
-                        <!--                        <button class="btn btn-danger btn-sm otvori-brisanje"
-                                                        data-toggle="modal" data-target="#brisanjeModal"
-                                                        value="{{-- $nabavka->id --}}">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>-->
                     </td>
                 </tr>
                 @endforeach
@@ -76,9 +144,6 @@
         @endif
     </div>
 </div>
-<!--  POCETAK brisanjeModal  -->
-@include('sifarnici.inc.modal_brisanje')
-<!--  KRAJ brisanjeModal  -->
 @endsection
 
 @section('skripte')
@@ -110,15 +175,30 @@
         });
         new $.fn.dataTable.FixedHeader(tabela);
 
-        $(document).on('click', '.otvori-brisanje', function () {
-            var id = $(this).val();
-            $('#idBrisanje').val(id);
-            var ruta = "{{ route('nabavke.brisanje') }}";
-            $('#brisanje-forma').attr('action', ruta);
+        jQuery(window).on('resize', resizeChosen);
+
+        $('.chosen-select').chosen({
+            allow_single_deselect: true,
+            search_contains: true
         });
+
+        function resizeChosen() {
+            $(".chosen-container").each(function () {
+                $(this).attr('style', 'width: 100%');
+            });
+        }
 
         $('#pretragaDugme').click(function () {
             $('#pretraga').toggle();
+            resizeChosen();
+        });
+
+        $('#datum_1').on('change', function () {
+            if (this.value !== '') {
+                $('#datum_2').prop('readonly', false);
+            } else {
+                $('#datum_2').prop('readonly', true).val('');
+            }
         });
 
     });
