@@ -38,11 +38,11 @@
             <div class="panel panel-info noborder">
                 <div class="panel-heading">
                     <h3 class="text-center bez-margina">
-                        <a href="" style="text-decoration: none; color: #2c3e50">Monitori</a>
+                        <a href="{{route('monitori.oprema')}}" style="text-decoration: none; color: #2c3e50">Monitori</a>
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <a href="">
+                    <a href="{{route('monitori.oprema')}}">
                     <img class="grow center-block responsive" alt="računari" src="{{url('/images/monitorS.png')}}" style="height: 64px;">
                     </a>
                 </div>
@@ -60,11 +60,11 @@
             <div class="panel panel-info noborder">
                 <div class="panel-heading">
                     <h3 class="text-center bez-margina">
-                        <a href="" style="text-decoration: none; color: #2c3e50">Štampači</a>
+                        <a href="{{route('stampaci.oprema')}}" style="text-decoration: none; color: #2c3e50">Štampači</a>
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <a href="">
+                    <a href="{{route('stampaci.oprema')}}">
                     <img class="grow center-block responsive" alt="računari" src="{{url('/images/stampac.png')}}" style="height: 64px;">
                     </a>
                 </div>

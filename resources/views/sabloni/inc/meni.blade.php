@@ -47,7 +47,7 @@
                             <li><a href="{{route('napajanja.oprema')}}">Napajanja</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{route('monitori.oprema')}}">Monitori</a></li>
-                            <li><a href="">Štampači</a></li>
+                            <li><a href="{{route('stampaci.oprema')}}">Štampači</a></li>
                             <li><a href="">Skeneri</a></li>
                             <li><a href="">UPS-evi</a></li>
                             <li><a href="">Projektori</a></li>

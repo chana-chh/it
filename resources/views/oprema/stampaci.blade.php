@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Oprema | Monitori')
+@section('naziv', 'Oprema | Štampači')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -11,8 +11,8 @@
     <div class="col-md-10">
         <h1>
             <span>
-                <img class="slicica_animirana" alt="Monitori" src="{{url('/images/monitorS.png')}}" style="height:64px;">
-            </span>&emsp;Monitori</h1>
+                <img class="slicica_animirana" alt="Štampači" src="{{url('/images/stampac.png')}}" style="height:64px;">
+            </span>&emsp;Štampači</h1>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
         <button id="pretragaDugme" class="btn btn-success btn-block ono">
@@ -26,14 +26,14 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <strong>Obavštenje: </strong> Dodavanje novog monitora se obavlja kroz <a href="{{ route('otpremnice') }}" style="color: #18BC9C"><strong> otpremnicu </strong></a> ili <a href="{{route('nabavke')}}" style="color: #18BC9C"><strong> nabavku </strong></a>.
+            <strong>Obavštenje: </strong> Dodavanje novog štampača se obavlja kroz <a href="{{ route('otpremnice') }}" style="color: #18BC9C"><strong> otpremnicu </strong></a> ili <a href="{{route('nabavke')}}" style="color: #18BC9C"><strong> nabavku </strong></a>.
         </div>
     </div>
 </div>
 <hr class="linija" style="display: none;">
 <div class="row well" id="pretraga" style="display: none;">
     <div class="col-md-2">
-        <a id="pretragaDugme" href="{{route('monitori.oprema.otpisani')}}" class="btn btn-success btn-block ono">
+        <a id="pretragaDugme" href="{{route('stampaci.oprema.otpisani')}}" class="btn btn-success btn-block ono">
             <i class="fa fa-recycle fa-fw"></i> Otpisani
         </a>
     </div>
@@ -69,7 +69,7 @@
             <td>
                 <strong>{{$o->serijski_broj}}</strong>
             </td>
-            <td><a href="{{route('monitori.modeli.detalj', $o->monitorModel->id)}}">{{$o->monitorModel->proizvodjac->naziv}}, {{$o->monitorModel->dijagonala->naziv}} "</a></td>
+            <td><a href="{{route('stampaci.modeli.detalj', $o->stampacModel->id)}}">{{$o->stampacModel->proizvodjac->naziv}}, {{$o->stampacModel->naziv}}</a></td>
             <td> @if($o->racunar)
                 {{$o->racunar->ime}}
                 @endif
@@ -96,10 +96,10 @@
             </td>
             <td><em>{{$o->napomena}}</em></td>
             <td style="text-align:right; vertical-align: middle; line-height: normal;">
-                <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('monitori.oprema.detalj', $o->id)}}">
+                <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('stampaci.oprema.detalj', $o->id)}}">
                     <i class="fa fa-eye"></i>
                 </a>
-                <a class="btn btn-info btn-sm" id="dugmeIzmena" href="{{route('monitori.oprema.izmena.get', $o->id)}}">
+                <a class="btn btn-info btn-sm" id="dugmeIzmena" href="{{route('stampaci.oprema.izmena.get', $o->id)}}">
                     <i class="fa fa-pencil"></i>
                 </a>
             </td>

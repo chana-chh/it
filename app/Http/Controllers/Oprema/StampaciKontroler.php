@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
 use Carbon\Carbon;
 
-Use App\Modeli\Monitor;
-Use App\Modeli\MonitorModel;
+Use App\Modeli\Stampac;
+Use App\Modeli\StampacModel;
 Use App\Modeli\Racunar;
 Use App\Modeli\OtpremnicaStavka;
 Use App\Modeli\Otpremnica;
@@ -21,37 +21,37 @@ Use App\Modeli\Reciklaza;
 
 
 
-class MonitoriKontroler extends Kontroler
+class StampaciKontroler extends Kontroler
 {
     public function getLista()
     {
-    	$uredjaj = Monitor::all();
-    	return view('oprema.monitori')->with(compact ('uredjaj'));
+    	$uredjaj = Stampac::all();
+    	return view('oprema.stampaci')->with(compact ('uredjaj'));
     }
 
     public function getListaOtpisani()
     {
-        $uredjaj = Monitor::onlyTrashed()->get();
+        $uredjaj = Stampac::onlyTrashed()->get();
         $reciklaze = Reciklaza::all();
-        return view('oprema.monitori_otpisani')->with(compact ('uredjaj', 'reciklaze'));
+        return view('oprema.stampaci_otpisani')->with(compact ('uredjaj', 'reciklaze'));
     }
 
     public function getDetalj($id)
     {
-        $uredjaj = Monitor::find($id);
-        $brojno_stanje = Monitor::where('monitor_model_id', '=', $uredjaj->monitor_model_id)->count();
-        return view('oprema.monitori_detalj')->with(compact ('uredjaj', 'brojno_stanje'));
+        $uredjaj = Stampac::find($id);
+        $brojno_stanje = Stampac::where('stampac_model_id', '=', $uredjaj->stampac_model_id)->count();
+        return view('oprema.stampaci_detalj')->with(compact ('uredjaj', 'brojno_stanje'));
     }
 
     public function getIzmena($id)
     {
-        $uredjaj = Monitor::find($id);
-        $modeli = MonitorModel::all();
+        $uredjaj = Stampac::find($id);
+        $modeli = StampacModel::all();
         $racunari = Racunar::all();
         $otpremnice = Otpremnica::all();
         $kancelarije = Kancelarija::all();
         $nabavke = Nabavka::all();
-        return view('oprema.monitori_izmena')->with(compact ('uredjaj', 'modeli', 'racunari', 'otpremnice', 'kancelarije', 'nabavke'));
+        return view('oprema.stampaci_izmena')->with(compact ('uredjaj', 'modeli', 'racunari', 'otpremnice', 'kancelarije', 'nabavke'));
     }
 
     public function postIzmena(Request $request, $id)
@@ -59,13 +59,13 @@ class MonitoriKontroler extends Kontroler
 
         $this->validate($request, [
                 'serijski_broj' => ['max:50'],
-                'monitor_model_id' => ['required'],
+                'stampac_model_id' => ['required'],
             ]);
 
-        $uredjaj = Monitor::find($id);
+        $uredjaj = Stampac::find($id);
         $uredjaj->inventarski_broj = $request->inventarski_broj;
         $uredjaj->serijski_broj = $request->serijski_broj;
-        $uredjaj->monitor_model_id = $request->monitor_model_id;
+        $uredjaj->stampac_model_id = $request->stampac_model_id;
         $uredjaj->racunar_id = $request->racunar_id;
         $uredjaj->kancelarija_id = $request->kancelarija_id;
         $uredjaj->stavka_otpremnice_id = $request->stavka_otpremnice_id;
@@ -74,14 +74,14 @@ class MonitoriKontroler extends Kontroler
 
         $uredjaj->save();
 
-        Session::flash('uspeh','Monitor je uspešno izmenjen!');
-        return redirect()->route('monitori.oprema');
+        Session::flash('uspeh','Štampač je uspešno izmenjen!');
+        return redirect()->route('stampaci.oprema');
     }
 
     public function postOtpis(Request $request)
     {
 
-        $data = Monitor::find($request->idOtpis);
+        $data = Stampac::find($request->idOtpis);
 
         if ($data->racunar) {
             $uredjaj = $data->racunar;
@@ -99,61 +99,61 @@ class MonitoriKontroler extends Kontroler
         }
         
 
-        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao monitor koji je bio povezan za računar: '. $ime . ', kancelarija: ' . $kanc;
+        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao štampač koji je bio povezan za računar: '. $ime . ', kancelarija: ' . $kanc;
         $data->save();
         $odgovor = $data->delete();
         if ($odgovor) {
-            Session::flash('uspeh', 'Monitor je uspešno otpisano!');
+            Session::flash('uspeh', 'Štampač je uspešno otpisan!');
         } else {
-            Session::flash('greska', 'Došlo je do greške prilikom otpisa monitora. Pokušajte ponovo, kasnije!');
+            Session::flash('greska', 'Došlo je do greške prilikom otpisa štampača. Pokušajte ponovo, kasnije!');
         }
-        return redirect()->route('monitori.oprema');
+        return redirect()->route('stampaci.oprema');
     }
 
     public function postOtpisVracanje(Request $request)
     {
 
-        $data = Monitor::withTrashed()->find($request->idVracanje);
+        $data = Stampac::withTrashed()->find($request->idVracanje);
         $data->restore();
         $odgovor = $data->save();
 
         if ($odgovor) {
-            Session::flash('uspeh', 'Monitor je uspešno vraćen u ponovnu upotrebu iz otpisa!');
+            Session::flash('uspeh', 'Štampač je uspešno vraćen u ponovnu upotrebu iz otpisa!');
         } else {
-            Session::flash('greska', 'Došlo je do greške prilikom vraćanja monitora iz otpisa. Pokušajte ponovo, kasnije!');
+            Session::flash('greska', 'Došlo je do greške prilikom vraćanja štampača iz otpisa. Pokušajte ponovo, kasnije!');
         }
-        return redirect()->route('monitori.oprema.otpisani');
+        return redirect()->route('stampaci.oprema.otpisani');
     }
 
     public function postReciklirajLista(Request $request){
 
-        $uredjaj = Monitor::onlyTrashed()->whereNull('reciklirano_id')->get();
+        $uredjaj = Stampac::onlyTrashed()->whereNull('reciklirano_id')->get();
         $reciklaza = Reciklaza::find($request->reciklirano_id);
 
-        return view('oprema.monitori_recikliranje_lista')->with(compact ('uredjaj', 'reciklaza'));
+        return view('oprema.stampaci_recikliranje_lista')->with(compact ('uredjaj', 'reciklaza'));
     }
 
     public function postRecikliraj(Request $request, $id_reciklaze){
 
         if (!$request->id_uredjaji) {
-            Session::flash('greska', 'Niste odabrali nijedan monitor!');
-            return redirect()->route('monitori.oprema.otpisani');
+            Session::flash('greska', 'Niste odabrali nijedan štampač!');
+            return redirect()->route('stampaci.oprema.otpisani');
         }else{
         DB::beginTransaction();
         foreach ($request->id_uredjaji as $id) {
             try{
-            $data = Monitor::withTrashed()->find($id);
+            $data = Stampac::withTrashed()->find($id);
             $data->reciklirano_id = $id_reciklaze;
             $data->save();
         }catch (\Exception $e){
                 DB::rollback();
                 Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
-                return redirect()->route('monitori.oprema.otpisani');
+                return redirect()->route('stampaci.oprema.otpisani');
         }
         }
         DB::commit();
-        Session::flash('uspeh', 'Monitor je uspešno stavljeno na listu reciklaže!');}
-       return redirect()->route('monitori.oprema.otpisani');
+        Session::flash('uspeh', 'Štampač je uspešno stavljeno na listu reciklaže!');}
+       return redirect()->route('stampaci.oprema.otpisani');
     }
 
 }

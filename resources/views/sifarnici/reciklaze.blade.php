@@ -29,7 +29,7 @@
             	@foreach ($data as $d)
                     <tr>
                         <td>{{$d->id}}</td>
-                        <td><strong>{{ $d->datum }}</strong></td>
+                        <td> <a href="{{ route('reciklaze.uredjaji', $d->datum) }}"> {{ $d->datum }}</a></td>
                         <td><em>{{ $d->napomena }}</em></td>
                         <td style="text-align:right;">
                             <button class="btn btn-success btn-sm otvori-izmenu" 

@@ -7,6 +7,11 @@ use Session;
 use Redirect;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\Reciklaza;
+use App\Helpers\UredjajiHelper;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 
 class ReciklazeKontroler extends Kontroler
 {
@@ -72,5 +77,28 @@ class ReciklazeKontroler extends Kontroler
         }
         return Redirect::back();
     }
+
+    public function getRecikliraniUredjaji($datum)
+    {
+        $uredjaji_svi = UredjajiHelper::sviUredjaji();
+        $uredjaji_rec = $uredjaji_svi->where('reciklaza', $datum);
+        $uredjaji = $this->paginate($uredjaji_rec, 10);
+        return view('sifarnici.reciklirani_uredjaji')->with(compact('uredjaji', 'datum'));
+    }
+
+    function paginate($kolekcija, $poStrani)
+    {
+        if(is_array($kolekcija)){
+            $kolekcija = collect($kolekcija);
+        }
+
+        return new LengthAwarePaginator(
+        $kolekcija->forPage(Paginator::resolveCurrentPage() , $poStrani),
+        $kolekcija->count(), $poStrani,
+        Paginator::resolveCurrentPage(),
+        ['path' => Paginator::resolveCurrentPath()]
+        );
+    }
+
 
 }

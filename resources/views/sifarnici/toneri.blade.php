@@ -20,9 +20,10 @@
 @else
 <table class="table table-striped" id="tabela">
     <thead>
-    <th style="width: 15%;">#</th>
+    <th style="width: 10%;">#</th>
     <th style="width: 20%;">Naziv grupe</th>
-    <th style="width: 50%;">Kompatibilni modeli</th>
+    <th style="width: 40%;">Kompatibilni modeli</th>
+    <th style="width: 15%;">Brojno stanje</th>
     <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
 </thead>
 <tbody>
@@ -31,6 +32,7 @@
         <td>{{ $d->id }}</td>
         <td><strong>{{ $d->naziv }}</strong></td>
         <td><strong>{{ $d->modeli_tonera }}</strong></td>
+        <td><strong>{{ $d->broj() }}</strong></td>
         <td style="text-align:right;">
             <button class="btn btn-success btn-sm otvori-izmenu"
                     data-toggle="modal" data-target="#editModal"

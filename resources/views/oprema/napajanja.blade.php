@@ -103,7 +103,7 @@ $( document ).ready(function() {
             setTimeout(function(){
             $('.obavestenje').hide();
             $('.linija').show();
-            }, 5000);
+            }, 4000);
 
         var tabela = $('#tabela').DataTable({
 

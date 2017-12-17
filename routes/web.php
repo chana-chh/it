@@ -123,6 +123,7 @@ Route::post('sifarnici/spratovi/detalj', 'Sifarnici\SpratoviKontroler@postDetalj
 
 // Reciklaza
 Route::get('sifarnici/reciklaze', 'Sifarnici\ReciklazeKontroler@getLista')->name('reciklaze');
+Route::get('sifarnici/reciklaze/uredjaji/{datum}', 'Sifarnici\ReciklazeKontroler@getRecikliraniUredjaji')->name('reciklaze.uredjaji');
 Route::post('sifarnici/reciklaze/dodavanje', 'Sifarnici\ReciklazeKontroler@postDodavanje')->name('reciklaze.dodavanje');
 Route::post('sifarnici/reciklaze/brisanje', 'Sifarnici\ReciklazeKontroler@postBrisanje')->name('reciklaze.brisanje');
 Route::post('sifarnici/reciklaze/izmena', 'Sifarnici\ReciklazeKontroler@postIzmena')->name('reciklaze.izmena');
@@ -461,6 +462,17 @@ Route::post('oprema/monitori/otpis/', 'Oprema\MonitoriKontroler@postOtpis')->nam
 Route::post('oprema/monitori/vracanje_otpis/', 'Oprema\MonitoriKontroler@postOtpisVracanje')->name('monitori.oprema.vracanje_otpis');
 Route::post('oprema/monitori/recikliranje/lista/', 'Oprema\MonitoriKontroler@postReciklirajLista')->name('monitori.oprema.recikliranje.lista');
 Route::post('oprema/monitori/recikliranje/{id_reciklaze}', 'Oprema\MonitoriKontroler@postRecikliraj')->name('monitori.oprema.recikliranje');
+
+//Stampaci
+Route::get('oprema/stampaci/', 'Oprema\StampaciKontroler@getLista')->name('stampaci.oprema');
+Route::get('oprema/stampaci/otpisani/', 'Oprema\StampaciKontroler@getListaOtpisani')->name('stampaci.oprema.otpisani');
+Route::get('oprema/stampaci/detalj/{id}', 'Oprema\StampaciKontroler@getDetalj')->name('stampaci.oprema.detalj');
+Route::get('oprema/stampaci/izmena/{id}', 'Oprema\StampaciKontroler@getIzmena')->name('stampaci.oprema.izmena.get');
+Route::post('oprema/stampaci/izmena/{id}', 'Oprema\StampaciKontroler@postIzmena')->name('stampaci.oprema.izmena.post');
+Route::post('oprema/stampaci/otpis/', 'Oprema\StampaciKontroler@postOtpis')->name('stampaci.oprema.otpis');
+Route::post('oprema/stampaci/vracanje_otpis/', 'Oprema\StampaciKontroler@postOtpisVracanje')->name('stampaci.oprema.vracanje_otpis');
+Route::post('oprema/stampaci/recikliranje/lista/', 'Oprema\StampaciKontroler@postReciklirajLista')->name('stampaci.oprema.recikliranje.lista');
+Route::post('oprema/stampaci/recikliranje/{id_reciklaze}', 'Oprema\StampaciKontroler@postRecikliraj')->name('stampaci.oprema.recikliranje');
 
 //Racunari
 Route::get('oprema/racunari/', 'Oprema\RacunariKontroler@getLista')->name('racunari.oprema');
