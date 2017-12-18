@@ -51,7 +51,7 @@ class Projektor extends Model
 
     public function povezivanja()
     {
-        return $this->belongsToMany('App\Modeli\MonitorPovezivanje', 'projektor_povezivanje', 'projektor_id', 'povezivanje_id');
+        return $this->belongsToMany('App\Modeli\MonitorPovezivanje', 'projektori_povezivanje', 'projektor_id', 'povezivanje_id');
     }
 
 }

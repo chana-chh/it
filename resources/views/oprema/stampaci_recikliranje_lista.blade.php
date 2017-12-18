@@ -1,6 +1,6 @@
 .@extends('sabloni.app')
 
-@section('naziv', 'Oprema | Lista grafičkih adaptera za reciklažu')
+@section('naziv', 'Oprema | Lista štampača za reciklažu')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -13,7 +13,7 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <strong>Obavštenje: </strong>Čekirajte <input type="checkbox" onclick="return false;"/> uz grafičke adaptere koje želite da reciklirate u navedenoj reciklaži</a>.
+            <strong>Obavštenje: </strong>Čekirajte <input type="checkbox" onclick="return false;"/> uz štampače koje želite da reciklirate u navedenoj reciklaži</a>.
         </div>
     </div>
 </div>
@@ -21,11 +21,11 @@
     <div class="col-md-10">
         <h2>
             <span>
-                <img class="slicica_animirana" alt="Otpisani grafički adapteri" src="{{url('/images/hdd.png')}}" style="height:64px;">
-            </span>&emsp;Lista grafičkih adaptera za reciklažu koja je planirana za <span class="text-success">{{$reciklaza->datum}}</span></h2>
+                <img class="slicica_animirana" alt="Otpisani štampači" src="{{url('/images/stampac.png')}}" style="height:64px;">
+            </span>&emsp;Lista štampača za reciklažu koja je planirana za <span class="text-success">{{$reciklaza->datum}}</span></h2>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <form action="{{route('vga.oprema.recikliranje', $reciklaza->id)}}" method="POST" id="forma_reciklaza">
+        <form action="{{route('stampaci.oprema.recikliranje', $reciklaza->id)}}" method="POST" id="forma_reciklaza">
             {{ csrf_field() }}
         <button id="reciklazaDugme" type="submit" class="btn btn-danger btn-block ono">
             <i class="fa fa-trash fa-fw"></i> Reciklaža
@@ -37,7 +37,7 @@
 <div class="row" style="margin-bottom: 25px; margin-top: 25px">
     <div class="col-md-12">
         <div class="btn-group">
-            <a class="btn btn-primary" href="{{route('vga.oprema.otpisani')}}"
+            <a class="btn btn-primary" href="{{route('stampaci.oprema.otpisani')}}"
                title="Povratak na prethodnu stranu">
                 <i class="fa fa-arrow-left"></i>
             </a>
@@ -45,8 +45,8 @@
                title="Povratak na početnu stranu">
                 <i class="fa fa-home"></i>
             </a>
-            <a class="btn btn-primary" href="{{route('vga.oprema')}}"
-               title="Povratak na listu grafičkih adaptera">
+            <a class="btn btn-primary" href="{{route('stampaci.oprema')}}"
+               title="Povratak na listu štampača">
                 <i class="fa fa-list"></i>
             </a>
         </div>
@@ -57,15 +57,16 @@
 <div class="row">
     <div class="col-md-12">
 @if($uredjaj->isEmpty())
-            <h3 class="text-danger">Trenutno nema grafičkih adaptera za reciklažu</h3>
+            <h3 class="text-danger">Trenutno nema štampača za reciklažu</h3>
         @else
 <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
     <thead>
         <th style="width: 5%;"><input type="checkbox" name="izaberi_sve" value="1" id="izaberi_sve"></th>
         <th style="width: 15%;">Serijski broj</th>
+        <th style="width: 10%;">Inventarski broj</th>
         <th style="width: 25%;">Model</th>
         <th style="width: 15%;">Datum otpisa</th>
-        <th style="width: 40%;">Napomena</th>
+        <th style="width: 30%;">Napomena</th>
     </thead>
     <tbody>
         @foreach ($uredjaj as $o)
@@ -74,7 +75,10 @@
             <td>
                 <strong>{{$o->serijski_broj}}</strong>
             </td>
-            <td><a href="{{route('vga.modeli.detalj', $o->grafickiAdapterModel->id)}}">{{$o->grafickiAdapterModel->proizvodjac->naziv}}, {{$o->grafickiAdapterModel->cip}} -{{$o->grafickiAdapterModel->kapacitet_memorije}} (MB)</a></td>
+            <td>
+                {{$o->inventarski_broj}}
+            </td>
+            <td><a href="{{route('stampaci.modeli.detalj', $o->stampacModel->id)}}">{{$o->stampacModel->proizvodjac->naziv}}, {{$o->stampacModel->naziv}} sa tonerom {{$o->stampacModel->tipTonera->naziv}}</a></td>
             <td> 
                 {{$o->deleted_at}}
             </td>

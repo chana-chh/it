@@ -82,8 +82,6 @@
     <div class="col-md-12">
 @if ($uredjaj->racunar)
 <h4>Ovaj računar koristi: <a href="{{ route('zaposleni.detalj', $uredjaj->racunar->zaposleni->id) }}">{{$uredjaj->racunar->zaposleni->imePrezime()}}</a></h4>
-@else
-<h4>Ovaj računar ne koristi nijedan činovnik</h4>
 @endif
 
 </div>

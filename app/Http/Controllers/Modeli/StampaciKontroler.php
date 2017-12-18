@@ -39,14 +39,14 @@ class StampaciKontroler extends Kontroler
         $this->validate($request, [
                'naziv' => ['required','max:255','unique:stampaci_modeli,naziv'],
                'proizvodjac_id' => ['required'],
-               'toner_id' => ['required'],
+               'tip_tonera_id' => ['required'],
                'tip_stampaca_id' => ['required']
             ]);
 
         $data = new StampacModel();
         $data->naziv = $request->naziv;
         $data->proizvodjac_id = $request->proizvodjac_id;
-        $data->toner_id = $request->toner_id;
+        $data->tip_tonera_id = $request->tip_tonera_id;
         $data->tip_stampaca_id = $request->tip_stampaca_id;
         $data->link = $request->link;
         $data->napomena = $request->napomena;
@@ -72,14 +72,14 @@ class StampaciKontroler extends Kontroler
             $this->validate($request, [
                 'naziv' => ['required','max:255','unique:stampaci_modeli,naziv,' .$id],
                 'proizvodjac_id' => ['required'],
-                'toner_id' => ['required'],
+                'tip_tonera_id' => ['required'],
                 'tip_stampaca_id' => ['required']
             ]);
         
         $data = StampacModel::find($id);
         $data->naziv = $request->naziv;
         $data->proizvodjac_id = $request->proizvodjac_id;
-        $data->toner_id = $request->toner_id;
+        $data->tip_tonera_id = $request->tip_tonera_id;
         $data->tip_stampaca_id = $request->tip_stampaca_id;
         $data->link = $request->link;
         $data->napomena = $request->napomena;

@@ -7,14 +7,12 @@
 @endsection
 
 @section('naslov')
-<h1 class="page-header">
-    <img class="slicica_animirana" alt="Kancelarija detaljno"
+<h1>
+    <img class="slicica_animirana" alt="Reciklirani uređaji"
          src="{{ url('/images/reciklaze.png') }}" style="height:64px;">
-    &emsp;Lista uređaja koji su reciklirani dana {{$datum}}
+    &emsp;Lista uređaja koji su reciklirani dana <em class="text-success">{{$datum}}</em>
 </h1>
-@endsection
-
-@section('sadrzaj')
+<hr>
 <div class="row" style="margin-bottom: 16px;">
     <div class="col-md-12">
         <div class="btn-group">
@@ -38,30 +36,69 @@
 <div class="row">
     <div class="col-md-12">
     <h4>Reciklirani uređaji:</h4>
-    @if($uredjaji->isEmpty())
+    @if($uredjaji_rec->isEmpty())
     <p class="text-danger">Nema recikliranih uređaja</p>
     @else
-    <table class="table table-striped table-responsive">
+    <table class="table table-striped table-responsive" id="tabela" cellspacing="0" width="100%" style="table-layout: fixed; font-size: 0.9375em;">
         <thead>
             <tr>
-                <th>Vrsta</th>
-                <th>Naziv</th>
-                <th>Inventarski broj</th>
+                <th style="width: 15%;">Vrsta uređaja</th>
+                <th style="width: 10%;">Serijski broj</th>
+                <th style="width: 10%;">Inventarski broj</th>
+                <th style="width: 15%;">Model</th>
+                <th style="width: 15%;">Lokacija</th>
+                <th style="width: 15%;">Datum otpisa</th>
+                <th style="width: 20%;">Napomena</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($uredjaji as $uredjaj)
+            @foreach($uredjaji_rec as $uredjaj)
             <tr>
                 <td>{{ $uredjaj->vrsta_uredjaja }}</td>
-                <td>{{ $uredjaj->naziv }}</td>
+                <td>{{ $uredjaj->serijski_broj }}</td>
                 <td>{{ $uredjaj->inventarski_broj }}</td>
+                <td>{{ $uredjaj->tehnicki_detalji }}</td>
+                <td>{{ $uredjaj->lokacija }}</td>
+                <td>{{ $uredjaj->otpis }}</td>
+                <td>{{ $uredjaj->napomena }}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    {{ $uredjaji->render() }}
     @endif
 </div>
 </div>
     
+@endsection
+
+@section('skripte')
+<script>
+    $(document).ready(function () {
+
+        $('#tabela').DataTable({
+            columnDefs: [
+                {
+                    orderable: false,
+                    searchable: false,
+                    "targets": -1
+                }
+            ],
+            language: {
+                search: "Pronađi u tabeli",
+                paginate: {
+                    first: "Prva",
+                    previous: "Prethodna",
+                    next: "Sledeća",
+                    last: "Poslednja"
+                },
+                processing: "Procesiranje u toku ...",
+                lengthMenu: "Prikaži _MENU_ elemenata",
+                zeroRecords: "Nije pronađen nijedan zapis za zadati kriterijum",
+                info: "Prikazano _START_ do _END_ od ukupno _TOTAL_ elemenata",
+                infoFiltered: "(filtrirano od _MAX_ elemenata)"
+            }
+        });
+
+    });
+</script>
 @endsection

@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Oprema | Memorija detaljno')
+@section('naziv', 'Oprema | Projektor detaljno')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -8,8 +8,8 @@
 
 @section('naslov')
     <h1 class="page-header">
-        <img class="slicica_animirana" alt="Memorijski modul detaljno" src="{{url('/images/memorija.png')}}" style="height:64px;">&emsp;
-        Detaljni pregled memorijskog modula
+        <img class="slicica_animirana" alt="Projektor detaljno" src="{{url('/images/projektor.png')}}" style="height:64px;">&emsp;
+        Detaljni pregled projektora
     </h1>
 @endsection
 
@@ -25,12 +25,12 @@
                title="Povratak na početnu stranu">
                 <i class="fa fa-home"></i>
             </a>
-            <a class="btn btn-primary" href="{{route('memorije.oprema')}}"
-               title="Povratak na listu memorijskih modula">
+            <a class="btn btn-primary" href="{{route('projektori.oprema')}}"
+               title="Povratak na listu projektora">
                 <i class="fa fa-list"></i>
             </a>
-            <a class="btn btn-primary" href="{{route('memorije.oprema.izmena.get', $uredjaj->id)}}"
-               title="Izmena podataka memorijskih modula">
+            <a class="btn btn-primary" href="{{route('projektori.oprema.izmena.get', $uredjaj->id)}}"
+               title="Izmena podataka projektora">
                 <i class="fa fa-pencil"></i>
             </a>
             <button id="idBrisanje" class="btn btn-warning otvori-brisanje"
@@ -52,10 +52,15 @@
                 <th style="width: 20%;">Serijski broj:</th>
                 <td style="width: 80%;">{{$uredjaj->serijski_broj}}</td>
             </tr>
+            <tr>
+                <th style="width: 20%;">Inventarski broj:</th>
+                <td style="width: 80%;">{{$uredjaj->inventarski_broj}}</td>
+            </tr>
 
             <tr>
                 <th style="width: 20%;">Otpremnica:</th>
-                <td style="width: 80%;">@if($uredjaj->stavkaOtpremnice)<a
+                <td style="width: 80%;">@if($uredjaj->stavkaOtpremnice)
+                    <a
                            href="{{ route('otpremnice.detalj', $uredjaj->stavkaOtpremnice->otpremnica->id) }}">
                             {{$uredjaj->stavkaOtpremnice->otpremnica->broj}} 
                         </a>
@@ -64,29 +69,26 @@
             </tr>
 
             <tr>
-                <th style="width: 20%;">Računar:</th>
-                <td style="width: 80%;">@if($uredjaj->racunar){{$uredjaj->racunar->ime}}@endif
+                <th style="width: 20%;">Nabavka:</th>
+                <td style="width: 80%;">@if($uredjaj->nabavkaStavka)
+                        <a
+                           href="{{ route('nabavke.detalj', $uredjaj->nabavkaStavka->nabavka->id) }}">
+                            {{$uredjaj->nabavkaStavka->nabavka->dobavljac->naziv}} od {{$uredjaj->nabavkaStavka->nabavka->datum}} 
+                        </a>
+                        @endif
                 </td>
             </tr>
-
             <tr>
                 <th style="width: 20%;">Lokacija:</th>
-                <td style="width: 80%;">@if($uredjaj->racunar)<a href="{{route('kancelarije.detalj.get', $uredjaj->racunar->kancelarija->id)}}">{{$uredjaj->racunar->kancelarija->lokacija->naziv}}, kancelarija {{$uredjaj->racunar->kancelarija->naziv}}</a>@endif
-                </td>
+                @if($uredjaj->kancelarija)
+                <td style="width: 80%;">{{$uredjaj->kancelarija->sviPodaci()}}</td>
+                @endif
             </tr>
         </tbody>
     </table>
 </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-@if ($uredjaj->racunar)
-<h4>Ovaj računar koristi: <a href="{{ route('zaposleni.detalj', $uredjaj->racunar->zaposleni->id) }}">{{$uredjaj->racunar->zaposleni->imePrezime()}}</a></h4>
-@endif
-
-</div>
-</div>
     
 <div class="row ceo_dva">
 <div class="col-md-12 boxic">
@@ -108,69 +110,61 @@
     <div class="col-md-12">
 <div class="panel panel-info noborder">
   <div class="panel-heading">
-    <h4 class="panel-title" style="color: #2c3e50">Podaci o modelu:</h4>
+    <h4 class="panel-title" style="color: #2c3e50">Tehnički detalji:</h4>
   </div>
   <div class="panel-body">
     <table class="table">
         <tbody>
             <tr>
-                <th style="width: 40%;">Naziv:</th>
-                <td style="width: 60%;">{{$uredjaj->memorijaModel->naziv}}</td>
+                <th style="width: 20%;">Naziv:</th>
+                <td style="width: 80%;">{{$uredjaj->naziv}}
+                </td>
             </tr>
             <tr>
                 <th style="width: 40%;">Proizvođač:</th>
-                <td style="width: 60%;">{{$uredjaj->memorijaModel->proizvodjac->naziv}}</td>
+                <td style="width: 60%;">{{$uredjaj->proizvodjac->naziv}}</td>
+            </tr>
+            <tr>
+                <th style="width: 20%;">Tip lampe:</th>
+                <td style="width: 80%;">@if($uredjaj->tip_lampe){{$uredjaj->tip_lampe}}@endif
+                </td>
             </tr>
              <tr>
-                <th style="width: 20%;">Kapacitet:</th>
-                <td style="width: 80%;">{{$uredjaj->memorijaModel->kapacitet}} MB
+                <th style="width: 20%;">Rezolucija:</th>
+                <td style="width: 80%;">@if($uredjaj->rezolucija){{$uredjaj->rezolucija}}@endif
                 </td>
             </tr>
-
-           <tr>
-                <th style="width: 20%;">Tip memorije:</th>
-                <td style="width: 80%;">{{$uredjaj->memorijaModel->tipMemorije->naziv}}
-                </td>
-            </tr>
-
             <tr>
-                <th style="width: 40%;">Brzina:</th>
-                <td style="width: 60%;">{{ $uredjaj->memorijaModel->brzina }} MHz
+                <th style="width: 20%;">Kontrast:</th>
+                <td style="width: 80%;">@if($uredjaj->kontrast){{$uredjaj->kontrast}}@endif
                 </td>
             </tr>
-
             <tr>
-                <th style="width: 40%;">Ocena:</th>
-                <td style="width: 60%;">{{$uredjaj->memorijaModel->ocena}}
+                <th style="width: 20%;">Povezivanje:</th>
+                <td style="width: 80%;">
+                    @php
+                        $rezultat = array();
+                        foreach ($uredjaj->povezivanja as $p){
+                            $rezultat[] = $p->naziv;
+                        }
+                        echo implode(", ",$rezultat);
+                    @endphp
                 </td>
             </tr>
-
         </tbody>
     </table>
-    <div class="row">
-    <div class="col-md-12 text-right">
-                <a class="btn btn-primary btn-sm" id="dugmeDetalj" href="{{route('memorije.modeli.detalj', $uredjaj->memorijaModel->id)}}">
-                    <i class="fa fa-eye"></i>
-                </a>
-            </div>
-        </div>
   </div>
 </div>
 </div>
 </div>
 
-<div class="row well" style="margin-right: 1px; margin-left: 1px">
-    <div class="col-md-12">
-<h3>Broj memorijskih modula ovog modela: <a href="{{route('memorije.modeli.uredjaji', $uredjaj->memorijaModel->id) }}" title="Pregled svih uređaja ovog modela memorijskog modula"> {{$brojno_stanje}} </a></h3>
-</div>
-</div>
-
+@if($uredjaj->link)
 <div class="row" style="margin-top: 50px">
 <div class="col-md-12 text-center">
-    <a href="{{$uredjaj->memorijaModel->link}}" target="_blank"><img alt="link" src="{{url('/images/link.png')}}" style="height:32px;"></a>
+    <a href="{{$uredjaj->link}}" target="_blank"><img alt="link" src="{{url('/images/link.png')}}" style="height:32px;"></a>
 </div>
 </div>
-
+@endif
 @endsection
 
 @section('skripte')
@@ -181,7 +175,7 @@ $( document ).ready(function() {
 
             var id = $(this).val();
             $('#idOtpis').val(id);
-            var ruta = " {{route('memorije.oprema.otpis') }}";
+            var ruta = " {{route('projektori.oprema.otpis') }}";
             $('#brisanje-forma').attr('action', ruta); });
 });
 </script>

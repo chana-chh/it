@@ -7,7 +7,7 @@
 @endsection
 
 @section('naslov')
-<div class="row">
+<div class="row obavestenje">
     <div class="col-md-10 col-md-offset-1 text-center" style="font-size: 1rem;;">
         <div class="alert alert-info alert-dismissible ono" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -21,7 +21,7 @@
     <div class="col-md-10">
         <h2>
             <span>
-                <img class="slicica_animirana" alt="Otpisani snovne ploče" src="{{url('/images/cpu.png')}}" style="height:64px;">
+                <img class="slicica_animirana" alt="Otpisani osnovne ploče" src="{{url('/images/cpu.png')}}" style="height:64px;">
             </span>&emsp;Lista osnovnih ploča za reciklažu koja je planirana za <span class="text-success">{{$reciklaza->datum}}</span></h2>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
@@ -93,6 +93,10 @@
 @section('skripte')
 <script>
 $(document).ready(function () {
+
+        setTimeout(function(){
+            $('.obavestenje').hide();
+            }, 4000);
 
     var tabela = $('#tabela').DataTable({
         language: {

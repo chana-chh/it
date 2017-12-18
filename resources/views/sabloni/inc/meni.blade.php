@@ -48,9 +48,9 @@
                             <li role="separator" class="divider"></li>
                             <li><a href="{{route('monitori.oprema')}}">Monitori</a></li>
                             <li><a href="{{route('stampaci.oprema')}}">Štampači</a></li>
-                            <li><a href="">Skeneri</a></li>
-                            <li><a href="">UPS-evi</a></li>
-                            <li><a href="">Projektori</a></li>
+                            <li><a href="{{route('skeneri.oprema')}}">Skeneri</a></li>
+                            <li><a href="{{route('upsevi.oprema')}}">UPS-evi</a></li>
+                            <li><a href="{{route('projektori.oprema')}}">Projektori</a></li>
                             <li><a href="">Mrežna oprema</a></li>
                         </ul>
                     </li>

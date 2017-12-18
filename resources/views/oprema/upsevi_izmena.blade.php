@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Oprema | Izmena monitora')
+@section('naziv', 'Oprema | Izmena UPS uređaja')
 
 @section('meni')
 @include('sabloni.inc.meni')
@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-8">
         <h1>
-            <img class="slicica_animirana" alt="Izmena monitora" src="{{url('/images/monitorS.png')}}" style="height:64px;"> &emsp;Izmena podataka monitora
+            <img class="slicica_animirana" alt="Izmena UPS uređaja" src="{{url('/images/ups1.jpg')}}" style="height:64px;"> &emsp;Izmena podataka UPS uređaja
         </h1>
     </div>
 </div>
@@ -24,7 +24,7 @@
             <a class="btn btn-primary" href="{{ route('pocetna') }}" title="Povratak na početnu stranu">
                 <i class="fa fa-home"></i>
             </a>
-            <a class="btn btn-primary" href="{{ route('monitori.oprema') }}" title="Povratak na listu monitora">
+            <a class="btn btn-primary" href="{{ route('upsevi.oprema') }}" title="Povratak na listu UPS uređaja">
                 <i class="fa fa-list"></i>
             </a>
         </div>
@@ -33,7 +33,7 @@
 
 <div class="row ceo_dva">
     <div class="col-md-12 boxic">
-        <form action="{{ route('monitori.oprema.izmena.post', $uredjaj->id) }}" method="POST" data-parsley-validate>
+        <form action="{{ route('upsevi.oprema.izmena.post', $uredjaj->id) }}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
 
             <div class="row">
@@ -70,7 +70,7 @@
                             <optgroup label="{{ $o->dobavljac->naziv }}, {{ $o->broj }} od {{ $o->datum }}">
                                 @foreach($o->stavke as $s)
                                 <option value="{{ $s->id }}" {{ $s->id == old('stavka_otpremnice_id') ? ' selected' : '' }} {{ $uredjaj->stavka_otpremnice_id
-                                    == $s->id ? ' selected' : '' }}> {{$s->naziv}} (popunjeno je {{$s->monitori->count()
+                                    == $s->id ? ' selected' : '' }}> {{$s->naziv}} (popunjeno je {{$s->upsevi->count()
                                     }} od {{$s->kolicina}} {{$s->jedinica_mere}})
                                 </option>
                                 @endforeach
@@ -94,7 +94,7 @@
                             <optgroup label="{{ $o->dobavljac->naziv }} od {{ $o->datum }}">
                                 @foreach($o->stavke as $s)
                                 <option value="{{ $s->id }}" {{ $s->id == old('stavka_nabavke_id') ? ' selected' : '' }} {{ $uredjaj->stavka_nabavke_id == $s->id
-                                    ? ' selected' : '' }}> {{$s->naziv}} (popunjeno je {{$s->monitori->count() }} od {{$s->kolicina}}
+                                    ? ' selected' : '' }}> {{$s->naziv}} (popunjeno je {{$s->upsevi->count() }} od {{$s->kolicina}}
                                     {{$s->jedinica_mere}})
                                 </option>
                                 @endforeach
@@ -115,20 +115,19 @@
             <hr>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group{{ $errors->has('monitor_model_id') ? ' has-error' : '' }}">
-                        <label for="monitor_model_id">Model monitora:</label>
-                        <select name="monitor_model_id" id="monitor_model_id" class="chosen-select form-control" data-placeholder="model ..." required>
+                    <div class="form-group{{ $errors->has('ups_model_id') ? ' has-error' : '' }}">
+                        <label for="ups_model_id">Model UPS uređaja:</label>
+                        <select name="ups_model_id" id="ups_model_id" class="chosen-select form-control" data-placeholder="model ..." required>
                             <option value=""></option>
                             @foreach($modeli as $m)
-                            <option value="{{ $m->id }}" {{ $m->id == old('monitor_model_id') ? ' selected' : '' }} {{ $uredjaj->monitor_model_id == $m->id ?
-                                ' selected' : '' }}> {{ $m->proizvodjac->naziv }}, {{ $m->naziv }} sa dijagonalom {{$m->dijagonala->naziv}}
-                                "
+                            <option value="{{ $m->id }}" {{ $m->id == old('ups_model_id') ? ' selected' : '' }} {{ $uredjaj->ups_model_id == $m->id ?
+                                ' selected' : '' }}> {{ $m->proizvodjac->naziv }}, {{ $m->naziv }} - {{$m->kapacitet}} VA, {{$m->snaga}} W
                             </option>
                             @endforeach
                         </select>
-                        @if ($errors->has('monitor_model_id'))
+                        @if ($errors->has('ups_model_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('monitor_model_id') }}</strong>
+                            <strong>{{ $errors->first('ups_model_id') }}</strong>
                         </span>
                         @endif
                     </div>
@@ -159,7 +158,7 @@
                         <select name="racunar_id" id="racunar_id" class="chosen-select form-control" data-placeholder="računar ...">
                             <option value=""></option>
                             @foreach($racunari as $r)
-                            <option data-procesor="{{ $r->monitori()->count() > 0 ? 'Ovaj računar je već povezan sa monitorom!' : 'Računar je bez monitora.'}}"
+                            <option data-procesor="{{ $r->monitori()->count() > 0 ? 'Ovaj računar je već povezan sa ups-om!' : 'Računar je bez ups-a.'}}"
                                 value="{{ $r->id }}" {{ $r->id == old('racunar_id') ? ' selected' : '' }} @if($uredjaj->racunar) {{ $uredjaj->racunar->id
                                 == $r->id ? ' selected' : '' }} @endif> {{ $r->ime }}
                             </option>

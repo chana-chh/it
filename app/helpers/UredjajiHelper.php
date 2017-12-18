@@ -47,7 +47,7 @@ class UredjajiHelper
             $uredjaj->poreklo = $racunar->nabavkaStavka->nabavka->datum;
             $uredjaj->nabavka_stavka_id = $racunar->nabavkaStavka->id;
             $uredjaj->napomena = $racunar->napomena;
-            $uredjaj->otpis = $racunar->deletad_at;
+            $uredjaj->otpis = $racunar->deleted_at;
             if ($racunar->reciklirano) {
                 $uredjaj->reciklaza = $racunar->reciklirano->datum;
             }
@@ -81,7 +81,7 @@ class UredjajiHelper
                 $uredjaj->nabavka_stavka_id = $monitor->nabavkaStavka->id;
             }
             $uredjaj->napomena = $monitor->napomena;
-            $uredjaj->otpis = $monitor->deletad_at;
+            $uredjaj->otpis = $monitor->deleted_at;
             if ($monitor->reciklirano) {
                 $uredjaj->reciklaza = $monitor->reciklirano->datum;
             }
@@ -115,7 +115,7 @@ class UredjajiHelper
                 $uredjaj->nabavka_stavka_id = $stampac->nabavkaStavka->id;
             }
             $uredjaj->napomena = $stampac->napomena;
-            $uredjaj->otpis = $stampac->deletad_at;
+            $uredjaj->otpis = $stampac->deleted_at;
             if ($stampac->reciklirano) {
                 $uredjaj->reciklaza = $stampac->reciklirano->datum;
             }
@@ -149,7 +149,7 @@ class UredjajiHelper
                 $uredjaj->nabavka_stavka_id = $skener->nabavkaStavka->id;
             }
             $uredjaj->napomena = $skener->napomena;
-            $uredjaj->otpis = $skener->deletad_at;
+            $uredjaj->otpis = $skener->deleted_at;
             if ($skener->reciklirano) {
                 $uredjaj->reciklaza = $skener->reciklirano->datum;
             }
@@ -185,7 +185,7 @@ class UredjajiHelper
                 $uredjaj->nabavka_stavka_id = $ups->nabavkaStavka->id;
             }
             $uredjaj->napomena = $ups->napomena;
-            $uredjaj->otpis = $ups->deletad_at;
+            $uredjaj->otpis = $ups->deleted_at;
             if ($ups->reciklirano) {
                 $uredjaj->reciklaza = $ups->reciklirano->datum;
             }
@@ -220,7 +220,7 @@ class UredjajiHelper
                 $uredjaj->nabavka_stavka_id = $projektor->nabavkaStavka->id;
             }
             $uredjaj->napomena = $projektor->napomena;
-            $uredjaj->otpis = $projektor->deletad_at;
+            $uredjaj->otpis = $projektor->deleted_at;
             if ($projektor->reciklirano) {
                 $uredjaj->reciklaza = $projektor->reciklirano->datum;
             }
@@ -255,7 +255,7 @@ class UredjajiHelper
                 $uredjaj->nabavka_stavka_id = $mu->nabavkaStavka->id;
             }
             $uredjaj->napomena = $mu->napomena;
-            $uredjaj->otpis = $mu->deletad_at;
+            $uredjaj->otpis = $mu->deleted_at;
             if ($mu->reciklirano) {
                 $uredjaj->reciklaza = $mu->reciklirano->datum;
             }
@@ -279,7 +279,7 @@ class UredjajiHelper
                 $uredjaj->otpremnica_stavka_id = $mbd->stavkaOtpremnice->id;
             }
             $uredjaj->napomena = $mbd->napomena;
-            $uredjaj->otpis = $mbd->deletad_at;
+            $uredjaj->otpis = $mbd->deleted_at;
             if ($mbd->reciklirano) {
                 $uredjaj->reciklaza = $mbd->reciklirano->datum;
             }
@@ -303,7 +303,7 @@ class UredjajiHelper
                 $uredjaj->otpremnica_stavka_id = $hdd->stavkaOtpremnice->id;
             }
             $uredjaj->napomena = $hdd->napomena;
-            $uredjaj->otpis = $hdd->deletad_at;
+            $uredjaj->otpis = $hdd->deleted_at;
             if ($hdd->reciklirano) {
                 $uredjaj->reciklaza = $hdd->reciklirano->datum;
             }
@@ -327,7 +327,7 @@ class UredjajiHelper
                 $uredjaj->otpremnica_stavka_id = $cpu->stavkaOtpremnice->id;
             }
             $uredjaj->napomena = $cpu->napomena;
-            $uredjaj->otpis = $cpu->deletad_at;
+            $uredjaj->otpis = $cpu->deleted_at;
             if ($cpu->reciklirano) {
                 $uredjaj->reciklaza = $cpu->reciklirano->datum;
             }
@@ -351,7 +351,7 @@ class UredjajiHelper
                 $uredjaj->otpremnica_stavka_id = $ram->stavkaOtpremnice->id;
             }
             $uredjaj->napomena = $ram->napomena;
-            $uredjaj->otpis = $ram->deletad_at;
+            $uredjaj->otpis = $ram->deleted_at;
             if ($ram->reciklirano) {
                 $uredjaj->reciklaza = $ram->reciklirano->datum;
             }
@@ -375,7 +375,7 @@ class UredjajiHelper
                 $uredjaj->otpremnica_stavka_id = $vga->stavkaOtpremnice->id;
             }
             $uredjaj->napomena = $vga->napomena;
-            $uredjaj->otpis = $vga->deletad_at;
+            $uredjaj->otpis = $vga->deleted_at;
             if ($vga->reciklirano) {
                 $uredjaj->reciklaza = $vga->reciklirano->datum;
             }
@@ -399,7 +399,7 @@ class UredjajiHelper
                 $uredjaj->otpremnica_stavka_id = $napajanje->stavkaOtpremnice->id;
             }
             $uredjaj->napomena = $napajanje->napomena;
-            $uredjaj->otpis = $napajanje->deletad_at;
+            $uredjaj->otpis = $napajanje->deleted_at;
             if ($napajanje->reciklirano) {
                 $uredjaj->reciklaza = $napajanje->reciklirano->datum;
             }

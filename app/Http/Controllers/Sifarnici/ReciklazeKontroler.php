@@ -82,8 +82,7 @@ class ReciklazeKontroler extends Kontroler
     {
         $uredjaji_svi = UredjajiHelper::sviUredjaji();
         $uredjaji_rec = $uredjaji_svi->where('reciklaza', $datum);
-        $uredjaji = $this->paginate($uredjaji_rec, 10);
-        return view('sifarnici.reciklirani_uredjaji')->with(compact('uredjaji', 'datum'));
+        return view('sifarnici.reciklirani_uredjaji')->with(compact('uredjaji_rec', 'datum'));
     }
 
     function paginate($kolekcija, $poStrani)

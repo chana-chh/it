@@ -45,6 +45,11 @@ class Stampac extends Model
         return $this->belongsTo('App\Modeli\NabavkaStavka', 'stavka_nabavke_id', 'id');
     }
 
+    public function kancelarija()
+    {
+        return $this->belongsTo('App\Modeli\Kancelarija', 'kancelarija_id', 'id');
+    }
+
     public function scopeNeraspordjeni()
     {
         return $this->doesntHave('racunar');

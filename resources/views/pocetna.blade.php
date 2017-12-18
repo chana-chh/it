@@ -82,11 +82,11 @@
             <div class="panel panel-info noborder">
                 <div class="panel-heading">
                     <h3 class="text-center bez-margina">
-                        <a href="" style="text-decoration: none; color: #2c3e50">Skeneri</a>
+                        <a href="{{route('skeneri.oprema')}}" style="text-decoration: none; color: #2c3e50">Skeneri</a>
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <a href="">
+                    <a href="{{route('skeneri.oprema')}}">
                     <img class="grow center-block responsive" alt="računari" src="{{url('/images/scanner.png')}}" style="height: 64px;">
                     </a>
                 </div>
@@ -106,11 +106,11 @@
             <div class="panel panel-info noborder">
                 <div class="panel-heading">
                     <h3 class="text-center bez-margina">
-                        <a href="" style="text-decoration: none; color: #2c3e50">UPS-evi</a>
+                        <a href="{{route('upsevi.oprema')}}" style="text-decoration: none; color: #2c3e50">UPS-evi</a>
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <a href="">
+                    <a href="{{route('upsevi.oprema')}}">
                     <img class="grow center-block responsive" alt="računari" src="{{url('/images/ups1.jpg')}}" style="height: 64px;">
                     </a>
                 </div>
@@ -150,11 +150,11 @@
             <div class="panel panel-info noborder">
                 <div class="panel-heading">
                     <h3 class="text-center bez-margina">
-                        <a href="" style="text-decoration: none; color: #2c3e50">Projektori</a>
+                        <a href="{{route('projektori.oprema')}}" style="text-decoration: none; color: #2c3e50">Projektori</a>
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <a href="">
+                    <a href="{{route('projektori.oprema')}}">
                     <img class="grow center-block responsive" alt="Projektori" src="{{url('/images/projektor.png')}}" style="height: 64px;">
                     </a>
                 </div>

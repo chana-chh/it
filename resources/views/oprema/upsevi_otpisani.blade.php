@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Oprema | Otpisani monitori')
+@section('naziv', 'Oprema | Otpisani UPS uređaji')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -11,8 +11,8 @@
     <div class="col-md-10">
         <h1>
             <span>
-                <img class="slicica_animirana" alt="Otpisani monitori" src="{{url('/images/monitorS.png')}}" style="height:64px;">
-            </span>&emsp;Otpisani monitori</h1>
+                <img class="slicica_animirana" alt="Otpisani UPS uređaji" src="{{url('/images/ups1.jpg')}}" style="height:64px;">
+            </span>&emsp;Otpisani UPS uređaji</h1>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
         <button id="reciklazaDugme" class="btn btn-danger btn-block ono">
@@ -23,8 +23,8 @@
 <div class="row" style="margin-bottom: 25px; margin-top: 20px;">
     <div class="col-md-12">
         <div class="btn-group">
-            <a class="btn btn-primary" href="{{ route('monitori.oprema') }}"
-               title="Povratak na listu aktivnih monitora">
+            <a class="btn btn-primary" href="{{ route('upsevi.oprema') }}"
+               title="Povratak na listu aktivnih Ups uređaja">
                 <i class="fa fa-list"></i>
             </a>
             <a class="btn btn-primary" href="{{ route('pocetna') }}"
@@ -41,7 +41,7 @@
     </div>
     <div class="col-md-6">
             
-        <form class="form-inline" action="{{route('monitori.oprema.recikliranje.lista')}}" method="POST" data-parsley-validate style="margin-top: 1.4rem">
+        <form class="form-inline" action="{{route('upsevi.oprema.recikliranje.lista')}}" method="POST" data-parsley-validate style="margin-top: 1.4rem">
             {{ csrf_field() }}
   <div class="form-group">
     <div class="input-group" >
@@ -92,7 +92,7 @@
                 <strong>{{$o->serijski_broj}}</strong>
             </td>
             <td>{{$o->inventarski_broj}}</td>
-            <td><a href="{{route('monitori.modeli.detalj', $o->monitorModel->id)}}">{{$o->monitorModel->proizvodjac->naziv}}, {{$o->monitorModel->naziv}} - {{$o->monitorModel->dijagonala->naziv}} "</a></td>
+            <td><a href="{{route('upsevi.modeli.detalj', $o->upsModel->id)}}">{{$o->upsModel->proizvodjac->naziv}}, {{$o->upsModel->naziv}} - {{$o->upsModel->kapacitet}} VA, {{$o->upsModel->kapacitet}} W</a></td>
             <td> 
                 {{$o->deleted_at}}
             </td>

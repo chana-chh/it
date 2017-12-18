@@ -1,6 +1,6 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Oprema | Otpisani monitori')
+@section('naziv', 'Oprema | Otpisani štampači')
 
 @section('meni')
     @include('sabloni.inc.meni')
@@ -11,8 +11,8 @@
     <div class="col-md-10">
         <h1>
             <span>
-                <img class="slicica_animirana" alt="Otpisani monitori" src="{{url('/images/monitorS.png')}}" style="height:64px;">
-            </span>&emsp;Otpisani monitori</h1>
+                <img class="slicica_animirana" alt="Otpisani štampači" src="{{url('/images/stampac.png')}}" style="height:64px;">
+            </span>&emsp;Otpisani štampači</h1>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
         <button id="reciklazaDugme" class="btn btn-danger btn-block ono">
@@ -23,8 +23,8 @@
 <div class="row" style="margin-bottom: 25px; margin-top: 20px;">
     <div class="col-md-12">
         <div class="btn-group">
-            <a class="btn btn-primary" href="{{ route('monitori.oprema') }}"
-               title="Povratak na listu aktivnih monitora">
+            <a class="btn btn-primary" href="{{ route('stampaci.oprema') }}"
+               title="Povratak na listu aktivnih štampača">
                 <i class="fa fa-list"></i>
             </a>
             <a class="btn btn-primary" href="{{ route('pocetna') }}"
@@ -41,7 +41,7 @@
     </div>
     <div class="col-md-6">
             
-        <form class="form-inline" action="{{route('monitori.oprema.recikliranje.lista')}}" method="POST" data-parsley-validate style="margin-top: 1.4rem">
+        <form class="form-inline" action="{{route('stampaci.oprema.recikliranje.lista')}}" method="POST" data-parsley-validate style="margin-top: 1.4rem">
             {{ csrf_field() }}
   <div class="form-group">
     <div class="input-group" >
@@ -92,7 +92,7 @@
                 <strong>{{$o->serijski_broj}}</strong>
             </td>
             <td>{{$o->inventarski_broj}}</td>
-            <td><a href="{{route('monitori.modeli.detalj', $o->monitorModel->id)}}">{{$o->monitorModel->proizvodjac->naziv}}, {{$o->monitorModel->naziv}} - {{$o->monitorModel->dijagonala->naziv}} "</a></td>
+            <td><a href="{{route('stampaci.modeli.detalj', $o->stampacModel->id)}}">{{$o->stampacModel->proizvodjac->naziv}}, {{$o->stampacModel->naziv}} sa tonerom {{$o->stampacModel->tipTonera->naziv}}</a></td>
             <td> 
                 {{$o->deleted_at}}
             </td>
@@ -159,7 +159,7 @@ $( document ).ready(function() {
         $(document).on('click', '.vracanje', function () {
             var id = $(this).val();
             $('#idVracanje').val(id);
-            var ruta = " {{route('monitori.oprema.vracanje_otpis') }}";
+            var ruta = " {{route('stampaci.oprema.vracanje_otpis') }}";
             $('#vracanje-forma').attr('action', ruta); });
  
     };

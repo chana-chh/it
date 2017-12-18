@@ -49,7 +49,7 @@ class OtpremnicaStavka extends Model
         return $this->hasMany('App\Modeli\Hdd', 'stavka_otpremnice_id', 'id');
     }
 
-    public function upsovi()
+    public function upsevi()
     {
         return $this->hasMany('App\Modeli\Ups', 'stavka_otpremnice_id', 'id');
     }

@@ -98,20 +98,20 @@
         {{-- Red II --}}
         <div class="row">
              <div class="col-md-4">
-                   <div class="form-group{{ $errors->has('toner_id') ? ' has-error' : '' }}">
-                    <label for="toner_id">Toneri:</label>
-                    <select name="toner_id" id="toner_id" class="chosen-select form-control" data-placeholder="toneri ..." required>
+                   <div class="form-group{{ $errors->has('tip_tonera_id') ? ' has-error' : '' }}">
+                    <label for="tip_tonera_id">Toneri:</label>
+                    <select name="tip_tonera_id" id="tip_tonera_id" class="chosen-select form-control" data-placeholder="toneri ..." required>
                         <option value=""></option>
                         @foreach($toneri as $t)
                         <optgroup label="{{ $t->naziv }}">
-                        <option value="{{ $t->id }}"{{ old('toner_id') == $t->id ? ' selected' : '' }}>
+                        <option value="{{ $t->id }}"{{ old('tip_tonera_id') == $t->id ? ' selected' : '' }}>
                             {{ $t->modeli_tonera }}
                         </option>
                         @endforeach
                     </select>
-                    @if ($errors->has('toner_id'))
+                    @if ($errors->has('tip_tonera_id'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('toner_id') }}</strong>
+                            <strong>{{ $errors->first('tip_tonera_id') }}</strong>
                         </span>
                     @endif
                 </div>

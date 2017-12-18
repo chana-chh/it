@@ -7,7 +7,7 @@
 @endsection
 
 @section('naslov')
-<div class="row">
+<div class="row obavestenje">
     <div class="col-md-10 col-md-offset-1 text-center" style="font-size: 1rem;;">
         <div class="alert alert-info alert-dismissible ono" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -93,6 +93,10 @@
 @section('skripte')
 <script>
 $(document).ready(function () {
+
+        setTimeout(function(){
+            $('.obavestenje').hide();
+            }, 4000);
 
     var tabela = $('#tabela').DataTable({
         language: {
