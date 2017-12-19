@@ -507,6 +507,17 @@ Route::post('oprema/projektori/vracanje_otpis/', 'Oprema\ProjektoriKontroler@pos
 Route::post('oprema/projektori/recikliranje/lista/', 'Oprema\ProjektoriKontroler@postReciklirajLista')->name('projektori.oprema.recikliranje.lista');
 Route::post('oprema/projektori/recikliranje/{id_reciklaze}', 'Oprema\ProjektoriKontroler@postRecikliraj')->name('projektori.oprema.recikliranje');
 
+//Mrezni uredjaji
+Route::get('oprema/mrezni/', 'Oprema\MrezniUredjajiKontroler@getLista')->name('mrezni.oprema');
+Route::get('oprema/mrezni/otpisani/', 'Oprema\MrezniUredjajiKontroler@getListaOtpisani')->name('mrezni.oprema.otpisani');
+Route::get('oprema/mrezni/detalj/{id}', 'Oprema\MrezniUredjajiKontroler@getDetalj')->name('mrezni.oprema.detalj');
+Route::get('oprema/mrezni/izmena/{id}', 'Oprema\MrezniUredjajiKontroler@getIzmena')->name('mrezni.oprema.izmena.get');
+Route::post('oprema/mrezni/izmena/{id}', 'Oprema\MrezniUredjajiKontroler@postIzmena')->name('mrezni.oprema.izmena.post');
+Route::post('oprema/mrezni/otpis/', 'Oprema\MrezniUredjajiKontroler@postOtpis')->name('mrezni.oprema.otpis');
+Route::post('oprema/mrezni/vracanje_otpis/', 'Oprema\MrezniUredjajiKontroler@postOtpisVracanje')->name('mrezni.oprema.vracanje_otpis');
+Route::post('oprema/mrezni/recikliranje/lista/', 'Oprema\MrezniUredjajiKontroler@postReciklirajLista')->name('mrezni.oprema.recikliranje.lista');
+Route::post('oprema/mrezni/recikliranje/{id_reciklaze}', 'Oprema\MrezniUredjajiKontroler@postRecikliraj')->name('mrezni.oprema.recikliranje');
+
 //Racunari
 Route::get('oprema/racunari/', 'Oprema\RacunariKontroler@getLista')->name('racunari.oprema');
 Route::get('oprema/racunari/ajax', 'Oprema\RacunariKontroler@getAjax')->name('racunari.ajax');

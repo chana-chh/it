@@ -128,11 +128,11 @@
             <div class="panel panel-info noborder">
                 <div class="panel-heading">
                     <h3 class="text-center bez-margina">
-                        <a href="" style="text-decoration: none; color: #2c3e50">Mrežni uređaji</a>
+                        <a href="{{route('mrezni.oprema')}}" style="text-decoration: none; color: #2c3e50">Mrežni uređaji</a>
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <a href="">
+                    <a href="{{route('mrezni.oprema')}}">
                     <img class="grow center-block responsive" alt="Mrežni uređaji" src="{{url('/images/mrezniUredjaji.png')}}" style="height: 64px;">
                     </a>
                 </div>

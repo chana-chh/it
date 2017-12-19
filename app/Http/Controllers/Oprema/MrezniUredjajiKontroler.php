@@ -10,48 +10,46 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
 use Carbon\Carbon;
 
-Use App\Modeli\Projektor;
+Use App\Modeli\MrezniUredjaj;
 Use App\Modeli\Racunar;
 Use App\Modeli\OtpremnicaStavka;
 Use App\Modeli\Otpremnica;
-Use App\Modeli\Kancelarija;
-Use App\Modeli\Nabavka;
 Use App\Modeli\Reciklaza;
 Use App\Modeli\Proizvodjac;
-Use App\Modeli\MonitorPovezivanje;
+Use App\Modeli\Kancelarija;
+Use App\Modeli\Nabavka;
 
 
 
-class ProjektoriKontroler extends Kontroler
+class MrezniUredjajiKontroler extends Kontroler
 {
     public function getLista()
     {
-    	$uredjaj = Projektor::all();
-    	return view('oprema.projektori')->with(compact ('uredjaj'));
+    	$uredjaj = MrezniUredjaj::all();
+    	return view('oprema.mrezni')->with(compact ('uredjaj'));
     }
 
     public function getListaOtpisani()
     {
-        $uredjaj = Projektor::onlyTrashed()->get();
+        $uredjaj = MrezniUredjaj::onlyTrashed()->get();
         $reciklaze = Reciklaza::all();
-        return view('oprema.projektori_otpisani')->with(compact ('uredjaj', 'reciklaze'));
+        return view('oprema.mrezni_otpisani')->with(compact ('uredjaj', 'reciklaze'));
     }
 
     public function getDetalj($id)
     {
-        $uredjaj = Projektor::find($id);
-        return view('oprema.projektori_detalj')->with(compact ('uredjaj'));
+        $uredjaj = MrezniUredjaj::find($id);
+        return view('oprema.mrezni_detalj')->with(compact ('uredjaj'));
     }
 
     public function getIzmena($id)
     {
-        $uredjaj = Projektor::find($id);
+        $uredjaj = MrezniUredjaj::find($id);
         $otpremnice = Otpremnica::all();
         $kancelarije = Kancelarija::all();
         $nabavke = Nabavka::all();
         $proizvodjaci = Proizvodjac::all();
-        $povezivanje = MonitorPovezivanje::all();
-        return view('oprema.projektori_izmena')->with(compact ('uredjaj', 'otpremnice', 'kancelarije', 'nabavke', 'proizvodjaci', 'povezivanje'));
+        return view('oprema.mrezni_izmena')->with(compact ('uredjaj', 'kancelarije', 'nabavke', 'otpremnice', 'proizvodjaci'));
     }
 
     public function postIzmena(Request $request, $id)
@@ -62,16 +60,18 @@ class ProjektoriKontroler extends Kontroler
                 'naziv' => ['required'],
             ]);
 
-        $uredjaj = Projektor::find($id);
+        if ($request->upravljiv) {
+                $upravljivc = 1;
+            } else {
+                $upravljivc = 0;
+            }
 
-        $uredjaj->povezivanja()->detach();
-
+        $uredjaj = MrezniUredjaj::find($id);
         $uredjaj->naziv = $request->naziv;
         $uredjaj->inventarski_broj = $request->inventarski_broj;
         $uredjaj->serijski_broj = $request->serijski_broj;
-        $uredjaj->tip_lampe = $request->tip_lampe;
-        $uredjaj->rezolucija = $request->rezolucija;
-        $uredjaj->kontrast = $request->kontrast;
+        $uredjaj->broj_portova = $request->broj_portova;
+        $uredjaj->upravljiv = $upravljivc;
         $uredjaj->link = $request->link;
         $uredjaj->kancelarija_id = $request->kancelarija_id;
         $uredjaj->stavka_otpremnice_id = $request->stavka_otpremnice_id;
@@ -80,16 +80,14 @@ class ProjektoriKontroler extends Kontroler
 
         $uredjaj->save();
 
-        $uredjaj->povezivanja()->attach($request->povezivanja);
-
-        Session::flash('uspeh','Projektor je uspešno izmenjen!');
-        return redirect()->route('projektori.oprema');
+        Session::flash('uspeh','Mrežni uređaj je uspešno izmenjeno!');
+        return redirect()->route('mrezni.oprema');
     }
 
     public function postOtpis(Request $request)
     {
 
-        $data = Projektor::find($request->idOtpis);
+        $data = MrezniUredjaj::find($request->idOtpis);
 
         if($data->kancelarija){
             $kanc = $data->kancelarija->sviPodaci();
@@ -97,63 +95,62 @@ class ProjektoriKontroler extends Kontroler
         }else{
             $kanc = " nema podataka";
         }
-        
 
-        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao projektor koji je bio u kancelariji '. $kanc ;
+        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao mrežni uređaj koji je bio u kancelariji '. $kanc ;
         $data->save();
         $odgovor = $data->delete();
         if ($odgovor) {
-            Session::flash('uspeh', 'Projektor je uspešno otpisano!');
+            Session::flash('uspeh', 'Mrežni uređaj je uspešno otpisano!');
         } else {
-            Session::flash('greska', 'Došlo je do greške prilikom otpisa Projektor-a. Pokušajte ponovo, kasnije!');
+            Session::flash('greska', 'Došlo je do greške prilikom otpisa mrežnog uređaja. Pokušajte ponovo, kasnije!');
         }
-        return redirect()->route('projektori.oprema');
+        return redirect()->route('mrezni.oprema');
     }
 
     public function postOtpisVracanje(Request $request)
     {
 
-        $data = Projektor::withTrashed()->find($request->idVracanje);
+        $data = MrezniUredjaj::withTrashed()->find($request->idVracanje);
         $data->restore();
         $odgovor = $data->save();
 
         if ($odgovor) {
-            Session::flash('uspeh', 'Projektor je uspešno vraćen u ponovnu upotrebu iz otpisa!');
+            Session::flash('uspeh', 'Mrežni uređaj je uspešno vraćen u ponovnu upotrebu iz otpisa!');
         } else {
-            Session::flash('greska', 'Došlo je do greške prilikom vraćanja Projektor-a iz otpisa. Pokušajte ponovo, kasnije!');
+            Session::flash('greska', 'Došlo je do greške prilikom vraćanja mrežnog uređaja iz otpisa. Pokušajte ponovo, kasnije!');
         }
-        return redirect()->route('projektori.oprema.otpisani');
+        return redirect()->route('mrezni.oprema.otpisani');
     }
 
     public function postReciklirajLista(Request $request){
 
-        $uredjaj = Projektor::onlyTrashed()->whereNull('reciklirano_id')->get();
+        $uredjaj = MrezniUredjaj::onlyTrashed()->whereNull('reciklirano_id')->get();
         $reciklaza = Reciklaza::find($request->reciklirano_id);
 
-        return view('oprema.projektori_recikliranje_lista')->with(compact ('uredjaj', 'reciklaza'));
+        return view('oprema.mrezni_recikliranje_lista')->with(compact ('uredjaj', 'reciklaza'));
     }
 
     public function postRecikliraj(Request $request, $id_reciklaze){
 
         if (!$request->id_uredjaji) {
-            Session::flash('greska', 'Niste odabrali nijedan Projektor!');
-            return redirect()->route('projektori.oprema.otpisani');
+            Session::flash('greska', 'Niste odabrali nijedan mrežni uređaj!');
+            return redirect()->route('mrezni.oprema.otpisani');
         }else{
         DB::beginTransaction();
         foreach ($request->id_uredjaji as $id) {
             try{
-            $data = Projektor::withTrashed()->find($id);
+            $data = MrezniUredjaj::withTrashed()->find($id);
             $data->reciklirano_id = $id_reciklaze;
             $data->save();
         }catch (\Exception $e){
                 DB::rollback();
                 Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
-                return redirect()->route('projektori.oprema.otpisani');
+                return redirect()->route('mrezni.oprema.otpisani');
         }
         }
         DB::commit();
-        Session::flash('uspeh', 'Projektor je uspešno stavljeno na listu reciklaže!');}
-       return redirect()->route('projektori.oprema.otpisani');
+        Session::flash('uspeh', 'Mrežni uređaj je uspešno stavljeno na listu reciklaže!');}
+       return redirect()->route('mrezni.oprema.otpisani');
     }
 
 }

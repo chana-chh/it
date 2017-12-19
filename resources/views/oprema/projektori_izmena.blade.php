@@ -149,9 +149,44 @@
                     <p id="obavestenje" class="text-primary" style="font-size: 120%;"></p>
                 </div>
             </div>
-            {{-- Red II --}}
+            {{-- Red III --}}
             <div class="row">
-                                    <div class="col-md-2">
+                        <div class="col-md-6">
+        <div class="form-group roditelj">
+        <div class="row naslovi">
+        <div class="col-md-10">
+        <p><strong>Vrsta povezivanja:</strong></p>
+        <button type="button" class="btn btn-primary dodaj_polje" title="Moguće je dodati ukupno 4 polja za unos vrste povezivanja na ovoj formi."><i class="fa fa-plus-circle"></i>&emsp;Dodaj polje za unos vrste povezivanja</button>
+        </div>
+
+        <div class="col-md-2">
+        <p hidden> A</p>
+        </div>
+        </div>
+        @foreach ($uredjaj->povezivanja as $p)
+        <div class="row checkboxoviforme">
+        <div class="col-md-10">
+                    <select name="povezivanja[]" class="form-control" >
+                    <option value=""></option>
+                    @foreach($povezivanje as $d)
+                         <option value="{{ $d->id }}"
+                            {{ $d->id == old('povezivanje_id')   ? ' selected' : '' }}
+                            {{ $p->id == $d->id ? ' selected' : '' }}>
+                            {{ $d->naziv }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+
+        <div class="col-md-2">
+        <a href="#" class="ukloni_polje"><i class="fa fa-times" style="vertical-align: bottom;"></i></a>
+        </div>
+        </div>
+        @endforeach
+       
+        </div>
+        </div>
+                                    <div class="col-md-3">
         <div class="form-group{{ $errors->has('naziv') ? ' has-error' : '' }}">
             <label for="naziv">Naziv:</label>
             <input type="text" name="naziv" id="naziv" class="form-control"
@@ -164,7 +199,7 @@
             @endif
         </div>
     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
         <div class="form-group{{ $errors->has('tip_lampe') ? ' has-error' : '' }}">
             <label for="tip_lampe">Tip lampe:</label>
             <input type="text" name="tip_lampe" id="tip_lampe" class="form-control"
@@ -177,7 +212,11 @@
             @endif
         </div>
     </div>
-    <div class="col-md-2">
+</div>
+<hr>
+{{-- Red IV --}}
+    <div class="row">
+    <div class="col-md-4">
         <div class="form-group{{ $errors->has('rezolucija') ? ' has-error' : '' }}">
             <label for="rezolucija">Rezolucija:</label>
             <input type="text" name="rezolucija" id="rezolucija" class="form-control"
@@ -190,7 +229,7 @@
             @endif
         </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4">
         <div class="form-group{{ $errors->has('kontrast') ? ' has-error' : '' }}">
             <label for="kontrast">Kontrast:</label>
             <input type="text" name="kontrast" id="kontrast" class="form-control"
@@ -270,6 +309,26 @@
             var ima_nema = $(this).find(":selected").data("procesor");
             $("#obavestenje").html(ima_nema);
         });
+
+        var max_polja   = 4;
+    var wrapper     = $(".roditelj");
+    var dodaj       = $(".dodaj_polje");
+    
+    var x = 1;
+    $(dodaj).click(function(e){
+        e.preventDefault();
+        if(x < max_polja){ 
+            x++;
+            $(wrapper).append('<div class="row checkboxoviforme"><div class="col-md-10"><select name="povezivanja[]" class="form-control"><option value=""><option value="" disabled selected>Odaberi odgovarajuću vrstu povezivanja</option></option>@foreach($povezivanje as $p)<option value="{{ $p->id }}"><strong>{{ $p->naziv }}</strong></option>@endforeach</select></div><div class="col-md-2"><a href="#" class="ukloni_polje"><i class="fa fa-times" style="vertical-align: bottom;"></i></a></div></div>');
+        }
+    });
+    
+    $(wrapper).on("click",".ukloni_polje", function(e){
+        e.preventDefault();
+        var $row    = $(this).parents('.checkboxoviforme'),
+        $option = $row.find('[name="povezivanja[]"]');
+        $row.remove(); x--;
+    });
     });
 
 </script>
