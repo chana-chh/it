@@ -191,7 +191,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row well">
         <h3>Spoljne aplikacije</h3>
         <dir class="col-md-6">
             

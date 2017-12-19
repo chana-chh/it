@@ -17,6 +17,7 @@ Use App\Modeli\Otpremnica;
 Use App\Modeli\Kancelarija;
 Use App\Modeli\Nabavka;
 Use App\Modeli\Reciklaza;
+Use App\Modeli\Proizvodjac;
 
 
 
@@ -47,7 +48,8 @@ class ProjektoriKontroler extends Kontroler
         $otpremnice = Otpremnica::all();
         $kancelarije = Kancelarija::all();
         $nabavke = Nabavka::all();
-        return view('oprema.upsevi_izmena')->with(compact ('uredjaj', 'racunari', 'otpremnice', 'kancelarije', 'nabavke'));
+        $proizvodjaci = Proizvodjac::all();
+        return view('oprema.projektori_izmena')->with(compact ('uredjaj', 'otpremnice', 'kancelarije', 'nabavke', 'proizvodjaci'));
     }
 
     public function postIzmena(Request $request, $id)
@@ -55,14 +57,17 @@ class ProjektoriKontroler extends Kontroler
 
         $this->validate($request, [
                 'serijski_broj' => ['max:50'],
-                'ups_model_id' => ['required'],
+                'naziv' => ['required'],
             ]);
 
-        $uredjaj = Ups::find($id);
+        $uredjaj = Projektor::find($id);
+        $uredjaj->naziv = $request->naziv;
         $uredjaj->inventarski_broj = $request->inventarski_broj;
         $uredjaj->serijski_broj = $request->serijski_broj;
-        $uredjaj->ups_model_id = $request->ups_model_id;
-        $uredjaj->racunar_id = $request->racunar_id;
+        $uredjaj->tip_lampe = $request->tip_lampe;
+        $uredjaj->rezolucija = $request->rezolucija;
+        $uredjaj->kontrast = $request->kontrast;
+        $uredjaj->link = $request->link;
         $uredjaj->kancelarija_id = $request->kancelarija_id;
         $uredjaj->stavka_otpremnice_id = $request->stavka_otpremnice_id;
         $uredjaj->stavka_nabavke_id = $request->stavka_nabavke_id;
@@ -70,7 +75,7 @@ class ProjektoriKontroler extends Kontroler
 
         $uredjaj->save();
 
-        Session::flash('uspeh','Ups je uspešno izmenjen!');
+        Session::flash('uspeh','Projektor je uspešno izmenjen!');
         return redirect()->route('upsevi.oprema');
     }
 
