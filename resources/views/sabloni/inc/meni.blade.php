@@ -27,9 +27,9 @@
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('nabavke') }}">Nabavke</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="{{ route('ugovori') }}">Ugovori o održavanju</a></li>
-                            <li><a href="{{ route('racuni') }}">Računi</a></li>
                             <li><a href="{{ route('otpremnice') }}">Otpremnice</a></li>
+                            <li><a href="{{ route('racuni') }}">Računi</a></li>
+                            <li><a href="{{ route('ugovori') }}">Ugovori o održavanju</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

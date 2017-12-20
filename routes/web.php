@@ -53,7 +53,6 @@ Route::post('otpremnice/brisanje', 'Servis\OtpremniceKontroler@postBrisanje')->n
 // Otpremnice slike
 Route::post('otpremnice/dodavanje/slike/{id}', 'Servis\otpremniceKontroler@postDodavanjeSlike')->name('otpremnice.dodavanje.slike');
 Route::post('otpremnice/brisanje/slike', 'Servis\otpremniceKontroler@postBrisanjeSlike')->name('otpremnice.brisanje.slike');
-
 // Otpremnice stavke
 Route::get('otpremnice/stavke/{id_otpremnice}', 'Servis\OtpremniceStavkeKontroler@getLista')->name('otpremnice.stavke');
 Route::get('otpremnice/stavke/dodavanje/{id_otpremnice}', 'Servis\OtpremniceStavkeKontroler@getDodavanje')->name('otpremnice.stavke.dodavanje.get');
@@ -62,7 +61,8 @@ Route::get('otpremnice/stavke/izmena/{id}', 'Servis\OtpremniceStavkeKontroler@ge
 Route::post('otpremnice/stavke/izmena/{id}', 'Servis\OtpremniceStavkeKontroler@postIzmena')->name('otpremnice.stavke.izmena.post');
 Route::get('otpremnice/stavke/detalj/{id}', 'Servis\OtpremniceStavkeKontroler@getDetalj')->name('otpremnice.stavke.detalj');
 Route::post('otpremnice/stavke/brisanje', 'Servis\OtpremniceStavkeKontroler@postBrisanje')->name('otpremnice.stavke.brisanje');
-
+// Otpremnice stavke dodavanje opreme
+//
 // Nabavke
 Route::get('nabavke', 'Servis\NabavkeKontroler@getLista')->name('nabavke');
 Route::get('nabavke/pretraga', 'Servis\NabavkeKontroler@getListaPretraga')->name('nabavke.pretraga');
@@ -73,14 +73,12 @@ Route::get('nabavke/izmena/{id}', 'Servis\NabavkeKontroler@getIzmena')->name('na
 Route::post('nabavke/izmena/{id}', 'Servis\NabavkeKontroler@postIzmena')->name('nabavke.izmena.post');
 Route::get('nabavke/detalj/{id}', 'Servis\NabavkeKontroler@getDetalj')->name('nabavke.detalj');
 Route::post('nabavke/brisanje', 'Servis\NabavkeKontroler@postBrisanje')->name('nabavke.brisanje');
-
 // Nabavke stavke
 Route::post('nabavke/stavke/dodavanje', 'Servis\NabavkeStavkeKontroler@postDodavanje')->name('nabavke.stavke.dodavanje.post');
 Route::get('nabavke/stavke/izmena/{id}', 'Servis\NabavkeStavkeKontroler@getIzmena')->name('nabavke.stavke.izmena.get');
 Route::post('nabavke/stavke/izmena/{id}', 'Servis\NabavkeStavkeKontroler@postIzmena')->name('nabavke.stavke.izmena.post');
 Route::get('nabavke/stavke/detalj/{id}', 'Servis\NabavkeStavkeKontroler@getDetalj')->name('nabavke.stavke.detalj');
 Route::post('nabavke/stavke/brisanje', 'Servis\NabavkeStavkeKontroler@postBrisanje')->name('nabavke.stavke.brisanje');
-
 // Nabavke stavke dodavanje opreme
 Route::post('nabavke/stavke/monitori/dodavanje', 'Servis\NabavkeStavkeKontroler@postMonitoriDodavanje')->name('nabavke.stavke.monitori.dodavanje');
 Route::post('nabavke/stavke/stampaci/dodavanje', 'Servis\NabavkeStavkeKontroler@postStampaciDodavanje')->name('nabavke.stavke.stampaci.dodavanje');
