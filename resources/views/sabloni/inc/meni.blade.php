@@ -16,7 +16,7 @@
 
             <div class="collapse navbar-collapse" id="kolaps">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href=""> <i class="fa fa-bar-chart fa-fw" style="color: #18BC9C"></i> Statistika</a></li>
+                    <li><a href="{{ route('statistika') }}"> <i class="fa fa-bar-chart fa-fw" style="color: #18BC9C"></i> Statistika</a></li>
                     <li><a href="{{route('imenik')}}"> <i class="fa fa-search fa-fw" style="color: #18BC9C"></i> Pretrga</a></li>
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">

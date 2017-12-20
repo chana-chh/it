@@ -19,6 +19,10 @@ Route::post('sifarnici/korisnici/brisanje', 'KorisniciKontroler@postBrisanje')->
 Route::post('sifarnici/korisnici/izmena/{id}', 'KorisniciKontroler@postIzmena')->name('korisnici.izmena');
 Route::get('sifarnici/korisnici/pregled/{id}', 'KorisniciKontroler@getPregled')->name('korisnici.pregled');
 
+// STATISTIKA
+
+Route::get('statistika', 'StatistikaKontroler@getLista')->name('statistika');
+
 
 // SERVIS
 // Ugovori
