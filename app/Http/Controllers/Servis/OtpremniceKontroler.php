@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Servis;
 
 use Illuminate\Http\Request;
 use Session;
-// use Redirect;
 use Image;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\Otpremnica;
 use App\Modeli\OtpremnicaSlika;
 use App\Modeli\Racun;
 use App\Modeli\Dobavljac;
+use App\Modeli\VrstaUredjaja;
 
 class OtpremniceKontroler extends Kontroler
 {
@@ -18,7 +18,77 @@ class OtpremniceKontroler extends Kontroler
     public function getLista()
     {
         $otpremnice = Otpremnica::all();
-        return view('servis.otpremnice')->with(compact('otpremnice'));
+        $dobavljaci = Dobavljac::all();
+        $racuni = Racun::all();
+        return view('servis.otpremnice')->with(compact('otpremnice', 'dobavljaci', 'racuni'));
+    }
+
+    public function getListaPretraga(Request $request)
+    {
+        $parametri = $request->session()->get('parametri_za_filter_otpremnica', null);
+        $otpremnice = $this->naprednaPretraga($parametri);
+        return view('servis.otpremnice_pretraga')->with(compact('otpremnice'));
+    }
+
+    public function postListaPretraga(Request $request)
+    {
+        $request->session()->put('parametri_za_filter_otpremnica', $request->all());
+        return redirect()->route('otpremnice.pretraga');
+    }
+
+    private function naprednaPretraga($params)
+    {
+        $rezultat = null;
+        $where = [];
+        if ($params['broj']) {
+            $where[] = [
+                'broj',
+                'like',
+                '%' . $params['broj'] . '%'];
+        }
+        if ($params['dobavljac_id'] !== null) {
+            $where[] = [
+                'dobavljac_id',
+                '=',
+                $params['dobavljac_id']
+            ];
+        }
+        if ($params['racun_id'] !== null) {
+            $where[] = [
+                'racun_id',
+                '=',
+                $params['racun_id']
+            ];
+        }
+        if ($params['broj_profakture']) {
+            $where[] = [
+                'broj_profakture',
+                'like',
+                '%' . $params['broj_profakture'] . '%'];
+        }
+        if ($params['napomena']) {
+            $where[] = [
+                'napomena',
+                'like',
+                '%' . $params['napomena'] . '%'];
+        }
+        if (!$params['datum_1'] && !$params['datum_2']) {
+            $rezultat = Otpremnica::where($where)->get();
+        }
+        if ($params['datum_1'] && !$params['datum_2']) {
+            $where[] = [
+                'datum',
+                '=',
+                $params['datum_1']];
+            $rezultat = Otpremnica::where($where)->get();
+        }
+        if ($params['datum_1'] && $params['datum_2']) {
+            $rezultat = Otpremnica::where($where)->whereBetween('datum', [
+                        $params['datum_1'],
+                        $params['datum_2']
+                    ])->get();
+        }
+        return $rezultat;
     }
 
     public function getDodavanje($id_racuna = null)
@@ -110,8 +180,8 @@ class OtpremniceKontroler extends Kontroler
     public function getDetalj($id)
     {
         $otpremnica = Otpremnica::find($id);
-        $stavke = Otpremnica::find($id)->stavke()->paginate(5);
-        return view('servis.otpremnice_detalj')->with(compact('otpremnica', 'stavke'));
+        $vrste = VrstaUredjaja::whereIn('id', config('ikt.vrste_otpremnica_id'))->get();
+        return view('servis.otpremnice_detalj')->with(compact('otpremnica', 'vrste'));
     }
 
     public function postIzmena(Request $request, $id)

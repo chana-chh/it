@@ -44,6 +44,8 @@ Route::post('racuni/brisanje/slike', 'Servis\RacuniKontroler@postBrisanjeSlike')
 
 // Otpremnice
 Route::get('otpremnice', 'Servis\OtpremniceKontroler@getLista')->name('otpremnice');
+Route::get('otpremnice/pretraga', 'Servis\OtpremniceKontroler@getListaPretraga')->name('otpremnice.pretraga');
+Route::post('otpremnice/pretraga', 'Servis\OtpremniceKontroler@postListaPretraga')->name('otpremnice.pretraga.post');
 Route::get('otpremnice/dodavanje/{id_racuna?}', 'Servis\OtpremniceKontroler@getDodavanje')->name('otpremnice.dodavanje.get');
 Route::post('otpremnice/dodavanje', 'Servis\OtpremniceKontroler@postDodavanje')->name('otpremnice.dodavanje.post');
 Route::get('otpremnice/izmena/{id}', 'Servis\OtpremniceKontroler@getIzmena')->name('otpremnice.izmena.get');

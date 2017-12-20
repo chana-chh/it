@@ -35,7 +35,7 @@ class NabavkeKontroler extends Kontroler
 
     private function naprednaPretraga($params)
     {
-        $nabavke = null;
+        $rezultat = null;
         $where = [];
         if ($params['dobavljac_id'] !== null) {
             $where[] = [
@@ -58,22 +58,22 @@ class NabavkeKontroler extends Kontroler
                 '%' . $params['napomena'] . '%'];
         }
         if (!$params['datum_1'] && !$params['datum_2']) {
-            $nabavke = Nabavka::where($where)->get();
+            $rezultat = Nabavka::where($where)->get();
         }
         if ($params['datum_1'] && !$params['datum_2']) {
             $where[] = [
                 'datum',
                 '=',
                 $params['datum_1']];
-            $nabavke = Nabavka::where($where)->get();
+            $rezultat = Nabavka::where($where)->get();
         }
         if ($params['datum_1'] && $params['datum_2']) {
-            $nabavke = Nabavka::where($where)->whereBetween('datum', [
+            $rezultat = Nabavka::where($where)->whereBetween('datum', [
                         $params['datum_1'],
                         $params['datum_2']
                     ])->get();
         }
-        return $nabavke;
+        return $rezultat;
     }
 
     public function getDodavanje()

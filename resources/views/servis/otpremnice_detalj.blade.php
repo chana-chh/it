@@ -87,7 +87,7 @@
         Stavke otpremnice <i class="fa fa-arrow-right fa-fw"></i>
     </a>
     <hr style="border-top: 1px solid #18BC9C">
-    @if($stavke->isEmpty())
+    @if($otpremnica->stavke->isEmpty())
     <p class="text-danger">Trenutno nema stavki za ovu otpremnicu</p>
     @else
     <table class="table table-striped table-responsive">
@@ -101,7 +101,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($stavke as $stavka)
+            @foreach($otpremnica->stavke as $stavka)
             <tr>
                 <td>{{ $stavka->id }}</td>
                 <td>{{ $stavka->naziv }}</td>
@@ -117,11 +117,6 @@
         </tbody>
     </table>
     @endif
-    <div class="row">
-        <div class="col-md-6 col-md-offset-6 text-right">
-            {{ $stavke->links() }}
-        </div>
-    </div>
 </div>
 @endsection
 

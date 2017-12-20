@@ -94,12 +94,12 @@
                 <div class="form-group text-right ceo_dva">
                     <div class="col-md-6 snimi">
                         <button type="submit" id="dugme_pretrazi" class="btn btn-success btn-block">
-                            <i class="fa fa-search"></i>&emsp;Претражи
+                            <i class="fa fa-search"></i>&emsp;Pretraži
                         </button>
                     </div>
                     <div class="col-md-6">
                         <a class="btn btn-danger btn-block" href="{{ route('nabavke') }}">
-                            <i class="fa fa-ban"></i>&emsp;Откажи
+                            <i class="fa fa-ban"></i>&emsp;Otkaži
                         </a>
                     </div>
                 </div>
