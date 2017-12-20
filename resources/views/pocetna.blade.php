@@ -172,11 +172,11 @@
             <div class="panel panel-info noborder">
                 <div class="panel-heading">
                     <h3 class="text-center bez-margina">
-                        <a href="" style="text-decoration: none; color: #2c3e50">Aplikacije</a>
+                        <a href="{{route('aplikacije')}}" style="text-decoration: none; color: #2c3e50">Aplikacije</a>
                     </h3>
                 </div>
                 <div class="panel-body">
-                    <a href="">
+                    <a href="{{route('aplikacije')}}">
                     <img class="grow center-block responsive" alt="Aplikacije" src="{{url('/images/aplikacije.png')}}" style="height: 64px;">
                     </a>
                 </div>

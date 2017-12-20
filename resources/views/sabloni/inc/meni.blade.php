@@ -51,7 +51,7 @@
                             <li><a href="{{route('skeneri.oprema')}}">Skeneri</a></li>
                             <li><a href="{{route('upsevi.oprema')}}">UPS-evi</a></li>
                             <li><a href="{{route('projektori.oprema')}}">Projektori</a></li>
-                            <li><a href="">Mrežna oprema</a></li>
+                            <li><a href="{{route('mrezni.oprema')}}">Mrežna oprema</a></li>
                         </ul>
                     </li>
 

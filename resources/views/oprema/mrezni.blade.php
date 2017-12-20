@@ -26,7 +26,13 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <strong>Obavštenje: </strong> Dodavanje novog projektora se obavlja kroz <a href="{{ route('otpremnice') }}" style="color: #18BC9C"><strong> otpremnicu </strong></a> ili <a href="{{route('nabavke')}}" style="color: #18BC9C"><strong> nabavku </strong></a>.
+            <strong>Obavštenje: </strong> Dodavanje novog projektora se obavlja kroz
+            <a href="{{ route('otpremnice') }}" style="color: #18BC9C">
+                <strong> otpremnicu </strong>
+            </a> ili
+            <a href="{{route('nabavke')}}" style="color: #18BC9C">
+                <strong> nabavku </strong>
+            </a>.
         </div>
     </div>
 </div>
@@ -40,71 +46,73 @@
     <div class="col-md-10">
         Ostalo
     </div>
-    
+
 </div>
 <div class="row">
     <div class="col-md-12">
-@if($uredjaj->isEmpty())
-            <h3 class="text-danger">Trenutno nema stavki u bazi podataka</h3>
+        @if($uredjaj->isEmpty())
+        <h3 class="text-danger">Trenutno nema stavki u bazi podataka</h3>
         @else
-<table id="tabela" class="table table-striped display" cellspacing="0" width="100%" style="table-layout: fixed; font-size: 0.9375em;">
-    <thead>
-        <th style="width: 5%;">#</th>
-        <th style="width: 10%;">Inventarski broj</th>
-        <th style="width: 10%;">Serijski broj</th>
-        <th style="width: 20%;">Tehniči detalji</th>
-        <th style="width: 10%;">Kancelarija</th>
-        <th style="width: 10%;">Otpremnica</th>
-        <th style="width: 10%;">Nabavka</th>
-        <th style="width: 15%;">Napomena</th>
-        <th style="width: 10%;text-align:right">
-            <i class="fa fa-cogs"></i>&emsp;Akcije</th>
-    </thead>
-    <tbody>
-        @foreach ($uredjaj as $o)
-        <tr>
-            <td>{{$o->id}}</td>
-            <td>{{$o->inventarski_broj}}</td>
-            <td>
-                <strong>{{$o->serijski_broj}}</strong>
-            </td>
-            <td>{{$o->proizvodjac->naziv}}, {{$o->naziv}} - {{$o->broj_portova}} &emsp;<span title="U pitanju je upravljiv mrežni uređaj" style="color: #18bc9c;">
+        <table id="tabela" class="table table-striped display" cellspacing="0" width="100%" style="table-layout: fixed; font-size: 0.9375em;">
+            <thead>
+                <th style="width: 5%;">#</th>
+                <th style="width: 10%;">Inventarski broj</th>
+                <th style="width: 10%;">Serijski broj</th>
+                <th style="width: 20%;">Tehniči detalji</th>
+                <th style="width: 10%;">Kancelarija</th>
+                <th style="width: 10%;">Otpremnica</th>
+                <th style="width: 10%;">Nabavka</th>
+                <th style="width: 15%;">Napomena</th>
+                <th style="width: 10%;text-align:right">
+                    <i class="fa fa-cogs"></i>&emsp;Akcije</th>
+            </thead>
+            <tbody>
+                @foreach ($uredjaj as $o)
+                <tr>
+                    <td>{{$o->id}}</td>
+                    <td>{{$o->inventarski_broj}}</td>
+                    <td>
+                        <strong>{{$o->serijski_broj}}</strong>
+                    </td>
+                    <td>{{$o->proizvodjac->naziv}}, {{$o->naziv}} - {{$o->broj_portova}} &emsp;
+                        <span title="U pitanju je upravljiv mrežni uređaj"
+                            style="color: #18bc9c;">
                             {!! $o->upravljiv == 1 ? "
                             <i class=\"fa fa-check-square-o\"></i>" : " "!!}
                         </span>
-            </td>
-            <td> @if($o->kancelarija)
-                {{$o->kancelarija->sviPodaci()}}
-                @endif
+                    </td>
+                    <td> @if($o->kancelarija) {{$o->kancelarija->sviPodaci()}} @endif
 
-            </td>
-            <td>
-                @if($o->stavkaOtpremnice)
-                <a href="{{route('otpremnice.detalj', $o->stavkaOtpremnice->otpremnica->id)}}">
-                {{$o->stavkaOtpremnice->otpremnica->broj}}, {{$o->stavkaOtpremnice->otpremnica->dobavljac->naziv}} od {{$o->stavkaOtpremnice->otpremnica->datum}}
-                </a>
-                @endif
-            </td>
-            <td>
-                @if($o->nabavkaStavka)
-                <a href="{{route('nabavke.detalj', $o->nabavkaStavka->nabavka->id)}}">
-                {{$o->nabavkaStavka->nabavka->dobavljac->naziv}} od {{$o->nabavkaStavka->nabavka->datum}}
-                </a>
-                @endif
-            </td>
-            <td><em>{{$o->napomena}}</em></td>
-            <td style="text-align:right; vertical-align: middle; line-height: normal;">
-                <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('mrezni.oprema.detalj', $o->id)}}">
-                    <i class="fa fa-eye"></i>
-                </a>
-                <a class="btn btn-info btn-sm" id="dugmeIzmena" href="{{route('mrezni.oprema.izmena.get', $o->id)}}">
-                    <i class="fa fa-pencil"></i>
-                </a>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+                    </td>
+                    <td>
+                        @if($o->stavkaOtpremnice)
+                        <a href="{{route('otpremnice.detalj', $o->stavkaOtpremnice->otpremnica->id)}}">
+                            {{$o->stavkaOtpremnice->otpremnica->broj}}, {{$o->stavkaOtpremnice->otpremnica->dobavljac->naziv}} od {{$o->stavkaOtpremnice->otpremnica->datum}}
+                        </a>
+                        @endif
+                    </td>
+                    <td>
+                        @if($o->nabavkaStavka)
+                        <a href="{{route('nabavke.detalj', $o->nabavkaStavka->nabavka->id)}}">
+                            {{$o->nabavkaStavka->nabavka->dobavljac->naziv}} od {{$o->nabavkaStavka->nabavka->datum}}
+                        </a>
+                        @endif
+                    </td>
+                    <td>
+                        <em>{{$o->napomena}}</em>
+                    </td>
+                    <td style="text-align:right; vertical-align: middle; line-height: normal;">
+                        <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('mrezni.oprema.detalj', $o->id)}}">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <a class="btn btn-info btn-sm" id="dugmeIzmena" href="{{route('mrezni.oprema.izmena.get', $o->id)}}">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
         @endif
     </div>
 </div>
@@ -112,44 +120,42 @@
 
 @section('skripte')
 <script>
-$( document ).ready(function() {
+$(document).ready(function () {
 
-        setTimeout(function(){
-            $('.obavestenje').hide();
-            $('.linija').show();
-            }, 4000);
+    setTimeout(function () {
+        $('.obavestenje').hide();
+        $('.linija').show();
+    }, 4000);
 
-        var tabela = $('#tabela').DataTable({
+    var tabela = $('#tabela').DataTable({
 
-        columnDefs: [
-                {
-                    orderable: false,
-                    searchable: false,
-                    "targets": -1
-                }
-            ],
+        columnDefs: [{
+            orderable: false,
+            searchable: false,
+            "targets": -1
+        }],
         responsive: true,
         language: {
-        search: "Pronađi u tabeli",
+            search: "Pronađi u tabeli",
             paginate: {
-            first:      "Prva",
-            previous:   "Prethodna",
-            next:       "Sledeća",
-            last:       "Poslednja"
+                first: "Prva",
+                previous: "Prethodna",
+                next: "Sledeća",
+                last: "Poslednja"
+            },
+            processing: "Procesiranje u toku...",
+            lengthMenu: "Prikaži _MENU_ elemenata",
+            zeroRecords: "Nije pronađen nijedan rezultat",
+            info: "Prikaz _START_ do _END_ od ukupno _TOTAL_ elemenata",
+            infoFiltered: "(filtrirano od ukupno _MAX_ elemenata)",
         },
-        processing:   "Procesiranje u toku...",
-        lengthMenu:   "Prikaži _MENU_ elemenata",
-        zeroRecords:  "Nije pronađen nijedan rezultat",
-        info:         "Prikaz _START_ do _END_ od ukupno _TOTAL_ elemenata",
-        infoFiltered: "(filtrirano od ukupno _MAX_ elemenata)",
-    },
     });
 
-        new $.fn.dataTable.FixedHeader( tabela );
+    new $.fn.dataTable.FixedHeader(tabela);
 
-        $('#pretragaDugme').click(function () {
-            $('#pretraga').toggle();
-        });
+    $('#pretragaDugme').click(function () {
+        $('#pretraga').toggle();
+    });
 
 });
 </script>

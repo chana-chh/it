@@ -73,8 +73,8 @@ class VrsteUredjaja extends Seeder
             'ruta' => 'mrezni_uredjaji.oprema.detalj',
         ]);
         DB::table('s_vrste_uredjaja')->insert([
-            'naziv' => 'Ostali uređaji', // 14
-            'mnozina' => 'Ostali uređaji',
+            'naziv' => 'Ostalo', // 14
+            'mnozina' => 'Ostalo',
             'ruta' => ' ',
         ]);
     }
