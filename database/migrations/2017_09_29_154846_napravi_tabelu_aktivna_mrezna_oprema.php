@@ -12,7 +12,7 @@ class NapraviTabeluAktivnaMreznaOprema extends Migration
         Schema::create('aktivna_mrezna_oprema', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('vrsta_uredjaja_id')->unsigned();
-            $table->string('naziv', 100)->unique();
+            $table->string('naziv', 100);
             $table->string('inventarski_broj', 10)->nullable();
             $table->string('serijski_broj', 50)->nullable();
             $table->integer('broj_portova')->unsigned();

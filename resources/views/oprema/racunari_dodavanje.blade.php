@@ -177,12 +177,12 @@
     </div>
 
     <div class="col-md-6">
-        <div class="form-group{{ $errors->has('zaposleni_id') ? ' has-error' : '' }}">
+        <div class="form-group zaposleni_select {{ $errors->has('zaposleni_id') ? ' has-error' : '' }}">
             <label for="zaposleni_id">Zaposleni koji koristi račnar:</label>
             <select name="zaposleni_id" id="zaposleni_id" class="chosen-select form-control" data-placeholder="zaposleni ...">
-                <option value=""></option>
+                <option data-kanc="0" value=""></option>
                 @foreach($zaposleni as $za)
-                <option value="{{ $za->id }}" {{ old( 'zaposleni_id') == $za->id ? ' selected' : '' }}> {{$za->imePrezime()}}, {{$za->uprava->naziv}}
+                <option data-kanc="[{{ $za->kancelarija_id }}]" value="{{ $za->id }}" {{ old( 'zaposleni_id') == $za->id ? ' selected' : '' }}> {{$za->imePrezime()}}, {{$za->uprava->naziv}}
             </option>
 
             @endforeach
@@ -318,26 +318,28 @@
             $("#obavestenje").html(ima_nema);
         });
 
-        function CheckProjects() {    
-        var trenutnaKancelarija = parseInt($('#kancelarija_id').val()); //Get the current select project and make it an integer
-        $('#zaposleni_id option').each(function () { //Loop through each option
-        var arrKancelarije = JSON.parse($(this).attr('data-kanc')); //Put the array of projects in a variable
-        if ($.inArray(trenutnaKancelarija, arrKancelarije) > -1) { //If current project ID is in array of projects
-            $(this).show(); //Show the option
-        } else { // Else if current project ID is NOT in array of projects
-            $(this).hide(); //hide the option
+        function filtrirajZaposlene() {    
+        var trenutnaKancelarija = parseInt($('#kancelarija_id').val());
+        console.log(trenutnaKancelarija);
+        $('.zaposleni_select option').each(function () {
+        var arrKancelarije = JSON.parse($(this).attr('data-kanc'));
+        console.log(arrKancelarije);
+        if ($.inArray(trenutnaKancelarija, arrKancelarije) > -1) {
+            $(this).show();
+        } else {
+            $(this).hide();
         }
         });
-        //this is to stop the dropdown displaying a hidden option on project change
-        if ($('#kancelarija_id :selected').is(':hidden')) { //If the selected person is now hidden
-        $('#kancelarija_id').val(''); //Reset the person select box
+        
+        if ($('.zaposleni_select :selected').is(':hidden')) {
+        $('.zaposleni_select').val('');
         }
     };
 
-    $('#kancelarija_id').on('change', function() { //When we change the project, call the function
-    CheckProjects();
+    $('#kancelarija_id').on('change', function() {
+    filtrirajZaposlene();
+    $('select.chosen-select').trigger("chosen:updated");
 });
-    //https://stackoverflow.com/questions/28151792/how-to-filter-select-box-based-on-value-in-preceding-select-box/28152009
     });
 
 </script>

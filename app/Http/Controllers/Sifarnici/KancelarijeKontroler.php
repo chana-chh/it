@@ -44,7 +44,7 @@ class KancelarijeKontroler extends Kontroler
         $kancelarija = Kancelarija::find($id);
         $uredjaji_svi = UredjajiHelper::sviUredjaji();
         $uredjaji_kanc = $uredjaji_svi->where('kancelarija_id', $id);
-        $uredjaji = $this->paginate($uredjaji_kanc, 2);
+        $uredjaji = $this->paginate($uredjaji_kanc, 10);
         return view('sifarnici.kancelarije_detalj')->with(compact('kancelarija', 'uredjaji'));
     }
 

@@ -12,7 +12,7 @@ class NapraviTabeluProjektori extends Migration
         Schema::create('projektori', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('vrsta_uredjaja_id')->unsigned();
-            $table->string('naziv', 100)->unique();
+            $table->string('naziv', 100);
             $table->string('inventarski_broj', 10)->nullable();
             $table->string('serijski_broj', 50)->nullable();
             $table->string('tip_lampe', 50)->nullable();

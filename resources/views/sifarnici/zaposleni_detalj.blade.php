@@ -70,9 +70,13 @@
              <tr>
                 <th style="width: 20%;">Računar:</th>
                 <td style="width: 80%;">
-                    @foreach ($zaposleni->racunar as $racunar)
-                    {{$racunar->ime}}, &emsp;
-                    @endforeach
+                    @php
+                        $rezultat = array();
+                        foreach ($zaposleni->racunar as $racunar){
+                            $rezultat[] = $racunar->ime;
+                        }
+                        echo implode(", ",$rezultat);
+                    @endphp
                 </td>
             </tr>
             @else

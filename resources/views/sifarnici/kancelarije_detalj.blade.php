@@ -81,12 +81,14 @@
     @if($uredjaji->isEmpty())
     <p class="text-danger">U ovoj kancelariji nema IKT opreme</p>
     @else
-    <table class="table table-striped table-responsive">
+    <table class="table table-striped table-condensed table-responsive">
         <thead>
             <tr>
                 <th>Vrsta</th>
                 <th>Naziv</th>
+                <th>Serijski broj</th>
                 <th>Inventarski broj</th>
+                <th>Tehnički detalj</th>
             </tr>
         </thead>
         <tbody>
@@ -94,7 +96,9 @@
             <tr>
                 <td>{{ $uredjaj->vrsta_uredjaja }}</td>
                 <td>{{ $uredjaj->naziv }}</td>
+                <td>{{ $uredjaj->serijski_broj }}</td>
                 <td>{{ $uredjaj->inventarski_broj }}</td>
+                <td>{{ $uredjaj->tehnicki_detalji }}</td>
             </tr>
             @endforeach
         </tbody>

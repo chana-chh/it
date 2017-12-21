@@ -104,7 +104,7 @@
 
             <tr>
                 <th style="width: 40%;">Lokacija:</th>
-                <td style="width: 60%;"><a href="{{route('kancelarije.detalj.get', $uredjaj->kancelarija->id)}}">{{$uredjaj->kancelarija->lokacija->naziv}}, kancelarija {{$uredjaj->kancelarija->naziv}}</a>
+                <td style="width: 60%;">@if($uredjaj->kancelarija)<a href="{{route('kancelarije.detalj.get', $uredjaj->kancelarija->id)}}">{{$uredjaj->kancelarija->lokacija->naziv}}, kancelarija {{$uredjaj->kancelarija->naziv}}</a>@endif
                 </td>
             </tr>
                         <tr>
@@ -142,11 +142,23 @@
 @section('traka')
 <h4>Ocena:</h4>
 <div class="row">
+<?php
+$kompletan = false;
+if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memorije->isEmpty() && !$uredjaj->hddovi->isEmpty()) {
+   $kompletan = true;
+}
+?>
+@if($kompletan)
 <div class="col-md-6 col-md-offset-4">
 <p class="{{ $uredjaj->ocena() < 8 ? ' tankoza_danger' : ' tankoza' }} krug_mali">{{number_format($uredjaj->ocena(), 2, '.', ',')}}</p>
+@else
+<div class="col-md-12">
+<h4 class="text-danger text-center">Računar ne sadrži sve komponente neophodne za ocenjivanje</h4>
+@endif
 </div>
 </div>
 
+@if($kompletan)
 <div class="row">
     <div class="col-md-12">
 @if($uredjaj->ocena() < 8)
@@ -154,6 +166,7 @@
 @endif
     </div>
 </div>
+@endif
 
         <div class="row">
     <div class="col-md-12">
