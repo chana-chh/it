@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Servis;
 
 use Illuminate\Http\Request;
 use Session;
-use Redirect;
+//use Redirect;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\NabavkaStavka;
-use App\Modeli\Nabavka;
+//use App\Modeli\Nabavka;
 use App\Modeli\Proizvodjac;
 use App\Modeli\VrstaUredjaja;
 use App\Modeli\Monitor;
@@ -51,7 +51,7 @@ class NabavkeStavkeKontroler extends Kontroler
         $stavka->napomena = $request->napomena;
         $stavka->save();
 
-        Session::flash('uspeh', 'Stavka otpremnice je uspešno dodata!');
+        Session::flash('uspeh', 'Stavka nabavke je uspešno dodata!');
         return redirect()->route('nabavke.detalj', $request->nabavka_id);
     }
 

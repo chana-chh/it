@@ -22,7 +22,7 @@ class DobavljaciKontroler extends Kontroler
 
     public function getDodavanje(Request $request)
     {
-        $request->session()->put('povratna_veza', URL::previous());
+        // $request->session()->put('povratna_veza', URL::previous());
         return view('sifarnici.dobavljaci_dodavanje'); // ->with(compact('povratna_veza'));
     }
 
