@@ -317,6 +317,27 @@
             var ima_nema = $(this).find(":selected").data("procesor");
             $("#obavestenje").html(ima_nema);
         });
+
+        function CheckProjects() {    
+        var trenutnaKancelarija = parseInt($('#kancelarija_id').val()); //Get the current select project and make it an integer
+        $('#zaposleni_id option').each(function () { //Loop through each option
+        var arrKancelarije = JSON.parse($(this).attr('data-kanc')); //Put the array of projects in a variable
+        if ($.inArray(trenutnaKancelarija, arrKancelarije) > -1) { //If current project ID is in array of projects
+            $(this).show(); //Show the option
+        } else { // Else if current project ID is NOT in array of projects
+            $(this).hide(); //hide the option
+        }
+        });
+        //this is to stop the dropdown displaying a hidden option on project change
+        if ($('#kancelarija_id :selected').is(':hidden')) { //If the selected person is now hidden
+        $('#kancelarija_id').val(''); //Reset the person select box
+        }
+    };
+
+    $('#kancelarija_id').on('change', function() { //When we change the project, call the function
+    CheckProjects();
+});
+    //https://stackoverflow.com/questions/28151792/how-to-filter-select-box-based-on-value-in-preceding-select-box/28152009
     });
 
 </script>
