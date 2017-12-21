@@ -9,7 +9,7 @@
 @section('naslov')
 <h1 class="page-header">
     <img class="slicica_animirana" alt="Racun" src="{{ url('/images/otpremnice.png') }}" style="height:64px;">
-    Pregled otpremnice: <em>{{ $otpremnica->broj }}</em>
+    Pregled otpremnice: <em class="text-success">{{ $otpremnica->broj }}</em>
 </h1>
 @endsection
 
@@ -82,10 +82,10 @@
 </div>
 <hr>
 <div class="row well" style="overflow: auto;">
-
-    <a href="{{ route('otpremnice.stavke', $otpremnica->id) }}" class="btn btn-primary btn-lg">
-        Stavke otpremnice <i class="fa fa-arrow-right fa-fw"></i>
-    </a>
+    <h3>Stavke otpremnice</h3>
+    <!--    <a href="{{-- route('otpremnice.stavke', $otpremnica->id) --}}" class="btn btn-primary btn-lg">
+            Stavke otpremnice <i class="fa fa-arrow-right fa-fw"></i>
+        </a>-->
     <hr style="border-top: 1px solid #18BC9C">
     @if($otpremnica->stavke->isEmpty())
     <p class="text-danger">Trenutno nema stavki za ovu otpremnicu</p>
@@ -122,6 +122,98 @@
 
 @section('traka')
 <div class="well">
+    <h3>Dodavanje stavke</h3>
+    <hr style="border-top: 1px solid #18BC9C">
+    <form action="{{ route('otpremnice.stavke.dodavanje.post') }}" method="POST" data-parsley-validate>
+        {{ csrf_field() }}
+        <input type="hidden" name="otpremnica_id" value="{{ $otpremnica->id }}">
+        <div class="form-group{{ $errors->has('vrsta_uredjaja_id') ? ' has-error' : '' }}">
+            <label for="vrsta_uredjaja_id">Vrsta uređaja:</label>
+            <select id="vrsta_uredjaja_id" name="vrsta_uredjaja_id"
+                    class="chosen-select form-control"
+                    data-placeholder="Vrsta uređaja ..." required>
+                <option value=""></option>
+                @foreach($vrste as $vrsta)
+                <option value="{{ $vrsta->id }}"
+                        {{ old('vrsta_uredjaja_id') == $vrsta->id ? ' selected' : '' }}>
+                        {{ $vrsta->naziv }}</option>
+                @endforeach
+            </select>
+            @if ($errors->has('vrsta_uredjaja_id'))
+            <span class="help-block">
+                <strong>{{ $errors->first('vrsta_uredjaja_id') }}</strong>
+            </span>
+            @endif
+        </div>
+        <div class="form-group{{ $errors->has('naziv') ? ' has-error' : '' }}">
+            <label for="naziv">Naziv:</label>
+            <input type="text" id="naziv" name="naziv"
+                   class="form-control"
+                   value="{{ old('naziv') }}"
+                   maxlength="255" required>
+            @if ($errors->has('naziv'))
+            <span class="help-block">
+                <strong>{{ $errors->first('naziv') }}</strong>
+            </span>
+            @endif
+        </div>
+        <div class="form-group{{ $errors->has('jedinica_mere') ? ' has-error' : '' }}">
+            <label for="jedinica_mere">Jedinica mere:</label>
+            <select id="jedinica_mere" name="jedinica_mere"
+                    class="chosen-select form-control"
+                    data-placeholder="jedinica mere ...">
+                <option value=""></option>
+                <option value="komad">komad</option>
+                <option value="sat">sat</option>
+                <option value="metar">metar</option>
+                <option value="kilogram">kilogram</option>
+            </select>
+            @if ($errors->has('jedinica_mere'))
+            <span class="help-block">
+                <strong>{{ $errors->first('jedinica_mere') }}</strong>
+            </span>
+            @endif
+        </div>
+        <div class="form-group{{ $errors->has('kolicina') ? ' has-error' : '' }}">
+            <label for="kolicina">Količina:</label>
+            <input type="number" id="kolicina" name="kolicina"
+                   class="form-control"
+                   value="{{ old('kolicina', 0) }}"
+                   min="0" step="0.01" required>
+            @if ($errors->has('kolicina'))
+            <span class="help-block">
+                <strong>{{ $errors->first('kolicina') }}</strong>
+            </span>
+            @endif
+        </div>
+        <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
+            <label for="napomena">Napomena:</label>
+            <textarea id="napomena" name="napomena"
+                      class="form-control">{{ old('napomena') }}</textarea>
+            @if ($errors->has('napomena'))
+            <span class="help-block">
+                <strong>{{ $errors->first('napomena') }}</strong>
+            </span>
+            @endif
+        </div>
+        <div class="row dugmici">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="col-md-6 snimi">
+                        <button type="submit" class="btn btn-success btn-block ono">
+                            <i class="fa fa-plus-circle"></i> Dodaj
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-danger btn-block ono" href="{{ route('otpremnice.detalj', $otpremnica->id) }}">
+                            <i class="fa fa-ban"></i> Otkaži
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <hr style="border-top: 1px solid #18BC9C">
     <h3>Dodavanje slike</h3>
     <form action="{{route('otpremnice.dodavanje.slike', $otpremnica->id)}}" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
@@ -198,5 +290,18 @@
         var ruta = "{{ route('otpremnice.brisanje') }}";
         $('#brisanje-forma').attr('action', ruta);
     });
+
+    jQuery(window).on('resize', resizeChosen);
+
+    $('.chosen-select').chosen({
+        allow_single_deselect: true
+    });
+
+    function resizeChosen() {
+        $(".chosen-container").each(function () {
+            $(this).attr('style', 'width: 100%');
+        });
+    }
+
 </script>
 @endsection

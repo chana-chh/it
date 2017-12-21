@@ -119,7 +119,7 @@
     <form action="{{ route('nabavke.stavke.dodavanje.post') }}" method="POST" data-parsley-validate>
         {{ csrf_field() }}
         <input type="hidden" name="nabavka_id" value="{{ $nabavka->id }}">
-        <div class="form-group{{ $errors->has('vrsta_uredjaja_id') ? ' has-e                rror' : '' }}">
+        <div class="form-group{{ $errors->has('vrsta_uredjaja_id') ? ' has-error' : '' }}">
             <label for="vrsta_uredjaja_id">Vrsta u                ređaja:</label>
             <select id="vrsta_uredjaja_id" name="vrsta_uredjaja_id"
                     class="chosen-select form-control"
@@ -233,5 +233,6 @@
         var ruta = "{{ route('nabavke.brisanje') }}";
         $('#brisanje-forma').attr('action', ruta);
     });
+
 </script>
 @endsection

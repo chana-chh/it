@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Servis;
 
 use Illuminate\Http\Request;
 use Session;
-use Redirect;
-use Image;
+//use Redirect;
+//use Image;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\OtpremnicaStavka;
 use App\Modeli\Otpremnica;
@@ -28,6 +28,12 @@ class OtpremniceStavkeKontroler extends Kontroler
     public function postDodavanje(Request $request)
     {
         $this->validate($request, [
+            'otpremnica_id' => [
+                'required',
+            ],
+            'vrsta_uredjaja_id' => [
+                'required',
+            ],
             'naziv' => [
                 'required',
                 'max:255',
@@ -39,6 +45,7 @@ class OtpremniceStavkeKontroler extends Kontroler
 
         $stavka = new OtpremnicaStavka();
         $stavka->otpremnica_id = $request->otpremnica_id;
+        $stavka->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
         $stavka->naziv = $request->naziv;
         $stavka->kolicina = $request->kolicina;
         $stavka->jedinica_mere = $request->jedinica_mere;
@@ -46,7 +53,7 @@ class OtpremniceStavkeKontroler extends Kontroler
         $stavka->save();
 
         Session::flash('uspeh', 'Stavka otpremnice je uspešno dodata!');
-        return redirect()->route('otpremnice.stavke', $request->otpremnica_id);
+        return redirect()->route('otpremnice.detalj', $request->otpremnica_id);
     }
 
     public function getIzmena($id)
