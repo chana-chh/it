@@ -58,7 +58,7 @@ class NabavkeStavkeKontroler extends Kontroler
     public function getDetalj($id)
     {
         $stavka = NabavkaStavka::find($id);
-        $proizvodjaci = Proizvodjac::all();
+        // $proizvodjaci = Proizvodjac::all();
         $modeli_monitora = MonitorModel::all();
         $modeli_stampaca = StampacModel::all();
         $modeli_skenera = SkenerModel::all();

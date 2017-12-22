@@ -83,9 +83,6 @@
 <hr>
 <div class="row well" style="overflow: auto;">
     <h3>Stavke otpremnice</h3>
-    <!--    <a href="{{-- route('otpremnice.stavke', $otpremnica->id) --}}" class="btn btn-primary btn-lg">
-            Stavke otpremnice <i class="fa fa-arrow-right fa-fw"></i>
-        </a>-->
     <hr style="border-top: 1px solid #18BC9C">
     @if($otpremnica->stavke->isEmpty())
     <p class="text-danger">Trenutno nema stavki za ovu otpremnicu</p>
@@ -108,7 +105,7 @@
                 <td>{{ $stavka->jedinica_mere }}</td>
                 <td class="text-right">{{ $stavka->kolicina }}</td>
                 <td class="text-right">
-                    <a href="" class="btn btn-success btn-xs">
+                    <a href="{{route('otpremnice.stavke.detalj', $stavka->id)}}" class="btn btn-success btn-xs">
                         <i class="fa fa-eye"></i>
                     </a>
                 </td>
@@ -217,16 +214,24 @@
     <h3>Dodavanje slike</h3>
     <form action="{{route('otpremnice.dodavanje.slike', $otpremnica->id)}}" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
-        <label for="slika" class="btn btn-warning ono">
-            <i class="fa fa-upload"></i> Izaberi scan otpremnice
-        </label>
-        <input type="file" name="slika" id="slika" class="hide" required>
-        <button type="submit" class="btn btn-success ono">
-            <i class="fa fa-floppy-o"></i> Prosledi scan
-        </button>
-        <button type="reset" class="btn btn-danger ono">
-            <i class="fa fa-ban"></i> Otkaži
-        </button>
+        <div class="input-group image-preview">
+            <input type="text" class="form-control image-preview-filename" disabled="disabled">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-danger image-preview-clear" style="display:none;">
+                    <span class="glyphicon glyphicon-remove"></span> Poništi
+                </button>
+                <div class="btn btn-warning image-preview-input">
+                    <span>
+                        <i class="fa fa-upload" aria-hidden="true"></i>
+                    </span>
+                    <span class="image-preview-input-title">Odaberi</span>
+                    <input type="file" accept="image/png, image/jpeg, image/gif" name="slika" id="slika" required/>
+                </div>
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-floppy-o"></i> Sačuvaj
+                </button>
+            </span>
+        </div>
     </form>
     <hr style="border-top: 1px solid #18BC9C">
     <h3>Slike</h3>
@@ -272,36 +277,94 @@
 
 @section('skripte')
 <script>
-    $('#slikaModal').on('show.bs.modal', function (e) {
-        var image = $(e.relatedTarget).attr('src');
-        $('#slikaOtpremnice').attr('src', image);
-    });
-
-    $(document).on('click', '.otvori-brisanje', function () {
-        var id = $(this).val();
-        $('#idBrisanje').val(id);
-        var ruta = "{{ route('otpremnice.brisanje.slike') }}";
-        $('#brisanje-forma').attr('action', ruta);
-    });
-
-    $(document).on('click', '#brisanjeOtpremnice', function () {
-        var id = $(this).val();
-        $('#idBrisanje').val(id);
-        var ruta = "{{ route('otpremnice.brisanje') }}";
-        $('#brisanje-forma').attr('action', ruta);
-    });
-
-    jQuery(window).on('resize', resizeChosen);
-
-    $('.chosen-select').chosen({
-        allow_single_deselect: true
-    });
-
-    function resizeChosen() {
-        $(".chosen-container").each(function () {
-            $(this).attr('style', 'width: 100%');
+    $(document).ready(function () {
+        $('#slikaModal').on('show.bs.modal', function (e) {
+            var image = $(e.relatedTarget).attr('src');
+            $('#slikaOtpremnice').attr('src', image);
         });
-    }
 
+        $(document).on('click', '.otvori-brisanje', function () {
+            var id = $(this).val();
+            $('#idBrisanje').val(id);
+            var ruta = "{{ route('otpremnice.brisanje.slike') }}";
+            $('#brisanje-forma').attr('action', ruta);
+        });
+
+        $(document).on('click', '#brisanjeOtpremnice', function () {
+            var id = $(this).val();
+            $('#idBrisanje').val(id);
+            var ruta = "{{ route('otpremnice.brisanje') }}";
+            $('#brisanje-forma').attr('action', ruta);
+        });
+
+        jQuery(window).on('resize', resizeChosen);
+
+        $('.chosen-select').chosen({
+            allow_single_deselect: true
+        });
+
+        function resizeChosen() {
+            $(".chosen-container").each(function () {
+                $(this).attr('style', 'width: 100%');
+            });
+        }
+
+        $(document).on('click', '#close-preview', function () {
+            $('.image-preview').popover('hide');
+
+            $('.image-preview').hover(
+                    function () {
+                        $('.image-preview').popover('show');
+                    },
+                    function () {
+                        $('.image-preview').popover('hide');
+                    }
+            );
+        });
+
+        $(function () {
+
+            var closebtn = $('<button/>', {
+                type: "button",
+                text: 'x',
+                id: 'close-preview',
+                style: 'font-size: initial;'
+            });
+            closebtn.attr("class", "close pull-right");
+
+            $('.image-preview').popover({
+                trigger: 'manual',
+                html: true,
+                title: "<strong>Преглед</strong>" + $(closebtn)[0].outerHTML,
+                content: "Фотографија није одабрана",
+                placement: 'bottom'
+            });
+
+            $('.image-preview-clear').click(function () {
+                $('.image-preview').attr("data-content", "").popover('hide');
+                $('.image-preview-filename').val("");
+                $('.image-preview-clear').hide();
+                $('.image-preview-input input:file').val("");
+                $(".image-preview-input-title").text("Одабери");
+            });
+
+            $(".image-preview-input input:file").change(function () {
+                var img = $('<img/>', {
+                    id: 'dynamic',
+                    height: 200
+                });
+                var file = this.files[0];
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $(".image-preview-input-title").text("Измени");
+                    $(".image-preview-clear").show();
+                    $(".image-preview-filename").val(file.name);
+                    img.attr('src', e.target.result);
+                    $(".image-preview").attr("data-content", $(img)[0].outerHTML).popover("show");
+                }
+                reader.readAsDataURL(file);
+            });
+        });
+    });
 </script>
 @endsection

@@ -25,11 +25,11 @@
                title="Povratak na početnu stranu">
                 <i class="fa fa-home"></i>
             </a>
-            <a class="btn btn-primary" href="{{ route('otpremnice.stavke', $stavka->otpremnica->id) }}"
+            <a class="btn btn-primary" href="{{-- route('otpremnice.stavke', $stavka->otpremnica->id) --}}"
                title="Povratak na listu stavki otpremnice">
                 <i class="fa fa-list"></i>
             </a>
-            <a class="btn btn-primary" href="{{ route('otpremnice.stavke.izmena.get', $stavka->id) }}"
+            <a class="btn btn-primary" href="{{-- route('otpremnice.stavke.izmena.get', $stavka->id) --}}"
                title="Izmena stavke otpremnice">
                 <i class="fa fa-pencil"></i>
             </a>

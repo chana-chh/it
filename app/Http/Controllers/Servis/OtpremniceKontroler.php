@@ -138,13 +138,13 @@ class OtpremniceKontroler extends Kontroler
             ],
         ]);
 
-        $otpremnica = Otpremnica::find($id);
-
         $img = $request->slika;
         $ime_slike = $id . '_' . time() . '.' . $request->slika->getClientOriginalExtension();
         $lokacija = public_path('images/otpremnice/' . $ime_slike);
-        $image = Image::make($img);
-        $image->save($lokacija);
+        $resize_img = Image::make($img)->heighten(800, function ($constraint) {
+                    $constraint->upsize();
+                })->encode('jpg', 75);
+        $resize_img->save($lokacija);
 
         $slika = new OtpremnicaSlika();
         $slika->otpremnica_id = $id;
