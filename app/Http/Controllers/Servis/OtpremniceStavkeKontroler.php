@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Servis;
 
 use Illuminate\Http\Request;
 use Session;
-//use Redirect;
-//use Image;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\OtpremnicaStavka;
 use App\Modeli\Otpremnica;
+use App\Modeli\MonitorModel;
+use App\Modeli\StampacModel;
+use App\Modeli\SkenerModel;
+use App\Modeli\UpsModel;
 
 class OtpremniceStavkeKontroler extends Kontroler
 {
@@ -64,12 +66,12 @@ class OtpremniceStavkeKontroler extends Kontroler
 
     public function getDetalj($id)
     {
-        $uredjaji = null;
         $stavka = OtpremnicaStavka::find($id);
-        if (OtpremnicaStavka::find($id)->uredjaji()) {
-            $uredjaji = OtpremnicaStavka::find($id)->uredjaji()->paginate(5);
-        }
-        return view('servis.otpremnice_stavke_detalj')->with(compact('stavka', 'uredjaji'));
+        $modeli_monitora = MonitorModel::all();
+        $modeli_stampaca = StampacModel::all();
+        $modeli_skenera = SkenerModel::all();
+        $modeli_upseva = UpsModel::all();
+        return view('servis.otpremnice_stavke_detalj')->with(compact('stavka', 'modeli_monitora', 'modeli_stampaca', 'modeli_skenera', 'modeli_upseva'));
     }
 
     public function postIzmena(Request $request, $id)
