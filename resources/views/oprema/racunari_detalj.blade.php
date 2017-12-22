@@ -33,12 +33,10 @@
                title="Izmena podataka računara">
                 <i class="fa fa-pencil"></i>
             </a>
-            <button id="idBrisanje" class="btn btn-primary"
-                    title="Otpis računara"
-                    data-toggle="modal" data-target="#brisanjeModal"
-                    value="{{$uredjaj->id}}">
+            <a class="btn btn-warning" href="{{route('racunari.oprema.otpis', $uredjaj->id)}}"
+               title="Otpis računara">
                 <i class="fa fa-recycle"></i>
-            </button>
+            </a>
         </div>
     </div>
 </div>

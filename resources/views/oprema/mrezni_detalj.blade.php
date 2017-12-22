@@ -29,7 +29,7 @@
             <a class="btn btn-primary" href="{{route('mrezni.oprema.izmena.get', $uredjaj->id)}}" title="Izmena podataka mrežnih uređaja">
                 <i class="fa fa-pencil"></i>
             </a>
-            <button id="idBrisanje" class="btn btn-warning otvori-brisanje" title="Otpis osnovne ploče" data-toggle="modal" data-target="#otpisModal"
+            <button id="idBrisanje" class="btn btn-warning otvori-brisanje" title="Otpis mrežnog uređaja" data-toggle="modal" data-target="#otpisModal"
                 value="{{$uredjaj->id}}">
                 <i class="fa fa-recycle"></i>
             </button>

@@ -42,7 +42,7 @@ class RacunariKontroler extends Kontroler
 
     public function getLista()
     {
-        return view('oprema.racunari')->with(compact('uredjaj'));
+        return view('oprema.racunari');
     }
 
     public function getAjax()
@@ -997,6 +997,83 @@ class RacunariKontroler extends Kontroler
             Session::flash('uspeh', 'Skener je uspešno dodato!');
             return Redirect::back();
         }
+    }
+
+        public function getOtpis($id)
+    {
+
+        $racunar = Racunar::find($id);
+        return view('oprema.racunari_otpis')->with(compact('racunar'));
+    }
+
+    public function postOtpis(Request $request)
+    {   
+        $racunar = Racunar::find($request->idOtpis);
+
+        //dd($request->procesor);
+
+        if (isset($request->osnovnaPloca)) {
+            $ploca = OsnovnaPloca::find($request->osnovnaPloca);
+            $racunar->ploca_id = null;
+            $racunar->save();
+                if (!$ploca->stavkaOtpremnice) {
+                    $ploca->stavkaOtpremnice = 1;
+                    $ploca->save();
+                }
+        }
+        if (isset($request->procesor)) {
+            foreach ($request->procesor as $id_procesor) {
+                $procesor = Procesor::find($id_procesor);
+                $procesor->racunar_id = null;
+                    if (!$procesor->stavkaOtpremnice) {
+                        $procesor->stavkaOtpremnice = 2;
+                    }
+                $procesor->save();
+            }       
+        }
+        if (isset($request->memorija)) {
+            foreach ($request->memorija as $id_memorije) {
+                $mem = Memorija::find($id_memorije);
+                $mem->racunar_id = null;
+                    if (!$mem->stavkaOtpremnice) {
+                        $mem->stavkaOtpremnice = 4;
+                    }
+                $mem->save();
+            }   
+        }
+        if (isset($request->hdd)) {
+            foreach ($request->hdd as $id_diska) {
+                $disk = Hdd::find($id_diska);
+                $disk->racunar_id = null;
+                    if (!$disk->stavkaOtpremnice) {
+                        $disk->stavkaOtpremnice = 5;
+                    }
+                $disk->save();
+            }
+        }
+        if (isset($request->vga)) {
+            foreach ($request->vga as $id_vga) {
+                $garafa = GrafickiAdapter::find($id_vga);
+                $garafa->racunar_id = null;
+                    if (!$garafa->stavkaOtpremnice) {
+                        $garafa->stavkaOtpremnice = 3;
+                    }
+                $garafa->save();
+            }  
+        }
+        if (isset($request->napajanja)) {
+            foreach ($request->napajanja as $id_napajanja) {
+                $napajanje = Napajanje::find($id_napajanja);
+                $napajanje->racunar_id = null;
+                    if (!$napajanje->stavkaOtpremnice) {
+                        $napajanje->stavkaOtpremnice = 6;
+                    }
+                $napajanje->save();
+            }
+            
+        }
+
+        return view('oprema.racunari');
     }
 
 }

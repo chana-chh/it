@@ -34,7 +34,7 @@
                 <i class="fa fa-pencil"></i>
             </a>
             <button id="idBrisanje" class="btn btn-warning otvori-brisanje"
-                    title="Otpis osnovne ploče"
+                    title="Otpis grafičkog adaptera"
                     data-toggle="modal" data-target="#otpisModal"
                     value="{{$uredjaj->id}}">
                 <i class="fa fa-recycle"></i>

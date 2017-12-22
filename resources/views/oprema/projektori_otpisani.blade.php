@@ -23,6 +23,10 @@
 <div class="row" style="margin-bottom: 25px; margin-top: 20px;">
     <div class="col-md-12">
         <div class="btn-group">
+            <a class="btn btn-primary" onclick="window.history.back();"
+               title="Povratak na prethodnu stranu">
+                <i class="fa fa-arrow-left"></i>
+            </a>
             <a class="btn btn-primary" href="{{ route('projektori.oprema') }}"
                title="Povratak na listu aktivnih projektora">
                 <i class="fa fa-list"></i>

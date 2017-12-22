@@ -30,30 +30,19 @@
         <th style="width: 20%;">Inventarski broj</th>
         <th style="width: 10%;">IKT broj</th>
         <th style="width: 20%;">Kancelarija</th>
-        <th style="width: 20%;">Korisnik računara</th>
-        <th style="width: 10%;text-align:right">
+        <th style="width: 23%;">Korisnik računara</th>
+        <th style="width: 7%;text-align:right">
             <i class="fa fa-cogs"></i>&emsp;Akcije</th>
     </thead>
 </table>
     </div>
 </div>
 
-<!--  POCETAK brisanjeModal  -->
-@include('sifarnici.inc.modal_brisanje')
-<!--  KRAJ brisanjeModal  -->
-
-
 @endsection
 
 @section('skripte')
 <script>
 $( document ).ready(function() {
-
-    $(document).on('click', '.otvori-brisanje', function () {
-            var id = $(this).val();
-            $('#idBrisanje').val(id);
-            /*var ruta = " route('procesori.oprema.brisanje') }}";*/
-            $('#brisanje-forma').attr('action', ruta); });
 
         var tabela = $('#tabela').DataTable({
 

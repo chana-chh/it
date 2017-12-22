@@ -9,7 +9,7 @@
 @section('naslov')
     <h1 class="page-header">
         <img class="slicica_animirana" alt="Štampač detaljno" src="{{url('/images/stampac.png')}}" style="height:64px;">&emsp;
-        Detaljni pregled štampač
+        Detaljni pregled štampača
     </h1>
 @endsection
 
@@ -34,7 +34,7 @@
                 <i class="fa fa-pencil"></i>
             </a>
             <button id="idBrisanje" class="btn btn-warning otvori-brisanje"
-                    title="Otpis osnovne ploče"
+                    title="Otpis štampača"
                     data-toggle="modal" data-target="#otpisModal"
                     value="{{$uredjaj->id}}">
                 <i class="fa fa-recycle"></i>

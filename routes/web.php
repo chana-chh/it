@@ -528,6 +528,8 @@ Route::get('oprema/racunari/ajax', 'Oprema\RacunariKontroler@getAjax')->name('ra
 Route::get('oprema/racunari/detalj/{id}', 'Oprema\RacunariKontroler@getDetalj')->name('racunari.oprema.detalj');
 Route::get('oprema/racunari/dodavanje', 'Oprema\RacunariKontroler@getDodavanje')->name('racunari.oprema.dodavanje.get');
 Route::post('oprema/racunari/dodavanje', 'Oprema\RacunariKontroler@postDodavanje')->name('racunari.oprema.dodavanje.post');
+Route::get('oprema/racunari/otpis/{id}', 'Oprema\RacunariKontroler@getOtpis')->name('racunari.oprema.otpis');
+Route::post('oprema/racunari/otpis', 'Oprema\RacunariKontroler@postOtpis')->name('racunari.oprema.otpis.post');
 //Racunari - aplikacije
 Route::get('oprema/racunari/aplikacije/{id}', 'Oprema\RacunariKontroler@getAplikacije')->name('racunari.oprema.aplikacije');
 //Racunari - skeneriploce
