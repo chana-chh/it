@@ -21,7 +21,17 @@ class NabavkaStavka extends Model
 
     public function uredjaji()
     {
-        return $this->vrstaUredjaja->uredjaji();
+        $id = $this->vrstaUredjaja->id;
+        switch ($id) {
+            case 1: return $this->racunari;
+            case 2: return $this->monitori;
+            case 3: return $this->stampaci;
+            case 4: return $this->skeneri;
+            case 5: return $this->upsevi;
+            case 12: return $this->projektori;
+            case 13: return $this->mrezniUredjaji;
+            default : return null;
+        }
     }
 
     public function racunari()

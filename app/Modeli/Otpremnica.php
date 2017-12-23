@@ -3,17 +3,11 @@
 namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Otpremnica extends Model
 {
-
-    use SoftDeletes;
     protected $table = 'otpremnice';
     public $timestamps = false;
-    protected $dates = [
-        'deleted_at'
-    ];
 
     public function dobavljac()
     {

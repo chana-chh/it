@@ -84,6 +84,13 @@ class VrstaUredjaja extends Model
         return $this->hasMany('App\Modeli\NabavkaStavka', 'vrsta_uredjaja_id', 'id');
     }
 
+    /**
+     * OVO NE RADI BRE
+     * Treba da bude u modelu gde se koristi
+     * Vidi Model NabavkaStavka metod uredjaji()
+     * 
+     * @return type
+     */
     public function uredjaji()
     {
         switch ($this->id) {

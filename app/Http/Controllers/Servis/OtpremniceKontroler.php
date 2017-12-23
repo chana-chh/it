@@ -215,14 +215,21 @@ class OtpremniceKontroler extends Kontroler
 
     public function postBrisanje(Request $request)
     {
-        $data = Otpremnica::find($request->idBrisanje);
-        $odgovor = $data->delete();
-        if ($odgovor) {
-            Session::flash('uspeh', 'Otpreminca je uspešno obrisana!');
+        $otpremnica = Otpremnica::findOrFail($request->idBrisanje);
+        $id = $otpremnica->id;
+        $nema_stavke = $otpremnica->stavke->isEmpty();
+        if ($nema_stavke) {
+            $odgovor = $otpremnica->delete();
+            if ($odgovor) {
+                Session::flash('uspeh', 'Otpremnica je uspešno obrisana!');
+                return redirect()->route('otpremnice');
+            } else {
+                Session::flash('greska', 'Došlo je do greške prilikom brisanja otpremnice. Pokušajte ponovo, kasnije!');
+            }
         } else {
-            Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
+            Session::flash('greska', 'Nije moguće obrisati otpremnicu jer postoje stavke koje su vezane za nju!');
         }
-        return redirect()->route('otpremnice');
+        return redirect()->route('otpremnice.detalj', $id);
     }
 
 }

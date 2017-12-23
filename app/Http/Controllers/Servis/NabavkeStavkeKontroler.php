@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Servis;
 
 use Illuminate\Http\Request;
 use Session;
-//use Redirect;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\NabavkaStavka;
-//use App\Modeli\Nabavka;
 use App\Modeli\Proizvodjac;
 use App\Modeli\VrstaUredjaja;
 use App\Modeli\Monitor;
@@ -58,7 +56,7 @@ class NabavkeStavkeKontroler extends Kontroler
     public function getDetalj($id)
     {
         $stavka = NabavkaStavka::find($id);
-        // $proizvodjaci = Proizvodjac::all();
+        $proizvodjaci = Proizvodjac::all();
         $modeli_monitora = MonitorModel::all();
         $modeli_stampaca = StampacModel::all();
         $modeli_skenera = SkenerModel::all();
@@ -98,15 +96,22 @@ class NabavkeStavkeKontroler extends Kontroler
 
     public function postBrisanje(Request $request)
     {
-        $data = NabavkaStavka::find($request->idBrisanje);
-        $id_nabavke = $data->nabavka_id;
-        $odgovor = $data->delete();
-        if ($odgovor) {
-            Session::flash('uspeh', 'Satvka je uspešno obrisana!');
+        $stavka = NabavkaStavka::findOrFail($request->idBrisanje);
+        $id = $stavka->id;
+        $id_nabavke = $stavka->nabavka_id;
+        $ima_uredjaja = $stavka->uredjaji();
+        if ($ima_uredjaja) {
+            Session::flash('greska', 'Nije moguće obrisati stavku nabavke jer postoje uređaji koji su vezani za nju!');
         } else {
-            Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
+            $odgovor = $stavka->delete();
+            if ($odgovor) {
+                Session::flash('uspeh', 'Satvka je uspešno obrisana!');
+                return redirect()->route('nabavke.detalj', $id_nabavke);
+            } else {
+                Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
+            }
         }
-        return redirect()->route('nabavke.detalj', $id_nabavke);
+        return redirect()->route('nabavke.stavke.detalj', $id);
     }
 
     /*

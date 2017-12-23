@@ -72,326 +72,326 @@ class Zaposleni extends Seeder
         DB::table('zaposleni')->insert([
             'prezime' => 'Obradović',
             'ime' => 'Milan',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 2,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Milovanović',
             'ime' => 'Slađana',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 2,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Rajović',
             'ime' => 'Predrag',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 2,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Simović',
             'ime' => 'Milorad',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 2,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Rakočević',
             'ime' => 'Radenko',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 2,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Predojević',
             'ime' => 'Milovan',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 2,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Knežević',
             'ime' => 'Nebojša',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 2,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Petrović',
             'ime' => 'Veljko',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 2,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Nešić',
             'ime' => 'Radašin',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 2,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Todorović',
             'ime' => 'Dragan',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 2,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Janićijević',
             'ime' => 'Radmila',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 3,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Zorić',
             'ime' => 'Milka',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 3,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Todorović',
             'ime' => 'Dragan',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 3,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Vesić',
             'ime' => 'Dragana',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 3,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Riznić',
             'ime' => 'Mileva',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 3,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Eftović',
             'ime' => 'Vesna',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 3,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Đorđević',
             'ime' => 'Milena',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 3,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Brkić',
             'ime' => 'Milašin',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 3,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Pavlović',
             'ime' => 'Slavica',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 3,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Rvović',
             'ime' => 'Svetlana',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 3,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Beara',
             'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 4,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Antonijević',
             'ime' => 'Slavenka',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 4,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Kuzmanović',
             'ime' => 'Zoran',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 4,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Nestorović',
             'ime' => 'Radojica',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 4,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Živanović',
             'ime' => 'Radovanka',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 4,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Nikitović',
             'ime' => 'Slavica',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 4,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Cvetković',
             'ime' => 'Evica',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 4,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Stojanović',
             'ime' => 'Hadži-milan',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 4,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Stanković',
             'ime' => 'Milica',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 4,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Jovanović',
             'ime' => 'Olga',
-            'kancelarija_id' => 1,
+            'kancelarija_id' => 4,
             'uprava_id' => 1,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Živković',
             'ime' => 'Predrag',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 5,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Jović',
             'ime' => 'Verica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 5,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Aksentijević',
             'ime' => 'Sretina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 5,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Alempijević',
             'ime' => 'Ratko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 5,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Davinić',
             'ime' => 'Delinka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 5,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Živković',
             'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 5,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Gajić',
             'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 5,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Milosavljević',
             'ime' => 'Milivoje',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 5,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Jovanović',
             'ime' => 'Milena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 5,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Stefanović',
             'ime' => 'Andreja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 5,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Marković',
             'ime' => 'Miloš',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 6,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Janković',
             'ime' => 'Saša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 6,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Bratković',
             'ime' => 'Predrag',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 6,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Živadinović',
             'ime' => 'Milan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 6,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Pavlović-Đapa',
             'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 6,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Svičević',
             'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 6,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Lučić',
             'ime' => 'Ljiljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 6,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Ilić',
             'ime' => 'Julka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 6,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Vuković',
             'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 6,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Đulčić',
             'ime' => 'Zora',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 6,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Dragojlović',
             'ime' => 'Katarina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 7,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Kesić',
             'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 7,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Bogdanović',
             'ime' => 'Sreten',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 7,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Gajić',
             'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 7,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Hem-Božilović',
@@ -402,338 +402,338 @@ class Zaposleni extends Seeder
         DB::table('zaposleni')->insert([
             'prezime' => 'Bašić',
             'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 7,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Petrović',
             'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 7,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Lazarević-Sarić',
             'ime' => 'LJiljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 7,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Đurđević',
             'ime' => 'Dragica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 7,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Vujović',
             'ime' => 'Zdravka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 7,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Obradović',
             'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 7,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Tanasković',
             'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 8,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Milanović',
             'ime' => 'Predrag',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 8,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Obradović',
             'ime' => 'Slavica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 8,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Divac',
             'ime' => 'Bojana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 8,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Stefanović',
             'ime' => 'Slobodan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 8,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Šapić',
             'ime' => 'Verica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 8,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Veličković',
             'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 8,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Jevtić',
             'ime' => 'Ljiljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 8,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Erić',
             'ime' => 'Karolina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 8,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Jovanović',
             'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 8,
+            'uprava_id' => 2,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Miletić',
             'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 9,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Dimitrijević',
             'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 9,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Milenković',
             'ime' => 'Svetlana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 9,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Bojović',
             'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 9,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Bojović',
             'ime' => 'Snežana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 9,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Davidović',
             'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 9,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Jakovljević',
             'ime' => 'Nevenka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 9,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Radojević',
             'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 9,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Nešković',
             'ime' => 'Slavica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 9,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Stanišić',
             'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 9,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Stevanović',
             'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 10,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Ćurčić',
             'ime' => 'Zora',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 10,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Rihterović',
             'ime' => 'Jasmina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 10,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Radovanović',
             'ime' => 'Zorica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 10,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Katušić',
             'ime' => 'Biljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 10,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Brkić',
             'ime' => 'Dragan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 10,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Tanasijević',
             'ime' => 'Svetlana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 10,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Aleksić',
             'ime' => 'Goran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 10,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Radović',
             'ime' => 'Jelisaveta',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 10,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Nikolić',
             'ime' => 'Milijana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 10,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Jakovljević',
             'ime' => 'Svetlana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 11,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Petronijević',
             'ime' => 'Svetlana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 11,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Tasić',
             'ime' => 'Nikola',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 11,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Šamanović',
             'ime' => 'Slavica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 11,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Stevanović',
             'ime' => 'Milija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 11,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Bogdanović',
             'ime' => 'Snežana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 11,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Nenadović',
             'ime' => 'Snežana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 11,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Marković',
             'ime' => 'Saša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 11,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Marinković',
             'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 11,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Šećić',
             'ime' => 'Edi',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 11,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Stojanović',
             'ime' => 'Radoslav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 12,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Stepović',
             'ime' => 'Slavica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 12,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Josić',
             'ime' => 'Radoje',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 12,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Spasenić',
             'ime' => 'Tomislav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 12,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Nedeljković',
             'ime' => 'Radojica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 12,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Andrić',
             'ime' => 'Dragica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 12,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Obradović',
             'ime' => 'Nebojša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 12,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Furtula',
             'ime' => 'Svetlana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 12,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Tođeraš',
             'ime' => 'Jasmina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 12,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Miloradović',
             'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'kancelarija_id' => 12,
+            'uprava_id' => 3,
         ]);
         DB::table('zaposleni')->insert([
             'prezime' => 'Drobnjaković',
