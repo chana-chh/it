@@ -99,14 +99,20 @@ class OtpremniceStavkeKontroler extends Kontroler
 
     public function postBrisanje(Request $request)
     {
-        $data = OtpremnicaStavka::find($request->idBrisanje);
-        $odgovor = $data->delete();
+        $stavka = OtpremnicaStavka::find($request->idBrisanje);
+        if (!$stavka->uredjaji()) {
+            Session::flash('upozorenje', 'Nije moguće obrisati stavku jer postoje uređaji koji su vezani za nju.');
+            return redirect()->route('otpremnice.stavka.detalj', $stavka->id);
+        }
+        $id = $stavka->otpremnica->id;
+        $odgovor = $stavka->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Satvka otpremince je uspešno obrisana!');
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
         }
-        return redirect()->back();
+
+        return redirect()->route('otpremnice.detalj', $id);
     }
 
 }

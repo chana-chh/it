@@ -91,7 +91,8 @@
         <thead>
             <tr>
                 <th style="width: 10%;">#</th>
-                <th style="width: 45%;">Naziv</th>
+                <th style="width: 15%;">Vrsta uređaja</th>
+                <th style="width: 30%;">Naziv</th>
                 <th style="width: 15%;">Jedinica mere</th>
                 <th style="width: 15%; text-align: right;">Količina</th>
                 <th style="width: 15%; text-align: right;">Akcije</th>
@@ -101,6 +102,7 @@
             @foreach($otpremnica->stavke as $stavka)
             <tr>
                 <td>{{ $stavka->id }}</td>
+                <td>{{ $stavka->vrstaUredjaja->naziv }}</td>
                 <td>{{ $stavka->naziv }}</td>
                 <td>{{ $stavka->jedinica_mere }}</td>
                 <td class="text-right">{{ $stavka->kolicina }}</td>

@@ -15,7 +15,6 @@ class NapraviTabeluNabavke extends Migration
             $table->date('datum');
             $table->integer('garancija')->unsigned()->default(0);
             $table->text('napomena')->nullable();
-            $table->softDeletes();
 
             $table->foreign('dobavljac_id')->references('id')->on('s_dobavljaci')->onUpdate('cascade')->onDelete('restrict');
         });

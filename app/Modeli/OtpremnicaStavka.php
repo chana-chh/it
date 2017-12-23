@@ -14,6 +14,16 @@ class OtpremnicaStavka extends Model
         return $this->belongsTo('App\Modeli\Otpremnica', 'otpremnica_id', 'id');
     }
 
+    public function vrstaUredjaja()
+    {
+        return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
+    }
+
+    public function uredjaji()
+    {
+        return $this->vrstaUredjaja->uredjaji();
+    }
+
     public function monitori()
     {
         return $this->hasMany('App\Modeli\Monitor', 'stavka_otpremnice_id', 'id');

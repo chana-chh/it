@@ -15,22 +15,22 @@
             <td>{{ $uredjaj->serijski_broj }}</td>
             <td class="text-right">
                 @if($uredjaj->vrstaUredjaja->id === 2)
-                <a href="{{-- route('monitori.detalj', $uredjaj->id) --}}" class="btn btn-success btn-xs">
+                <a href="{{ route('monitori.oprema.detalj', $uredjaj->id) }}" class="btn btn-success btn-xs">
                     <i class="fa fa-eye"></i>
                 </a>
                 @endif
                 @if($uredjaj->vrstaUredjaja->id === 3)
-                <a href="{{-- route('stampaci.detalj', $uredjaj->id) --}}" class="btn btn-success btn-xs">
+                <a href="{{ route('stampaci.oprema.detalj', $uredjaj->id) }}" class="btn btn-success btn-xs">
                     <i class="fa fa-eye"></i>
                 </a>
                 @endif
                 @if($uredjaj->vrstaUredjaja->id === 4)
-                <a href="{{-- route('skeneri.detalj', $uredjaj->id) --}}" class="btn btn-success btn-xs">
+                <a href="{{ route('skeneri.oprema.detalj', $uredjaj->id) }}" class="btn btn-success btn-xs">
                     <i class="fa fa-eye"></i>
                 </a>
                 @endif
                 @if($uredjaj->vrstaUredjaja->id === 5)
-                <a href="{{-- route('upsevi.detalj', $uredjaj->id) --}}" class="btn btn-success btn-xs">
+                <a href="{{ route('upsevi.oprema.detalj', $uredjaj->id) }}" class="btn btn-success btn-xs">
                     <i class="fa fa-eye"></i>
                 </a>
                 @endif

@@ -17,7 +17,6 @@ class NapraviTabeluOtpremnice extends Migration
             $table->text('napomena')->nullable();
             $table->integer('dobavljac_id')->unsigned();
             $table->string('broj_profakture', 100)->nullable();
-            $table->softDeletes();
 
             $table->foreign('dobavljac_id')->references('id')->on('s_dobavljaci')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('racun_id')->references('id')->on('racuni')->onUpdate('cascade')->onDelete('restrict');

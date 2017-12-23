@@ -8,8 +8,12 @@
 
 @section('naslov')
 <h1 class="page-header">
-    <img class="slicica_animirana" alt="Racun" src="{{ url('/images/otpremnice.png') }}" style="height:64px;">
-    Pregled stavke otpremnice: <em>{{ $stavka->otpremnica->broj }}</em>
+    <img class="slicica_animirana" alt="Otpremnica" src="{{ url('/images/nabavke.png') }}" style="height:64px;">
+    Otpremnica:
+    <em class="text-success">
+        {{ $stavka->otpremnica->broj }}
+        <small>Stavka: <em class="text-success">{{ $stavka->naziv }}</em></small>
+    </em>
 </h1>
 @endsection
 
@@ -25,15 +29,15 @@
                title="Povratak na početnu stranu">
                 <i class="fa fa-home"></i>
             </a>
-            <a class="btn btn-primary" href="{{-- route('otpremnice.stavke', $stavka->otpremnica->id) --}}"
-               title="Povratak na listu stavki otpremnice">
+            <a class="btn btn-primary" href="{{ route('otpremnice.detalj', $stavka->otpremnica->id) }}"
+               title="Povratak na otpremnicu">
                 <i class="fa fa-list"></i>
             </a>
-            <a class="btn btn-primary" href="{{-- route('otpremnice.stavke.izmena.get', $stavka->id) --}}"
+            <a class="btn btn-primary" href="{{ route('otpremnice.stavke.izmena.get', $stavka->id) }}"
                title="Izmena stavke otpremnice">
                 <i class="fa fa-pencil"></i>
             </a>
-            <button id="brisanjeOtpremnice" class="btn btn-primary"
+            <button id="brisanjeStavkeOtpremnice" class="btn btn-primary"
                     data-toggle="modal" data-target="#brisanjeModal"
                     value="{{$stavka->id}}"
                     title="Brisanje stavke otpremnice">
@@ -47,10 +51,8 @@
         <table class="table table-striped" style="table-layout: fixed;">
             <tbody>
                 <tr>
-                    <th style="width: 20%;">Otpremnica:</th>
-                    <td style="width: 80%;">
-                        <a href="{{ route('otpremnice.detalj', $stavka->otpremnica->id) }}">{{ $stavka->otpremnica->broj }}</a>
-                    </td>
+                    <th style="width: 20%;">Vrsta uređaja:</th>
+                    <td style="width: 80%;">{{ $stavka->vrstaUredjaja->naziv }}</td>
                 </tr>
                 <tr>
                     <th style="width: 20%;">Naziv:</th>
@@ -58,7 +60,7 @@
                 </tr>
                 <tr>
                     <th style="width: 20%;">Jedinica mere:</th>
-                    <td style="width: 80%;">{{ $stavka->jednica_mere }}</td>
+                    <td style="width: 80%;">{{ $stavka->jedinica_mere }}</td>
                 </tr>
                 <tr>
                     <th style="width: 20%;">Količina:</th>
@@ -72,51 +74,85 @@
         </table>
     </div>
 </div>
-<!--  POCETAK brisanjeModal [brisanje slike] -->
-@include('sifarnici.inc.modal_brisanje')
-<!--  KRAJ brisanjeModal  -->
 <hr>
 <div class="row well" style="overflow: auto;">
-    @if($stavka->vrstaUredjaja() == 0)
-    <h3>Oprema povezana sa ovom stavkom otpremnice</h3>
+    <h3>Uređaju vezani za stavku: <span class="text-success">{{ $stavka->naziv }}</span></h3>
     <hr style="border-top: 1px solid #18BC9C">
-    <p class="text-danger">Trenutno nema povezane opreme za ovu stavku otpremnice</p>
+    @if(!$stavka->uredjaji() || $stavka->uredjaji()->isEmpty())
+    <p class="text-danger">Trenutno nema uređaja vezanih za ovu stavku</p>
     @else
-    @if($stavka->vrstaUredjaja() == 1)
-    @include('servis.inc.vrsta1')
+
+    @if(in_array($stavka->vrstaUredjaja->id, [2, 3, 4, 5]))
+    @include('servis.inc.tabela_eksterni')
     @endif
-    @if($stavka->vrstaUredjaja() == 2)
-    @include('servis.inc.vrsta2')
+
+    @if(in_array($stavka->vrstaUredjaja->id, [6, 7, 8, 9, 10, 11]))
+    @include('servis.inc.tabela_interni')
     @endif
-    @if($stavka->vrstaUredjaja() == 3)
-    @include('servis.inc.vrsta3')
+
+    @if($stavka->vrstaUredjaja->id === 12)
+    @include('servis.inc.tabela_projektor')
     @endif
-    @if($stavka->vrstaUredjaja() == 4)
-    @include('servis.inc.vrsta4')
+
+    @if($stavka->vrstaUredjaja->id === 13)
+    @include('servis.inc.tabela_mrezni')
     @endif
+
     @endif
-    <div class="row">
-        <div class="col-md-6 col-md-offset-6 text-right">
-            @if($uredjaji)
-            {{ $uredjaji->links() }}
-            @endif
-        </div>
-    </div>
 </div>
 @endsection
 
 @section('traka')
 <div class="well">
-    <h3>Neki k</h3>
+    <h3>Dodavanje uređaja: <span class="text-success">{{ $stavka->vrstaUredjaja->naziv }}</span></h3>
+    <hr style="border-top: 1px solid #18BC9C">
+    @if($stavka->vrstaUredjaja->id === 1)
+    @include('servis.inc.forma_racunar')
+    @endif
+    @if($stavka->vrstaUredjaja->id === 2)
+    @include('servis.inc.forma_monitor')
+    @endif
+    @if($stavka->vrstaUredjaja->id === 3)
+    @include('servis.inc.forma_stampac')
+    @endif
+    @if($stavka->vrstaUredjaja->id === 4)
+    @include('servis.inc.forma_skener')
+    @endif
+    @if($stavka->vrstaUredjaja->id === 5)
+    @include('servis.inc.forma_ups')
+    @endif
+    @if($stavka->vrstaUredjaja->id === 12)
+    @include('servis.inc.forma_projektor')
+    @endif
+    @if($stavka->vrstaUredjaja->id === 13)
+    @include('servis.inc.forma_mrezni')
+    @endif
 </div>
+
+<!--  POCETAK brisanjeModal -->
+@include('sifarnici.inc.modal_brisanje')
+<!--  KRAJ brisanjeModal  -->
 @endsection
 
 @section('skripte')
 <script>
-    $(document).on('click', '#brisanjeOtpremnice', function () {
+
+    jQuery(window).on('resize', resizeChosen);
+
+    $('.chosen-select').chosen({
+        allow_single_deselect: true
+    });
+
+    function resizeChosen() {
+        $(".chosen-container").each(function () {
+            $(this).attr('style', 'width: 100%');
+        });
+    }
+
+    $(document).on('click', '#brisanjeStavkeOtpremnice', function () {
         var id = $(this).val();
         $('#idBrisanje').val(id);
-        var ruta = "{{ route('otpremnice.brisanje') }}";
+        var ruta = "{{ route('otpremnice.stavke.brisanje') }}";
         $('#brisanje-forma').attr('action', ruta);
     });
 </script>
