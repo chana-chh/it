@@ -44,7 +44,7 @@
                     @if ($racunar->osnovnaPloca)
                     <div class="row">
                         <div class="col-md-6">
-                             {{$racunar->osnovnaPloca->osnovnaPlocaModel->naziv}}
+                             {{$racunar->osnovnaPloca->osnovnaPlocaModel->proizvodjac->naziv}} - {{$racunar->osnovnaPloca->osnovnaPlocaModel->naziv}}, <strong>sn</strong>  {{$racunar->osnovnaPloca->serijski_broj}}
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -66,7 +66,7 @@
                     @if (!$racunar->procesori->isEmpty()) @foreach($racunar->procesori as $p)
                     <div class="row">
                         <div class="col-md-6">
-                            {{$p->procesorModel->proizvodjac->naziv}}, {{$p->procesorModel->naziv}}
+                            {{$p->procesorModel->proizvodjac->naziv}}, {{$p->procesorModel->naziv}} <strong>sn</strong> {{$p->serijski_broj}}
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -88,7 +88,7 @@
                     @if (!$racunar->memorije->isEmpty()) @foreach($racunar->memorije as $m)
                     <div class="row">
                         <div class="col-md-6">
-                            {{$m->memorijaModel->proizvodjac->naziv}}, {{$m->memorijaModel->kapacitet}}
+                            {{$m->memorijaModel->proizvodjac->naziv}}, {{$m->memorijaModel->kapacitet}} <strong>sn</strong> {{$m->serijski_broj}}
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -111,7 +111,7 @@
                     @if (!$racunar->hddovi->isEmpty()) @foreach($racunar->hddovi as $h)
                     <div class="row">
                         <div class="col-md-6">
-                            {{$h->hddModel->proizvodjac->naziv}}, {{$h->hddModel->kapacitet}}
+                            {{$h->hddModel->proizvodjac->naziv}}, {{$h->hddModel->kapacitet}} <strong>sn</strong> {{$h->serijski_broj}}
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -133,7 +133,7 @@
                     @if (!$racunar->grafickiAdapteri->isEmpty()) @foreach($racunar->grafickiAdapteri as $g)
                     <div class="row">
                         <div class="col-md-6">
-                            {{$g->grafickiAdapterModel->proizvodjac->naziv}}, {{$g->grafickiAdapterModel->cip}}
+                            {{$g->grafickiAdapterModel->proizvodjac->naziv}}, {{$g->grafickiAdapterModel->cip}} <strong>sn</strong> {{$g->serijski_broj}}
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -155,7 +155,7 @@
                     @if (!$racunar->napajanja->isEmpty()) @foreach($racunar->napajanja as $n)
                     <div class="row">
                         <div class="col-md-6">
-                            {{$n->napajanjeModel->proizvodjac->naziv}}, {{$n->napajanjeModel->snaga}} W
+                            {{$n->napajanjeModel->proizvodjac->naziv}}, {{$n->napajanjeModel->snaga}} W; <strong>sn</strong> {{$n->serijski_broj}}
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
