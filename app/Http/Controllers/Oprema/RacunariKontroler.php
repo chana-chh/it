@@ -318,7 +318,6 @@ class RacunariKontroler extends Kontroler
 
         $procesor = Procesor::find($request->procesor_id);
         $procesor->racunar_id = $id;
-        ;
         $procesor->save();
 
         if ($racunar->procesori->count() > 1 && $racunar->server == 0) {
@@ -410,10 +409,8 @@ class RacunariKontroler extends Kontroler
     {
 
         $racunar = Racunar::find($id);
-
         $memorija = Memorija::find($request->memorija_id);
         $memorija->racunar_id = $id;
-        ;
         $memorija->save();
 
         if ($racunar->memorije->count() > 1 && $racunar->server == 0) {
@@ -508,7 +505,6 @@ class RacunariKontroler extends Kontroler
 
         $hdd = Hdd::find($request->hdd_id);
         $hdd->racunar_id = $id;
-        ;
         $hdd->save();
 
         if ($racunar->hddovi->count() > 1 && $racunar->server == 0) {
@@ -603,7 +599,6 @@ class RacunariKontroler extends Kontroler
 
         $vga = GrafickiAdapter::find($request->vga_id);
         $vga->racunar_id = $id;
-        ;
         $vga->save();
 
         if ($racunar->grafickiAdapteri->count() > 1) {
@@ -698,7 +693,6 @@ class RacunariKontroler extends Kontroler
 
         $napajanje = Napajanje::find($request->napajanje_id);
         $napajanje->racunar_id = $id;
-        ;
         $napajanje->save();
 
         if ($racunar->napajanja->count() > 1) {
@@ -793,7 +787,6 @@ class RacunariKontroler extends Kontroler
 
         $monitor = Monitor::find($request->monitor_id);
         $monitor->racunar_id = $id;
-        ;
         $monitor->save();
 
         if ($racunar->monitori->count() > 1) {
@@ -888,7 +881,6 @@ class RacunariKontroler extends Kontroler
 
         $stampac = Stampac::find($request->stampac_id);
         $stampac->racunar_id = $id;
-        ;
         $stampac->save();
 
         if ($racunar->monitori->count() > 1) {
@@ -984,7 +976,6 @@ class RacunariKontroler extends Kontroler
 
         $skener = Skener::find($request->skener_id);
         $skener->racunar_id = $id;
-        ;
         $skener->save();
 
         if ($racunar->monitori->count() > 1) {
@@ -999,7 +990,7 @@ class RacunariKontroler extends Kontroler
         }
     }
 
-        public function getOtpis($id)
+    public function getOtpis($id)
     {
 
         $racunar = Racunar::find($id);
@@ -1007,7 +998,7 @@ class RacunariKontroler extends Kontroler
     }
 
     public function postOtpis(Request $request)
-    {   
+    {
         $racunar = Racunar::find($request->idOtpis);
         $ime = $racunar->ime;
         $kanc = $racunar->kancelarija->naziv;
@@ -1017,15 +1008,15 @@ class RacunariKontroler extends Kontroler
             $ploca = OsnovnaPloca::find($request->osnovnaPloca);
             $racunar->ploca_id = null;
             $racunar->save();
-                if (!$ploca->stavkaOtpremnice) {
-                    $ploca->stavkaOtpremnice = 1;
-                    $ploca->save();
-                }
-        }else{
+            if (!$ploca->stavkaOtpremnice) {
+                $ploca->stavkaOtpremnice = 1;
+                $ploca->save();
+            }
+        } else {
             $ploca = OsnovnaPloca::find($request->osnovnaPloca);
             $racunar->ploca_id = null;
             $racunar->save();
-            $ploca->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao  osnovnu ploču koja je bila u računaru: '. $ime . ', kancelarija: ' . $kanc;
+            $ploca->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name . ' je dana:' . Carbon::now() . ' otpisao  osnovnu ploču koja je bila u računaru: ' . $ime . ', kancelarija: ' . $kanc;
             $ploca->save();
             $ploca->delete();
         }
@@ -1034,97 +1025,96 @@ class RacunariKontroler extends Kontroler
             foreach ($request->procesor as $id_procesor) {
                 $cpu = Procesor::find($id_procesor);
                 $cpu->racunar_id = null;
-                    if (!$cpu->stavkaOtpremnice) {
-                        $cpu->stavkaOtpremnice = 2;
-                    }
+                if (!$cpu->stavkaOtpremnice) {
+                    $cpu->stavkaOtpremnice = 2;
+                }
                 $cpu->save();
-            }       
-        }else{
+            }
+        } else {
             foreach ($request->procesor as $id_procesor) {
                 $cpu = Procesor::find($id_procesor);
                 $cpu->racunar_id = null;
-                $cpu->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao  procesor koji je bio u računaru: '. $ime . ', kancelarija: ' . $kanc;
+                $cpu->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name . ' je dana:' . Carbon::now() . ' otpisao  procesor koji je bio u računaru: ' . $ime . ', kancelarija: ' . $kanc;
                 $cpu->save();
                 $cpu->delete();
-        }
+            }
         }
         //Memorije
         if (isset($request->memorija)) {
             foreach ($request->memorija as $id_memorije) {
                 $mem = Memorija::find($id_memorije);
                 $mem->racunar_id = null;
-                    if (!$mem->stavkaOtpremnice) {
-                        $mem->stavkaOtpremnice = 4;
-                    }
+                if (!$mem->stavkaOtpremnice) {
+                    $mem->stavkaOtpremnice = 4;
+                }
                 $mem->save();
-            }   
-        }else{
+            }
+        } else {
             foreach ($request->memorija as $id_memorije) {
                 $mem = Memorija::find($id_memorije);
                 $mem->racunar_id = null;
-                $mem->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao  memoriju koja je bila u računaru: '. $ime . ', kancelarija: ' . $kanc;
+                $mem->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name . ' je dana:' . Carbon::now() . ' otpisao  memoriju koja je bila u računaru: ' . $ime . ', kancelarija: ' . $kanc;
                 $mem->save();
                 $mem->delete();
-        }
+            }
         }
         //HDD
         if (isset($request->hdd)) {
             foreach ($request->hdd as $id_diska) {
                 $disk = Hdd::find($id_diska);
                 $disk->racunar_id = null;
-                    if (!$disk->stavkaOtpremnice) {
-                        $disk->stavkaOtpremnice = 5;
-                    }
+                if (!$disk->stavkaOtpremnice) {
+                    $disk->stavkaOtpremnice = 5;
+                }
                 $disk->save();
             }
-        }else{
+        } else {
             foreach ($request->hdd as $id_diska) {
                 $disk = Hdd::find($id_diska);
                 $disk->racunar_id = null;
-                $disk->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao čvrsti disk koji je bio u računaru: '. $ime . ', kancelarija: ' . $kanc;
+                $disk->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name . ' je dana:' . Carbon::now() . ' otpisao čvrsti disk koji je bio u računaru: ' . $ime . ', kancelarija: ' . $kanc;
                 $disk->save();
                 $disk->delete();
-        }
+            }
         }
         //VGA
         if (isset($request->vga)) {
             foreach ($request->vga as $id_vga) {
                 $garafa = GrafickiAdapter::find($id_vga);
                 $garafa->racunar_id = null;
-                    if (!$garafa->stavkaOtpremnice) {
-                        $garafa->stavkaOtpremnice = 3;
-                    }
+                if (!$garafa->stavkaOtpremnice) {
+                    $garafa->stavkaOtpremnice = 3;
+                }
                 $garafa->save();
-            }  
-        }else{
+            }
+        } else {
             foreach ($request->vga as $id_vga) {
                 $garafa = GrafickiAdapter::find($id_vga);
                 $garafa->racunar_id = null;
-                $garafa->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao grafički adapter koji je bio u računaru: '. $ime . ', kancelarija: ' . $kanc;
+                $garafa->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name . ' je dana:' . Carbon::now() . ' otpisao grafički adapter koji je bio u računaru: ' . $ime . ', kancelarija: ' . $kanc;
                 $garafa->save();
                 $garafa->delete();
-        }
+            }
         }
         //Napajanje
         if (isset($request->napajanja)) {
             foreach ($request->napajanja as $id_napajanja) {
                 $napajanje = Napajanje::find($id_napajanja);
                 $napajanje->racunar_id = null;
-                    if (!$napajanje->stavkaOtpremnice) {
-                        $napajanje->stavkaOtpremnice = 6;
-                    }
+                if (!$napajanje->stavkaOtpremnice) {
+                    $napajanje->stavkaOtpremnice = 6;
+                }
                 $napajanje->save();
             }
-            
-        }else{
+        } else {
             foreach ($request->napajanja as $id_napajanja) {
                 $napajanje = Napajanje::find($id_napajanja);
                 $napajanje->racunar_id = null;
-                $napajanje->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao napajanje koje je bilo u računaru: '. $ime . ', kancelarija: ' . $kanc;
+                $napajanje->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name . ' je dana:' . Carbon::now() . ' otpisao napajanje koje je bilo u računaru: ' . $ime . ', kancelarija: ' . $kanc;
                 $napajanje->save();
                 $napajanje->delete();
+            }
         }
-        }   
 
         $odgovor = $racunar->delete();
 
