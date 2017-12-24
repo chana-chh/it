@@ -7,14 +7,36 @@
 @endsection
 
 @section('naslov')
-    <div class="row">
-        <div class="col-md-12">
-            <h1><span><img class="slicica_animirana" alt="Računari ..." src="{{url('/images/kompjuterici.png')}}" style="height:64px;"></span>&emsp;Računari u kojima je osnovna ploča model <span style="color: #18bc9c">{{$model->proizvodjac->naziv}} {{$model->naziv}}, {{$model->soket->naziv}}</span>  </h1>
-        </div>
-        </div>
-        <hr>
 <div class="row">
     <div class="col-md-12">
+        <h1>
+            <img class="slicica_animirana" alt="Računari ..." src="{{url('/images/mbd.png')}}" style="height:64px;">
+            &emsp;Računari u kojima je osnovna ploča model
+            <span style="color: #18bc9c">{{$model->proizvodjac->naziv}} {{$model->naziv}}, {{$model->soket->naziv}}</span>
+        </h1>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-12">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="{{route('osnovne_ploce.modeli.detalj', $model->id)}}"
+               title="Povratak na detaljni pregled modela osnovne ploče {{$model->proizvodjac->naziv}} {{$model->naziv}}, {{$model->soket->naziv}}">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+            <a class="btn btn-primary" href="{{route('osnovne_ploce.modeli')}}" 
+                title="Povratak na listu modela osnovnih ploča">
+                <i class="fa fa-list"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 24px">
+<div class="col-md-12">
 @if($racunari->isEmpty())
             <h3 class="text-danger">Trenutno nema računara sa ovim modelom osnovne ploče</h3>
         @else
@@ -48,22 +70,6 @@
         @endif
     </div>
 </div>
-
-<hr>
-
-<div class="row dugmici">
-        <div class="col-md-12" style="margin-top: 20px">
-
-            <div class="col-md-6 text-left">
-                <a class="btn btn-info" href="{{route('osnovne_ploce.modeli.detalj', $model->id)}}" title="Povratak na detaljni pregled modela osnovne ploče {{$model->proizvodjac->naziv}} {{$model->naziv}}, {{$model->soket->naziv}}"><i class="fa fa-arrow-left" style="color:#2C3E50"></i></a>
-            </div>
-
-            <div class="col-md-6 text-right">
-                <a class="btn btn-info" href="{{route('pocetna')}}" title="Povratak na početnu stranu"><i class="fa fa-home" style="color:#2C3E50"></i></a>
-            </div>
-
-        </div>
-    </div>
 @endsection
 
 @section('skripte')

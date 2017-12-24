@@ -7,36 +7,43 @@
 @endsection
 
 @section('naslov')
-<div class="row">
-    <div class="col-md-8">
 <h1 class="page-header">
     <img class="slicica_animirana" alt="Aplikacije na računaru"
          src="{{ url('/images/aplikacije.png') }}" style="height:64px;">
-    &emsp;Aplikacije instalirane na računaru {{$uredjaj->ime}}
+    &emsp;Aplikacije instalirane na računaru <em class="text-success">{{$uredjaj->ime}}</em>
 </h1>
-</div>
-    <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <a href="{{ route('racunari.oprema.detalj', $uredjaj->id) }}" class="btn btn-success btn-block ono">
-            <i class="fa fa-arrow-left fa-fw"></i> Nazad na računar
-        </a>
-    </div>
-    <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <a class="btn btn-primary btn-block ono" href="#">
-            <i class="fa fa-plus-circle fa-fw"></i> Dodaj aplikaciju na računar
-        </a>
-    </div>
-    <div class="row">
+@endsection
+
+@section('sadrzaj')
+<div class="row" style="margin-bottom: 16px;">
     <div class="col-md-12">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="{{ route('racunari.oprema.detalj', $uredjaj->id) }}"
+               title="Povratak na prethodnu stranu">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+            <a class="btn btn-primary" href="{{route('racunari.oprema')}}"
+               title="Povratak na listu računara">
+                <i class="fa fa-list"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
 @if($aplikacije->isEmpty())
 <h3 class="text-danger">Trenutno nema instaliranih aplikacija</h3>
 @else
 <table id="tabela" class="table table-striped" cellspacing="0" width="100%">
     <thead>
-        <th>#</th>
-        <th>Naziv aplikacije</th>
-        <th>Proizvođač</th>
-        <th>Opis</th>
-        <th style="text-align:right"><i class="fa fa-cogs"></i></th>
+        <th style="width: 10%">#</th>
+        <th style="width: 25%">Naziv aplikacije</th>
+        <th style="width: 25%">Proizvođač</th>
+        <th style="width: 30%">Opis</th>
+        <th style="text-align:right; width: 10%"><i class="fa fa-cogs"></i></th>
     </thead>
     <tbody>
         @foreach ($aplikacije as $d)
@@ -46,11 +53,6 @@
             <td>{{$d->proizvodjac->naziv}}</td>
             <td>{{$d->opis}}</td>
             <td style="text-align:right;">
-                <button class="btn btn-success btn-sm otvori-izmenu"
-                        data-toggle="modal" data-target="#editModal"
-                        value="{{ $d->id }}">
-                    <i class="fa fa-pencil"></i>
-                </button>
                 <button class="btn btn-danger btn-sm otvori-brisanje"
                         data-toggle="modal" data-target="#brisanjeModal"
                         value="{{ $d->id }}">
@@ -61,13 +63,56 @@
     @endforeach
 </tbody>
 </table>
-</div>
-</div>
+
 @endif
  
  <!--  POCETAK brisanjeModal  -->
 @include('sifarnici.inc.modal_brisanje')
 <!--  KRAJ brisanjeModal  -->
+@endsection
+
+@section('traka')
+<h4>Dodavanje aplikacije na računar</h4>
+<hr>
+<div class="well">
+    <form action="{{ route('racunari.oprema.aplikacije.post', $uredjaj->id) }}" method="POST" data-parsley-validate>
+        {{ csrf_field() }}
+
+        <div class="form-group{{ $errors->has('aplikacija_id') ? ' has-error' : '' }}">
+            <label for="aplikacija_id">Aplikacija:</label>
+            <select name="aplikacija_id[]" id="aplikacija_id" multiple="true" class="chosen-select form-control" data-placeholder="aplikacija ..." required>
+                <option value=""></option>
+                @foreach($sve_aplikacije as $app)
+                <option value="{{ $app->id }}" {{ old( 'aplikacija_id')==$app->id ? ' selected' : '' }}>
+                    <strong>{{ $app->naziv }}</strong>{{ $app->proizvodjac->naziv }}
+                </option>
+                @endforeach
+            </select>
+            @if ($errors->has('aplikacija_id'))
+            <span class="help-block">
+                <strong>{{ $errors->first('aplikacija_id') }}</strong>
+            </span>
+            @endif
+        </div>
+
+        <div class="row dugmici">
+            <div class="col-md-12" style="margin-top: 20px;">
+                <div class="form-group">
+                    <div class="col-md-6 snimi">
+                        <button type="submit" class="btn btn-success btn-block ono">
+                            <i class="fa fa-plus-circle"></i>&emsp;Dodaj
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-danger btn-block ono" href="{{route('racunari.oprema.aplikacije', $uredjaj->id)}}">
+                            <i class="fa fa-ban"></i>&emsp;Otkaži
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 @endsection
 
 @section('skripte')
@@ -100,7 +145,18 @@ $( document ).ready(function() {
     },
     });
 
+        if ( $( "#tabela" ).length ) {
         new $.fn.dataTable.FixedHeader( tabela );
+
+        $(document).on('click', '.otvori-brisanje', function () {
+            var data = {!! $uredjaj->id !!};
+            var id = $(this).val();
+            $('#idBrisanje').val(id);
+            var rutam = "{{ route('racunari.oprema.aplikacije.bisanje', 'menjaj')}}";
+            var ruta = rutam.replace("menjaj", data);
+            $('#brisanje-forma').attr('action', ruta);
+        });
+    };
 
     resizeChosen();
     jQuery(window).on('resize', resizeChosen);
@@ -114,12 +170,7 @@ $( document ).ready(function() {
    });
    };
 
-   $(document).on('click', '.otvori-brisanje', function () {
-            var id = $(this).val();
-            $('#idBrisanje').val(id);
-            var ruta = "#";
-            $('#brisanje-forma').attr('action', ruta);
-        });
+   
 
 });
 </script>

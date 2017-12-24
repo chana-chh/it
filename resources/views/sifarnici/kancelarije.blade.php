@@ -36,10 +36,10 @@
             <td>{{$kancelarija->lokacija->naziv}}</td>
             <td>{{$kancelarija->napomena}}</td>
             <td style="text-align:right;">
-                <a class="btn btn-primary btn-sm" id="dugmeDetalj" href="{{route('kancelarije.detalj.get', $kancelarija->id)}}">
+                <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('kancelarije.detalj.get', $kancelarija->id)}}">
                     <i class="fa fa-eye"></i>
                 </a>
-                <button class="btn btn-success btn-sm otvori-izmenu"
+                <button class="btn btn-info btn-sm otvori-izmenu"
                         data-toggle="modal" data-target="#editModal"
                         value="{{ $kancelarija->id }}">
                     <i class="fa fa-pencil"></i>
@@ -133,9 +133,9 @@
 
         <div class="form-group{{ $errors->has('lokacija_id') ? ' has-error' : '' }}">
             <label for="lokacija_id">Lokacija</label>&emsp;
-            <button type="button" class="btn btn-primary btn-xs otvori-lokacije"
+            <button type="button" class="btn btn-success btn-xs otvori-lokacije"
                         data-toggle="modal" data-target="#lokacijaModal">
-                    <i class="fa fa-plus-circle"></i>
+                    <i class="fa fa-plus"></i>
                 </button>
             <select name="lokacija_id" id="lokacija_id" class="chosen-select form-control" data-placeholder="lokacija ..." required>
                 <option value=""></option>

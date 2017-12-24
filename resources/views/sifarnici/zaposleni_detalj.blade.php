@@ -34,7 +34,7 @@
                title="Izmena podataka o zaposlenom">
                 <i class="fa fa-pencil"></i>
             </a>
-            <button id="brisanjeOtpremnice" class="btn btn-primary"
+            <button id="brisanjeZaposlenog" class="btn btn-primary otvori-brisanje"
                     data-toggle="modal" data-target="#brisanjeModal"
                     value="{{$zaposleni->id}}"
                     title="Brisanje zaposlenog">
@@ -53,7 +53,7 @@
             </tr>
             <tr>
                 <th style="width: 20%;">Kancelarija:</th>
-                <td style="width: 80%;">{{$zaposleni->kancelarija->naziv}}, {{$zaposleni->kancelarija->lokacija->naziv}}, {{$zaposleni->kancelarija->sprat->naziv}}, 
+                <td style="width: 80%;"> <a href="{{route('kancelarije.detalj.get', $zaposleni->kancelarija->id)}}">{{$zaposleni->kancelarija->naziv}}, {{$zaposleni->kancelarija->lokacija->naziv}}, {{$zaposleni->kancelarija->sprat->naziv}}</a>  
                 </td>
             </tr>
             @if ($zaposleni->kancelarija->telefoni)
@@ -70,13 +70,9 @@
              <tr>
                 <th style="width: 20%;">Računar:</th>
                 <td style="width: 80%;">
-                    @php
-                        $rezultat = array();
-                        foreach ($zaposleni->racunar as $racunar){
-                            $rezultat[] = $racunar->ime;
-                        }
-                        echo implode(", ",$rezultat);
-                    @endphp
+                        @foreach ($zaposleni->racunar as $racunar)
+                            <a href="{{route('racunari.oprema.detalj', $racunar->id)}}">{{$racunar->ime}}</a> &emsp;
+                        @endforeach
                 </td>
             </tr>
             @else
@@ -496,6 +492,13 @@ $( document ).ready(function() {
     var mobilni_detalj_ruta = "{{ route('mobilni.zaposleni.detalj') }}";
     var email_brisanje_ruta = "{{ route('email.zaposleni.brisanje') }}";
     var email_detalj_ruta = "{{ route('email.zaposleni.detalj') }}";
+
+    $(document).on('click', '.otvori-brisanje', function () {
+            var id = $(this).val();
+            $('#idBrisanje').val(id);
+            var ruta = "{{ route('zaposleni.brisanje') }}";
+            $('#brisanje-forma').attr('action', ruta);
+        });
 
     $('#slikaModal').on('show.bs.modal', function (e) {
             var image = $(e.relatedTarget).attr('src');

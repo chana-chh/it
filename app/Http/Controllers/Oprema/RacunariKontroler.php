@@ -36,6 +36,7 @@ use App\Modeli\StampacModel;
 use App\Modeli\Skener;
 use App\Modeli\SkenerModel;
 use App\Modeli\Greska;
+use App\Modeli\Aplikacija;
 
 class RacunariKontroler extends Kontroler
 {
@@ -144,13 +145,42 @@ class RacunariKontroler extends Kontroler
         return redirect()->route('racunari.oprema');
     }
 
+    //Aplikacije
+
     public function getAplikacije($id)
     {
 
         $uredjaj = Racunar::find($id);
         $aplikacije = $uredjaj->aplikacije;
+        $sve_aplikacije = Aplikacija::all();
 
-        return view('oprema.racunari_aplikacije')->with(compact('aplikacije', 'uredjaj'));
+        return view('oprema.racunari_aplikacije')->with(compact('aplikacije', 'uredjaj', 'sve_aplikacije'));
+    }
+
+    public function postAplikacije(Request $request, $id)
+    {
+        $this->validate($request, [
+                'aplikacija_id' => ['required']
+            ]);
+
+        $uredjaj = Racunar::find($id);
+        $uredjaj->aplikacije()->attach($request->aplikacija_id);
+
+
+            Session::flash('uspeh', 'Aplikacija je uspešno dodata!');
+
+        return redirect()->route('racunari.oprema.aplikacije', $id);
+    }
+
+    public function postBrisanjeAplikacije(Request $request, $id)
+    {
+
+        $uredjaj = Racunar::find($id);
+        $uredjaj->aplikacije()->detach($request->idBrisanje);
+
+        Session::flash('uspeh', 'Aplikacija je uspešno obrisana!');
+
+        return redirect()->route('racunari.oprema.aplikacije', $id);
     }
 
     //OSNOVNE PLOCE
@@ -1190,6 +1220,7 @@ class RacunariKontroler extends Kontroler
         $racunar->kancelarija_id = null;
         $racunar->zaposleni_id = null;
         $racunar->save();
+        $racunar->aplikacije()->detach();
         $odgovor = $racunar->delete();
 
         if ($odgovor) {

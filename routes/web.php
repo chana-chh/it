@@ -138,6 +138,7 @@ Route::post('sifarnici/kancelarije/dodavanje', 'Sifarnici\KancelarijeKontroler@p
 Route::post('sifarnici/kancelarije/brisanje', 'Sifarnici\KancelarijeKontroler@postBrisanje')->name('kancelarije.brisanje');
 Route::post('sifarnici/kancelarije/izmena', 'Sifarnici\KancelarijeKontroler@postIzmena')->name('kancelarije.izmena');
 Route::post('sifarnici/kancelarije/detalj', 'Sifarnici\KancelarijeKontroler@postDetalj')->name('kancelarije.detalj');
+Route::post('sifarnici/kancelarije/telefon', 'Sifarnici\KancelarijeKontroler@postDodavanjeTelefon')->name('kancelarija.telefon.dodavanje.post');
 
 // Uprave
 Route::get('sifarnici/uprave', 'Sifarnici\UpraveKontroler@getLista')->name('uprave');
@@ -530,6 +531,8 @@ Route::get('oprema/racunari/otpis/{id}', 'Oprema\RacunariKontroler@getOtpis')->n
 Route::post('oprema/racunari/otpis', 'Oprema\RacunariKontroler@postOtpis')->name('racunari.oprema.otpis.post');
 //Racunari - aplikacije
 Route::get('oprema/racunari/aplikacije/{id}', 'Oprema\RacunariKontroler@getAplikacije')->name('racunari.oprema.aplikacije');
+Route::post('oprema/racunari/aplikacije/{id}', 'Oprema\RacunariKontroler@postAplikacije')->name('racunari.oprema.aplikacije.post');
+Route::post('oprema/aplikacije/brisanje/{id}', 'Oprema\RacunariKontroler@postBrisanjeAplikacije')->name('racunari.oprema.aplikacije.bisanje');
 //Racunari - skeneriploce
 Route::get('oprema/racunari/ploce/{id}', 'Oprema\RacunariKontroler@getPloce')->name('racunari.oprema.ploce');
 Route::get('oprema/racunari/ploce/izvadi/{id}', 'Oprema\RacunariKontroler@getIzvadiPlocu')->name('racunari.oprema.ploce.izvadi');

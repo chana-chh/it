@@ -8,19 +8,28 @@
             <div class = "modal-body">
                 <h3>Da li želite trajno da obrišete stavku? *</h3>
                 <p class = "text-danger">* Ova akcija je nepovratna!</p>
-
-            </div>
-            <div class = "modal-footer">
-                <form id="brisanje-forma" action="" method="POST" style="display: inline-block;">
+                <form id="brisanje-forma" action="" method="POST">
                     {{ csrf_field() }}
                     <input type="hidden" id="idBrisanje" name="idBrisanje">
-                    <button id = "btn-brisanje-obrisi" class = "btn btn-danger">
-                        <i class = "fa fa-trash"></i> Obriši
-                    </button>
+                    <hr style="margin-top: 30px;">
+
+            <div class="row dugmici" style="margin-top: 30px;">
+            <div class="col-md-12" >
+                <div class="form-group">
+                    <div class="col-md-6 snimi">
+                        <button id = "btn-brisanje-obrisi" type="submit" class="btn btn-danger btn-block ono">
+                            <i class="fa fa-recycle"></i>&emsp;Obriši
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-primary btn-block ono" data-dismiss="modal">
+                            <i class="fa fa-ban"></i>&emsp;Otkaži
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
                 </form>
-                <button class = "btn btn-primary" data-dismiss="modal">
-                    <i class = "fa fa-ban"></i> Otkaži
-                </button>
             </div>
         </div>
     </div>

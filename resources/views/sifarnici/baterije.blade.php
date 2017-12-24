@@ -22,10 +22,11 @@
     <thead>
     <th style="width: 10%;">#</th>
     <th style="width: 20%;">Naziv grupe</th>
-    <th style="width: 30%;">Kompatibilni modeli</th>
+    <th style="width: 20%;">Kompatibilni modeli</th>
     <th style="width: 10%;">Kapacitet</th>
     <th style="width: 10%;">Napon</th>
     <th style="width: 10%;">Dimenzije</th>
+    <th style="width: 10%;">Broj</th>
     <th style="width: 10%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
 </thead>
 <tbody>
@@ -37,6 +38,7 @@
         <td>{{ $d->kapacitet }} Ah</td>
         <td>{{ $d->napon }} V</td>
         <td>{{ $d->dimenzije }}</td>
+        <td> <strong class="text-success">{{ $d->broj() }}</strong></td>
         <td style="text-align:right;">
             <button class="btn btn-success btn-sm otvori-izmenu"
                     data-toggle="modal" data-target="#editModal"

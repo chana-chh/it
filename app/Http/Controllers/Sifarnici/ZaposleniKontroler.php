@@ -157,7 +157,7 @@ class ZaposleniKontroler extends Kontroler
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom brisanja zaposlenog. Pokušajte ponovo, kasnije!');
         }
-        return Redirect::back();
+        return redirect()->route('zaposleni');
     }
 
 }

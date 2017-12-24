@@ -9,6 +9,7 @@ use App\Http\Controllers\Kontroler;
 use App\Modeli\Kancelarija;
 use App\Modeli\Sprat;
 use App\Modeli\Lokacija;
+use App\Modeli\Telefon;
 use App\Helpers\UredjajiHelper;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
@@ -100,6 +101,29 @@ class KancelarijeKontroler extends Kontroler
             Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
         }
         return redirect()->route('kancelarije');
+    }
+
+    public function postDodavanjeTelefon(Request $request){
+
+        $this->validate($request, [
+            'broj_telefona' => [
+                'required',
+            ],
+            'kancelarija_id' => [
+                 'required',
+            ],
+        ]);
+
+        $data = new Telefon();
+        $data->broj = $request->broj_telefona;
+        $data->vrsta = $request->vrstaModal;
+        $data->kancelarija_id = $request->kancelarija_id;
+
+        $data->save();
+
+
+        Session::flash('uspeh', 'Broj telefona je uspešno dodat!');
+        return Redirect::back();
     }
 
 
