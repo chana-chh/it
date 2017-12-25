@@ -159,7 +159,7 @@
 //    $(document).on('click', '#brisanjeRacunaraStavkeNabavke', function () {
 //        var id = $(this).val();
 //        $('#idBrisanje').val(id);
-//        var ruta = "{{ route('nabavke.stavke.racunari.brisanje') }}";
+//        var ruta = "{{-- route('nabavke.stavke.racunari.brisanje') --}}";
 //        $('#brisanje-forma').attr('action', ruta);
 //    });
 </script>
