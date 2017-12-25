@@ -113,7 +113,11 @@
 
             <div class="row">
                 <div class="col-md-6 text-center">
+                    @if($zaposleni->src)
                     <img src="{{asset('images/slike_zaposlenih/'.$zaposleni->src)}}" class="img-rounded" style="max-height: 120px" alt="Slika zaposlenog">
+                    @else
+                    <h4>Fotografija zaposlenog nije dostupna</h4>
+                    @endif
                     <hr>
                     <div class="input-group image-preview" style="margin-top: 30px;">
                         <input type="text" class="form-control image-preview-filename" disabled="disabled">
@@ -125,11 +129,12 @@
                                 <span>
                                     <i class="fa fa-upload" aria-hidden="true"></i>
                                 </span>
-                                <span class="image-preview-input-title">Izmeni fotografiju zaposlenog</span>
+                                <span class="image-preview-input-title">Izmeni/dodaj fotografiju zaposlenog</span>
                                 <input type="file" accept="image/png, image/jpeg, image/gif" name="slika" id="slika" />
                             </div>
                         </span>
                     </div>
+
                 </div>
                 <div class="col-md-6">
                     <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">

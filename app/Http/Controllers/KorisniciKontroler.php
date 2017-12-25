@@ -8,7 +8,6 @@ use Redirect;
 use Gate;
 
 use App\Modeli\Korisnik;
-use App\Modeli\Predmet;
 
 class KorisniciKontroler extends Kontroler
 {
@@ -48,20 +47,14 @@ class KorisniciKontroler extends Kontroler
 
         $korisnik->save();
 
-        Session::flash('uspeh','Корисник је успешно додат!');
+        Session::flash('uspeh','Korisnik je uspešno dodat!');
         return redirect()->route('korisnici');
     }
 
     public function getPregled($id)
         {
                 $korisnik = Korisnik::find($id);
-
-                if ($korisnik->predmet()) {
-                	$broj_predmeta = $korisnik->predmet()->count();
-                } else {
-                	$broj_predmeta == 0;
-                }
-                return view('korisnici_pregled')->with(compact ('korisnik', 'broj_predmeta'));
+                return view('korisnici_pregled')->with(compact ('korisnik'));
             }
 
     public function postIzmena(Request $r, $id)
@@ -101,24 +94,21 @@ class KorisniciKontroler extends Kontroler
         }
         $korisnik->save();
 
-            Session::flash('uspeh','Подаци о кориснику су успешно измењени!');
+            Session::flash('uspeh','Podaci o korisniku su uspešno izmenjeni!');
             return redirect()->route('korisnici');
         }
 
         public function postBrisanje(Request $r)
     {
 
-                $id = $r->id;
-                $korisnik = Korisnik::find($id);
-                if ($korisnik->predmet()) {
-                    Predmet::where('korisnik_id', $id)->update(['korisnik_id' => null]);
-                }
-                $odgovor = $korisnik->delete();
+                $data = Korisnik::find($request->idBrisanje);
+                $odgovor = $data->delete();
                 if ($odgovor) {
-                Session::flash('uspeh','Корисник је успешно обрисан!');
+                Session::flash('uspeh','Korisnik je uspešno obrisan!');
                 }
                 else{
-                Session::flash('greska','Дошло је до грешке приликом брисања корисника. Покушајте поново, касније!');
+                Session::flash('greska','Došlo je do greške prilikom brisanja korisnika. Pokušajte ponovo, kasnije!');
                 }
+                 return Redirect::back();
     }
 }

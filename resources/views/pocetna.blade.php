@@ -191,8 +191,8 @@
             </div>
         </div>
     </div>
-    <div class="row well">
-        <h3>Spoljne aplikacije</h3>
+    <div class="row ceo_dva boxic">
+        <h4 class="text-center">Spoljne aplikacije</h4>
         <dir class="col-md-6">
             
             <img alt="postfix" src="{{url('/images/postfix.png')}}" style="height: 64px;">&emsp;

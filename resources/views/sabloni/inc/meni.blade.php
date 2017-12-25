@@ -106,6 +106,8 @@
                             <li><a href="{{route('aplikacije')}}">Aplikacije</a></li>
                             <li><a href="{{route('licence')}}">Licence</a></li>
                             <li><a href="{{route('reciklaze')}}">Reciklaže</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{route('korisnici')}}">Korisnici</a></li>
                         </ul>
                     </li>
                     <li style="margin-left: 40px; opacity: 0.7;">

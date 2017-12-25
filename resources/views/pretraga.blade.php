@@ -141,7 +141,7 @@
                         @foreach($kancelarija->zaposleni as $z)
                         <li class="zaposleniPopover"  style="cursor: pointer;"
                             data-title="{{ $z->imePrezime() }}"
-                            data-content="<img src='{{ $z->src ? url($z->src) : '' }}' class='img-circle' style='height: 128px;'>">
+                            data-content="<img src='{{ $z->src ? asset('images/slike_zaposlenih/'.$z->src) : '' }}' class='img-circle' style='height: 128px;'>">
                             <h4><i class="fa fa-user fa-fw text-success"></i>&emsp;{{ $z->imePrezime() }}</h4>
                             <ul style="list-style-type: none;">
                                 @foreach($z->mobilni as $m)

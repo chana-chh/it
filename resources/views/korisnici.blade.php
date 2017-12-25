@@ -1,30 +1,32 @@
 @extends('sabloni.app')
 
-@section('naziv', 'Корисници')
+@section('naziv', 'Korisnicii')
 
 @section('meni')
     @include('sabloni.inc.meni')
 @endsection
 
-
-
 @section('naslov')
-    <h1 class="page-header">Корисници</h1>
+<h1 class="page-header">
+    <img class="slicica_animirana" alt="Korisnici"
+         src="{{ url('/images/korisnik.png') }}" style="height:64px;">
+    &emsp;Korisnici
+</h1>
 @endsection
 
 @section('sadrzaj')
-<h2 >Листа активних корисника</h2>
+<h2 >Lista aktivnih korisnika</h2>
 <hr>
   @if($korisnici->isEmpty())
-            <h3 class="text-danger">Тренутно нема корисника у бази</h3>
+            <h3 class="text-danger">Trenutno nema korisnika u bazi</h3>
         @else
             <table class="table table-striped tabelaKorisnici" name="tabelaKorisnici" id="tabelaKorisnici">
                 <thead>
-                      <th>#</th>
-                      <th>Име и презиме</th>
-                      <th>Корисничко име</th>
-                      <th>Администратор</th>
-                      <th style="text-align:center"><i class="fa fa-cogs"></i></th>
+                      <th style="width: 10%">#</th>
+                      <th style="width: 35%">Ime i prezime</th>
+                      <th style="width: 30%">Korisničko ime</th>
+                      <th style="width: 15%">Administrator</th>
+                      <th style="text-align:centerč width: 10%"><i class="fa fa-cogs"></i></th>
                 </thead>
                 <tbody id="korisnici_lista" name="korisnici_lista">
                 @foreach ($korisnici as $korisnik)
@@ -43,37 +45,20 @@
             </table>
         @endif
 
-        {{-- Modal za dijalog brisanje--}}
-    <div class="modal fade" id="brisanjeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-           <div class="modal-content">
-             <div class="modal-header">
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="brisanjeModalLabel">Упозорење!</h4>
-            </div>
-            <div class="modal-body">
-                <h4 class="text-primary">Да ли желите трајно да обришете корисника</strong></h4>
-                <p ><strong>Ова акција је неповратна!</strong></p>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-success" id="btn-obrisi">Обриши</button>
-            <button type="button" class="btn btn-danger" id="btn-otkazi">Откажи</button>
-            </div>
-        </div>
-      </div>
-  </div>
-    {{-- Kraj Modala za dijalog brisanje--}}
+ <!--  POCETAK brisanjeModal  -->
+@include('sifarnici.inc.modal_brisanje')
+<!--  KRAJ brisanjeModal  -->
 @endsection
 
 @section('traka')
-<h3 >Додавање корисника</h3>
+<h3>Dodavanje korisnika</h3>
 <hr>
 <div class="well">
     <form action="{{ route('korisnici.dodavanje') }}" method="POST" data-parsley-validate>
         {{ csrf_field() }}
 
         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-            <label for="name">Име и презиме: </label>
+            <label for="name">Ime i prezime: </label>
             <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" maxlength="255" required>
             @if ($errors->has('name'))
                 <span class="help-block">
@@ -83,7 +68,7 @@
         </div>
 
         <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-            <label for="username">Корисничко име: </label>
+            <label for="username">Korisničko ime: </label>
             <input type="text" name="username" id="username" class="form-control" value="{{ old('username') }}" maxlength="190 " required>
             @if ($errors->has('username'))
                 <span class="help-block">
@@ -93,7 +78,7 @@
         </div>
 
           <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-        <label for="password">Лозинка:</label>
+        <label for="password">Lozinka:</label>
         <input type="password" name="password" id="password" class="form-control" minlength="4" required>
             @if ($errors->has('password'))
                 <span class="help-block">
@@ -103,7 +88,7 @@
         </div>
 
         <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-        <label for="password-confirm">Потврда лозинке:</label>
+        <label for="password-confirm">Potvrda lozinke:</label>
         <input type="password" name="password_confirmation" id="password-confirm" class="form-control" minlength="4" required>
             @if ($errors->has('password_confirmation'))
                 <span class="help-block">
@@ -113,12 +98,24 @@
         </div>
 
         <div class="form-group checkboxoviforme">
-                <label><input type="checkbox" name="admin" id="admin"> &emsp;Да ли је корисник администратор?</label>
+                <label><input type="checkbox" name="admin" id="admin"> &emsp;Da li je korisnik administrator?</label>
         </div>
 
-        <div class="form-group text-right">
-            <button type="submit" class="btn btn-success"><i class="fa fa-plus-circle"></i> Додај</button>
-            <a class="btn btn-danger" href="{{route('korisnici')}}"><i class="fa fa-ban"></i> Откажи</a>
+              <div class="row dugmici">
+            <div class="col-md-12">
+                <div class="form-group text-right">
+                    <div class="col-md-6 snimi">
+                        <button type="submit" class="btn btn-success btn-block ono">
+                            <i class="fa fa-plus-circle"></i> Dodaj
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-danger btn-block ono" href="{{route('korisnici')}}">
+                            <i class="fa fa-ban"></i> Otkaži
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
 </div>
@@ -146,31 +143,12 @@ $( document ).ready(function() {
     },
     });
 
-    $(document).on('click','.otvori_modal',function(){
-
-        var id = $(this).val();
-        
-        var ruta = "{{ route('korisnici.brisanje') }}";
-
-
-        $('#brisanjeModal').modal('show');
-
-        $('#btn-obrisi').click(function(){
-            $.ajax({
-            url: ruta,
-            type:"POST", 
-            data: {"id":id, _token: "{!! csrf_token() !!}"}, 
-            success: function(){
-            location.reload(); 
-          }
+ $(document).on('click', '.otvori-brisanje', function () {
+            var id = $(this).val();
+            $('#idBrisanje').val(id);
+            var ruta = "{{ route('korisnici.brisanje') }}";
+            $('#brisanje-forma').attr('action', ruta);
         });
-
-        $('#brisanjeModal').modal('hide');
-        });
-        $('#btn-otkazi').click(function(){
-            $('#brisanjeModal').modal('hide');
-        });
-    });
 });
 </script>
 @endsection
