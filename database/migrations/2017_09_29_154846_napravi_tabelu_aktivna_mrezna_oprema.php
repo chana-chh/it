@@ -18,7 +18,7 @@ class NapraviTabeluAktivnaMreznaOprema extends Migration
             $table->integer('broj_portova')->unsigned();
             $table->boolean('upravljiv')->default(false);
             $table->integer('proizvodjac_id')->unsigned();
-            $table->integer('kancelarija_id')->unsigned();
+            $table->integer('kancelarija_id')->unsigned()->nullable();
             $table->integer('stavka_otpremnice_id')->unsigned()->nullable();
             $table->integer('stavka_nabavke_id')->unsigned()->nullable();
             $table->string('napomena')->nullable();

@@ -19,7 +19,7 @@ class NapraviTabeluProjektori extends Migration
             $table->string('rezolucija')->nullable();
             $table->string('kontrast')->nullable();
             $table->integer('proizvodjac_id')->unsigned();
-            $table->integer('kancelarija_id')->unsigned();
+            $table->integer('kancelarija_id')->unsigned()->nullable();
             $table->integer('stavka_otpremnice_id')->unsigned()->nullable();
             $table->integer('stavka_nabavke_id')->unsigned()->nullable();
             $table->text('link')->nullable();
