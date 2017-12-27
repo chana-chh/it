@@ -19,6 +19,13 @@ class AplikacijeKontroler extends Kontroler
     	return view('sifarnici.aplikacije')->with(compact ('aplikacije', 'proizvodjaci'));
     }
 
+    public function getListaRacunari($id)
+    {
+        $aplikacija = Aplikacija::find($id);
+        $racunari = $aplikacija->racunari;
+        return view('sifarnici.aplikacije_racunari')->with(compact ('racunari', 'aplikacija'));
+    }
+
     public function postDetalj(Request $request)
         {
             if($request->ajax()){

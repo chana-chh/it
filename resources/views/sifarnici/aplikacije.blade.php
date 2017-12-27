@@ -24,6 +24,7 @@
         <th>Naziv</th>
         <th>Proizvođač</th>
         <th>Opis</th>
+        <th>Broj</th>
         <th style="text-align:right"><i class="fa fa-cogs"></i></th>
     </thead>
     <tbody>
@@ -33,6 +34,7 @@
             <td><strong>{{$d->naziv}}</strong></td>
             <td>{{$d->proizvodjac->naziv}}</td>
             <td>{{$d->opis}}</td>
+            <td> <a href="{{ route('aplikacije.racunari', $d->id) }}">{{$d->racunari->count()}}</a></td>
             <td style="text-align:right;">
                 <button class="btn btn-success btn-sm otvori-izmenu"
                         data-toggle="modal" data-target="#editModal"

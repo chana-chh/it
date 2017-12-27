@@ -275,6 +275,7 @@ Route::post('sifarnici/aplikacije/dodavanje', 'Sifarnici\AplikacijeKontroler@pos
 Route::post('sifarnici/aplikacije/brisanje', 'Sifarnici\AplikacijeKontroler@postBrisanje')->name('aplikacije.brisanje');
 Route::post('sifarnici/aplikacije/izmena', 'Sifarnici\AplikacijeKontroler@postIzmena')->name('aplikacije.izmena');
 Route::post('sifarnici/aplikacije/detalj', 'Sifarnici\AplikacijeKontroler@postDetalj')->name('aplikacije.detalj');
+Route::get('sifarnici/aplikacije/racunari/{id}', 'Sifarnici\AplikacijeKontroler@getListaRacunari')->name('aplikacije.racunari');
 
 
 // MODELI UREDJAJA
