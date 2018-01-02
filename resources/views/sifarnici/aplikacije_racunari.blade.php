@@ -41,11 +41,11 @@
 @else
 <table id="tabela" class="table table-striped" cellspacing="0" width="100%">
     <thead>
-        <th>#</th>
-        <th>Ime</th>
-        <th>Kancelarija</th>
-        <th>Inventarski broj</th>
-        <th>Zaposleni</th>
+        <th style="width: 10%">#</th>
+        <th style="width: 10%">Ime</th>
+        <th style="width: 30%">Zaposleni</th>
+        <th style="width: 30%">Kancelarija</th>
+        <th style="width: 20%">Inventarski broj</th>
 
     </thead>
     <tbody>
@@ -53,9 +53,9 @@
         <tr>
             <td>{{$d->id}}</td>
             <td><strong>{{$d->ime}}</strong></td>
+            <td>@if($d->zaposleni){{$d->zaposleni->imePrezime()}}@endif</td>
             <td>@if($d->kancelarija){{$d->kancelarija->sviPodaci()}}@endif</td>
             <td>{{$d->inventarski_broj}}</td>
-            <td>@if($d->zaposleni){{$d->zaposleni->imePrezime()}}@endif</td>
         </tr>
     @endforeach
 </tbody>

@@ -114,13 +114,13 @@
 <h3>Broj računara sa ovim modelom memorije: <a href="{{route('memorije.modeli.racunari', $memorija->id) }}" title="Pregled svih računara sa ovim modelom memorije"> {{$racunari}} </a></h3>
 </div>
 </div>
-
+@if($memorija->link)
 <div class="row" style="margin-top: 50px">
 <div class="col-md-12 text-center">
     <a href="{{$memorija->link}}" target="_blank"><img alt="link" src="{{url('/images/link.png')}}" style="height:32px;"></a>
 </div>
 </div>
-
+@endif
 @endsection
 
 @section('skripte')

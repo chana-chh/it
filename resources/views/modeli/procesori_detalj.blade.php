@@ -123,13 +123,13 @@
 <h3>Broj računara sa ovim modelom procesora: <a href="{{route('procesori.modeli.racunari', $procesor->id) }}" title="Pregled svih računara sa ovim modelom procesora"> {{$racunari}} </a></h3>
 </div>
 </div>
-
+@if($procesor->link)
 <div class="row" style="margin-top: 50px">
 <div class="col-md-12 text-center">
     <a href="{{$procesor->link}}" target="_blank"><img alt="link" src="{{url('/images/link.png')}}" style="height:32px;"></a>
 </div>
 </div>
-
+@endif
 @endsection
 
 @section('skripte')

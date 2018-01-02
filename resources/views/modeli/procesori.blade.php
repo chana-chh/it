@@ -55,10 +55,11 @@
             <td>{{$procesor->broj_jezgara}}</td>
             <td>{{$procesor->broj_niti}}</td>
             <td>{{$procesor->ocena}}</td>
-            <td>
+            <td>@if($procesor->link)
                 <a href="{{$procesor->link}}" target="_blank" style="font-size: 2rem;">
                     <i class="fa fa-link"></i>
                 </a>
+                @endif
             </td>
             <td style="text-align:right; vertical-align: middle; line-height: normal;">
                 <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('procesori.modeli.detalj', $procesor->id)}}">

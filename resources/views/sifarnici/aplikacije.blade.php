@@ -20,12 +20,12 @@
 @else
 <table id="tabela" class="table table-striped" cellspacing="0" width="100%">
     <thead>
-        <th>#</th>
-        <th>Naziv</th>
-        <th>Proizvođač</th>
-        <th>Opis</th>
-        <th>Broj</th>
-        <th style="text-align:right"><i class="fa fa-cogs"></i></th>
+        <th style="width: 10%;">#</th>
+        <th style="width: 25%;">Naziv</th>
+        <th style="width: 20%;">Proizvođač</th>
+        <th style="width: 25%;">Opis</th>
+        <th style="width: 10%;">Broj</th>
+        <th style="text-align:right; width: 10%;"><i class="fa fa-cogs"></i></th>
     </thead>
     <tbody>
         @foreach ($aplikacije as $d)
@@ -59,13 +59,13 @@
 
     {{-- Pocetak Modala za dijalog izmena--}}
     <div class="modal fade" id="editModal" role="dialog">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg">
       
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title text-primary">Izmeni stavku</h4>
+            <h2 class="modal-title text-primary">Izmeni stavku</h2>
           </div>
           <div class="modal-body">
             <form action="{{ route('aplikacije.izmena') }}" method="post" data-parsley-validate>
@@ -88,16 +88,26 @@
                 </div>
 
               <input type="hidden" id="idModal" name="idModal">
-                    <button type="submit" class="btn btn-success">
-                        <i class="fa fa-save"></i> Snimi izmene
-                    </button>
+                    <hr>
+
+                                <div class="row dugmici" style="margin-top: 30px;">
+            <div class="col-md-12" >
+                <div class="form-group">
+                    <div class="col-md-6 snimi">
+                        <button id = "btn-snimi" type="submit" class="btn btn-success btn-block ono">
+                            <i class="fa fa-save"></i>&emsp;Snimi izmene
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-primary btn-block ono" data-dismiss="modal">
+                            <i class="fa fa-ban"></i>&emsp;Otkaži
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
             </form>
           </div>
-         <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">
-                    <i class="fa fa-ban"></i> Otkaži
-                </button>
-            </div> 
         </div>
         
       </div>

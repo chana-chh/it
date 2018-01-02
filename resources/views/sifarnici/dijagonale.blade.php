@@ -53,11 +53,11 @@
 
 {{-- Pocetak Modala za dijalog izmena--}}
 <div id="editModal" class="modal fade">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title text-primary">Izmeni stavku</h4>
+                <h2 class="modal-title text-primary">Izmeni stavku</h2>
             </div>
             <div class="modal-body">
                 <form action="{{ route('dijagonale.izmena') }}" method="post">
@@ -68,15 +68,25 @@
                                 min="10"  step="0.5" required>
                     </div>
                     <input type="hidden" id="idModal" name="idModal">
-                    <button type="submit" class="btn btn-success">
-                        <i class="fa fa-save"></i> Snimi izmene
-                    </button>
-                </form>
+                    <hr>
+
+                                <div class="row dugmici" style="margin-top: 30px;">
+            <div class="col-md-12" >
+                <div class="form-group">
+                    <div class="col-md-6 snimi">
+                        <button id = "btn-snimi" type="submit" class="btn btn-success btn-block ono">
+                            <i class="fa fa-save"></i>&emsp;Snimi izmene
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-primary btn-block ono" data-dismiss="modal">
+                            <i class="fa fa-ban"></i>&emsp;Otkaži
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">
-                    <i class="fa fa-ban"></i> Otkaži
-                </button>
+        </div>
+                </form>
             </div>
         </div>
     </div>

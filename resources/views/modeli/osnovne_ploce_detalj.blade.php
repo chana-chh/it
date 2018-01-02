@@ -130,13 +130,13 @@
 <h3>Broj računara sa ovim modelom osnovne ploče: <a href="{{route('osnovne_ploce.modeli.racunari', $osnovna_ploca->id) }}" title="Pregled svih računara sa ovim modelom osnovne ploče"> {{$racunari}} </a></h3>
 </div>
 </div>
-
+@if($osnovna_ploca->link)
 <div class="row" style="margin-top: 50px">
 <div class="col-md-12 text-center">
     <a href="{{$osnovna_ploca->link}}" target="_blank"><img alt="link" src="{{url('/images/link.png')}}" style="height:32px;"></a>
 </div>
 </div>
-
+@endif
 @endsection
 
 @section('skripte')
