@@ -97,13 +97,13 @@
 <h4>Broj računara sa ovim modelom štampača: <a href="{{route('stampaci.modeli.racunari', $model->id) }}" title="Pregled svih računara sa ovim modelom štampača"> {{$racunari}} </a></h4>
 </div>
 </div>
-
+@if($model->link)
 <div class="row" style="margin-top: 50px">
 <div class="col-md-12 text-center">
     <a href="{{$model->link}}" target="_blank"><img alt="link" src="{{url('/images/link.png')}}" style="height:32px;"></a>
 </div>
 </div>
-
+@endif
 @endsection
 
 @section('skripte')

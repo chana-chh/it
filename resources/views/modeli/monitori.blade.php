@@ -45,10 +45,11 @@
             </td>
             <td>{{$m->proizvodjac->naziv}}</td>
             <td>{{$m->dijagonala->naziv}} "</td>
-            <td>
+            <td>@if($m->link)
                 <a href="{{$m->link}}" target="_blank" style="font-size: 2rem;">
                     <i class="fa fa-link"></i>
                 </a>
+                @endif
             </td>
             <td style="text-align:right; vertical-align: middle; line-height: normal;">
                 <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('monitori.modeli.detalj', $m->id)}}">

@@ -36,7 +36,7 @@
                 <i class="fa fa-pencil"></i>
             </a>
             <button id="idBrisanjeModela" class="btn btn-primary"
-                    title="Brisanje modela monitora"
+                    title="Brisanje modela UPS uređaja"
                     data-toggle="modal" data-target="#brisanjeModal"
                     value="{{$model->id}}">
                 <i class="fa fa-trash"></i>
@@ -124,7 +124,9 @@
 <div class="row" style="margin-top: 50px">
 <div class="col-md-12 text-center">
     <h3>Broj UPS uređaja ovog modela: <a href="{{route('upsevi.modeli.uredjaji', $model->id) }}" title="Pregled svih uređaja ovog UPS modela"> {{$model->upsevi->count()}} </a></h3>
+    @if($model->link)
     <a href="{{$model->link}}" target="_blank"><img alt="link" src="{{url('/images/link.png')}}" style="height:32px;"></a>
+    @endif
 </div>
 </div>
 

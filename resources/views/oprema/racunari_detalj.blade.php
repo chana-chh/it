@@ -51,12 +51,12 @@
 <table class="table table-striped" style="table-layout: fixed;">
         <tbody style="font-size: 1.5rem;">
             <tr>
-                <th style="width: 40%;">Operativni sistem:</th>
+                <th style="width: 40%;"><strong>Operativni sistem:</strong></th>
                 <td style="width: 60%;">{{$uredjaj->operativniSistem->naziv}}
                 </td>
             </tr>
             <tr>
-                <th style="width: 40%;">Da li se radi o <em>BRAND</em> računaru:</th>
+                <th style="width: 40%;">Da li se radi o <strong>BRAND</strong> računaru:</th>
                 <td style="width: 80%;">
                         @if($uredjaj->brend == 1)
                         <i class="fa fa-check" aria-hidden="true" style="color: #18bc9c"></i>
@@ -66,13 +66,13 @@
 
             @if ($uredjaj->brend == 1)
             <tr>
-                <th style="width: 40%;">Proizvođač:</th>
+                <th style="width: 40%;"><strong>Proizvođač:</strong></th>
                 <td style="width: 80%;">{{$uredjaj->proizvodjac->naziv}}</td>
             </tr>
             @endif
 
              <tr>
-                <th style="width: 40%;">Da li se radi o <em>LAPTOP</em> računaru:</th>
+                <th style="width: 40%;">Da li se radi o <strong>LAPTOP</strong> računaru:</th>
                 <td style="width: 60%;">
                      @if($uredjaj->laptop == 1)
                         <i class="fa fa-check" aria-hidden="true" style="color: #18bc9c"></i>
@@ -81,7 +81,7 @@
             </tr>
 
                  <tr>
-                <th style="width: 40%;">Da li se radi o <em>SERVERU</em> :</th>
+                <th style="width: 40%;">Da li se radi o <strong>SERVERU</strong> :</th>
                 <td style="width: 60%;">
                      @if($uredjaj->server == 1)
                         <i class="fa fa-check" aria-hidden="true" style="color: #18bc9c"></i>
@@ -90,29 +90,35 @@
             </tr>
 
             <tr>
-                <th style="width: 40%;">Naziv računara (Aktivni direktorijum):</th>
+                <th style="width: 40%;"><strong>Naziv računara (Aktivni direktorijum):</strong></th>
                 <td style="width: 60%;">{{$uredjaj->ime}}</td>
             </tr>
 
             <tr>
-                <th style="width: 40%;">Broj odeljenja za IKT:</th>
+                <th style="width: 40%;"><strong>Inventarski broj:</strong></th>
+                <td style="width: 60%;">{{$uredjaj->inventarski_broj}}
+                </td>
+            </tr>
+
+            <tr>
+                <th style="width: 40%;"><strong>Broj odeljenja za IKT:</strong></th>
                 <td style="width: 60%;">{{$uredjaj->erc_broj}}
                 </td>
             </tr>
 
             <tr>
-                <th style="width: 40%;">Lokacija:</th>
+                <th style="width: 40%;"><strong>Lokacija:</strong></th>
                 <td style="width: 60%;">@if($uredjaj->kancelarija)<a href="{{route('kancelarije.detalj.get', $uredjaj->kancelarija->id)}}">{{$uredjaj->kancelarija->lokacija->naziv}}, kancelarija {{$uredjaj->kancelarija->naziv}}</a>@endif
                 </td>
             </tr>
                         <tr>
-                <th style="width: 40%;">Podaci o nabavci:</th>
+                <th style="width: 40%;"><strong>Podaci o nabavci:</strong></th>
                 <td style="width: 60%;">{{$uredjaj->nabavkaStavka->nabavka->dobavljac->naziv}}, {{$uredjaj->nabavkaStavka->nabavka->datum}} 
                     sa garancijom od {{$uredjaj->nabavkaStavka->nabavka->garancija}} u mesecima
                 </td>
                 </tr>
                   <tr>
-                <th style="width: 40%;">Napomena:</th>
+                <th style="width: 40%;"><strong>Napomena:</strong></th>
                 <td style="width: 60%;">{{$uredjaj->napomena}}
                 </td>
             </tr>

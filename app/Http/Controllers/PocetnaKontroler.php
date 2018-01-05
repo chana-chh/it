@@ -16,6 +16,7 @@ use App\Modeli\MrezniUredjaj;
 use App\Modeli\Projektor;
 use App\Modeli\Aplikacija;
 use App\Modeli\Greska;
+use App\Modeli\Servis;
 use App\Modeli\Licenca;
 use App\Helpers\Uredjaj;
 
@@ -24,9 +25,6 @@ class PocetnaKontroler extends Kontroler
 
     public function pocetna()
     {
-        // $uredjaji = \App\Helpers\UredjajiHelper::sviUredjaji();
-        // dd($uredjaji);
-
         $racunara = Racunar::count();
         $monitora = Monitor::count();
         $stampaca = Stampac::count();
@@ -36,6 +34,7 @@ class PocetnaKontroler extends Kontroler
         $projektora = Projektor::count();
         $aplikacija = Aplikacija::count();
         $greske = Greska::all();
+        $servis = Servis::all(); //Limit od npr. 10
 
         $isticu = Licenca::whereBetween('datum_prestanka_vazenja', [
                     Carbon::now(),
