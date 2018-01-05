@@ -20,6 +20,7 @@
         </button>
     </div>
 </div>
+<hr>
 <div class="row obavestenje">
     <div class="col-md-10 col-md-offset-1 text-center" style="font-size: 1rem;;">
         <div class="alert alert-info alert-dismissible ono" role="alert">

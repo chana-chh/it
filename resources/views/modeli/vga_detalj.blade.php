@@ -113,13 +113,13 @@
 <h4>Broj računara sa ovim modelom grafičkog adaptera: <a href="{{route('vga.modeli.racunari', $vga->id) }}" title="Pregled svih računara sa ovim modelom grafičkog adaptera"> {{$racunari}} </a></h4>
 </div>
 </div>
-
+@if($vga->link)
 <div class="row" style="margin-top: 50px">
 <div class="col-md-12 text-center">
     <a href="{{$vga->link}}" target="_blank"><img alt="link" src="{{url('/images/link.png')}}" style="height:32px;"></a>
 </div>
 </div>
-
+@endif
 @endsection
 
 @section('skripte')

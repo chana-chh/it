@@ -118,7 +118,7 @@
         </h3>
     </div>
 </div>
-
+@if($hdd->link)
 <div class="row" style="margin-top: 50px">
     <div class="col-md-12 text-center">
         <a href="{{$hdd->link}}" target="_blank">
@@ -126,7 +126,7 @@
         </a>
     </div>
 </div>
-
+@endif
 @endsection
 
 @section('skripte')

@@ -95,7 +95,7 @@
 
                             <div class="col-md-4">
                 <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
-            <label for="link">Link modela napajanja: </label>
+            <label for="link">Link modela UPS-a: </label>
             <input type="url" name="link" id="link" class="form-control" value="{{ old('link', $model->link) }}" maxlenght="255">
             @if ($errors->has('link'))
                 <span class="help-block">

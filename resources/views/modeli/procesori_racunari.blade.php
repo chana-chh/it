@@ -59,10 +59,7 @@
                             <td>{{$racunar['ime']}}</td>
                             <td>{{$racunar['napomena']}}</td>
                             <td style="text-align:right; vertical-align: middle; line-height: normal;">
-                    <a class="btn btn-success btn-sm" id="dugmeDetalj"  href=" "><i class="fa fa-eye"></i></a>
-                    <a class="btn btn-info btn-sm" id="dugmeIzmena"  href=" "><i class="fa fa-pencil"></i></a>
-                    <button id="dugmeBrisanje" class="btn btn-danger btn-sm otvori_modal"  value="{{$racunar['id']}}"><i class="fa fa-trash"></i></button>
-
+                    <a class="btn btn-success btn-sm" id="dugmeDetalj"  href="{{route('racunari.oprema.detalj', $racunar['id'])}}"><i class="fa fa-eye"></i></a>
                             </td>
                         </tr>
                 @endforeach
