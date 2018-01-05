@@ -18,6 +18,7 @@ use App\Modeli\Ups;
 use App\Modeli\UpsModel;
 use App\Modeli\Projektor;
 use App\Modeli\MrezniUredjaj;
+use App\Modeli\Racunar;
 
 class NabavkeStavkeKontroler extends Kontroler
 {
@@ -364,6 +365,76 @@ class NabavkeStavkeKontroler extends Kontroler
 
         Session::flash('uspeh', 'Mrežni uređaj je uspešno dodat!');
         return redirect()->route('nabavke.stavke.detalj', $request->stavka_nabavke_id);
+    }
+
+    public function postRacunariDodavanje(Request $request)
+    {
+        $this->validate($request, [
+            'serijski_broj' => [
+                'max:50'
+            ],
+            'stavka_nabavke_id' => [
+                'required',
+                'integer'
+            ],
+            'erc_broj' => [
+                'required',
+                'max:100'
+            ],
+            'ime' => [
+                'required',
+                'max:100'
+            ],
+        ]);
+
+        if ($request->laptop) {
+            $laptopc = 1;
+        } else {
+            $laptopc = 0;
+        }
+        if ($request->serverf) {
+            $serverc = 1;
+        } else {
+            $serverc = 0;
+        }
+        if ($request->brend) {
+            $brendc = 1;
+        } else {
+            $brendc = 0;
+        }
+
+        $uredjaj = new Racunar();
+        $uredjaj->vrsta_uredjaja_id = 1; //Računari imaju šifru 1
+        $uredjaj->laptop = $laptopc;
+        $uredjaj->brend = $brendc;
+        $uredjaj->server = $serverc;
+        $uredjaj->proizvodjac_id = $request->proizvodjac_id;
+        $uredjaj->inventarski_broj = $request->inventarski_broj;
+        $uredjaj->serijski_broj = $request->serijski_broj;
+        $uredjaj->erc_broj = $request->erc_broj;
+        $uredjaj->ime = $request->ime;
+        $uredjaj->stavka_nabavke_id = $request->stavka_nabavke_id;
+        // $uredjaj->link = $request->link;
+        $uredjaj->napomena = $request->napomena;
+
+        $uredjaj->save();
+
+        Session::flash('uspeh', 'Računar je uspešno dodat!');
+        return redirect()->route('nabavke.stavke.detalj', $request->stavka_nabavke_id);
+    }
+
+    public function postRacunarBrisanje(Request $request)
+    {
+        $id = $request->idBrisanje;
+        $racunar = Racunar::findOrFail($id);
+        $stavka_nabavke_id = $racunar->stavka_nabavke_id;
+        $odgovor = $racunar->forceDelete();
+        if ($odgovor) {
+            Session::flash('uspeh', 'Računar je uspešno obrisan!');
+        } else {
+            Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
+        }
+        return redirect()->route('nabavke.stavke.detalj', $stavka_nabavke_id);
     }
 
 }

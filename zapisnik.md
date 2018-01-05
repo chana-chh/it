@@ -27,3 +27,9 @@ https://yajrabox.com/docs/laravel-datatables/master/releases
 https://datatables.yajrabox.com/starter
 
 Datumi u servisu da budu nullable();
+
+## NABAVKE STAVKE
+
+nabavke_stavke_detalj dodati js funkciju za svako brisanje
+u tabelama za prikaz uredjaja dodati dugmice za brisanje
+u NabavkeStavkeKontroler dodati metode za brisanje uredjaja
