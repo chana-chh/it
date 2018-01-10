@@ -20,8 +20,7 @@ class Racunari extends Seeder
             'kancelarija_id' => 1,
             'stavka_nabavke_id' => 1,
             'os_id' => 4,
-            'ploca_id' =>1,
-            'ocena' => 0,
+            'ploca_id' => 1,
             'vrsta_uredjaja_id' => 1,
         ]);
     }
