@@ -52,7 +52,7 @@
         <tbody style="font-size: 1.5rem;">
             <tr>
                 <th style="width: 40%;"><strong>Operativni sistem:</strong></th>
-                <td style="width: 60%;">{{$uredjaj->operativniSistem->naziv}}
+                <td style="width: 60%;">{{$uredjaj->operativniSistem ? $uredjaj->operativniSistem->naziv : ''}}
                 </td>
             </tr>
             <tr>

@@ -25,6 +25,14 @@ Route::get('statistika', 'StatistikaKontroler@getLista')->name('statistika');
 
 
 // SERVIS
+
+//Servis
+Route::get('servis', 'Servis\ServisKontroler@getLista')->name('servis');
+Route::get('servis/detalj/{id}', 'Servis\ServisKontroler@getDetalj')->name('servis.detalj');
+Route::get('servis/redirekt/{id}/{vrsta}', 'Servis\ServisKontroler@redirectDetalj')->name('servis.redirekt');
+Route::get('servis/izmena/{id}', 'Servis\ServisKontroler@getIzmena')->name('servis.izmena.get');
+Route::post('servis/izmena/{id}', 'Servis\ServisKontroler@postIzmena')->name('servis.izmena.post');
+
 // Ugovori
 Route::get('ugovori', 'Servis\UgovoriOdrzavanjaKontroler@getLista')->name('ugovori');
 Route::get('ugovori/dodavanje', 'Servis\UgovoriOdrzavanjaKontroler@getDodavanje')->name('ugovori.dodavanje.get');
