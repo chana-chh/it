@@ -156,10 +156,10 @@
         $('#brisanje-forma').attr('action', ruta);
     });
 
-    $(document).on('click', '#brisanjeRacunaraStavkeNabavke', function () {
+    $(document).on('click', '#brisanjeUredjaja', function () {
         var id = $(this).val();
         $('#idBrisanje').val(id);
-        var ruta = "{{ route('nabavke.stavke.racunari.brisanje') }}";
+        var ruta = "{{ route('stavke.uredjaji.brisanje') }}";
         $('#brisanje-forma').attr('action', ruta);
     });
 </script>
