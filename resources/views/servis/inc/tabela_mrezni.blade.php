@@ -16,9 +16,16 @@
             <td>{{ $uredjaj->inventarski_broj }}</td>
             <td>{{ $uredjaj->serijski_broj }}</td>
             <td class="text-right">
-                <a href="{{-- route('projektori.detalj', $uredjaj->id) --}}" class="btn btn-success btn-xs">
+                <a href="{{ route('stavke.uredjaji.pregled', [$stavka->vrstaUredjaja->id, $uredjaj->id]) }}"
+                   class="btn btn-success btn-xs">
                     <i class="fa fa-eye"></i>
                 </a>
+                <button id="brisanjeUredjaja" class="btn btn-danger btn-xs"
+                        data-toggle="modal" data-target="#brisanjeModal"
+                        value="{{ $uredjaj->id }}"
+                        title="Brisanje uređaja stavke nabavke">
+                    <i class="fa fa-trash"></i>
+                </button>
             </td>
         </tr>
         @endforeach

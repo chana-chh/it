@@ -12,7 +12,7 @@
 </thead>
 <tbody>
     @foreach($stavka->uredjaji() as $uredjaj)
-    <tr>
+    <tr> 
         <td>{{ $uredjaj->id }}</td>
 
         <td>

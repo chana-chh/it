@@ -12,6 +12,12 @@ use App\Modeli\Ups;
 use App\Modeli\Projektor;
 use App\Modeli\MrezniUredjaj;
 use App\Modeli\Racunar;
+use App\Modeli\OsnovnaPloca;
+use App\Modeli\Procesor;
+use App\Modeli\GrafickiAdapter;
+use App\Modeli\Memorija;
+use App\Modeli\Hdd;
+use App\Modeli\Napajanje;
 
 class NabavkeOtpremniceStavkeKontroler extends Kontroler
 {
@@ -327,23 +333,100 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
      * Brisanje uredjaja kroz nabavku-otpremnicu
      */
 
-    public function postRacunarBrisanje(Request $request)
+    public function postBrisanjeUredjaja(Request $request)
     {
+        $vrsta = $request->idVrstaUredjaja;
         $id = $request->idBrisanje;
-        $racunar = Racunar::findOrFail($id);
-        $stavka_nabavke_id = $racunar->stavka_nabavke_id;
-        $odgovor = $racunar->forceDelete();
+        $uredjaj = null;
+        switch ($vrsta) {
+            case 1:
+                $uredjaj = Racunar::findOrFail($id);
+                break;
+            case 2:
+                $uredjaj = Monitor::findOrFail($id);
+                break;
+            case 3:
+                $uredjaj = Stampac::findOrFail($id);
+                break;
+            case 4:
+                $uredjaj = Skener::findOrFail($id);
+                break;
+            case 5:
+                $uredjaj = Ups::findOrFail($id);
+                break;
+            case 6:
+                $uredjaj = OsnovnaPloca::findOrFail($id);
+                break;
+            case 7:
+                $uredjaj = Procesor::findOrFail($id);
+                break;
+            case 8:
+                $uredjaj = GrafickiAdapter::findOrFail($id);
+                break;
+            case 9:
+                $uredjaj = Memorija::findOrFail($id);
+                break;
+            case 10:
+                $uredjaj = Hdd::findOrFail($id);
+                break;
+            case 11:
+                $uredjaj = Napajanje::findOrFail($id);
+                break;
+            case 12:
+                $uredjaj = Projektor::findOrFail($id);
+                break;
+            case 13:
+                $uredjaj = MrezniUredjaj::findOrFail($id);
+                break;
+        }
+        $stavka_nabavke_id = $uredjaj->stavka_nabavke_id;
+
+        $odgovor = $uredjaj->forceDelete();
+
         if ($odgovor) {
-            Session::flash('uspeh', 'Računar je uspešno obrisan!');
+            Session::flash('uspeh', 'Uređaj je uspešno obrisan!');
         } else {
-            Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
+            Session::flash('greska', 'Došlo je do greške prilikom brisanja uređaja. Pokušajte ponovo, kasnije!');
         }
         return redirect()->route('nabavke.stavke.detalj', $stavka_nabavke_id);
     }
 
+    /*
+     * Pregled uredjaja kroz nabavku-otpremnicu
+     */
+
     public function getPregledUredjaja($vrsta, $id)
     {
-        dd([$vrsta, $id]);
+        switch ($vrsta) {
+            case 1:
+                return redirect()->route('racunari.oprema.detalj', $id);
+            case 2:
+                return redirect()->route('monitori.oprema.detalj', $id);
+            case 3:
+                return redirect()->route('stampaci.oprema.detalj', $id);
+            case 4:
+                return redirect()->route('skeneri.oprema.detalj', $id);
+            case 5:
+                return redirect()->route('upsevi.oprema.detalj', $id);
+            case 6:
+                return redirect()->route('osnovne_ploce.oprema.detalj', $id);
+            case 7:
+                return redirect()->route('procesori.oprema.detalj', $id);
+            case 8:
+                return redirect()->route('vga.oprema.detalj', $id);
+            case 9:
+                return redirect()->route('memorije.oprema.detalj', $id);
+            case 10:
+                return redirect()->route('hddovi.oprema.detalj', $id);
+            case 11:
+                return redirect()->route('napajanja.oprema.detalj', $id);
+            case 12:
+                return redirect()->route('projektori.oprema.detalj', $id);
+            case 13:
+                return redirect()->route('mrezni.oprema.detalj', $id);
+            default :
+                return null;
+        }
     }
 
 }

@@ -158,7 +158,9 @@
 
     $(document).on('click', '#brisanjeUredjaja', function () {
         var id = $(this).val();
+        var vrsta = "{{ $stavka->vrstaUredjaja->id }}";
         $('#idBrisanje').val(id);
+        $('#idVrstaUredjaja').val(vrsta);
         var ruta = "{{ route('stavke.uredjaji.brisanje') }}";
         $('#brisanje-forma').attr('action', ruta);
     });

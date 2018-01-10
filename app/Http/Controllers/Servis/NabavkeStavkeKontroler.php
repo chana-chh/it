@@ -93,8 +93,8 @@ class NabavkeStavkeKontroler extends Kontroler
         $stavka = NabavkaStavka::findOrFail($request->idBrisanje);
         $id = $stavka->id;
         $id_nabavke = $stavka->nabavka_id;
-        $ima_uredjaja = $stavka->uredjaji();
-        if ($ima_uredjaja) {
+        $uredjaji = $stavka->uredjaji();
+        if (count($uredjaji) > 0) {
             Session::flash('greska', 'Nije moguće obrisati stavku nabavke jer postoje uređaji koji su vezani za nju!');
         } else {
             $odgovor = $stavka->delete();
