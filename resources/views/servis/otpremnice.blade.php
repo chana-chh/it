@@ -131,11 +131,7 @@
                 @foreach ($otpremnice as $otpremnica)
                 <tr>
                     <td>{{ $otpremnica->id }}</td>
-                    <td>
-                        <a href="{{ route('otpremnice.detalj', $otpremnica->id) }}">
-                            <strong>{{ $otpremnica->broj }}</strong>
-                        </a>
-                    </td>
+                    <td><strong>{{ $otpremnica->broj }}</strong></td>
                     <td>{{ \Carbon\Carbon::parse($otpremnica->datum)->format('d.m.Y') }}</td>
                     @if($otpremnica->racun === null)
                     <td></td>

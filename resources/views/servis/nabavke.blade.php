@@ -127,7 +127,7 @@
                 @foreach ($nabavke as $nabavka)
                 <tr>
                     <td>{{ $nabavka->id }}</td>
-                    <td>{{ $nabavka->dobavljac->naziv }}</td>
+                    <td><strong>{{ $nabavka->dobavljac->naziv }}</strong></td>
                     <td>{{ \Carbon\Carbon::parse($nabavka->datum)->format('d.m.Y') }}</td>
                     <td class="text-right">{{ $nabavka->garancija }}</td>
                     <td>{{ $nabavka->napomena }}</td>

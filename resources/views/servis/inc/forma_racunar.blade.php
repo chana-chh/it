@@ -1,4 +1,4 @@
-<form action="{{ route('racunari.oprema.dodavanje.post') }}" method="POST" data-parsley-validate>
+<form action="{{ route('nabavke.stavke.racunari.dodavanje') }}" method="POST" data-parsley-validate>
     {{ csrf_field() }}
     <div class="row">
         <div class="col-md-4">

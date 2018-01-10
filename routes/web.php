@@ -92,12 +92,14 @@ Route::post('nabavke/stavke/izmena/{id}', 'Servis\NabavkeStavkeKontroler@postIzm
 Route::get('nabavke/stavke/detalj/{id}', 'Servis\NabavkeStavkeKontroler@getDetalj')->name('nabavke.stavke.detalj');
 Route::post('nabavke/stavke/brisanje', 'Servis\NabavkeStavkeKontroler@postBrisanje')->name('nabavke.stavke.brisanje');
 // Nabavke stavke dodavanje opreme
+Route::post('nabavke/stavke/racunari/dodavanje', 'Servis\NabavkeStavkeKontroler@postRacunariDodavanje')->name('nabavke.stavke.racunari.dodavanje');
 Route::post('nabavke/stavke/monitori/dodavanje', 'Servis\NabavkeStavkeKontroler@postMonitoriDodavanje')->name('nabavke.stavke.monitori.dodavanje');
 Route::post('nabavke/stavke/stampaci/dodavanje', 'Servis\NabavkeStavkeKontroler@postStampaciDodavanje')->name('nabavke.stavke.stampaci.dodavanje');
 Route::post('nabavke/stavke/skeneri/dodavanje', 'Servis\NabavkeStavkeKontroler@postSkeneriDodavanje')->name('nabavke.stavke.skeneri.dodavanje');
 Route::post('nabavke/stavke/upsevi/dodavanje', 'Servis\NabavkeStavkeKontroler@postUpseviDodavanje')->name('nabavke.stavke.upsevi.dodavanje');
 Route::post('nabavke/stavke/projektori/dodavanje', 'Servis\NabavkeStavkeKontroler@postProjektoriDodavanje')->name('nabavke.stavke.projektori.dodavanje');
 Route::post('nabavke/stavke/mrezni/dodavanje', 'Servis\NabavkeStavkeKontroler@postMrezniDodavanje')->name('nabavke.stavke.mrezni.dodavanje');
+Route::post('nabavke/stavke/racunari/brisanje', 'Servis\NabavkeStavkeKontroler@postRacunarBrisanje')->name('nabavke.stavke.racunari.brisanje');
 
 // SIFARNICI
 // Proizvodjaci
