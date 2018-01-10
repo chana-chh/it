@@ -23,7 +23,7 @@
                             <i class="fa fa-cog fa-fw" style="color: #18BC9C"></i> Servis<span class="caret">
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="">Servis</a></li>
+                            <li><a href="{{route('servis')}}">Servis</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('nabavke') }}">Nabavke</a></li>
                             <li role="separator" class="divider"></li>
