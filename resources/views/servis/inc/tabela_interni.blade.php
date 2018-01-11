@@ -12,36 +12,16 @@
             <td>{{ $uredjaj->id }}</td>
             <td>{{ $uredjaj->serijski_broj }}</td>
             <td class="text-right">
-                @if($uredjaj->vrstaUredjaja->id === 6)
-                <a href="{{ route('osnovne_ploce.oprema.detalj', $uredjaj->id) }}" class="btn btn-success btn-xs">
+                <a href="{{ route('stavke.uredjaji.pregled', [$stavka->vrstaUredjaja->id, $uredjaj->id]) }}"
+                   class="btn btn-success btn-xs">
                     <i class="fa fa-eye"></i>
                 </a>
-                @endif
-                @if($uredjaj->vrstaUredjaja->id === 7)
-                <a href="{{ route('procesori.oprema.detalj', $uredjaj->id) }}" class="btn btn-success btn-xs">
-                    <i class="fa fa-eye"></i>
-                </a>
-                @endif
-                @if($uredjaj->vrstaUredjaja->id === 8)
-                <a href="{{ route('vga.oprema.detalj', $uredjaj->id) }}" class="btn btn-success btn-xs">
-                    <i class="fa fa-eye"></i>
-                </a>
-                @endif
-                @if($uredjaj->vrstaUredjaja->id === 9)
-                <a href="{{ route('memorije.oprema.detalj', $uredjaj->id) }}" class="btn btn-success btn-xs">
-                    <i class="fa fa-eye"></i>
-                </a>
-                @endif
-                @if($uredjaj->vrstaUredjaja->id === 10)
-                <a href="{{ route('hddovi.oprema.detalj', $uredjaj->id) }}" class="btn btn-success btn-xs">
-                    <i class="fa fa-eye"></i>
-                </a>
-                @endif
-                @if($uredjaj->vrstaUredjaja->id === 11)
-                <a href="{{ route('napajanja.oprema.detalj', $uredjaj->id) }}" class="btn btn-success btn-xs">
-                    <i class="fa fa-eye"></i>
-                </a>
-                @endif
+                <button id="brisanjeUredjaja" class="btn btn-danger btn-xs"
+                        data-toggle="modal" data-target="#brisanjeModal"
+                        value="{{ $uredjaj->id }}"
+                        title="Brisanje uređaja stavke nabavke">
+                    <i class="fa fa-trash"></i>
+                </button>
             </td>
         </tr>
         @endforeach

@@ -12,7 +12,7 @@
 </thead>
 <tbody>
     @foreach($stavka->uredjaji() as $uredjaj)
-    <tr>
+    <tr> 
         <td>{{ $uredjaj->id }}</td>
 
         <td>
@@ -34,12 +34,13 @@
         <td>{{ $uredjaj->serijski_broj }}</td>
         <td>{{ $uredjaj->erc_broj }}</td>
         <td class="text-right">
-            <a href="{{ route('racunari.oprema.detalj', $uredjaj->id) }}" class="btn btn-success btn-xs">
+            <a href="{{ route('stavke.uredjaji.pregled', [$stavka->vrstaUredjaja->id, $uredjaj->id]) }}"
+               class="btn btn-success btn-xs">
                 <i class="fa fa-eye"></i>
             </a>
-            <button id="brisanjeRacunaraStavkeNabavke" class="btn btn-danger btn-xs"
+            <button id="brisanjeUredjaja" class="btn btn-danger btn-xs"
                     data-toggle="modal" data-target="#brisanjeModal"
-                    value="{{$uredjaj->id}}"
+                    value="{{ $uredjaj->id }}"
                     title="Brisanje uređaja stavke nabavke">
                 <i class="fa fa-trash"></i>
             </button>

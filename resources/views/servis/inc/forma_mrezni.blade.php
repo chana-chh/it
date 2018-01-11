@@ -108,19 +108,3 @@
     </div>
 </form>
 
-<script>
-    $(document).ready(function () {
-        resizeChosen();
-        jQuery(window).on('resize', resizeChosen);
-
-        $('.chosen-select').chosen({
-            allow_single_deselect: true
-        });
-
-        function resizeChosen() {
-            $(".chosen-container").each(function () {
-                $(this).attr('style', 'width: 100%');
-            });
-        }
-    });
-</script>
