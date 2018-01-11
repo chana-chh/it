@@ -29,7 +29,7 @@
                title="Povratak na listu servisa">
                 <i class="fa fa-list"></i>
             </a>
-            <a class="btn btn-primary" href=""
+            <a class="btn btn-primary" href="{{route('servis.izmena.get', $data->id)}}"
                title="Izmena podataka servisiranja">
                 <i class="fa fa-pencil"></i>
             </a>

@@ -38,97 +38,106 @@
 
 <div class="row ceo_dva">
     <div class="col-md-12 boxic">
-        <form action="{{ route('servis.izmena.post', $uredjaj->id) }}" method="POST" data-parsley-validate>
+        <form action="{{ route('servis.izmena.post', $data->id) }}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
 
             <div class="row">
-
-                <div class="col-md-3">
-                    <div class="form-group{{ $errors->has('serijski_broj') ? ' has-error' : '' }}">
-                        <label for="serijski_broj">Serijski broj:</label>
-                        <input type="text" name="serijski_broj" id="serijski_broj" class="form-control" value="{{ old('serijski_broj', $uredjaj->serijski_broj) }}" maxlength="50">
-                        @if ($errors->has('serijski_broj'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('serijski_broj') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="col-md-5">
-                    <div class="form-group{{ $errors->has('stavka_otpremnice_id') ? ' has-error' : '' }}">
-                        <label for="stavka_otpremnice_id">Stavka otpremnice:</label>
-                        <select name="stavka_otpremnice_id" id="stavka_otpremnice_id" class="chosen-select form-control" data-placeholder="otpremnice ..." >
+                <div class="col-md-6">
+                    <div class="form-group{{ $errors->has('vrsta_uredjaja_id') ? ' has-error' : '' }}">
+                        <label for="vrsta_uredjaja_id">Vrsta uređaja:</label>
+                        <select name="vrsta_uredjaja_id" id="vrsta_uredjaja_id" class="chosen-select form-control" data-placeholder="vrste uređaja ..." >
                             <option value=""></option>
-                            @foreach($otpremnice as $o)
-                            <optgroup label="{{ $o->dobavljac->naziv }}, {{ $o->broj }} od {{ $o->datum }}">
-                                @foreach($o->stavke as $s)
-                                <option value="{{ $s->id }}"
-                                    {{ $s->id == old('stavka_otpremnice_id') ? ' selected' : '' }}
-                                    {{ $uredjaj->stavka_otpremnice_id == $s->id ? ' selected' : '' }}>
-                                    {{$s->naziv}} (popunjeno je {{$s->hddovi->count() }} od {{$s->kolicina}} {{$s->jedinica_mere}})
+                            @foreach($vrste_uredjaja as $u)
+                                <option value="{{ $u->id }}"
+                                    {{ $u->id == old('vrsta_uredjaja_id') ? ' selected' : '' }}
+                                    {{ $data->vrsta_uredjaja_id == $u->id ? ' selected' : '' }}>
+                                    {{$u->naziv}}
                             </option>
                             @endforeach
-                        </optgroup>
-                        @endforeach
                     </select>
-                    @if ($errors->has('stavka_otpremnice_id'))
+                    @if ($errors->has('vrsta_uredjaja_id'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('stavka_otpremnice_id') }}</strong>
+                        <strong>{{ $errors->first('vrsta_uredjaja_id') }}</strong>
                     </span>
                     @endif
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="form-group{{ $errors->has('hdd_model_id') ? ' has-error' : '' }}">
-                    <label for="hdd_model_id">Model čvrstog diska:</label>
-                    <select name="hdd_model_id" id="hdd_model_id" class="chosen-select form-control" data-placeholder="model ..." required>
-                        <option value=""></option>
-                        @foreach($modeli as $m)
-                        <option value="{{ $m->id }}"
-                            {{ $m->id == old('hdd_model_id') ? ' selected' : '' }}
-                            {{ $uredjaj->hdd_model_id == $m->id ? ' selected' : '' }}>
-                            {{ $m->proizvodjac->naziv }} sa {{$m->kapacitet}} (GB)
-                    </option>
-                    @endforeach
-                </select>
-                @if ($errors->has('hdd_model_id'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('hdd_model_id') }}</strong>
-                </span>
-                @endif
+                <div class="col-md-6">
+                    <div class="form-group{{ $errors->has('uredjaj_id') ? ' has-error' : '' }}">
+                        <label for="uredjaj_id">Uređaj:</label>
+                        <select name="uredjaj_id" id="uredjaj_id" class="chosen-select form-control" data-placeholder="uređaji ..." >
+                            <option value=""></option>
+                            @if($uredjaji)
+                            @foreach($uredjaji as $d)
+                                <option value="{{ $d->id }}"
+                                    {{ $d->id == old('uredjaj_id') ? ' selected' : '' }}
+                                    {{ $data->uredjaj_id == $d->id ? ' selected' : '' }}>
+                                    {{$d->id}}
+                            </option>
+                            @endforeach
+                            @endif
+                    </select>
+                    @if ($errors->has('uredjaj_id'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('uredjaj_id') }}</strong>
+                    </span>
+                    @endif
+                </div>
             </div>
-        </div>
-    </div>
 
-    <hr>
-    <div class="row">
-        <div class="col-md-6">
-            <p id="obavestenje" class="text-primary" style="font-size: 120%;"></p>
-        </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-4">
+    <div class="form-group{{ $errors->has('datum_prijema') ? ' has-error' : '' }}">
+        <label for="datum_prijema">Datum prijema:</label>
+        <input type="date" name="datum_prijema" id="datum_prijema" class="form-control"
+                       value="{{ old('datum_prijema', $data->datum_prijema) }}">
+                @if ($errors->has('datum_prijema'))
+        <span class="help-block">
+            <strong>{{ $errors->first('datum_prijema') }}</strong>
+        </span>
+        @endif
+    </div>
+</div>
+
+               <div class="col-md-4">
+    <div class="form-group{{ $errors->has('datum_popravke') ? ' has-error' : '' }}">
+        <label for="datum_popravke">Datum popravke:</label>
+         <input type="date" name="datum_popravke" id="datum_popravke" class="form-control"
+                       value="{{ old('datum_popravke', $data->datum_popravke) }}">
+                @if ($errors->has('datum_popravke'))
+        <span class="help-block">
+            <strong>{{ $errors->first('datum_popravke') }}</strong>
+        </span>
+        @endif
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="form-group{{ $errors->has('datum_isporuke') ? ' has-error' : '' }}">
+        <label for="datum_isporuke">Datum isporuke:</label>
+       <input type="date" name="datum_isporuke" id="datum_isporuke" class="form-control"
+                       value="{{ old('datum_isporuke', $data->datum_isporuke) }}">
+                @if ($errors->has('datum_isporuke'))
+        <span class="help-block">
+            <strong>{{ $errors->first('datum_isporuke') }}</strong>
+        </span>
+        @endif
+    </div>
+</div>
     </div>
     {{-- Red II --}}
     <div class="row">
-        <div class="col-md-6">
-            <div class="form-group{{ $errors->has('racunar_id') ? ' has-error' : '' }}">
-                <label for="racunar_id">Računar:</label>
-                <select name="racunar_id" id="racunar_id" class="chosen-select form-control" data-placeholder="računar ..." >
-                    <option value=""></option>
-                    @foreach($racunari as $r)
-                    <option data-procesor="{{ $r->hddovi()->count() > 0 ? 'Ovaj računar već ima ugrađen čvrsti disk!' : 'Računar je bez čvrstog diska.'}}"
-                            value="{{ $r->id }}"
-                            {{ $r->id == old('racunar_id') ? ' selected' : '' }}
-                            @if($uredjaj->racunar)
-                            {{ $uredjaj->racunar->id  == $r->id ? ' selected' : '' }}
-                            @endif>
-                            {{ $r->ime }}
-                </option>
-                @endforeach
-            </select>
-            @if ($errors->has('racunar_id'))
+            <div class="col-md-6">
+        <div class="form-group{{ $errors->has('opis_kvara_servis') ? ' has-error' : '' }}">
+            <label for="opis_kvara_servis">Opis kvara servisera:</label>
+            <textarea name="opis_kvara_servis" id="opis_kvara_servis" class="form-control">{{ old('opis_kvara_servis', $data->opis_kvara_servis) }}</textarea>
+            @if ($errors->has('opis_kvara_servis'))
             <span class="help-block">
-                <strong>{{ $errors->first('racunar_id') }}</strong>
+                <strong>{{ $errors->first('opis_kvara_servis') }}</strong>
             </span>
             @endif
         </div>
@@ -137,7 +146,7 @@
     <div class="col-md-6">
         <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
             <label for="napomena">Napomena:</label>
-            <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena', $uredjaj->napomena) }}</textarea>
+            <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena', $data->napomena) }}</textarea>
             @if ($errors->has('napomena'))
             <span class="help-block">
                 <strong>{{ $errors->first('napomena') }}</strong>
@@ -158,7 +167,7 @@
                 <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-floppy-o"></i>&emsp;&emsp;Snimi izmene</button>
             </div>
             <div class="col-md-6">
-                <a class="btn btn-danger btn-block ono" href="{{route('hddovi.oprema')}}"><i class="fa fa-ban"></i>&emsp;&emsp;Otkaži</a>
+                <a class="btn btn-danger btn-block ono" href="{{route('servis')}}"><i class="fa fa-ban"></i>&emsp;&emsp;Otkaži</a>
             </div>
         </div>
     </div>
@@ -180,24 +189,26 @@
             allow_single_deselect: true
         });
 
-        chsn.on('change', function (evt, params) {
-            if (params == undefined && evt.currentTarget.id == 'racunar_id') {
-                $('#obavestenje').hide();
-            } else {
-                $('#obavestenje').show();
-            }
-        });
-
         function resizeChosen() {
             $(".chosen-container").each(function () {
                 $(this).attr('style', 'width: 100%');
             });
         }
 
-        $("#racunar_id").on('change', function () {
-            var ima_nema = $(this).find(":selected").data("procesor");
-            $("#obavestenje").html(ima_nema);
+        $("#vrsta_uredjaja_id").on('change', function () {
+            var id = $(this).value;
+            $.ajax({
+            url: ruta,
+            type:"POST", 
+            data: {"id":id, _token: "{!! csrf_token() !!}"}, 
+            success: function(){
+            location.reload(); 
+          }
         });
+        });
+
+
+
     });
 
 </script>
