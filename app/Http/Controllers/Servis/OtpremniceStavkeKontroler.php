@@ -104,7 +104,7 @@ class OtpremniceStavkeKontroler extends Kontroler
             Session::flash('upozorenje', 'Nije moguće obrisati stavku jer postoje uređaji koji su vezani za nju.');
             return redirect()->route('otpremnice.stavka.detalj', $stavka->id);
         }
-        $id = $stavka->otpremnica->id;
+        $id = $stavka->otpremnica_id;
         $odgovor = $stavka->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Satvka otpremince je uspešno obrisana!');

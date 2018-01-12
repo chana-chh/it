@@ -152,18 +152,18 @@ class NabavkeKontroler extends Kontroler
         $nabavka = Nabavka::findOrFail($request->idBrisanje);
         $id = $nabavka->id;
         $nema_stavke = $nabavka->stavke->isEmpty();
-        if ($nema_stavke) {
-            $odgovor = $nabavka->delete();
-            if ($odgovor) {
-                Session::flash('uspeh', 'Nabavka je uspešno obrisana!');
-                return redirect()->route('nabavke');
-            } else {
-                Session::flash('greska', 'Došlo je do greške prilikom brisanja nabavke. Pokušajte ponovo, kasnije!');
-            }
-        } else {
-            Session::flash('greska', 'Nije moguće obrisati nabavku jer postoje stavke koje su vezane za nju!');
+        if (!$nema_stavke) {
+            Session::flash('upozorenje', 'Nije moguće obrisati nabavku jer postoje stavke koje su vezane za nju!');
+            return redirect()->route('nabavke.detalj', $id);
         }
-        return redirect()->route('nabavke.detalj', $id);
+        $odgovor = $nabavka->delete();
+        if ($odgovor) {
+            Session::flash('uspeh', 'Nabavka je uspešno obrisana!');
+            return redirect()->route('nabavke');
+        } else {
+            Session::flash('greska', 'Došlo je do greške prilikom brisanja nabavke. Pokušajte ponovo, kasnije!');
+            return redirect()->route('nabavke.detalj', $id);
+        }
     }
 
 }

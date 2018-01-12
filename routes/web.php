@@ -24,7 +24,6 @@ Route::get('statistika', 'StatistikaKontroler@getLista')->name('statistika');
 
 
 // SERVIS
-
 //Servis
 Route::get('servis', 'Servis\ServisKontroler@getLista')->name('servis');
 Route::get('servis/detalj/{id}', 'Servis\ServisKontroler@getDetalj')->name('servis.detalj');
@@ -91,13 +90,13 @@ Route::get('nabavke/stavke/detalj/{id}', 'Servis\NabavkeStavkeKontroler@getDetal
 Route::post('nabavke/stavke/brisanje', 'Servis\NabavkeStavkeKontroler@postBrisanje')->name('nabavke.stavke.brisanje');
 
 // Nabavke-otpremnice stavke dodavanje uredjaja
-Route::post('nabavke/stavke/racunari/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postRacunariDodavanje')->name('nabavke.stavke.racunari.dodavanje');
-Route::post('nabavke/stavke/monitori/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postMonitoriDodavanje')->name('nabavke.stavke.monitori.dodavanje');
-Route::post('nabavke/stavke/stampaci/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postStampaciDodavanje')->name('nabavke.stavke.stampaci.dodavanje');
-Route::post('nabavke/stavke/skeneri/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postSkeneriDodavanje')->name('nabavke.stavke.skeneri.dodavanje');
-Route::post('nabavke/stavke/upsevi/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postUpseviDodavanje')->name('nabavke.stavke.upsevi.dodavanje');
-Route::post('nabavke/stavke/projektori/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postProjektoriDodavanje')->name('nabavke.stavke.projektori.dodavanje');
-Route::post('nabavke/stavke/mrezni/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postMrezniDodavanje')->name('nabavke.stavke.mrezni.dodavanje');
+Route::post('stavke/racunari/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postRacunariDodavanje')->name('stavke.racunari.dodavanje');
+Route::post('stavke/monitori/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postMonitoriDodavanje')->name('stavke.monitori.dodavanje');
+Route::post('stavke/stampaci/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postStampaciDodavanje')->name('stavke.stampaci.dodavanje');
+Route::post('stavke/skeneri/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postSkeneriDodavanje')->name('stavke.skeneri.dodavanje');
+Route::post('stavke/upsevi/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postUpseviDodavanje')->name('stavke.upsevi.dodavanje');
+Route::post('stavke/projektori/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postProjektoriDodavanje')->name('stavke.projektori.dodavanje');
+Route::post('stavke/mrezni/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postMrezniDodavanje')->name('stavke.mrezni.dodavanje');
 // Nabavke-otpremnice stavke pregled uredjaja
 Route::get('stavke/uredjaji/pregled/{vrsta}/{id}', 'Servis\NabavkeOtpremniceStavkeKontroler@getPregledUredjaja')->name('stavke.uredjaji.pregled');
 // Nabavke-otpremnice stavke brisanje uredjaja
