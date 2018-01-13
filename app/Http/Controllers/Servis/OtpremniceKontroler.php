@@ -217,19 +217,19 @@ class OtpremniceKontroler extends Kontroler
     {
         $otpremnica = Otpremnica::findOrFail($request->idBrisanje);
         $id = $otpremnica->id;
-        $nema_stavke = $otpremnica->stavke->isEmpty();
-        if ($nema_stavke) {
-            $odgovor = $otpremnica->delete();
-            if ($odgovor) {
-                Session::flash('uspeh', 'Otpremnica je uspešno obrisana!');
-                return redirect()->route('otpremnice');
-            } else {
-                Session::flash('greska', 'Došlo je do greške prilikom brisanja otpremnice. Pokušajte ponovo, kasnije!');
-            }
-        } else {
+        if (count($otpremnica->slike) > 0 || count($otpremnica->stavke) > 0) {
             Session::flash('greska', 'Nije moguće obrisati otpremnicu jer postoje stavke koje su vezane za nju!');
+            return redirect()->route('otpremnice.detalj', $id);
         }
-        return redirect()->route('otpremnice.detalj', $id);
+
+        $odgovor = $otpremnica->delete();
+        if ($odgovor) {
+            Session::flash('uspeh', 'Otpremnica je uspešno obrisana!');
+            return redirect()->route('otpremnice');
+        } else {
+            Session::flash('greska', 'Došlo je do greške prilikom brisanja otpremnice. Pokušajte ponovo, kasnije!');
+            return redirect()->route('otpremnice.detalj', $id);
+        }
     }
 
 }

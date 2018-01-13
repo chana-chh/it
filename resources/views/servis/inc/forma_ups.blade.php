@@ -1,4 +1,4 @@
-<form action="{{ route('nabavke.stavke.upsevi.dodavanje') }}" method="POST" data-parsley-validate>
+<form action="{{ route('stavke.upsevi.dodavanje') }}" method="POST" data-parsley-validate>
     {{ csrf_field() }}
     <input type="hidden" name="stavka_nabavke_id" id="stavka_nabavke_id" value="{{ $stavka->id }}">
     <input type="hidden" name="vrsta_uredjaja_id" id="vrsta_uredjaja_id" value="{{ $stavka->vrstaUredjaja->id }}">

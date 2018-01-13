@@ -28,8 +28,6 @@ https://datatables.yajrabox.com/starter
 
 Datumi u servisu da budu nullable();
 
-## NABAVKE STAVKE
+## VAZNO
 
-nabavke_stavke_detalj dodati js funkciju za svako brisanje
-u tabelama za prikaz uredjaja dodati dugmice za brisanje
-u NabavkeStavkeKontroler dodati metode za brisanje uredjaja
+HDD model nema naziv ???
