@@ -11,13 +11,20 @@ use App\Modeli\MonitorModel;
 use App\Modeli\StampacModel;
 use App\Modeli\SkenerModel;
 use App\Modeli\UpsModel;
+use App\Modeli\Proizvodjac;
+use App\Modeli\OsnovnaPlocaModel;
+use App\Modeli\ProcesorModel;
+use App\Modeli\GrafickiAdapterModel;
+use App\Modeli\MemorijaModel;
+use App\Modeli\HddModel;
+use App\Modeli\NapajanjeModel;
 
 class OtpremniceStavkeKontroler extends Kontroler
 {
 
-    public function getLista($id_otpremnice)
+    public function getLista($id)
     {
-        $otpremnica = Otpremnica::find($id_otpremnice);
+        $otpremnica = Otpremnica::find($id);
         return view('servis.otpremnice_stavke')->with(compact('otpremnica'));
     }
 
@@ -67,11 +74,18 @@ class OtpremniceStavkeKontroler extends Kontroler
     public function getDetalj($id)
     {
         $stavka = OtpremnicaStavka::find($id);
+        $proizvodjaci = Proizvodjac::all();
         $modeli_monitora = MonitorModel::all();
         $modeli_stampaca = StampacModel::all();
         $modeli_skenera = SkenerModel::all();
         $modeli_upseva = UpsModel::all();
-        return view('servis.otpremnice_stavke_detalj')->with(compact('stavka', 'modeli_monitora', 'modeli_stampaca', 'modeli_skenera', 'modeli_upseva'));
+        $modeli_mbd = OsnovnaPlocaModel::all();
+        $modeli_cpu = ProcesorModel::all();
+        $modeli_vga = GrafickiAdapterModel::all();
+        $modeli_ram = MemorijaModel::all();
+        $modeli_hdd = HddModel::all();
+        $modeli_psu = NapajanjeModel::all();
+        return view('servis.otpremnice_stavke_detalj')->with(compact('stavka', 'proizvodjaci', 'modeli_monitora', 'modeli_stampaca', 'modeli_skenera', 'modeli_upseva', 'modeli_cpu', 'modeli_mbd', 'modeli_vga', 'modeli_ram', 'modeli_hdd', 'modeli_psu'));
     }
 
     public function postIzmena(Request $request, $id)
@@ -100,9 +114,9 @@ class OtpremniceStavkeKontroler extends Kontroler
     public function postBrisanje(Request $request)
     {
         $stavka = OtpremnicaStavka::find($request->idBrisanje);
-        if (!$stavka->uredjaji()) {
+        if (count($stavka->uredjaji()) > 0) {
             Session::flash('upozorenje', 'Nije moguće obrisati stavku jer postoje uređaji koji su vezani za nju.');
-            return redirect()->route('otpremnice.stavka.detalj', $stavka->id);
+            return redirect()->route('otpremnice.stavke.detalj', $stavka->id);
         }
         $id = $stavka->otpremnica_id;
         $odgovor = $stavka->delete();

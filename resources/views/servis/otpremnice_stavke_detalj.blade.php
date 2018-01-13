@@ -121,6 +121,24 @@
     @if($stavka->vrstaUredjaja->id === 5)
     @include('servis.inc.forma_ups')
     @endif
+    @if($stavka->vrstaUredjaja->id === 6)
+    @include('servis.inc.forma_mbd')
+    @endif
+    @if($stavka->vrstaUredjaja->id === 7)
+    @include('servis.inc.forma_cpu')
+    @endif
+    @if($stavka->vrstaUredjaja->id === 8)
+    @include('servis.inc.forma_vga')
+    @endif
+    @if($stavka->vrstaUredjaja->id === 9)
+    @include('servis.inc.forma_ram')
+    @endif
+    @if($stavka->vrstaUredjaja->id === 10)
+    @include('servis.inc.forma_hdd')
+    @endif
+    @if($stavka->vrstaUredjaja->id === 11)
+    @include('servis.inc.forma_psu')
+    @endif
     @if($stavka->vrstaUredjaja->id === 12)
     @include('servis.inc.forma_projektor')
     @endif
@@ -153,6 +171,15 @@
         var id = $(this).val();
         $('#idBrisanje').val(id);
         var ruta = "{{ route('otpremnice.stavke.brisanje') }}";
+        $('#brisanje-forma').attr('action', ruta);
+    });
+
+    $(document).on('click', '#brisanjeUredjaja', function () {
+        var id = $(this).val();
+        var vrsta = "{{ $stavka->vrstaUredjaja->id }}";
+        $('#idBrisanje').val(id);
+        $('#idVrstaUredjaja').val(vrsta);
+        var ruta = "{{ route('stavke.uredjaji.brisanje') }}";
         $('#brisanje-forma').attr('action', ruta);
     });
 </script>

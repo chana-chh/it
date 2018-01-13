@@ -97,6 +97,12 @@ Route::post('stavke/skeneri/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler
 Route::post('stavke/upsevi/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postUpseviDodavanje')->name('stavke.upsevi.dodavanje');
 Route::post('stavke/projektori/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postProjektoriDodavanje')->name('stavke.projektori.dodavanje');
 Route::post('stavke/mrezni/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postMrezniDodavanje')->name('stavke.mrezni.dodavanje');
+Route::post('stavke/cpu/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postCpuDodavanje')->name('stavke.cpu.dodavanje');
+Route::post('stavke/hdd/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postHddDodavanje')->name('stavke.hdd.dodavanje');
+Route::post('stavke/mbd/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postMbdDodavanje')->name('stavke.mbd.dodavanje');
+Route::post('stavke/psu/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postPsuDodavanje')->name('stavke.psu.dodavanje');
+Route::post('stavke/ram/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postRamDodavanje')->name('stavke.ram.dodavanje');
+Route::post('stavke/vga/dodavanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postVgaDodavanje')->name('stavke.vga.dodavanje');
 // Nabavke-otpremnice stavke pregled uredjaja
 Route::get('stavke/uredjaji/pregled/{vrsta}/{id}', 'Servis\NabavkeOtpremniceStavkeKontroler@getPregledUredjaja')->name('stavke.uredjaji.pregled');
 // Nabavke-otpremnice stavke brisanje uredjaja

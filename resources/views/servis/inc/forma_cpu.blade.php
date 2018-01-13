@@ -1,19 +1,7 @@
-<form action="{{ route('stavke.monitori.dodavanje') }}" method="POST" data-parsley-validate>
+<form action="{{ route('stavke.cpu.dodavanje') }}" method="POST" data-parsley-validate>
     {{ csrf_field() }}
-    <input type="hidden" name="stavka_nabavke_id" id="stavka_nabavke_id" value="{{ $stavka->id }}">
+    <input type="hidden" name="stavka_otpremnice_id" id="stavka_nabavke_id" value="{{ $stavka->id }}">
     <input type="hidden" name="vrsta_uredjaja_id" id="vrsta_uredjaja_id" value="{{ $stavka->vrstaUredjaja->id }}">
-    <div class="col-md-12">
-        <div class="form-group{{ $errors->has('inventarski_broj') ? ' has-error' : '' }}">
-            <label for="inventarski_broj">Inventarski broj:</label>
-            <input type="text" name="inventarski_broj" id="inventarski_broj" class="form-control"
-                   value="{{ old('inventarski_broj') }}" maxlength="10">
-            @if($errors->has('inventarski_broj'))
-            <span class="help-block">
-                <strong>{{ $errors->first('inventarski_broj') }}</strong>
-            </span>
-            @endif
-        </div>
-    </div>
     <div class="col-md-12">
         <div class="form-group{{ $errors->has('serijski_broj') ? ' has-error' : '' }}">
             <label for="serijski_broj">Serijski broj:</label>
@@ -28,19 +16,19 @@
         </div>
     </div>
     <div class="col-md-12">
-        <div class="form-group{{ $errors->has('monitor_model_id') ? ' has-error' : '' }}">
-            <label for="monitor_model_id">Model monitora:</label>
-            <select name="monitor_model_id" id="monitor_model_id" class="chosen-select form-control"
-                    data-placeholder="Model monitora ..." required>
+        <div class="form-group{{ $errors->has('procesor_model_id') ? ' has-error' : '' }}">
+            <label for="procesor_model_id">Model procesora:</label>
+            <select name="procesor_model_id" id="procesor_model_id" class="chosen-select form-control"
+                    data-placeholder="Model procesora ..." required>
                 <option value=""></option>
-                @foreach($modeli_monitora as $mm)
+                @foreach($modeli_cpu as $mm)
                 <option value="{{ $mm->id }}"
-                        {{ old( 'monitor_model_id') == $mm->id ? ' selected' : '' }}> {{ $mm->naziv }}</option>
+                        {{ old( 'procesor_model_id') == $mm->id ? ' selected' : '' }}>{{ $mm->naziv }}</option>
                 @endforeach
             </select>
-            @if ($errors->has('monitor_model_id'))
+            @if ($errors->has('procesor_model_id'))
             <span class="help-block">
-                <strong>{{ $errors->first('monitor_model_id') }}</strong>
+                <strong>{{ $errors->first('procesor_model_id') }}</strong>
             </span>
             @endif
         </div>
