@@ -47,4 +47,10 @@ class Hdd extends Model
         return $this->doesntHave('racunar');
     }
 
+    public function dajModel()
+    {   
+        $podaci = $this->hddModel->proizvodjac->naziv." - ".$this->hddModel->kapacitet."GB";
+        return $podaci;
+    }
+
 }

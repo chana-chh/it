@@ -149,9 +149,65 @@
                 <th style="width: 30%;">Vrsta uređaja:</th>
                 <td style="width: 70%;">{{$uredjaj->vrstaUredjaja->naziv}}</td>
             </tr>
+            @if($uredjaj->vrstaUredjaja->id == 1)
+            <tr>
+                <th style="width: 30%;">Da li se radi o <strong>BRAND</strong> računaru:</th>
+                <td style="width: 70%;">
+                        @if($uredjaj->brend == 1)
+                        <i class="fa fa-check" aria-hidden="true" style="color: #18bc9c"></i>
+                        @endif
+                </td>
+            </tr>
+
+            @if ($uredjaj->brend == 1)
+            <tr>
+                <th style="width: 30%;"><strong>Proizvođač:</strong></th>
+                <td style="width: 70%;">{{$uredjaj->proizvodjac->naziv}}</td>
+            </tr>
+            @endif
+
              <tr>
-                <th style="width: 30%;">Uređaj:</th>
-                <td style="width: 70%;">{{$uredjaj->id}}</td>
+                <th style="width: 30%;">Da li se radi o <strong>LAPTOP</strong> računaru:</th>
+                <td style="width: 70%;">
+                     @if($uredjaj->laptop == 1)
+                        <i class="fa fa-check" aria-hidden="true" style="color: #18bc9c"></i>
+                        @endif
+                </td>
+            </tr>
+
+                 <tr>
+                <th style="width: 30%;">Da li se radi o <strong>SERVERU</strong> :</th>
+                <td style="width: 70%;">
+                     @if($uredjaj->server == 1)
+                        <i class="fa fa-check" aria-hidden="true" style="color: #18bc9c"></i>
+                        @endif
+                </td>
+            </tr>
+
+            <tr>
+                <th style="width: 30%;"><strong>Naziv računara (Aktivni direktorijum):</strong></th>
+                <td style="width: 70%;">{{$uredjaj->ime}}</td>
+            </tr>
+
+            <tr>
+                <th style="width: 30%;"><strong>Broj odeljenja za IKT:</strong></th>
+                <td style="width: 70%;">{{$uredjaj->erc_broj}}
+                </td>
+            </tr>
+            @endif
+            @if($uredjaj->racunar)
+            <tr>
+                <th style="width: 30%;">Računar:</th>
+                <td style="width: 70%;">{{$uredjaj->racunar->ime}}</td>
+            </tr>
+            @endif
+             <tr>
+                <th style="width: 30%;">Serijski broj:</th>
+                <td style="width: 70%;">{{$uredjaj->serijski_broj}}</td>
+            </tr>
+            <tr>
+                <th style="width: 30%;">Inventarski broj:</th>
+                <td style="width: 70%;">{{$uredjaj->inventarski_broj}}</td>
             </tr>
         </tbody>
     </table>
@@ -177,8 +233,18 @@
                 <td style="width: 70%;">{{$uredjaj->vrstaUredjaja->naziv}}</td>
             </tr>
              <tr>
-                <th style="width: 30%;">Uređaj:</th>
-                <td style="width: 70%;">{{$uredjaj->id}}</td>
+                <th style="width: 30%;">Serijski broj:</th>
+                <td style="width: 70%;">{{$uredjaj->serijski_broj}}</td>
+            </tr>
+            @if($uredjaj->racunar)
+            <tr>
+                <th style="width: 30%;">Računar:</th>
+                <td style="width: 70%;">{{$uredjaj->racunar->ime}}</td>
+            </tr>
+            @endif
+            <tr>
+                <th style="width: 30%;">Model:</th>
+                <td style="width: 70%;">{{$uredjaj->dajModel()}}</td>
             </tr>
         </tbody>
     </table>

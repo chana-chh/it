@@ -45,4 +45,10 @@ class OsnovnaPloca extends Model
         return $this->doesntHave('racunar');
     }
 
+    public function dajModel()
+    {   
+        $podaci = $this->osnovnaPlocaModel->proizvodjac->naziv.", ".$this->osnovnaPlocaModel->naziv." sa čipsetom ".$this->osnovnaPlocaModel->cipset."; memorija - ".$this->osnovnaPlocaModel->tipMemorije->naziv;
+        return $podaci;
+    }
+
 }

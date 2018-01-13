@@ -43,58 +43,19 @@ class ServisKontroler extends Kontroler
             $id_uredjaja = $data->uredjaj_id;
             $broj = Servis::where('vrsta_uredjaja_id', '=', $vrsta_uredjaja)->where('uredjaj_id', '=', $id_uredjaja)->count();
         switch ($vrsta_uredjaja) {
-            case 1: 
-            $uredjaj = Racunar::find($id_uredjaja);
-            $tip = 1;
-            break;
-            case 2: 
-            $uredjaj = Monitor::find($id_uredjaja); 
-            $tip = 1;
-            break;
-            case 3: 
-            $uredjaj = Stampac::find($id_uredjaja); 
-            $tip = 1;
-            break;
-            case 4: 
-            $uredjaj = Skener::find($id_uredjaja); 
-            $tip = 1;
-            break;
-            case 5: 
-            $uredjaj = Ups::find($id_uredjaja); 
-            $tip = 1;
-            break;
-            case 6: 
-            $uredjaj = OsnovnaPloca::find($id_uredjaja); 
-            $tip = 2;
-            break;
-            case 7: 
-            $uredjaj = Procesor::find($id_uredjaja); 
-            $tip = 2;
-            break;
-            case 8: 
-            $uredjaj = GrafickiAdapter::find($id_uredjaja); 
-            $tip = 2;
-            break;
-            case 9: 
-            $uredjaj = Memorija::find($id_uredjaja); 
-            $tip = 2;
-            break;
-            case 10: 
-            $uredjaj = Hdd::find($id_uredjaja); 
-            $tip = 2;
-            break;
-            case 11: 
-            $uredjaj = Napajanje::find($id_uredjaja); 
-            $tip = 2;
-            break;
-            case 12: 
-            $uredjaj = Projektor::find($id_uredjaja); 
-            $tip = 1;
-            break;
-            case 13: 
-            $uredjaj = MrezniUredjaj::find($id_uredjaja); 
-            $tip = 1;
-            break;
+            case 1: $uredjaj = Racunar::find($id_uredjaja); $tip = 1; break;
+            case 2: $uredjaj = Monitor::find($id_uredjaja); $tip = 1; break;
+            case 3: $uredjaj = Stampac::find($id_uredjaja); $tip = 1; break;
+            case 4: $uredjaj = Skener::find($id_uredjaja); $tip = 1; break;
+            case 5: $uredjaj = Ups::find($id_uredjaja); $tip = 1; break;
+            case 6: $uredjaj = OsnovnaPloca::find($id_uredjaja); $tip = 2; break;
+            case 7: $uredjaj = Procesor::find($id_uredjaja); $tip = 2; break;
+            case 8: $uredjaj = GrafickiAdapter::find($id_uredjaja); $tip = 2; break;
+            case 9: $uredjaj = Memorija::find($id_uredjaja); $tip = 2; break;
+            case 10: $uredjaj = Hdd::find($id_uredjaja); $tip = 2; break;
+            case 11: $uredjaj = Napajanje::find($id_uredjaja); $tip = 2; break;
+            case 12: $uredjaj = Projektor::find($id_uredjaja); $tip = 1; break;
+            case 13: $uredjaj = MrezniUredjaj::find($id_uredjaja); $tip = 1; break;
             default : null;
         }
         }
@@ -105,57 +66,32 @@ class ServisKontroler extends Kontroler
     public function redirectDetalj($id, $vrsta)
     {
          switch ($vrsta) {
-            case 1: 
-            return redirect()->route('racunari.oprema.detalj', $id);
-            break;
-            case 2: 
-            return redirect()->route('monitori.oprema.detalj', $id);
-            break;
-            case 3: 
-            return redirect()->route('stampaci.oprema.detalj', $id);
-            break;
-            case 4: 
-            return redirect()->route('skeneri.oprema.detalj', $id);
-            break;
-            case 5: 
-            return redirect()->route('upsevi.oprema.detalj', $id);
-            break;
-            case 6: 
-            return redirect()->route('osnovne_ploce.oprema.detalj', $id);
-            break;
-            case 7: 
-            return redirect()->route('procesori.oprema.detalj', $id);
-            break;
-            case 8: 
-            return redirect()->route('vga.oprema.detalj', $id);
-            break;
-            case 9: 
-            return redirect()->route('memorije.oprema.detalj', $id);
-            break;
-            case 10: 
-            return redirect()->route('hddovi.oprema.detalj', $id);
-            break;
-            case 11: 
-            return redirect()->route('napajanja.oprema.detalj', $id);
-            break;
-            case 12: 
-            return redirect()->route('projektori.oprema.detalj', $id);
-            break;
-            case 13: 
-            return redirect()->route('mrezni.oprema.detalj', $id);
-            break;
+            case 1: return redirect()->route('racunari.oprema.detalj', $id); break;
+            case 2: return redirect()->route('monitori.oprema.detalj', $id); break;
+            case 3: return redirect()->route('stampaci.oprema.detalj', $id); break;
+            case 4: return redirect()->route('skeneri.oprema.detalj', $id);  break;
+            case 5: return redirect()->route('upsevi.oprema.detalj', $id);   break;
+            case 6: return redirect()->route('osnovne_ploce.oprema.detalj', $id); break;
+            case 7: return redirect()->route('procesori.oprema.detalj', $id); break;
+            case 8: return redirect()->route('vga.oprema.detalj', $id); break;
+            case 9: return redirect()->route('memorije.oprema.detalj', $id); break;
+            case 10: return redirect()->route('hddovi.oprema.detalj', $id);  break;
+            case 11: return redirect()->route('napajanja.oprema.detalj', $id); break;
+            case 12: return redirect()->route('projektori.oprema.detalj', $id); break;
+            case 13: return redirect()->route('mrezni.oprema.detalj', $id); break;
             default : null;
         }
     }
 
     public function getIzmena($id)
     {
-        $data = Servis::find($id);
+        $servis = Servis::find($id);
         $vrste_uredjaja = VrstaUredjaja::all();
+        $vrste_uredjaja->pop();
         $uredjaji = null;
 
-        if ($data->vrsta_uredjaja_id) {
-            $vrsta_uredjaja = $data->vrsta_uredjaja_id;
+        if ($servis->vrsta_uredjaja_id) {
+            $vrsta_uredjaja = $servis->vrsta_uredjaja_id;
         switch ($vrsta_uredjaja) {
             case 1: $uredjaji = Racunar::all(); break;
             case 2: $uredjaji = Monitor::all(); break;
@@ -173,7 +109,7 @@ class ServisKontroler extends Kontroler
             default : null;
         }
         }
-        return view('servis.servis_izmena')->with(compact('data', 'vrste_uredjaja', 'uredjaji'));
+        return view('servis.servis_izmena')->with(compact('servis', 'vrste_uredjaja', 'uredjaji'));
     }
 
     public function postIzmena($id)
@@ -181,6 +117,31 @@ class ServisKontroler extends Kontroler
         $data = Servis::find($id);
         
         return view('servis.servis_izmena')->with(compact('data'));
+    }
+
+    public function postAjax(Request $request)
+    {
+        if($request->ajax()){
+            $id_uredjaja = $request->id;
+            $data = null;
+        switch ($id_uredjaja) {
+            case 1: $data = Racunar::all(); $tip = 1; break;
+            case 2: $data = Monitor::with('monitorModel', 'racunar')->get(); $tip = 1; break;
+            case 3: $data = Stampac::with('stampacModel', 'racunar')->get(); $tip = 1; break;
+            case 4: $data = Skener::with('skenerModel', 'racunar')->get(); $tip = 1; break;
+            case 5: $data = Ups::with('upsModel', 'racunar')->get(); $tip = 1; break;
+            case 6: $data = OsnovnaPloca::with('osnovnaPlocaModel', 'racunar')->get(); $tip = 2; break;
+            case 7: $data = Procesor::with('procesorModel', 'racunar')->get(); $tip = 2; break;
+            case 8: $data = GrafickiAdapter::with('grafickiAdapterModel', 'racunar')->get(); $tip = 2; break;
+            case 9: $data = Memorija::with('memorijaModel', 'racunar')->get(); $tip = 2; break;
+            case 10: $data = Hdd::with('hddModel', 'racunar')->get(); $tip = 2; break;
+            case 11: $data = Napajanje::with('napajanjeModel', 'racunar')->get(); $tip = 2; break;
+            case 12: $data = Projektor::all(); $tip = 1; break;
+            case 13: $data = MrezniUredjaj::all(); $tip = 1; break;
+            default : null;
+        }
+    }
+        return response()->json(['uredj' => $data, 'tip' => $tip]);
     }
 
 }

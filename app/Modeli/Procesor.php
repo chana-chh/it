@@ -44,6 +44,12 @@ class Procesor extends Model
         return $this->doesntHave('racunar');
     }
 
+    public function dajModel()
+    {   
+        $podaci = $this->procesorModel->proizvodjac->naziv.", ".$this->procesorModel->naziv." na ".$this->procesorModel->takt."MHz";
+        return $podaci;
+    }
+
     public $naziv_modela_jednina = "Procesor";
     public $naziv_modela_mnozina = "Procesori";
 

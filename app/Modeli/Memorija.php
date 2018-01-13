@@ -44,4 +44,10 @@ class Memorija extends Model
         return $this->doesntHave('racunar');
     }
 
+    public function dajModel()
+    {   
+        $podaci = $this->memorijaModel->tipMemorije->naziv.", ".$this->memorijaModel->proizvodjac->naziv.", ".$this->memorijaModel->naziv." na ".$this->memorijaModel->brzina."MHz";
+        return $podaci;
+    }
+
 }

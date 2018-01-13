@@ -44,4 +44,10 @@ class Napajanje extends Model
         return $this->doesntHave('racunar');
     }
 
+    public function dajModel()
+    {   
+        $podaci = $this->napajanjeModel->naziv.", ".$this->napajanjeModel->proizvodjac->naziv." - ".$this->napajanjeModel->snaga."W";
+        return $podaci;
+    }
+
 }

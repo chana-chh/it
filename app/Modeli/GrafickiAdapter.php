@@ -44,4 +44,10 @@ class GrafickiAdapter extends Model
         return $this->doesntHave('racunar');
     }
 
+        public function dajModel()
+    {   
+        $podaci = $this->grafickiAdapterModel->naziv.", ".$this->grafickiAdapterModel->proizvodjac->naziv." - ".$this->grafickiAdapterModel->cip." (memorija: ".$this->grafickiAdapterModel->tipMemorije->naziv.", ".$this->grafickiAdapterModel->kapacitet_memorije."MB)";
+        return $podaci;
+    }
+
 }

@@ -31,6 +31,7 @@ Route::get('servis/detalj/{id}', 'Servis\ServisKontroler@getDetalj')->name('serv
 Route::get('servis/redirekt/{id}/{vrsta}', 'Servis\ServisKontroler@redirectDetalj')->name('servis.redirekt');
 Route::get('servis/izmena/{id}', 'Servis\ServisKontroler@getIzmena')->name('servis.izmena.get');
 Route::post('servis/izmena/{id}', 'Servis\ServisKontroler@postIzmena')->name('servis.izmena.post');
+Route::post('servis/ajax', 'Servis\ServisKontroler@postAjax')->name('servis.ajax.post');
 
 // Ugovori
 Route::get('ugovori', 'Servis\UgovoriOdrzavanjaKontroler@getLista')->name('ugovori');
