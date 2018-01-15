@@ -55,4 +55,15 @@ class Skener extends Model
         return $this->doesntHave('racunar');
     }
 
+    public function tip()
+    {   
+        return 1;
+    }
+
+    public function brojKvarova()
+    {
+        $broj = ServisKvar::where('vrsta_uredjaja_id', '=', $this->vrsta_uredjaja_id)->where('uredjaj_id', '=', $this->id)->count();
+        return $broj;
+    }
+
 }

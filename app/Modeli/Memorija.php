@@ -50,4 +50,9 @@ class Memorija extends Model
         return $podaci;
     }
 
+    public function tip()
+    {   
+        return 2;
+    }
+
 }

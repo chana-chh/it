@@ -40,67 +40,28 @@
     <div class="col-md-12 boxic">
         <form action="{{ route('servis.izmena.post', $servis->id) }}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
-
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group{{ $errors->has('vrsta_uredjaja_id') ? ' has-error' : '' }}">
-                        <label for="vrsta_uredjaja_id">Vrsta uređaja:</label>
-                        <select name="vrsta_uredjaja_id" id="vrsta_uredjaja_id" class="chosen-select form-control" data-placeholder="vrste uređaja ..." >
+                    <div class="form-group{{ $errors->has('status_id') ? ' has-error' : '' }}">
+                        <label for="status_id">Status:</label>
+                        <select name="status_id" id="status_id" class="chosen-select form-control" data-placeholder="statusi ..." >
                             <option value=""></option>
-                            @foreach($vrste_uredjaja as $u)
+                            @foreach($statusi as $u)
                                 <option value="{{ $u->id }}"
-                                    {{ $u->id == old('vrsta_uredjaja_id') ? ' selected' : '' }}
-                                    {{ $servis->vrsta_uredjaja_id == $u->id ? ' selected' : '' }}>
+                                    {{ $u->id == old('status_id') ? ' selected' : '' }}
+                                    {{ $servis->status_id == $u->id ? ' selected' : '' }}>
                                     {{$u->naziv}}
                             </option>
                             @endforeach
                     </select>
-                    @if ($errors->has('vrsta_uredjaja_id'))
+                    @if ($errors->has('status_id'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('vrsta_uredjaja_id') }}</strong>
+                        <strong>{{ $errors->first('status_id') }}</strong>
                     </span>
                     @endif
                 </div>
             </div>
-
-                <div class="col-md-6">
-                    <div class="form-group{{ $errors->has('uredjaj_id') ? ' has-error' : '' }}">
-                        <label for="uredjaj_id">Uređaj:</label>
-                        <select name="uredjaj_id" id="uredjaj_id" class="chosen-select form-control" data-placeholder="uređaji ..." >
-                            <option value=""></option>
-                            @if($servis->vrsta_uredjaja_id == 1 || $servis->vrsta_uredjaja_id == 2 || $servis->vrsta_uredjaja_id == 3 || $servis->vrsta_uredjaja_id == 4
-                                || $servis->vrsta_uredjaja_id == 5 || $servis->vrsta_uredjaja_id == 12 || $servis->vrsta_uredjaja_id == 13)
-                            @if($uredjaji)
-                            @foreach($uredjaji as $d)
-                                <option value="{{ $d->id }}"
-                                    {{ $d->id == old('uredjaj_id') ? ' selected' : '' }}
-                                    {{ $servis->uredjaj_id == $d->id ? ' selected' : '' }}>
-                                    {{$d->id}}, IB: {{$d->inventarski_broj}}, SB: {{$d->serijski_broj}}
-                            </option>
-                            @endforeach
-                            @endif
-                            @else
-                            @if($uredjaji)
-                            @foreach($uredjaji as $d)
-                                <option value="{{ $d->id }}"
-                                    {{ $d->id == old('uredjaj_id') ? ' selected' : '' }}
-                                    {{ $servis->uredjaj_id == $d->id ? ' selected' : '' }}>
-                                    {{$d->id}}
-                            </option>
-                            @endforeach
-                            @endif
-
-                            @endif
-                    </select>
-                    @if ($errors->has('uredjaj_id'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('uredjaj_id') }}</strong>
-                    </span>
-                    @endif
-                </div>
-            </div>
-
-            </div>
+        </div>
 
             <div class="row">
 
@@ -208,55 +169,6 @@
                 $(this).attr('style', 'width: 100%');
             });
         }
-
-        $("#vrsta_uredjaja_id").on('change', function () {
-            
-            var id = $(this).val();
-            var ruta = "{{ route('servis.ajax.post') }}";
-
-            $.ajax({
-            url: ruta,
-            type:"POST", 
-            data: {"id":id, _token: "{!! csrf_token() !!}"}, 
-            success: function(data){
-                $('#uredjaj_id').empty();
-                if(data.tip == "1"){
-                    $.each(data.uredj, function(index, element){
-                    var serijski = (element.serijski_broj != null) ? element.serijski_broj : "Bez serijskog broja";
-                    switch (element.vrsta_uredjaja_id) {
-                        case 1: model = " "; break;
-                        case 2: model = (element.monitor_model.naziv != null) ? element.monitor_model.naziv : " "; break;
-                        case 3: model = (element.model.naziv != null) ? element.model.naziv : " "; break;
-                        case 4: model = (element.skener_model.naziv != null) ? element.skener_model.naziv : " "; break;
-                        case 5: model = (element.ups_model.naziv != null) ? element.ups_model.naziv : " "; break;
-                        case 12:model = (element.naziv != null) ? element.naziv : " "; break;
-                        case 13:model = (element.naziv != null) ? element.naziv : " "; break;
-                        default : null;
-                    }
-                    $('#uredjaj_id').append('<option value="'+element.id+'">'+serijski+', model: '+model+'</option>');
-                });
-                    $('#uredjaj_id').trigger("chosen:updated");
-                }else{
-                    $.each(data.uredj, function(index, element){
-                        switch (element.vrsta_uredjaja_id) {
-                        case 6: model = (element.osnovna_ploca_model.naziv != null) ? element.osnovna_ploca_model.naziv : " "; break;
-                        case 7: model = (element.procesor_model.naziv != null) ? element.procesor_model.naziv : " "; break;
-                        case 8: model = (element.graficki_adapter_model.naziv != null) ? element.graficki_adapter_model.naziv : " "; break;
-                        case 9: model = (element.memorija_model.naziv != null) ? element.memorija_model.naziv : " "; break;
-                        case 10:model = (element.hdd_model.naziv != null) ? element.hdd_model.naziv : " "; break;
-                        case 11:model = (element.napajanje_model.naziv != null) ? element.napajanje_model.naziv : " "; break;
-                        default : null;
-                    }
-                    var serijski = (element.serijski_broj != null) ? element.serijski_broj : "Bez serijskog broja";
-                    var racunar = (element.racunar != null) ? element.racunar.ime : " ";
-                    $('#uredjaj_id').append('<option value="'+element.id+'">'+serijski+', računar: '+racunar+'</option>');
-                });
-                    $('#uredjaj_id').trigger("chosen:updated");
-                }
-
-          }
-        });
-        });
     });
 
 </script>

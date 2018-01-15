@@ -58,4 +58,9 @@ class Monitor extends Model
         return $this->doesntHave('racunar');
     }
 
+    public function tip()
+    {   
+        return 1;
+    }
+
 }

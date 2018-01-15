@@ -44,4 +44,9 @@ class MrezniUredjaj extends Model
         return $this->belongsTo('App\Modeli\NabavkaStavka', 'stavka_nabavke_id', 'id');
     }
 
+        public function tip()
+    {   
+        return 1;
+    }
+
 }

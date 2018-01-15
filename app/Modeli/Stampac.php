@@ -55,4 +55,9 @@ class Stampac extends Model
         return $this->doesntHave('racunar');
     }
 
+    public function tip()
+    {   
+        return 1;
+    }
+
 }
