@@ -21,8 +21,8 @@ class PretragaKontroler extends Controller
 
     public function getPretraga()
     {
-        $zap = Zaposleni::all();
-        $kanc = Kancelarija::all();
+        $zap = Zaposleni::with('uprava', 'mobilni', 'emailovi', 'kancelarija', 'kancelarija.telefoni', 'kancelarija.lokacija', 'kancelarija.sprat')->get();
+        $kanc = Kancelarija::with('lokacija', 'sprat', 'telefoni', 'zaposleni', 'zaposleni.uprava', 'zaposleni.mobilni', 'zaposleni.emailovi')->get();
         return view('pretraga')->with(compact('zap', 'kanc'));
     }
 
