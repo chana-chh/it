@@ -22,8 +22,6 @@ class NapraviTabeluServis extends Migration
             $table->date('datum_popravke')->nullable();
             $table->date('datum_isporuke')->nullable();
             $table->text('opis_kvara_servis')->nullable();
-            $table->integer('vrsta_uredjaja_id')->unsigned()->nullable();
-            $table->integer('uredjaj_id')->unsigned()->nullable();
             $table->integer('status_id')->unsigned();
             $table->text('napomena')->nullable();
 

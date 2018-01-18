@@ -21,6 +21,8 @@ use App\Modeli\Memorija;
 use App\Modeli\Hdd;
 use App\Modeli\Napajanje;
 use App\Modeli\VrstaUredjaja;
+use App\Modeli\Status;
+use Illuminate\Database\Eloquent\Collection;
 
 class ServisKontroler extends Kontroler
 {
@@ -34,33 +36,35 @@ class ServisKontroler extends Kontroler
     public function getDetalj($id)
     {
         $data = Servis::find($id);
-        $uredjaj = null;
-        $id_uredjaja = null;
-        $broj = null;
+        $kolekcija = new Collection();
 
-        if ($data->vrsta_uredjaja_id) {
-            $vrsta_uredjaja = $data->vrsta_uredjaja_id;
-            $id_uredjaja = $data->uredjaj_id;
-            $broj = Servis::where('vrsta_uredjaja_id', '=', $vrsta_uredjaja)->where('uredjaj_id', '=', $id_uredjaja)->count();
+        if ($data->kvar) {
+            foreach ($data->kvar as $uredjaj_kvar) {
+            $vrsta_uredjaja = $uredjaj_kvar->vrsta_uredjaja_id;
+            $id_uredjaja = $uredjaj_kvar->uredjaj_id;
+            
         switch ($vrsta_uredjaja) {
-            case 1: $uredjaj = Racunar::find($id_uredjaja); $tip = 1; break;
-            case 2: $uredjaj = Monitor::find($id_uredjaja); $tip = 1; break;
-            case 3: $uredjaj = Stampac::find($id_uredjaja); $tip = 1; break;
-            case 4: $uredjaj = Skener::find($id_uredjaja); $tip = 1; break;
-            case 5: $uredjaj = Ups::find($id_uredjaja); $tip = 1; break;
-            case 6: $uredjaj = OsnovnaPloca::find($id_uredjaja); $tip = 2; break;
-            case 7: $uredjaj = Procesor::find($id_uredjaja); $tip = 2; break;
-            case 8: $uredjaj = GrafickiAdapter::find($id_uredjaja); $tip = 2; break;
-            case 9: $uredjaj = Memorija::find($id_uredjaja); $tip = 2; break;
-            case 10: $uredjaj = Hdd::find($id_uredjaja); $tip = 2; break;
-            case 11: $uredjaj = Napajanje::find($id_uredjaja); $tip = 2; break;
-            case 12: $uredjaj = Projektor::find($id_uredjaja); $tip = 1; break;
-            case 13: $uredjaj = MrezniUredjaj::find($id_uredjaja); $tip = 1; break;
+            case 1: $uredjaj = Racunar::find($id_uredjaja); break;
+            case 2: $uredjaj = Monitor::find($id_uredjaja); break;
+            case 3: $uredjaj = Stampac::find($id_uredjaja); break;
+            case 4: $uredjaj = Skener::find($id_uredjaja); break;
+            case 5: $uredjaj = Ups::find($id_uredjaja); break;
+            case 6: $uredjaj = OsnovnaPloca::find($id_uredjaja); break;
+            case 7: $uredjaj = Procesor::find($id_uredjaja); break;
+            case 8: $uredjaj = GrafickiAdapter::find($id_uredjaja); break;
+            case 9: $uredjaj = Memorija::find($id_uredjaja); break;
+            case 10: $uredjaj = Hdd::find($id_uredjaja); break;
+            case 11: $uredjaj = Napajanje::find($id_uredjaja); break;
+            case 12: $uredjaj = Projektor::find($id_uredjaja); break;
+            case 13: $uredjaj = MrezniUredjaj::find($id_uredjaja); break;
             default : null;
         }
+            $kolekcija->add($uredjaj);
+            }
         }
+        
 
-        return view('servis.servis_detalj')->with(compact('data', 'uredjaj', 'tip', 'broj'));
+        return view('servis.servis_detalj')->with(compact('data', 'kolekcija'));
     }
 
     public function redirectDetalj($id, $vrsta)
@@ -86,37 +90,20 @@ class ServisKontroler extends Kontroler
     public function getIzmena($id)
     {
         $servis = Servis::find($id);
-        $vrste_uredjaja = VrstaUredjaja::all();
-        $vrste_uredjaja->pop();
-        $uredjaji = null;
-
-        if ($servis->vrsta_uredjaja_id) {
-            $vrsta_uredjaja = $servis->vrsta_uredjaja_id;
-        switch ($vrsta_uredjaja) {
-            case 1: $uredjaji = Racunar::all(); break;
-            case 2: $uredjaji = Monitor::all(); break;
-            case 3: $uredjaji = Stampac::all(); break;
-            case 4: $uredjaji = Skener::all(); break;
-            case 5: $uredjaji = Ups::all(); break;
-            case 6: $uredjaji = OsnovnaPloca::all(); break;
-            case 7: $uredjaji = Procesor::all(); break;
-            case 8: $uredjaji = GrafickiAdapter::all(); break;
-            case 9: $uredjaji = Memorija::all(); break;
-            case 10:$uredjaji = Hdd::all(); break;
-            case 11:$uredjaji = Napajanje::all(); break;
-            case 12:$uredjaji = Projektor::all(); break;
-            case 13:$uredjaji = MrezniUredjaj::all(); break;
-            default : null;
-        }
-        }
-        return view('servis.servis_izmena')->with(compact('servis', 'vrste_uredjaja', 'uredjaji'));
+        $statusi = Status::all();
+        return view('servis.servis_izmena')->with(compact('servis', 'statusi'));
     }
 
-    public function postIzmena($id)
-    {
+    public function postIzmena(Request $request, $id)
+    {   
+        $this->validate($request, [
+            'status_id' => [
+                'required',
+            ]
+        ]);
+
         $data = Servis::find($id);
-        
-        return view('servis.servis_izmena')->with(compact('data'));
+        return redirect()->route('servis.detalj', $id);
     }
 
     public function postAjax(Request $request)

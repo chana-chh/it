@@ -4,6 +4,7 @@ namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Modeli\ServisKvar;
 
 class Procesor extends Model
 {
@@ -48,6 +49,17 @@ class Procesor extends Model
     {   
         $podaci = $this->procesorModel->proizvodjac->naziv.", ".$this->procesorModel->naziv." na ".$this->procesorModel->takt."MHz";
         return $podaci;
+    }
+
+    public function tip()
+    {   
+        return 2;
+    }
+
+    public function brojKvarova()
+    {
+        $broj = ServisKvar::where('vrsta_uredjaja_id', '=', $this->vrsta_uredjaja_id)->where('uredjaj_id', '=', $this->id)->count();
+        return $broj;
     }
 
     public $naziv_modela_jednina = "Procesor";

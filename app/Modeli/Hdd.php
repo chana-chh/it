@@ -52,5 +52,9 @@ class Hdd extends Model
         $podaci = $this->hddModel->proizvodjac->naziv." - ".$this->hddModel->kapacitet."GB";
         return $podaci;
     }
+    public function tip()
+    {   
+        return 2;
+    }
 
 }

@@ -137,10 +137,12 @@
         <h3 class="text-success">{{$data->status->naziv}}</h3>
         <hr>
         @endif
-@if($uredjaj && $tip == 1)
+@if($kolekcija->isNotEmpty())
+@foreach($kolekcija as $uredjaj)
+@if($uredjaj->tip() == 1)
 <div class="panel panel-info noborder">
   <div class="panel-heading">
-    <h4 class="panel-title" style="color: #2c3e50">Podaci o uređaju:</h4>
+    <h4 class="panel-title" style="color: #2c3e50">Podaci o pokvarenom uređaju {{$loop->iteration}} :</h4>
   </div>
   <div class="panel-body">
     <table class="table">
@@ -220,10 +222,15 @@
         </div>
   </div>
 </div>
-@elseif($uredjaj && $tip == 2)
+<div class="row well" style="margin-right: 1px; margin-left: 1px">
+    <div class="col-md-12">
+<h4>Broj kvarova: {{$uredjaj->brojKvarova()}}</h4>
+</div>
+</div>
+@elseif($uredjaj->tip() == 2)
 <div class="panel panel-info noborder">
   <div class="panel-heading">
-    <h4 class="panel-title" style="color: #2c3e50">Podaci o uređaju:</h4>
+    <h4 class="panel-title" style="color: #2c3e50">Podaci o pokvarenom uređaju {{$loop->iteration}} :</h4>
   </div>
   <div class="panel-body">
     <table class="table">
@@ -257,6 +264,13 @@
         </div>
   </div>
 </div>
+<div class="row well" style="margin-right: 1px; margin-left: 1px">
+    <div class="col-md-12">
+<h4>Broj kvarova: {{$uredjaj->brojKvarova()}}</h4>
+</div>
+</div>
+@endif
+@endforeach
 @else
 <div class="row">
     <div class="col-md-12">
@@ -267,13 +281,6 @@
 @endif
 </div>
 </div>
-@if($broj)
-<div class="row well" style="margin-right: 1px; margin-left: 1px">
-    <div class="col-md-12">
-<h3>Broj kvarova: {{$broj}}</h3>
-</div>
-</div>
-@endif
 @endsection
 
 @section('skripte')

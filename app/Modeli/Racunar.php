@@ -205,4 +205,9 @@ class Racunar extends Model
         return $podaci;
     }
 
+    public function tip()
+    {   
+        return 1;
+    }
+
 }

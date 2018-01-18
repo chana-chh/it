@@ -50,4 +50,9 @@ class GrafickiAdapter extends Model
         return $podaci;
     }
 
+    public function tip()
+    {   
+        return 2;
+    }
+
 }

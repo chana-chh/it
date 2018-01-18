@@ -29,4 +29,9 @@ class Servis extends Model
         return $this->belongsTo('App\Modeli\VrstaUredjaja', 'vrsta_uredjaja_id', 'id');
     }
 
+        public function kvar()
+    {
+        return $this->hasMany('App\Modeli\ServisKvar', 'servis_id', 'id');
+    }
+
 }

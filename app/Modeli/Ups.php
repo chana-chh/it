@@ -49,4 +49,9 @@ class Ups extends Model
         return $this->belongsTo('App\Modeli\Kancelarija', 'kancelarija_id', 'id');
     }
 
+    public function tip()
+    {   
+        return 1;
+    }
+
 }
