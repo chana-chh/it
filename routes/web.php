@@ -31,6 +31,8 @@ Route::get('servis/redirekt/{id}/{vrsta}', 'Servis\ServisKontroler@redirectDetal
 Route::get('servis/izmena/{id}', 'Servis\ServisKontroler@getIzmena')->name('servis.izmena.get');
 Route::post('servis/izmena/{id}', 'Servis\ServisKontroler@postIzmena')->name('servis.izmena.post');
 Route::post('servis/ajax', 'Servis\ServisKontroler@postAjax')->name('servis.ajax.post');
+Route::post('servis/dodaj/pokvaren/{id}', 'Servis\ServisKontroler@postDodajPokvaren')->name('servis.pokvaren.post');
+Route::post('servis/brisanje/pokvaren/{id}', 'Servis\ServisKontroler@postBrisanjeKvara')->name('servis.brisanje.pokvaren');
 
 // Ugovori
 Route::get('ugovori', 'Servis\UgovoriOdrzavanjaKontroler@getLista')->name('ugovori');
@@ -548,6 +550,8 @@ Route::get('oprema/racunari/dodavanje', 'Oprema\RacunariKontroler@getDodavanje')
 Route::post('oprema/racunari/dodavanje', 'Oprema\RacunariKontroler@postDodavanje')->name('racunari.oprema.dodavanje.post');
 Route::get('oprema/racunari/otpis/{id}', 'Oprema\RacunariKontroler@getOtpis')->name('racunari.oprema.otpis');
 Route::post('oprema/racunari/otpis', 'Oprema\RacunariKontroler@postOtpis')->name('racunari.oprema.otpis.post');
+Route::get('oprema/racunari/izmena/{id}', 'Oprema\RacunariKontroler@getIzmena')->name('racunari.oprema.izmena.get');
+Route::post('oprema/racunari/izmena/{id}', 'Oprema\RacunariKontroler@postIzmena')->name('racunari.oprema.izmena.post');
 //Racunari - aplikacije
 Route::get('oprema/racunari/aplikacije/{id}', 'Oprema\RacunariKontroler@getAplikacije')->name('racunari.oprema.aplikacije');
 Route::post('oprema/racunari/aplikacije/{id}', 'Oprema\RacunariKontroler@postAplikacije')->name('racunari.oprema.aplikacije.post');

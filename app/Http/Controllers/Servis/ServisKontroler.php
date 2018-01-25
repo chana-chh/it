@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Servis;
 use Illuminate\Http\Request;
 use Session;
 use Redirect;
+use DB;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\Servis;
 use App\Modeli\Racunar;
@@ -22,6 +23,7 @@ use App\Modeli\Hdd;
 use App\Modeli\Napajanje;
 use App\Modeli\VrstaUredjaja;
 use App\Modeli\Status;
+use App\Modeli\ServisKvar;
 use Illuminate\Database\Eloquent\Collection;
 
 class ServisKontroler extends Kontroler
@@ -36,7 +38,10 @@ class ServisKontroler extends Kontroler
     public function getDetalj($id)
     {
         $data = Servis::find($id);
+        $vrste_uredjaja = VrstaUredjaja::all();
+        $vrste_uredjaja->pop();
         $kolekcija = new Collection();
+        $uredjaji = null;
 
         if ($data->kvar) {
             foreach ($data->kvar as $uredjaj_kvar) {
@@ -64,7 +69,7 @@ class ServisKontroler extends Kontroler
         }
         
 
-        return view('servis.servis_detalj')->with(compact('data', 'kolekcija'));
+        return view('servis.servis_detalj')->with(compact('data', 'kolekcija', 'vrste_uredjaja', 'uredjaji'));
     }
 
     public function redirectDetalj($id, $vrsta)
@@ -94,6 +99,27 @@ class ServisKontroler extends Kontroler
         return view('servis.servis_izmena')->with(compact('servis', 'statusi'));
     }
 
+    public function postDodajPokvaren(Request $request, $id)
+    {
+        $this->validate($request, [
+            'vrsta_uredjaja_id' => [
+                'required',
+            ],
+            'uredjaj_id' => [
+                'required',
+            ]
+        ]);
+
+        $data = new ServisKvar();
+        $data->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
+        $data->uredjaj_id = $request->uredjaj_id;
+        $data->servis_id = $id;
+        $data->save();
+
+        Session::flash('uspeh','Uređaj na kome je detektovan kvar je uspešno dodat!');
+        return redirect()->route('servis.detalj', $id);
+    }
+
     public function postIzmena(Request $request, $id)
     {   
         $this->validate($request, [
@@ -103,6 +129,15 @@ class ServisKontroler extends Kontroler
         ]);
 
         $data = Servis::find($id);
+        $data->status_id = $request->status_id;
+        $data->datum_prijema = $request->datum_prijema;
+        $data->datum_popravke = $request->datum_popravke;
+        $data->datum_isporuke = $request->datum_isporuke;
+        $data->opis_kvara_servis = $request->opis_kvara_servis;
+        $data->napomena = $request->napomena;
+        $data->save();
+
+        Session::flash('uspeh','Podaci o servisu su uspešno izmenjeni!');
         return redirect()->route('servis.detalj', $id);
     }
 
@@ -129,6 +164,26 @@ class ServisKontroler extends Kontroler
         }
     }
         return response()->json(['uredj' => $data, 'tip' => $tip]);
+    }
+
+    public function postBrisanjeKvara(Request $request, $id) {
+        
+        $vrsta = $request->idVrstaUredjaja;
+        $id_uredjaja = $request->idBrisanje;
+
+        $kvar = DB::table('servis_kvarovi')->where('servis_id', '=', $id)
+                        ->where('vrsta_uredjaja_id', '=', $vrsta)
+                        ->where('uredjaj_id', '=', $id_uredjaja)
+                        ->first();
+
+        $data = ServisKvar::findOrFail($kvar->id);
+        $odgovor = $data->delete();
+        if ($odgovor) {
+            Session::flash('uspeh', 'Stavka je uspešno obrisana!');
+        } else {
+            Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
+        }
+        return redirect()->route('servis.detalj', $id);
     }
 
 }

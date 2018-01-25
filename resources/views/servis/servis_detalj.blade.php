@@ -36,7 +36,16 @@
         </div>
     </div>
 </div>
-<div class="row">
+        <div class="row">
+    <div class="col-md-12">
+<h4>Status:</h4>
+        @if($data->status_id)
+        <h3 class="text-success">{{$data->status->naziv}}</h3>
+        <hr style="border-top: 1px solid #18BC9C">
+        @endif
+        </div>
+    </div>
+<div class="row" style="margin-top: 1rem;">
     <div class="col-md-12">
         
 <table class="table table-striped" style="table-layout: fixed;">
@@ -124,19 +133,85 @@
 </div>
 </div>
 
-<!--  POCETAK brisanjeModal  -->
-@include('sifarnici.inc.modal_otpis')
+<!--  POCETAK brisanjeModal -->
+@include('sifarnici.inc.modal_brisanje')
 <!--  KRAJ brisanjeModal  -->
 @endsection
 
 @section('traka')
-<div class="row" style="margin-top: 5rem;">
+        <div class="row well" style="margin-top: 5rem;">
     <div class="col-md-12">
-        <h4>Status:</h4>
-        @if($data->status_id)
-        <h3 class="text-success">{{$data->status->naziv}}</h3>
+        <h4>Dodavanje uređaja na kome je detektovan kvar</h4>
         <hr>
-        @endif
+        <form action="{{ route('servis.pokvaren.post', $data->id) }}" method="POST" data-parsley-validate>
+            {{ csrf_field() }}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group{{ $errors->has('vrsta_uredjaja_id') ? ' has-error' : '' }}">
+                        <label for="vrsta_uredjaja_id">Vrsta uređaja:</label>
+                        <select name="vrsta_uredjaja_id" id="vrsta_uredjaja_id" class="chosen-select form-control" data-placeholder="vrste uređaja ..." required>
+                            <option value=""></option>
+                            @foreach($vrste_uredjaja as $u)
+                                <option value="{{ $u->id }}"
+                                    {{ $u->id == old('vrsta_uredjaja_id') ? ' selected' : '' }}>
+                                    {{$u->naziv}}
+                            </option>
+                            @endforeach
+                    </select>
+                    @if ($errors->has('vrsta_uredjaja_id'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('vrsta_uredjaja_id') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="form-group{{ $errors->has('uredjaj_id') ? ' has-error' : '' }}">
+                        <label for="uredjaj_id">Uređaj:</label>
+                        <select name="uredjaj_id" id="uredjaj_id" class="chosen-select form-control" data-placeholder="uređaji ..." required>
+                            <option value=""></option>
+                            @if($uredjaji)
+                            @foreach($uredjaji as $d)
+                                <option value="{{ $d->id }}"
+                                    {{ $d->id == old('uredjaj_id') ? ' selected' : '' }}>
+                                    {{$d->id}}
+                            </option>
+                            @endforeach
+                            @endif
+                    </select>
+                    @if ($errors->has('uredjaj_id'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('uredjaj_id') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
+    </div>
+
+<hr style="border-top: 1px solid #18BC9C">
+
+<div class="row dugmici">
+    <div class="col-md-12">
+        <div class="form-group text-right">
+            <div class="col-md-6 snimi">
+                <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-plus"></i>&emsp;&emsp;Dodaj</button>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-danger btn-block ono" href="{{route('servis.detalj', $data->id)}}"><i class="fa fa-ban"></i>&emsp;&emsp;Otkaži</a>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+        </div>
+    </div>
+<div class="row" style="margin-top: 2rem;">
+    <div class="col-md-12">
+        
 @if($kolekcija->isNotEmpty())
 @foreach($kolekcija as $uredjaj)
 @if($uredjaj->tip() == 1)
@@ -218,6 +293,9 @@
                 <a class="btn btn-primary btn-sm" id="dugmeDetalj" href="{{route('servis.redirekt', [$uredjaj->id, $uredjaj->vrsta_uredjaja_id])}}">
                     <i class="fa fa-eye"></i>
                 </a>
+                <button class="btn btn-danger btn-sm otvori-brisanje" data-toggle="modal" data-target="#brisanjeModal" data-uredjaj="{{$uredjaj->id}}" data-vrsta="{{$uredjaj->vrstaUredjaja->id}}" value="{{ $data->id }}">
+                        <i class="fa fa-trash"></i>
+                </button>
             </div>
         </div>
   </div>
@@ -260,6 +338,9 @@
                 <a class="btn btn-primary btn-sm" id="dugmeDetalj" href="{{route('servis.redirekt', [$uredjaj->id, $uredjaj->vrsta_uredjaja_id])}}">
                     <i class="fa fa-eye"></i>
                 </a>
+                <button class="btn btn-danger btn-sm otvori-brisanje" data-toggle="modal" data-target="#brisanjeModal" data-uredjaj="{{$uredjaj->id}}" data-vrsta="{{$uredjaj->vrstaUredjaja->id}}" value="{{ $data->id }}">
+                        <i class="fa fa-trash"></i>
+                </button>
             </div>
         </div>
   </div>
@@ -286,6 +367,70 @@
 @section('skripte')
 <script>
 $( document ).ready(function() {
+
+    $(document).on('click', '.otvori-brisanje', function () {
+        var id_servis = $(this).val();
+        var id = $(this).data('uredjaj');
+        var vrsta = $(this).data('vrsta');
+        console.log("id_servis: " + id_servis + " id uredjaja"+ id + " vrsta uredjaja"+ vrsta);
+        $('#idBrisanje').val(id);
+        $('#idVrstaUredjaja').val(vrsta);
+        var ruta_brisanje = "{{ route('servis.brisanje.pokvaren', ':menjaj') }}";
+        ruta_brisanje = ruta_brisanje.replace(':menjaj', id_servis);
+        $('#brisanje-forma').attr('action', ruta_brisanje);
+    });
+
+    $("#vrsta_uredjaja_id").on('change', function () {
+            
+            var id = $(this).val();
+            var ruta = "{{ route('servis.ajax.post') }}";
+
+            $.ajax({
+            url: ruta,
+            type:"POST", 
+            data: {"id":id, _token: "{!! csrf_token() !!}"}, 
+            success: function(data){
+                $('#uredjaj_id').empty();
+                if(data.tip == "1"){
+                    $.each(data.uredj, function(index, element){
+                    var serijski = (element.serijski_broj != null) ? element.serijski_broj : "Bez serijskog broja";
+                    switch (element.vrsta_uredjaja_id) {
+                        case 1: ime = (element.ime != null) ? element.ime : " ";
+                                inventarski = (element.inventarski_broj != null) ? element.inventarski_broj : " ";
+                                model = ime +' inventarski:' + inventarski;
+                        break;
+                        case 2: model = (element.monitor_model.naziv != null) ? element.monitor_model.naziv : " "; break;
+                        case 3: model = (element.stampac_model.naziv != null) ? element.stampac_model.naziv : " "; break;
+                        case 4: model = (element.skener_model.naziv != null) ? element.skener_model.naziv : " "; break;
+                        case 5: model = (element.ups_model.naziv != null) ? element.ups_model.naziv : " "; break;
+                        case 12:model = (element.naziv != null) ? element.naziv : " "; break;
+                        case 13:model = (element.naziv != null) ? element.naziv : " "; break;
+                        default : null;
+                    }
+                    $('#uredjaj_id').append('<option value="'+element.id+'">'+serijski+', model: '+model+'</option>');
+                });
+                    $('#uredjaj_id').trigger("chosen:updated");
+                }else{
+                    $.each(data.uredj, function(index, element){
+                        switch (element.vrsta_uredjaja_id) {
+                        case 6: model = (element.osnovna_ploca_model.naziv != null) ? element.osnovna_ploca_model.naziv : " "; break;
+                        case 7: model = (element.procesor_model.naziv != null) ? element.procesor_model.naziv : " "; break;
+                        case 8: model = (element.graficki_adapter_model.naziv != null) ? element.graficki_adapter_model.naziv : " "; break;
+                        case 9: model = (element.memorija_model.naziv != null) ? element.memorija_model.naziv : " "; break;
+                        case 10:model = (element.hdd_model.naziv != null) ? element.hdd_model.naziv : " "; break;
+                        case 11:model = (element.napajanje_model.naziv != null) ? element.napajanje_model.naziv : " "; break;
+                        default : null;
+                    }
+                    var serijski = (element.serijski_broj != null) ? element.serijski_broj : "Bez serijskog broja";
+                    var racunar = (element.racunar != null) ? element.racunar.ime : " ";
+                    $('#uredjaj_id').append('<option value="'+element.id+'">'+serijski+', model: '+model+', računar: '+racunar+'</option>');
+                });
+                    $('#uredjaj_id').trigger("chosen:updated");
+                }
+
+          }
+        });
+        });
 
 });
 </script>

@@ -55,4 +55,10 @@ class Memorija extends Model
         return 2;
     }
 
+      public function brojKvarova()
+    {
+        $broj = ServisKvar::where('vrsta_uredjaja_id', '=', $this->vrsta_uredjaja_id)->where('uredjaj_id', '=', $this->id)->count();
+        return $broj;
+    }
+
 }
