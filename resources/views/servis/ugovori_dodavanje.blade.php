@@ -100,7 +100,27 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="form-group{{ $errors->has('dobavljac_id') ? ' has-error' : '' }}">
+                        <label for="dobavljac_id">Dobavljač:</label>
+                        <select id="dobavljac_id" name="dobavljac_id"
+                                class="chosen-select form-control"
+                                data-placeholder="dobavljač ..." required>
+                            <option value=""></option>
+                            @foreach($dobavljaci as $dobavljac)
+                            <option value="{{ $dobavljac->id }}"
+                                    {{ old('dobavljac_id') == $dobavljac->id ? ' selected' : '' }}>
+                                    {{ $dobavljac->naziv }}</option>
+                            @endforeach
+                        </select>
+                        @if ($errors->has('dobavljac_id'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('dobavljac_id') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
+                <div class="col-md-6">
                     <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
                         <label for="napomena">Napomena:</label>
                         <textarea id="napomena" name="napomena"

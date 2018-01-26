@@ -300,6 +300,8 @@ Route::get('aplikacije/racunari/{id}', 'Sifarnici\AplikacijeKontroler@getListaRa
 
 // MODELI UREDJAJA
 
+
+
 Route::prefix('modeli')->group(function () {
 // Procesori
 Route::get('procesori', 'Modeli\ProcesoriKontroler@getLista')->name('procesori.modeli');

@@ -7,6 +7,7 @@ use Session;
 use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
+use App\Http\Controllers\Controller;
 
 Use App\Modeli\OsnovnaPlocaModel;
 Use App\Modeli\OsnovnaPloca;
@@ -17,7 +18,7 @@ Use App\Modeli\Racunar;
 
 
 
-class OsnovnePloceKontroler extends Kontroler
+class OsnovnePloceKontroler extends Controller
 {
     public function getLista()
     {

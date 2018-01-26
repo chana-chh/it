@@ -67,7 +67,13 @@
             @if ($uredjaj->brend == 1)
             <tr>
                 <th style="width: 40%;"><strong>Proizvođač:</strong></th>
-                <td style="width: 80%;">{{$uredjaj->proizvodjac->naziv}}</td>
+                
+                <td style="width: 80%;">
+                    @if($uredjaj->proizvodjac)
+                    {{$uredjaj->proizvodjac->naziv}}
+                    @endif
+                </td>
+                
             </tr>
             @endif
 

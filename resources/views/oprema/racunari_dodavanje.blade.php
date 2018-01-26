@@ -99,7 +99,7 @@
             <div class="col-md-3">
                 <div class="form-group{{ $errors->has('inventarski_broj') ? ' has-error' : '' }}">
                     <label for="inventarski_broj">Inventarski broj:</label>
-                    <input type="text" name="inventarski_broj" id="inventarski_broj" class="form-control" value="{{ old('inventarski_broj') }}" maxlength="50"> @if ($errors->has('inventarski_broj'))
+                    <input type="text" name="inventarski_broj" id="inventarski_broj" class="form-control" value="{{ old('inventarski_broj') }}" maxlength="10"> @if ($errors->has('inventarski_broj'))
                     <span class="help-block">
                         <strong>{{ $errors->first('inventarski_broj') }}</strong>
                     </span>

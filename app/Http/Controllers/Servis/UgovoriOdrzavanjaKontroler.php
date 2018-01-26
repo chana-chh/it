@@ -7,6 +7,7 @@ use Session;
 use Redirect;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\UgovorOdrzavanje;
+use App\Modeli\Dobavljac;
 
 class UgovoriOdrzavanjaKontroler extends Kontroler
 {
@@ -19,7 +20,8 @@ class UgovoriOdrzavanjaKontroler extends Kontroler
 
     public function getDodavanje()
     {
-        return view('servis.ugovori_dodavanje');
+        $dobavljaci = Dobavljac::all();
+        return view('servis.ugovori_dodavanje')->with(compact('dobavljaci'));
     }
 
     public function postDodavanje(Request $request)
@@ -39,11 +41,15 @@ class UgovoriOdrzavanjaKontroler extends Kontroler
             'datum_raskida' => [
                 'required',
             ],
+            'dobavljac_id' => [
+                'required',
+            ],
         ]);
 
         $data = new UgovorOdrzavanje();
         $data->broj = $request->broj;
         $data->iznos_sredstava = $request->iznos_sredstava;
+        $data->dobavljac_id = $request->dobavljac_id;
         $data->datum_zakljucivanja = $request->datum_zakljucivanja;
         $data->datum_raskida = $request->datum_raskida;
         $data->napomena = $request->napomena;
@@ -56,8 +62,9 @@ class UgovoriOdrzavanjaKontroler extends Kontroler
     public function getIzmena($id)
     {
         $data = UgovorOdrzavanje::find($id);
+        $dobavljaci = Dobavljac::all();
 
-        return view('servis.ugovori_izmena')->with(compact('data'));
+        return view('servis.ugovori_izmena')->with(compact('data', 'dobavljaci'));
     }
 
     public function getDetalj($id)
@@ -84,10 +91,14 @@ class UgovoriOdrzavanjaKontroler extends Kontroler
             'datum_raskida' => [
                 'required',
             ],
+            'dobavljac_id' => [
+                'required',
+            ],
         ]);
 
         $data = UgovorOdrzavanje::find($id);
         $data->broj = $request->broj;
+        $data->dobavljac_id = $request->dobavljac_id;
         $data->iznos_sredstava = $request->iznos_sredstava;
         $data->datum_zakljucivanja = $request->datum_zakljucivanja;
         $data->datum_raskida = $request->datum_raskida;

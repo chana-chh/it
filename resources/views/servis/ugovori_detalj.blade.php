@@ -59,6 +59,10 @@
                     <td style="width: 80%;">{{ $data->broj }}</td>
                 </tr>
                 <tr>
+                    <th style="width: 20%;">Dobavljač:</th>
+                    <td style="width: 80%;"><strong>{{ $data->dobavljac->naziv }}</strong></td>
+                </tr>
+                <tr>
                     <th style="width: 20%;">Datum zaključenja:</th>
                     <td style="width: 80%;">{{ \Carbon\Carbon::parse($data->datum_zakljucivanja)->format('d.m.Y') }}</td>
                 </tr>
