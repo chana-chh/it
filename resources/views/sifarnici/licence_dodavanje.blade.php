@@ -58,7 +58,7 @@
                     <div class="form-group{{ $errors->has('proizvod') ? ' has-error' : '' }}">
                         <label for="proizvod">Proizvod: </label>
                         <input type="text" name="proizvod" id="proizvod" class="form-control"
-                               value="{{ old('proizvod') }}" maxlength="50" required>
+                               value="{{ old('proizvod') }}" maxlength="200" required>
                         @if ($errors->has('proizvod'))
                         <span class="help-block">
                             <strong>{{ $errors->first('proizvod') }}</strong>

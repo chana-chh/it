@@ -143,7 +143,7 @@
         </div>
                <div class="form-group{{ $errors->has('lozinka') ? ' has-error' : '' }}">
             <label for="lozinka">Lozinka: </label>
-            <input  type="text" id="lozinka" name="lozinka" class="form-control" value="{{ old('lozinka') }}" required>
+            <input  type="text" id="lozinka" name="lozinka" class="form-control" value="{{ old('lozinka') }}">
             @if ($errors->has('lozinka'))
             <span class="help-block">
                 <strong>{{ $errors->first('lozinka') }}</strong>
@@ -212,6 +212,14 @@
             trigger : 'hover',
             delay: { 
                 show: "2000"
+            }
+        });
+
+        $('#sluzbena').change(function () {
+            if(this.checked) {
+        $('#lozinka').prop('required', true);
+            } else {
+        $('#lozinka').prop('required', false);
             }
         });
 

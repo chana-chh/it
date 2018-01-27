@@ -20,21 +20,19 @@
 @else
 <table id="tabela" class="table table-striped">
 	<thead>
-		<th style="width: 10%;">#</th>
 		<th style="width: 25%;">Naziv</th>
         <th style="width: 20%;">Adresa</th>
         <th style="width: 10%;">Broj</th>
-		<th style="width: 25%;">Napomena</th>
+		<th style="width: 35%;">Napomena</th>
 		<th style="width: 10%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
 	</thead>
 	<tbody>
 	@foreach ($data as $d)
         <tr>
-            <td>{{$d->id}}</td>
             <td><strong>{{ $d->naziv }}</strong></td>
             <td>{{ $d->adresa_ulica }}</td>
             <td>{{ $d->adresa_broj }}</td>
-            <td>{{ str_limit($d->napomena, 80) }}</td>
+            <td><small>{{ $d->napomena }}</small></td>
             <td style="text-align:right;">
                 <button class="btn btn-success btn-sm otvori-izmenu"
                         data-toggle="modal" data-target="#editModal"

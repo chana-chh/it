@@ -536,7 +536,7 @@ $( document ).ready(function() {
                 });
             });
 
-            // Modal uprave izmene
+            // Modal izmene
             $("#dugmeModalIzmeniMobilni").on('click', function() {
                 $('#frmMobilniIzmena').submit();
             });
@@ -588,7 +588,7 @@ $( document ).ready(function() {
                 });
             });
 
-            // Modal uprave izmene
+            // Modal email izmene
             $("#dugmeModalIzmeniEmail").on('click', function() {
                 $('#frmEmailIzmena').submit();
             });
@@ -602,7 +602,7 @@ $( document ).ready(function() {
                     data: {"id": id_menjanje, _token: "{!! csrf_token() !!}"},
                     success: function(result) {
                         $("#email_izmena_adresa").val(result.adresa);
-                        $("#email_izmena_sluzbeni").prop('checked', result.sluzbeni);
+                        $("#email_izmena_sluzbeni").prop('checked', result.sluzbena);
                         $("#email_izmena_napomena").val(result.napomena);
                     }
                 });

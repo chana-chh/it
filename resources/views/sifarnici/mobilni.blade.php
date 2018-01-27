@@ -19,20 +19,18 @@
 @else
 <table class="table table-striped" id="tabela">
     <thead>
-    <th style="width: 5%;">#</th>
-    <th style="width: 20%;">Broj</th>
-    <th style="width: 10%;">Službeni</th>
-    <th style="width: 25%;">Zaposleni</th>
+    <th style="width: 15%;">Broj</th>
+    <th style="width: 9%;">Službeni</th>
+    <th style="width: 41%;">Zaposleni</th>
     <th style="width: 25%;">Napomena</th>
-    <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
+    <th style="width: 10%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
 </thead>
 <tbody>
     @foreach ($data as $d)
     <tr>
-        <td>{{ $d->id }}</td>
         <td><strong>{{ $d->broj }}</strong></td>
         <td><strong title="U pitanju je službeni telefon">{{ $d->sluzbeni == 1 ? "s" : " "}}</strong></td>
-        <td><a  href="{{ route('zaposleni.detalj', $d->zaposleni->id) }}"><strong>{{ $d->zaposleni->imePrezime() }}</strong></a></td>
+        <td><a  href="{{ route('zaposleni.detalj', $d->zaposleni->id) }}"><strong>{{ $d->zaposleni->imePrezime() }}</strong></a> - <small> {{ $d->zaposleni->uprava ? $d->zaposleni->uprava->naziv : 'neraspoređen' }}</small></td>
         <td><em>{{ str_limit($d->napomena, 60) }}</em></td>
         <td style="text-align:right;">
             <button class="btn btn-success btn-sm otvori-izmenu"
@@ -140,7 +138,7 @@
                         <option value=""></option>
                         @foreach($radnici as $radnik)
                         <option value="{{ $radnik->id }}"{{ old('zaposleni_id') == $radnik->id ? ' selected' : '' }}>
-                            {{ $radnik->Imeprezime() }}
+                            {{ $radnik->Imeprezime() }}, {{ $radnik->uprava ? $radnik->uprava->naziv : 'neraspoređen' }}
                         </option>
                         @endforeach
                     </select>
@@ -183,6 +181,7 @@
     $(document).ready(function () {
 
         $('#tabela').DataTable({
+            order: [[ 2, 'asc' ]],
             columnDefs: [
                 {
                     orderable: false,

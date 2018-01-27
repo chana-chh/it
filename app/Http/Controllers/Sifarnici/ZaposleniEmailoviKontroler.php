@@ -73,20 +73,20 @@ class ZaposleniEmailoviKontroler extends Kontroler
              'email_izmena_adresa' => ['required', 'email'],
         ]);
 
-        if ($req->email_izmena_adresa) {
+        if ($req->email_izmena_sluzbeni) {
                 $sluzbenic = 1;
             } else {
                 $sluzbenic = 0;
             }
 
-        $mobilni = Email::find($req->email_id);
-        $mobilni->adresa = $req->email_izmena_adresa;
-        $mobilni->sluzbena = $sluzbenic;
+        $email = Email::find($req->email_id);
+        $email->adresa = $req->email_izmena_adresa;
+        $email->sluzbena = $sluzbenic;
         $email->lozinka = $req->lozinka;
-        $mobilni->zaposleni_id = $req->zaposleni_id;
-        $mobilni->napomena = $req->email_izmena_napomena;
+        $email->zaposleni_id = $req->zaposleni_id;
+        $email->napomena = $req->email_izmena_napomena;
 
-        $mobilni->save();
+        $email->save();
 
         Session::flash('uspeh','Adresa elektronske pošte je uspešno izmenjena!');
         return redirect()->route('zaposleni.detalj', $req->zaposleni_id);

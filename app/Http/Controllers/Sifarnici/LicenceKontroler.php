@@ -26,7 +26,7 @@ class LicenceKontroler extends Kontroler
     {
         $this->validate($request, [
             'tip_licence' => ['required', 'max:50'],
-            'proizvod' => ['required', 'max:50'],
+            'proizvod' => ['required', 'max:200'],
             'datum_pocetka_vazenja' => ['date'],
             'datum_prestanka_vazenja' => ['date'],
         ]);

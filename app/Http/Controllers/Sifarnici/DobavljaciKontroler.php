@@ -47,7 +47,7 @@ class DobavljaciKontroler extends Kontroler
         $data->napomena = $request->napomena;
         $data->save();
 
-        Session::flash('uspeh', 'Dovaljač je uspešno dodat!');
+        Session::flash('uspeh', 'Dobavljač je uspešno dodat!');
         return redirect($request->session()->pull('povratna_veza', 'dobavljaci'));
     }
 

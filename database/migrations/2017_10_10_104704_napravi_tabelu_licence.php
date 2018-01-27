@@ -12,7 +12,7 @@ class NapraviTabeluLicence extends Migration
         Schema::create('licence', function (Blueprint $table) {
             $table->increments('id');
             $table->string('tip_licence', 50);
-            $table->string('proizvod', 50);
+            $table->string('proizvod', 200);
             $table->string('kljuc')->nullable();
             $table->integer('broj_aktivacija')->unsigned()->nullable();
             $table->date('datum_pocetka_vazenja');

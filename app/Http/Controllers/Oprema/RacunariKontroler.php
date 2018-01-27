@@ -16,6 +16,7 @@ use App\Modeli\Uprava;
 use App\Modeli\Kancelarija;
 use App\Modeli\Proizvodjac;
 use App\Modeli\Nabavka;
+use App\Modeli\Otpremnica;
 use App\Modeli\OperativniSistem;
 use App\Modeli\OsnovnaPlocaModel;
 use App\Modeli\OsnovnaPloca;
@@ -807,7 +808,9 @@ class RacunariKontroler extends Kontroler
         $uredjaj = Racunar::find($id);
         $modeli = MonitorModel::all();
         $monitori_uredjaji = Monitor::neraspordjeni()->get();
-        return view('oprema.racunari_monitori')->with(compact('modeli', 'uredjaj', 'monitori_uredjaji'));
+        $otpremnice = Otpremnica::all();
+        $nabavke = Nabavka::all();
+        return view('oprema.racunari_monitori')->with(compact('modeli', 'uredjaj', 'monitori_uredjaji', 'otpremnice', 'nabavke'));
     }
 
     public function getIzvadiMonitor($id)
@@ -901,7 +904,9 @@ class RacunariKontroler extends Kontroler
         $uredjaj = Racunar::find($id);
         $modeli = StampacModel::all();
         $stampaci_uredjaji = Stampac::neraspordjeni()->get();
-        return view('oprema.racunari_stampaci')->with(compact('modeli', 'uredjaj', 'stampaci_uredjaji'));
+        $otpremnice = Otpremnica::all();
+        $nabavke = Nabavka::all();
+        return view('oprema.racunari_stampaci')->with(compact('modeli', 'uredjaj', 'stampaci_uredjaji', 'otpremnice', 'nabavke'));
     }
 
     public function getIzvadiStampac($id)
@@ -995,7 +1000,9 @@ class RacunariKontroler extends Kontroler
         $uredjaj = Racunar::find($id);
         $modeli = SkenerModel::all();
         $skeneri_uredjaji = Skener::neraspordjeni()->get();
-        return view('oprema.racunari_skeneri')->with(compact('modeli', 'uredjaj', 'skeneri_uredjaji'));
+        $otpremnice = Otpremnica::all();
+        $nabavke = Nabavka::all();
+        return view('oprema.racunari_skeneri')->with(compact('modeli', 'uredjaj', 'skeneri_uredjaji', 'otpremnice', 'nabavke'));
     }
 
     public function getIzvadiSkener($id)

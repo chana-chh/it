@@ -163,7 +163,56 @@
         <form action="{{route('racunari.oprema.skeneri.dodaj.novu', $uredjaj->id)}}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row">
-
+             <div class="col-md-12">
+                    <div class="form-group{{ $errors->has('stavka_otpremnice_id') ? ' has-error' : '' }}">
+                        <label for="stavka_otpremnice_id">Stavka otpremnice:</label>
+                        <select name="stavka_otpremnice_id" id="stavka_otpremnice_id" class="chosen-select form-control" data-placeholder="otpremnice ...">
+                            <option value=""></option>
+                            @foreach($otpremnice as $o)
+                            <optgroup label="{{ $o->dobavljac->naziv }}, {{ $o->broj }} od {{ $o->datum }}">
+                                @foreach($o->stavke as $s)
+                                <option value="{{ $s->id }}" {{ $s->id == old('stavka_otpremnice_id') ? ' selected' : '' }}> 
+                                    {{$s->naziv}} (popunjeno je {{$s->monitori->count()
+                                    }} od {{$s->kolicina}} {{$s->jedinica_mere}})
+                                </option>
+                                @endforeach
+                            </optgroup>
+                            @endforeach
+                        </select>
+                        @if ($errors->has('stavka_otpremnice_id'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('stavka_otpremnice_id') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
+            </div>
+                 <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group{{ $errors->has('stavka_nabavke_id') ? ' has-error' : '' }}">
+                        <label for="stavka_nabavke_id">Stavka nabavke:</label>
+                        <select name="stavka_nabavke_id" id="stavka_nabavke_id" class="chosen-select form-control" data-placeholder="nabavke ...">
+                            <option value=""></option>
+                            @foreach($nabavke as $o)
+                            <optgroup label="{{ $o->dobavljac->naziv }} od {{ $o->datum }}">
+                                @foreach($o->stavke as $s)
+                                <option value="{{ $s->id }}" {{ $s->id == old('stavka_nabavke_id') ? ' selected' : '' }}>
+                                    {{$s->naziv}} (popunjeno je {{$s->monitori->count() }} od {{$s->kolicina}}
+                                    {{$s->jedinica_mere}})
+                                </option>
+                                @endforeach
+                            </optgroup>
+                            @endforeach
+                        </select>
+                        @if ($errors->has('stavka_nabavke_id'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('stavka_nabavke_id') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     <div class="form-group{{ $errors->has('serijski_broj') ? ' has-error' : '' }}">
                         <label for="serijski_broj">Serijski broj:</label>

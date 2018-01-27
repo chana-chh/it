@@ -63,6 +63,22 @@
         <a href="{{ route('kvar') }}" class="btn btn-success" style="margin-top: 3rem;">Prijava/status kvara</a>
     </div>
 </div>
+@if(Auth::user()->level === 0)
+<div class="row" style="margin: 10px 0px 10px 20px;">
+    <div class="col-md-12">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="window.history.back();"
+               title="Povratak na prethodnu stranu">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+        </div>
+    </div>
+</div>
+@endif
 <hr>
 <div id="sviZaposleni">
     @if($zap)

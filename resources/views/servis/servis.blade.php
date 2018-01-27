@@ -24,7 +24,7 @@
 <div class="row well" id="pretraga" style="display: none;">
     <div class="col-md-2">
         <a id="pretragaDugme" href="" class="btn btn-success btn-block ono">
-            <i class="fa fa-recycle fa-fw"></i> Nesto
+            <i class="fa fa-recycle fa-fw"></i> Definisati kriterijume pretrage
         </a>
     </div>
     <div class="col-md-10">
@@ -59,7 +59,7 @@
             </td>
             <td><a href="{{ route('zaposleni.detalj', $o->zaposleni->id) }}">{{$o->zaposleni->imePrezime()}}</a></td>
             <td><a href="{{route('kancelarije.detalj.get', $o->kancelarija->id)}}">{{$o->kancelarija->sviPodaci()}}</a></td>
-            <td><strong>{{$o->datum_prijave}}</strong></td>
+            <td><strong>{{ date('d.m.Y', strtotime($o->datum_prijave))}}</strong></td>
             <td>@if($o->ip_prijave){{$o->ip_prijave}}@endif</td>
             <td> <em>{{$o->status->naziv}}</em> </td>
             <td><small>{{$o->opis_kvara_zaposleni}}</small></td>
@@ -82,8 +82,12 @@
 @endsection
 
 @section('skripte')
+<script src="{{ asset('/js/moment.min.js') }}"></script>
+<script src="{{ asset('/js/datetime-moment.js') }}"></script>
 <script>
 $( document ).ready(function() {
+
+        $.fn.dataTable.moment('DD.MM.YYYY');
 
         var tabela = $('#tabela').DataTable({
 
@@ -113,6 +117,10 @@ $( document ).ready(function() {
     });
 
         new $.fn.dataTable.FixedHeader( tabela );
+
+        $('#pretragaDugme').click(function () {
+            $('#pretraga').toggle();
+        });
 });
 </script>
 @endsection
