@@ -51,7 +51,9 @@
                     value="{{ $d->id }}">
                 <i class="fa fa-pencil"></i>
             </button>
-            <button class="btn btn-danger btn-sm otvori-brisanje"
+            <button class="btn btn-danger btn-sm" id="idBrisanjeModal"
+            title="Brisanje elektronske adrese"
+            data-toggle="modal" data-target="#brisanjeModal"
                     value="{{ $d->id }}">
                 <i class="fa fa-trash"></i>
             </button>
@@ -259,27 +261,12 @@
    });
    };
 
-        $(document).on('click', '.otvori-brisanje', function () {
-            var id = $(this).val();
-            var ruta = "{{ route('email.brisanje') }}";
-            $('#brisanjeModal').modal('show');
-            $('#btn-brisanje-obrisi').click(function () {
-                $.ajax({
-                    url: ruta,
-                    type: "POST",
-                    data: {
-                        "id": id,
-                        "_token": "{!! csrf_token() !!}"
-                    },
-                    success: function () {
-                        location.reload();
-                    }
-                });
-                $('#brisanjeModal').modal('hide');
-            });
-            $('#btn-brisanje-otkazi').click(function () {
-                $('#brisanjeModal').modal('hide');
-            });
+
+        $(document).on('click', '#idBrisanjeModal', function () {
+        var id = $(this).val();
+        $('#idBrisanje').val(id);
+        var ruta = "{{ route('email.brisanje') }}";
+        $('#brisanje-forma').attr('action', ruta);
         });
 
         $(document).on('click', '.otvori-izmenu', function () {

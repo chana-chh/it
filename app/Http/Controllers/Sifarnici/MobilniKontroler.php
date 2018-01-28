@@ -80,7 +80,7 @@ class MobilniKontroler extends Kontroler {
     }
 
     public function postBrisanje(Request $request) {
-        $data = Mobilni::find($request->id);
+        $data = Mobilni::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Stavka je uspešno obrisana!');

@@ -84,13 +84,14 @@ class EmailKontroler extends Kontroler {
     }
 
     public function postBrisanje(Request $request) {
-        $data = Email::find($request->id);
+        $data = Email::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Stavka je uspešno obrisana!');
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
         }
+        return Redirect::back();
     }
 
 }
