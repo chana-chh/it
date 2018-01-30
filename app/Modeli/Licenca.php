@@ -3,10 +3,24 @@
 namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Licenca extends Model
 {
     protected $table = 'licence';
+
+    protected $appends = ['formatiran_pocetak', 'formatiran_prestanak'];
+
     public $timestamps = false;
+
+
+
+function getFormatiranPocetakAttribute() {
+  return Carbon::parse($this->datum_pocetka_vazenja)->format('d.m.Y');
+}
+ 
+function getFormatiranPrestanakAttribute() {
+return Carbon::parse($this->datum_prestanka_vazenja)->format('d.m.Y');
+}
 
 }

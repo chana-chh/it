@@ -47,8 +47,8 @@
                     <td>{{ $d->proizvod }}</td>
                     <td>{{ $d->kljuc }}</td>
                     <td>{{ $d->broj_aktivacija }}</td>
-                    <td><em>{{ $d->datum_pocetka_vazenja }}</em></td>
-                    <td><em>{{ $d->datum_prestanka_vazenja }}</em></td>
+                    <td><em>{{ $d->formatiran_pocetak }}</em></td>
+                    <td><em>{{ $d->formatiran_prestanak }}</em></td>
                     <td style="text-align:right; vertical-align: middle; line-height: normal;">
                         <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('licence.detalj', $d->id)}}">
                             <i class="fa fa-eye"></i>
@@ -74,8 +74,11 @@
 @endsection
 
 @section('skripte')
+<script src="{{ asset('/js/moment.min.js') }}"></script>
+<script src="{{ asset('/js/datetime-moment.js') }}"></script>
 <script>
     $(document).ready(function () {
+        $.fn.dataTable.moment('DD.MM.YYYY');
 
         $(document).on('click', '.otvori-brisanje', function () {
             var id = $(this).val();

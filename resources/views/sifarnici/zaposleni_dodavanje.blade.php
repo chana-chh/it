@@ -165,7 +165,10 @@ $( document ).ready(function() {
     resizeChosen();
     jQuery(window).on('resize', resizeChosen);
 
-    $('.chosen-select').chosen({allow_single_deselect: true});
+    $('.chosen-select').chosen({
+            allow_single_deselect: true,
+            search_contains: true
+            });
 
     function resizeChosen() {
    $(".chosen-container").each(function() {

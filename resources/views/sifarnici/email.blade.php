@@ -83,6 +83,10 @@
                         <label for="adresaModal">Adresa:</label>
                         <input type="text" id="adresaModal" name="adresaModal" class="form-control" required>
                     </div>
+                    <div class="form-group">
+                        <label for="lozinkaModal">Lozinka:</label>
+                        <input type="text" id="lozinkaModal" name="lozinkaModal" class="form-control">
+                    </div>
                     <div class="form-group checkboxoviforme">
                         <label>
                             <input type="checkbox" id="sluzbenaModal" name="sluzbenaModal">
@@ -252,7 +256,10 @@
         resizeChosen();
     jQuery(window).on('resize', resizeChosen);
 
-    $('.chosen-select').chosen({allow_single_deselect: true});
+            $('.chosen-select').chosen({
+            allow_single_deselect: true,
+            search_contains: true
+            });
 
     function resizeChosen() {
    $(".chosen-container").each(function() {
@@ -282,6 +289,7 @@
                 success: function (data) {
                     $("#idModal").val(data.email.id);
                     $("#adresaModal").val(data.email.adresa);
+                    $("#lozinkaModal").val(data.email.lozinka);
                     $("#sluzbenaModal").prop('checked', data.email.sluzbena);
                     $("#napomenaModal").val(data.email.napomena);
 

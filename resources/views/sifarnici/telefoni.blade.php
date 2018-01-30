@@ -205,8 +205,11 @@
             'excelHtml5',
             'csvHtml5',{
                 extend: 'pdfHtml5',
-                orientation: 'landscape',
+                orientation: 'portrait',
                 pageSize: 'A4',
+                customize : function(doc){
+            doc.content[1].table.widths = ["20%", "15%", "50%", "15%"];
+        },
                 exportOptions: {
         columns: [ 1, 2, 3, 4 ]
         }

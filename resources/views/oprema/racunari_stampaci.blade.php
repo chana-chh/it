@@ -20,7 +20,7 @@
 <div class="row" style="margin-bottom: 16px;">
     <div class="col-md-12">
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="window.history.back();"
+            <a class="btn btn-primary" href="{{route('racunari.oprema.detalj', $uredjaj->id)}}"
                title="Povratak na prethodnu stranu">
                 <i class="fa fa-arrow-left"></i>
             </a>
@@ -155,6 +155,7 @@
     <div class="col-md-12 well" style="margin-top: 1rem">
         <form action="{{route('racunari.oprema.stampaci.dodaj.novu', $uredjaj->id)}}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
+            <p class="text-warning">* Moguće je odaberati SAMO JEDAN način na koji je uređaj pribavljen!</p>
             <div class="row">
              <div class="col-md-12">
                     <div class="form-group{{ $errors->has('stavka_otpremnice_id') ? ' has-error' : '' }}">
@@ -302,6 +303,22 @@
                 $(this).attr('style', 'width: 100%');
             });
         }
+
+         $('#stavka_nabavke_id').on('change', function() {
+            if(this.value !== "") {
+                $('#stavka_otpremnice_id').prop('disabled', true).trigger("chosen:updated");
+            }else{
+                $('#stavka_otpremnice_id').prop('disabled', false).trigger("chosen:updated");
+            }
+        });
+
+        $('#stavka_otpremnice_id').on('change', function() {
+            if(this.value !== "") {
+                $('#stavka_nabavke_id').prop('disabled', true).trigger("chosen:updated");
+            }else{
+                $('#stavka_nabavke_id').prop('disabled', false).trigger("chosen:updated");
+            }
+        });
     });
 
 </script>
