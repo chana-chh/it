@@ -81,7 +81,7 @@
                         <input type="number" id="kolicina" name="kolicina"
                                class="form-control"
                                value="{{ old('kolicina', 0) }}"
-                               min="0" step="0.01" required>
+                               min="0" required>
                         @if ($errors->has('kolicina'))
                         <span class="help-block">
                             <strong>{{ $errors->first('kolicina') }}</strong>
@@ -133,6 +133,15 @@
 
         $('.chosen-select').chosen({
             allow_single_deselect: true
+        });
+
+        $("#jedinica_mere").change(function() {
+        var vrednost = $(this).val();
+        if (vrednost != "komad") {
+            $('#kolicina').prop('step', "0.01");
+        }else{
+            $('#kolicina').prop('step', null);
+        }
         });
 
         function resizeChosen() {

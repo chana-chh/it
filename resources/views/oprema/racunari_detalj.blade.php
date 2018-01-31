@@ -150,7 +150,7 @@
 @endsection
 
 @section('traka')
-<h4>Ocena:</h4>
+<h4>Ocena: </h4>
 <div class="row">
 <?php
 $kompletan = false;
@@ -160,7 +160,7 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
 ?>
 @if($kompletan)
 <div class="col-md-6 col-md-offset-4">
-<p class="{{ $uredjaj->ocena() < 8 ? ' tankoza_danger' : ' tankoza' }} krug_mali">{{number_format($uredjaj->ocena(), 2, '.', ',')}}</p>
+<p class="{{ $uredjaj->ocena < 8 ? ' tankoza_danger' : ' tankoza' }} krug_mali">{{number_format($uredjaj->ocena, 2, '.', ',')}}</p>
 @else
 <div class="col-md-12">
 <h4 class="text-danger text-center">Računar ne sadrži sve komponente neophodne za ocenjivanje</h4>
@@ -171,7 +171,7 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
 @if($kompletan)
 <div class="row">
     <div class="col-md-12">
-@if($uredjaj->ocena() < 8)
+@if($uredjaj->ocena < 8)
 <div class="alert alert-danger text-center" role="alert">Planirati otpis i zamenu uređaja!</div>
 @endif
     </div>

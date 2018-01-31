@@ -27,9 +27,10 @@
     <thead>
         <th style="width: 5%;">#</th>
         <th style="width: 15%;">Ime računara (AD)</th>
-        <th style="width: 20%;">Inventarski broj</th>
+        <th style="width: 10%;">Inventarski broj</th>
         <th style="width: 10%;">IKT broj</th>
         <th style="width: 20%;">Kancelarija</th>
+        <th style="width: 10%;">Ocena</th>
         <th style="width: 23%;">Korisnik računara</th>
         <th style="width: 7%;text-align:right">
             <i class="fa fa-cogs"></i>&emsp;Akcije</th>
@@ -55,6 +56,7 @@ $( document ).ready(function() {
             {data: 'inventarski_broj', name: 'inventarski_broj'},
             {data: 'erc_broj', name: 'erc_broj'},
             {data: 'kancelarija.naziv', name: 'kancelarija.naziv'},
+            {data: 'ocena', name: 'ocena'},
             {data: 'zaposleni.naziv', name: 'zaposleni.naziv'},
             {data: 'akcije', name: 'akcije', orderable: false, searchable: false},
         ],
