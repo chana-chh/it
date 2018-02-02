@@ -7,6 +7,7 @@ use Session;
 use Redirect;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\Licenca;
+use Carbon\Carbon;
 
 class LicenceKontroler extends Kontroler
 {
@@ -24,6 +25,8 @@ class LicenceKontroler extends Kontroler
 
     public function postDodavanje(Request $request)
     {
+        
+        
         $this->validate($request, [
             'tip_licence' => ['required', 'max:50'],
             'proizvod' => ['required', 'max:200'],

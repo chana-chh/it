@@ -160,7 +160,7 @@
                             <tr>
                                 <th style="width: 50%;"><h4 class="zaposleniPopover"  style="cursor: pointer;"
                             data-title="{{ $z->imePrezime() }}"
-                            data-content="<img src='{{ $z->src ? asset('images/slike_zaposlenih/'.$z->src) : '' }}' class='img-circle' style='height: 256px;'>"><i class="fa fa-user fa-fw text-success"></i>&emsp;{{ $z->imePrezime() }}</h4></th>
+                            data-content="<img src='{{ $z->src ? asset('images/slike_zaposlenih/'.$z->src) : '' }}' class='img-rounded' style='height: 256px;'>"><i class="fa fa-user fa-fw text-success"></i>&emsp;{{ $z->imePrezime() }}</h4></th>
                                 <td style="width: 50%;">  <ul style="list-style-type: none;">
                                 @foreach($z->mobilni as $m)
                                 <li>

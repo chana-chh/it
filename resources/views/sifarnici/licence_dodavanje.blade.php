@@ -100,7 +100,7 @@
                                 <div class="col-md-4">
                     <div class="form-group{{ $errors->has('datum_pocetka_vazenja') ? ' has-error' : '' }}">
                         <label for="datum_pocetka_vazenja">Datum početka važenja licence:</label>
-                        <input type="date" name="datum_pocetka_vazenja" id="datum_pocetka_vazenja" class="form-control"
+                        <input type="text" name="datum_pocetka_vazenja" id="datum_pocetka_vazenja" class="form-control datepicker" placeholder="dd.mm.yyyy"
                                value="{{ old('datum_pocetka_vazenja') }}">
                         @if ($errors->has('datum_pocetka_vazenja'))
                         <span class="help-block">
@@ -112,7 +112,7 @@
                 <div class="col-md-4">
                     <div class="form-group{{ $errors->has('datum_prestanka_vazenja') ? ' has-error' : '' }}">
                         <label for="datum_prestanka_vazenja">Datum prestanka važenja licence: </label>
-                        <input type="date" name="datum_prestanka_vazenja" id="datum_prestanka_vazenja" class="form-control"
+                        <input type="text" name="datum_prestanka_vazenja" id="datum_prestanka_vazenja" class="form-control datepicker" placeholder="dd.mm.yyyy"
                                value="{{ old('datum_prestanka_vazenja') }}">
                         @if ($errors->has('datum_prestanka_vazenja'))
                         <span class="help-block">
@@ -151,4 +151,18 @@
         </form>
     </div>
 </div>
+@endsection
+
+@section('skripte')
+<script src="{{ asset('/js/bootstrap-datepicker.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $('.datepicker').datepicker({
+            format: 'dd.mm.yyyy',
+            autoclose: true,
+            endDate: '+10y'
+        });
+    });
+
+</script>
 @endsection

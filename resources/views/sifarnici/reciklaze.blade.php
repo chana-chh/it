@@ -29,7 +29,7 @@
             	@foreach ($data as $d)
                     <tr>
                         <td>{{$d->id}}</td>
-                        <td> <a href="{{ route('reciklaze.uredjaji', $d->datum) }}"> {{ $d->datum }}</a></td>
+                        <td> <a href="{{ route('reciklaze.uredjaji', $d->datum) }}"> {{ $d->formatiran_datum }}</a></td>
                         <td><em>{{ $d->napomena }}</em></td>
                         <td style="text-align:right;">
                             <button class="btn btn-success btn-sm otvori-izmenu" 
@@ -68,7 +68,7 @@
 
                 <div class="form-group">
                   <label for="datumModal">Datum:</label>
-                  <input type="date" class="form-control" id="datumModal" name="datumModal">
+                  <input type="text" class="form-control datepicker" id="datumModal" name="datumModal" placeholder="dd.mm.yyyy">
                 </div>
 
                 <div class="form-group">
@@ -112,7 +112,7 @@
         {{ csrf_field() }}
         <div class="form-group{{ $errors->has('datum') ? ' has-error' : '' }}">
             <label for="datum">Datum: </label>
-            <input type="date" name="datum" id="datum" class="form-control" value="{{ old('datum') }}" required>
+            <input type="text" name="datum" id="datum" class="form-control datepicker" value="{{ old('datum') }}"  placeholder="dd.mm.yyyy" required>
             @if ($errors->has('datum'))
                 <span class="help-block">
                     <strong>{{ $errors->first('datum') }}</strong>
@@ -145,8 +145,13 @@
 @endsection
 
 @section('skripte')
+<script src="{{ asset('/js/moment.min.js') }}"></script>
+<script src="{{ asset('/js/datetime-moment.js') }}"></script>
+<script src="{{ asset('/js/bootstrap-datepicker.min.js') }}"></script>
 <script>
 $( document ).ready(function() {
+
+    $.fn.dataTable.moment('DD.MM.YYYY');
 
     $('#tabela').DataTable({
         columnDefs: [{ orderable: false, searchable: false, "targets": -1 }],
@@ -182,11 +187,17 @@ $( document ).ready(function() {
             data: {"id":id, _token: "{!! csrf_token() !!}"},
             success: function(data){
                   $("#idModal").val(data.id);
-                  $("#datumModal").val(data.datum);
+                  $("#datumModal").val(data.formatiran_datum);
                   $("#napomenaModal").val(data.napomena);
             }
         });
     });
+
+           $('.datepicker').datepicker({
+            format: 'dd.mm.yyyy',
+            autoclose: true,
+            endDate: '+10y'
+        });
 });
 </script>
 @endsection

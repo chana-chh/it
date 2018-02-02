@@ -3,11 +3,22 @@
 namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Reciklaza extends Model
 {
     protected $table = 'reciklaza';
+    protected $appends = ['formatiran_datum'];
     public $timestamps = false;
+
+    function getFormatiranDatumAttribute() {
+        return Carbon::parse($this->datum)->format('d.m.Y');
+    }
+
+    public function setDatumAttribute($value)
+    {
+        $this->attributes['datum'] = Carbon::parse($value)->format('Y-m-d');
+    }
  
     public function racunari()
     {
