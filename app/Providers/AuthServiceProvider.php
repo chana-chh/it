@@ -25,12 +25,23 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        /*
-            Ovde mogu da se naprave uslovi za razne nivoe korisnika
-        */
-        Gate::define('admin', function ($user)
-        {
-            return $user->level === 0;
+        Gate::before(function ($user) {
+            if ($user->imaUlogu('admin')) {
+                return true;
+            }
+        });
+
+        Gate::define('centrala', function ($user) {
+            return $user->imaUlogu(['centrala']);
+        });
+
+        Gate::define('kadrovi', function ($user) {
+            return $user->imaUlogu(['kadrovi']);
+        });
+
+        Gate::define('korisnik', function ($user) {
+            return $user->imaUlogu(['korisnik', 'centrala', 'kadrovi']);
         });
     }
+
 }

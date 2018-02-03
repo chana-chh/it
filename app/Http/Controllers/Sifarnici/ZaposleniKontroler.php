@@ -25,20 +25,23 @@ class ZaposleniKontroler extends Kontroler
         $svi_zaposleni = Zaposleni::with('kancelarija', 'uprava', 'emailovi')->get(); //Ovo je sve jasno
 
         return Datatables::of($svi_zaposleni)
-        ->editColumn('ime', function ($model) {
-                return ($model->imePrezime());
-            }) //Ovde editujem kolonu koja već postoji, -ime- i uvlačim rezultat funkcije iz modela za konkatinaciju imena i prezimena...
-        ->editColumn('kancelarija.naziv', function ($model) {
-                return ($model->kancelarija->sviPodaci());
-            }) //Isto kao u prethodnom slučaju samo funkcija iz modela kancelarija
-        ->addColumn('email', function ($model) {
-                    return $model->emailovi->map(function($email) {
-                        return '<a href="mailto:'. $email->adresa  .'">'. $email->adresa .'</a>';
-                    })->implode('<br>');
-                }) //Dodavanje mapiranih i složenih HasMany podataka. Svaku dodatu kolonu treba definisati i na pogledu. Potrebno je srediti header tabele i data u DataTables delu skripte
-        ->addColumn('akcije', 'sifarnici.inc.dugmici') //Ovde uvlačim čitav view sa dugmićima u kolonu
-        ->rawColumns(['akcije', 'email']) //Ovde dopustam da nabrojane kolone budu renderovane kao HTML, inače je sve prikazano kao Tekst
-        ->make(true);
+                        ->editColumn('ime', function ($model) {
+                            return ($model->imePrezime());
+                        }) //Ovde editujem kolonu koja već postoji, -ime- i uvlačim rezultat funkcije iz modela za konkatinaciju imena i prezimena...
+                        ->editColumn('kancelarija.naziv', function ($model) {
+                            if ($model->kancelarija) {
+                                return ($model->kancelarija->sviPodaci());
+                            }
+                            return 'kanc';
+                        }) //Isto kao u prethodnom slučaju samo funkcija iz modela kancelarija
+                        ->addColumn('email', function ($model) {
+                            return $model->emailovi->map(function($email) {
+                                        return '<a href="mailto:' . $email->adresa . '">' . $email->adresa . '</a>';
+                                    })->implode('<br>');
+                        }) //Dodavanje mapiranih i složenih HasMany podataka. Svaku dodatu kolonu treba definisati i na pogledu. Potrebno je srediti header tabele i data u DataTables delu skripte
+                        ->addColumn('akcije', 'sifarnici.inc.dugmici') //Ovde uvlačim čitav view sa dugmićima u kolonu
+                        ->rawColumns(['akcije', 'email']) //Ovde dopustam da nabrojane kolone budu renderovane kao HTML, inače je sve prikazano kao Tekst
+                        ->make(true);
     }
 
     public function getDodavanje()

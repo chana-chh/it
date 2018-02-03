@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class RolesTableSeeder extends Seeder
+class Role extends Seeder
 {
 
     public function run()
@@ -13,17 +13,20 @@ class RolesTableSeeder extends Seeder
             'opis' => 'Administrator aplikacije - ima sva prava',
         ]);
         DB::table('roles')->insert([
-            'name' => 'super-user',
+            'name' => 'centrala',
             'level' => 200,
-            'opis' => 'Korisnik sa pravom da menja podatke u aplikaciji',
+            'opis' => 'Korisnik sa pravom da menja podatke o telefonskim brojevima zaposlenih',
         ]);
         DB::table('roles')->insert([
-            'name' => 'user',
+            'name' => 'kadrovi',
             'level' => 300,
+            'opis' => 'Korisnik sa pravom da menja podatke o zaposlenima',
+        ]);
+        DB::table('roles')->insert([
+            'name' => 'korisnik',
+            'level' => 400,
             'opis' => 'Korisnik koji ima pravo da vrsi upite, pregleda izvestaje i podatke, ali ne i da ih menja',
         ]);
-
-        // Neprijavljeni 'guest' mogu samo da pregledaju javne podatke i izvestaje
     }
 
 }

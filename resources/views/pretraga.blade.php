@@ -92,17 +92,20 @@
                         , <small>{{ $zaposleni->uprava->naziv }}</small>
                     </h3>
                     <h4>
+                        @if($zaposleni->kancelarija)
                         Kancelarija: {{ $zaposleni->kancelarija->naziv }},
                         <small>
                             {{ $zaposleni->kancelarija->lokacija->naziv }},
                             {{ $zaposleni->kancelarija->sprat->naziv }}
                         </small>
+
                     </h4>
                     <ul style="list-style-type: none;">
                         @foreach($zaposleni->kancelarija->telefoni as $tel)
                         <li><i class="fa fa-phone fa-fw text-success"></i>&emsp;{{ $tel->broj }}, <small> {{ $tel->vrsta }}</small></li>
                         @endforeach
                     </ul>
+                    @endif
                     <ul style="list-style-type: none;">
                         @foreach($zaposleni->mobilni as $mob)
                         <li><i class="fa fa-mobile fa-fw text-danger"></i>&emsp;{{ $mob->broj }}</li>
@@ -156,29 +159,29 @@
                     <ul style="list-style-type: none; padding-left: 0;">
                         <table class="table" style="table-layout: fixed;">
                             <tbody style="font-size: 1.4rem;">
-                        @foreach($kancelarija->zaposleni as $z)
-                            <tr>
-                                <th style="width: 50%;"><h4 class="zaposleniPopover"  style="cursor: pointer;"
-                            data-title="{{ $z->imePrezime() }}"
-                            data-content="<img src='{{ $z->src ? asset('images/slike_zaposlenih/'.$z->src) : '' }}' class='img-rounded' style='height: 256px;'>"><i class="fa fa-user fa-fw text-success"></i>&emsp;{{ $z->imePrezime() }}</h4></th>
-                                <td style="width: 50%;">  <ul style="list-style-type: none;">
-                                @foreach($z->mobilni as $m)
-                                <li>
-                                    <i class="fa fa-mobile fa-fw text-danger"></i>&emsp;{{ $m->broj }}
-                                </li>
+                                @foreach($kancelarija->zaposleni as $z)
+                                <tr>
+                                    <th style="width: 50%;"><h4 class="zaposleniPopover"  style="cursor: pointer;"
+                                                                data-title="{{ $z->imePrezime() }}"
+                                                                data-content="<img src='{{ $z->src ? asset('images/slike_zaposlenih/'.$z->src) : '' }}' class='img-rounded' style='height: 256px;'>"><i class="fa fa-user fa-fw text-success"></i>&emsp;{{ $z->imePrezime() }}</h4></th>
+                                    <td style="width: 50%;">  <ul style="list-style-type: none;">
+                                            @foreach($z->mobilni as $m)
+                                            <li>
+                                                <i class="fa fa-mobile fa-fw text-danger"></i>&emsp;{{ $m->broj }}
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                        <ul style="list-style-type: none;">
+                                            @foreach($z->emailovi as $e)
+                                            <li>
+                                                <i class="fa fa-envelope fa-fw text-info"></i>&emsp;{{ $e->adresa }}
+                                            </li>
+                                            @endforeach
+                                        </ul></td>
+                                </tr>
                                 @endforeach
-                            </ul>
-                            <ul style="list-style-type: none;">
-                                @foreach($z->emailovi as $e)
-                                <li>
-                                    <i class="fa fa-envelope fa-fw text-info"></i>&emsp;{{ $e->adresa }}
-                                </li>
-                                @endforeach
-                            </ul></td>
-                            </tr>
-                        @endforeach
                             </tbody>
-                    </table>
+                        </table>
                     </ul>
                 </div>
             </div>

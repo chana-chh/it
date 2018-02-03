@@ -13,7 +13,7 @@ class NapraviTabeluZaposleni extends Migration
             $table->increments('id');
             $table->string('prezime', 100);
             $table->string('ime', 50);
-            $table->integer('kancelarija_id')->unsigned();
+            $table->integer('kancelarija_id')->unsigned()->nullable();
             $table->integer('uprava_id')->unsigned();
             $table->string('radno_mesto')->nullable();
             $table->string('src')->nullable();
