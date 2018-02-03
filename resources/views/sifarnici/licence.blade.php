@@ -50,6 +50,8 @@
                     <td><em>{{ $d->formatiran_pocetak }}</em></td>
                     <td><em>{{ $d->formatiran_prestanak }}</em></td>
                     <td style="text-align:right; vertical-align: middle; line-height: normal;">
+                        <div class="row">
+                            <div class="col-md-12">
                         <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('licence.detalj', $d->id)}}">
                             <i class="fa fa-eye"></i>
                         </a>
@@ -59,6 +61,8 @@
                         <button class="btn btn-danger btn-sm otvori-brisanje" data-toggle="modal" data-target="#brisanjeModal" value="{{ $d->id }}">
                             <i class="fa fa-trash"></i>
                         </button>
+                        </div>
+                        </div>
                     </td>
                 </tr>
                 @endforeach
