@@ -6,6 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class NapraviTabeluZaposleni extends Migration
 {
+
     public function up()
     {
         Schema::create('zaposleni', function (Blueprint $table) {
@@ -14,6 +15,7 @@ class NapraviTabeluZaposleni extends Migration
             $table->string('ime', 50);
             $table->integer('kancelarija_id')->unsigned();
             $table->integer('uprava_id')->unsigned();
+            $table->string('radno_mesto')->nullable();
             $table->string('src')->nullable();
             $table->text('napomena')->nullable();
 
@@ -27,4 +29,5 @@ class NapraviTabeluZaposleni extends Migration
         Schema::dropForeign(['uprava_id', 'kancelarija_id']);
         Schema::dropIfExists('zaposleni');
     }
+
 }

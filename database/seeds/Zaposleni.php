@@ -10,4258 +10,4078 @@ class Zaposleni extends Seeder
         DB::beginTransaction();
 
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milojević',
-            'ime' => 'Momčilo',
-            'kancelarija_id' => 1,
+            'prezime' => trim('STANIŠIĆ'),
+            'ime' => trim('SONJA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Koordinator za poslove organizovanja i izvršavanja plaćanja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Rosić',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 1,
+            'prezime' => trim('SAVIĆ'),
+            'ime' => trim('JASMINA '),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje za finansijsko - računovodstvene poslove --- Računovodstveni poslovi-analitičar '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marić',
-            'ime' => 'Momir',
-            'kancelarija_id' => 1,
+            'prezime' => trim('MILOJEVIĆ '),
+            'ime' => trim('JASNA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Načelnik Gradske uprave'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Janjić',
-            'ime' => 'Branislav',
-            'kancelarija_id' => 1,
+            'prezime' => trim('TOMAŠEVIĆ '),
+            'ime' => trim('JASNA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje trezora --- Računovodstveni poslovi-likvidator '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jevtić',
-            'ime' => 'Nikosava',
-            'kancelarija_id' => 1,
+            'prezime' => trim('KOMATOVIĆ-ANDONOVIĆ'),
+            'ime' => trim('ANA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje za budžet --- Poslovi pripreme i praćenja izvršenja budžeta'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radivojević',
-            'ime' => 'Slađana',
-            'kancelarija_id' => 1,
+            'prezime' => trim('ŽIVANOVIĆ '),
+            'ime' => trim('MARIJA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje za budžet --- Poslovi upravljanja javnim dugom '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Miroslava',
-            'kancelarija_id' => 1,
+            'prezime' => trim('JANIĆIJEVIĆ'),
+            'ime' => trim('NATAŠA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje za budžet --- Poslovi bilansiranja javnih prihoda i javnih rashoda'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Miljojčić',
-            'ime' => 'Žana',
-            'kancelarija_id' => 1,
+            'prezime' => trim('SIMOVIĆ'),
+            'ime' => trim('TINA '),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje za budžet --- Poslovi bilansiranja javnih prihoda i javnih rashoda'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kaltak',
-            'ime' => 'Cvetanka',
-            'kancelarija_id' => 1,
+            'prezime' => trim('LEKOVIĆ'),
+            'ime' => trim('VESNA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje za budžet --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mihajlović',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 1,
+            'prezime' => trim('MATIĆ-PAVLOVIĆ'),
+            'ime' => trim('ALEKSANDRA '),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje za finansijsko - računovodstvene poslove --- Računovodstveni poslovi-knjigovodja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Obradović',
-            'ime' => 'Milan',
-            'kancelarija_id' => 2,
+            'prezime' => trim('KNEŽEVIĆ'),
+            'ime' => trim('NEBOJŠA '),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje za finansijsko - računovodstvene poslove --- Poslovi obračuna zarada i naknada'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milovanović',
-            'ime' => 'Slađana',
-            'kancelarija_id' => 2,
+            'prezime' => trim('ANTONIJEVIĆ'),
+            'ime' => trim('JELENA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje za budžet --- Poslovi budžetskog izveštavanja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Rajović',
-            'ime' => 'Predrag',
-            'kancelarija_id' => 2,
+            'prezime' => trim('LEKOVIĆ'),
+            'ime' => trim('MARIJA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje trezora --- Poslovi evidencije prihoda'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Simović',
-            'ime' => 'Milorad',
-            'kancelarija_id' => 2,
+            'prezime' => trim('JEVTIĆ '),
+            'ime' => trim('NIKOSAVA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje za finansijsko - računovodstvene poslove --- Računovodstveni poslovi-materijalni knjigivodja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Rakočević',
-            'ime' => 'Radenko',
-            'kancelarija_id' => 2,
+            'prezime' => trim('VESELINOVIĆ'),
+            'ime' => trim('NATAŠA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje trezora --- Poslovi evidencije prihoda'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Predojević',
-            'ime' => 'Milovan',
-            'kancelarija_id' => 2,
+            'prezime' => trim('PAUNOVIĆ'),
+            'ime' => trim('MIRJANA '),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje za finansijsko - računovodstvene poslove --- Računovodstveni poslovi-analitičar '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Knežević',
-            'ime' => 'Nebojša',
-            'kancelarija_id' => 2,
+            'prezime' => trim('SVIČEVIĆ'),
+            'ime' => trim('MARIJA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje za finansijsko - računovodstvene poslove --- Finansijsko-računovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Veljko',
-            'kancelarija_id' => 2,
+            'prezime' => trim('DRAGOJLOVIĆ'),
+            'ime' => trim('KATARINA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje trezora --- Poslovi budžetskog računovodstva-likvidator '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nešić',
-            'ime' => 'Radašin',
-            'kancelarija_id' => 2,
+            'prezime' => trim('MILIĆEVIĆ '),
+            'ime' => trim('ZORICA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje trezora --- Poslovi kontrole prihoda i rashoda i izrade konsolidovanih finansijskih izveštaja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Todorović',
-            'ime' => 'Dragan',
-            'kancelarija_id' => 2,
+            'prezime' => trim('RAKIĆ'),
+            'ime' => trim('ĐORĐE'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje za finansijsko - računovodstvene poslove --- Finansijsko-računovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Janićijević',
-            'ime' => 'Radmila',
-            'kancelarija_id' => 3,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('TAMARA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje za finansijsko - računovodstvene poslove --- Poslovi likvidature '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Zorić',
-            'ime' => 'Milka',
-            'kancelarija_id' => 3,
+            'prezime' => trim('JANKOVIĆ'),
+            'ime' => trim('ANA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje trezora --- Poslovi planiranja i upravljanja finansijskim tokovima'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Todorović',
-            'ime' => 'Dragan',
-            'kancelarija_id' => 3,
+            'prezime' => trim('ČALIJA '),
+            'ime' => trim('DRAGANA '),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje trezora --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vesić',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 3,
+            'prezime' => trim('SOTIROV-STEFANOVIĆ '),
+            'ime' => trim('DANIJELA'),
             'uprava_id' => 1,
+            'radno_mesto' => trim('Odeljenje za finansijsko - računovodstvene poslove --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Riznić',
-            'ime' => 'Mileva',
-            'kancelarija_id' => 3,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Eftović',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 3,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Đorđević',
-            'ime' => 'Milena',
-            'kancelarija_id' => 3,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Brkić',
-            'ime' => 'Milašin',
-            'kancelarija_id' => 3,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Pavlović',
-            'ime' => 'Slavica',
-            'kancelarija_id' => 3,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Rvović',
-            'ime' => 'Svetlana',
-            'kancelarija_id' => 3,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Beara',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 4,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Antonijević',
-            'ime' => 'Slavenka',
-            'kancelarija_id' => 4,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Kuzmanović',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 4,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Nestorović',
-            'ime' => 'Radojica',
-            'kancelarija_id' => 4,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Živanović',
-            'ime' => 'Radovanka',
-            'kancelarija_id' => 4,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Nikitović',
-            'ime' => 'Slavica',
-            'kancelarija_id' => 4,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Cvetković',
-            'ime' => 'Evica',
-            'kancelarija_id' => 4,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Stojanović',
-            'ime' => 'Hadži-milan',
-            'kancelarija_id' => 4,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Stanković',
-            'ime' => 'Milica',
-            'kancelarija_id' => 4,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Jovanović',
-            'ime' => 'Olga',
-            'kancelarija_id' => 4,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Živković',
-            'ime' => 'Predrag',
-            'kancelarija_id' => 5,
+            'prezime' => trim('GRUJIĆ '),
+            'ime' => trim('KATARINA'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za kontrolu --- Inspektor kancelarijske kontrole'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jović',
-            'ime' => 'Verica',
-            'kancelarija_id' => 5,
+            'prezime' => trim('ĐEKIĆ'),
+            'ime' => trim('BOŠKO'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za kontrolu --- Analitički poslovi terenske kontrole '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Aksentijević',
-            'ime' => 'Sretina',
-            'kancelarija_id' => 5,
+            'prezime' => trim('SAVIĆ'),
+            'ime' => trim('ANA'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Inspektor naplate'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Alempijević',
-            'ime' => 'Ratko',
-            'kancelarija_id' => 5,
+            'prezime' => trim('ĐOŠIĆ'),
+            'ime' => trim('MILANKA '),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Poslovi unosa prijava '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Davinić',
-            'ime' => 'Delinka',
-            'kancelarija_id' => 5,
+            'prezime' => trim('STANKOVIĆ '),
+            'ime' => trim('ZORICA'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Poslovi unosa prijava '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Živković',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 5,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('DRAGANA '),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za kontrolu --- Inspektor terenske kontrole '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Gajić',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 5,
+            'prezime' => trim('GLIŠIĆ '),
+            'ime' => trim('MILOŠ'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Poslovi izdavanja uverenja I'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milosavljević',
-            'ime' => 'Milivoje',
-            'kancelarija_id' => 5,
+            'prezime' => trim('VUJNOVIĆ'),
+            'ime' => trim('SVETLANA'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Načelnik Odeljenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jovanović',
-            'ime' => 'Milena',
-            'kancelarija_id' => 5,
+            'prezime' => trim('MARKOVIĆ'),
+            'ime' => trim('MILOŠ'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za poresko-pravne poslove --- Administrativno operativni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stefanović',
-            'ime' => 'Andreja',
-            'kancelarija_id' => 5,
+            'prezime' => trim('MIJATOVIĆ '),
+            'ime' => trim('DRAGANA '),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za kontrolu --- Inspektor terenske kontrole '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marković',
-            'ime' => 'Miloš',
-            'kancelarija_id' => 6,
+            'prezime' => trim('MILOJEVIĆ '),
+            'ime' => trim('IRENA'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Kancelarijski poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Janković',
-            'ime' => 'Saša',
-            'kancelarija_id' => 6,
+            'prezime' => trim('OBRADOVIĆ '),
+            'ime' => trim('ZORAN'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za poresko-pravne poslove --- Administrativno operativni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Bratković',
-            'ime' => 'Predrag',
-            'kancelarija_id' => 6,
+            'prezime' => trim('HADŽIĆ '),
+            'ime' => trim('BILJANA '),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Poslovi izdavanja uverenja I'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Živadinović',
-            'ime' => 'Milan',
-            'kancelarija_id' => 6,
+            'prezime' => trim('ŠAPIĆ'),
+            'ime' => trim('VERICA'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za kontrolu --- Šef službe za kancelarijsku kontrolu '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pavlović-Đapa',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 6,
+            'prezime' => trim('CVIJETIĆ'),
+            'ime' => trim('MIRO '),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za kontrolu --- Inspektor terenske kontrole '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Svičević',
-            'ime' => 'Marija',
-            'kancelarija_id' => 6,
+            'prezime' => trim('VASOJEVIĆ '),
+            'ime' => trim('OLIVERA '),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Poreski računovodja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Lučić',
-            'ime' => 'Ljiljana',
-            'kancelarija_id' => 6,
+            'prezime' => trim('NEŠIĆ-ŠARIĆ'),
+            'ime' => trim('SANJA'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za kontrolu --- Inspektor kancelarijske kontrole I'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ilić',
-            'ime' => 'Julka',
-            'kancelarija_id' => 6,
+            'prezime' => trim('NIKOLIĆ'),
+            'ime' => trim('DRAGANA '),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Inspektor naplate II'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vuković',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 6,
+            'prezime' => trim('MILIĆEVIĆ '),
+            'ime' => trim('ĐORĐE'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za kontrolu --- Analitički poslovi terenske kontrole '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đulčić',
-            'ime' => 'Zora',
-            'kancelarija_id' => 6,
+            'prezime' => trim('KIMPANOV'),
+            'ime' => trim('ANA'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Poreski računovodja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Dragojlović',
-            'ime' => 'Katarina',
-            'kancelarija_id' => 7,
+            'prezime' => trim('ČOMAGIĆ-POPOVIĆ '),
+            'ime' => trim('DANIJELA'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za poresko-pravne poslove --- Poslovi prekršajnog postupka '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kesić',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 7,
+            'prezime' => trim('ĐINĐIĆ '),
+            'ime' => trim('SLAVICA '),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Načelnik Gradske uprave'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Bogdanović',
-            'ime' => 'Sreten',
-            'kancelarija_id' => 7,
+            'prezime' => trim('OBROVIĆ'),
+            'ime' => trim('MILAN'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za kontrolu --- Inspektor terenske kontrole '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Gajić',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 7,
+            'prezime' => trim('MARKOVIĆ'),
+            'ime' => trim('NEBOJŠA '),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za poresko-pravne poslove --- Administrativni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Hem-Božilović',
-            'ime' => 'Snežana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
-        ]);
-        DB::table('zaposleni')->insert([
-            'prezime' => 'Bašić',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 7,
+            'prezime' => trim('BOGDANOVSKI'),
+            'ime' => trim('ZORAN'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za kontrolu --- Inspektor terenske kontrole '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 7,
+            'prezime' => trim('MARINKOVIĆ'),
+            'ime' => trim('MILICA'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Šef službe za naplatu '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Lazarević-Sarić',
-            'ime' => 'LJiljana',
-            'kancelarija_id' => 7,
+            'prezime' => trim('GOBELJIĆ'),
+            'ime' => trim('IVANA'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za kontrolu --- Načelnik Odeljenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đurđević',
-            'ime' => 'Dragica',
-            'kancelarija_id' => 7,
+            'prezime' => trim('RADOSAVČEVIĆ '),
+            'ime' => trim('OLGA '),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za poresko-pravne poslove --- Poresko - pravni poslovi I'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vujović',
-            'ime' => 'Zdravka',
-            'kancelarija_id' => 7,
+            'prezime' => trim('STANISAVLJEVIĆ'),
+            'ime' => trim('DANIJELA'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za kontrolu --- Inspektor kancelarijske kontrole'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Obradović',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 7,
+            'prezime' => trim('JEVTIĆ '),
+            'ime' => trim('DANIJELA'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Poslovi izdavanja uverenja I'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tanasković',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 8,
+            'prezime' => trim('SREJIĆ '),
+            'ime' => trim('MILANKA '),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za kontrolu --- Inspektor terenske kontrole '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milanović',
-            'ime' => 'Predrag',
-            'kancelarija_id' => 8,
+            'prezime' => trim('STANOJEVIĆ'),
+            'ime' => trim('SANJA'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za poresko-pravne poslove --- Poresko pravni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Obradović',
-            'ime' => 'Slavica',
-            'kancelarija_id' => 8,
+            'prezime' => trim('KALAJDŽIĆ '),
+            'ime' => trim('SLAĐANA '),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Inspektor naplate'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Divac',
-            'ime' => 'Bojana',
-            'kancelarija_id' => 8,
+            'prezime' => trim('TRAJKOVSKI'),
+            'ime' => trim('DUBRAVKA'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Inspektor naplate'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stefanović',
-            'ime' => 'Slobodan',
-            'kancelarija_id' => 8,
+            'prezime' => trim('BUĆAN'),
+            'ime' => trim('KATARINA'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Poslovi izdavanja uverenja I'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Šapić',
-            'ime' => 'Verica',
-            'kancelarija_id' => 8,
+            'prezime' => trim('PETRIĆ '),
+            'ime' => trim('DALIBOR '),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za kontrolu --- Inspektor kancelarijske kontrole II'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Veličković',
-            'ime' => 'Marija',
-            'kancelarija_id' => 8,
+            'prezime' => trim('STEVIĆ '),
+            'ime' => trim('MILOVAN '),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za poresko-pravne poslove --- Poreski izvršitelj'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jevtić',
-            'ime' => 'Ljiljana',
-            'kancelarija_id' => 8,
+            'prezime' => trim('MATIĆ'),
+            'ime' => trim('NEBOJŠA '),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Poslovi izdavanja uverenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Erić',
-            'ime' => 'Karolina',
-            'kancelarija_id' => 8,
+            'prezime' => trim('JOVANOVIĆ '),
+            'ime' => trim('GORDANA '),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za poresko-pravne poslove --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jovanović',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 8,
+            'prezime' => trim('ĐEKIĆ'),
+            'ime' => trim('VLADIMIR'),
             'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za naplatu i poresko-računovodstvene poslove --- Inspektor naplate I'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Miletić',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 9,
+            'prezime' => trim('JEVTIĆ '),
+            'ime' => trim('LJILJANA'),
+            'uprava_id' => 2,
+            'radno_mesto' => trim('Koordinator za pravne poslove iz nadležnosti Uprave '),
+        ]);
+        DB::table('zaposleni')->insert([
+            'prezime' => trim('PAUNOVIĆ'),
+            'ime' => trim('ĐORĐE'),
+            'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za kontrolu --- Inspektor kancelarijske kontrole'),
+        ]);
+        DB::table('zaposleni')->insert([
+            'prezime' => trim('SIMOVIĆ'),
+            'ime' => trim('MILORAD '),
+            'uprava_id' => 2,
+            'radno_mesto' => trim('Odeljenje za poresko-pravne poslove --- Administrativno operativni poslovi '),
+        ]);
+        DB::table('zaposleni')->insert([
+            'prezime' => trim('RAFAILOVIĆ'),
+            'ime' => trim('DRAGANA '),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za planiranje i pripremu investicija --- Pravni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Dimitrijević',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 9,
+            'prezime' => trim('VULOVIĆ'),
+            'ime' => trim('RADOSAV '),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za realizaciju investcija --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milenković',
-            'ime' => 'Svetlana',
-            'kancelarija_id' => 9,
+            'prezime' => trim('MLADIĆEVIĆ'),
+            'ime' => trim('VOJISLAV'),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za planiranje i pripremu investicija --- Poslovi pripreme projektne dokumentacije'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Bojović',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 9,
+            'prezime' => trim('FILIPOVIĆ '),
+            'ime' => trim('RADMILA '),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za planiranje i pripremu investicija --- Finansijsko-računovodstveni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Bojović',
-            'ime' => 'Snežana',
-            'kancelarija_id' => 9,
+            'prezime' => trim('MARKOVIĆ'),
+            'ime' => trim('MIRJANA '),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za planiranje i pripremu investicija --- Finansijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Davidović',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 9,
+            'prezime' => trim('ŠEĆIĆ'),
+            'ime' => trim('EDI'),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za planiranje i pripremu investicija --- Poslovi geodetsko-katastarske pripreme '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jakovljević',
-            'ime' => 'Nevenka',
-            'kancelarija_id' => 9,
+            'prezime' => trim('MIĆIĆ'),
+            'ime' => trim('NEVENA'),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za planiranje i pripremu investicija --- Poslovi pripreme projektne dokumentacije'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radojević',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 9,
+            'prezime' => trim('ĆURIĆ'),
+            'ime' => trim('VESNA'),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za planiranje i pripremu investicija --- Poslovi pripreme urbanističke dokumentacije'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nešković',
-            'ime' => 'Slavica',
-            'kancelarija_id' => 9,
+            'prezime' => trim('STEVANOVIĆ'),
+            'ime' => trim('TATJANA '),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za planiranje i pripremu investicija --- Poslovi pripreme projektne dokumentacije'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stanišić',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 9,
+            'prezime' => trim('PANTIĆ '),
+            'ime' => trim('PREDRAG '),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Načelnik Gradske uprave'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stevanović',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 10,
+            'prezime' => trim('ĐOKOVIĆ'),
+            'ime' => trim('ZORICA'),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za planiranje i pripremu investicija --- Pravni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ćurčić',
-            'ime' => 'Zora',
-            'kancelarija_id' => 10,
+            'prezime' => trim('MILJKOVIĆ '),
+            'ime' => trim('KATARINA'),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za planiranje i pripremu investicija --- Administrativno tehnički poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Rihterović',
-            'ime' => 'Jasmina',
-            'kancelarija_id' => 10,
+            'prezime' => trim('JELESIJEVIĆ'),
+            'ime' => trim('NENAD'),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za realizaciju investcija --- Poslovi izgradnje i održavanja - oblast hidrogradnje '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radovanović',
-            'ime' => 'Zorica',
-            'kancelarija_id' => 10,
+            'prezime' => trim('MILIĆEVIĆ '),
+            'ime' => trim('SAŠA '),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za planiranje i pripremu investicija --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Katušić',
-            'ime' => 'Biljana',
-            'kancelarija_id' => 10,
+            'prezime' => trim('ŠĆEPANOVIĆ'),
+            'ime' => trim('NEŠO '),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za realizaciju investcija --- Poslovi u oblasti gradnje, rekonstrukcije,sanacije,adaptacije i održavanja objekata visokogradnje i niskogradnje '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Brkić',
-            'ime' => 'Dragan',
-            'kancelarija_id' => 10,
+            'prezime' => trim('RADISAVLJEVIĆ'),
+            'ime' => trim('NATAŠA'),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za realizaciju investcija --- Poslovi izgradnje i održavanja puteva - oblast niskogradnje'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tanasijević',
-            'ime' => 'Svetlana',
-            'kancelarija_id' => 10,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('GORAN'),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Koordinator za imovinsko pravne poslove '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Aleksić',
-            'ime' => 'Goran',
-            'kancelarija_id' => 10,
+            'prezime' => trim('RADIVOJEVIĆ'),
+            'ime' => trim('PREDRAG '),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za realizaciju investcija --- Poslovi izgradnje, održavanja puteva i hidrogradnje'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radović',
-            'ime' => 'Jelisaveta',
-            'kancelarija_id' => 10,
+            'prezime' => trim('VUKIĆEVIĆ '),
+            'ime' => trim('MARKO'),
             'uprava_id' => 3,
+            'radno_mesto' => trim('Odeljenje za planiranje i pripremu investicija --- Poslovi pripreme projektne dokumentacije'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nikolić',
-            'ime' => 'Milijana',
-            'kancelarija_id' => 10,
-            'uprava_id' => 3,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('VELJKO'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Služba za poslovni prostor grada Kragujevca --- Administrativno-tehnički poslovi u oblasti poslovnog prostora grada Kragujevca'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jakovljević',
-            'ime' => 'Svetlana',
-            'kancelarija_id' => 11,
-            'uprava_id' => 3,
+            'prezime' => trim('JOVIĆ'),
+            'ime' => trim('VERICA'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za imovinu i imovinsko – pravne poslove --- Imovinsko-pravni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petronijević',
-            'ime' => 'Svetlana',
-            'kancelarija_id' => 11,
-            'uprava_id' => 3,
+            'prezime' => trim('ĆUPIĆ'),
+            'ime' => trim('DUŠICA'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Načelnik Gradske uprave'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tasić',
-            'ime' => 'Nikola',
-            'kancelarija_id' => 11,
-            'uprava_id' => 3,
+            'prezime' => trim('RISTOVIĆ'),
+            'ime' => trim('SLAVICA '),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za imovinu i imovinsko – pravne poslove --- Stručni i operativni poslovi u oblasti imovine'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Šamanović',
-            'ime' => 'Slavica',
-            'kancelarija_id' => 11,
-            'uprava_id' => 3,
+            'prezime' => trim('BUNDALO'),
+            'ime' => trim('DRAGANA '),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za stambene poslove --- Normativno-pravni, nadzorni i upravni poslovi u stambenoj oblasti'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stevanović',
-            'ime' => 'Milija',
-            'kancelarija_id' => 11,
-            'uprava_id' => 3,
+            'prezime' => trim('LEKOVIĆ'),
+            'ime' => trim('VELJKO'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za stambene poslove --- Normativno-pravni, nadzorni i upravni poslovi u stambenoj oblasti'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Bogdanović',
-            'ime' => 'Snežana',
-            'kancelarija_id' => 11,
-            'uprava_id' => 3,
+            'prezime' => trim('MILENKOVIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Služba za ekonomsko - finansijske poslove --- Ekonomsko-finansijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nenadović',
-            'ime' => 'Snežana',
-            'kancelarija_id' => 11,
-            'uprava_id' => 3,
+            'prezime' => trim('PAUNOVIĆ'),
+            'ime' => trim('SRĐAN'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za imovinu i imovinsko – pravne poslove --- Stručni i operativni poslovi u oblasti imovine'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marković',
-            'ime' => 'Saša',
-            'kancelarija_id' => 11,
-            'uprava_id' => 3,
+            'prezime' => trim('JOVANOVIĆ '),
+            'ime' => trim('JELENA'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Služba za ekonomsko - finansijske poslove --- Stručni i operativni poslovi u oblasti finansija'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marinković',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 11,
-            'uprava_id' => 3,
+            'prezime' => trim('SIMEUNOVIĆ-ĐORĐEVIĆ'),
+            'ime' => trim('SVETLANA'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za imovinu i imovinsko – pravne poslove --- Imovinsko-pravni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Šećić',
-            'ime' => 'Edi',
-            'kancelarija_id' => 11,
-            'uprava_id' => 3,
+            'prezime' => trim('ISKRENOVIĆ'),
+            'ime' => trim('DEJAN'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Služba za poslovni prostor grada Kragujevca --- Šef Službe'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stojanović',
-            'ime' => 'Radoslav',
-            'kancelarija_id' => 12,
-            'uprava_id' => 3,
+            'prezime' => trim('JEKIĆ'),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za imovinu i imovinsko – pravne poslove --- Imovinsko-pravni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stepović',
-            'ime' => 'Slavica',
-            'kancelarija_id' => 12,
-            'uprava_id' => 3,
+            'prezime' => trim('RADIVOJEVIĆ'),
+            'ime' => trim('MILOŠ'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Služba za poslovni prostor grada Kragujevca --- Normativno-pravni i upravni poslovi u oblasti poslovnog prostora grada Kragujevca'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Josić',
-            'ime' => 'Radoje',
-            'kancelarija_id' => 12,
-            'uprava_id' => 3,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za imovinu i imovinsko – pravne poslove --- Stručno-operativni i administrativni poslovi u oblasti evidencije imovine'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Spasenić',
-            'ime' => 'Tomislav',
-            'kancelarija_id' => 12,
-            'uprava_id' => 3,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('SRĐAN'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za imovinu i imovinsko – pravne poslove --- Poslovi imovine i evidencije'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nedeljković',
-            'ime' => 'Radojica',
-            'kancelarija_id' => 12,
-            'uprava_id' => 3,
+            'prezime' => trim('ŽIVKOVIĆ'),
+            'ime' => trim('DANICA'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Služba za ekonomsko - finansijske poslove --- Šef Službe '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Andrić',
-            'ime' => 'Dragica',
-            'kancelarija_id' => 12,
-            'uprava_id' => 3,
+            'prezime' => trim('NEDELJKOVIĆ'),
+            'ime' => trim('RADOJICA'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za imovinu i imovinsko – pravne poslove --- Poslovi imovine i evidencije'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Obradović',
-            'ime' => 'Nebojša',
-            'kancelarija_id' => 12,
-            'uprava_id' => 3,
+            'prezime' => trim('MILJKOVIĆ '),
+            'ime' => trim('ANA'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za imovinu i imovinsko – pravne poslove --- Stručno-operativni i administrativni poslovi u oblasti evidencije imovine'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Furtula',
-            'ime' => 'Svetlana',
-            'kancelarija_id' => 12,
-            'uprava_id' => 3,
+            'prezime' => trim('TASIĆ'),
+            'ime' => trim('NIKOLA'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za stambene poslove --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tođeraš',
-            'ime' => 'Jasmina',
-            'kancelarija_id' => 12,
-            'uprava_id' => 3,
+            'prezime' => trim('VUJIĆ'),
+            'ime' => trim('SLAĐANA '),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Služba za ekonomsko - finansijske poslove --- Administrativno-tehnički poslovi u ekonomsko-finansijskoj oblasti'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Miloradović',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 12,
-            'uprava_id' => 3,
+            'prezime' => trim('VUKOMANOVIĆ'),
+            'ime' => trim('RATKO'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za stambene poslove --- Normativno-pravni, nadzorni i upravni poslovi u stambenoj oblasti'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Drobnjaković',
-            'ime' => 'Sofija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SAVIĆ'),
+            'ime' => trim('MIODRAG '),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Služba za ekonomsko - finansijske poslove --- Ekonomsko-finansijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Spasić',
-            'ime' => 'Jasmina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOVANOVIĆ'),
+            'ime' => trim('SUZANA'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za imovinu i imovinsko – pravne poslove --- Imovinsko-pravni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tanasković',
-            'ime' => 'Tatjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUJIĆ'),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za stambene poslove --- Poslovi za stambena pitanja i prinudno izvršenje'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milentijević',
-            'ime' => 'Bojan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JAKOVLJEVIĆ'),
+            'ime' => trim('SVETLANA'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za imovinu i imovinsko – pravne poslove --- Imovinsko-pravni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Matić',
-            'ime' => 'LJiljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PAVLOVIĆ'),
+            'ime' => trim('SLAVICA '),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za imovinu i imovinsko – pravne poslove --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mladenović',
-            'ime' => 'Milosav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETRIĆ '),
+            'ime' => trim('ANA'),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za imovinu i imovinsko – pravne poslove --- Imovinsko-pravni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mojsilović',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARINKOVIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 4,
+            'radno_mesto' => trim('Odeljenje za stambene poslove --- Stručno-operativni i administrativno-tehnički poslovi u stambenoj oblasti '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ćosić',
-            'ime' => 'Dobrila',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOŠEVIĆ '),
+            'ime' => trim('DANIJELA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Tehnički poslovi u oblasti ozakonjenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stanojević',
-            'ime' => 'LJiljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VASILJEVIĆ'),
+            'ime' => trim('ANA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Administrativno-tehnički poslovi u oblasti ozakonjenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pajović',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ANASTASIJEVIĆ'),
+            'ime' => trim('IVAN '),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za objedinjenu proceduru --- Tehnički poslovi u oblasti objedinjene procedure'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Momčilović',
-            'ime' => 'Snežana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MRKALJ '),
+            'ime' => trim('DRAGANA '),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za prostorno planiranje i zaštitu životne sredine --- Poslovi zaštitite životne sredine'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milutinović',
-            'ime' => 'Miroljub',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KRSTIĆ '),
+            'ime' => trim('MILICA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za objedinjenu proceduru --- Pravni poslovi u oblasti objedinjene procedure'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Todorović',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('UROŠEVIĆ'),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ekonomsko-finansijske poslove i poslove obračuna doprinosa za uredjivanje gradjevinskog zemljišta --- Ekonomsko-finansijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đinđić',
-            'ime' => 'Slavica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BLAGOJEVIĆ'),
+            'ime' => trim('BILJANA '),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Pravni poslovi u oblasti ozakonjenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tasić',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOVANOVIĆ '),
+            'ime' => trim('NATAŠA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Registrator registra objedinjenih procedura'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đoković',
-            'ime' => 'Jasmina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADAKOVIĆ '),
+            'ime' => trim('SLAĐANA '),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Administrativno-tehnički poslovi u oblasti ozakonjenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Todorović',
-            'ime' => 'Svešana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STOJANOVIĆ'),
+            'ime' => trim('SMILJANA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za prostorno planiranje i zaštitu životne sredine --- Pravni poslovi u oblasti prostornog planiranja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Čimburović',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARINKOVIĆ-GABARIĆ '),
+            'ime' => trim('MIRJANA '),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Načelnik odeljenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ristović',
-            'ime' => 'Slavica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARINKOVIĆ'),
+            'ime' => trim('DRAGAN'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za prostorno planiranje i zaštitu životne sredine --- Šef službe '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radević',
-            'ime' => 'Stanko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOSAVLJEVIĆ'),
+            'ime' => trim('ANA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za objedinjenu proceduru --- Tehnički poslovi u oblasti objedinjene procedure'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Čanić',
-            'ime' => 'Nenad',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐURIĆ'),
+            'ime' => trim('DANIJELA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za objedinjenu proceduru --- Pravni poslovi u oblasti objedinjene procedure'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stević',
-            'ime' => 'Milovan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SIMONOVIĆ '),
+            'ime' => trim('ANA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za prostorno planiranje i zaštitu životne sredine --- Pravni poslovi u oblasti zaštite životne sredine'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Sekulić',
-            'ime' => 'LJiljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUJOVIĆ'),
+            'ime' => trim('MILOŠ'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Stručni poslovi u oblasti ozakonjenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jovović',
-            'ime' => 'Mila',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DAVIDOVIĆ '),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za objedinjenu proceduru --- Tehnički poslovi u oblasti objedinjene procedure'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đurđević',
-            'ime' => 'Snežana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILETIĆ'),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za objedinjenu proceduru --- Pravni poslovi u oblasti objedinjene procedure'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marković',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DIVAC'),
+            'ime' => trim('BOJANA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za prostorno planiranje i zaštitu životne sredine --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stevanović',
-            'ime' => 'Nataša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JONTULOVIĆ'),
+            'ime' => trim('IRENA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Administrativno-tehnički poslovi u oblasti ozakonjenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Arsenijević',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STOJANOVIĆ'),
+            'ime' => trim('HADŽI-MILAN'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ekonomsko-finansijske poslove i poslove obračuna doprinosa za uredjivanje gradjevinskog zemljišta --- Ekonomsko-finansijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stoiljković',
-            'ime' => 'Ivica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARIĆ'),
+            'ime' => trim('PREDRAG '),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ekonomsko-finansijske poslove i poslove obračuna doprinosa za uredjivanje gradjevinskog zemljišta --- Administrativno-tehnički poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pejović',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOVANOVIĆ'),
+            'ime' => trim('MILENA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za objedinjenu proceduru --- Daktilograf '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Biljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TODOROVIĆ '),
+            'ime' => trim('DRAGAN'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Administrativno-tehnički poslovi u oblasti ozakonjenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Miloradović',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('POPADIĆ'),
+            'ime' => trim('MILENA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za prostorno planiranje i zaštitu životne sredine --- Poslovi prikupljanja, obrade i evidencije podataka u oblasti planiranja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Živadinović',
-            'ime' => 'Zorica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SAVIĆ'),
+            'ime' => trim('ALEKSANDAR '),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Upravno-pravni poslovi u oblasti ozakonjenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marinković',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('NIKOLIĆ'),
+            'ime' => trim('MILIJANA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za objedinjenu proceduru --- Pravni poslovi u oblasti objedinjene procedure'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vukašinović',
-            'ime' => 'Elizabeta',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ANTIĆ'),
+            'ime' => trim('SRĐAN'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Stručni poslovi u oblasti ozakonjenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Sekulić-Milojević',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOŠEVIĆ '),
+            'ime' => trim('MILJANA '),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Upravno-pravni poslovi u oblasti ozakonjenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mihajlović',
-            'ime' => 'Snežana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RAKOČEVIĆ '),
+            'ime' => trim('BAŠIĆ'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Tehnički poslovi u oblasti ozakonjenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stević',
-            'ime' => 'Slađana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KOSOVAC'),
+            'ime' => trim('ZORICA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Stručni poslovi u oblasti ozakonjenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Lazović',
-            'ime' => 'Svetlana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILIĆ'),
+            'ime' => trim('DANIJELA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Upravno-pravni poslovi u oblasti ozakonjenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Josić',
-            'ime' => 'Katarina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOŠEVIĆ '),
+            'ime' => trim('ANA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Stručni poslovi u oblasti ozakonjenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jolić',
-            'ime' => 'Rada',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KAŠIKOVIĆ '),
+            'ime' => trim('VLADANA '),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za prostorno planiranje i zaštitu životne sredine --- Urbanista'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radovanović',
-            'ime' => 'Ilija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('NOVAKOVIĆ '),
+            'ime' => trim('DRAGANA '),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za prostorno planiranje i zaštitu životne sredine --- Poslovi zaštitite životne sredine'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stefanović',
-            'ime' => 'Božana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KALTAK '),
+            'ime' => trim('CVETANKA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za objedinjenu proceduru --- Pravni poslovi u oblasti objedinjene procedure'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Matić',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOVANOVIĆ '),
+            'ime' => trim('TATJANA '),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za prostorno planiranje i zaštitu životne sredine --- Urbanista'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pešić',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('LEKIĆ'),
+            'ime' => trim('ŽARKO'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za objedinjenu proceduru --- Tehnički poslovi u oblasti objedinjene procedure'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Šoškić',
-            'ime' => 'Ivana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ALEMPIJEVIĆ'),
+            'ime' => trim('MIRJANA '),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za objedinjenu proceduru --- Šef službe'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Sretenović',
-            'ime' => 'Dragan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STEPOVIĆ'),
+            'ime' => trim('SLAVICA '),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ekonomsko-finansijske poslove i poslove obračuna doprinosa za uredjivanje gradjevinskog zemljišta --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Čalija',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ČIMBUROVIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ekonomsko-finansijske poslove i poslove obračuna doprinosa za uredjivanje gradjevinskog zemljišta --- Administrativno-tehnički poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kostadinović',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('AKSENTIJEVIĆ '),
+            'ime' => trim('DRAGAN'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za objedinjenu proceduru --- Tehnički poslovi u oblasti objedinjene procedure'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jelesijević',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SPASENIĆ'),
+            'ime' => trim('TOMISLAV'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Načelnik Gradske uprave'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Novosel',
-            'ime' => 'Biljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐORĐEVIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Administrativno-tehnički poslovi u oblasti ozakonjenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milojević',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MRDAK'),
+            'ime' => trim('DALIBORKA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za ozakonjenje --- Stručni poslovi u oblasti ozakonjenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jovanović',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DUMBELOVIĆ'),
+            'ime' => trim('JELENA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za prostorno planiranje i zaštitu životne sredine --- Urbanista'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ranković',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SEKULIĆ'),
+            'ime' => trim('LJILJANA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za objedinjenu proceduru --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Matijašević',
-            'ime' => 'Dejan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ANTONIJEVIĆ'),
+            'ime' => trim('IVANA'),
+            'uprava_id' => 5,
+            'radno_mesto' => trim('Odeljenje za prostorno planiranje i zaštitu životne sredine --- Poslovi zaštitite životne sredine'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vidanović',
-            'ime' => 'Boban',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ČAUŠEVIĆ'),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za lokalno-ekonomski razvoj --- Poslovi ekonomskog razvoja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tašović',
-            'ime' => 'Goran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TODOROVIĆ '),
+            'ime' => trim('BOJAN'),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za lokalno-ekonomski razvoj --- Poslovi planiranja i kontrole '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radojković',
-            'ime' => 'Nataša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TOMIĆ'),
+            'ime' => trim('BILJANA '),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za upravljanje projektima --- Poslovi upravljanja projektima'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Janković',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOJEVIĆ '),
+            'ime' => trim('ANA'),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za energetsku efikasnost --- Mirovanje radnog odnosa '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stojković',
-            'ime' => 'Slavoljub',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STEPOVIĆ'),
+            'ime' => trim('NADA '),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za energetsku efikasnost --- Poslovi energetskog manadžmenta'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jovović',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DOMANOVIĆ '),
+            'ime' => trim('ALEKSANDAR '),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za lokalno-ekonomski razvoj --- Rukovodilac Grupe '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Savić',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILETIĆ'),
+            'ime' => trim('NIKOLA'),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za upravljanje projektima --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Slavujac',
-            'ime' => 'Snežana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MATIJAŠEVIĆ'),
+            'ime' => trim('DEJAN'),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za upravljanje projektima --- Poslovi u oblasti pripreme projekata'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Koković',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PANTOVIĆ'),
+            'ime' => trim('IVICA'),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za energetsku efikasnost --- Poslovi energetskog manadžmenta'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milić',
-            'ime' => 'Ljiljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STEVIĆ '),
+            'ime' => trim('SLAĐANA '),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za energetsku efikasnost --- Poslovi energetskog manadžmenta'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nikolić',
-            'ime' => 'Saša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('MIŠEL'),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za energetsku efikasnost --- Poslovi energetskog manadžmenta'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Gajović-Marković',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STOJANOVIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za energetsku efikasnost --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tomić',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('NIKOLIĆ'),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za lokalno-ekonomski razvoj --- Finansijsko - računovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Lazarević',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PEŠIĆ-RADOSAVLJEVIĆ'),
+            'ime' => trim('NATAŠA'),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Načelnik Gradske uprave'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Savić',
-            'ime' => 'Verko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILJOJKOVIĆ'),
+            'ime' => trim('ANĐELA'),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za upravljanje projektima --- Poslovi u oblasti tehničke pripreme projekata'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Živković',
-            'ime' => 'Goran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('NESTOROVIĆ'),
+            'ime' => trim('SVETLANA'),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za lokalno-ekonomski razvoj --- Finansijsko - računovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đaković',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JEVĐIĆ-STANARČIĆ'),
+            'ime' => trim('MIRJANA '),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za lokalno-ekonomski razvoj --- Poslovi planiranja i kontrole '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Rodoljub',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STEVANOVIĆ'),
+            'ime' => trim('MLADEN'),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za energetsku efikasnost --- Poslovi energetskog manadžmenta'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Dejan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SOKOVIĆ'),
+            'ime' => trim('SAŠA '),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za lokalno-ekonomski razvoj --- Poslovi evropskih integracija '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Brkić',
-            'ime' => 'LJiljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SAVKOVIĆ'),
+            'ime' => trim('ZORICA'),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za lokalno-ekonomski razvoj --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Blagojević',
-            'ime' => 'Biljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STOJANOVIĆ'),
+            'ime' => trim('SANJA'),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za upravljanje projektima --- Poslovi u oblasti pripreme projekata'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marković',
-            'ime' => 'Olivera',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('LAZOVIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za upravljanje projektima --- Poslovi upravljanja projektima'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Čaušević',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARKOVIĆ'),
+            'ime' => trim('VLADIMIR'),
+            'uprava_id' => 6,
+            'radno_mesto' => trim('Odeljenje za upravljanje projektima --- Poslovi upravljanja projektima'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Dudić',
-            'ime' => 'Vlado',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RISTIĆ '),
+            'ime' => trim('JELENA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za finansije --- Finansijsko-računovodstveni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Leković',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MIRKOVIĆ'),
+            'ime' => trim('SLOBODAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija-matičar '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milić',
-            'ime' => 'Nebojša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MIHAJLOVIĆ'),
+            'ime' => trim('MIRJANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Koordinator poslova ažuriranja biračkog spiska '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milenković',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐEROVSKI'),
+            'ime' => trim('VLADAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za informaciono komunikacione tehnologije --- NačelnikOdeljenjaza informaciono komunikacione tehnologije'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Maksimović',
-            'ime' => 'Bojan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DUGALIĆ'),
+            'ime' => trim('DANICA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za informaciono komunikacione tehnologije --- Telefonista'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stanić',
-            'ime' => 'Bojana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MIRČETIĆ'),
+            'ime' => trim('BRATISLAV'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đurđević',
-            'ime' => 'Anđelka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JANKOVIĆ-ŠKRBIĆ '),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Administrativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ristić',
-            'ime' => 'Vladan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JANKOVIĆ'),
+            'ime' => trim('RADIŠA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija-matičar '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vuković',
-            'ime' => 'Nikola',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOJKOVIĆ'),
+            'ime' => trim('SANJA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi pisarnice '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Savić',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐORIĆ'),
+            'ime' => trim('ZORICA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Načelnik Odeljenjaza nabavke, bezvednost, zaštitu i internu podršku'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milašinović',
-            'ime' => 'Svetlana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOŠEVIĆ '),
+            'ime' => trim('MILOŠ'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Vozač '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mladićević',
-            'ime' => 'Vojislav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILENTIJEVIĆ '),
+            'ime' => trim('SAŠA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Operativno - tehnički poslovi bezbednosti i zaštite'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marinković',
-            'ime' => 'Dragan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐOKOVIĆ'),
+            'ime' => trim('DRAGAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Portir'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marinković-Gabarić',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RANĐELOVIĆ'),
+            'ime' => trim('VERICA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi pravne pomoći'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Paunović',
-            'ime' => 'Miroslav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MIJAILOVIĆ'),
+            'ime' => trim('SAŠA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Portir'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Leković',
-            'ime' => 'Milomirka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('LAZAREVIĆ '),
+            'ime' => trim('IVAN '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Vozač '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Gajović',
-            'ime' => 'Miroslav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('NIDŽOVIĆ'),
+            'ime' => trim('ALEKSANDAR '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za finansije --- Računovodstveni-knjigovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Drobnjak',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ZDRAVKOVIĆ'),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi održavanja uredjaja i instalacija - domar'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stojanović',
-            'ime' => 'Smiljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('IVANOVIĆ'),
+            'ime' => trim('KATARINA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vulović',
-            'ime' => 'Radosav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RIZNIĆ '),
+            'ime' => trim('DEJAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Prijem podnesaka i ekspedicija pošte'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Drobnjak',
-            'ime' => 'Darko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('SVETLANA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Stručno-operativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Janković',
-            'ime' => 'Ivana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐUKIĆ'),
+            'ime' => trim('SLAĐANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Administrativno-tehnički poslovi iz oblasti rada i radnih odnosa'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jovanović',
-            'ime' => 'Nadežda',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KALIČANIN '),
+            'ime' => trim('ALEKSANDAR '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Rukovodilac Grupe za poslove matičnih područja na teritoriji opštine Peć, Istok i Klina'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pešić-radosavljević',
-            'ime' => 'Nataša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KOČOVIĆ'),
+            'ime' => trim('NADICA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Matičar '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Krstić',
-            'ime' => 'Milica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SIMOVIĆ'),
+            'ime' => trim('NEVENA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Stručni poslovi pisarnice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Janić',
-            'ime' => 'Suzana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĆUPIĆ'),
+            'ime' => trim('IVANA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Načelnik Sektora za zajedničke poslove '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milovuk',
-            'ime' => 'Nenad',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PAVLOVIĆ'),
+            'ime' => trim('SLAĐANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija-zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milivojević',
-            'ime' => 'Miroslav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STOJANOVIĆ'),
+            'ime' => trim('VLADAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za informaciono komunikacione tehnologije --- Inženjer sistema i baza podataka'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jelenković',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILUTINOVIĆ'),
+            'ime' => trim('MILORAD '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Portir'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tomašević',
-            'ime' => 'Predrag',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KALUŠEVIĆ '),
+            'ime' => trim('MILA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Prijem podnesaka i ekspedicija pošte'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milenković',
-            'ime' => 'Dušan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOSAVLJEVIĆ'),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za finansije --- Računovodstveno-knjigovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kaličanin',
-            'ime' => 'Aleksandar',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RISTIĆ '),
+            'ime' => trim('JOVAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Stručno-operativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Arsenijević',
-            'ime' => 'Miloš',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MIHAILOVA '),
+            'ime' => trim('SLAVICA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Administrativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radivojević',
-            'ime' => 'Milan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JAKOVLJEVIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi gradjanskih stanja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Šarović',
-            'ime' => 'Mitar',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STOJANOVIĆ'),
+            'ime' => trim('RADOSLAV'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Stručno-operativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đorđević',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('OBRADOVIĆ '),
+            'ime' => trim('SLAVICA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đurđević',
-            'ime' => 'Jasmina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOJEVIĆ '),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Konobar'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Durutović',
-            'ime' => 'Jadranka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĆURČIĆ '),
+            'ime' => trim('ZORA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Stručno-operativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mrkalj',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RIHTEROVIĆ'),
+            'ime' => trim('JASMINA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi pravne pomoći'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milosavljević',
-            'ime' => 'Miloje',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KATUŠIĆ'),
+            'ime' => trim('BILJANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Načelnik Odeljenja pravne pomoći i gradskih kancelarija '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Bogdanovski',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BRKIĆ'),
+            'ime' => trim('DRAGAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Stručno-operativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Preković',
-            'ime' => 'LJubica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ALEKSIĆ'),
+            'ime' => trim('GORAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Načelnik Sektora za opšte poslove'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Savković',
-            'ime' => 'Zorica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŠAMANOVIĆ '),
+            'ime' => trim('SLAVICA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija - zamenik matičara'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Babović',
-            'ime' => 'Dragan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STEVANOVIĆ'),
+            'ime' => trim('MILIJA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija - zamenik matičara'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stanišić',
-            'ime' => 'Sonja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BOGDANOVIĆ'),
+            'ime' => trim('SNEŽANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Pravni poslovi u oblasti rada i radnih odnosa i upravljanja ljudskim resursima'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radojević',
-            'ime' => 'Slavoljub',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILENTIJEVIĆ '),
+            'ime' => trim('BOJAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đoković-Pejčić',
-            'ime' => 'Nataša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARKOVIĆ'),
+            'ime' => trim('SAŠA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija-matičar '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vujić',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŽIVADINOVIĆ'),
+            'ime' => trim('MILAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija-matičar '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Andrić',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOSIĆ'),
+            'ime' => trim('RADOJE'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Matičar '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milanović',
-            'ime' => 'Miona',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADEVIĆ'),
+            'ime' => trim('STANKO'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi održavanja uredjaja i instalacija - domar'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pavlović',
-            'ime' => 'Suzana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ČANIĆ'),
+            'ime' => trim('NENAD'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Ažuriranje i informatička obrada podataka'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Preković',
-            'ime' => 'Dragan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOVOVIĆ'),
+            'ime' => trim('MILA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi pisarnice '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milićević',
-            'ime' => 'Saša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARKOVIĆ'),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Administrativno - tehnički poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jakšić',
-            'ime' => 'Jagoš',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STOILJKOVIĆ'),
+            'ime' => trim('IVICA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi pisarnice '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Lomović',
-            'ime' => 'Slobodan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PEJOVIĆ'),
+            'ime' => trim('MIRJANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi pisarnice '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Grbović',
-            'ime' => 'Svetlana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ANDRIĆ '),
+            'ime' => trim('DRAGICA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Načelnik Gradske uprave'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radaković',
-            'ime' => 'Slađana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('FURTULA'),
+            'ime' => trim('SVETLANA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Prijem podnesaka i ekspedicija pošte'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ivanović-Popadić',
-            'ime' => 'Snežana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŠAROVIĆ'),
+            'ime' => trim('MITAR'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Administrativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kićanović',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('NENADOVIĆ '),
+            'ime' => trim('SNEŽANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija - zamenik matičara'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Bugarčić',
-            'ime' => 'Nataša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('NIKITOVIĆ '),
+            'ime' => trim('SLAVICA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Načelnik Odeljenja za lični status gradjana '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Urošević',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILJOJČIĆ '),
+            'ime' => trim('ŽANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Stručno-operativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('OBRADOVIĆ '),
+            'ime' => trim('MILAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Domanović',
-            'ime' => 'Aleksandar',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RAJOVIĆ'),
+            'ime' => trim('PREDRAG '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Finansijsko - administrativni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Dedić',
-            'ime' => 'Jelica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RAKOČEVIĆ '),
+            'ime' => trim('RADENKO '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Rukovodilac grupe za poslove voznog parka '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Krstić',
-            'ime' => 'Dejan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PREDOJEVIĆ'),
+            'ime' => trim('MILOVAN '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tucaković',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOJEVIĆ '),
+            'ime' => trim('MOMČILO '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Stručno-operativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kuhinković',
-            'ime' => 'Nataša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARIĆ'),
+            'ime' => trim('MOMIR'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Stručni poslovi mesne zajednice '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stojisavljević',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VESIĆ'),
+            'ime' => trim('DRAGANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi pisarnice '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radović',
-            'ime' => 'Rajko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RIZNIĆ '),
+            'ime' => trim('MILEVA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Veličković',
-            'ime' => 'Radmila',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('EFTOVIĆ'),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za finansije --- Računovodstveno-knjigovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kostić',
-            'ime' => 'Anica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUJOVIĆ'),
+            'ime' => trim('ZDRAVKA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija-matičar '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tešović',
-            'ime' => 'Milena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŽIVANOVIĆ '),
+            'ime' => trim('RADOVANKA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za finansije --- Računovodstveni-knjigovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Miljković',
-            'ime' => 'Zlatko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija-matičar '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marković',
-            'ime' => 'Milica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADENKOVIĆ'),
+            'ime' => trim('JELENA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Administrativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ćalić',
-            'ime' => 'Bogdan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŽIVKOVIĆ'),
+            'ime' => trim('PREDRAG '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija-matičar '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stikić',
-            'ime' => 'Aleksandar',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('AKSENTIJEVIĆ '),
+            'ime' => trim('SRETINA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija - zamenik matičara'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radojević',
-            'ime' => 'Ana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ALEMPIJEVIĆ'),
+            'ime' => trim('RATKO'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija-matičar '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marković',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DAVINIĆ'),
+            'ime' => trim('DELINKA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Mišel',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŽIVKOVIĆ'),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Konatar',
-            'ime' => 'Nebojša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('GAJIĆ'),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Todorović',
-            'ime' => 'Bojan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOSAVLJEVIĆ'),
+            'ime' => trim('MILIVOJE'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Antonijević',
-            'ime' => 'Ivana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOVANOVIĆ '),
+            'ime' => trim('MILENA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija-matičar '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Tamara',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JANKOVIĆ'),
+            'ime' => trim('SAŠA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Administrativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Matijašević',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MATIĆ'),
+            'ime' => trim('LJILJANA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Načelnik Odeljenja za upravljanje ljudskim resursima'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đurđević',
-            'ime' => 'Slavica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RVOVIĆ '),
+            'ime' => trim('SVETLANA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za finansije --- Načelnik odeljenja za finansije'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Čolić',
-            'ime' => 'Živomir',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VELIČKOVIĆ'),
+            'ime' => trim('RADMILA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Stručno-operativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Novica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADIVOJEVIĆ'),
+            'ime' => trim('MILAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Vozač '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ranđelović',
-            'ime' => 'Dragica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VELJANOVIĆ'),
+            'ime' => trim('IVANA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi pravne pomoći'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radosavljević',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JAKOVLJEVIĆ'),
+            'ime' => trim('STANISLAV'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za informaciono komunikacione tehnologije --- Tehničar sistema i mreže '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Matić-Pavlović',
-            'ime' => 'Aleksandra',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BABOVIĆ'),
+            'ime' => trim('DRAGAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za informaciono komunikacione tehnologije --- Poslovi održavanja TK uredjajai instalacija '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tomašević',
-            'ime' => 'Jasna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐOKOVIĆ-PEJČIĆ'),
+            'ime' => trim('NATAŠA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Matičar '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Živković',
-            'ime' => 'Marina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILANOVIĆ '),
+            'ime' => trim('MIONA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi pravne pomoći'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jontulović',
-            'ime' => 'Irena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KIĆANOVIĆ '),
+            'ime' => trim('JELENA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi pisarnice '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Bojović',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DEDIĆ'),
+            'ime' => trim('JELICA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Kordinator za poslove nabavki, bezbednosti i zaštite'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mirković',
-            'ime' => 'Slobodan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KRSTIĆ '),
+            'ime' => trim('DEJAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi pisarnice '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Janković',
-            'ime' => 'Ana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KUHINKOVIĆ'),
+            'ime' => trim('NATAŠA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ristić',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DROBNJAKOVIĆ '),
+            'ime' => trim('SOFIJA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Stručni i administrativno-tehnički poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nikolić',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOVIĆ'),
+            'ime' => trim('RAJKO'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milić',
-            'ime' => 'Marina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DROBNJAK'),
+            'ime' => trim('DARKO'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Načelnik Odeljenja za mesnu samoupravu'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mihajlović',
-            'ime' => 'Ivana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILJKOVIĆ '),
+            'ime' => trim('ZLATKO'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Vozač '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ilić',
-            'ime' => 'Katarina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARKOVIĆ'),
+            'ime' => trim('MILICA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Konobar'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kokić',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĆALIĆ'),
+            'ime' => trim('BOGDAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Rukovodilac grupe za poslove internog bifea'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đerovski',
-            'ime' => 'Vladan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STIKIĆ '),
+            'ime' => trim('ALEKSANDAR '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Dostavljač'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ristić',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐURĐEVIĆ'),
+            'ime' => trim('SLAVICA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za finansije --- Finansijsko-računovodstveni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Dugalić',
-            'ime' => 'Danica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ČOLIĆ'),
+            'ime' => trim('ŽIVOMIR '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za finansije --- Računovodstveni-knjigovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mihajlović',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('NOVICA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Stručno-operativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Janković-Škrbić',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RANĐELOVIĆ'),
+            'ime' => trim('DRAGICA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi pisarnice '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Zorić',
-            'ime' => 'Andrijana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOSAVLJEVIĆ'),
+            'ime' => trim('JELENA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Rukovodilac grupe za poslove prijemne kancelarije'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đukić',
-            'ime' => 'Slađana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KRSTOVIĆ'),
+            'ime' => trim('ALEKSANDAR '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi arhiviranja predmeta akata'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tomić',
-            'ime' => 'Dejan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STOJISAVLJEVIĆ'),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Administrativno - tehnički poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mihailova',
-            'ime' => 'Slavica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TAŠOVIĆ'),
+            'ime' => trim('GORAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Stručni poslovi mesne zajednice '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kokerić',
-            'ime' => 'Saša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MLADENOVIĆ'),
+            'ime' => trim('MILOSAV '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija-zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ristić',
-            'ime' => 'Jovan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MOJSILOVIĆ'),
+            'ime' => trim('DANIJELA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za informaciono komunikacione tehnologije --- Telefonista'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Todorović',
-            'ime' => 'Radica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STANOJEVIĆ'),
+            'ime' => trim('LJILJANA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milosavljević',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PAJOVIĆ'),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Kurir za poslove mesnih zajednica'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Delibašić',
-            'ime' => 'Dejan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MOMČILOVIĆ'),
+            'ime' => trim('SNEŽANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Rukovodilac grupe za evidencione poslove'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Andrejević',
-            'ime' => 'Nebojša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILUTINOVIĆ'),
+            'ime' => trim('MIROLJUB'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Portir'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Bećarević',
-            'ime' => 'Jasmina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐOKOVIĆ'),
+            'ime' => trim('JASMINA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Prijem podnesaka i ekspedicija pošte'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marinković',
-            'ime' => 'LJiljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SEKULIĆ-MILOJEVIĆ'),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tucaković',
-            'ime' => 'Milutin',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('LAZOVIĆ'),
+            'ime' => trim('SVETLANA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Čistačica internog bifea'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kalušević',
-            'ime' => 'Mila',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOSIĆ'),
+            'ime' => trim('KATARINA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Veličković',
-            'ime' => 'Jadranka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JELENKOVIĆ'),
+            'ime' => trim('JELENA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Administrativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nektarijević',
-            'ime' => 'Sandra',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JELESIJEVIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za informaciono komunikacione tehnologije --- Mirovanje radnog odnosa'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milojević',
-            'ime' => 'Jasna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JANKOVIĆ'),
+            'ime' => trim('IVANA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi pravne pomoći'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milošević',
-            'ime' => 'Katarina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JANKOVIĆ'),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za finansije --- Finansijsko-računovodstveni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milutinović',
-            'ime' => 'Milorad',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOVOVIĆ'),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Matičar '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stojanović',
-            'ime' => 'Vladan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SAVIĆ'),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vasiljević',
-            'ime' => 'Ana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SLAVUJAC'),
+            'ime' => trim('SNEŽANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi pravne pomoći'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marković',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŽIVKOVIĆ'),
+            'ime' => trim('GORAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi ažuriranja biračkog spiska '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Aksentijević',
-            'ime' => 'Dragan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('RODOLJUB'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Dostavljač'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pavlović',
-            'ime' => 'Slađana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BRKIĆ'),
+            'ime' => trim('LJILJANA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Stručno-operativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Krsmanović',
-            'ime' => 'Jugoslav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARKOVIĆ'),
+            'ime' => trim('OLIVERA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marković',
-            'ime' => 'Nebojša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MAKSIMOVIĆ'),
+            'ime' => trim('BOJAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi pisarnice '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Javorka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('GAJOVIĆ'),
+            'ime' => trim('MIROSLAV'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Gradjanska stanja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Krstović',
-            'ime' => 'Aleksandar',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŽUNIĆ'),
+            'ime' => trim('DUŠANKA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Stručno-operativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jovanović',
-            'ime' => 'Milica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŠOŠKIĆ '),
+            'ime' => trim('IVANA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi pisarnice '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Žunić',
-            'ime' => 'Dušanka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SAVIĆ-JOVANOVIĆ '),
+            'ime' => trim('ALEKSANDRA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milić',
-            'ime' => 'Zlatko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RANKOVIĆ'),
+            'ime' => trim('PREDRAG '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Portir'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Dimitrijević',
-            'ime' => 'Jasna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ZDRAVKOVIĆ'),
+            'ime' => trim('MILOŠ'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Stručni poslovi bezbednosti i zdravlja na radu'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ignjatović',
-            'ime' => 'Mihailo',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('OBRADOVIĆ '),
+            'ime' => trim('PREDRAG '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi arhiviranja predmeta akata'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vasiljević',
-            'ime' => 'Sanja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STOJANOVIĆ'),
+            'ime' => trim('DEJAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za informaciono komunikacione tehnologije --- Programer '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Miletić',
-            'ime' => 'Nikola',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARJANOVIĆ'),
+            'ime' => trim('ZORICA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Administrativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Srećković',
-            'ime' => 'Bojana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('FILIPOVIĆ '),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Normativno-pravni poslovi u oblasti rada i radnih odnosa i upravljanja ljudskim resursima '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Sterđević',
-            'ime' => 'Nikola',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARKOVIĆ'),
+            'ime' => trim('SRĐAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Vozač '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đorđević',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŽIVANOVIĆ '),
+            'ime' => trim('ZVONKO'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Vozač '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mrdak',
-            'ime' => 'Daliborka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ERIĆ'),
+            'ime' => trim('NATAŠA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi iz oblasti rada i radnih odnosa i upravljanja ljudskim resursima'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrićević',
-            'ime' => 'LJiljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARKOV-MRDAKOVIĆ'),
+            'ime' => trim('BRANKICA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za informaciono komunikacione tehnologije --- Programer '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radosavljević',
-            'ime' => 'Sandra',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SIMOVIĆ'),
+            'ime' => trim('SLOBODANKA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ćupić-Lazarević',
-            'ime' => 'Ivana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ILIĆ'),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi iz oblasti rada i radnih odnosa i upravljanja ljudskim resursima'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Dumbelović',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PAVLOVIĆ'),
+            'ime' => trim('DANIJELA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za finansije --- Šef Službe'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Simović',
-            'ime' => 'Nevena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILIĆEVIĆ '),
+            'ime' => trim('LJILJANA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Riznić',
-            'ime' => 'Dejan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VELEČKOVIĆ'),
+            'ime' => trim('ALEKSANDRA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kočović',
-            'ime' => 'Nadica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KRSMANOVIĆ'),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija - zamenik matičara'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mirčetić',
-            'ime' => 'Bratislav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RAŠKOVIĆ'),
+            'ime' => trim('MARKO'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Konobar'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Janković',
-            'ime' => 'Radiša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('MARIO'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za finansije --- Računovodstveni-knjigovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radovanović',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('GREBOVIĆ'),
+            'ime' => trim('DARKO'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Administrativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Alempijević',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOJIČIĆ '),
+            'ime' => trim('JELENA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Stručno-operativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Svetlana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOSIFOVIĆ '),
+            'ime' => trim('DANIJELA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Stručni poslovi pisarnice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jakovljević',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KUZMANOVIĆ'),
+            'ime' => trim('VANJA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Zorica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TODOROVIĆ '),
+            'ime' => trim('VLADIMIR'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za informaciono komunikacione tehnologije --- Projektant baze podataka '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ivanović',
-            'ime' => 'Katarina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SIMOVIĆ'),
+            'ime' => trim('BILJANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radovanović',
-            'ime' => 'Rade',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('AKSIĆ'),
+            'ime' => trim('JELENA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za finansije --- Računovodstveno-knjigovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Zdravković',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐORĐEVIĆ'),
+            'ime' => trim('TOMISLAV'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Fizički radnik za poslove mesnih zajednica'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nidžović',
-            'ime' => 'Aleksandar',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADENKOVIĆ'),
+            'ime' => trim('NENAD'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Konobar'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Lazarević',
-            'ime' => 'Ivan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARKOVIĆ'),
+            'ime' => trim('KATARINA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Normativno-pravni poslovi u oblasti rada i radnih odnosa i upravljanja ljudskim resursima '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Simović',
-            'ime' => 'Tina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('GREBOVIĆ'),
+            'ime' => trim('DRAGAN'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Komatović-Andonović',
-            'ime' => 'Ana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOJEVIĆ '),
+            'ime' => trim('SUZANA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Administrativno-tehnički poslovi iz oblasti rada i radnih odnosa'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Filipović',
-            'ime' => 'Bojan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('NIKOLIĆ'),
+            'ime' => trim('MIRELA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Čistačica internog bifea'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đorđević',
-            'ime' => 'Duško',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('GUDŽULIĆ'),
+            'ime' => trim('ANTIĆ'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za finansije --- Finansijsko-računovodstveni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tijanić',
-            'ime' => 'Aleksandra',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('FAJHT'),
+            'ime' => trim('VANJA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Administrativno-tehnički poslovi iz oblasti rada i radnih odnosa'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mijailović',
-            'ime' => 'Saša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILANOVIĆ '),
+            'ime' => trim('MARIJANA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi pisarnice '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Josifović',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BRKIĆ'),
+            'ime' => trim('MARIJANA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi ažuriranja biračkog spiska '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ranđelović',
-            'ime' => 'Verica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐUROVIĆ'),
+            'ime' => trim('MILOSTIVA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Administrativno-tehnički poslovi iz oblasti rada i radnih odnosa'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jevđić-Stanarčić',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PAVLOVIĆ-KOCUVAN'),
+            'ime' => trim('NATAŠA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi pisarnice '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đoković',
-            'ime' => 'Dragan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SAMAILOVIĆ'),
+            'ime' => trim('SUZANA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Prijem podnesaka i ekspedicija pošte'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milentijević',
-            'ime' => 'Saša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUKOVIĆ-ŽIVANOVIĆ'),
+            'ime' => trim('TANJA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milošević',
-            'ime' => 'Miloš',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ANTIĆ'),
+            'ime' => trim('TAMARA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Prijem podnesaka i ekspedicija pošte'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đorić',
-            'ime' => 'Zorica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOSAVLJEVIĆ'),
+            'ime' => trim('ĐORĐE'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi pisarnice '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Glišić',
-            'ime' => 'Miloš',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RISTOVIĆ'),
+            'ime' => trim('VERA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jagličić',
-            'ime' => 'Božidarka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUJIČIĆ'),
+            'ime' => trim('SLAĐANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesnih kancelarija-zamenik matičara '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Goran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ILIĆ'),
+            'ime' => trim('ALEKSANDAR '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Poslovi pisarnice '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐORĐEVIĆ'),
+            'ime' => trim('NENAD'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za informaciono komunikacione tehnologije --- Telefonista'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tomić',
-            'ime' => 'Biljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUKSANOVIĆ'),
+            'ime' => trim('DRAGOSLAV'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Odeljenje za informaciono komunikacione tehnologije --- Projektant baze podataka '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marić',
-            'ime' => 'Predrag',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PAVLOVIĆ'),
+            'ime' => trim('MILOŠ'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Dostavljač'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radojković',
-            'ime' => 'Sanja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STOJANOVIĆ'),
+            'ime' => trim('PREDRAG '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jelesijević',
-            'ime' => 'Nenad',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TANASKOVIĆ'),
+            'ime' => trim('IRENA'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Stručno-operativni poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radosavljević',
-            'ime' => 'LJiljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILJKOVIĆ '),
+            'ime' => trim('MILJKO'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Prijem podnesaka i ekspedicija pošte'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Dumić',
-            'ime' => 'Nikola',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILANOVIĆ '),
+            'ime' => trim('VOJISLAV'),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za zajedničke poslove --- Informatički poslovi u oblasti radnih odnosa '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Savić',
-            'ime' => 'Maja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STEVANOVIĆ'),
+            'ime' => trim('BILJANA '),
+            'uprava_id' => 7,
+            'radno_mesto' => trim('Sektor za opšte poslove --- Poslovi mesne zajednice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marić',
-            'ime' => 'Vladimir',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KOKERIĆ'),
+            'ime' => trim('SAŠA '),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Odeljenje za podršku privredi --- Stručni i upravni poslovi u oblasti turizma, trgovine, ugostiteljstva i zanatstva'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pantić',
-            'ime' => 'Predrag',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARIĆ'),
+            'ime' => trim('VLADIMIR'),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Odeljenje za poljoprivredu --- Rukovodilac Grupe'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Leković',
-            'ime' => 'Veljko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARINKOVIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Odeljenje za poljoprivredu --- Poslovi računovodstva u robnim rezervama - materijalni knjigovodja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Simeunović-Đorđević',
-            'ime' => 'Svetlana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILIĆ'),
+            'ime' => trim('MARINA'),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Odeljenje za podršku privredi --- Poslovi u oblasti taksi - prevoza'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jovanović',
-            'ime' => 'Tatjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PAUNOVIĆ'),
+            'ime' => trim('MIROSLAV'),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Načelnik Gradske uprave'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Konatar',
-            'ime' => 'Jasmina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KOČOVIĆ'),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Odeljenje za poljoprivredu --- Kancelarijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radovanović',
-            'ime' => 'Zvezdana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADENKOVIĆ'),
+            'ime' => trim('SAŠA '),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Odeljenje za podršku privredi --- Stručni i upravni poslovi u oblasti preduzetništva'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Iskrenović',
-            'ime' => 'Dejan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JANIĆ'),
+            'ime' => trim('MILINA'),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Služba za pravno - finansijske poslove --- Rukovodilac grupe'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kašiković',
-            'ime' => 'Vladana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOŠEVIĆ '),
+            'ime' => trim('MATOVIĆ '),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Odeljenje za poljoprivredu --- Poslovi praćenja stanja, analize i unapredjenja stočnog fonda '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Živković',
-            'ime' => 'Danica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUKOSAVLJEVIĆ'),
+            'ime' => trim('SLAVICA '),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Služba za pravno - finansijske poslove --- Stručni i upravni poslovi u oblasti poljoprivrede i vodoprivrede '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Veljanović',
-            'ime' => 'Ivana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŽIVIĆ'),
+            'ime' => trim('DANIJELA'),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Služba za pravno - finansijske poslove --- Poslovi finansijskog planiranja, analize, finansijskog izveštavanja i računovodstva'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kuzmanović',
-            'ime' => 'Vanja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ZORIĆ'),
+            'ime' => trim('SLAVICA '),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Služba za pravno - finansijske poslove --- Poslovi knjigovodje robnih rezervi i osnovnih sredstava '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Iskrenov-Aleksić',
-            'ime' => 'Ružica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOJEVIĆ '),
+            'ime' => trim('KATARINA'),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Služba za pravno - finansijske poslove --- Stručni i upravni poslovi u oblasti poljoprivrede i vodoprivrede '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ćirković',
-            'ime' => 'Slađana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETRIĆEVIĆ'),
+            'ime' => trim('LJILJANA'),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Odeljenje za poljoprivredu --- Poslovi u oblasti poljoprivrede i ruralnog razvoja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Novaković',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BLAŽIĆ '),
+            'ime' => trim('SNEŽANA '),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Služba za pravno - finansijske poslove --- Kancelarijsko-tehnički poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Miljojković',
-            'ime' => 'Radomir',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TIMOTIJEVIĆ'),
+            'ime' => trim('JELENA'),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Služba za pravno - finansijske poslove --- Šef Službe '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jekić',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOJKOVIĆ'),
+            'ime' => trim('NATAŠA'),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Odeljenje za podršku privredi --- Kancelarijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pajović',
-            'ime' => 'Žikica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PAUNOVIĆ'),
+            'ime' => trim('NIKOLA'),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Odeljenje za poljoprivredu --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Simonović',
-            'ime' => 'Radoje',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILORADOVIĆ'),
+            'ime' => trim('DANIJELA'),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Odeljenje za podršku privredi --- Poslovi ekonomskog razvoja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stefanović',
-            'ime' => 'Tatjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOVANOVIĆ'),
+            'ime' => trim('SLAĐANA '),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Odeljenje za poljoprivredu --- Kancelarijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milinković',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KOSTADINOVIĆ '),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Odeljenje za podršku privredi --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jovanović',
-            'ime' => 'Danica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('LOMOVIĆ'),
+            'ime' => trim('SLOBODAN'),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Odeljenje za poljoprivredu --- Poslovi u oblasti poljoprivrede i ruralnog razvoja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radovanović',
-            'ime' => 'Dragoš',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RISTIĆ '),
+            'ime' => trim('VLADAN'),
+            'uprava_id' => 8,
+            'radno_mesto' => trim('Odeljenje za podršku privredi --- Poslovi u oblasti taksi - prevoza'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milićević',
-            'ime' => 'Predrag',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TOĐERAŠ'),
+            'ime' => trim('JASMINA '),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za obrazovanje --- Stručno - analitički poslovi u oblasti obrazovanja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Veselinović',
-            'ime' => 'Nataša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JANIĆIJEVIĆ'),
+            'ime' => trim('RADMILA '),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za kulturu, informisanje, ljudska i manjinska prava --- Normativno - pravni i upravno - pravni poslovi u oblasti kulture, informisanja, ljudskih i manjinskih prava '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Veinović',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('GAJOVIĆ-MARKOVIĆ'),
+            'ime' => trim('MIRJANA '),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za obrazovanje --- Stručni i administrativno - tehnički poslovi u oblasti obrazovanja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ćirović-holender',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐURĐEVIĆ'),
+            'ime' => trim('SNEŽANA '),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za finansije --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đošić',
-            'ime' => 'Milanka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOVANOVIĆ'),
+            'ime' => trim('ZORICA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za obrazovanje --- Normativno - pravni i upravno - pravni poslovi u oblasti obrazovanja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stanković',
-            'ime' => 'Zorica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RAJAČIĆ'),
+            'ime' => trim('ZVEZDANA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za sport i omladinu --- Ekonomsko - pravni poslovi u oblasti sporta '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stepović',
-            'ime' => 'Nada',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐOKOVIĆ'),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za sport i omladinu --- Stručni poslovi u oblasti omladinske politike'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Živanović',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SPASIĆ '),
+            'ime' => trim('JASMINA '),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za finansije --- Računovodstveni i knjigovodstveni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ranković',
-            'ime' => 'Maja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PAVLOVIĆ'),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za kulturu, informisanje, ljudska i manjinska prava --- Koordinator za romska pitanja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stanković',
-            'ime' => 'Goran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('GLIŠOVIĆ'),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za prosvetnu inspekciju --- Prosvetni inspektor'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Lazarević',
-            'ime' => 'Svetomir',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('OBRADOVIĆ-STANIĆ'),
+            'ime' => trim('IVANA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za kulturu, informisanje, ljudska i manjinska prava --- Normativno - pravni i upravno - pravni poslovi u oblasti kulture, informisanja, ljudskih i manjinskih prava '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vujnović',
-            'ime' => 'Svetlana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BANKOVIĆ'),
+            'ime' => trim('SANDRA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za finansije --- Finansijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Janić',
-            'ime' => 'Milina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŽIVADINOVIĆ'),
+            'ime' => trim('ZORICA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za finansije --- Računovodstveni i knjigovodstveni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Antić',
-            'ime' => 'Tamara',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARKOVIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Načelnik Gradske uprave'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milićević',
-            'ime' => 'Zorica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SMILJANIĆ '),
+            'ime' => trim('DANIJELA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za kulturu, informisanje, ljudska i manjinska prava --- Poslovi zaštite i ostvarivanje ljudskih i manjinskih prava'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milojević',
-            'ime' => 'Irena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ANIČIĆ '),
+            'ime' => trim('DUŠAN'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za sport i omladinu --- Sportski inspektor'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stojanović',
-            'ime' => 'Sanja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TRIFUNOVIĆ'),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za finansije --- Finansijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vujičić',
-            'ime' => 'Slađana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('BILJANA '),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za finansije --- Finansijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ristović',
-            'ime' => 'Vera',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VELJKOVIĆ '),
+            'ime' => trim('DAMNJANA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za finansije --- Finansijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Timotijević',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MLADENOVIĆ'),
+            'ime' => trim('ALEKSANDRA '),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za sport i omladinu --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Bundalo',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOŠEVIĆ '),
+            'ime' => trim('KATARINA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za kulturu, informisanje, ljudska i manjinska prava --- Administrativno - tehnički poslovi u oblasti kulture, informisanja, ljudskih i manjinskih prava '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stamatović',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('LAZAREVIĆ-SARIĆ '),
+            'ime' => trim('LJILJANA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za kulturu, informisanje, ljudska i manjinska prava --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đorđević',
-            'ime' => 'Nenad',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SRETENOVIĆ'),
+            'ime' => trim('DRAGAN'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za sport i omladinu --- Poslovi unapredjenja školskog i amaterskog sporta '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Savić',
-            'ime' => 'Ana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KANDIĆ '),
+            'ime' => trim('ANA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za sport i omladinu --- Ekonomsko - pravni poslovi u oblasti sporta '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vuksanović',
-            'ime' => 'Dragoslav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PRŠIĆ'),
+            'ime' => trim('NENAD'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za kulturu, informisanje, ljudska i manjinska prava --- Poslovi zaštite i ostvarivanje ljudskih i manjinskih prava'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stevanović',
-            'ime' => 'Biljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ANDREJEVIĆ'),
+            'ime' => trim('NEBOJŠA '),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za obrazovanje --- Administrativno - tehnički poslovi u oblasti obrazovanja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stojanović',
-            'ime' => 'Predrag',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŽIVKOVIĆ'),
+            'ime' => trim('MILICA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za sport i omladinu --- Stručni poslovi u oblasti omladinske politike'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radenković',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUKOVIĆ'),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za finansije --- Računovodstveni i knjigovodstveni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tanasković',
-            'ime' => 'Irena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PANTOVIĆ'),
+            'ime' => trim('STANISLAV'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za sport i omladinu --- Stručni poslovi u oblasti omladinske politike'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milanović',
-            'ime' => 'Vojislav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('DEJAN'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za kulturu, informisanje, ljudska i manjinska prava --- Stručno - analitički poslovi u oblasti kulture, informisanja, ljudskih i manjinskih prava '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Živković',
-            'ime' => 'Aca',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARINKOVIĆ'),
+            'ime' => trim('LJILJANA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za obrazovanje --- Načelnik Odeljenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Živanović',
-            'ime' => 'Zvonko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILUTINOVIĆ'),
+            'ime' => trim('JELENA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za kulturu, informisanje, ljudska i manjinska prava --- Stručno - analitički poslovi u oblasti kulture, informisanja, ljudskih i manjinskih prava '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Rašković',
-            'ime' => 'Marko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOVANOVIĆ '),
+            'ime' => trim('NADEŽDA '),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za finansije --- Finansijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marković',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TODOROVIĆ '),
+            'ime' => trim('MIRJANA '),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za finansije --- Računovodstveni i knjigovodstveni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Krsmanović',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('NENADOVIĆ '),
+            'ime' => trim('RADICA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za finansije --- Finansijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Velečković',
-            'ime' => 'Aleksandra',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARKOVIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za prosvetnu inspekciju --- Prijem podnesaka i pružanje informacija strankama'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milićević',
-            'ime' => 'LJiljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RAKIĆ-JEVTIĆ '),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za kulturu, informisanje, ljudska i manjinska prava --- Stručno - analitički poslovi u oblasti kulture, informisanja, ljudskih i manjinskih prava '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Lukić',
-            'ime' => 'Snežana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILIĆ'),
+            'ime' => trim('LJILJANA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za obrazovanje --- Normativno - pravni i upravno - pravni poslovi u oblasti obrazovanja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pavlović',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ILIĆ'),
+            'ime' => trim('MIODRAG '),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za prosvetnu inspekciju --- Prosvetni inspektor'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Živadinović',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PAJOVIĆ'),
+            'ime' => trim('ŽIKICA'),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za prosvetnu inspekciju --- Načelnik Odeljenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jovanović',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BRATKOVIĆ '),
+            'ime' => trim('PREDRAG '),
+            'uprava_id' => 9,
+            'radno_mesto' => trim('Odeljenje za obrazovanje --- Administrativno - tehnički i poslovi kontrole '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Srejić',
-            'ime' => 'Milanka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOVANOVIĆ'),
+            'ime' => trim('JASMINA '),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za finansijsko računovodstvene poslove --- Šef Službe'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Simović',
-            'ime' => 'Slobodanka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('LELA '),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za socijalnu zaštitu --- Načelnik odeljenja za socijalnu zaštitu '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Blažić',
-            'ime' => 'Snežana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('LAZAREVIĆ '),
+            'ime' => trim('DANIJELA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za finansijsko računovodstvene poslove --- Računovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Parezanović',
-            'ime' => 'Svetlana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PEŠIĆ'),
+            'ime' => trim('DRAGANA '),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za socijalnu zaštitu --- Poslovi zaštite izbeglih, prognanih i raseljenih lica - Poverenik'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Janković',
-            'ime' => 'Vladan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JANIĆ'),
+            'ime' => trim('SUZANA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za društvenu brigu o deci --- Poslovi iz upravno-pravne oblasti društvene brige o deci'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Savić-Jovanović',
-            'ime' => 'Aleksandra',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('LEKOVIĆ'),
+            'ime' => trim('MILOMIRKA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za društvenu brigu o deci --- Poslovi iz upravno-pravne oblasti društvene brige o deci'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mladenović',
-            'ime' => 'Aleksandra',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RIBARIĆ'),
+            'ime' => trim('NIKOLA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Načelnik Gradske uprave'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Čomagić-Popović',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUKAŠINOVIĆ'),
+            'ime' => trim('ELIZABETA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za zdravstvenu zaštitu --- Administrativno-tehnički poslovi u oblasti zdravstvene zaštite'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nikolić',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ARSENIJEVIĆ'),
+            'ime' => trim('KATARINA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za zdravstvenu zaštitu --- Stručno-operativni poslovi u oblasti zdravstvene zaštie '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Babić',
-            'ime' => 'Tamara',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILORADOVIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za finansijsko računovodstvene poslove --- Finansijsko-računovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nestorović',
-            'ime' => 'Svetlana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JEVTOVIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za zdravstvenu zaštitu --- Rukovodilac grupe'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Hadžić',
-            'ime' => 'Biljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('IVANOVIĆ-POPADIĆ'),
+            'ime' => trim('SNEŽANA '),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za finansijsko računovodstvene poslove --- Računovodstveni i knjigovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pantović',
-            'ime' => 'Ivica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TANASKOVIĆ'),
+            'ime' => trim('TATJANA '),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za finansijsko računovodstvene poslove --- Računovodstveni poslovi u oblasti porodiljskih prava'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Mario',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TOMAŠEVIĆ '),
+            'ime' => trim('PREDRAG '),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za socijalnu zaštitu --- Administrativno-tehnički poslovi u oblasti socijalne zaštite '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milošević',
-            'ime' => 'Matović  Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐURĐEVIĆ'),
+            'ime' => trim('JASMINA '),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za finansijsko računovodstvene poslove --- Računovodstveni i knjigovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stanisavljević',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐORĐEVIĆ'),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za zdravstvenu zaštitu --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Antonijević',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MATIĆ'),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za finansijsko računovodstvene poslove --- Računovodstveni poslovi u oblasti zaštite izbeglih, prognanih i raseljenih lica'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kalajdžić',
-            'ime' => 'Slađana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MURATI '),
+            'ime' => trim('TIJANA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za zdravstvenu zaštitu --- Operativno organizacioni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radosavljević',
-            'ime' => 'Predrag',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŽIVKOVIĆ'),
+            'ime' => trim('MARINA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za socijalnu zaštitu --- Administrativno-tehnički poslovi u oblasti boračkoinvalidske zaštite'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Filipović',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STEVANOVIĆ'),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za zdravstvenu zaštitu --- Savetnik za zaštitu prava pacijenata i pravne poslove'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Bućan',
-            'ime' => 'Katarina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ILIĆ'),
+            'ime' => trim('KATARINA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za društvenu brigu o deci --- Poslovi prijema zahteva za ostvarivanje prava iz oblasti društvene brige o deci '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrić',
-            'ime' => 'Dalibor',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RISTIĆ '),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za zdravstvenu zaštitu --- Administrativno-tehnički poslovi u oblasti zdravstvene zaštite'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Matić',
-            'ime' => 'Nebojša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DIMITRIJEVIĆ '),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za društvenu brigu o deci --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đekić',
-            'ime' => 'Vladimir',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SIMIĆ'),
+            'ime' => trim('SNEŽANA '),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za socijalnu zaštitu --- Poslovi iz upravno-pravne oblasti socijalne zaštite '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Paunović',
-            'ime' => 'Đorđe',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TUCAKOVIĆ '),
+            'ime' => trim('MILUTIN '),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za finansijsko računovodstvene poslove --- Računovodstveni poslovi u oblasti porodiljskih prava'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marjanović',
-            'ime' => 'Zorica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ZORIĆ'),
+            'ime' => trim('ANDRIJANA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za društvenu brigu o deci --- Poslovi prijema zahteva za ostvarivanje prava iz oblasti društvene brige o deci '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đekić',
-            'ime' => 'Boško',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STAMATOVIĆ'),
+            'ime' => trim('MIRJANA '),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za finansijsko računovodstvene poslove --- Finansijsko-računovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Grujić',
-            'ime' => 'Katarina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('HEM-BOŽILOVIĆ'),
+            'ime' => trim('SNEŽANA '),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za društvenu brigu o deci --- Poslovi iz upravno-pravne oblasti društvene brige o deci'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Cvijetić',
-            'ime' => 'Miro',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('GAJIĆ'),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za društvenu brigu o deci --- Poslovi iz upravno-pravne oblasti društvene brige o deci'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mijatović',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PAREZANOVIĆ'),
+            'ime' => trim('SVETLANA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za društvenu brigu o deci --- Poslovi prijema zahteva za ostvarivanje prava iz oblasti društvene brige o deci '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radosavčević',
-            'ime' => 'Olga',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('LUČIĆ'),
+            'ime' => trim('LJILJANA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za finansijsko računovodstvene poslove --- Finansijsko-računovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pršić',
-            'ime' => 'LJiljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOSAVLJEVIĆ'),
+            'ime' => trim('SANDRA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za zdravstvenu zaštitu --- Poslovi iz upravno-pravne oblasti zdravstvene zaštite'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jevtić',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VELIČKOVIĆ'),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za socijalnu zaštitu --- Rukovodilac grupe'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vasojević',
-            'ime' => 'Olivera',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PEROVIĆ'),
+            'ime' => trim('SANJA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za socijalnu zaštitu --- Poslovi iz upravno-pravne oblasti socijalne zaštite '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milošević',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BUGARČIĆ'),
+            'ime' => trim('NATAŠA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za socijalnu zaštitu --- Posloi iz stručne oblasti socijalne zaštite'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kimpanov',
-            'ime' => 'Ana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('AĆIMOVIĆ'),
+            'ime' => trim('JAGODA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za zdravstvenu zaštitu --- Stručno-operativne poslove u oblasti zaštite prava pacijenata '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milićević',
-            'ime' => 'Đorđe',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOVANOVIĆ '),
+            'ime' => trim('TAMARA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za finansijsko računovodstvene poslove --- Načelnik Odeljenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nešić-šarić',
-            'ime' => 'Sanja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TUCAKOVIĆ '),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za socijalnu zaštitu --- Poslovi iz upravno-pravne oblasti socijalne zaštite '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Srejić',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('OTAŠEVIĆ'),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za socijalnu zaštitu --- Administrativno-tehnički poslovi u oblasti boračkoinvalidske zaštite'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stojanović',
-            'ime' => 'Dejan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STOJILOVIĆ'),
+            'ime' => trim('JOVAN'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za socijalnu zaštitu --- Pravni poslovi u oblasti boračko-invalidske zaštite '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Popović',
-            'ime' => 'Ivan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILINKOVIĆ'),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za socijalnu zaštitu --- Administrativno-tehnički poslovi u oblasti socijalne zaštite '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kuzmanović',
-            'ime' => 'Jovan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOKIĆ'),
+            'ime' => trim('MIROSLAV'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za socijalnu zaštitu --- Pravni poslovi u oblasti boračko-invalidske zaštite '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Paunović',
-            'ime' => 'Nikola',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DUMIĆ'),
+            'ime' => trim('NIKOLA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za zdravstvenu zaštitu --- Administrativno tehnički poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Simonović',
-            'ime' => 'Ana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOSAVLJEVIĆ'),
+            'ime' => trim('LJILJANA'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za socijalnu zaštitu --- Administrativno-tehnički poslovi u oblasti socijalne zaštite '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kovačević',
-            'ime' => 'Ivan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BORIĆ'),
+            'ime' => trim('MILOŠ'),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za zdravstvenu zaštitu --- Poslovi iz upravno-pravne oblasti zdravstvene zaštite'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Palčić',
-            'ime' => 'Slađana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILIĆEVIĆ '),
+            'ime' => trim('PREDRAG '),
+            'uprava_id' => 10,
+            'radno_mesto' => trim('Odeljenje za socijalnu zaštitu --- Pravni poslovi u oblasti socijalne zaštite '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mitrović',
-            'ime' => 'Dragan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VIDANOVIĆ '),
+            'ime' => trim('BOBAN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni inspektor III'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Obradović',
-            'ime' => 'Predrag',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MOJSOVIĆ'),
+            'ime' => trim('MILAN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Inspektor za zaštitu životne sredine '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Zdravković',
-            'ime' => 'Miloš',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STOJANOVIĆ'),
+            'ime' => trim('OLIVERA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Poslovi izdavanja energetskihdozvola,licenci i praćenje tarifnog sistema'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ranković',
-            'ime' => 'Predrag',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BOŠKOVIĆ-SIMIĆ'),
+            'ime' => trim('DRAGANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Upravni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radenković',
-            'ime' => 'Nenad',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PEJOVIĆ'),
+            'ime' => trim('IVANA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pavlović-Kocuvan',
-            'ime' => 'Nataša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KITONJIĆ'),
+            'ime' => trim('MARKO'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marković',
-            'ime' => 'Saša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RANKOVIĆ'),
+            'ime' => trim('MIRJANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Normativno - pravni poslovi u oblasti inspekcijskog nadzora i komunalne policije'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radojević',
-            'ime' => 'Katarina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐUKIĆ'),
+            'ime' => trim('MILIJA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Paunović',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARJANOVIĆ'),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Sotirov-Stefanović',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STEFANOVIĆ'),
+            'ime' => trim('SLOBODAN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Poslovi u oblasti održavanja javnih površina za stacionarni saobraćaj '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pavlović',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('NIKOLIĆ'),
+            'ime' => trim('DUŠAN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đurović',
-            'ime' => 'Milostiva',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BOSIĆ'),
+            'ime' => trim('VLADISAV'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Poslovi praćenja i unapredjenja dostupnosti,efikasnosti i kvaliteta u oblasti komunalnih delatnosti '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Rosić',
-            'ime' => 'Katarina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('GICIĆ-MILOJEVIĆ '),
+            'ime' => trim('MARIJANA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac II'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Brkić',
-            'ime' => 'Marijana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('CVETKOVIĆ '),
+            'ime' => trim('BOJAN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milanović',
-            'ime' => 'Marijana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUJSIĆ '),
+            'ime' => trim('SRĐAN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Fajht',
-            'ime' => 'Vanja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PAVLOVIĆ-ĐAPA'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Načelnik Odeljenja za finansije'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Janković',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILJKOVIĆ '),
+            'ime' => trim('ALEKSANDAR '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Poslovi u oblasti održavanja javnih površina za stacionarni saobraćaj '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milovanović',
-            'ime' => 'Bratislav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('MIROSLAVA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Načelnik sektora'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Lazović',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ERIĆ'),
+            'ime' => trim('KAROLINA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Načelnik Odeljenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Banković',
-            'ime' => 'Sandra',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BOŠKOVIĆ'),
+            'ime' => trim('MIRJANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac II'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vukašinović',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('LAZIĆ'),
+            'ime' => trim('BILJANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Lekić',
-            'ime' => 'Žarko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BOJOVIĆ'),
+            'ime' => trim('SNEŽANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Inspektor za zaštitu životne sredine '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Trajkovski',
-            'ime' => 'Dubravka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARINKOVIĆ'),
+            'ime' => trim('ANA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stanojević',
-            'ime' => 'Sanja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUČKOVIĆ'),
+            'ime' => trim('NIKOLA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Obrović',
-            'ime' => 'Milan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILENKOVIĆ'),
+            'ime' => trim('SVETLANA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Upravni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Filipović',
-            'ime' => 'Radmila',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ARSENIJEVIĆ'),
+            'ime' => trim('DRAGANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Knjigovodstveni i finansijsko-računovodstveni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vranić',
-            'ime' => 'Vojin',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOVANOVIĆ '),
+            'ime' => trim('ZORICA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni inspektor I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Grebović',
-            'ime' => 'Darko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SOKOLOVIĆ '),
+            'ime' => trim('ANA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Načelnik komunalne policije '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Aničić',
-            'ime' => 'Dušan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐOKIĆ'),
+            'ime' => trim('BORIS'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vukić',
-            'ime' => 'Nikola',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JAKŠIĆ '),
+            'ime' => trim('VESELIN '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni inspektor II'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stojanović',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('FILIPOVIĆ '),
+            'ime' => trim('SANJA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marković',
-            'ime' => 'Katarina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARJANOVIĆ-KONČAR'),
+            'ime' => trim('MILENA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac - vodja patrola'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Lazić',
-            'ime' => 'Ivan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐOKIĆ'),
+            'ime' => trim('SNEŽANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stojilović',
-            'ime' => 'Jovan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŽUPLJANIĆ '),
+            'ime' => trim('DUŠAN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Upravni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Otašević',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MIRKOV '),
+            'ime' => trim('NENAD'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Anastasijević',
-            'ime' => 'Ivan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOJKOVIĆ'),
+            'ime' => trim('MIRJANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni polocajac II'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tanasijević',
-            'ime' => 'Bojana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOLIĆ'),
+            'ime' => trim('RADA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Operatino - stručni i nadzorno - kontrolni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Prokić',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STEFANOVIĆ'),
+            'ime' => trim('BOŽANA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Gradjevinski inspektor'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jovanović',
-            'ime' => 'Tamara',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JANKOVIĆ'),
+            'ime' => trim('BOJAN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni polocajac II'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đoković',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('IVANIĆ '),
+            'ime' => trim('GORAN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Gradski turistički inspektor'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Srđan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŽIVKOVIĆ'),
+            'ime' => trim('ACA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Poslovi tehničkog regulisanja i bezbednosti saobraćaja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marković',
-            'ime' => 'Dejan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĆIROVIĆ-HOLENDER'),
+            'ime' => trim('MIRJANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Poslovi na praćenju održavanja objekata i instalacija javnog osvetljenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radivojević',
-            'ime' => 'Miloš',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RANKOVIĆ'),
+            'ime' => trim('MAJA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Glavni inspektor za zaštito životne sredine'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Aksić',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOVUK'),
+            'ime' => trim('NENAD'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni inspektor II'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marinković',
-            'ime' => 'Milica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILIVOJEVIĆ'),
+            'ime' => trim('MIROSLAV'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni inspektor III'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Gobeljić',
-            'ime' => 'Ivana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILENKOVIĆ'),
+            'ime' => trim('DUŠAN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Izvršilac za operativno-tehničke poslove'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pavlović',
-            'ime' => 'Bojan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ILIĆ'),
+            'ime' => trim('ANDREJA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Načelnik Gradske uprave'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Damnjanović',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BUJAKOVIĆ '),
+            'ime' => trim('DRAGANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Gradjevinski inspektor'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milovanović',
-            'ime' => 'Jasmina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐOKANOVIĆ '),
+            'ime' => trim('BOJAN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Glavni komunalni inspektor'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Trifunović',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VRAČAR '),
+            'ime' => trim('MILETIĆ '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Poslovi praćenja i unapredjenja dostupnosti,efikasnosti i kvaliteta u oblasti komunalnih delatnosti '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vračar',
-            'ime' => 'Miletić Bojana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('ZORICA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Inspektor za saobraćaj i puteve'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrić',
-            'ime' => 'Ana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARKOVIĆ'),
+            'ime' => trim('DRAGANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Inspektor za saobraćaj i puteve'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ribarić',
-            'ime' => 'Nikola',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUKOTIĆ'),
+            'ime' => trim('BOJANA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Stručni poslovi u komunalnoj oblasti '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đurić',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SAMARDŽIĆ '),
+            'ime' => trim('ALEKSANDRA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni inspektor I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đokanović',
-            'ime' => 'Bojan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('LUKIĆ'),
+            'ime' => trim('SNEŽANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Inspektor za saobraćaj i puteve'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stanković',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VRANIĆ '),
+            'ime' => trim('VOJIN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Načelnik Odeljenja za inspekcijske poslove '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Arsenijević',
-            'ime' => 'Katarina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOVANOVIĆ'),
+            'ime' => trim('BRATISLAV'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Poslovi praćenja održavanjajavne higijene i održavanja komunalne infrastrukture '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vujić',
-            'ime' => 'Slađana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MATIJAŠEVIĆ'),
+            'ime' => trim('DANIJELA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Stručno-analitičkii finansijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Samardžić',
-            'ime' => 'Aleksandra',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ROSIĆ'),
+            'ime' => trim('KATARINA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Kancelarijski poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Glišović',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOVANOVIĆ '),
+            'ime' => trim('MILICA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Načelnik Sektora'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milosavljević',
-            'ime' => 'Ana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOSAVLJEVIĆ'),
+            'ime' => trim('PREDRAG '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Poslovi u oblasti održavanja javnih zelenih površina'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Bujaković',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PROKOVIĆ'),
+            'ime' => trim('JADRANKA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Stručni poslovi u komunalnoj oblasti '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ilić',
-            'ime' => 'Andreja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TOMIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni inspektor I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stanković',
-            'ime' => 'Nikola',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TODOROVIĆ '),
+            'ime' => trim('RADICA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Finansijsko-evidencioni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Todorović',
-            'ime' => 'Vladimir',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TOMIĆ'),
+            'ime' => trim('DEJAN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Poslovi tehničkog regulisanja i bezbednosti saobraćaja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Matković',
-            'ime' => 'Nataša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PROKIĆ '),
+            'ime' => trim('DANIJELA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Glavni inspektor za saobraćaj i puteve'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nenadović',
-            'ime' => 'Radica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUKOVIĆ'),
+            'ime' => trim('NIKOLA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Inspektor za zaštitu životne sredine '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stojadinović',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILJOJKOVIĆ'),
+            'ime' => trim('RADOMIR '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Glavni gradjevinski inspektor'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Aleksandar',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('GAJIĆ'),
+            'ime' => trim('JELENA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marković',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĆIRKOVIĆ'),
+            'ime' => trim('SLAĐANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Poslovi u oblasti održavanja puteva'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jovanović',
-            'ime' => 'Nataša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUKOVIĆ'),
+            'ime' => trim('VALENTINA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jeremić-ilić',
-            'ime' => 'Nela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ALEKSIĆ'),
+            'ime' => trim('KATARINA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni polocajac II'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milenković',
-            'ime' => 'Nikola',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STANIĆ '),
+            'ime' => trim('BOJANA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Upravni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Šušić',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PEJOVIĆ'),
+            'ime' => trim('VLADIMIR'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac II'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milošević',
-            'ime' => 'Milan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOSAVLJEVIĆ'),
+            'ime' => trim('ĐORĐE'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac II'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kijanović',
-            'ime' => 'Bojan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐAKOVIĆ'),
+            'ime' => trim('DRAGANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Poslovi praćenja rada javnihkomunalnih preduzeća'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pavlović',
-            'ime' => 'Milan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ILIĆ'),
+            'ime' => trim('BILJANA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milenković',
-            'ime' => 'Saša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILAŠINOVIĆ'),
+            'ime' => trim('SVETLANA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za komunalne poslove i finansije --- Tehničko -dokumentacioni poslovi podrške finansijskim poslovima '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đurić',
-            'ime' => 'Slobodan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ISKRENOV-ALEKSIĆ'),
+            'ime' => trim('RUŽICA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Inspektor za saobraćaj i puteve'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Gobeljić',
-            'ime' => 'Zvonko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('GOBELJIĆ'),
+            'ime' => trim('ZVONKO'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pejović',
-            'ime' => 'Ivana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐURIĆ'),
+            'ime' => trim('SLOBODAN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ilić',
-            'ime' => 'Biljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILENKOVIĆ'),
+            'ime' => trim('SAŠA '),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Gradski turistički inspektor'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Gajić',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PAVLOVIĆ'),
+            'ime' => trim('MILAN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radojičić',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RISTIĆ '),
+            'ime' => trim('VERONIKA'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vuković',
-            'ime' => 'Valentina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KIJANOVIĆ '),
+            'ime' => trim('BOJAN'),
+            'uprava_id' => 11,
+            'radno_mesto' => trim('Sektor za inspekcijske poslove i komunalnu policiju --- Komunalni policajac I '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Aleksić',
-            'ime' => 'Katarina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BOJOVIĆ'),
+            'ime' => trim('JELENA'),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Načelnik Gradske uprave'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Korica',
-            'ime' => 'Milan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KUZMANOVIĆ'),
+            'ime' => trim('JOVAN'),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za vanredne situacije i planiranje odbrane --- Poslovi vanrednih situacija-civilna zaštita'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pejović',
-            'ime' => 'Vladimir',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STERĐEVIĆ '),
+            'ime' => trim('NIKOLA'),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za opšte poslove --- Normativno-pravni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milosavljević',
-            'ime' => 'Đorđe',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ILIĆ'),
+            'ime' => trim('JULKA'),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Administrativno trhnički poslovi distribucije materijala sednice Skupštine'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milenković',
-            'ime' => 'Aleksandar',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('POPOVIĆ'),
+            'ime' => trim('IVAN '),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za vanredne situacije i planiranje odbrane --- Administrativni poslovi u oblasti vanrednih situacija '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ristić',
-            'ime' => 'Veronika',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SREĆKOVIĆ '),
+            'ime' => trim('BOJANA'),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za poslove unutrašnje i medjunarodne saradnje i poslove protokola --- Poslovi unutrašnje i medjunarodne saradnje '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vujsić',
-            'ime' => 'Srđan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐULČIĆ '),
+            'ime' => trim('ZORA '),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Kancelarijski poslovi pripreme i realizacije sednica Skupštine grada'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Cvetković',
-            'ime' => 'Bojan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KESIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za poslove Gradskog veća --- Administrativno-tehnički poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Gorgievski',
-            'ime' => 'Zlatko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOVIČIĆ'),
+            'ime' => trim('JELENA'),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Kabinet Gradonačelnika --- Normativno-pravni i stručno-administrativni poslovi za potrebe Gradonačelnika, zamenika Gradonačelnika i pomoćnika Gradonačelnika'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Gicić-Milojević',
-            'ime' => 'Marijana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BABIĆ'),
+            'ime' => trim('TAMARA'),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za poslove unutrašnje i medjunarodne saradnje i poslove protokola --- Poslovi unutrašnje i medjunarodne saradnje '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nikolić',
-            'ime' => 'Dušan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JANKOVIĆ'),
+            'ime' => trim('VLADAN'),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za vanredne situacije i planiranje odbrane --- Poslovi vanrednih situacija i zaštita od elementarnih nepogoda - Operater u sistemu Situacionog centra'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marjanović',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐURĐEVIĆ'),
+            'ime' => trim('DRAGICA '),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Administrativno trhnički poslovi distribucije materijala sednice Skupštine'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kitonjić',
-            'ime' => 'Marko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOVANOVIĆ'),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za opšte poslove --- Finansijsko-administrativni analitičar'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stojanović',
-            'ime' => 'Olivera',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILANOVIĆ '),
+            'ime' => trim('PREDRAG '),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Administrativno tehnički poslovi za potrebe sednica Skupštine i radnih tela Skupštine '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Sokolović',
-            'ime' => 'Ana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('NEKTARIJEVIĆ '),
+            'ime' => trim('SANDRA'),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za poslove informisanja --- Poslovi informisanja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đukić',
-            'ime' => 'Milija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('IVANOVIĆ'),
+            'ime' => trim('MOMČILO '),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za vanredne situacije i planiranje odbrane --- Poslovi vanrednih situacija i zaštite od elementarnih nepogoda '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đokić',
-            'ime' => 'Snežana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOJKOVIĆ'),
+            'ime' => trim('SNEŽANA '),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za opšte poslove --- Normativno-pravni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marjanović-Končar',
-            'ime' => 'Milena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BEĆAREVIĆ '),
+            'ime' => trim('JASMINA '),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za opšte poslove --- Normativno-pravni poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Filipović',
-            'ime' => 'Sanja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DIMITRIJEVIĆ '),
+            'ime' => trim('JASNA'),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za poslove informisanja --- Poslovi informisanja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đokić',
-            'ime' => 'Boris',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TIJANIĆ'),
+            'ime' => trim('ALEKSANDRA '),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za poslove informisanja --- Načelnik Odeljenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milojković',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOVANOVIĆ'),
+            'ime' => trim('DRAGOŠ'),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za vanredne situacije i planiranje odbrane --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vučković',
-            'ime' => 'Nikola',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VEINOVIĆ'),
+            'ime' => trim('JELENA'),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za poslove Gradskog veća --- Administrativno-tehnički poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marinković',
-            'ime' => 'Ana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('NEŠIĆ'),
+            'ime' => trim('RADAŠIN '),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Administrativno tehnički poslovi za potrebe sednica Skupštine i radnih tela Skupštine '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Bošković',
-            'ime' => 'Mirjana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOVANOVIĆ '),
+            'ime' => trim('DANICA'),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za vanredne situacije i planiranje odbrane --- Poslovi planiranja odbrane '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Janković',
-            'ime' => 'Bojan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KOČOVIĆ'),
+            'ime' => trim('RISTO'),
+            'uprava_id' => 12,
+            'radno_mesto' => trim('Odeljenje za opšte poslove --- Kancelarijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Lazić',
-            'ime' => 'Biljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DMITROVIĆ '),
+            'ime' => trim('ILIJANA '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Poslovi sekretara odbora'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Mirkov',
-            'ime' => 'Nenad',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SRETENOVIĆ'),
+            'ime' => trim('ANA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove informisanja --- Poslovi postupanja po zahtevu za slobodan pristup informacijama od javnog značaja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Simović',
-            'ime' => 'Biljana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('LAZAREVIĆ '),
+            'ime' => trim('SVETOMIR'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za vanredne situacije i planiranje odbrane --- Poslovi vanrednih situacija i zaštita od elementarnih nepogoda - Operater u sistemu Situacionog centra'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stefanović',
-            'ime' => 'Vanja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ANTONIJEVIĆ'),
+            'ime' => trim('SLAVENKA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Kancelarijski poslovi izrade i distribucija pismena za potrebe sekretara i zamenika sekretara Skupštine grada i sekretarijata'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jevtović',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KUZMANOVIĆ'),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za opšte poslove --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Todorović',
-            'ime' => 'Ivana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADIVOJEVIĆ'),
+            'ime' => trim('SLAĐANA '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove Gradskog veća --- Kancelarijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Obradović-stanić',
-            'ime' => 'Ivana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VIĆENTIJEVIĆ '),
+            'ime' => trim('ANA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Poslovi sekretara odbora'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Tomić',
-            'ime' => 'Danka',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RAJOVIĆ'),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Kabinet Gradonačelnika --- pomoćnik Gradonačelnika za nadzor nad investicijama u vanprivrednim delatnostima '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Rajačić',
-            'ime' => 'Zvezdana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('NIKEZIĆ'),
+            'ime' => trim('STEFAN'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Kabinet Gradonačelnika --- Pomoćnik Gradonačelnika za unapredjenje položaja mladih u lokalnoj samoupravi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Lela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOVANOVIĆ'),
+            'ime' => trim('ZVEZDANA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove Gradskog veća --- Administrativno-tehnički poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Aćimović',
-            'ime' => 'Jagoda',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STANKOVIĆ '),
+            'ime' => trim('MILICA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đorđević',
-            'ime' => 'Tomislav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOVANOVIĆ '),
+            'ime' => trim('OLGA '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove unutrašnje i medjunarodne saradnje i poslove protokola --- Poslovi protokola i organizacije'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radojević',
-            'ime' => 'Tamara',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('FILIPOVIĆ '),
+            'ime' => trim('BOJAN'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Poslovi sekretara odbora'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jakšić',
-            'ime' => 'Veselin',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('CARIĆ'),
+            'ime' => trim('NEBOJŠA '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Kabinet Gradonačelnika --- Koordinator za razvoj organizacije i ljudskih resursa '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Samailović',
-            'ime' => 'Suzana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUKIĆEVIĆ '),
+            'ime' => trim('JELENA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za opšte poslove --- Finansijsko-računovodstveni analitičar'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ivanić',
-            'ime' => 'Goran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOVANOVIĆ'),
+            'ime' => trim('RADE '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Birotehnički poslovi umnožavanja materijala '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Obradović',
-            'ime' => 'Isidora',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('LAZAREVIĆ '),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove informisanja --- Poslovi foto i audio-vizuelnog snimanja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milojević',
-            'ime' => 'Suzana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ŠTAJN'),
+            'ime' => trim('ALEKSANDAR '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Kabinet Gradonačelnika --- Pomoćnik Gradonačelnika za unutrašnju i medjunarodnu saradnju'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nikolić',
-            'ime' => 'Mirela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ROSIĆ'),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Kancelarijski poslovi pripreme i realizacije sednica Skupštine grada'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ilić',
-            'ime' => 'Vanja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PREDOJEVIĆ-SIMOVIĆ '),
+            'ime' => trim('JASMINA '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Kabinet Gradonačelnika --- Pomoćnik Gradonačelnika za održivi i ravnomerni razvoj Grada i saradnju sa udruženjima '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Zorić',
-            'ime' => 'Slavica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('CVETKOVIĆ '),
+            'ime' => trim('EVICA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za opšte poslove --- Finansijsko-računovodstveni analitičar'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Soković',
-            'ime' => 'Saša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SIMONOVIĆ '),
+            'ime' => trim('RADOJE'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove informisanja --- Internet operater'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radenković',
-            'ime' => 'Saša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STEFANOVIĆ'),
+            'ime' => trim('TATJANA '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za vanredne situacije i planiranje odbrane --- Poslovi vanrednih situacija i zaštite od elementarnih nepogoda '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Gudžulić',
-            'ime' => 'Marina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ARSENIJEVIĆ'),
+            'ime' => trim('MILOŠ'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za vanredne situacije i planiranje odbrane --- Administrativni poslovi u oblasti planiranja odbrane'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Stevanović',
-            'ime' => 'Mladen',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUKAŠINOVIĆ'),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za opšte poslove --- Finansijsko-administrativni analitičar'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jovanović',
-            'ime' => 'Zorica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('OBRADOVIĆ '),
+            'ime' => trim('ISIDORA '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za vanredne situacije i planiranje odbrane --- Poslovi vanrednih situacija i zaštite od elementarnih nepogoda '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Bošković-Simić',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUKIĆ'),
+            'ime' => trim('NIKOLA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove unutrašnje i medjunarodne saradnje i poslove protokola --- Poslovi protokola i organizacije'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Veljković',
-            'ime' => 'Andra',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KOSTIĆ '),
+            'ime' => trim('ANICA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove Gradskog veća --- Kancelarijski poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ristić',
-            'ime' => 'Katarina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('LAZIĆ'),
+            'ime' => trim('IVAN '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove unutrašnje i medjunarodne saradnje i poslove protokola --- Poslovi unutrašnje i medjunarodne saradnje '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Urošević',
-            'ime' => 'Nikola',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RADOJEVIĆ '),
+            'ime' => trim('TAMARA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za vanredne situacije i planiranje odbrane --- Administrativni poslovi u oblasti planiranja odbrane'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Maksimović',
-            'ime' => 'Vladimir',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARKOVIĆ'),
+            'ime' => trim('DEJAN'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove unutrašnje i medjunarodne saradnje i poslove protokola --- Poslovi protokola i organizacije'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Prokić',
-            'ime' => 'Zoran',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STEVANOVIĆ'),
+            'ime' => trim('NATAŠA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove informisanja --- Administrativno-tehnički i operativni poslovi u oblasti informisanja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nikolić',
-            'ime' => 'Radomir',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PAVLOVIĆ'),
+            'ime' => trim('BOJAN'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove unutrašnje i medjunarodne saradnje i poslove protokola --- Načelnik Odeljenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radisavljević',
-            'ime' => 'Slađana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JAKŠIĆ '),
+            'ime' => trim('JAGOŠ'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za vanredne situacije i planiranje odbrane --- Poslovi vanrednih situacija i zaštite od elementarnih nepogoda '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Damnjanović',
-            'ime' => 'Gordana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KONATAR'),
+            'ime' => trim('NEBOJŠA '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za vanredne situacije i planiranje odbrane --- Poslovi vanrednih situacija i zaštita od elementarnih nepogoda - Operater u sistemu Situacionog centra'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Župljanić',
-            'ime' => 'Dušan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STANKOVIĆ '),
+            'ime' => trim('NIKOLA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Poslovi informatičke podrške pripreme i realizacijesednice Skupštine grada '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nešić',
-            'ime' => 'Dejan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DAMNJANOVIĆ'),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za opšte poslove --- Šef Službe '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Markov-Mrdaković',
-            'ime' => 'Brankica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĆOSIĆ'),
+            'ime' => trim('DOBRILA '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove Gradskog veća --- Administrativno-tehnički poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ratković',
-            'ime' => 'Milijana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('ALEKSANDAR '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za vanredne situacije i planiranje odbrane --- Poslovi vanrednih situacija i zaštita od elementarnih nepogoda - Operater u sistemu Situacionog centra'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Miljojković',
-            'ime' => 'Anđela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TODOROVIĆ '),
+            'ime' => trim('SVEŠANA '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Kancelarijski poslovi prijema pošte i rasporedjivanje akata'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đoković',
-            'ime' => 'Zorica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOŠEVIĆ '),
+            'ime' => trim('MILAN'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radisavljević',
-            'ime' => 'Nataša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MIHAJLOVIĆ'),
+            'ime' => trim('SNEŽANA '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove Gradskog veća --- Normativno-pravni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ćurić',
-            'ime' => 'Vesna',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('NOVOSEL'),
+            'ime' => trim('BILJANA '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Sekretar Sekretarijata '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radojković',
-            'ime' => 'Snežana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOJEVIĆ '),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove unutrašnje i medjunarodne saradnje i poslove protokola --- Administrativno-tehnički poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milošević',
-            'ime' => 'Aleksandar',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JOVANOVIĆ '),
+            'ime' => trim('DANIJELA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Kancelarijski poslovi prijema pošte i rasporedjivanje akata'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Nataša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SAVIĆ'),
+            'ime' => trim('VERKO'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Redar'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marković',
-            'ime' => 'Vladimir',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KOKOVIĆ'),
+            'ime' => trim('DANIJELA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove Gradskog veća --- Normativno-pravni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vuković-Živanović',
-            'ime' => 'Tanja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ANDRIĆ '),
+            'ime' => trim('MIRJANA '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove Gradskog veća --- Administrativno-tehnički poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Leković',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOŠEVIĆ '),
+            'ime' => trim('ALEKSANDAR '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Kabinet Gradonačelnika --- Šef Kabineta'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Janićijević',
-            'ime' => 'Nataša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JANKOVIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za opšte poslove --- Finansijsko-računovodstveni saradnik'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Prodanović',
-            'ime' => 'Katarina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('NEŠKOVIĆ'),
+            'ime' => trim('SLAVICA '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove Gradskog veća --- Načelnik Odeljenja'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Luković',
-            'ime' => 'Ana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VELJKOVIĆ '),
+            'ime' => trim('ANDRA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za vanredne situacije i planiranje odbrane --- Poslovi vanrednih situacija-civilna zaštita'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vuković',
-            'ime' => 'Veljko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STANIŠIĆ'),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Koordinator za uspostavljenje saradnje izmedju gradskih uprava i posebnih službi organa Grada '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ivanović',
-            'ime' => 'Momčilo',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('UROŠEVIĆ'),
+            'ime' => trim('NIKOLA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Kabinet Gradonačelnika --- Pomoćnik Gradonačelnika za unapredjenje i razvoj sporta'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Grebović',
-            'ime' => 'Dragan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MIHAJLOVIĆ'),
+            'ime' => trim('IVANA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove Gradskog veća --- Normativno-pravni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Popadić',
-            'ime' => 'Milena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐOKOVIĆ'),
+            'ime' => trim('KATARINA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove informisanja --- Poslovi postupanja po zahtevu za slobodan pristup informacijama od javnog značaja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Srejović',
-            'ime' => 'Milan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('BOJOVIĆ'),
+            'ime' => trim('DANIJELA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove Gradskog veća --- Administrativno-tehnički poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nenković',
-            'ime' => 'Aleksandar',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETRONIJEVIĆ '),
+            'ime' => trim('SVETLANA'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove Gradskog veća --- Normativno-pravni poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ćupić',
-            'ime' => 'Dušica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MITROVIĆ'),
+            'ime' => trim('DRAGAN'),
+            'uprava_id' => 12, 'radno_mesto' => trim('Odeljenje za poslove informisanja --- Poslovi grafičke i audio-vizuelne prezentacije Grada'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kesić',
-            'ime' => 'Sonja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILIĆ'),
+            'ime' => trim('NEBOJŠA '),
+            'uprava_id' => 12, 'radno_mesto' => trim('Sekretarijat za skupštinske poslove --- Poslovi sekretara odbora'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petronijević',
-            'ime' => 'Branko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STEFANOVIĆ'),
+            'ime' => trim('VANJA'),
+            'uprava_id' => 13, 'radno_mesto' => trim('Odeljenje za ekonomsko - finansijske poslove, poslove planiranja i kontrole javnih nabavki --- Stručno-tehnički poslovi u oblasti javnih nabavki'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jokić',
-            'ime' => 'Miroslav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MARKOVIĆ'),
+            'ime' => trim('SAŠA '),
+            'uprava_id' => 13, 'radno_mesto' => trim('Odeljenje za ekonomsko - finansijske poslove, poslove planiranja i kontrole javnih nabavki --- Načelnik Odeljenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milosavljević',
-            'ime' => 'Verica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STANKOVIĆ '),
+            'ime' => trim('GORAN'),
+            'uprava_id' => 13, 'radno_mesto' => trim('Odeljenje za normativno – pravne i upravno - pravne poslove u oblasti javnih nabavki --- Administrativno-tehnički poslovi'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vićentijević',
-            'ime' => 'Ana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DURUTOVIĆ '),
+            'ime' => trim('JADRANKA'),
+            'uprava_id' => 13, 'radno_mesto' => trim('Odeljenje za ekonomsko - finansijske poslove, poslove planiranja i kontrole javnih nabavki --- Finansijski poslovi u vezi izrade i praćenja realizacije planova i programa iz nadležnosti Gradske uprave '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Matić',
-            'ime' => 'Milena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KRLJAR-RANČIĆ'),
+            'ime' => trim('ANA'),
+            'uprava_id' => 13, 'radno_mesto' => trim('Odeljenje za ekonomsko - finansijske poslove, poslove planiranja i kontrole javnih nabavki --- Ekonomsko-finansijski poslovi u postupcima javnih nabavki korisnika'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Perović',
-            'ime' => 'Sanja',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DUDIĆ'),
+            'ime' => trim('VLADO'),
+            'uprava_id' => 13, 'radno_mesto' => trim('Odeljenje za ekonomsko - finansijske poslove, poslove planiranja i kontrole javnih nabavki --- Magacinski poslovi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Miljković',
-            'ime' => 'Aleksandar',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MIHAJLOVIĆ'),
+            'ime' => trim('ZORAN'),
+            'uprava_id' => 13, 'radno_mesto' => trim('Odeljenje za normativno – pravne i upravno - pravne poslove u oblasti javnih nabavki --- Poslovi kontrole postupaka javnih nabavki budžetskih korisnika'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pršić',
-            'ime' => 'Nenad',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DROBNJAK'),
+            'ime' => trim('DANIJELA'),
+            'uprava_id' => 13, 'radno_mesto' => trim('Načelnik Gradske uprave'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Bosić',
-            'ime' => 'Vladisav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JAKOVLJEVIĆ'),
+            'ime' => trim('ANDREA'),
+            'uprava_id' => 13, 'radno_mesto' => trim('Odeljenje za ekonomsko - finansijske poslove, poslove planiranja i kontrole javnih nabavki --- Ekonomsko-finansijski poslovi u postupcima javnih nabavki korisnika'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Krljar-Rančić',
-            'ime' => 'Ana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TOMIĆ'),
+            'ime' => trim('DANKA'),
+            'uprava_id' => 13, 'radno_mesto' => trim('Odeljenje za normativno – pravne i upravno - pravne poslove u oblasti javnih nabavki --- Poslovi izrade normativnog dela nacrta i predloga akata u postupcima centralizovanih javnih nabavki '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Srejović',
-            'ime' => 'Božidar',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RISTIĆ '),
+            'ime' => trim('KATARINA'),
+            'uprava_id' => 13, 'radno_mesto' => trim('Odeljenje za normativno – pravne i upravno - pravne poslove u oblasti javnih nabavki --- Poslovi izrade normativnog dela nacrta i predloga akata iz oblasti javnih nabavki direktnih budžetskih korisnika'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Simić',
-            'ime' => 'Snežana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('OBRADOVIĆ '),
+            'ime' => trim('NEBOJŠA '),
+            'uprava_id' => 13, 'radno_mesto' => trim('Odeljenje za normativno – pravne i upravno - pravne poslove u oblasti javnih nabavki --- Načelnik odeljenja '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Rafailović',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETROVIĆ'),
+            'ime' => trim('NATAŠA'),
+            'uprava_id' => 14, 'radno_mesto' => trim('Zamenik sekretara Skupštine grada Kragujevca'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ilić',
-            'ime' => 'Miodrag',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PAVLOVIĆ'),
+            'ime' => trim('SUZANA'),
+            'uprava_id' => 14, 'radno_mesto' => trim('sekretar Skupštine grada Kragujevca'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrašinović',
-            'ime' => 'Miroslav',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('GORGIEVSKI'),
+            'ime' => trim('ZLATKO'),
+            'uprava_id' => 15, 'radno_mesto' => trim('Pravobranilački pomoćnik '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Nikezić',
-            'ime' => 'Stefan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DIMITRIJEVIĆ '),
+            'ime' => trim('BOJAN'),
+            'uprava_id' => 15, 'radno_mesto' => trim('Pravobranilački pomoćnik '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jovičić',
-            'ime' => 'Jelena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOJEVIĆ '),
+            'ime' => trim('DUŠAN'),
+            'uprava_id' => 15, 'radno_mesto' => trim('Pripravnik u visokoj stručnoj spremi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kočović',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('SIMIĆ'),
+            'ime' => trim('MILENA'),
+            'uprava_id' => 15, 'radno_mesto' => trim('Pripravnik u visokoj stručnoj spremi '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Petrović',
-            'ime' => 'Milica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('ĐURĐEVIĆ'),
+            'ime' => trim('ANĐELKA '),
+            'uprava_id' => 15, 'radno_mesto' => trim('Zamenik Gradskog pravobranioca '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Rakić',
-            'ime' => 'Đorđe',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PETRONIJEVIĆ '),
+            'ime' => trim('BRANKO'),
+            'uprava_id' => 15, 'radno_mesto' => trim('Gradski pravobranilac '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milojević',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DUKIĆ'),
+            'ime' => trim('BRANKO'),
+            'uprava_id' => 15, 'radno_mesto' => trim('Administrativni, operativno-tehnički, informacioni i poslovi pisarnice i arhive'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Živić',
-            'ime' => 'Danijela',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('GRBOVIĆ'),
+            'ime' => trim('SVETLANA'),
+            'uprava_id' => 15, 'radno_mesto' => trim('Administrativni, operativno-tehnički, informacioni i poslovi pisarnice i arhive'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Delević',
-            'ime' => 'Dragana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STAMENKOVIĆ'),
+            'ime' => trim('ŽELJKO'),
+            'uprava_id' => 15, 'radno_mesto' => trim('Poslovi pisarnice i arhive Gradskog pravobranilaštva'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Murati',
-            'ime' => 'Tijana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('JEREMIĆ-ILIĆ '),
+            'ime' => trim('NELA '),
+            'uprava_id' => 15, 'radno_mesto' => trim('Sekretar Gradskog pravobranilaštva'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Đorđević',
-            'ime' => 'Stefan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('DELEVIĆ'),
+            'ime' => trim('DRAGANA '),
+            'uprava_id' => 15, 'radno_mesto' => trim('Poslovi pisarnice i arhive Gradskog pravobranilaštva'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Šćepanović',
-            'ime' => 'Nešo',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TASIĆ'),
+            'ime' => trim('GORDANA '),
+            'uprava_id' => 16, 'radno_mesto' => trim('Poslovi pisarnice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Radivojević',
-            'ime' => 'Predrag',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('IGNJATOVIĆ'),
+            'ime' => trim('MIHAILO '),
+            'uprava_id' => 16, 'radno_mesto' => trim('Zaštitnik gradjana Grada '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Marković',
-            'ime' => 'Srđan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KOVAČEVIĆ '),
+            'ime' => trim('IVAN '),
+            'uprava_id' => 16, 'radno_mesto' => trim('Zmenik zaštitnika gradjana'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Pavlović',
-            'ime' => 'Miloš',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VASILJEVIĆ'),
+            'ime' => trim('SANJA'),
+            'uprava_id' => 16, 'radno_mesto' => trim('Poslovi pisarnice'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Ilić',
-            'ime' => 'Aleksandar',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PREKOVIĆ'),
+            'ime' => trim('DRAGAN'),
+            'uprava_id' => 16, 'radno_mesto' => trim('Poslovni sekretar'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Miljković',
-            'ime' => 'Miljko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('STOJADINOVIĆ '),
+            'ime' => trim('VESNA'),
+            'uprava_id' => 16, 'radno_mesto' => trim('Zmenik zaštitnika gradjana'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Erić',
-            'ime' => 'Nataša',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PALČIĆ '),
+            'ime' => trim('SLAĐANA '),
+            'uprava_id' => 16, 'radno_mesto' => trim('Poslovni sekretar'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Dimitrijević',
-            'ime' => 'Bojan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('RATKOVIĆ'),
+            'ime' => trim('MILIJANA'),
+            'uprava_id' => 17, 'radno_mesto' => trim('Gradski revizor '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Miljković',
-            'ime' => 'Katarina',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PREKOVIĆ'),
+            'ime' => trim('LJUBICA '),
+            'uprava_id' => 17, 'radno_mesto' => trim('Viši interni revizor'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vukosavljević',
-            'ime' => 'Slavica',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('LUKOVIĆ'),
+            'ime' => trim('ANA'),
+            'uprava_id' => 17, 'radno_mesto' => trim('Interni revizor '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Kandić',
-            'ime' => 'Ana',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MILOJEVIĆ '),
+            'ime' => trim('MARIJA'),
+            'uprava_id' => 17, 'radno_mesto' => trim('Interni revizor '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Jakovljević',
-            'ime' => 'Andrea',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('VUKOVIĆ'),
+            'ime' => trim('VELJKO'),
+            'uprava_id' => 17, 'radno_mesto' => trim('Interni revizor '),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Rakić-Jevtić',
-            'ime' => 'Marija',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('MATKOVIĆ'),
+            'ime' => trim('NATAŠA'),
+            'uprava_id' => 18, 'radno_mesto' => trim('Budžetski inspektor'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Vukićević',
-            'ime' => 'Marko',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('KONATAR'),
+            'ime' => trim('JASMINA '),
+            'uprava_id' => 18, 'radno_mesto' => trim('Budžetski inspektor'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Milojević',
-            'ime' => 'Dušan',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('PRŠIĆ'),
+            'ime' => trim('LJILJANA'),
+            'uprava_id' => 18, 'radno_mesto' => trim('Glavni budžetski inspektor'),
         ]);
         DB::table('zaposleni')->insert([
-            'prezime' => 'Simić',
-            'ime' => 'Milena',
-            'kancelarija_id' => 1,
-            'uprava_id' => 1,
+            'prezime' => trim('TODOROVIĆ '),
+            'ime' => trim('IVANA'),
+            'uprava_id' => 18, 'radno_mesto' => trim('Viši budžetski inspektor '),
+        ]);
+        DB::table('zaposleni')->insert([
+            'prezime' => trim('SAVIĆ'),
+            'ime' => trim('MAJA '),
+            'uprava_id' => 18, 'radno_mesto' => trim('Viši budžetski inspektor '),
         ]);
 
         DB::commit();

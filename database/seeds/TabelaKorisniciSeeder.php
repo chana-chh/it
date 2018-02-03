@@ -11,12 +11,14 @@ class TabelaKorisniciSeeder extends Seeder
             'name' => 'Nenad Čanić',
             'username' => 'admin',
             'password' => bcrypt('casa'),
-            'level' => 0]);
+            'level' => 0
+        ]);
         DB::table('korisnici')->insert([
             'name' => 'Stanislav Jakovljević',
             'username' => 'korisnik',
             'password' => bcrypt('user'),
-            'level' => 10]);
+            'level' => 10
+        ]);
     }
 
 }

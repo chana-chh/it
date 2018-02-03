@@ -11,7 +11,12 @@ Route::get('status/{id}', 'PretragaKontroler@getStatus')->name('status');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-
+//Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+//Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+//Route::post('/password/reset', 'Auth\ForgotPasswordController@reset');
+//Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+//Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+//Route::post('/register', 'Auth\RegisterController@register');
 // STATISTIKA
 Route::get('statistika', 'StatistikaKontroler@getLista')->name('statistika');
 
@@ -105,7 +110,6 @@ Route::get('stavke/uredjaji/pregled/{vrsta}/{id}', 'Servis\NabavkeOtpremniceStav
 Route::post('stavke/uredjaji/brisanje', 'Servis\NabavkeOtpremniceStavkeKontroler@postBrisanjeUredjaja')->name('stavke.uredjaji.brisanje');
 
 // SIFARNICI
-
 // Proizvodjaci
 Route::get('proizvodjaci', 'Sifarnici\ProizvodjaciKontroler@getLista')->name('proizvodjaci');
 Route::post('proizvodjaci/dodavanje', 'Sifarnici\ProizvodjaciKontroler@postDodavanje')->name('proizvodjaci.dodavanje');
@@ -304,113 +308,113 @@ Route::get('aplikacije/racunari/{id}', 'Sifarnici\AplikacijeKontroler@getListaRa
 
 Route::prefix('modeli')->group(function () {
 // Procesori
-Route::get('procesori', 'Modeli\ProcesoriKontroler@getLista')->name('procesori.modeli');
-Route::get('procesori/dodavanje', 'Modeli\ProcesoriKontroler@getDodavanje')->name('procesori.modeli.dodavanje.get');
-Route::post('procesori/dodavanje', 'Modeli\ProcesoriKontroler@postDodavanje')->name('procesori.modeli.dodavanje.post');
-Route::get('procesori/izmena/{id}', 'Modeli\ProcesoriKontroler@getIzmena')->name('procesori.modeli.izmena.get');
-Route::post('procesori/izmena/{id}', 'Modeli\ProcesoriKontroler@postIzmena')->name('procesori.modeli.izmena.post');
-Route::get('procesori/detalj/{id}', 'Modeli\ProcesoriKontroler@getDetalj')->name('procesori.modeli.detalj');
-Route::post('procesori/brisanje', 'Modeli\ProcesoriKontroler@postBrisanje')->name('procesori.modeli.brisanje');
-Route::get('procesori/uredjaji/{id}', 'Modeli\ProcesoriKontroler@getUredjaji')->name('procesori.modeli.uredjaji');
-Route::get('procesori/racunari/{id}', 'Modeli\ProcesoriKontroler@getRacunari')->name('procesori.modeli.racunari');
+    Route::get('procesori', 'Modeli\ProcesoriKontroler@getLista')->name('procesori.modeli');
+    Route::get('procesori/dodavanje', 'Modeli\ProcesoriKontroler@getDodavanje')->name('procesori.modeli.dodavanje.get');
+    Route::post('procesori/dodavanje', 'Modeli\ProcesoriKontroler@postDodavanje')->name('procesori.modeli.dodavanje.post');
+    Route::get('procesori/izmena/{id}', 'Modeli\ProcesoriKontroler@getIzmena')->name('procesori.modeli.izmena.get');
+    Route::post('procesori/izmena/{id}', 'Modeli\ProcesoriKontroler@postIzmena')->name('procesori.modeli.izmena.post');
+    Route::get('procesori/detalj/{id}', 'Modeli\ProcesoriKontroler@getDetalj')->name('procesori.modeli.detalj');
+    Route::post('procesori/brisanje', 'Modeli\ProcesoriKontroler@postBrisanje')->name('procesori.modeli.brisanje');
+    Route::get('procesori/uredjaji/{id}', 'Modeli\ProcesoriKontroler@getUredjaji')->name('procesori.modeli.uredjaji');
+    Route::get('procesori/racunari/{id}', 'Modeli\ProcesoriKontroler@getRacunari')->name('procesori.modeli.racunari');
 
 // Memorije
-Route::get('memorije', 'Modeli\MemorijeKontroler@getLista')->name('memorije.modeli');
-Route::get('memorije/dodavanje', 'Modeli\MemorijeKontroler@getDodavanje')->name('memorije.modeli.dodavanje.get');
-Route::post('memorije/dodavanje', 'Modeli\MemorijeKontroler@postDodavanje')->name('memorije.modeli.dodavanje.post');
-Route::get('memorije/izmena/{id}', 'Modeli\MemorijeKontroler@getIzmena')->name('memorije.modeli.izmena.get');
-Route::post('memorije/izmena/{id}', 'Modeli\MemorijeKontroler@postIzmena')->name('memorije.modeli.izmena.post');
-Route::get('memorije/detalj/{id}', 'Modeli\MemorijeKontroler@getDetalj')->name('memorije.modeli.detalj');
-Route::post('memorije/brisanje', 'Modeli\MemorijeKontroler@postBrisanje')->name('memorije.modeli.brisanje');
-Route::get('memorije/uredjaji/{id}', 'Modeli\MemorijeKontroler@getUredjaji')->name('memorije.modeli.uredjaji');
-Route::get('memorije/racunari/{id}', 'Modeli\MemorijeKontroler@getRacunari')->name('memorije.modeli.racunari');
+    Route::get('memorije', 'Modeli\MemorijeKontroler@getLista')->name('memorije.modeli');
+    Route::get('memorije/dodavanje', 'Modeli\MemorijeKontroler@getDodavanje')->name('memorije.modeli.dodavanje.get');
+    Route::post('memorije/dodavanje', 'Modeli\MemorijeKontroler@postDodavanje')->name('memorije.modeli.dodavanje.post');
+    Route::get('memorije/izmena/{id}', 'Modeli\MemorijeKontroler@getIzmena')->name('memorije.modeli.izmena.get');
+    Route::post('memorije/izmena/{id}', 'Modeli\MemorijeKontroler@postIzmena')->name('memorije.modeli.izmena.post');
+    Route::get('memorije/detalj/{id}', 'Modeli\MemorijeKontroler@getDetalj')->name('memorije.modeli.detalj');
+    Route::post('memorije/brisanje', 'Modeli\MemorijeKontroler@postBrisanje')->name('memorije.modeli.brisanje');
+    Route::get('memorije/uredjaji/{id}', 'Modeli\MemorijeKontroler@getUredjaji')->name('memorije.modeli.uredjaji');
+    Route::get('memorije/racunari/{id}', 'Modeli\MemorijeKontroler@getRacunari')->name('memorije.modeli.racunari');
 
 // Maticne Ploce
-Route::get('osnovne_ploce', 'Modeli\OsnovnePloceKontroler@getLista')->name('osnovne_ploce.modeli');
-Route::get('osnovne_ploce/dodavanje', 'Modeli\OsnovnePloceKontroler@getDodavanje')->name('osnovne_ploce.modeli.dodavanje.get');
-Route::post('osnovne_ploce/dodavanje', 'Modeli\OsnovnePloceKontroler@postDodavanje')->name('osnovne_ploce.modeli.dodavanje.post');
-Route::get('osnovne_ploce/izmena/{id}', 'Modeli\OsnovnePloceKontroler@getIzmena')->name('osnovne_ploce.modeli.izmena.get');
-Route::post('osnovne_ploce/izmena/{id}', 'Modeli\OsnovnePloceKontroler@postIzmena')->name('osnovne_ploce.modeli.izmena.post');
-Route::get('osnovne_ploce/detalj/{id}', 'Modeli\OsnovnePloceKontroler@getDetalj')->name('osnovne_ploce.modeli.detalj');
-Route::post('osnovne_ploce/brisanje', 'Modeli\OsnovnePloceKontroler@postBrisanje')->name('osnovne_ploce.modeli.brisanje');
-Route::get('osnovne_ploce/uredjaji/{id}', 'Modeli\OsnovnePloceKontroler@getUredjaji')->name('osnovne_ploce.modeli.uredjaji');
-Route::get('osnovne_ploce/racunari/{id}', 'Modeli\OsnovnePloceKontroler@getRacunari')->name('osnovne_ploce.modeli.racunari');
+    Route::get('osnovne_ploce', 'Modeli\OsnovnePloceKontroler@getLista')->name('osnovne_ploce.modeli');
+    Route::get('osnovne_ploce/dodavanje', 'Modeli\OsnovnePloceKontroler@getDodavanje')->name('osnovne_ploce.modeli.dodavanje.get');
+    Route::post('osnovne_ploce/dodavanje', 'Modeli\OsnovnePloceKontroler@postDodavanje')->name('osnovne_ploce.modeli.dodavanje.post');
+    Route::get('osnovne_ploce/izmena/{id}', 'Modeli\OsnovnePloceKontroler@getIzmena')->name('osnovne_ploce.modeli.izmena.get');
+    Route::post('osnovne_ploce/izmena/{id}', 'Modeli\OsnovnePloceKontroler@postIzmena')->name('osnovne_ploce.modeli.izmena.post');
+    Route::get('osnovne_ploce/detalj/{id}', 'Modeli\OsnovnePloceKontroler@getDetalj')->name('osnovne_ploce.modeli.detalj');
+    Route::post('osnovne_ploce/brisanje', 'Modeli\OsnovnePloceKontroler@postBrisanje')->name('osnovne_ploce.modeli.brisanje');
+    Route::get('osnovne_ploce/uredjaji/{id}', 'Modeli\OsnovnePloceKontroler@getUredjaji')->name('osnovne_ploce.modeli.uredjaji');
+    Route::get('osnovne_ploce/racunari/{id}', 'Modeli\OsnovnePloceKontroler@getRacunari')->name('osnovne_ploce.modeli.racunari');
 
 // HDDovi
-Route::get('hddovi', 'Modeli\HddKontroler@getLista')->name('hddovi.modeli');
-Route::get('hddovi/dodavanje', 'Modeli\HddKontroler@getDodavanje')->name('hddovi.modeli.dodavanje.get');
-Route::post('hddovi/dodavanje', 'Modeli\HddKontroler@postDodavanje')->name('hddovi.modeli.dodavanje.post');
-Route::get('hddovi/izmena/{id}', 'Modeli\HddKontroler@getIzmena')->name('hddovi.modeli.izmena.get');
-Route::post('hddovi/izmena/{id}', 'Modeli\HddKontroler@postIzmena')->name('hddovi.modeli.izmena.post');
-Route::get('hddovi/detalj/{id}', 'Modeli\HddKontroler@getDetalj')->name('hddovi.modeli.detalj');
-Route::post('hddovi/brisanje', 'Modeli\HddKontroler@postBrisanje')->name('hddovi.modeli.brisanje');
-Route::get('hddovi/uredjaji/{id}', 'Modeli\HddKontroler@getUredjaji')->name('hddovi.modeli.uredjaji');
-Route::get('hddovi/racunari/{id}', 'Modeli\HddKontroler@getRacunari')->name('hddovi.modeli.racunari');
+    Route::get('hddovi', 'Modeli\HddKontroler@getLista')->name('hddovi.modeli');
+    Route::get('hddovi/dodavanje', 'Modeli\HddKontroler@getDodavanje')->name('hddovi.modeli.dodavanje.get');
+    Route::post('hddovi/dodavanje', 'Modeli\HddKontroler@postDodavanje')->name('hddovi.modeli.dodavanje.post');
+    Route::get('hddovi/izmena/{id}', 'Modeli\HddKontroler@getIzmena')->name('hddovi.modeli.izmena.get');
+    Route::post('hddovi/izmena/{id}', 'Modeli\HddKontroler@postIzmena')->name('hddovi.modeli.izmena.post');
+    Route::get('hddovi/detalj/{id}', 'Modeli\HddKontroler@getDetalj')->name('hddovi.modeli.detalj');
+    Route::post('hddovi/brisanje', 'Modeli\HddKontroler@postBrisanje')->name('hddovi.modeli.brisanje');
+    Route::get('hddovi/uredjaji/{id}', 'Modeli\HddKontroler@getUredjaji')->name('hddovi.modeli.uredjaji');
+    Route::get('hddovi/racunari/{id}', 'Modeli\HddKontroler@getRacunari')->name('hddovi.modeli.racunari');
 
 // VGA
-Route::get('vga', 'Modeli\GrafickiAdapteriKontroler@getLista')->name('vga.modeli');
-Route::get('vga/dodavanje', 'Modeli\GrafickiAdapteriKontroler@getDodavanje')->name('vga.modeli.dodavanje.get');
-Route::post('vga/dodavanje', 'Modeli\GrafickiAdapteriKontroler@postDodavanje')->name('vga.modeli.dodavanje.post');
-Route::get('vga/izmena/{id}', 'Modeli\GrafickiAdapteriKontroler@getIzmena')->name('vga.modeli.izmena.get');
-Route::post('vga/izmena/{id}', 'Modeli\GrafickiAdapteriKontroler@postIzmena')->name('vga.modeli.izmena.post');
-Route::get('vga/detalj/{id}', 'Modeli\GrafickiAdapteriKontroler@getDetalj')->name('vga.modeli.detalj');
-Route::post('vga/brisanje', 'Modeli\GrafickiAdapteriKontroler@postBrisanje')->name('vga.modeli.brisanje');
-Route::get('vga/uredjaji/{id}', 'Modeli\GrafickiAdapteriKontroler@getUredjaji')->name('vga.modeli.uredjaji');
-Route::get('vga/racunari/{id}', 'Modeli\GrafickiAdapteriKontroler@getRacunari')->name('vga.modeli.racunari');
+    Route::get('vga', 'Modeli\GrafickiAdapteriKontroler@getLista')->name('vga.modeli');
+    Route::get('vga/dodavanje', 'Modeli\GrafickiAdapteriKontroler@getDodavanje')->name('vga.modeli.dodavanje.get');
+    Route::post('vga/dodavanje', 'Modeli\GrafickiAdapteriKontroler@postDodavanje')->name('vga.modeli.dodavanje.post');
+    Route::get('vga/izmena/{id}', 'Modeli\GrafickiAdapteriKontroler@getIzmena')->name('vga.modeli.izmena.get');
+    Route::post('vga/izmena/{id}', 'Modeli\GrafickiAdapteriKontroler@postIzmena')->name('vga.modeli.izmena.post');
+    Route::get('vga/detalj/{id}', 'Modeli\GrafickiAdapteriKontroler@getDetalj')->name('vga.modeli.detalj');
+    Route::post('vga/brisanje', 'Modeli\GrafickiAdapteriKontroler@postBrisanje')->name('vga.modeli.brisanje');
+    Route::get('vga/uredjaji/{id}', 'Modeli\GrafickiAdapteriKontroler@getUredjaji')->name('vga.modeli.uredjaji');
+    Route::get('vga/racunari/{id}', 'Modeli\GrafickiAdapteriKontroler@getRacunari')->name('vga.modeli.racunari');
 
 // Napajanja
-Route::get('napajanja', 'Modeli\NapajanjaKontroler@getLista')->name('napajanja.modeli');
-Route::get('napajanja/dodavanje', 'Modeli\NapajanjaKontroler@getDodavanje')->name('napajanja.modeli.dodavanje.get');
-Route::post('napajanja/dodavanje', 'Modeli\NapajanjaKontroler@postDodavanje')->name('napajanja.modeli.dodavanje.post');
-Route::get('napajanja/izmena/{id}', 'Modeli\NapajanjaKontroler@getIzmena')->name('napajanja.modeli.izmena.get');
-Route::post('napajanja/izmena/{id}', 'Modeli\NapajanjaKontroler@postIzmena')->name('napajanja.modeli.izmena.post');
-Route::get('napajanja/detalj/{id}', 'Modeli\NapajanjaKontroler@getDetalj')->name('napajanja.modeli.detalj');
-Route::post('napajanja/brisanje', 'Modeli\NapajanjaKontroler@postBrisanje')->name('napajanja.modeli.brisanje');
-Route::get('napajanja/uredjaji/{id}', 'Modeli\NapajanjaKontroler@getUredjaji')->name('napajanja.modeli.uredjaji');
-Route::get('napajanja/racunari/{id}', 'Modeli\NapajanjaKontroler@getRacunari')->name('napajanja.modeli.racunari');
+    Route::get('napajanja', 'Modeli\NapajanjaKontroler@getLista')->name('napajanja.modeli');
+    Route::get('napajanja/dodavanje', 'Modeli\NapajanjaKontroler@getDodavanje')->name('napajanja.modeli.dodavanje.get');
+    Route::post('napajanja/dodavanje', 'Modeli\NapajanjaKontroler@postDodavanje')->name('napajanja.modeli.dodavanje.post');
+    Route::get('napajanja/izmena/{id}', 'Modeli\NapajanjaKontroler@getIzmena')->name('napajanja.modeli.izmena.get');
+    Route::post('napajanja/izmena/{id}', 'Modeli\NapajanjaKontroler@postIzmena')->name('napajanja.modeli.izmena.post');
+    Route::get('napajanja/detalj/{id}', 'Modeli\NapajanjaKontroler@getDetalj')->name('napajanja.modeli.detalj');
+    Route::post('napajanja/brisanje', 'Modeli\NapajanjaKontroler@postBrisanje')->name('napajanja.modeli.brisanje');
+    Route::get('napajanja/uredjaji/{id}', 'Modeli\NapajanjaKontroler@getUredjaji')->name('napajanja.modeli.uredjaji');
+    Route::get('napajanja/racunari/{id}', 'Modeli\NapajanjaKontroler@getRacunari')->name('napajanja.modeli.racunari');
 
 //Monitori
-Route::get('monitori', 'Modeli\MonitoriKontroler@getLista')->name('monitori.modeli');
-Route::get('monitori/dodavanje', 'Modeli\MonitoriKontroler@getDodavanje')->name('monitori.modeli.dodavanje.get');
-Route::post('monitori/dodavanje', 'Modeli\MonitoriKontroler@postDodavanje')->name('monitori.modeli.dodavanje.post');
-Route::get('monitori/izmena/{id}', 'Modeli\MonitoriKontroler@getIzmena')->name('monitori.modeli.izmena.get');
-Route::post('monitori/izmena/{id}', 'Modeli\MonitoriKontroler@postIzmena')->name('monitori.modeli.izmena.post');
-Route::get('monitori/detalj/{id}', 'Modeli\MonitoriKontroler@getDetalj')->name('monitori.modeli.detalj');
-Route::post('monitori/brisanje', 'Modeli\MonitoriKontroler@postBrisanje')->name('monitori.modeli.brisanje');
-Route::get('monitori/uredjaji/{id}', 'Modeli\MonitoriKontroler@getUredjaji')->name('monitori.modeli.uredjaji');
-Route::get('monitori/racunari/{id}', 'Modeli\MonitoriKontroler@getRacunari')->name('monitori.modeli.racunari');
+    Route::get('monitori', 'Modeli\MonitoriKontroler@getLista')->name('monitori.modeli');
+    Route::get('monitori/dodavanje', 'Modeli\MonitoriKontroler@getDodavanje')->name('monitori.modeli.dodavanje.get');
+    Route::post('monitori/dodavanje', 'Modeli\MonitoriKontroler@postDodavanje')->name('monitori.modeli.dodavanje.post');
+    Route::get('monitori/izmena/{id}', 'Modeli\MonitoriKontroler@getIzmena')->name('monitori.modeli.izmena.get');
+    Route::post('monitori/izmena/{id}', 'Modeli\MonitoriKontroler@postIzmena')->name('monitori.modeli.izmena.post');
+    Route::get('monitori/detalj/{id}', 'Modeli\MonitoriKontroler@getDetalj')->name('monitori.modeli.detalj');
+    Route::post('monitori/brisanje', 'Modeli\MonitoriKontroler@postBrisanje')->name('monitori.modeli.brisanje');
+    Route::get('monitori/uredjaji/{id}', 'Modeli\MonitoriKontroler@getUredjaji')->name('monitori.modeli.uredjaji');
+    Route::get('monitori/racunari/{id}', 'Modeli\MonitoriKontroler@getRacunari')->name('monitori.modeli.racunari');
 
 //Stampaci
-Route::get('stampaci', 'Modeli\StampaciKontroler@getLista')->name('stampaci.modeli');
-Route::get('stampaci/dodavanje', 'Modeli\StampaciKontroler@getDodavanje')->name('stampaci.modeli.dodavanje.get');
-Route::post('stampaci/dodavanje', 'Modeli\StampaciKontroler@postDodavanje')->name('stampaci.modeli.dodavanje.post');
-Route::get('stampaci/izmena/{id}', 'Modeli\StampaciKontroler@getIzmena')->name('stampaci.modeli.izmena.get');
-Route::post('stampaci/izmena/{id}', 'Modeli\StampaciKontroler@postIzmena')->name('stampaci.modeli.izmena.post');
-Route::get('stampaci/detalj/{id}', 'Modeli\StampaciKontroler@getDetalj')->name('stampaci.modeli.detalj');
-Route::post('stampaci/brisanje', 'Modeli\StampaciKontroler@postBrisanje')->name('stampaci.modeli.brisanje');
-Route::get('stampaci/uredjaji/{id}', 'Modeli\StampaciKontroler@getUredjaji')->name('stampaci.modeli.uredjaji');
-Route::get('stampaci/racunari/{id}', 'Modeli\StampaciKontroler@getRacunari')->name('stampaci.modeli.racunari');
+    Route::get('stampaci', 'Modeli\StampaciKontroler@getLista')->name('stampaci.modeli');
+    Route::get('stampaci/dodavanje', 'Modeli\StampaciKontroler@getDodavanje')->name('stampaci.modeli.dodavanje.get');
+    Route::post('stampaci/dodavanje', 'Modeli\StampaciKontroler@postDodavanje')->name('stampaci.modeli.dodavanje.post');
+    Route::get('stampaci/izmena/{id}', 'Modeli\StampaciKontroler@getIzmena')->name('stampaci.modeli.izmena.get');
+    Route::post('stampaci/izmena/{id}', 'Modeli\StampaciKontroler@postIzmena')->name('stampaci.modeli.izmena.post');
+    Route::get('stampaci/detalj/{id}', 'Modeli\StampaciKontroler@getDetalj')->name('stampaci.modeli.detalj');
+    Route::post('stampaci/brisanje', 'Modeli\StampaciKontroler@postBrisanje')->name('stampaci.modeli.brisanje');
+    Route::get('stampaci/uredjaji/{id}', 'Modeli\StampaciKontroler@getUredjaji')->name('stampaci.modeli.uredjaji');
+    Route::get('stampaci/racunari/{id}', 'Modeli\StampaciKontroler@getRacunari')->name('stampaci.modeli.racunari');
 
 //Skeneri
-Route::get('skeneri', 'Modeli\SkeneriKontroler@getLista')->name('skeneri.modeli');
-Route::get('skeneri/dodavanje', 'Modeli\SkeneriKontroler@getDodavanje')->name('skeneri.modeli.dodavanje.get');
-Route::post('skeneri/dodavanje', 'Modeli\SkeneriKontroler@postDodavanje')->name('skeneri.modeli.dodavanje.post');
-Route::get('skeneri/izmena/{id}', 'Modeli\SkeneriKontroler@getIzmena')->name('skeneri.modeli.izmena.get');
-Route::post('skeneri/izmena/{id}', 'Modeli\SkeneriKontroler@postIzmena')->name('skeneri.modeli.izmena.post');
-Route::get('skeneri/detalj/{id}', 'Modeli\SkeneriKontroler@getDetalj')->name('skeneri.modeli.detalj');
-Route::post('skeneri/brisanje', 'Modeli\SkeneriKontroler@postBrisanje')->name('skeneri.modeli.brisanje');
-Route::get('skeneri/uredjaji/{id}', 'Modeli\SkeneriKontroler@getUredjaji')->name('skeneri.modeli.uredjaji');
-Route::get('skeneri/racunari/{id}', 'Modeli\SkeneriKontroler@getRacunari')->name('skeneri.modeli.racunari');
+    Route::get('skeneri', 'Modeli\SkeneriKontroler@getLista')->name('skeneri.modeli');
+    Route::get('skeneri/dodavanje', 'Modeli\SkeneriKontroler@getDodavanje')->name('skeneri.modeli.dodavanje.get');
+    Route::post('skeneri/dodavanje', 'Modeli\SkeneriKontroler@postDodavanje')->name('skeneri.modeli.dodavanje.post');
+    Route::get('skeneri/izmena/{id}', 'Modeli\SkeneriKontroler@getIzmena')->name('skeneri.modeli.izmena.get');
+    Route::post('skeneri/izmena/{id}', 'Modeli\SkeneriKontroler@postIzmena')->name('skeneri.modeli.izmena.post');
+    Route::get('skeneri/detalj/{id}', 'Modeli\SkeneriKontroler@getDetalj')->name('skeneri.modeli.detalj');
+    Route::post('skeneri/brisanje', 'Modeli\SkeneriKontroler@postBrisanje')->name('skeneri.modeli.brisanje');
+    Route::get('skeneri/uredjaji/{id}', 'Modeli\SkeneriKontroler@getUredjaji')->name('skeneri.modeli.uredjaji');
+    Route::get('skeneri/racunari/{id}', 'Modeli\SkeneriKontroler@getRacunari')->name('skeneri.modeli.racunari');
 
 //Upsevi
-Route::get('upsevi', 'Modeli\UpseviKontroler@getLista')->name('upsevi.modeli');
-Route::get('upsevi/dodavanje', 'Modeli\UpseviKontroler@getDodavanje')->name('upsevi.modeli.dodavanje.get');
-Route::post('upsevi/dodavanje', 'Modeli\UpseviKontroler@postDodavanje')->name('upsevi.modeli.dodavanje.post');
-Route::get('upsevi/izmena/{id}', 'Modeli\UpseviKontroler@getIzmena')->name('upsevi.modeli.izmena.get');
-Route::post('upsevi/izmena/{id}', 'Modeli\UpseviKontroler@postIzmena')->name('upsevi.modeli.izmena.post');
-Route::get('upsevi/detalj/{id}', 'Modeli\UpseviKontroler@getDetalj')->name('upsevi.modeli.detalj');
-Route::post('upsevi/brisanje', 'Modeli\UpseviKontroler@postBrisanje')->name('upsevi.modeli.brisanje');
-Route::get('upsevi/uredjaji/{id}', 'Modeli\UpseviKontroler@getUredjaji')->name('upsevi.modeli.uredjaji');
+    Route::get('upsevi', 'Modeli\UpseviKontroler@getLista')->name('upsevi.modeli');
+    Route::get('upsevi/dodavanje', 'Modeli\UpseviKontroler@getDodavanje')->name('upsevi.modeli.dodavanje.get');
+    Route::post('upsevi/dodavanje', 'Modeli\UpseviKontroler@postDodavanje')->name('upsevi.modeli.dodavanje.post');
+    Route::get('upsevi/izmena/{id}', 'Modeli\UpseviKontroler@getIzmena')->name('upsevi.modeli.izmena.get');
+    Route::post('upsevi/izmena/{id}', 'Modeli\UpseviKontroler@postIzmena')->name('upsevi.modeli.izmena.post');
+    Route::get('upsevi/detalj/{id}', 'Modeli\UpseviKontroler@getDetalj')->name('upsevi.modeli.detalj');
+    Route::post('upsevi/brisanje', 'Modeli\UpseviKontroler@postBrisanje')->name('upsevi.modeli.brisanje');
+    Route::get('upsevi/uredjaji/{id}', 'Modeli\UpseviKontroler@getUredjaji')->name('upsevi.modeli.uredjaji');
 });
 
 //OPREMA
