@@ -32,7 +32,7 @@ class ZaposleniKontroler extends Kontroler
                             if ($model->kancelarija) {
                                 return ($model->kancelarija->sviPodaci());
                             }
-                            return 'kanc';
+                            return ' ';
                         }) //Isto kao u prethodnom slučaju samo funkcija iz modela kancelarija
                         ->addColumn('email', function ($model) {
                             return $model->emailovi->map(function($email) {
