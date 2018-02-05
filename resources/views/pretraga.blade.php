@@ -63,7 +63,7 @@
         <a href="{{ route('kvar') }}" class="btn btn-success" style="margin-top: 3rem;">Prijava/status kvara</a>
     </div>
 </div>
-@if(Auth::user()->level === 0)
+@if(Auth::user()->role_id === 1)
 <div class="row" style="margin: 10px 0px 10px 20px;">
     <div class="col-md-12">
         <div class="btn-group">
