@@ -149,6 +149,9 @@
     </div>
 </div>
 
+@if($kvarovi->isEmpty())
+<h3 class="text-danger">Trenutno nema prijavljenih kvarova</h3>
+@else
 <div class="row ceo_dva" id="formaStatus">
     <div class="col-md-8 col-md-offset-2 boxic">
         <div class="col-md-9">
@@ -174,6 +177,7 @@
         </div>
     </div>
 </div>
+@endif
 @endsection
 
 @section('skripte')
