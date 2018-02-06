@@ -61,10 +61,10 @@
         columns: [
             {data: 'id', name: 'id'},
             {data: 'ime', name: 'ime'},
-            {data: 'uprava.naziv', name: 'uprava'},
-            {data: 'kancelarija.naziv', name: 'kancelarija'},
+            {data: 'uprava.naziv', name: 'uprava.naziv'},
+            {data: 'kancelarija.naziv', name: 'kancelarija.naziv'},
             {data: 'email', name: 'email'},
-            {data: 'akcije', name: 'akcije', orderable: false, searchable: false},
+            {data: 'akcije', name: 'akcije', orderable: false, searchable: false}
         ],
             responsive: true,
             stateSave: true,
