@@ -51,6 +51,7 @@
                 <th style="width: 20%;">Uprava:</th>
                 <td style="width: 80%;">{{$zaposleni->uprava->naziv}}</td>
             </tr>
+            @if(zaposleni->kancelarija)
             <tr>
                 <th style="width: 20%;">Kancelarija:</th>
                 <td style="width: 80%;"> <a href="{{route('kancelarije.detalj.get', $zaposleni->kancelarija->id)}}">{{$zaposleni->kancelarija->naziv}}, {{$zaposleni->kancelarija->lokacija->naziv}}, {{$zaposleni->kancelarija->sprat->naziv}}</a>  
@@ -64,6 +65,7 @@
                     @endforeach
                 </td>
             </tr>
+            @endif
             @endif
 
             @if (count($zaposleni->racunar)>0)
