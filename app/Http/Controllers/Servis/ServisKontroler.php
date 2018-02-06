@@ -29,11 +29,6 @@ use Illuminate\Database\Eloquent\Collection;
 class ServisKontroler extends Kontroler
 {
 
-     public function __construct()
-    {
-        parent::__construct();
-        $this->middleware('admin');
-    }
 
     public function getLista()
     {

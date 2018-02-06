@@ -170,7 +170,7 @@
                 <option value=""></option>
                 @foreach($radnici as $radnik)
                 <option value="{{ $radnik->id }}"{{ old('zaposleni_id') == $radnik->id ? ' selected' : '' }}>
-                    {{ $radnik->Imeprezime() }}
+                    {{ $radnik->Imeprezime() }}, {{ $radnik->uprava ? $radnik->uprava->naziv : 'neraspoređen' }}
                 </option>
                 @endforeach
             </select>

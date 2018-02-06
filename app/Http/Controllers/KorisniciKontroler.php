@@ -11,11 +11,6 @@ use App\Modeli\Korisnik;
 
 class KorisniciKontroler extends Kontroler
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $this->middleware('admin');
-    }
 
     public function getLista()
     {
