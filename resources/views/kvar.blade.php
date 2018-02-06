@@ -60,9 +60,9 @@
                     @foreach($zap as $z)
                     <option value="{{ $z->id }}"
                             {{ old('zaposleni_id') == $z->id ? ' selected' : '' }}>
-                            {{ $z->imePrezime() }},
-                            {{ $z->uprava->naziv }},
-                            {{ $z->kancelarija->sviPodaci() }}</option>
+                            {{ $z->imePrezime() }}, 
+                            {{ $z->uprava ? $z->uprava->naziv : 'neraspoređen' }},
+                            {{ $z->kancelarija ? $z->kancelarija->sviPodaci() : 'neraspoređen' }}</option>
                     @endforeach
                 </select>
                 @if ($errors->has('zaposleni_id'))
