@@ -25,10 +25,11 @@
         <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
             <thead>
                 <th style="width: 5%;">#</th>
-                <th style="width: 25%;">Ime</th>
-                <th style="width: 20%;">Uprava</th>
+                <th style="width: 20%;">Ime</th>
+                <th style="width: 15%;">Uprava</th>
+                <th style="width: 15%;">Radno mesto</th>
                 <th style="width: 20%;">Kancelarija</th>
-                <th style="width: 20%;">Email</th>
+                <th style="width: 15%;">Email</th>
                 <th style="width: 10%; text-align:right;">
                 <i class="fa fa-cogs"></i>&emsp;Akcije
             </th>
@@ -54,7 +55,31 @@
         });
 
         var tabela = $('#tabela').DataTable({
-
+            dom: 'Bflrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',{
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'A4',
+                customize : function(doc){
+            doc.content[1].table.widths = ["25%", "25%", "25%", "25%"];
+        },
+                exportOptions: {
+        columns: [ 1, 2, 3, 4 ]
+        }
+            }
+                
+        ],
+        columnDefs: [
+                {
+                    orderable: false,
+                    searchable: false,
+                    "targets": -1
+                }
+            ],
+        stateSave: true,
         processing: true,
         serverSide: true,
         ajax: '{!! route('zaposleni.ajax') !!}',
@@ -62,6 +87,7 @@
             {data: 'id', name: 'id'},
             {data: 'ime', name: 'ime'},
             {data: 'uprava.naziv', name: 'uprava.naziv'},
+            {data: 'radno_mesto', name: 'radno_mesto'},
             {data: 'kancelarija.naziv', name: 'kancelarija.naziv'},
             {data: 'email', name: 'email'},
             {data: 'akcije', name: 'akcije', orderable: false, searchable: false}

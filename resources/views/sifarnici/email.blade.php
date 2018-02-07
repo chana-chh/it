@@ -19,7 +19,7 @@
 @else
 <table class="table table-striped" id="tabela">
     <thead>
-    <th style="width: 5%;">#</th>
+    <th style="width: 5%;"><small>id</small></th>
     <th style="width: 20%;">Adresa</th>
     <th style="width: 10%;">Službeni</th>
     <th style="width: 25%;">Zaposleni</th>
@@ -30,7 +30,7 @@
 
     @foreach ($data as $d)
     <tr>
-        <td>{{ $d->id }}</td>
+        <td><small>{{ $d->id }}</small></td>
         <td>
             <a href="mailto:{{ $d->adresa }}"><strong class="text-info lozinka" data-toggle="lozinka" title="Lozinka:" data-content="{{ $d->lozinka }}">{{ $d->adresa }}</strong></a>
         </td>
@@ -230,13 +230,32 @@
         });
 
         $('#tabela').DataTable({
-            columnDefs: [
+            order: [[ 1, 'asc' ]],
+            dom: 'Bflrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',{
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'A4',
+                customize : function(doc){
+            doc.content[1].table.widths = ["30%", "30%", "30%"];
+        },
+                exportOptions: {
+        columns: [ 1, 3, 4 ]
+        }
+            }
+                
+        ],
+        columnDefs: [
                 {
                     orderable: false,
                     searchable: false,
                     "targets": -1
                 }
             ],
+        stateSave: true,
             language: {
                 search: "Pronađi u tabeli",
                 paginate: {

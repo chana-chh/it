@@ -19,6 +19,7 @@
 @else
 <table class="table table-striped" id="tabela">
     <thead>
+    <th style="width: 5%;"> <small>id</small> </th>
     <th style="width: 15%;">Broj</th>
     <th style="width: 9%;">Službeni</th>
     <th style="width: 41%;">Zaposleni</th>
@@ -28,6 +29,7 @@
 <tbody>
     @foreach ($data as $d)
     <tr>
+        <td> <small>{{ $d->id }}</small> </td>
         <td><strong>{{ $d->broj }}</strong></td>
         <td><strong title="U pitanju je službeni telefon">{{ $d->sluzbeni == 1 ? "s" : " "}}</strong></td>
         <td><a  href="{{ route('zaposleni.detalj', $d->zaposleni->id) }}"><strong>{{ $d->zaposleni->imePrezime() }}</strong></a> - <small> {{ $d->zaposleni->uprava ? $d->zaposleni->uprava->naziv : 'neraspoređen' }}</small></td>
@@ -184,13 +186,31 @@
 
         $('#tabela').DataTable({
             order: [[ 2, 'asc' ]],
-            columnDefs: [
+            dom: 'Bflrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',{
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'A4',
+                customize : function(doc){
+            doc.content[1].table.widths = ["30%", "10%", "30%", "30%"];
+        },
+                exportOptions: {
+        columns: [ 1, 2, 3, 4 ]
+        }
+            }
+                
+        ],
+        columnDefs: [
                 {
                     orderable: false,
                     searchable: false,
                     "targets": -1
                 }
             ],
+        stateSave: true,
             language: {
                 search: "Pronađi u tabeli",
                 paginate: {
