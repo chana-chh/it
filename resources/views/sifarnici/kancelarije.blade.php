@@ -91,6 +91,12 @@
                     </select>
                 </div>
 
+
+            <div class="form-group">
+            <label for="povrsinaModal">Površina (m2):</label>
+            <input type="number" id="povrsinaModal" name="povrsinaModal" class="form-control" min="0" step="0.01">
+            </div>
+
                 <div class="form-group">
                   <label for="napomenaModal">Napomena:</label>
                   <textarea class="form-control" id="napomenaModal" name="napomenaModal"></textarea>
@@ -165,6 +171,19 @@
             @if ($errors->has('sprat_id'))
             <span class="help-block">
                 <strong>{{ $errors->first('sprat_id') }}</strong>
+            </span>
+            @endif
+        </div>
+
+        <div class="form-group{{ $errors->has('povrsina') ? ' has-error' : '' }}">
+            <label for="povrsina">Površina (m2):</label>
+            <input type="number" id="povrsina" name="povrsina"
+                   class="form-control"
+                   value="{{ old('povrsina', 0) }}"
+                   min="0" step="0.01">
+            @if ($errors->has('povrsina'))
+            <span class="help-block">
+                <strong>{{ $errors->first('povrsina') }}</strong>
             </span>
             @endif
         </div>
@@ -330,6 +349,7 @@ $( document ).ready(function() {
 
           $("#idModal").val(result.kancelarije.id);
           $("#nazivModal").val(result.kancelarije.naziv);
+          $("#povrsinaModal").val(result.kancelarije.povrsina);
           $("#napomenaModal").val(result.kancelarije.napomena);
           
             $.each(result.lokacije, function(index, lokObjekat){

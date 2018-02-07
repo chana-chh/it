@@ -63,6 +63,7 @@ class KancelarijeKontroler extends Kontroler
         $kancelarija->naziv = $request->naziv;
         $kancelarija->sprat_id = $request->sprat_id;
         $kancelarija->lokacija_id = $request->lokacija_id;
+        $kancelarija->povrsina = $request->povrsina;
         $kancelarija->napomena = $request->napomena;
         $kancelarija->save();
 
@@ -83,6 +84,7 @@ class KancelarijeKontroler extends Kontroler
         $kancelarija->naziv = $request->nazivModal;
         $kancelarija->sprat_id = $request->sprat_idModal;
         $kancelarija->napomena = $request->napomenaModal;
+        $kancelarija->povrsina = $request->povrsina;
         $kancelarija->lokacija_id = $request->lokacija_idModal;
         $kancelarija->save();
 

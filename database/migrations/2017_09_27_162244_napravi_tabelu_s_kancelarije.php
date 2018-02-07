@@ -14,6 +14,7 @@ class NapraviTabeluSKancelarije extends Migration
             $table->string('naziv', 50);
             $table->integer('sprat_id')->unsigned();
             $table->integer('lokacija_id')->unsigned();
+            $table->decimal('povrsina', 10, 2)->default(0);
             $table->text('napomena')->nullable();
 
             $table->unique([
