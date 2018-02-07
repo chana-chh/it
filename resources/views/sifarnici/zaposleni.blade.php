@@ -25,9 +25,9 @@
         <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
             <thead>
                 <th style="width: 5%;">#</th>
-                <th style="width: 20%;">Ime</th>
+                <th style="width: 17%;">Ime</th>
                 <th style="width: 15%;">Uprava</th>
-                <th style="width: 15%;">Radno mesto</th>
+                <th style="width: 18%;">Radno mesto</th>
                 <th style="width: 20%;">Kancelarija</th>
                 <th style="width: 15%;">Email</th>
                 <th style="width: 10%; text-align:right;">

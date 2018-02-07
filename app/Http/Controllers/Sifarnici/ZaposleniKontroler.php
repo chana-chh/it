@@ -28,6 +28,9 @@ class ZaposleniKontroler extends Kontroler
                         ->editColumn('ime', function ($model) {
                             return ($model->imePrezime());
                         }) //Ovde editujem kolonu koja već postoji, -ime- i uvlačim rezultat funkcije iz modela za konkatinaciju imena i prezimena...
+                        ->editColumn('radno_mesto', function ($model) {
+                            return '<small>'.$model->radno_mesto.'</small>';
+                        }) 
                         ->editColumn('kancelarija.naziv', function ($model) {
                             if ($model->kancelarija) {
                                 return ($model->kancelarija->sviPodaci());
@@ -40,7 +43,7 @@ class ZaposleniKontroler extends Kontroler
                                     })->implode('<br>');
                         }) //Dodavanje mapiranih i složenih HasMany podataka. Svaku dodatu kolonu treba definisati i na pogledu. Potrebno je srediti header tabele i data u DataTables delu skripte
                         ->addColumn('akcije', 'sifarnici.inc.dugmici') //Ovde uvlačim čitav view sa dugmićima u kolonu
-                        ->rawColumns(['akcije', 'email']) //Ovde dopustam da nabrojane kolone budu renderovane kao HTML, inače je sve prikazano kao Tekst
+                        ->rawColumns(['akcije', 'email', 'radno_mesto']) //Ovde dopustam da nabrojane kolone budu renderovane kao HTML, inače je sve prikazano kao Tekst
                         ->make(true);
     }
 
