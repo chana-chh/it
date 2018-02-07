@@ -20,17 +20,17 @@
 @else
 <table id="tabela" class="table table-striped" cellspacing="0" width="100%">
     <thead>
-        <th>#</th>
-        <th>Kancelarija</th>
-        <th>Sprat</th>
-        <th>Lokacija</th>
-        <th>Napomena</th>
-        <th style="text-align:right"><i class="fa fa-cogs"></i></th>
+        <th style="width: 5%;"><small>id</small></th>
+        <th style="width: 20%;">Kancelarija</th>
+        <th style="width: 20%;">Sprat</th>
+        <th style="width: 20%;">Lokacija</th>
+        <th style="width: 20%;">Napomena</th>
+        <th style="text-align:right; width: 15%"><i class="fa fa-cogs"></i></th>
     </thead>
     <tbody>
         @foreach ($kancelarije as $kancelarija)
         <tr>
-            <td>{{$kancelarija->id}}</td>
+            <td><small>{{$kancelarija->id}}</small></td>
             <td><strong>{{$kancelarija->naziv}}</strong></td>
             <td>{{$kancelarija->sprat->naziv}}</td>
             <td>{{$kancelarija->lokacija->naziv}}</td>
@@ -251,7 +251,23 @@ $( document ).ready(function() {
 
         var tabela = $('#tabela').DataTable({
 
-        responsive: true,
+        dom: 'Bflrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',{
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'A4',
+                customize : function(doc){
+            doc.content[1].table.widths = ["20%", "20%", "30%", "30%"];
+        },
+                exportOptions: {
+        columns: [ 1, 2, 3, 4 ]
+        }
+            }
+                
+        ],
         columnDefs: [
                 {
                     orderable: false,
@@ -259,6 +275,7 @@ $( document ).ready(function() {
                     "targets": -1
                 }
             ],
+        stateSave: true,
         language: {
         search: "Pronađi u tabeli",
             paginate: {

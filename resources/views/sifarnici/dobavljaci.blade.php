@@ -105,13 +105,29 @@ $(document).ready(function () {
     });
 
     var tabela = $('#tabela').DataTable({
-
+        dom: 'Bflrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',{
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'A4',
+                customize : function(doc){
+            doc.content[1].table.widths = ["30%", "30%", "20%", "20%"];
+        },
+                exportOptions: {
+        columns: [ 1, 2, 3, 4 ]
+        }
+            }
+                
+        ],
         columnDefs: [{
             orderable: false,
             searchable: false,
             "targets": -1
         }],
-        responsive: true,
+        stateSave: true,
         language: {
             search: "Pronađi u tabeli",
             paginate: {

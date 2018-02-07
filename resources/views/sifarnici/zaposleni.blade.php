@@ -24,8 +24,8 @@
     <div class="col-md-12">
         <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
             <thead>
-                <th style="width: 10%;">#</th>
-                <th style="width: 20%;">Ime</th>
+                <th style="width: 5%;">#</th>
+                <th style="width: 25%;">Ime</th>
                 <th style="width: 20%;">Uprava</th>
                 <th style="width: 20%;">Kancelarija</th>
                 <th style="width: 20%;">Email</th>

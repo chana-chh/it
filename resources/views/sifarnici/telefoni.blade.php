@@ -223,6 +223,8 @@
                     "targets": -1
                 }
             ],
+            responsive: true,
+            stateSave: true,
             language: {
                 search: "Pronađi u tabeli",
                 paginate: {
