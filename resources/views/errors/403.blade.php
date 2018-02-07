@@ -11,6 +11,6 @@
 @endsection
 
 @section('sadrzaj')
-<a href="{{Request::referrer()}}">Nazad na prethodnu stranu</a>
-<a href="{{route('pocetna')}}">Nazad na početnu stranu</a>
+<a href="{{--Request::referrer()--}}">Nazad na prethodnu stranu</a>
+<a href="{{--route('pocetna')--}}">Nazad na početnu stranu</a>
 @endsection

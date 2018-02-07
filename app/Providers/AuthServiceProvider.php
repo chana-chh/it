@@ -40,7 +40,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('korisnik', function ($user) {
-            return $user->imaUlogu(['korisnik', 'centrala', 'kadrovi']);
+            return $user->imaUlogu(['korisnik']);
         });
     }
 
