@@ -79,9 +79,9 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('proizvodjaci') }}">Proizvođači</a></li>
+                            <li><a href="{{ route('dobavljaci') }}">Dobavljači</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('lokacije') }}">Lokacije</a></li>
-                            <li><a href="{{ route('dobavljaci') }}">Dobavljači</a></li>
                             <li><a href="{{ route('spratovi') }}">Spratovi</a></li>
                             <li><a href="{{ route('kancelarije') }}">Kancelarije</a></li>
                             <li><a href="{{ route('uprave') }}">Uprave</a></li>

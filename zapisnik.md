@@ -31,3 +31,7 @@ Datumi u servisu da budu nullable();
 ## VAZNO
 
 HDD model nema naziv ???
+
+centrala = $2y$10$DPxcULgNOQtrKyww/SMzrOxksOsx0WD3YvWa3Ew4ArHATMu.pWdGa
+kadrovi = $2y$10$2/v3DsTnPLGNjEDelPkXW.usO5TkwxGP3J5OaWb.W9DsyYdfGgrdq
+koricnik = $2y$10$jvGb3U7vY6R8C6vkRK0CROgRBBKM09S8Uy/b/R0fY9wbVbPhi8oyG
