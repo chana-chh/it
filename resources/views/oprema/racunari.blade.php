@@ -60,15 +60,7 @@ $( document ).ready(function() {
             {data: 'zaposleni.naziv', name: 'zaposleni.naziv'},
             {data: 'akcije', name: 'akcije', orderable: false, searchable: false},
         ],
-            responsive: true,
             stateSave: true,
-        columnDefs: [
-                {
-                    orderable: false,
-                    searchable: false,
-                    "targets": -1
-                }
-            ],
         responsive: true,
         language: {
         search: "Pronađi u tabeli",

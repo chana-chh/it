@@ -136,8 +136,32 @@
 $( document ).ready(function() {
 
     $('#tabela').DataTable({
-        columnDefs: [{ orderable: false, searchable: false, "targets": -1 }],
-        responsive: true,
+        dom: 'Bflrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',{
+                extend: 'pdfHtml5',
+                orientation: 'portrait',
+                pageSize: 'A4',
+                customize : function(doc){
+            doc.content[1].table.widths = ["100%"];
+        },
+                exportOptions: {
+        columns: [ 1 ]
+        }
+            }
+                
+        ],
+            columnDefs: [
+                {
+                    orderable: false,
+                    searchable: false,
+                    "targets": -1
+                }
+            ],
+            responsive: true,
+            stateSave: true,
         language: {
         search: "Pronađi u tabeli",
             paginate: {

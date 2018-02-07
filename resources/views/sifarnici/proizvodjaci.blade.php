@@ -31,7 +31,7 @@
             <td><strong>{{ $d->naziv }}</strong></td>
             <td>
                 @if($d->link)
-                <a href="{{ $d->link }}" target="_blank" style="font-size: 2rem;">
+                <a href="{{ $d->link }}" target="_blank" title="{{ $d->link }}" style="font-size: 2rem;">
                     <i class="fa fa-link"></i>
                 </a>
                 @endif
@@ -148,7 +148,32 @@
 <script>
 $( document ).ready(function() {
     $('#tabela').DataTable({
-            columnDefs: [{ orderable: false, searchable: false, "targets": -1 }],
+        dom: 'Bflrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',{
+                extend: 'pdfHtml5',
+                orientation: 'portrait',
+                pageSize: 'A4',
+                customize : function(doc){
+            doc.content[1].table.widths = ["100%"];
+        },
+                exportOptions: {
+        columns: [ 1 ]
+        }
+            }
+                
+        ],
+            columnDefs: [
+                {
+                    orderable: false,
+                    searchable: false,
+                    "targets": -1
+                }
+            ],
+            responsive: true,
+            stateSave: true,
             language: {
             search: "Pronađi u tabeli",
             paginate: {

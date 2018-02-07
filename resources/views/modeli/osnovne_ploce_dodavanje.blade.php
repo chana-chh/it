@@ -140,7 +140,7 @@
                 <div class="form-group checkboxoviforme">
             <label>
                 <input type="checkbox" name="usb_tri" id="usb_tri">
-                &emsp;Da li osnovna ploča ima makra jedan USB 3.0 port?
+                &emsp;Da li osnovna ploča ima bar jedan USB 3.0 port?
             </label>
         </div>
     </div>

@@ -18,9 +18,10 @@
 @if($data->isEmpty())
     <h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
 @else
-<table id="tabela" class="table table-striped">
+<table id="tabela" class="table table-striped" cellspacing="0" width="100%">
 	<thead>
-		<th style="width: 25%;">Naziv</th>
+        <th style="width: 5%;"><small>ID</small></th>
+		<th style="width: 20%;">Naziv</th>
         <th style="width: 20%;">Adresa</th>
         <th style="width: 10%;">Broj</th>
 		<th style="width: 35%;">Napomena</th>
@@ -29,6 +30,7 @@
 	<tbody>
 	@foreach ($data as $d)
         <tr>
+            <td><small>{{ $d->id }}</small></td>
             <td><strong>{{ $d->naziv }}</strong></td>
             <td>{{ $d->adresa_ulica }}</td>
             <td>{{ $d->adresa_broj }}</td>
@@ -181,7 +183,31 @@
 <script>
 $( document ).ready(function() {
     $('#tabela').DataTable({
-        columnDefs: [{ orderable: false, searchable: false, "targets": -1 }],
+        dom: 'Bflrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',{
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'A4',
+                customize : function(doc){
+            doc.content[1].table.widths = ["30%", "30%", "10%", "30%"];
+        },
+                exportOptions: {
+        columns: [ 1, 2, 3, 4 ]
+        }
+            }
+                
+        ],
+        columnDefs: [
+                {
+                    orderable: false,
+                    searchable: false,
+                    "targets": -1
+                }
+            ],
+        stateSave: true,
         language: {
         search: "Pronađi u tabeli",
             paginate: {
