@@ -21,10 +21,12 @@
 <table id="tabela" class="table table-striped" cellspacing="0" width="100%">
     <thead>
         <th style="width: 5%;"><small>id</small></th>
-        <th style="width: 20%;">Kancelarija</th>
-        <th style="width: 20%;">Sprat</th>
-        <th style="width: 20%;">Lokacija</th>
-        <th style="width: 20%;">Napomena</th>
+        <th style="width: 15%;">Kancelarija</th>
+        <th style="width: 15%;">Sprat</th>
+        <th style="width: 15%;">Lokacija</th>
+        <th style="width: 10%;"><small>#</small></th>
+        <th style="width: 10%;"><small>m<sup>2</sup></small></th>
+        <th style="width: 15%;"><small>Napomena</small></th>
         <th style="text-align:right; width: 15%"><i class="fa fa-cogs"></i></th>
     </thead>
     <tbody>
@@ -34,7 +36,9 @@
             <td><strong>{{$kancelarija->naziv}}</strong></td>
             <td>{{$kancelarija->sprat->naziv}}</td>
             <td>{{$kancelarija->lokacija->naziv}}</td>
-            <td>{{$kancelarija->napomena}}</td>
+            <td>{{$kancelarija->broj()}}</td>
+            <td>{{$kancelarija->povrsina}}</td>
+            <td><small>{{$kancelarija->napomena}}</small></td>
             <td style="text-align:right;">
                 <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('kancelarije.detalj.get', $kancelarija->id)}}">
                     <i class="fa fa-eye"></i>
@@ -93,7 +97,7 @@
 
 
             <div class="form-group">
-            <label for="povrsinaModal">Površina (m2):</label>
+            <label for="povrsinaModal">Površina (m<sup>2</sup>):</label>
             <input type="number" id="povrsinaModal" name="povrsinaModal" class="form-control" min="0" step="0.01">
             </div>
 
@@ -176,7 +180,7 @@
         </div>
 
         <div class="form-group{{ $errors->has('povrsina') ? ' has-error' : '' }}">
-            <label for="povrsina">Površina (m2):</label>
+            <label for="povrsina">Površina (m<sup>2</sup>):</label>
             <input type="number" id="povrsina" name="povrsina"
                    class="form-control"
                    value="{{ old('povrsina', 0) }}"

@@ -138,7 +138,7 @@
     <div class="row redKancelarija">
         <div class="col-md-10 col-md-offset-1">
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <h3>
                         Kancelarija:
                         <span class="kancelarijaNazivBroj">
@@ -155,7 +155,7 @@
                         @endforeach
                     </ul>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <h4>Zaposleni:</h4>
                     <ul style="list-style-type: none; padding-left: 0;">
                         <table class="table" style="table-layout: fixed;">

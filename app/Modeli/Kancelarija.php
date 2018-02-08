@@ -69,4 +69,9 @@ class Kancelarija extends Model
         return $this->naziv . ', ' . $this->lokacija->naziv . ' - ' . $this->sprat->naziv;
     }
 
+    public function broj()
+    {
+        return $this->zaposleni->count();
+    }
+
 }

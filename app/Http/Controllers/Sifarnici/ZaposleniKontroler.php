@@ -64,9 +64,10 @@ class ZaposleniKontroler extends Kontroler
             'prezime' => [
                 'required',
                 'max:100'],
-            'slika' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'slika' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
+        if ($request->slika) {
         $img = $request->slika;
         $ime_slike = $request->ime . time() . '.' . $request->slika->getClientOriginalExtension();
         $lokacija = public_path('images/slike_zaposlenih/' . $ime_slike);
@@ -74,6 +75,8 @@ class ZaposleniKontroler extends Kontroler
             $constraint->upsize();
         });
         $resize_img->save($lokacija);
+        }
+       
 
         $zaposleni = new Zaposleni();
         $zaposleni->ime = $request->ime;
@@ -81,7 +84,9 @@ class ZaposleniKontroler extends Kontroler
         $zaposleni->uprava_id = $request->uprava_id;
         $zaposleni->kancelarija_id = $request->kancelarija_id;
         $zaposleni->napomena = $request->napomena;
-        $zaposleni->src = $ime_slike;
+        if ($ime_slike) {
+            $zaposleni->src = $ime_slike;
+        }
 
         $zaposleni->save();
 
