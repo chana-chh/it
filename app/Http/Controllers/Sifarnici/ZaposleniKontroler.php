@@ -67,6 +67,7 @@ class ZaposleniKontroler extends Kontroler
             'slika' => 'image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
+        $ime_slike = null;
         if ($request->slika) {
         $img = $request->slika;
         $ime_slike = $request->ime . time() . '.' . $request->slika->getClientOriginalExtension();
