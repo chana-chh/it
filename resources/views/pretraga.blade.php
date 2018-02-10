@@ -64,7 +64,7 @@
     </div>
 </div>
 
-@can('admin')
+@if(Auth::user())
 <div class="row" style="margin: 10px 0px 10px 20px;">
     <div class="col-md-12">
         <div class="btn-group">
@@ -79,7 +79,7 @@
         </div>
     </div>
 </div>
-@endcan
+@endif
 <hr>
 <div id="sviZaposleni">
     @if($zap)

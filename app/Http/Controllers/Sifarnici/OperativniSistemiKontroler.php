@@ -11,6 +11,12 @@ use App\Modeli\OperativniSistem;
 class OperativniSistemiKontroler extends Kontroler
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except('getLista');
+        $this->middleware('can:korisnik')->only('getLista');
+    }
+
     public function getLista()
     {
         $data = OperativniSistem::all();
@@ -75,4 +81,3 @@ class OperativniSistemiKontroler extends Kontroler
     }
 
 }
-

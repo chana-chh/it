@@ -11,13 +11,16 @@ use App\Modeli\Sprat;
 use App\Modeli\Lokacija;
 use App\Modeli\Telefon;
 use App\Helpers\UredjajiHelper;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
 
 class KancelarijeKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except('getLista');
+    }
 
     public function getLista()
     {
@@ -105,14 +108,15 @@ class KancelarijeKontroler extends Kontroler
         return redirect()->route('kancelarije');
     }
 
-    public function postDodavanjeTelefon(Request $request){
+    public function postDodavanjeTelefon(Request $request)
+    {
 
         $this->validate($request, [
             'broj_telefona' => [
                 'required',
             ],
             'kancelarija_id' => [
-                 'required',
+                'required',
             ],
         ]);
 
@@ -128,19 +132,16 @@ class KancelarijeKontroler extends Kontroler
         return Redirect::back();
     }
 
+    function paginate($kolekcija, $poStrani)
+    {
+        if (is_array($kolekcija)) {
+            $kolekcija = collect($kolekcija);
+        }
 
-function paginate($kolekcija, $poStrani)
-{
-    if(is_array($kolekcija)){
-        $kolekcija = collect($kolekcija);
+        return new LengthAwarePaginator(
+                $kolekcija->forPage(Paginator::resolveCurrentPage(), $poStrani), $kolekcija->count(), $poStrani, Paginator::resolveCurrentPage(), [
+            'path' => Paginator::resolveCurrentPath()]
+        );
     }
-
-    return new LengthAwarePaginator(
-        $kolekcija->forPage(Paginator::resolveCurrentPage() , $poStrani),
-        $kolekcija->count(), $poStrani,
-        Paginator::resolveCurrentPage(),
-        ['path' => Paginator::resolveCurrentPath()]
-    );
-}
 
 }

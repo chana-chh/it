@@ -7,10 +7,15 @@ use Session;
 use Redirect;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\Licenca;
-use Carbon\Carbon;
 
 class LicenceKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except('getLista');
+        $this->middleware('can:korisnik')->only('getLista');
+    }
 
     public function getLista()
     {
@@ -18,15 +23,15 @@ class LicenceKontroler extends Kontroler
         return view('sifarnici.licence')->with(compact('data'));
     }
 
-     public function getDodavanje()
+    public function getDodavanje()
     {
         return view('sifarnici.licence_dodavanje');
     }
 
     public function postDodavanje(Request $request)
     {
-        
-        
+
+
         $this->validate($request, [
             'tip_licence' => ['required', 'max:50'],
             'proizvod' => ['required', 'max:200'],

@@ -4,15 +4,18 @@ namespace App\Http\Controllers\Sifarnici;
 
 use Illuminate\Http\Request;
 use Session;
-use Redirect;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\Dobavljac;
-use App\Modeli\Nabavka;
 use DB;
-use URL;
 
 class DobavljaciKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except('getLista');
+        $this->middleware('can:korisnik')->only('getLista');
+    }
 
     public function getLista()
     {

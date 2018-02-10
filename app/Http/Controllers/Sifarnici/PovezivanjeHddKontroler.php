@@ -11,6 +11,12 @@ use App\Modeli\HddPovezivanje;
 class PovezivanjeHddKontroler extends Kontroler
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except('getLista');
+        $this->middleware('can:korisnik')->only('getLista');
+    }
+
     public function getLista()
     {
         $data = HddPovezivanje::all();
@@ -73,4 +79,3 @@ class PovezivanjeHddKontroler extends Kontroler
     }
 
 }
-

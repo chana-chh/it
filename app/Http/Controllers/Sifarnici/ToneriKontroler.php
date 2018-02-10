@@ -11,6 +11,12 @@ use App\Modeli\Toner;
 class ToneriKontroler extends Kontroler
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except('getLista');
+        $this->middleware('can:korisnik')->only('getLista');
+    }
+
     public function getLista()
     {
         $data = Toner::all();
@@ -75,4 +81,3 @@ class ToneriKontroler extends Kontroler
     }
 
 }
-

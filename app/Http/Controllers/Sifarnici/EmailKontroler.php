@@ -9,16 +9,25 @@ use App\Http\Controllers\Kontroler;
 use App\Modeli\Email;
 use App\Modeli\Zaposleni;
 
-class EmailKontroler extends Kontroler {
+class EmailKontroler extends Kontroler
+{
 
-    public function getLista() {
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except('getLista');
+        $this->middleware('can:korisnik')->only('getLista');
+    }
+
+    public function getLista()
+    {
         $data = Email::all();
         $radnici = Zaposleni::all();
         return view('sifarnici.email')->with(compact('data', 'radnici'));
     }
 
-    public function postDodavanje(Request $request) {
-        
+    public function postDodavanje(Request $request)
+    {
+
         $this->validate($request, [
             'adresa' => [
                 'email',
@@ -26,12 +35,12 @@ class EmailKontroler extends Kontroler {
             ],
         ]);
 
-         //Check-box
-            if ($request->sluzbena) {
-                $sluzbenic = 1;
-            } else {
-                $sluzbenic = 0;
-            }
+        //Check-box
+        if ($request->sluzbena) {
+            $sluzbenic = 1;
+        } else {
+            $sluzbenic = 0;
+        }
 
         $data = new Email();
         $data->adresa = $request->adresa;
@@ -45,17 +54,19 @@ class EmailKontroler extends Kontroler {
         return redirect()->route('email');
     }
 
-    public function postDetalj(Request $request) {
-        if($request->ajax()){
-                $id = $request->id;
-                $email = Email::find($id);
-                $zaposleni = Zaposleni::all();
-                return response()->json(array('zaposleni'=>$zaposleni,'email'=>$email));
-            }
+    public function postDetalj(Request $request)
+    {
+        if ($request->ajax()) {
+            $id = $request->id;
+            $email = Email::find($id);
+            $zaposleni = Zaposleni::all();
+            return response()->json(array('zaposleni' => $zaposleni, 'email' => $email));
+        }
     }
 
-    public function postIzmena(Request $request) {
-        
+    public function postIzmena(Request $request)
+    {
+
         $id = $request->idModal;
         $this->validate($request, [
             'adresaModal' => [
@@ -64,12 +75,12 @@ class EmailKontroler extends Kontroler {
             ],
         ]);
 
-         //Check-box
-            if ($request->sluzbenaModal) {
-                $sluzbenic = 1;
-            } else {
-                $sluzbenic = 0;
-            }
+        //Check-box
+        if ($request->sluzbenaModal) {
+            $sluzbenic = 1;
+        } else {
+            $sluzbenic = 0;
+        }
 
         $data = Email::find($id);
         $data->adresa = $request->adresaModal;
@@ -83,7 +94,8 @@ class EmailKontroler extends Kontroler {
         return Redirect::back();
     }
 
-    public function postBrisanje(Request $request) {
+    public function postBrisanje(Request $request)
+    {
         $data = Email::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -95,6 +107,3 @@ class EmailKontroler extends Kontroler {
     }
 
 }
-
-
-

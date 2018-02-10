@@ -11,6 +11,12 @@ use App\Modeli\VgaSlot;
 class VgaSlotoviKontroler extends Kontroler
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except('getLista');
+        $this->middleware('can:korisnik')->only('getLista');
+    }
+
     public function getLista()
     {
         $data = VgaSlot::all();
@@ -73,4 +79,3 @@ class VgaSlotoviKontroler extends Kontroler
     }
 
 }
-
