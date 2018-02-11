@@ -3,15 +3,15 @@
 @section('naziv', 'Šifarnici | Zaposleni detaljno')
 
 @section('meni')
-    @include('sabloni.inc.meni')
+@include('sabloni.inc.meni')
 @endsection
 
 @section('naslov')
-    <h1 class="page-header">
-        <img class="slicica_animirana" alt="Zaposleni detalj" src="{{url('/images/korisnik_jedan.png')}}" style="height:50px;">
-        Detaljni pregled zaposlenog &emsp;
-         <em class="text-success">{{ $zaposleni->imePrezime() }}</em>
-    </h1>
+<h1 class="page-header">
+    <img class="slicica_animirana" alt="Zaposleni detalj" src="{{url('/images/korisnik_jedan.png')}}" style="height:50px;">
+    Detaljni pregled zaposlenog &emsp;
+    <em class="text-success">{{ $zaposleni->imePrezime() }}</em>
+</h1>
 @endsection
 
 @section('sadrzaj')
@@ -45,96 +45,100 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-<table class="table table-striped" style="table-layout: fixed;">
-        <tbody>
-            <tr>
-                <th style="width: 20%;">Uprava:</th>
-                <td style="width: 80%;">{{$zaposleni->uprava->naziv}}</td>
-            </tr>
-            @if($zaposleni->kancelarija)
-            <tr>
-                <th style="width: 20%;">Kancelarija:</th>
-                <td style="width: 80%;"> <a href="{{route('kancelarije.detalj.get', $zaposleni->kancelarija->id)}}">{{$zaposleni->kancelarija->naziv}}, {{$zaposleni->kancelarija->lokacija->naziv}}, {{$zaposleni->kancelarija->sprat->naziv}}</a>  
-                </td>
-            </tr>
-            @if ($zaposleni->kancelarija->telefoni)
-            <tr>
-                <th style="width: 20%;">Telefoni:</th>
-                <td style="width: 80%;">@foreach ($zaposleni->kancelarija->telefoni as $lokal)
-                            {{$lokal->broj}}, {{$lokal->vrsta}} &emsp;
-                    @endforeach
-                </td>
-            </tr>
-            @endif
-            @endif
-
-            @if (count($zaposleni->racunar)>0)
-             <tr>
-                <th style="width: 20%;">Računar:</th>
-                <td style="width: 80%;">
-                        @foreach ($zaposleni->racunar as $racunar)
-                            <a href="{{route('racunari.oprema.detalj', $racunar->id)}}">{{$racunar->ime}}</a> &emsp;
+        <table class="table table-striped" style="table-layout: fixed;">
+            <tbody>
+                <tr>
+                    <th style="width: 20%;">Uprava:</th>
+                    <td style="width: 80%;">{{$zaposleni->uprava->naziv}}</td>
+                </tr>
+                @if($zaposleni->kancelarija)
+                <tr>
+                    <th style="width: 20%;">Kancelarija:</th>
+                    <td style="width: 80%;"> <a href="{{route('kancelarije.detalj.get', $zaposleni->kancelarija->id)}}">{{$zaposleni->kancelarija->naziv}}, {{$zaposleni->kancelarija->lokacija->naziv}}, {{$zaposleni->kancelarija->sprat->naziv}}</a>
+                    </td>
+                </tr>
+                @if ($zaposleni->kancelarija->telefoni)
+                <tr>
+                    <th style="width: 20%;">Telefoni:</th>
+                    <td style="width: 80%;">@foreach ($zaposleni->kancelarija->telefoni as $lokal)
+                        {{$lokal->broj}}, {{$lokal->vrsta}} &emsp;
                         @endforeach
-                </td>
-            </tr>
-            @else
-            <tr>
-                <th style="width: 20%;">Računar:</th>
-                <td style="width: 80%;">
-                   Zaposleni trenutno ne koristi nijednu radnu stanicu
-                </td>
-            </tr>
-            @endif
-        </tbody>
-    </table>
+                    </td>
+                </tr>
+                @endif
+                @endif
+
+                @if (count($zaposleni->racunar)>0)
+                <tr>
+                    <th style="width: 20%;">Računar:</th>
+                    <td style="width: 80%;">
+                        @foreach ($zaposleni->racunar as $racunar)
+                        <a href="{{route('racunari.oprema.detalj', $racunar->id)}}">{{$racunar->ime}}</a> &emsp;
+                        @endforeach
+                    </td>
+                </tr>
+                @else
+                <tr>
+                    <th style="width: 20%;">Računar:</th>
+                    <td style="width: 80%;">
+                        Zaposleni trenutno ne koristi nijednu radnu stanicu
+                    </td>
+                </tr>
+                @endif
+                <tr>
+                    <th style="width: 20%;">Napomena:</th>
+                    <td style="width: 80%;">{{$zaposleni->napomena}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-</div>
-    
-    {{--  POCETAK REDOVI MOB/Email  --}}
-    <div class="row well" style="margin: 40px 0px 0px 5px">
-        {{--  POCETAK MOBILNI  --}}
-        <div class="col-md-6">
+
+{{--  POCETAK REDOVI MOB/Email  --}}
+<div class="row well" style="margin: 40px 0px 0px 5px">
+    {{--  POCETAK MOBILNI  --}}
+    <div class="col-md-6">
         <h3>Brojevi mobilnog telefona:</h3>
         <hr style="border-top: 1px solid #18BC9C">
         <table class="table table-striped table-responsive">
-            
-                @if (count($zaposleni->mobilni)>0)
-                
-                <tbody>
+
+            @if (count($zaposleni->mobilni)>0)
+
+            <tbody>
                 @foreach ($zaposleni->mobilni as $mobilni_telefon)
-                    <tr>
-                        <td style="width: 10%;"><span title="Radi se o službenom telefonu"><b>{{ $mobilni_telefon->sluzbeni == 1 ? "s" : "" }}</b></span></td>
-                        <td style="width: 35%;"><strong class="text-info">{{ $mobilni_telefon->broj }}</strong></td>
-                        <td style="width: 40%;"><em>{{ str_limit($mobilni_telefon->napomena, 60) }}</em></td>
-                        <td style="width: 15%;">
-                            <button
-                                class="btn btn-success btn-xs" id="dugmeMobilniIzmeni"
-                                data-toggle="modal" data-target="#izmeniMobilniModal" value="{{$mobilni_telefon->id}}">
-                                    <i class="fa fa-pencil"></i>
-                            </button>
-                            <button
-                                class="btn btn-danger btn-xs" id="dugmeMobilniBrisanje"
-                                value="{{$mobilni_telefon->id}}">
-                                    <i class="fa fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
+                <tr>
+                    <td style="width: 10%;"><span title="Radi se o službenom telefonu"><b>{{ $mobilni_telefon->sluzbeni == 1 ? "s" : "" }}</b></span></td>
+                    <td style="width: 35%;"><strong class="text-info">{{ $mobilni_telefon->broj }}</strong></td>
+                    <td style="width: 40%;"><em>{{ str_limit($mobilni_telefon->napomena, 60) }}</em></td>
+                    <td style="width: 15%;">
+                        <button
+                            class="btn btn-success btn-xs" id="dugmeMobilniIzmeni"
+                            data-toggle="modal" data-target="#izmeniMobilniModal" value="{{$mobilni_telefon->id}}">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button
+                            class="btn btn-danger btn-xs" id="dugmeMobilniBrisanje"
+                            value="{{$mobilni_telefon->id}}">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
                 @endforeach
 
                 @else
-                   <tr>
-                        <td>Nema podataka o brojevima mobilnog telefona</td>
-                    </tr>
+                <tr>
+                    <td>Nema podataka o brojevima mobilnog telefona</td>
+                </tr>
                 @endif
-                </tbody>
-                
+            </tbody>
+
         </table>
 
         <hr style="border-top: 1px solid #18BC9C">
         <button
             class="btn btn-success btn-sm" id="dugmeDodajMobilni"
             data-toggle="modal" data-target="#dodajMobilniModal" value="{{ $zaposleni->id }}">
-                <i class="fa fa-plus-circle"></i> Dodaj broj mobilnog telefona
+            <i class="fa fa-plus-circle"></i> Dodaj broj mobilnog telefona
         </button>
     </div>
 
@@ -151,19 +155,19 @@
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-md-8">
-                                  <div class="form-group{{ $errors->has('mobilni_dodavanje_broj') ? ' has-error' : '' }}">
+                                <div class="form-group{{ $errors->has('mobilni_dodavanje_broj') ? ' has-error' : '' }}">
                                     <label for="mobilni_dodavanje_broj">Broj:</label>
                                     <input type="text" name="mobilni_dodavanje_broj" id="mobilni_dodavanje_broj" class="form-control"
-                                    value="{{ old('mobilni_dodavanje_broj') }}" required>
+                                           value="{{ old('mobilni_dodavanje_broj') }}" required>
                                     @if ($errors->has('mobilni_dodavanje_broj'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('mobilni_dodavanje_broj') }}</strong>
-                                        </span>
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('mobilni_dodavanje_broj') }}</strong>
+                                    </span>
                                     @endif
                                 </div>
                             </div>
                             <div class="col-md-4 form-group checkboxoviforme">
-                                        <label><input type="checkbox" name="mobilni_dodavanje_sluzbeni" id="mobilni_dodavanje_sluzbeni"> &emsp;Da li je telefon službeni?</label>
+                                <label><input type="checkbox" name="mobilni_dodavanje_sluzbeni" id="mobilni_dodavanje_sluzbeni"> &emsp;Da li je telefon službeni?</label>
                             </div>
                         </div>
                         <hr style="border-top: 2px solid #18BC9C">
@@ -173,9 +177,9 @@
                                     <label for="mobilni_dodavanje_napomena">Napomena:</label>
                                     <textarea name="mobilni_dodavanje_napomena" id="mobilni_dodavanje_napomena" class="form-control">{{old('mobilni_dodavanje_napomena') }}</textarea>
                                     @if ($errors->has('mobilni_dodavanje_napomena'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('mobilni_dodavanje_napomena') }}</strong>
-                                        </span>
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('mobilni_dodavanje_napomena') }}</strong>
+                                    </span>
                                     @endif
                                 </div>
                             </div>
@@ -241,7 +245,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4 form-group checkboxoviforme">
-                                        <label><input type="checkbox" name="mobilni_izmena_sluzbeni" id="mobilni_izmena_sluzbeni"> &emsp;Da li je telefon službeni?</label>
+                                <label><input type="checkbox" name="mobilni_izmena_sluzbeni" id="mobilni_izmena_sluzbeni"> &emsp;Da li je telefon službeni?</label>
                             </div>
                         </div>
                         <div class="row">
@@ -272,8 +276,8 @@
 
     {{--  KRAJ MOBILNI  --}}
 
-     {{--  POCETAK EMAILOVI  --}}
-        <div class="col-md-6">
+    {{--  POCETAK EMAILOVI  --}}
+    <div class="col-md-6">
         <h3>Adrese elektronske pošte:</h3>
         <hr style="border-top: 1px solid #18BC9C">
         <table class="table table-striped table-responsive">
@@ -282,38 +286,38 @@
                 @if(count($zaposleni->emailovi)>0)
 
                 @foreach ($zaposleni->emailovi as $email)
-                    <tr>
-                        
-                        <td style="width: 10%;"><span title="Radi se o službenoj elektronskoj adresi"><b>{{ $email->sluzbena == 1 ? "s" : "" }}</b></span></td>
-                        <td style="width: 35%;"><strong class="text-info"><a href="mailto:{{$email->adresa }}">{{$email->adresa }}</a></strong></td>
-                        <td style="width: 40%;"><em>{{ str_limit($email->napomena, 60) }}</em></td>
-                        <td style="width: 15%;">
-                            <button
-                                class="btn btn-success btn-xs" id="dugmeEmailIzmeni"
-                                data-toggle="modal" data-target="#izmeniEmailModal" value="{{$email->id}}">
-                                    <i class="fa fa-pencil"></i>
-                            </button>
-                            <button
-                                class="btn btn-danger btn-xs" id="dugmeEmailBrisanje"
-                                value="{{$email->id}}">
-                                    <i class="fa fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    @endforeach
-                    @else
-                        <tr>
-                            <td>Nema podataka o e-mail adresi</td>
-                        </tr>
-                    @endif
-                
+                <tr>
+
+                    <td style="width: 10%;"><span title="Radi se o službenoj elektronskoj adresi"><b>{{ $email->sluzbena == 1 ? "s" : "" }}</b></span></td>
+                    <td style="width: 35%;"><strong class="text-info"><a href="mailto:{{$email->adresa }}">{{$email->adresa }}</a></strong></td>
+                    <td style="width: 40%;"><em>{{ str_limit($email->napomena, 60) }}</em></td>
+                    <td style="width: 15%;">
+                        <button
+                            class="btn btn-success btn-xs" id="dugmeEmailIzmeni"
+                            data-toggle="modal" data-target="#izmeniEmailModal" value="{{$email->id}}">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button
+                            class="btn btn-danger btn-xs" id="dugmeEmailBrisanje"
+                            value="{{$email->id}}">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                @endforeach
+                @else
+                <tr>
+                    <td>Nema podataka o e-mail adresi</td>
+                </tr>
+                @endif
+
             </tbody>
         </table>
         <hr style="border-top: 1px solid #18BC9C">
         <button
             class="btn btn-success btn-sm" id="dugmeDodajEmail"
             data-toggle="modal" data-target="#dodajEmailModal" value="{{ $zaposleni->id }}" style="float: right;">
-                <i class="fa fa-plus-circle"></i> Dodaj e-mail adresu
+            <i class="fa fa-plus-circle"></i> Dodaj e-mail adresu
         </button>
     </div>
 
@@ -330,19 +334,19 @@
                         {{ csrf_field() }}
                         <div class="row">
                             <div class="col-md-8">
-                                  <div class="form-group{{ $errors->has('email_dodavanje_adresa') ? ' has-error' : '' }}">
+                                <div class="form-group{{ $errors->has('email_dodavanje_adresa') ? ' has-error' : '' }}">
                                     <label for="email_dodavanje_adresa">Adresa:</label>
                                     <input type="email" name="email_dodavanje_adresa" id="email_dodavanje_adresa" class="form-control"
-                                    value="{{ old('email_dodavanje_adresa') }}" required>
+                                           value="{{ old('email_dodavanje_adresa') }}" required>
                                     @if ($errors->has('email_dodavanje_adresa'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email_dodavanje_adresa') }}</strong>
-                                        </span>
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email_dodavanje_adresa') }}</strong>
+                                    </span>
                                     @endif
                                 </div>
                             </div>
                             <div class="col-md-4 form-group checkboxoviforme">
-                                        <label><input type="checkbox" name="email_dodavanje_sluzbeni" id="email_dodavanje_sluzbeni"> &emsp;Da li je elektronska adresa službena?</label>
+                                <label><input type="checkbox" name="email_dodavanje_sluzbeni" id="email_dodavanje_sluzbeni"> &emsp;Da li je elektronska adresa službena?</label>
                             </div>
                         </div>
                         <hr style="border-top: 2px solid #18BC9C">
@@ -352,9 +356,9 @@
                                     <label for="email_dodavanje_napomena">Napomena:</label>
                                     <textarea name="email_dodavanje_napomena" id="email_dodavanje_napomena" class="form-control">{{old('email_dodavanje_napomena') }}</textarea>
                                     @if ($errors->has('email_dodavanje_napomena'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email_dodavanje_napomena') }}</strong>
-                                        </span>
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email_dodavanje_napomena') }}</strong>
+                                    </span>
                                     @endif
                                 </div>
                             </div>
@@ -420,7 +424,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4 form-group checkboxoviforme">
-                                        <label><input type="checkbox" name="email_izmena_sluzbeni" id="email_izmena_sluzbeni"> &emsp;Da li je elektonska adresa službena?</label>
+                                <label><input type="checkbox" name="email_izmena_sluzbeni" id="email_izmena_sluzbeni"> &emsp;Da li je elektonska adresa službena?</label>
                             </div>
                         </div>
                         <div class="row">
@@ -459,16 +463,16 @@
 
 @section('traka')
 <div class="panel panel-default" style="margin-top: 5rem;">
-  <div class="panel-heading">
-    <h3 class="panel-title">Fotografija zaposlenog:</h3>
-  </div>
-  <div class="panel-body">
-    @if (!empty($zaposleni->src))
+    <div class="panel-heading">
+        <h3 class="panel-title">Fotografija zaposlenog:</h3>
+    </div>
+    <div class="panel-body">
+        @if (!empty($zaposleni->src))
         <img id="{{ $zaposleni->id }}" data-toggle="modal" data-target="#slikaModal" src="{{asset('images/slike_zaposlenih/'.$zaposleni->src)}}" class="img-thumbnail center-block" style="height:150px; margin-top: 10px;" alt="Slika zaposlenog">
-    @else
-    Fotografija zaposlenog nije dostupna
-    @endif
-  </div>
+        @else
+        Fotografija zaposlenog nije dostupna
+        @endif
+    </div>
 </div>
 
 <!-- Modal za pregled fotografije zaposlenog -->
@@ -488,128 +492,140 @@
 
 @section('skripte')
 <script>
-$( document ).ready(function() {
+    $(document).ready(function () {
 
-    var mobilni_brisanje_ruta = "{{ route('mobilni.zaposleni.brisanje') }}";
-    var mobilni_detalj_ruta = "{{ route('mobilni.zaposleni.detalj') }}";
-    var email_brisanje_ruta = "{{ route('email.zaposleni.brisanje') }}";
-    var email_detalj_ruta = "{{ route('email.zaposleni.detalj') }}";
+        var mobilni_brisanje_ruta = "{{ route('mobilni.zaposleni.brisanje') }}";
+        var mobilni_detalj_ruta = "{{ route('mobilni.zaposleni.detalj') }}";
+        var email_brisanje_ruta = "{{ route('email.zaposleni.brisanje') }}";
+        var email_detalj_ruta = "{{ route('email.zaposleni.detalj') }}";
 
-    $(document).on('click', '.otvori-brisanje', function () {
+        $(document).on('click', '.otvori-brisanje', function () {
             var id = $(this).val();
             $('#idBrisanje').val(id);
             var ruta = "{{ route('zaposleni.brisanje') }}";
             $('#brisanje-forma').attr('action', ruta);
         });
 
-    $('#slikaModal').on('show.bs.modal', function (e) {
+        $('#slikaModal').on('show.bs.modal', function (e) {
             var image = $(e.relatedTarget).attr('src');
             $(".img-responsive").attr("src", image);
         });
 
-    // Modal mobilni dodavanje
-    $("#dugmeModalDodajMobilni").on('click', function() {
+        // Modal mobilni dodavanje
+        $("#dugmeModalDodajMobilni").on('click', function () {
             $('#frmMobilniDodavanje').submit();
-    });
+        });
 
-    // Modal mobilni brisanje
-            $(document).on('click', '#dugmeMobilniBrisanje', function() {
-                var id_brisanje = $(this).val();
+        // Modal mobilni brisanje
+        $(document).on('click', '#dugmeMobilniBrisanje', function () {
+            var id_brisanje = $(this).val();
 
-                $('#brisanjeMobilniModal').modal('show');
+            $('#brisanjeMobilniModal').modal('show');
 
-                $('#dugmeModalObrisiMobilniBrisi').on('click', function() {
-
-                    $.ajax({
-                        url: mobilni_brisanje_ruta,
-                        type:"POST",
-                        data: {"id": id_brisanje, _token: "{!! csrf_token() !!}"},
-                        success: function() {
-                            location.reload();
-                        }
-                    });
-
-                    $('#brisanjeMobilniModal').modal('hide');
-
-                });
-
-                $('#dugmeModalObrisiMobilniOtkazi').on('click', function() {
-                    $('#brisanjeMobilniModal').modal('hide');
-                });
-            });
-
-            // Modal izmene
-            $("#dugmeModalIzmeniMobilni").on('click', function() {
-                $('#frmMobilniIzmena').submit();
-            });
-
-            $(document).on('click','#dugmeMobilniIzmeni', function() {
-                var id_menjanje = $(this).val();
+            $('#dugmeModalObrisiMobilniBrisi').on('click', function () {
 
                 $.ajax({
-                    url: mobilni_detalj_ruta,
-                    type:"POST",
-                    data: {"id": id_menjanje, _token: "{!! csrf_token() !!}"},
-                    success: function(result) {
-                        $("#mobilni_izmena_broj").val(result.broj);
-                        $("#mobilni_izmena_sluzbeni").prop('checked', result.sluzbeni);
-                        $("#mobilni_izmena_napomena").val(result.napomena);
+                    url: mobilni_brisanje_ruta,
+                    type: "POST",
+                    data: {
+                        "id": id_brisanje,
+                        _token: "{!! csrf_token() !!}"
+                    },
+                    success: function () {
+                        location.reload();
                     }
                 });
+
+                $('#brisanjeMobilniModal').modal('hide');
+
             });
 
+            $('#dugmeModalObrisiMobilniOtkazi').on('click', function () {
+                $('#brisanjeMobilniModal').modal('hide');
+            });
+        });
 
-    // Modal email dodavanje
-    $("#dugmeModalDodajEmail").on('click', function() {
+        // Modal izmene
+        $("#dugmeModalIzmeniMobilni").on('click', function () {
+            $('#frmMobilniIzmena').submit();
+        });
+
+        $(document).on('click', '#dugmeMobilniIzmeni', function () {
+            var id_menjanje = $(this).val();
+
+            $.ajax({
+                url: mobilni_detalj_ruta,
+                type: "POST",
+                data: {
+                    "id": id_menjanje,
+                    _token: "{!! csrf_token() !!}"
+                },
+                success: function (result) {
+                    $("#mobilni_izmena_broj").val(result.broj);
+                    $("#mobilni_izmena_sluzbeni").prop('checked', result.sluzbeni);
+                    $("#mobilni_izmena_napomena").val(result.napomena);
+                }
+            });
+        });
+
+
+        // Modal email dodavanje
+        $("#dugmeModalDodajEmail").on('click', function () {
             $('#frmEmailDodavanje').submit();
-    });
+        });
 
-    // Modal email brisanje
-            $(document).on('click', '#dugmeEmailBrisanje', function() {
-                var id_brisanje = $(this).val();
+        // Modal email brisanje
+        $(document).on('click', '#dugmeEmailBrisanje', function () {
+            var id_brisanje = $(this).val();
 
-                $('#brisanjeEmailModal').modal('show');
+            $('#brisanjeEmailModal').modal('show');
 
-                $('#dugmeModalObrisiEmailBrisi').on('click', function() {
-
-                    $.ajax({
-                        url: email_brisanje_ruta,
-                        type:"POST",
-                        data: {"id": id_brisanje, _token: "{!! csrf_token() !!}"},
-                        success: function() {
-                            location.reload();
-                        }
-                    });
-
-                    $('#brisanjeEmailModal').modal('hide');
-
-                });
-
-                $('#dugmeModalObrisiEmailOtkazi').on('click', function() {
-                    $('#brisanjeEmailModal').modal('hide');
-                });
-            });
-
-            // Modal email izmene
-            $("#dugmeModalIzmeniEmail").on('click', function() {
-                $('#frmEmailIzmena').submit();
-            });
-
-            $(document).on('click','#dugmeEmailIzmeni', function() {
-                var id_menjanje = $(this).val();
+            $('#dugmeModalObrisiEmailBrisi').on('click', function () {
 
                 $.ajax({
-                    url: email_detalj_ruta,
-                    type:"POST",
-                    data: {"id": id_menjanje, _token: "{!! csrf_token() !!}"},
-                    success: function(result) {
-                        $("#email_izmena_adresa").val(result.adresa);
-                        $("#email_izmena_sluzbeni").prop('checked', result.sluzbena);
-                        $("#email_izmena_napomena").val(result.napomena);
+                    url: email_brisanje_ruta,
+                    type: "POST",
+                    data: {
+                        "id": id_brisanje,
+                        _token: "{!! csrf_token() !!}"
+                    },
+                    success: function () {
+                        location.reload();
                     }
                 });
+
+                $('#brisanjeEmailModal').modal('hide');
+
             });
 
-});
+            $('#dugmeModalObrisiEmailOtkazi').on('click', function () {
+                $('#brisanjeEmailModal').modal('hide');
+            });
+        });
+
+        // Modal email izmene
+        $("#dugmeModalIzmeniEmail").on('click', function () {
+            $('#frmEmailIzmena').submit();
+        });
+
+        $(document).on('click', '#dugmeEmailIzmeni', function () {
+            var id_menjanje = $(this).val();
+
+            $.ajax({
+                url: email_detalj_ruta,
+                type: "POST",
+                data: {
+                    "id": id_menjanje,
+                    _token: "{!! csrf_token() !!}"
+                },
+                success: function (result) {
+                    $("#email_izmena_adresa").val(result.adresa);
+                    $("#email_izmena_sluzbeni").prop('checked', result.sluzbena);
+                    $("#email_izmena_napomena").val(result.napomena);
+                }
+            });
+        });
+
+    });
 </script>
 @endsection
