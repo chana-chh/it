@@ -33,7 +33,11 @@
         @foreach ($kancelarije as $kancelarija)
         <tr>
             <td><small>{{$kancelarija->id}}</small></td>
-            <td><strong>{{$kancelarija->naziv}}</strong></td>
+            <td><strong data-toggle="zaposleni" title="Zaposleni:" 
+                @foreach($kancelarija->zaposleni as $z)
+                data-content="{{$z->imePrezime()}}"
+                @endforeach>
+                {{$kancelarija->naziv}}</strong></td>
             <td>{{$kancelarija->sprat->naziv}}</td>
             <td>{{$kancelarija->lokacija->naziv}}</td>
             <td>{{$kancelarija->broj()}}</td>
