@@ -24,7 +24,7 @@ class KancelarijeKontroler extends Kontroler
 
     public function getLista()
     {
-        $kancelarije = Kancelarija::all();
+        $kancelarije = Kancelarija::with('lokacija', 'sprat', 'telefoni', 'zaposleni', 'zaposleni.uprava')->get();
         $lokacije = Lokacija::all();
         $spratovi = Sprat::orderBy('id')->get();
         return view('sifarnici.kancelarije')->with(compact('kancelarije', 'lokacije', 'spratovi'));
