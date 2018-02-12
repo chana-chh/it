@@ -12,12 +12,12 @@
         <h1>
             <img class="slicica_animirana" alt="Fiksna telefonija"
                   src="{{ url('/images/telefon.png') }}" style="height:64px;">
-            &emsp;Fiksni telefoni
+            &emsp;Fiksni telefoni <small>(Prilagođen prikaz)</small>
         </h1>
     </div>
 
     <div class="col-md-4 text-right" style="padding-top: 50px;">
-        <div class="btn-group" >
+        <div class="btn-group-lg" >
             <a class="btn btn-primary" onclick="window.history.back();"
                title="Povratak na prethodnu stranu">
                 <i class="fa fa-arrow-left"></i>
@@ -26,22 +26,23 @@
                title="Povratak na početnu stranu">
                 <i class="fa fa-home"></i>
             </a>
-            <a class="btn btn-primary" href="{{ route('telefoni.uvecani') }}"
-               title="Uvećani prikaz">
-                <i class="fa fa-expand"></i>
+            <a class="btn btn-primary" href="{{ route('telefoni') }}"
+               title="Normalni prikaz">
+                <i class="fa fa-compress"></i>
+            </a>
+            <a class="btn btn-primary" href="{{route('telefoni.dodavanje.get')}}"
+               title="Dodavanje broja fiksne telefonije">
+                <i class="fa fa-plus"></i>
             </a>
         </div>
 </div>
 </div>
 <hr>
-@endsection
-
-@section('sadrzaj')
 @if($data->isEmpty())
 <h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
 @else
 <table class="table table-striped" id="tabela">
-    <thead>
+    <thead style="font-size: 1.5rem">
     <th style="width: 5%;">#</th>
     <th style="width: 20%;">Broj</th>
     <th style="width: 10%;">Vrsta</th>
@@ -53,10 +54,10 @@
     @foreach ($data as $d)
     <tr>
         <td>{{ $d->id }}</td>
-        <td><strong>{{ $d->broj }}</strong></td>
-        <td><strong>{{ $d->vrsta }}</strong></td>
-        <td>{{$d->kancelarija->naziv}}, {{$d->kancelarija->lokacija->naziv}}, {{$d->kancelarija->sprat->naziv}}</td>
-        <td><em>{{ str_limit($d->napomena, 60) }}</em></td>
+        <td style="font-size: 3rem"><strong>{{ $d->broj }}</strong></td>
+        <td style="font-size: 3rem"><strong>{{ $d->vrsta }}</strong></td>
+        <td style="font-size: 2rem">{{$d->kancelarija->naziv}}, {{$d->kancelarija->lokacija->naziv}}, {{$d->kancelarija->sprat->naziv}}</td>
+        <td style="font-size: 2rem"><em>{{ str_limit($d->napomena, 60) }}</em></td>
         <td style="text-align:right;">
             <button class="btn btn-success btn-sm otvori-izmenu"
                     data-toggle="modal" data-target="#editModal"
@@ -91,12 +92,12 @@
                 <form action="{{ route('telefoni.izmena') }}" method="post">
                     {{ csrf_field() }}
 
-                    <div class="form-group">
+                    <div class="form-group-lg">
                         <label for="brojModal">Broj:</label>
                         <input type="text" id="brojModal" name="brojModal" class="form-control" required>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group-lg">
                         <label for="vrstaModal">Vrsta:</label>
                             <select class="form-control" name="vrstaModal" id="vrstaModal" data-placeholder="vrsta ...">
                                 <option value="1">Direktni</option>
@@ -105,13 +106,13 @@
                             </select>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group-lg">
                         <label for="kancelarija_idModal">Kancelarija:</label>
                         <select class="form-control" name="kancelarija_idModal" id="kancelarija_idModal" data-placeholder="kancelarija ...">
                         </select>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group-lg">
                         <label for="napomenaModal">Napomena:</label>
                         <textarea class="form-control" id="napomenaModal" name="napomenaModal"></textarea>
                     </div>
@@ -141,81 +142,6 @@
     </div>
 </div>
 <!--  KRAJ izmenaModal  -->
-@endsection
-
-@section('traka')
-<h4>Dodavanje broja fiksne telefonije</h4>
-<hr>
-<div class="well">
-    <form action="{{ route('telefoni.dodavanje') }}" method="POST" data-parsley-validate>
-        {{ csrf_field() }}
-        <div class="form-group{{ $errors->has('broj') ? ' has-error' : '' }}">
-            <label for="broj">Broj: </label>
-            <input  type="text" name="broj" id="broj" class="form-control" value="{{ old('broj') }}" required>
-            @if ($errors->has('broj'))
-            <span class="help-block">
-                <strong>{{ $errors->first('broj') }}</strong>
-            </span>
-            @endif
-        </div>
-
-        <div class="form-group{{ $errors->has('vrsta') ? ' has-error' : '' }}">
-            <label for="vrsta">Vrsta:</label>
-                <select name="vrsta" id="vrsta" class="chosen-select form-control" data-placeholder="izbor vrsta ..." required>
-                    <option value=""></option>
-                  <option value="1">Direktni</option>
-                  <option value="2">Lokal</option>
-                  <option value="3">Fax</option>
-                </select>
-                @if ($errors->has('vrsta'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('vrsta') }}</strong>
-                    </span>
-                @endif
-        </div>
-
-        <div class="form-group{{ $errors->has('kancelarija_id') ? ' has-error' : '' }}">
-                    <label for="kancelarija_id">Kancelarija:</label>
-                    <select name="kancelarija_id" id="kancelarija_id" class="chosen-select form-control" data-placeholder="izbor kancelarija ..." required>
-                        <option value=""></option>
-                        @foreach($kancelarije as $kancelarija)
-                        <option value="{{ $kancelarija->id }}"{{ old('kancelarija_id') == $kancelarija->id ? ' selected' : '' }}>
-                            {{ $kancelarija->naziv }}, {{$kancelarija->lokacija->naziv}}, {{$kancelarija->sprat->naziv}}
-                        </option>
-                        @endforeach
-                    </select>
-                    @if ($errors->has('kancelarija_id'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('kancelarija_id') }}</strong>
-                        </span>
-                    @endif
-        </div>
-
-        <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
-                    <label for="napomena">Napomena:</label>
-                    <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena') }}</textarea>
-                    @if ($errors->has('napomena'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('napomena') }}</strong>
-                        </span>
-                    @endif
-                </div>
-
-            <div class="row dugmici">
-            <div class="col-md-12" style="margin-top: 20px;">
-            <div class="form-group">
-            <div class="col-md-6 snimi">
-                <button type="submit" class="btn btn-success btn-block ono"><i class="fa fa-plus-circle"></i>&emsp;Dodaj</button>
-            </div>
-            <div class="col-md-6">
-                <a class="btn btn-danger btn-block ono" href="{{route('telefoni')}}"><i class="fa fa-ban"></i>&emsp;Otkaži</a>
-            </div>
-            </div>
-            </div>
-            </div>
-
-    </form>
-</div>
 @endsection
 
 @section('skripte')
@@ -265,7 +191,7 @@
             }
         });
 
-        resizeChosen();
+    resizeChosen();
     jQuery(window).on('resize', resizeChosen);
 
     $('.chosen-select').chosen({allow_single_deselect: true});

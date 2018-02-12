@@ -34,9 +34,13 @@
         <tr>
             <td><small>{{$kancelarija->id}}</small></td>
             <td><strong data-toggle="zaposleni" title="Zaposleni:" class="zaposleniPopover"  style="cursor: pointer;"
+                data-content="
+                <ul>
                 @foreach($kancelarija->zaposleni as $z)
-                data-content="{{$z->imePrezime()}}"
-                @endforeach>
+                <li>
+                {{$z->imePrezime()}}
+                </li>
+                @endforeach</ul>">
                 {{$kancelarija->naziv}}</strong></td>
             <td>{{$kancelarija->sprat->naziv}}</td>
             <td>{{$kancelarija->lokacija->naziv}}</td>
@@ -278,7 +282,8 @@ $( document ).ready(function() {
 
     $('.zaposleniPopover').popover({
             placement: 'left',
-            trigger: 'hover'
+            trigger: 'hover',
+            html: true
         });
 
         var tabela = $('#tabela').DataTable({

@@ -30,6 +30,18 @@ class TelefoniKontroler extends Kontroler
         return view('sifarnici.telefoni')->with(compact('data', 'kancelarije'));
     }
 
+    public function getListaUvecana(Request $request)
+    {
+        $data = Telefon::all();
+        return view('sifarnici.telefoni_uvecani')->with(compact('data'));
+    }
+
+    public function getDodavanje()
+    {
+        $kancelarije = Kancelarija::all();
+        return view('sifarnici.telefoni_dodavanje')->with(compact('kancelarije'));
+    }
+
     public function postDodavanje(Request $request)
     {
         $this->validate($request, [

@@ -196,6 +196,8 @@ Route::post('zaposleni/email/izmena', 'Sifarnici\ZaposleniEmailoviKontroler@post
 
 // Telefoni
 Route::get('telefoni', 'Sifarnici\TelefoniKontroler@getLista')->name('telefoni');
+Route::get('telefoni/uvecani', 'Sifarnici\TelefoniKontroler@getListaUvecana')->name('telefoni.uvecani');
+Route::get('telefoni/dodavanje', 'Sifarnici\TelefoniKontroler@getDodavanje')->name('telefoni.dodavanje.get');
 Route::post('telefoni/dodavanje', 'Sifarnici\TelefoniKontroler@postDodavanje')->name('telefoni.dodavanje');
 Route::post('telefoni/brisanje', 'Sifarnici\TelefoniKontroler@postBrisanje')->name('telefoni.brisanje');
 Route::post('telefoni/izmena', 'Sifarnici\TelefoniKontroler@postIzmena')->name('telefoni.izmena');
