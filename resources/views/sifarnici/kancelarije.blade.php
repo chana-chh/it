@@ -33,7 +33,7 @@
         @foreach ($kancelarije as $kancelarija)
         <tr>
             <td><small>{{$kancelarija->id}}</small></td>
-            <td><strong data-toggle="zaposleni" title="Zaposleni:" 
+            <td><strong data-toggle="zaposleni" title="Zaposleni:" class="zaposleniPopover"  style="cursor: pointer;"
                 @foreach($kancelarija->zaposleni as $z)
                 data-content="{{$z->imePrezime()}}"
                 @endforeach>
@@ -275,6 +275,11 @@
 @section('skripte')
 <script>
 $( document ).ready(function() {
+
+    $('.zaposleniPopover').popover({
+            placement: 'left',
+            trigger: 'hover'
+        });
 
         var tabela = $('#tabela').DataTable({
 
