@@ -21,11 +21,7 @@ class TelefoniKontroler extends Kontroler
     public function getLista(Request $request)
     {
 
-//        if ($request->user()->imaUlogu('kadrovi')) {
-//            return abort(403);
-//        }
-
-        $data = Telefon::all();
+        $data = Telefon::with('kancelarija', 'kancelarija.sprat', 'kancelarija.lokacija')->get();
         $kancelarije = Kancelarija::all();
         return view('sifarnici.telefoni')->with(compact('data', 'kancelarije'));
     }
