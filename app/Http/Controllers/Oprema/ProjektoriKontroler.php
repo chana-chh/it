@@ -5,42 +5,49 @@ namespace App\Http\Controllers\Oprema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
-use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
 use Carbon\Carbon;
-
-Use App\Modeli\Projektor;
-Use App\Modeli\Racunar;
-Use App\Modeli\OtpremnicaStavka;
-Use App\Modeli\Otpremnica;
-Use App\Modeli\Kancelarija;
-Use App\Modeli\Nabavka;
-Use App\Modeli\Reciklaza;
-Use App\Modeli\Proizvodjac;
-Use App\Modeli\MonitorPovezivanje;
-
-
+use App\Modeli\Projektor;
+use App\Modeli\Otpremnica;
+use App\Modeli\Kancelarija;
+use App\Modeli\Nabavka;
+use App\Modeli\Reciklaza;
+use App\Modeli\Proizvodjac;
+use App\Modeli\MonitorPovezivanje;
 
 class ProjektoriKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except([
+            'getLista',
+            'getDetalj',
+            'getListaOtpisani']);
+        $this->middleware('can:korisnik')->only([
+            'getLista',
+            'getDetalj',
+            'getListaOtpisani']);
+    }
+
     public function getLista()
     {
-    	$uredjaj = Projektor::all();
-    	return view('oprema.projektori')->with(compact ('uredjaj'));
+        $uredjaj = Projektor::all();
+        return view('oprema.projektori')->with(compact('uredjaj'));
     }
 
     public function getListaOtpisani()
     {
         $uredjaj = Projektor::onlyTrashed()->get();
         $reciklaze = Reciklaza::all();
-        return view('oprema.projektori_otpisani')->with(compact ('uredjaj', 'reciklaze'));
+        return view('oprema.projektori_otpisani')->with(compact('uredjaj', 'reciklaze'));
     }
 
     public function getDetalj($id)
     {
         $uredjaj = Projektor::find($id);
-        return view('oprema.projektori_detalj')->with(compact ('uredjaj'));
+        return view('oprema.projektori_detalj')->with(compact('uredjaj'));
     }
 
     public function getIzmena($id)
@@ -51,16 +58,18 @@ class ProjektoriKontroler extends Kontroler
         $nabavke = Nabavka::all();
         $proizvodjaci = Proizvodjac::all();
         $povezivanje = MonitorPovezivanje::all();
-        return view('oprema.projektori_izmena')->with(compact ('uredjaj', 'otpremnice', 'kancelarije', 'nabavke', 'proizvodjaci', 'povezivanje'));
+        return view('oprema.projektori_izmena')->with(compact('uredjaj', 'otpremnice', 'kancelarije', 'nabavke', 'proizvodjaci', 'povezivanje'));
     }
 
     public function postIzmena(Request $request, $id)
     {
 
         $this->validate($request, [
-                'serijski_broj' => ['max:50'],
-                'naziv' => ['required'],
-            ]);
+            'serijski_broj' => [
+                'max:50'],
+            'naziv' => [
+                'required'],
+        ]);
 
         $uredjaj = Projektor::find($id);
 
@@ -82,7 +91,7 @@ class ProjektoriKontroler extends Kontroler
 
         $uredjaj->povezivanja()->attach($request->povezivanja);
 
-        Session::flash('uspeh','Projektor je uspešno izmenjen!');
+        Session::flash('uspeh', 'Projektor je uspešno izmenjen!');
         return redirect()->route('projektori.oprema');
     }
 
@@ -91,15 +100,14 @@ class ProjektoriKontroler extends Kontroler
 
         $data = Projektor::find($request->idOtpis);
 
-        if($data->kancelarija){
+        if ($data->kancelarija) {
             $kanc = $data->kancelarija->sviPodaci();
-            
-        }else{
+        } else {
             $kanc = " nema podataka";
         }
-        
 
-        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao projektor koji je bio u kancelariji '. $kanc ;
+
+        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name . ' je dana:' . Carbon::now() . ' otpisao projektor koji je bio u kancelariji ' . $kanc;
         $data->save();
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -125,35 +133,38 @@ class ProjektoriKontroler extends Kontroler
         return redirect()->route('projektori.oprema.otpisani');
     }
 
-    public function postReciklirajLista(Request $request){
+    public function postReciklirajLista(Request $request)
+    {
 
         $uredjaj = Projektor::onlyTrashed()->whereNull('reciklirano_id')->get();
         $reciklaza = Reciklaza::find($request->reciklirano_id);
 
-        return view('oprema.projektori_recikliranje_lista')->with(compact ('uredjaj', 'reciklaza'));
+        return view('oprema.projektori_recikliranje_lista')->with(compact('uredjaj', 'reciklaza'));
     }
 
-    public function postRecikliraj(Request $request, $id_reciklaze){
+    public function postRecikliraj(Request $request, $id_reciklaze)
+    {
 
         if (!$request->id_uredjaji) {
             Session::flash('greska', 'Niste odabrali nijedan Projektor!');
             return redirect()->route('projektori.oprema.otpisani');
-        }else{
-        DB::beginTransaction();
-        foreach ($request->id_uredjaji as $id) {
-            try{
-            $data = Projektor::withTrashed()->find($id);
-            $data->reciklirano_id = $id_reciklaze;
-            $data->save();
-        }catch (\Exception $e){
-                DB::rollback();
-                Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
-                return redirect()->route('projektori.oprema.otpisani');
+        } else {
+            DB::beginTransaction();
+            foreach ($request->id_uredjaji as $id) {
+                try {
+                    $data = Projektor::withTrashed()->find($id);
+                    $data->reciklirano_id = $id_reciklaze;
+                    $data->save();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
+                    return redirect()->route('projektori.oprema.otpisani');
+                }
+            }
+            DB::commit();
+            Session::flash('uspeh', 'Projektor je uspešno stavljeno na listu reciklaže!');
         }
-        }
-        DB::commit();
-        Session::flash('uspeh', 'Projektor je uspešno stavljeno na listu reciklaže!');}
-       return redirect()->route('projektori.oprema.otpisani');
+        return redirect()->route('projektori.oprema.otpisani');
     }
 
 }

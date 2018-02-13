@@ -4,17 +4,21 @@ namespace App\Http\Controllers\Modeli;
 
 use Illuminate\Http\Request;
 use Session;
-use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
-Use App\Modeli\ProcesorModel;
-Use App\Modeli\Proizvodjac;
-Use App\Modeli\Soket;
-Use App\Modeli\Procesor;
-Use App\Modeli\Racunar;
+use App\Modeli\ProcesorModel;
+use App\Modeli\Proizvodjac;
+use App\Modeli\Soket;
+use App\Modeli\Procesor;
+use App\Modeli\Racunar;
 
 class ProcesoriKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin');
+    }
 
     public function getLista()
     {

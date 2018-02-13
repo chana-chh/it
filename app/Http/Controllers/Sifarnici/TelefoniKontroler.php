@@ -8,7 +8,6 @@ use Redirect;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\Telefon;
 use App\Modeli\Kancelarija;
-use Auth;
 
 class TelefoniKontroler extends Kontroler
 {
@@ -18,7 +17,7 @@ class TelefoniKontroler extends Kontroler
         $this->middleware('can:centrala')->except('getLista');
     }
 
-    public function getLista(Request $request)
+    public function getLista()
     {
 
         $data = Telefon::with('kancelarija', 'kancelarija.sprat', 'kancelarija.lokacija')->get();
@@ -26,7 +25,7 @@ class TelefoniKontroler extends Kontroler
         return view('sifarnici.telefoni')->with(compact('data', 'kancelarije'));
     }
 
-    public function getListaUvecana(Request $request)
+    public function getListaUvecana()
     {
         $data = Telefon::all();
         return view('sifarnici.telefoni_uvecani')->with(compact('data'));
@@ -64,8 +63,12 @@ class TelefoniKontroler extends Kontroler
     {
         if ($request->ajax()) {
             $telefoni = Telefon::find($request->id);
-            $kancelarije = Kancelarija::with(['lokacija', 'sprat'])->get();
-            return response()->json(array('kancelarije' => $kancelarije, 'telefoni' => $telefoni));
+            $kancelarije = Kancelarija::with([
+                        'lokacija',
+                        'sprat'])->get();
+            return response()->json(array(
+                        'kancelarije' => $kancelarije,
+                        'telefoni' => $telefoni));
         }
     }
 

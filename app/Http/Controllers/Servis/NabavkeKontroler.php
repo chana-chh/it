@@ -12,6 +12,20 @@ use App\Modeli\VrstaUredjaja;
 class NabavkeKontroler extends Kontroler
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except([
+            'getLista',
+            'getDetalj',
+            'getListaPretraga'
+        ]);
+        $this->middleware('can:korisnik')->only([
+            'getLista',
+            'getDetalj',
+            'getListaPretraga'
+        ]);
+    }
+
     public function getLista()
     {
         $nabavke = Nabavka::all();
@@ -35,7 +49,8 @@ class NabavkeKontroler extends Kontroler
     private function naprednaPretraga($params)
     {
         $rezultat = null;
-        $where = [];
+        $where = [
+                ];
         if ($params['dobavljac_id'] !== null) {
             $where[] = [
                 'dobavljac_id',

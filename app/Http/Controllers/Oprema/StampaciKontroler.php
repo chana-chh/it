@@ -5,42 +5,50 @@ namespace App\Http\Controllers\Oprema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
-use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
 use Carbon\Carbon;
-
-Use App\Modeli\Stampac;
-Use App\Modeli\StampacModel;
-Use App\Modeli\Racunar;
-Use App\Modeli\OtpremnicaStavka;
-Use App\Modeli\Otpremnica;
-Use App\Modeli\Kancelarija;
-Use App\Modeli\Nabavka;
-Use App\Modeli\Reciklaza;
-
-
+use App\Modeli\Stampac;
+use App\Modeli\StampacModel;
+use App\Modeli\Racunar;
+use App\Modeli\Otpremnica;
+use App\Modeli\Kancelarija;
+use App\Modeli\Nabavka;
+use App\Modeli\Reciklaza;
 
 class StampaciKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except([
+            'getLista',
+            'getDetalj',
+            'getListaOtpisani']);
+        $this->middleware('can:korisnik')->only([
+            'getLista',
+            'getDetalj',
+            'getListaOtpisani']);
+    }
+
     public function getLista()
     {
-    	$uredjaj = Stampac::all();
-    	return view('oprema.stampaci')->with(compact ('uredjaj'));
+        $uredjaj = Stampac::all();
+        return view('oprema.stampaci')->with(compact('uredjaj'));
     }
 
     public function getListaOtpisani()
     {
         $uredjaj = Stampac::onlyTrashed()->get();
         $reciklaze = Reciklaza::all();
-        return view('oprema.stampaci_otpisani')->with(compact ('uredjaj', 'reciklaze'));
+        return view('oprema.stampaci_otpisani')->with(compact('uredjaj', 'reciklaze'));
     }
 
     public function getDetalj($id)
     {
         $uredjaj = Stampac::find($id);
         $brojno_stanje = Stampac::where('stampac_model_id', '=', $uredjaj->stampac_model_id)->count();
-        return view('oprema.stampaci_detalj')->with(compact ('uredjaj', 'brojno_stanje'));
+        return view('oprema.stampaci_detalj')->with(compact('uredjaj', 'brojno_stanje'));
     }
 
     public function getIzmena($id)
@@ -51,16 +59,18 @@ class StampaciKontroler extends Kontroler
         $otpremnice = Otpremnica::all();
         $kancelarije = Kancelarija::all();
         $nabavke = Nabavka::all();
-        return view('oprema.stampaci_izmena')->with(compact ('uredjaj', 'modeli', 'racunari', 'otpremnice', 'kancelarije', 'nabavke'));
+        return view('oprema.stampaci_izmena')->with(compact('uredjaj', 'modeli', 'racunari', 'otpremnice', 'kancelarije', 'nabavke'));
     }
 
     public function postIzmena(Request $request, $id)
     {
 
         $this->validate($request, [
-                'serijski_broj' => ['max:50'],
-                'stampac_model_id' => ['required'],
-            ]);
+            'serijski_broj' => [
+                'max:50'],
+            'stampac_model_id' => [
+                'required'],
+        ]);
 
         $uredjaj = Stampac::find($id);
         $uredjaj->inventarski_broj = $request->inventarski_broj;
@@ -74,7 +84,7 @@ class StampaciKontroler extends Kontroler
 
         $uredjaj->save();
 
-        Session::flash('uspeh','Štampač je uspešno izmenjen!');
+        Session::flash('uspeh', 'Štampač je uspešno izmenjen!');
         return redirect()->route('stampaci.oprema');
     }
 
@@ -87,19 +97,17 @@ class StampaciKontroler extends Kontroler
             $uredjaj = $data->racunar;
             $ime = $uredjaj->ime;
             $kanc = $uredjaj->kancelarija->naziv;
-            $data->racunar_id=null;
-        }
-        elseif($data->kancelarija){
+            $data->racunar_id = null;
+        } elseif ($data->kancelarija) {
             $ime = " nije bio vezan za računar";
             $kanc = $data->kancelarija->sviPodaci();
-            
-        }else{
+        } else {
             $ime = " nije bio vezan za računar";
             $kanc = " nema podataka";
         }
-        
 
-        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao štampač koji je bio povezan za računar: '. $ime . ', kancelarija: ' . $kanc;
+
+        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name . ' je dana:' . Carbon::now() . ' otpisao štampač koji je bio povezan za računar: ' . $ime . ', kancelarija: ' . $kanc;
         $data->save();
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -125,35 +133,38 @@ class StampaciKontroler extends Kontroler
         return redirect()->route('stampaci.oprema.otpisani');
     }
 
-    public function postReciklirajLista(Request $request){
+    public function postReciklirajLista(Request $request)
+    {
 
         $uredjaj = Stampac::onlyTrashed()->whereNull('reciklirano_id')->get();
         $reciklaza = Reciklaza::find($request->reciklirano_id);
 
-        return view('oprema.stampaci_recikliranje_lista')->with(compact ('uredjaj', 'reciklaza'));
+        return view('oprema.stampaci_recikliranje_lista')->with(compact('uredjaj', 'reciklaza'));
     }
 
-    public function postRecikliraj(Request $request, $id_reciklaze){
+    public function postRecikliraj(Request $request, $id_reciklaze)
+    {
 
         if (!$request->id_uredjaji) {
             Session::flash('greska', 'Niste odabrali nijedan štampač!');
             return redirect()->route('stampaci.oprema.otpisani');
-        }else{
-        DB::beginTransaction();
-        foreach ($request->id_uredjaji as $id) {
-            try{
-            $data = Stampac::withTrashed()->find($id);
-            $data->reciklirano_id = $id_reciklaze;
-            $data->save();
-        }catch (\Exception $e){
-                DB::rollback();
-                Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
-                return redirect()->route('stampaci.oprema.otpisani');
+        } else {
+            DB::beginTransaction();
+            foreach ($request->id_uredjaji as $id) {
+                try {
+                    $data = Stampac::withTrashed()->find($id);
+                    $data->reciklirano_id = $id_reciklaze;
+                    $data->save();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
+                    return redirect()->route('stampaci.oprema.otpisani');
+                }
+            }
+            DB::commit();
+            Session::flash('uspeh', 'Štampač je uspešno stavljeno na listu reciklaže!');
         }
-        }
-        DB::commit();
-        Session::flash('uspeh', 'Štampač je uspešno stavljeno na listu reciklaže!');}
-       return redirect()->route('stampaci.oprema.otpisani');
+        return redirect()->route('stampaci.oprema.otpisani');
     }
 
 }

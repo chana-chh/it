@@ -4,25 +4,26 @@ namespace App\Http\Controllers\Modeli;
 
 use Illuminate\Http\Request;
 use Session;
-use Redirect;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
-
-Use App\Modeli\MonitorModel;
-Use App\Modeli\Proizvodjac;
-Use App\Modeli\MonitorDijagonala;
-Use App\Modeli\Monitor;
-Use App\Modeli\MonitorPovezivanje;
-Use App\Modeli\Racunar;
-
-
+use App\Modeli\MonitorModel;
+use App\Modeli\Proizvodjac;
+use App\Modeli\MonitorDijagonala;
+use App\Modeli\Monitor;
+use App\Modeli\MonitorPovezivanje;
+use App\Modeli\Racunar;
 
 class MonitoriKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin');
+    }
+
     public function getLista()
     {
-    	$model = MonitorModel::all();
-    	return view('modeli.monitori')->with(compact ('model'));
+        $model = MonitorModel::all();
+        return view('modeli.monitori')->with(compact('model'));
     }
 
     public function getDodavanje()
@@ -30,17 +31,21 @@ class MonitoriKontroler extends Kontroler
         $proizvodjaci = Proizvodjac::all();
         $dijagonale = MonitorDijagonala::all();
         $povezivanje = MonitorPovezivanje::all();
-        return view('modeli.monitori_dodavanje')->with(compact ('proizvodjaci', 'dijagonale', 'povezivanje'));
+        return view('modeli.monitori_dodavanje')->with(compact('proizvodjaci', 'dijagonale', 'povezivanje'));
     }
 
     public function postDodavanje(Request $request)
     {
 
         $this->validate($request, [
-               'naziv' => ['required','unique:monitori_modeli,naziv'],
-               'proizvodjac_id' => ['required'],
-               'dijagonala_id' => ['required']
-            ]);
+            'naziv' => [
+                'required',
+                'unique:monitori_modeli,naziv'],
+            'proizvodjac_id' => [
+                'required'],
+            'dijagonala_id' => [
+                'required']
+        ]);
 
         $data = new MonitorModel();
         $data->naziv = $request->naziv;
@@ -53,7 +58,7 @@ class MonitoriKontroler extends Kontroler
 
         $data->povezivanja()->attach($request->povezivanja);
 
-        Session::flash('uspeh','Model monitora je uspešno dodat!');
+        Session::flash('uspeh', 'Model monitora je uspešno dodat!');
         return redirect()->route('monitori.modeli');
     }
 
@@ -63,22 +68,26 @@ class MonitoriKontroler extends Kontroler
         $proizvodjaci = Proizvodjac::all();
         $dijagonale = MonitorDijagonala::all();
         $povezivanje = MonitorPovezivanje::all();
-        return view('modeli.monitori_izmena')->with(compact ('model', 'proizvodjaci', 'dijagonale', 'povezivanje'));
+        return view('modeli.monitori_izmena')->with(compact('model', 'proizvodjaci', 'dijagonale', 'povezivanje'));
     }
 
     public function postIzmena(Request $request, $id)
     {
 
-            $this->validate($request, [
-                'naziv' => ['required','unique:monitori_modeli,naziv,' .$id],
-                'proizvodjac_id' => ['required'],
-                'dijagonala_id' => ['required']
-            ]);
-        
+        $this->validate($request, [
+            'naziv' => [
+                'required',
+                'unique:monitori_modeli,naziv,' . $id],
+            'proizvodjac_id' => [
+                'required'],
+            'dijagonala_id' => [
+                'required']
+        ]);
+
         $data = MonitorModel::find($id);
-        
+
         $data->povezivanja()->detach();
-        
+
         $data->naziv = $request->naziv;
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->dijagonala_id = $request->dijagonala_id;
@@ -89,21 +98,22 @@ class MonitoriKontroler extends Kontroler
 
         $data->povezivanja()->attach($request->povezivanja);
 
-        Session::flash('uspeh','Podaci o modelu monitora su uspešno izmenjeni!');
+        Session::flash('uspeh', 'Podaci o modelu monitora su uspešno izmenjeni!');
         return redirect()->route('monitori.modeli');
     }
 
     public function getDetalj($id)
     {
         $model = MonitorModel::find($id);
-        $racunari = Racunar::whereHas('monitori', function($query) use ($id){
-            $query->where('monitori.monitor_model_id', '=', $id);
-        })->count();
-        return view('modeli.monitori_detalj')->with(compact ('model', 'racunari'));
+        $racunari = Racunar::whereHas('monitori', function($query) use ($id) {
+                    $query->where('monitori.monitor_model_id', '=', $id);
+                })->count();
+        return view('modeli.monitori_detalj')->with(compact('model', 'racunari'));
     }
 
-    public function postBrisanje(Request $request) {
-        
+    public function postBrisanje(Request $request)
+    {
+
         $data = MonitorModel::find($request->idBrisanje);
         $data->povezivanja()->detach();
         $odgovor = $data->delete();
@@ -116,21 +126,23 @@ class MonitoriKontroler extends Kontroler
     }
 
     public function getRacunari($id)
-    {   
+    {
         // Dobra fora za uvlachenje id u funkciju, kao i eliminisanje sa WhereHas
         $model = MonitorModel::find($id);
-        $racunari = Racunar::whereHas('monitori', function($query) use ($id){
-            $query->where('monitori.monitor_model_id', '=', $id);
-        })->get();
-        return view('modeli.monitori_racunari')->with(compact ('racunari', 'model'));
+        $racunari = Racunar::whereHas('monitori', function($query) use ($id) {
+                    $query->where('monitori.monitor_model_id', '=', $id);
+                })->get();
+        return view('modeli.monitori_racunari')->with(compact('racunari', 'model'));
     }
 
     public function getUredjaji($id)
-    {   
+    {
         //Dobra fora za pozivanje dodatnih relacija sa Tockicom.SledecaRElacija
-        $monitori = Monitor::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('monitor_model_id', '=', $id)->get();
+        $monitori = Monitor::with([
+                    'racunar',
+                    'stavkaOtpremnice.otpremnica'])->where('monitor_model_id', '=', $id)->get();
         $model = MonitorModel::find($id);
-        return view('modeli.monitori_uredjaji')->with(compact ('monitori', 'model'));
+        return view('modeli.monitori_uredjaji')->with(compact('monitori', 'model'));
     }
 
 }

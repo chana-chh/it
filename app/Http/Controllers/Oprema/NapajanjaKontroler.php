@@ -5,40 +5,48 @@ namespace App\Http\Controllers\Oprema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
-use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
 use Carbon\Carbon;
-
-Use App\Modeli\Napajanje;
-Use App\Modeli\NapajanjeModel;
-Use App\Modeli\Racunar;
-Use App\Modeli\OtpremnicaStavka;
-Use App\Modeli\Otpremnica;
-Use App\Modeli\Reciklaza;
-
-
+use App\Modeli\Napajanje;
+use App\Modeli\NapajanjeModel;
+use App\Modeli\Racunar;
+use App\Modeli\Otpremnica;
+use App\Modeli\Reciklaza;
 
 class NapajanjaKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except([
+            'getLista',
+            'getDetalj',
+            'getListaOtpisani']);
+        $this->middleware('can:korisnik')->only([
+            'getLista',
+            'getDetalj',
+            'getListaOtpisani']);
+    }
+
     public function getLista()
     {
-    	$uredjaj = Napajanje::all();
-    	return view('oprema.napajanja')->with(compact ('uredjaj'));
+        $uredjaj = Napajanje::all();
+        return view('oprema.napajanja')->with(compact('uredjaj'));
     }
 
     public function getListaOtpisani()
     {
         $uredjaj = Napajanje::onlyTrashed()->get();
         $reciklaze = Reciklaza::all();
-        return view('oprema.napajanja_otpisani')->with(compact ('uredjaj', 'reciklaze'));
+        return view('oprema.napajanja_otpisani')->with(compact('uredjaj', 'reciklaze'));
     }
 
     public function getDetalj($id)
     {
         $uredjaj = Napajanje::find($id);
         $brojno_stanje = Napajanje::where('napajanje_model_id', '=', $uredjaj->napajanje_model_id)->count();
-        return view('oprema.napajanja_detalj')->with(compact ('uredjaj', 'brojno_stanje'));
+        return view('oprema.napajanja_detalj')->with(compact('uredjaj', 'brojno_stanje'));
     }
 
     public function getIzmena($id)
@@ -47,16 +55,18 @@ class NapajanjaKontroler extends Kontroler
         $modeli = NapajanjeModel::all();
         $racunari = Racunar::all();
         $otpremnice = Otpremnica::all();
-        return view('oprema.napajanja_izmena')->with(compact ('uredjaj', 'modeli', 'racunari', 'otpremnice'));
+        return view('oprema.napajanja_izmena')->with(compact('uredjaj', 'modeli', 'racunari', 'otpremnice'));
     }
 
     public function postIzmena(Request $request, $id)
     {
 
         $this->validate($request, [
-                'serijski_broj' => ['max:50'],
-                'napajanje_model_id' => ['required'],
-            ]);
+            'serijski_broj' => [
+                'max:50'],
+            'napajanje_model_id' => [
+                'required'],
+        ]);
 
         $uredjaj = Napajanje::find($id);
         $uredjaj->serijski_broj = $request->serijski_broj;
@@ -67,7 +77,7 @@ class NapajanjaKontroler extends Kontroler
 
         $uredjaj->save();
 
-        Session::flash('uspeh','Napajanje je uspešno izmenjeno!');
+        Session::flash('uspeh', 'Napajanje je uspešno izmenjeno!');
         return redirect()->route('napajanja.oprema');
     }
 
@@ -80,14 +90,13 @@ class NapajanjaKontroler extends Kontroler
             $uredjaj = $data->racunar;
             $ime = $uredjaj->ime;
             $kanc = $uredjaj->kancelarija->naziv;
-            $data->racunar_id=null;
-        }
-        else{
+            $data->racunar_id = null;
+        } else {
             $ime = " nije bilo u računaru";
             $kanc = " nema podataka";
         }
 
-        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao napajanje koje je bilo u računaru: '. $ime . ', kancelarija: ' . $kanc;
+        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name . ' je dana:' . Carbon::now() . ' otpisao napajanje koje je bilo u računaru: ' . $ime . ', kancelarija: ' . $kanc;
         $data->save();
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -104,8 +113,8 @@ class NapajanjaKontroler extends Kontroler
         $data = Napajanje::withTrashed()->find($request->idVracanje);
         $data->restore();
         if (!$data->stavkaOtpremnice) {
-              $data->stavka_otpremnice_id = 6; //Stavka otpremnice rezervisana za stare napajanja
-          }
+            $data->stavka_otpremnice_id = 6; //Stavka otpremnice rezervisana za stare napajanja
+        }
         $odgovor = $data->save();
 
         if ($odgovor) {
@@ -116,35 +125,38 @@ class NapajanjaKontroler extends Kontroler
         return redirect()->route('napajanja.oprema.otpisani');
     }
 
-    public function postReciklirajLista(Request $request){
+    public function postReciklirajLista(Request $request)
+    {
 
         $uredjaj = Napajanje::onlyTrashed()->whereNull('reciklirano_id')->get();
         $reciklaza = Reciklaza::find($request->reciklirano_id);
 
-        return view('oprema.napajanja_recikliranje_lista')->with(compact ('uredjaj', 'reciklaza'));
+        return view('oprema.napajanja_recikliranje_lista')->with(compact('uredjaj', 'reciklaza'));
     }
 
-    public function postRecikliraj(Request $request, $id_reciklaze){
+    public function postRecikliraj(Request $request, $id_reciklaze)
+    {
 
         if (!$request->id_uredjaji) {
             Session::flash('greska', 'Niste odabrali nijedano napajanje!');
             return redirect()->route('napajanja.oprema.otpisani');
-        }else{
-        DB::beginTransaction();
-        foreach ($request->id_uredjaji as $id) {
-            try{
-            $data = Napajanje::withTrashed()->find($id);
-            $data->reciklirano_id = $id_reciklaze;
-            $data->save();
-        }catch (\Exception $e){
-                DB::rollback();
-                Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
-                return redirect()->route('napajanja.oprema.otpisani');
+        } else {
+            DB::beginTransaction();
+            foreach ($request->id_uredjaji as $id) {
+                try {
+                    $data = Napajanje::withTrashed()->find($id);
+                    $data->reciklirano_id = $id_reciklaze;
+                    $data->save();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
+                    return redirect()->route('napajanja.oprema.otpisani');
+                }
+            }
+            DB::commit();
+            Session::flash('uspeh', 'Napajanje je uspešno stavljeno na listu reciklaže!');
         }
-        }
-        DB::commit();
-        Session::flash('uspeh', 'Napajanje je uspešno stavljeno na listu reciklaže!');}
-       return redirect()->route('napajanja.oprema.otpisani');
+        return redirect()->route('napajanja.oprema.otpisani');
     }
 
 }

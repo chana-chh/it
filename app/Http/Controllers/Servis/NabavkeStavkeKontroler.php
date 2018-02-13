@@ -16,6 +16,12 @@ use App\Modeli\UpsModel;
 class NabavkeStavkeKontroler extends Kontroler
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except('getDetalj');
+        $this->middleware('can:korisnik')->only('getDetalj');
+    }
+
     public function postDodavanje(Request $request)
     {
         $this->validate($request, [

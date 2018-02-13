@@ -26,7 +26,7 @@
                     @can('korisnik')
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <i class="fa fa-shopping-cart fa-fw" style="color: #18BC9C"></i> Nabavke<span class="caret">
+                            <i class="fa fa-shopping-cart fa-fw" style="color: #18BC9C"></i> Nabavke <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('nabavke') }}">Nabavke</a></li>
@@ -40,7 +40,7 @@
                     @can('korisnik')
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <i class="fa fa-server fa-fw" style="color: #18BC9C"></i> Oprema<span class="caret">
+                            <i class="fa fa-server fa-fw" style="color: #18BC9C"></i> Oprema <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{route('racunari.oprema')}}">Računari</a></li>
@@ -64,7 +64,7 @@
                     @can('admin')
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <i class="fa fa-server fa-fw" style="color: #18BC9C"></i> Modeli<span class="caret">
+                            <i class="fa fa-server fa-fw" style="color: #18BC9C"></i> Modeli <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{route('osnovne_ploce.modeli')}}">Osnovne ploče</a></li>
@@ -87,7 +87,9 @@
                             <i class="fa fa-wrench fa-fw" style="color: #18BC9C"></i> Šifarnici <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
+                            @can('admin')
                             <li><a href="{{ route('proizvodjaci') }}">Proizvođači</a></li>
+                            @endcan
                             <li><a href="{{ route('dobavljaci') }}">Dobavljači</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('lokacije') }}">Lokacije</a></li>
@@ -99,6 +101,7 @@
                             <li><a href="{{ route('telefoni') }}">Telefoni</a></li>
                             <li><a href="{{route('mobilni')}}">Mobilni</a></li>
                             <li><a href="{{route('email')}}">Email-ovi</a></li>
+                            @can('admin')
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('dijagonale') }}">Dijagonale (mon)</a></li>
                             <li><a href="{{ route('povezivanje_vga') }}">Povezivanje (video)</a></li>
@@ -107,14 +110,16 @@
                             <li><a href="{{ route('tipovi_memorije') }}">Tipovi memorije (ram, mbd, vga)</a></li>
                             <li><a href="{{ route('vga_slotovi') }}">VGA slotovi (mbd, vga)</a></li>
                             <li><a href="{{ route('tipovi_stampaca') }}">Tipovi štampača</a></li>
+                            @endcan
+                            <li role="separator" class="divider"></li>
                             <li><a href="{{ route('toneri') }}">Toneri</a></li>
                             <li><a href="{{ route('baterije') }}">Baterije</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('operativni_sistemi') }}">Operativni sistemi</a></li>
                             <li><a href="{{route('aplikacije')}}">Aplikacije</a></li>
-                            <li><a href="{{route('licence')}}">Licence</a></li>
                             <li><a href="{{route('reciklaze')}}">Reciklaže</a></li>
                             @can('admin')
+                            <li><a href="{{route('licence')}}">Licence</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{route('korisnici')}}">Korisnici</a></li>
                             @endcan

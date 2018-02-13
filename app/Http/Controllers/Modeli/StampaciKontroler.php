@@ -4,25 +4,27 @@ namespace App\Http\Controllers\Modeli;
 
 use Illuminate\Http\Request;
 use Session;
-use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
-
-Use App\Modeli\StampacModel;
-Use App\Modeli\Proizvodjac;
-Use App\Modeli\TipStampaca;
-Use App\Modeli\Toner;
-Use App\Modeli\Stampac;
-Use App\Modeli\Racunar;
-
-
+use App\Modeli\StampacModel;
+use App\Modeli\Proizvodjac;
+use App\Modeli\TipStampaca;
+use App\Modeli\Toner;
+use App\Modeli\Stampac;
+use App\Modeli\Racunar;
 
 class StampaciKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin');
+    }
+
     public function getLista()
     {
-    	$model = StampacModel::all();
-    	return view('modeli.stampaci')->with(compact ('model'));
+        $model = StampacModel::all();
+        return view('modeli.stampaci')->with(compact('model'));
     }
 
     public function getDodavanje()
@@ -30,18 +32,24 @@ class StampaciKontroler extends Kontroler
         $proizvodjaci = Proizvodjac::all();
         $tipovi = TipStampaca::all();
         $toneri = Toner::all();
-        return view('modeli.stampaci_dodavanje')->with(compact ('proizvodjaci', 'tipovi', 'toneri'));
+        return view('modeli.stampaci_dodavanje')->with(compact('proizvodjaci', 'tipovi', 'toneri'));
     }
 
     public function postDodavanje(Request $request)
     {
 
         $this->validate($request, [
-               'naziv' => ['required','max:255','unique:stampaci_modeli,naziv'],
-               'proizvodjac_id' => ['required'],
-               'tip_tonera_id' => ['required'],
-               'tip_stampaca_id' => ['required']
-            ]);
+            'naziv' => [
+                'required',
+                'max:255',
+                'unique:stampaci_modeli,naziv'],
+            'proizvodjac_id' => [
+                'required'],
+            'tip_tonera_id' => [
+                'required'],
+            'tip_stampaca_id' => [
+                'required']
+        ]);
 
         $data = new StampacModel();
         $data->naziv = $request->naziv;
@@ -53,7 +61,7 @@ class StampaciKontroler extends Kontroler
 
         $data->save();
 
-        Session::flash('uspeh','Model štampaca je uspešno dodat!');
+        Session::flash('uspeh', 'Model štampaca je uspešno dodat!');
         return redirect()->route('stampaci.modeli');
     }
 
@@ -63,19 +71,25 @@ class StampaciKontroler extends Kontroler
         $proizvodjaci = Proizvodjac::all();
         $tipovi = TipStampaca::all();
         $toneri = Toner::all();
-        return view('modeli.stampaci_izmena')->with(compact ('model', 'proizvodjaci', 'tipovi', 'toneri'));
+        return view('modeli.stampaci_izmena')->with(compact('model', 'proizvodjaci', 'tipovi', 'toneri'));
     }
 
     public function postIzmena(Request $request, $id)
     {
 
-            $this->validate($request, [
-                'naziv' => ['required','max:255','unique:stampaci_modeli,naziv,' .$id],
-                'proizvodjac_id' => ['required'],
-                'tip_tonera_id' => ['required'],
-                'tip_stampaca_id' => ['required']
-            ]);
-        
+        $this->validate($request, [
+            'naziv' => [
+                'required',
+                'max:255',
+                'unique:stampaci_modeli,naziv,' . $id],
+            'proizvodjac_id' => [
+                'required'],
+            'tip_tonera_id' => [
+                'required'],
+            'tip_stampaca_id' => [
+                'required']
+        ]);
+
         $data = StampacModel::find($id);
         $data->naziv = $request->naziv;
         $data->proizvodjac_id = $request->proizvodjac_id;
@@ -86,7 +100,7 @@ class StampaciKontroler extends Kontroler
 
         $data->save();
 
-        Session::flash('uspeh','Podaci o modelu štampača su uspešno izmenjeni!');
+        Session::flash('uspeh', 'Podaci o modelu štampača su uspešno izmenjeni!');
         return redirect()->route('stampaci.modeli');
     }
 
@@ -94,14 +108,21 @@ class StampaciKontroler extends Kontroler
     {
         $model = StampacModel::find($id);
         $racunari = DB::table('stampaci')->where([
-            ['stampac_model_id', '=', $id],
-            ['racunar_id', '<>', null],
-        ])->count();
-        return view('modeli.stampaci_detalj')->with(compact ('model', 'racunari'));
+                    [
+                        'stampac_model_id',
+                        '=',
+                        $id],
+                    [
+                        'racunar_id',
+                        '<>',
+                        null],
+                ])->count();
+        return view('modeli.stampaci_detalj')->with(compact('model', 'racunari'));
     }
 
-    public function postBrisanje(Request $request) {
-        
+    public function postBrisanje(Request $request)
+    {
+
         $data = StampacModel::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -113,21 +134,23 @@ class StampaciKontroler extends Kontroler
     }
 
     public function getRacunari($id)
-    {   
+    {
         // Dobra fora za uvlachenje id u funkciju, kao i eliminisanje sa WhereHas
         $model = StampacModel::find($id);
-        $racunari = Racunar::whereHas('stampaci', function($query) use ($id){
-            $query->where('stampaci.stampac_model_id', '=', $id);
-        })->get();
-        return view('modeli.stampaci_racunari')->with(compact ('racunari', 'model'));
+        $racunari = Racunar::whereHas('stampaci', function($query) use ($id) {
+                    $query->where('stampaci.stampac_model_id', '=', $id);
+                })->get();
+        return view('modeli.stampaci_racunari')->with(compact('racunari', 'model'));
     }
 
     public function getUredjaji($id)
-    {   
+    {
         //Dobra fora za pozivanje dodatnih relacija sa Tockicom.SledecaRElacija
-        $stampaci = Stampac::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('stampac_model_id', '=', $id)->get();
+        $stampaci = Stampac::with([
+                    'racunar',
+                    'stavkaOtpremnice.otpremnica'])->where('stampac_model_id', '=', $id)->get();
         $model = StampacModel::find($id);
-        return view('modeli.stampaci_uredjaji')->with(compact ('stampaci', 'model'));
+        return view('modeli.stampaci_uredjaji')->with(compact('stampaci', 'model'));
     }
 
 }

@@ -4,40 +4,48 @@ namespace App\Http\Controllers\Modeli;
 
 use Illuminate\Http\Request;
 use Session;
-use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
-
-Use App\Modeli\SkenerModel;
-Use App\Modeli\Proizvodjac;
-Use App\Modeli\Skener;
-Use App\Modeli\Racunar;
-
-
+use App\Modeli\SkenerModel;
+use App\Modeli\Proizvodjac;
+use App\Modeli\Skener;
+use App\Modeli\Racunar;
 
 class SkeneriKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin');
+    }
+
     public function getLista()
     {
-    	$model = SkenerModel::all();
-    	return view('modeli.skeneri')->with(compact ('model'));
+        $model = SkenerModel::all();
+        return view('modeli.skeneri')->with(compact('model'));
     }
 
     public function getDodavanje()
     {
         $proizvodjaci = Proizvodjac::all();
-        return view('modeli.skeneri_dodavanje')->with(compact ('proizvodjaci'));
+        return view('modeli.skeneri_dodavanje')->with(compact('proizvodjaci'));
     }
 
     public function postDodavanje(Request $request)
     {
 
         $this->validate($request, [
-               'naziv' => ['required','max:50','unique:skeneri_modeli,naziv'],
-               'proizvodjac_id' => ['required'],
-               'format' => ['max:20'],
-               'rezolucija' => ['max:20']
-            ]);
+            'naziv' => [
+                'required',
+                'max:50',
+                'unique:skeneri_modeli,naziv'],
+            'proizvodjac_id' => [
+                'required'],
+            'format' => [
+                'max:20'],
+            'rezolucija' => [
+                'max:20']
+        ]);
 
         $data = new SkenerModel();
         $data->naziv = $request->naziv;
@@ -49,7 +57,7 @@ class SkeneriKontroler extends Kontroler
 
         $data->save();
 
-        Session::flash('uspeh','Model skenera je uspešno dodat!');
+        Session::flash('uspeh', 'Model skenera je uspešno dodat!');
         return redirect()->route('skeneri.modeli');
     }
 
@@ -57,19 +65,25 @@ class SkeneriKontroler extends Kontroler
     {
         $model = SkenerModel::find($id);
         $proizvodjaci = Proizvodjac::all();
-        return view('modeli.skeneri_izmena')->with(compact ('model', 'proizvodjaci'));
+        return view('modeli.skeneri_izmena')->with(compact('model', 'proizvodjaci'));
     }
 
     public function postIzmena(Request $request, $id)
     {
 
-            $this->validate($request, [
-                'naziv' => ['required','max:50','unique:skeneri_modeli,naziv,' .$id],
-                'proizvodjac_id' => ['required'],
-                'format' => ['max:20'],
-               'rezolucija' => ['max:20']
-            ]);
-        
+        $this->validate($request, [
+            'naziv' => [
+                'required',
+                'max:50',
+                'unique:skeneri_modeli,naziv,' . $id],
+            'proizvodjac_id' => [
+                'required'],
+            'format' => [
+                'max:20'],
+            'rezolucija' => [
+                'max:20']
+        ]);
+
         $data = SkenerModel::find($id);
         $data->naziv = $request->naziv;
         $data->proizvodjac_id = $request->proizvodjac_id;
@@ -80,7 +94,7 @@ class SkeneriKontroler extends Kontroler
 
         $data->save();
 
-        Session::flash('uspeh','Podaci o modelu skeneri su uspešno izmenjeni!');
+        Session::flash('uspeh', 'Podaci o modelu skeneri su uspešno izmenjeni!');
         return redirect()->route('skeneri.modeli');
     }
 
@@ -88,14 +102,21 @@ class SkeneriKontroler extends Kontroler
     {
         $model = SkenerModel::find($id);
         $racunari = DB::table('skeneri')->where([
-            ['skener_model_id', '=', $id],
-            ['racunar_id', '<>', null],
-        ])->count();
-        return view('modeli.skeneri_detalj')->with(compact ('model', 'racunari'));
+                    [
+                        'skener_model_id',
+                        '=',
+                        $id],
+                    [
+                        'racunar_id',
+                        '<>',
+                        null],
+                ])->count();
+        return view('modeli.skeneri_detalj')->with(compact('model', 'racunari'));
     }
 
-    public function postBrisanje(Request $request) {
-        
+    public function postBrisanje(Request $request)
+    {
+
         $data = SkenerModel::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -107,21 +128,23 @@ class SkeneriKontroler extends Kontroler
     }
 
     public function getRacunari($id)
-    {   
+    {
         // Dobra fora za uvlachenje id u funkciju, kao i eliminisanje sa WhereHas
         $model = SkenerModel::find($id);
-        $racunari = Racunar::whereHas('skeneri', function($query) use ($id){
-            $query->where('skeneri.skener_model_id', '=', $id);
-        })->get();
-        return view('modeli.skeneri_racunari')->with(compact ('racunari', 'model'));
+        $racunari = Racunar::whereHas('skeneri', function($query) use ($id) {
+                    $query->where('skeneri.skener_model_id', '=', $id);
+                })->get();
+        return view('modeli.skeneri_racunari')->with(compact('racunari', 'model'));
     }
 
     public function getUredjaji($id)
-    {   
+    {
         //Dobra fora za pozivanje dodatnih relacija sa Tockicom.SledecaRElacija
-        $skeneri = Skener::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('skener_model_id', '=', $id)->get();
+        $skeneri = Skener::with([
+                    'racunar',
+                    'stavkaOtpremnice.otpremnica'])->where('skener_model_id', '=', $id)->get();
         $model = SkenerModel::find($id);
-        return view('modeli.skeneri_uredjaji')->with(compact ('skeneri', 'model'));
+        return view('modeli.skeneri_uredjaji')->with(compact('skeneri', 'model'));
     }
 
 }

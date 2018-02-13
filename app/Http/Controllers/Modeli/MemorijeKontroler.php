@@ -4,17 +4,20 @@ namespace App\Http\Controllers\Modeli;
 
 use Illuminate\Http\Request;
 use Session;
-use Redirect;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
-Use App\Modeli\MemorijaModel;
-Use App\Modeli\Proizvodjac;
-Use App\Modeli\TipMemorije;
-Use App\Modeli\Memorija;
-Use App\Modeli\Racunar;
+use App\Modeli\MemorijaModel;
+use App\Modeli\Proizvodjac;
+use App\Modeli\TipMemorije;
+use App\Modeli\Memorija;
+use App\Modeli\Racunar;
 
 class MemorijeKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin');
+    }
 
     public function getLista()
     {

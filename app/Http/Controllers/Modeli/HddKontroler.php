@@ -4,48 +4,53 @@ namespace App\Http\Controllers\Modeli;
 
 use Illuminate\Http\Request;
 use Session;
-use Redirect;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
-
-Use App\Modeli\HddModel;
-Use App\Modeli\Proizvodjac;
-Use App\Modeli\HddPovezivanje;
-Use App\Modeli\Racunar;
-Use App\Modeli\Hdd;
-
-
+use App\Modeli\HddModel;
+use App\Modeli\Proizvodjac;
+use App\Modeli\HddPovezivanje;
+use App\Modeli\Racunar;
+use App\Modeli\Hdd;
 
 class HddKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin');
+    }
+
     public function getLista()
     {
-    	$hddovi = HddModel::all();
-    	return view('modeli.hddovi')->with(compact ('hddovi'));
+        $hddovi = HddModel::all();
+        return view('modeli.hddovi')->with(compact('hddovi'));
     }
 
     public function getDodavanje()
     {
         $proizvodjaci = Proizvodjac::all();
         $povezivanja = HddPovezivanje::all();
-        return view('modeli.hddovi_dodavanje')->with(compact ('proizvodjaci', 'povezivanja'));
+        return view('modeli.hddovi_dodavanje')->with(compact('proizvodjaci', 'povezivanja'));
     }
 
     public function postDodavanje(Request $request)
     {
 
         $this->validate($request, [
-                'proizvodjac_id' => ['required'],
-                'povezivanje_id' => ['required'],
-                'kapacitet' => ['required'],
-                'ocena' => ['required'],
-            ]);
+            'proizvodjac_id' => [
+                'required'],
+            'povezivanje_id' => [
+                'required'],
+            'kapacitet' => [
+                'required'],
+            'ocena' => [
+                'required'],
+        ]);
 
-         if ($request->ssd) {
-                $ssdc = 1;
-            } else {
-                $ssdc = 0;
-            }
+        if ($request->ssd) {
+            $ssdc = 1;
+        } else {
+            $ssdc = 0;
+        }
 
         $data = new HddModel();
         $data->proizvodjac_id = $request->proizvodjac_id;
@@ -58,7 +63,7 @@ class HddKontroler extends Kontroler
 
         $data->save();
 
-        Session::flash('uspeh','Model čvrstog diska je uspešno dodata!');
+        Session::flash('uspeh', 'Model čvrstog diska je uspešno dodata!');
         return redirect()->route('hddovi.modeli');
     }
 
@@ -67,25 +72,29 @@ class HddKontroler extends Kontroler
         $hddovi = HddModel::find($id);
         $proizvodjaci = Proizvodjac::all();
         $povezivanja = HddPovezivanje::all();
-        return view('modeli.hddovi_izmena')->with(compact ('hddovi', 'proizvodjaci', 'povezivanja'));
+        return view('modeli.hddovi_izmena')->with(compact('hddovi', 'proizvodjaci', 'povezivanja'));
     }
 
     public function postIzmena(Request $request, $id)
     {
 
-            $this->validate($request, [
-                'proizvodjac_id' => ['required'],
-                'povezivanje_id' => ['required'],
-                'kapacitet' => ['required'],
-                'ocena' => ['required'],
-            ]);
+        $this->validate($request, [
+            'proizvodjac_id' => [
+                'required'],
+            'povezivanje_id' => [
+                'required'],
+            'kapacitet' => [
+                'required'],
+            'ocena' => [
+                'required'],
+        ]);
 
-            if ($request->ssd) {
-                $ssdc = 1;
-            } else {
-                $ssdc = 0;
-            }
-        
+        if ($request->ssd) {
+            $ssdc = 1;
+        } else {
+            $ssdc = 0;
+        }
+
         $data = HddModel::find($id);
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->povezivanje_id = $request->povezivanje_id;
@@ -97,21 +106,22 @@ class HddKontroler extends Kontroler
 
         $data->save();
 
-        Session::flash('uspeh','Podaci o modelu čvrstih diskova su uspešno izmenjeni!');
+        Session::flash('uspeh', 'Podaci o modelu čvrstih diskova su uspešno izmenjeni!');
         return redirect()->route('hddovi.modeli');
     }
 
     public function getDetalj($id)
     {
         $hdd = HddModel::find($id);
-        $racunari = Racunar::whereHas('hddovi', function($query) use ($id){
-            $query->where('hdd.hdd_model_id', '=', $id);
-        })->count();
-        return view('modeli.hddovi_detalj')->with(compact ('hdd', 'racunari'));
+        $racunari = Racunar::whereHas('hddovi', function($query) use ($id) {
+                    $query->where('hdd.hdd_model_id', '=', $id);
+                })->count();
+        return view('modeli.hddovi_detalj')->with(compact('hdd', 'racunari'));
     }
 
-    public function postBrisanje(Request $request) {
-        
+    public function postBrisanje(Request $request)
+    {
+
         $data = HddModel::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -123,21 +133,23 @@ class HddKontroler extends Kontroler
     }
 
     public function getRacunari($id)
-    {   
+    {
         // Dobra fora za uvlachenje id u funkciju, kao i eliminisanje sa WhereHas
         $model = HddModel::find($id);
-        $racunari = Racunar::whereHas('hddovi', function($query) use ($id){
-            $query->where('hdd.hdd_model_id', '=', $id);
-        })->get();
-        return view('modeli.hddovi_racunari')->with(compact ('racunari', 'model'));
+        $racunari = Racunar::whereHas('hddovi', function($query) use ($id) {
+                    $query->where('hdd.hdd_model_id', '=', $id);
+                })->get();
+        return view('modeli.hddovi_racunari')->with(compact('racunari', 'model'));
     }
 
     public function getUredjaji($id)
-    {   
+    {
         //Dobra fora za pozivanje dodatnih relacija sa Tockicom.SledecaRElacija
-        $hddovi = Hdd::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('hdd_model_id', '=', $id)->get();
+        $hddovi = Hdd::with([
+                    'racunar',
+                    'stavkaOtpremnice.otpremnica'])->where('hdd_model_id', '=', $id)->get();
         $model = HddModel::find($id);
-        return view('modeli.hddovi_uredjaji')->with(compact ('hddovi', 'model'));
+        return view('modeli.hddovi_uredjaji')->with(compact('hddovi', 'model'));
     }
 
 }

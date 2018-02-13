@@ -21,6 +21,12 @@ use App\Modeli\Napajanje;
 
 class NabavkeOtpremniceStavkeKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin');
+    }
+
     /*
      * Dodavanje uredjaja kroz nabavku-otpremnicu
      */

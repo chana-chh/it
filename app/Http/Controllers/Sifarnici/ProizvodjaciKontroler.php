@@ -13,8 +13,7 @@ class ProizvodjaciKontroler extends Kontroler
 
     public function __construct()
     {
-        $this->middleware('can:admin')->except('getLista');
-        $this->middleware('can:korisnik')->only('getLista');
+        $this->middleware('can:admin');
     }
 
     public function getLista()
@@ -54,7 +53,8 @@ class ProizvodjaciKontroler extends Kontroler
     {
         $id = $request->idModal;
         $this->validate($request, [
-            'nazivModal' => ['required',
+            'nazivModal' => [
+                'required',
                 'max:190',
                 'unique:s_proizvodjaci,naziv,' . $id,
             ],

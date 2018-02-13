@@ -13,8 +13,7 @@ class SoketiKontroler extends Kontroler
 
     public function __construct()
     {
-        $this->middleware('can:admin')->except('getLista');
-        $this->middleware('can:korisnik')->only('getLista');
+        $this->middleware('can:admin');
     }
 
     public function getLista()

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use Redirect;
-use Gate;
 use Carbon\Carbon;
 use App\Modeli\Racunar;
 use App\Modeli\Monitor;
@@ -18,7 +17,6 @@ use App\Modeli\Aplikacija;
 use App\Modeli\Greska;
 use App\Modeli\Servis;
 use App\Modeli\Licenca;
-use App\Helpers\Uredjaj;
 
 class PocetnaKontroler extends Kontroler
 {

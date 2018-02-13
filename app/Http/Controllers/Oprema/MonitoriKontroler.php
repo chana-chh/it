@@ -5,42 +5,50 @@ namespace App\Http\Controllers\Oprema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
-use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
 use Carbon\Carbon;
-
-Use App\Modeli\Monitor;
-Use App\Modeli\MonitorModel;
-Use App\Modeli\Racunar;
-Use App\Modeli\OtpremnicaStavka;
-Use App\Modeli\Otpremnica;
-Use App\Modeli\Kancelarija;
-Use App\Modeli\Nabavka;
-Use App\Modeli\Reciklaza;
-
-
+use App\Modeli\Monitor;
+use App\Modeli\MonitorModel;
+use App\Modeli\Racunar;
+use App\Modeli\Otpremnica;
+use App\Modeli\Kancelarija;
+use App\Modeli\Nabavka;
+use App\Modeli\Reciklaza;
 
 class MonitoriKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except([
+            'getLista',
+            'getDetalj',
+            'getListaOtpisani']);
+        $this->middleware('can:korisnik')->only([
+            'getLista',
+            'getDetalj',
+            'getListaOtpisani']);
+    }
+
     public function getLista()
     {
-    	$uredjaj = Monitor::all();
-    	return view('oprema.monitori')->with(compact ('uredjaj'));
+        $uredjaj = Monitor::all();
+        return view('oprema.monitori')->with(compact('uredjaj'));
     }
 
     public function getListaOtpisani()
     {
         $uredjaj = Monitor::onlyTrashed()->get();
         $reciklaze = Reciklaza::all();
-        return view('oprema.monitori_otpisani')->with(compact ('uredjaj', 'reciklaze'));
+        return view('oprema.monitori_otpisani')->with(compact('uredjaj', 'reciklaze'));
     }
 
     public function getDetalj($id)
     {
         $uredjaj = Monitor::find($id);
         $brojno_stanje = Monitor::where('monitor_model_id', '=', $uredjaj->monitor_model_id)->count();
-        return view('oprema.monitori_detalj')->with(compact ('uredjaj', 'brojno_stanje'));
+        return view('oprema.monitori_detalj')->with(compact('uredjaj', 'brojno_stanje'));
     }
 
     public function getIzmena($id)
@@ -51,16 +59,18 @@ class MonitoriKontroler extends Kontroler
         $otpremnice = Otpremnica::all();
         $kancelarije = Kancelarija::all();
         $nabavke = Nabavka::all();
-        return view('oprema.monitori_izmena')->with(compact ('uredjaj', 'modeli', 'racunari', 'otpremnice', 'kancelarije', 'nabavke'));
+        return view('oprema.monitori_izmena')->with(compact('uredjaj', 'modeli', 'racunari', 'otpremnice', 'kancelarije', 'nabavke'));
     }
 
     public function postIzmena(Request $request, $id)
     {
 
         $this->validate($request, [
-                'serijski_broj' => ['max:50'],
-                'monitor_model_id' => ['required'],
-            ]);
+            'serijski_broj' => [
+                'max:50'],
+            'monitor_model_id' => [
+                'required'],
+        ]);
 
         $uredjaj = Monitor::find($id);
         $uredjaj->inventarski_broj = $request->inventarski_broj;
@@ -74,7 +84,7 @@ class MonitoriKontroler extends Kontroler
 
         $uredjaj->save();
 
-        Session::flash('uspeh','Monitor je uspešno izmenjen!');
+        Session::flash('uspeh', 'Monitor je uspešno izmenjen!');
         return redirect()->route('monitori.oprema');
     }
 
@@ -87,19 +97,17 @@ class MonitoriKontroler extends Kontroler
             $uredjaj = $data->racunar;
             $ime = $uredjaj->ime;
             $kanc = $uredjaj->kancelarija->naziv;
-            $data->racunar_id=null;
-        }
-        elseif($data->kancelarija){
+            $data->racunar_id = null;
+        } elseif ($data->kancelarija) {
             $ime = " nije bio vezan za računar";
             $kanc = $data->kancelarija->sviPodaci();
-            
-        }else{
+        } else {
             $ime = " nije bio vezan za računar";
             $kanc = " nema podataka";
         }
-        
 
-        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao monitor koji je bio povezan za računar: '. $ime . ', kancelarija: ' . $kanc;
+
+        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name . ' je dana:' . Carbon::now() . ' otpisao monitor koji je bio povezan za računar: ' . $ime . ', kancelarija: ' . $kanc;
         $data->save();
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -125,35 +133,38 @@ class MonitoriKontroler extends Kontroler
         return redirect()->route('monitori.oprema.otpisani');
     }
 
-    public function postReciklirajLista(Request $request){
+    public function postReciklirajLista(Request $request)
+    {
 
         $uredjaj = Monitor::onlyTrashed()->whereNull('reciklirano_id')->get();
         $reciklaza = Reciklaza::find($request->reciklirano_id);
 
-        return view('oprema.monitori_recikliranje_lista')->with(compact ('uredjaj', 'reciklaza'));
+        return view('oprema.monitori_recikliranje_lista')->with(compact('uredjaj', 'reciklaza'));
     }
 
-    public function postRecikliraj(Request $request, $id_reciklaze){
+    public function postRecikliraj(Request $request, $id_reciklaze)
+    {
 
         if (!$request->id_uredjaji) {
             Session::flash('greska', 'Niste odabrali nijedan monitor!');
             return redirect()->route('monitori.oprema.otpisani');
-        }else{
-        DB::beginTransaction();
-        foreach ($request->id_uredjaji as $id) {
-            try{
-            $data = Monitor::withTrashed()->find($id);
-            $data->reciklirano_id = $id_reciklaze;
-            $data->save();
-        }catch (\Exception $e){
-                DB::rollback();
-                Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
-                return redirect()->route('monitori.oprema.otpisani');
+        } else {
+            DB::beginTransaction();
+            foreach ($request->id_uredjaji as $id) {
+                try {
+                    $data = Monitor::withTrashed()->find($id);
+                    $data->reciklirano_id = $id_reciklaze;
+                    $data->save();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
+                    return redirect()->route('monitori.oprema.otpisani');
+                }
+            }
+            DB::commit();
+            Session::flash('uspeh', 'Monitor je uspešno stavljeno na listu reciklaže!');
         }
-        }
-        DB::commit();
-        Session::flash('uspeh', 'Monitor je uspešno stavljeno na listu reciklaže!');}
-       return redirect()->route('monitori.oprema.otpisani');
+        return redirect()->route('monitori.oprema.otpisani');
     }
 
 }

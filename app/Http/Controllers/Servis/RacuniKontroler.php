@@ -15,6 +15,18 @@ use App\Modeli\Otpremnica;
 class RacuniKontroler extends Kontroler
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except([
+            'getLista',
+            'getDetalj'
+        ]);
+        $this->middleware('can:korisnik')->only([
+            'getLista',
+            'getDetalj'
+        ]);
+    }
+
     public function getLista()
     {
         $racuni = Racun::all();

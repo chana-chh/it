@@ -13,8 +13,7 @@ class LicenceKontroler extends Kontroler
 
     public function __construct()
     {
-        $this->middleware('can:admin')->except('getLista');
-        $this->middleware('can:korisnik')->only('getLista');
+        $this->middleware('can:admin');
     }
 
     public function getLista()
@@ -33,10 +32,16 @@ class LicenceKontroler extends Kontroler
 
 
         $this->validate($request, [
-            'tip_licence' => ['required', 'max:50'],
-            'proizvod' => ['required', 'max:200'],
-            'datum_pocetka_vazenja' => ['date'],
-            'datum_prestanka_vazenja' => ['date'],
+            'tip_licence' => [
+                'required',
+                'max:50'],
+            'proizvod' => [
+                'required',
+                'max:200'],
+            'datum_pocetka_vazenja' => [
+                'date'],
+            'datum_prestanka_vazenja' => [
+                'date'],
         ]);
 
         $data = new Licenca();
@@ -70,10 +75,16 @@ class LicenceKontroler extends Kontroler
     {
 
         $this->validate($request, [
-            'tip_licence' => ['required', 'max:50'],
-            'proizvod' => ['required', 'max:50'],
-            'datum_pocetka_vazenja' => ['date'],
-            'datum_prestanka_vazenja' => ['date'],
+            'tip_licence' => [
+                'required',
+                'max:50'],
+            'proizvod' => [
+                'required',
+                'max:50'],
+            'datum_pocetka_vazenja' => [
+                'date'],
+            'datum_prestanka_vazenja' => [
+                'date'],
         ]);
 
         $data = Licenca::find($id);

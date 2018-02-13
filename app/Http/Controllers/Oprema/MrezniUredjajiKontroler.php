@@ -5,41 +5,48 @@ namespace App\Http\Controllers\Oprema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
-use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
 use Carbon\Carbon;
-
-Use App\Modeli\MrezniUredjaj;
-Use App\Modeli\Racunar;
-Use App\Modeli\OtpremnicaStavka;
-Use App\Modeli\Otpremnica;
-Use App\Modeli\Reciklaza;
-Use App\Modeli\Proizvodjac;
-Use App\Modeli\Kancelarija;
-Use App\Modeli\Nabavka;
-
-
+use App\Modeli\MrezniUredjaj;
+use App\Modeli\Otpremnica;
+use App\Modeli\Reciklaza;
+use App\Modeli\Proizvodjac;
+use App\Modeli\Kancelarija;
+use App\Modeli\Nabavka;
 
 class MrezniUredjajiKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except([
+            'getLista',
+            'getDetalj',
+            'getListaOtpisani']);
+        $this->middleware('can:korisnik')->only([
+            'getLista',
+            'getDetalj',
+            'getListaOtpisani']);
+    }
+
     public function getLista()
     {
-    	$uredjaj = MrezniUredjaj::all();
-    	return view('oprema.mrezni')->with(compact ('uredjaj'));
+        $uredjaj = MrezniUredjaj::all();
+        return view('oprema.mrezni')->with(compact('uredjaj'));
     }
 
     public function getListaOtpisani()
     {
         $uredjaj = MrezniUredjaj::onlyTrashed()->get();
         $reciklaze = Reciklaza::all();
-        return view('oprema.mrezni_otpisani')->with(compact ('uredjaj', 'reciklaze'));
+        return view('oprema.mrezni_otpisani')->with(compact('uredjaj', 'reciklaze'));
     }
 
     public function getDetalj($id)
     {
         $uredjaj = MrezniUredjaj::find($id);
-        return view('oprema.mrezni_detalj')->with(compact ('uredjaj'));
+        return view('oprema.mrezni_detalj')->with(compact('uredjaj'));
     }
 
     public function getIzmena($id)
@@ -49,22 +56,24 @@ class MrezniUredjajiKontroler extends Kontroler
         $kancelarije = Kancelarija::all();
         $nabavke = Nabavka::all();
         $proizvodjaci = Proizvodjac::all();
-        return view('oprema.mrezni_izmena')->with(compact ('uredjaj', 'kancelarije', 'nabavke', 'otpremnice', 'proizvodjaci'));
+        return view('oprema.mrezni_izmena')->with(compact('uredjaj', 'kancelarije', 'nabavke', 'otpremnice', 'proizvodjaci'));
     }
 
     public function postIzmena(Request $request, $id)
     {
 
         $this->validate($request, [
-                'serijski_broj' => ['max:50'],
-                'naziv' => ['required'],
-            ]);
+            'serijski_broj' => [
+                'max:50'],
+            'naziv' => [
+                'required'],
+        ]);
 
         if ($request->upravljiv) {
-                $upravljivc = 1;
-            } else {
-                $upravljivc = 0;
-            }
+            $upravljivc = 1;
+        } else {
+            $upravljivc = 0;
+        }
 
         $uredjaj = MrezniUredjaj::find($id);
         $uredjaj->naziv = $request->naziv;
@@ -80,7 +89,7 @@ class MrezniUredjajiKontroler extends Kontroler
 
         $uredjaj->save();
 
-        Session::flash('uspeh','Mrežni uređaj je uspešno izmenjeno!');
+        Session::flash('uspeh', 'Mrežni uređaj je uspešno izmenjeno!');
         return redirect()->route('mrezni.oprema');
     }
 
@@ -89,14 +98,13 @@ class MrezniUredjajiKontroler extends Kontroler
 
         $data = MrezniUredjaj::find($request->idOtpis);
 
-        if($data->kancelarija){
+        if ($data->kancelarija) {
             $kanc = $data->kancelarija->sviPodaci();
-            
-        }else{
+        } else {
             $kanc = " nema podataka";
         }
 
-        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao mrežni uređaj koji je bio u kancelariji '. $kanc ;
+        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name . ' je dana:' . Carbon::now() . ' otpisao mrežni uređaj koji je bio u kancelariji ' . $kanc;
         $data->save();
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -122,35 +130,38 @@ class MrezniUredjajiKontroler extends Kontroler
         return redirect()->route('mrezni.oprema.otpisani');
     }
 
-    public function postReciklirajLista(Request $request){
+    public function postReciklirajLista(Request $request)
+    {
 
         $uredjaj = MrezniUredjaj::onlyTrashed()->whereNull('reciklirano_id')->get();
         $reciklaza = Reciklaza::find($request->reciklirano_id);
 
-        return view('oprema.mrezni_recikliranje_lista')->with(compact ('uredjaj', 'reciklaza'));
+        return view('oprema.mrezni_recikliranje_lista')->with(compact('uredjaj', 'reciklaza'));
     }
 
-    public function postRecikliraj(Request $request, $id_reciklaze){
+    public function postRecikliraj(Request $request, $id_reciklaze)
+    {
 
         if (!$request->id_uredjaji) {
             Session::flash('greska', 'Niste odabrali nijedan mrežni uređaj!');
             return redirect()->route('mrezni.oprema.otpisani');
-        }else{
-        DB::beginTransaction();
-        foreach ($request->id_uredjaji as $id) {
-            try{
-            $data = MrezniUredjaj::withTrashed()->find($id);
-            $data->reciklirano_id = $id_reciklaze;
-            $data->save();
-        }catch (\Exception $e){
-                DB::rollback();
-                Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
-                return redirect()->route('mrezni.oprema.otpisani');
+        } else {
+            DB::beginTransaction();
+            foreach ($request->id_uredjaji as $id) {
+                try {
+                    $data = MrezniUredjaj::withTrashed()->find($id);
+                    $data->reciklirano_id = $id_reciklaze;
+                    $data->save();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
+                    return redirect()->route('mrezni.oprema.otpisani');
+                }
+            }
+            DB::commit();
+            Session::flash('uspeh', 'Mrežni uređaj je uspešno stavljeno na listu reciklaže!');
         }
-        }
-        DB::commit();
-        Session::flash('uspeh', 'Mrežni uređaj je uspešno stavljeno na listu reciklaže!');}
-       return redirect()->route('mrezni.oprema.otpisani');
+        return redirect()->route('mrezni.oprema.otpisani');
     }
 
 }

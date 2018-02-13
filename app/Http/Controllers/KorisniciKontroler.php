@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Session;
 use Redirect;
 use App\Modeli\Korisnik;
+use App\Modeli\Role;
 
 class KorisniciKontroler extends Kontroler
 {
@@ -18,30 +19,34 @@ class KorisniciKontroler extends Kontroler
     public function getLista()
     {
         $korisnici = Korisnik::all();
-        return view('korisnici')->with(compact('korisnici'));
+        $uloge = Role::all();
+        return view('korisnici')->with(compact('korisnici', 'uloge'));
     }
 
-    public function postDodavanje(Request $r)
+    public function postDodavanje(Request $request)
     {
 
-        $this->validate($r, [
-            'name' => ['required', 'max:255'],
-            'username' => ['required', 'max:190'],
-            'password' => ['required', 'min:4', 'confirmed'],
+        $this->validate($request, [
+            'name' => [
+                'required',
+                'max:255'],
+            'username' => [
+                'required',
+                'max:190'],
+            'password' => [
+                'required',
+                'min:4',
+                'confirmed'],
+            'role_id' => [
+                'required'
+            ],
         ]);
 
-        //Check-box
-        if ($r->admin) {
-            $levelc = 0;
-        } else {
-            $levelc = 10;
-        }
-
         $korisnik = new Korisnik();
-        $korisnik->name = $r->name;
-        $korisnik->username = $r->username;
-        $korisnik->password = bcrypt($r->password);
-        $korisnik->level = $levelc;
+        $korisnik->name = $request->name;
+        $korisnik->username = $request->username;
+        $korisnik->password = bcrypt($request->password);
+        $korisnik->role_id = $request->role_id;
 
         $korisnik->save();
 
@@ -52,38 +57,49 @@ class KorisniciKontroler extends Kontroler
     public function getPregled($id)
     {
         $korisnik = Korisnik::find($id);
-        return view('korisnici_pregled')->with(compact('korisnik'));
+        $uloge = Role::all();
+        return view('korisnici_pregled')->with(compact('korisnik', 'uloge'));
     }
 
-    public function postIzmena(Request $r, $id)
+    public function postIzmena(Request $request, $id)
     {
 
-        if ($r->password) {
-            $this->validate($r, [
-                'name' => ['required', 'max:255'],
-                'username' => ['required', 'max:190'],
-                'password' => ['required', 'min:4', 'confirmed'],
+        if ($request->password) {
+            $this->validate($request, [
+                'name' => [
+                    'required',
+                    'max:255'],
+                'username' => [
+                    'required',
+                    'max:190'],
+                'password' => [
+                    'required',
+                    'min:4',
+                    'confirmed'],
+                'role_id' => [
+                    'required'
+                ],
             ]);
-            $pass = bcrypt($r->password);
+            $pass = bcrypt($request->password);
         } else {
-            $this->validate($r, [
-                'name' => ['required', 'max:255'],
-                'username' => ['required', 'max:190'],
+            $this->validate($request, [
+                'name' => [
+                    'required',
+                    'max:255'],
+                'username' => [
+                    'required',
+                    'max:190'],
+                'role_id' => [
+                    'required'
+                ],
             ]);
             $pass = null;
         }
 
-        //Check-box
-        if ($r->admin) {
-            $levelc = 0;
-        } else {
-            $levelc = 10;
-        }
-
         $korisnik = Korisnik::find($id);
-        $korisnik->name = $r->name;
-        $korisnik->username = $r->username;
-        $korisnik->level = $levelc;
+        $korisnik->name = $request->name;
+        $korisnik->username = $request->username;
+        $korisnik->role_id = $request->role_id;
         if ($pass) {
             $korisnik->password = $pass;
         }
@@ -93,7 +109,7 @@ class KorisniciKontroler extends Kontroler
         return redirect()->route('korisnici');
     }
 
-    public function postBrisanje(Request $r)
+    public function postBrisanje(Request $request)
     {
 
         $data = Korisnik::find($request->idBrisanje);
