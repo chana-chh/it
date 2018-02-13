@@ -23,7 +23,7 @@ use App\Helpers\Uredjaj;
 class PocetnaKontroler extends Kontroler
 {
 
-    public function pocetna()
+    public function pocetna(Request $request)
     {
         $racunara = Racunar::count();
         $monitora = Monitor::count();
@@ -41,10 +41,14 @@ class PocetnaKontroler extends Kontroler
                     Carbon::now()->addMonths(2)
                 ])->get();
 
-
-        return view('pocetna')->with(compact(
+        if ($request->user()->imaUlogu('centrala')) {
+            return view('pocetna_centrala');
+        }else{
+            return view('pocetna')->with(compact(
                                 'racunara', 'monitora', 'stampaca', 'skenera', 'upseva', 'mreznih_uredjaja', 'projektora', 'aplikacija', 'greske', 'isticu'
         ));
+        }
+        
     }
 
     public function postBrisanje(Request $request)
