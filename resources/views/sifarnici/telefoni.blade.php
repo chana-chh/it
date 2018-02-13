@@ -7,10 +7,33 @@
 @endsection
 
 @section('naslov')
-<h1 class="page-header">
-    <img class="slicica_animirana" alt="Fiksna telefonija" src="{{ url('/images/telefon.png') }}" style="height:64px;">
-     &emsp;Fiksni telefoni
-</h1>
+<div class="row">
+    <div class="col-md-8">
+        <h1>
+            <img class="slicica_animirana" alt="Fiksna telefonija"
+                  src="{{ url('/images/telefon.png') }}" style="height:64px;">
+            &emsp;Fiksni telefoni
+        </h1>
+    </div>
+
+    <div class="col-md-4 text-right" style="padding-top: 50px;">
+        <div class="btn-group" >
+            <a class="btn btn-primary" onclick="window.history.back();"
+               title="Povratak na prethodnu stranu">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('telefoni.uvecani') }}"
+               title="Uvećani prikaz">
+                <i class="fa fa-expand"></i>
+            </a>
+        </div>
+</div>
+</div>
+<hr>
 @endsection
 
 @section('sadrzaj')
@@ -138,7 +161,8 @@
 
         <div class="form-group{{ $errors->has('vrsta') ? ' has-error' : '' }}">
             <label for="vrsta">Vrsta:</label>
-                <select name="vrsta" id="vrsta" class="chosen-select form-control" data-placeholder="vrsta ..." required>
+                <select name="vrsta" id="vrsta" class="chosen-select form-control" data-placeholder="izbor vrsta ..." required>
+                    <option value=""></option>
                   <option value="1">Direktni</option>
                   <option value="2">Lokal</option>
                   <option value="3">Fax</option>
@@ -152,7 +176,7 @@
 
         <div class="form-group{{ $errors->has('kancelarija_id') ? ' has-error' : '' }}">
                     <label for="kancelarija_id">Kancelarija:</label>
-                    <select name="kancelarija_id" id="kancelarija_id" class="chosen-select form-control" data-placeholder="kancelarija ..." required>
+                    <select name="kancelarija_id" id="kancelarija_id" class="chosen-select form-control" data-placeholder="izbor kancelarija ..." required>
                         <option value=""></option>
                         @foreach($kancelarije as $kancelarija)
                         <option value="{{ $kancelarija->id }}"{{ old('kancelarija_id') == $kancelarija->id ? ' selected' : '' }}>
@@ -298,82 +322,3 @@
     });
 </script>
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
