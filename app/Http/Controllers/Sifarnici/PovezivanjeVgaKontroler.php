@@ -8,14 +8,22 @@ use Redirect;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\MonitorPovezivanje;
 
-class PovezivanjeVgaKontroler extends Kontroler {
+class PovezivanjeVgaKontroler extends Kontroler
+{
 
-    public function getLista() {
+    public function __construct()
+    {
+        $this->middleware('can:admin');
+    }
+
+    public function getLista()
+    {
         $data = MonitorPovezivanje::all();
         return view('sifarnici.povezivanje_vga')->with(compact('data'));
     }
 
-    public function postDodavanje(Request $request) {
+    public function postDodavanje(Request $request)
+    {
         $this->validate($request, [
             'naziv' => [
                 'required',
@@ -31,14 +39,16 @@ class PovezivanjeVgaKontroler extends Kontroler {
         return redirect()->route('povezivanje_vga');
     }
 
-    public function postDetalj(Request $request) {
+    public function postDetalj(Request $request)
+    {
         if ($request->ajax()) {
             $data = MonitorPovezivanje::find($request->id);
             return response()->json($data);
         }
     }
 
-    public function postIzmena(Request $request) {
+    public function postIzmena(Request $request)
+    {
         $id = $request->idModal;
         $this->validate($request, [
             'nazivModal' => [
@@ -55,7 +65,8 @@ class PovezivanjeVgaKontroler extends Kontroler {
         return Redirect::back();
     }
 
-    public function postBrisanje(Request $request) {
+    public function postBrisanje(Request $request)
+    {
         $data = MonitorPovezivanje::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -65,4 +76,5 @@ class PovezivanjeVgaKontroler extends Kontroler {
         }
         return Redirect::back();
     }
+
 }

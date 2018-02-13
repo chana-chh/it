@@ -11,6 +11,11 @@ use App\Modeli\Soket;
 class SoketiKontroler extends Kontroler
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin');
+    }
+
     public function getLista()
     {
         $data = Soket::all();
@@ -73,4 +78,3 @@ class SoketiKontroler extends Kontroler
     }
 
 }
-

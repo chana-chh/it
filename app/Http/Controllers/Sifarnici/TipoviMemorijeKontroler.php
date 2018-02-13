@@ -11,6 +11,11 @@ use App\Modeli\TipMemorije;
 class TipoviMemorijeKontroler extends Kontroler
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin');
+    }
+
     public function getLista()
     {
         $data = TipMemorije::all();
@@ -73,4 +78,3 @@ class TipoviMemorijeKontroler extends Kontroler
     }
 
 }
-

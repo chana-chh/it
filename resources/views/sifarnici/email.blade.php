@@ -9,7 +9,7 @@
 @section('naslov')
 <h1 class="page-header">
     <img class="slicica_animirana" alt="email" src="{{ url('/images/email.png') }}" style="height:64px;  width:64px">
-     &emsp;Adrese elektronske pošte
+    &emsp;Adrese elektronske pošte
 </h1>
 @endsection
 
@@ -27,12 +27,24 @@
     <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
 </thead>
 <tbody>
-
     @foreach ($data as $d)
     <tr>
         <td><small>{{ $d->id }}</small></td>
         <td>
-            <a href="mailto:{{ $d->adresa }}"><strong class="text-info lozinka" data-toggle="lozinka" title="Lozinka:" data-content="{{ $d->lozinka }}">{{ $d->adresa }}</strong></a>
+            @if(Auth::user()->imaUlogu('admin'))
+            <a href="mailto:{{ $d->adresa }}">
+                <strong class="text-info lozinka" data-toggle="lozinka" title="Lozinka:" data-content="{{ $d->lozinka }}">
+                    {{ $d->adresa }}
+                </strong>
+            </a>
+            @else
+            <a href="mailto:{{ $d->adresa }}">
+                <strong class="text-info lozinka">
+                    {{ $d->adresa }}
+                </strong>
+            </a>
+            @endif
+
         </td>
         <td>
             <span title="U pitanju je služben elektronska adresa" style="color: #18bc9c;">
@@ -52,8 +64,8 @@
                 <i class="fa fa-pencil"></i>
             </button>
             <button class="btn btn-danger btn-sm" id="idBrisanjeModal"
-            title="Brisanje elektronske adrese"
-            data-toggle="modal" data-target="#brisanjeModal"
+                    title="Brisanje elektronske adrese"
+                    data-toggle="modal" data-target="#brisanjeModal"
                     value="{{ $d->id }}">
                 <i class="fa fa-trash"></i>
             </button>
@@ -108,22 +120,22 @@
                     <input type="hidden" id="idModal" name="idModal">
                     <hr>
 
-                                <div class="row dugmici" style="margin-top: 30px;">
-            <div class="col-md-12" >
-                <div class="form-group">
-                    <div class="col-md-6 snimi">
-                        <button id = "btn-snimi" type="submit" class="btn btn-success btn-block ono">
-                            <i class="fa fa-save"></i>&emsp;Snimi izmene
-                        </button>
+                    <div class="row dugmici" style="margin-top: 30px;">
+                        <div class="col-md-12" >
+                            <div class="form-group">
+                                <div class="col-md-6 snimi">
+                                    <button id = "btn-snimi" type="submit" class="btn btn-success btn-block ono">
+                                        <i class="fa fa-save"></i>&emsp;Snimi izmene
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <a class="btn btn-primary btn-block ono" data-dismiss="modal">
+                                        <i class="fa fa-ban"></i>&emsp;Otkaži
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <a class="btn btn-primary btn-block ono" data-dismiss="modal">
-                            <i class="fa fa-ban"></i>&emsp;Otkaži
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
                 </form>
             </div>
         </div>
@@ -147,7 +159,7 @@
             </span>
             @endif
         </div>
-               <div class="form-group{{ $errors->has('lozinka') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('lozinka') ? ' has-error' : '' }}">
             <label for="lozinka">Lozinka: </label>
             <input  type="text" id="lozinka" name="lozinka" class="form-control" value="{{ old('lozinka') }}">
             @if ($errors->has('lozinka'))
@@ -156,7 +168,7 @@
             </span>
             @endif
         </div>
-       <div class="form-group checkboxoviforme">
+        <div class="form-group checkboxoviforme">
             <label>
                 <input type="checkbox" name="sluzbena" id="sluzbena">
                 &emsp;Da li je adresa elektronske pošte službena?
@@ -170,92 +182,106 @@
                 <option value=""></option>
                 @foreach($radnici as $radnik)
                 <option value="{{ $radnik->id }}"{{ old('zaposleni_id') == $radnik->id ? ' selected' : '' }}>
-                    {{ $radnik->Imeprezime() }}, {{ $radnik->uprava ? $radnik->uprava->naziv : 'neraspoređen' }}
-                </option>
-                @endforeach
-            </select>
-            @if ($errors->has('zaposleni_id'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('zaposleni_id') }}</strong>
-                </span>
-            @endif
-        </div>
-        <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
-            <label for="napomena">Napomena:</label>
-            <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena') }}</textarea>
-            @if ($errors->has('napomena'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('napomena') }}</strong>
-                </span>
-            @endif
-        </div>
-        <div class="row dugmici">
-            <div class="col-md-12" style="margin-top: 20px;">
-                <div class="form-group">
-                    <div class="col-md-6 snimi">
-                        <button type="submit" class="btn btn-success btn-block ono">
-                            <i class="fa fa-plus-circle"></i>&emsp;Dodaj
-                        </button>
-                    </div>
-                    <div class="col-md-6">
-                        <a class="btn btn-danger btn-block ono" href="{{route('email')}}">
-                            <i class="fa fa-ban"></i>&emsp;Otkaži
-                        </a>
-                    </div>
+                        {{ $radnik->Imeprezime() }}, {{ $radnik->uprava ? $radnik->uprava->naziv : 'neraspoređen' }}
+            </option>
+            @endforeach
+        </select>
+        @if ($errors->has('zaposleni_id'))
+        <span class="help-block">
+            <strong>{{ $errors->first('zaposleni_id') }}</strong>
+        </span>
+        @endif
+    </div>
+    <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
+        <label for="napomena">Napomena:</label>
+        <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena') }}</textarea>
+        @if ($errors->has('napomena'))
+        <span class="help-block">
+            <strong>{{ $errors->first('napomena') }}</strong>
+        </span>
+        @endif
+    </div>
+    <div class="row dugmici">
+        <div class="col-md-12" style="margin-top: 20px;">
+            <div class="form-group">
+                <div class="col-md-6 snimi">
+                    <button type="submit" class="btn btn-success btn-block ono">
+                        <i class="fa fa-plus-circle"></i>&emsp;Dodaj
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <a class="btn btn-danger btn-block ono" href="{{route('email')}}">
+                        <i class="fa fa-ban"></i>&emsp;Otkaži
+                    </a>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
+</form>
 </div>
 @endsection
 
 @section('skripte')
 <script>
     $(document).ready(function () {
-        
+
         $('.lozinka').popover({
-            placement : 'right',
-            trigger : 'hover',
-            delay: { 
+            placement: 'right',
+            trigger: 'hover',
+            delay: {
                 show: "2000"
             }
         });
 
         $('#sluzbena').change(function () {
-            if(this.checked) {
-        $('#lozinka').prop('required', true);
+            if (this.checked) {
+                $('#lozinka').prop('required', true);
             } else {
-        $('#lozinka').prop('required', false);
+                $('#lozinka').prop('required', false);
             }
         });
 
         $('#tabela').DataTable({
-            order: [[ 1, 'asc' ]],
+            order: [
+                [
+                    1,
+                    'asc'
+                ]
+            ],
             dom: 'Bflrtip',
-        buttons: [
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5',{
-                extend: 'pdfHtml5',
-                orientation: 'landscape',
-                pageSize: 'A4',
-                customize : function(doc){
-            doc.content[1].table.widths = ["30%", "30%", "30%"];
-        },
-                exportOptions: {
-        columns: [ 1, 3, 4 ]
-        }
-            }
-                
-        ],
-        columnDefs: [
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'A4',
+                    customize: function (doc) {
+                        doc.content[1].table.widths = [
+                            "30%",
+                            "30%",
+                            "30%"
+                        ];
+                    },
+                    exportOptions: {
+                        columns: [
+                            1,
+                            3,
+                            4
+                        ]
+                    }
+                }
+
+            ],
+            columnDefs: [
                 {
                     orderable: false,
                     searchable: false,
                     "targets": -1
                 }
             ],
-        stateSave: true,
+            stateSave: true,
             language: {
                 search: "Pronađi u tabeli",
                 paginate: {
@@ -273,26 +299,27 @@
         });
 
         resizeChosen();
-    jQuery(window).on('resize', resizeChosen);
+        jQuery(window).on('resize', resizeChosen);
 
-            $('.chosen-select').chosen({
+        $('.chosen-select').chosen({
             allow_single_deselect: true,
             search_contains: true
+        });
+
+        function resizeChosen() {
+            $(".chosen-container").each(function () {
+                $(this).attr('style', 'width: 100%');
+
             });
-
-    function resizeChosen() {
-   $(".chosen-container").each(function() {
-       $(this).attr('style', 'width: 100%');
-
-   });
-   };
+        }
+        ;
 
 
         $(document).on('click', '#idBrisanjeModal', function () {
-        var id = $(this).val();
-        $('#idBrisanje').val(id);
-        var ruta = "{{ route('email.brisanje') }}";
-        $('#brisanje-forma').attr('action', ruta);
+            var id = $(this).val();
+            $('#idBrisanje').val(id);
+            var ruta = "{{ route('email.brisanje') }}";
+            $('#brisanje-forma').attr('action', ruta);
         });
 
         $(document).on('click', '.otvori-izmenu', function () {
@@ -312,7 +339,7 @@
                     $("#sluzbenaModal").prop('checked', data.email.sluzbena);
                     $("#napomenaModal").val(data.email.napomena);
 
-                    $.each(data.zaposleni, function(index, lokObjekat){
+                    $.each(data.zaposleni, function (index, lokObjekat) {
                         $('#zaposleniIdModal').append('<option value="'
                                 + lokObjekat.id + '">'
                                 + lokObjekat.ime + '  '

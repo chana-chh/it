@@ -15,6 +15,20 @@ use App\Modeli\VrstaUredjaja;
 class OtpremniceKontroler extends Kontroler
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except([
+            'getLista',
+            'getDetalj',
+            'getListaPretraga'
+        ]);
+        $this->middleware('can:korisnik')->only([
+            'getLista',
+            'getDetalj',
+            'getListaPretraga'
+        ]);
+    }
+
     public function getLista()
     {
         $otpremnice = Otpremnica::all();
@@ -39,7 +53,8 @@ class OtpremniceKontroler extends Kontroler
     private function naprednaPretraga($params)
     {
         $rezultat = null;
-        $where = [];
+        $where = [
+                ];
         if ($params['broj']) {
             $where[] = [
                 'broj',

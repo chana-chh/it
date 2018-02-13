@@ -16,12 +16,17 @@
 
             <div class="collapse navbar-collapse" id="kolaps">
                 <ul class="nav navbar-nav navbar-right">
+                    @can('korisnik')
                     <li><a href="{{ route('statistika') }}"> <i class="fa fa-bar-chart fa-fw" style="color: #18BC9C"></i> Statistika</a></li>
+                    @endcan
                     <li><a href="{{route('imenik')}}"> <i class="fa fa-search fa-fw" style="color: #18BC9C"></i> Imenik</a></li>
+                    @can('admin')
                     <li><a href="{{route('servis')}}"> <i class="fa fa-cog fa-fw" style="color: #18BC9C"></i> Servis</a></li>
+                    @endcan
+                    @can('korisnik')
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <i class="fa fa-shopping-cart fa-fw" style="color: #18BC9C"></i> Nabavke<span class="caret">
+                            <i class="fa fa-shopping-cart fa-fw" style="color: #18BC9C"></i> Nabavke <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ route('nabavke') }}">Nabavke</a></li>
@@ -31,9 +36,11 @@
                             <li><a href="{{ route('ugovori') }}">Ugovori o održavanju</a></li>
                         </ul>
                     </li>
+                    @endcan
+                    @can('korisnik')
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <i class="fa fa-server fa-fw" style="color: #18BC9C"></i> Oprema<span class="caret">
+                            <i class="fa fa-server fa-fw" style="color: #18BC9C"></i> Oprema <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{route('racunari.oprema')}}">Računari</a></li>
@@ -53,10 +60,11 @@
                             <li><a href="{{route('mrezni.oprema')}}">Mrežna oprema</a></li>
                         </ul>
                     </li>
-
+                    @endcan
+                    @can('admin')
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <i class="fa fa-server fa-fw" style="color: #18BC9C"></i> Modeli<span class="caret">
+                            <i class="fa fa-server fa-fw" style="color: #18BC9C"></i> Modeli <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{route('osnovne_ploce.modeli')}}">Osnovne ploče</a></li>
@@ -72,13 +80,16 @@
                             <li><a href="{{route('upsevi.modeli')}}">UPS-evi</a></li>
                         </ul>
                     </li>
-
+                    @endcan
+                    @can('korisnik')
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <i class="fa fa-wrench fa-fw" style="color: #18BC9C"></i> Šifarnici<span class="caret">
+                            <i class="fa fa-wrench fa-fw" style="color: #18BC9C"></i> Šifarnici <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
+                            @can('admin')
                             <li><a href="{{ route('proizvodjaci') }}">Proizvođači</a></li>
+                            @endcan
                             <li><a href="{{ route('dobavljaci') }}">Dobavljači</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('lokacije') }}">Lokacije</a></li>
@@ -90,6 +101,7 @@
                             <li><a href="{{ route('telefoni') }}">Telefoni</a></li>
                             <li><a href="{{route('mobilni')}}">Mobilni</a></li>
                             <li><a href="{{route('email')}}">Email-ovi</a></li>
+                            @can('admin')
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('dijagonale') }}">Dijagonale (mon)</a></li>
                             <li><a href="{{ route('povezivanje_vga') }}">Povezivanje (video)</a></li>
@@ -98,17 +110,54 @@
                             <li><a href="{{ route('tipovi_memorije') }}">Tipovi memorije (ram, mbd, vga)</a></li>
                             <li><a href="{{ route('vga_slotovi') }}">VGA slotovi (mbd, vga)</a></li>
                             <li><a href="{{ route('tipovi_stampaca') }}">Tipovi štampača</a></li>
+                            @endcan
+                            <li role="separator" class="divider"></li>
                             <li><a href="{{ route('toneri') }}">Toneri</a></li>
                             <li><a href="{{ route('baterije') }}">Baterije</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('operativni_sistemi') }}">Operativni sistemi</a></li>
                             <li><a href="{{route('aplikacije')}}">Aplikacije</a></li>
-                            <li><a href="{{route('licence')}}">Licence</a></li>
                             <li><a href="{{route('reciklaze')}}">Reciklaže</a></li>
+                            @can('admin')
+                            <li><a href="{{route('licence')}}">Licence</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{route('korisnici')}}">Korisnici</a></li>
+                            @endcan
                         </ul>
                     </li>
+                    @endcan
+                    @if(Auth::user()->imaUlogu('centrala'))
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="fa fa-phone fa-fw" style="color: #18BC9C"></i> Telefonska centrala <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ route('lokacije') }}">Lokacije</a></li>
+                            <li><a href="{{ route('spratovi') }}">Spratovi</a></li>
+                            <li><a href="{{ route('kancelarije') }}">Kancelarije</a></li>
+                            <li><a href="{{ route('uprave') }}">Uprave</a></li>
+                            <li><a href="{{ route('zaposleni') }}">Zaposleni</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{ route('telefoni') }}">Telefoni</a></li>
+                        </ul>
+                    </li>
+                    @endif
+                    @if(Auth::user()->imaUlogu('kadrovi'))
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="fa fa-users fa-fw" style="color: #18BC9C"></i> Ljudski resursi <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ route('lokacije') }}">Lokacije</a></li>
+                            <li><a href="{{ route('spratovi') }}">Spratovi</a></li>
+                            <li><a href="{{ route('kancelarije') }}">Kancelarije</a></li>
+                            <li><a href="{{ route('uprave') }}">Uprave</a></li>
+                            <li><a href="{{ route('zaposleni') }}">Zaposleni</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{ route('telefoni') }}">Telefoni</a></li>
+                        </ul>
+                    </li>
+                    @endif
                     <li style="margin-left: 40px; opacity: 0.7;">
                         <a href="{{ route('logout') }}"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

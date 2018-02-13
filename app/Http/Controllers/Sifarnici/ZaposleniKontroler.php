@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Sifarnici;
 
 use Illuminate\Http\Request;
 use Session;
-use Redirect;
 use App\Http\Controllers\Kontroler;
 use Image;
 use Yajra\Datatables\Datatables;
@@ -14,6 +13,11 @@ use App\Modeli\Kancelarija;
 
 class ZaposleniKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:kadrovi')->except(['getLista', 'getAjax', 'getDetalj']);
+    }
 
     public function getLista()
     {
@@ -29,8 +33,8 @@ class ZaposleniKontroler extends Kontroler
                             return ($model->imePrezime());
                         }) //Ovde editujem kolonu koja već postoji, -ime- i uvlačim rezultat funkcije iz modela za konkatinaciju imena i prezimena...
                         ->editColumn('radno_mesto', function ($model) {
-                            return '<small>'.$model->radno_mesto.'</small>';
-                        }) 
+                            return '<small>' . $model->radno_mesto . '</small>';
+                        })
                         ->editColumn('kancelarija.naziv', function ($model) {
                             if ($model->kancelarija) {
                                 return ($model->kancelarija->sviPodaci());
@@ -69,15 +73,15 @@ class ZaposleniKontroler extends Kontroler
 
         $ime_slike = null;
         if ($request->slika) {
-        $img = $request->slika;
-        $ime_slike = $request->ime . time() . '.' . $request->slika->getClientOriginalExtension();
-        $lokacija = public_path('images/slike_zaposlenih/' . $ime_slike);
-        $resize_img = Image::make($img)->heighten(300, function ($constraint) {
-            $constraint->upsize();
-        });
-        $resize_img->save($lokacija);
+            $img = $request->slika;
+            $ime_slike = $request->ime . time() . '.' . $request->slika->getClientOriginalExtension();
+            $lokacija = public_path('images/slike_zaposlenih/' . $ime_slike);
+            $resize_img = Image::make($img)->heighten(300, function ($constraint) {
+                $constraint->upsize();
+            });
+            $resize_img->save($lokacija);
         }
-       
+
 
         $zaposleni = new Zaposleni();
         $zaposleni->ime = $request->ime;

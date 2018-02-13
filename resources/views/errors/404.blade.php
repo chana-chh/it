@@ -11,6 +11,6 @@
 @endsection
 
 @section('sadrzaj')
-<a href="{{Request::referrer()}}">Nazad na prethodnu stranu</a>
+<a href="" onclick="window.history.back();return false;">Nazad na prethodnu stranu</a>&emsp;|&emsp;
 <a href="{{route('pocetna')}}">Nazad na početnu stranu</a>
 @endsection

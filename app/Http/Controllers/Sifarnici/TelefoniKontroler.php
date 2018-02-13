@@ -9,21 +9,42 @@ use App\Http\Controllers\Kontroler;
 use App\Modeli\Telefon;
 use App\Modeli\Kancelarija;
 
-class TelefoniKontroler extends Kontroler {
+class TelefoniKontroler extends Kontroler
+{
 
-    public function getLista() {
-        $data = Telefon::all();
+    public function __construct()
+    {
+        $this->middleware('can:centrala')->except('getLista');
+    }
+
+    public function getLista()
+    {
+
+        $data = Telefon::with('kancelarija', 'kancelarija.sprat', 'kancelarija.lokacija')->get();
         $kancelarije = Kancelarija::all();
         return view('sifarnici.telefoni')->with(compact('data', 'kancelarije'));
     }
 
-    public function postDodavanje(Request $request) {
+    public function getListaUvecana()
+    {
+        $data = Telefon::all();
+        return view('sifarnici.telefoni_uvecani')->with(compact('data'));
+    }
+
+    public function getDodavanje()
+    {
+        $kancelarije = Kancelarija::all();
+        return view('sifarnici.telefoni_dodavanje')->with(compact('kancelarije'));
+    }
+
+    public function postDodavanje(Request $request)
+    {
         $this->validate($request, [
             'broj' => [
                 'required',
             ],
             'kancelarija_id' => [
-                 'required',
+                'required',
             ],
         ]);
 
@@ -38,22 +59,28 @@ class TelefoniKontroler extends Kontroler {
         return redirect()->route('telefoni');
     }
 
-    public function postDetalj(Request $request) {
-            if($request->ajax()){
-                $telefoni = Telefon::find($request->id);
-                $kancelarije = Kancelarija::with(['lokacija', 'sprat'])->get();
-                return response()->json(array('kancelarije'=>$kancelarije,'telefoni'=>$telefoni));
-            }
+    public function postDetalj(Request $request)
+    {
+        if ($request->ajax()) {
+            $telefoni = Telefon::find($request->id);
+            $kancelarije = Kancelarija::with([
+                        'lokacija',
+                        'sprat'])->get();
+            return response()->json(array(
+                        'kancelarije' => $kancelarije,
+                        'telefoni' => $telefoni));
+        }
     }
 
-    public function postIzmena(Request $request) {
-        
+    public function postIzmena(Request $request)
+    {
+
         $id = $request->idModal;
         $this->validate($request, [
             'brojModal' => [
                 'required',
             ],
-             'kancelarija_idModal' => [
+            'kancelarija_idModal' => [
                 'required',
             ],
         ]);
@@ -69,7 +96,8 @@ class TelefoniKontroler extends Kontroler {
         return Redirect::back();
     }
 
-    public function postBrisanje(Request $request) {
+    public function postBrisanje(Request $request)
+    {
         $data = Telefon::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -81,4 +109,3 @@ class TelefoniKontroler extends Kontroler {
     }
 
 }
-

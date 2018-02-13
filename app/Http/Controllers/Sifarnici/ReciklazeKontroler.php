@@ -8,13 +8,17 @@ use Redirect;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\Reciklaza;
 use App\Helpers\UredjajiHelper;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
 
 class ReciklazeKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except('getLista');
+        $this->middleware('can:korisnik')->only('getLista');
+    }
 
     public function getLista()
     {
@@ -87,17 +91,14 @@ class ReciklazeKontroler extends Kontroler
 
     function paginate($kolekcija, $poStrani)
     {
-        if(is_array($kolekcija)){
+        if (is_array($kolekcija)) {
             $kolekcija = collect($kolekcija);
         }
 
         return new LengthAwarePaginator(
-        $kolekcija->forPage(Paginator::resolveCurrentPage() , $poStrani),
-        $kolekcija->count(), $poStrani,
-        Paginator::resolveCurrentPage(),
-        ['path' => Paginator::resolveCurrentPath()]
+                $kolekcija->forPage(Paginator::resolveCurrentPage(), $poStrani), $kolekcija->count(), $poStrani, Paginator::resolveCurrentPage(), [
+            'path' => Paginator::resolveCurrentPath()]
         );
     }
-
 
 }

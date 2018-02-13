@@ -11,6 +11,11 @@ use App\Modeli\MonitorDijagonala;
 class DijagonaleKontroler extends Kontroler
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin');
+    }
+
     public function getLista()
     {
         $data = MonitorDijagonala::all();

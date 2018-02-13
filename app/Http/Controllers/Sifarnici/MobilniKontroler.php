@@ -9,28 +9,37 @@ use App\Http\Controllers\Kontroler;
 use App\Modeli\Mobilni;
 use App\Modeli\Zaposleni;
 
-class MobilniKontroler extends Kontroler {
+class MobilniKontroler extends Kontroler
+{
 
-    public function getLista() {
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except('getLista');
+        $this->middleware('can:korisnik')->only('getLista');
+    }
+
+    public function getLista()
+    {
         $data = Mobilni::all();
         $radnici = Zaposleni::all();
         return view('sifarnici.mobilni')->with(compact('data', 'radnici'));
     }
 
-    public function postDodavanje(Request $request) {
-        
+    public function postDodavanje(Request $request)
+    {
+
         $this->validate($request, [
             'broj' => [
                 'required',
             ],
         ]);
 
-         //Check-box
-            if ($request->mobilni_dodavanje_sluzbeni) {
-                $sluzbenic = 1;
-            } else {
-                $sluzbenic = 0;
-            }
+        //Check-box
+        if ($request->mobilni_dodavanje_sluzbeni) {
+            $sluzbenic = 1;
+        } else {
+            $sluzbenic = 0;
+        }
 
         $data = new Mobilni();
         $data->broj = $request->broj;
@@ -43,17 +52,19 @@ class MobilniKontroler extends Kontroler {
         return redirect()->route('mobilni');
     }
 
-    public function postDetalj(Request $request) {
-        if($request->ajax()){
-                $id = $request->id;
-                $mobilni = Mobilni::find($id);
-                $zaposleni = Zaposleni::all();
-                return response()->json(array('zaposleni'=>$zaposleni,'mobilni'=>$mobilni));
-            }
+    public function postDetalj(Request $request)
+    {
+        if ($request->ajax()) {
+            $id = $request->id;
+            $mobilni = Mobilni::find($id);
+            $zaposleni = Zaposleni::all();
+            return response()->json(array('zaposleni' => $zaposleni, 'mobilni' => $mobilni));
+        }
     }
 
-    public function postIzmena(Request $request) {
-        
+    public function postIzmena(Request $request)
+    {
+
         $id = $request->idModal;
         $this->validate($request, [
             'brojModal' => [
@@ -61,12 +72,12 @@ class MobilniKontroler extends Kontroler {
             ],
         ]);
 
-         //Check-box
-            if ($request->mobilni_izmena_sluzbeni) {
-                $sluzbenic = 1;
-            } else {
-                $sluzbenic = 0;
-            }
+        //Check-box
+        if ($request->mobilni_izmena_sluzbeni) {
+            $sluzbenic = 1;
+        } else {
+            $sluzbenic = 0;
+        }
 
         $data = Mobilni::find($id);
         $data->broj = $request->brojModal;
@@ -79,7 +90,8 @@ class MobilniKontroler extends Kontroler {
         return Redirect::back();
     }
 
-    public function postBrisanje(Request $request) {
+    public function postBrisanje(Request $request)
+    {
         $data = Mobilni::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -91,4 +103,3 @@ class MobilniKontroler extends Kontroler {
     }
 
 }
-

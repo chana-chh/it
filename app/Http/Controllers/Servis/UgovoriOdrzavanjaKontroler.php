@@ -12,6 +12,18 @@ use App\Modeli\Dobavljac;
 class UgovoriOdrzavanjaKontroler extends Kontroler
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except([
+            'getLista',
+            'getDetalj'
+        ]);
+        $this->middleware('can:korisnik')->only([
+            'getLista',
+            'getDetalj'
+        ]);
+    }
+
     public function getLista()
     {
         $ugovori = UgovorOdrzavanje::all();

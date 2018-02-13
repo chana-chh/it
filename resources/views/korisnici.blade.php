@@ -25,7 +25,7 @@
     <th style="width: 10%">#</th>
     <th style="width: 35%">Ime i prezime</th>
     <th style="width: 30%">Korisničko ime</th>
-    <th style="width: 15%">Administrator</th>
+    <th style="width: 15%">Uloga</th>
     <th style="text-align:center; width: 10%"><i class="fa fa-cogs"></i></th>
 </thead>
 <tbody id="korisnici_lista" name="korisnici_lista">
@@ -34,10 +34,11 @@
         <td>{{$korisnik->id}}</td>
         <td><strong>{{$korisnik->name}}</strong></td>
         <td>{{$korisnik->username}}</td>
-        <td style="text-align:center">{!! $korisnik->level == 0 ? '<i class="fa fa-check text-success">' : '' !!}</td>
+        <td style="text-align:center;{{ $korisnik->imaUlogu('admin') ? 'color: red;' : '' }}">{{ $korisnik->role->name }}</td>
+
         <td style="text-align:center">
             <a class="btn btn-success btn-sm otvori_izmenu" id="dugmeIzmena"  href="{{ route('korisnici.pregled', $korisnik->id) }}"><i class="fa fa-pencil"></i></a>
-            <button id="dugmeBrisanje" class="btn btn-danger btn-sm otvori_modal"  value="{{$korisnik->id}}"><i class="fa fa-trash"></i></button>
+            <button data-toggle="modal" data-target="#brisanjeModal" class="btn btn-danger btn-sm otvori-brisanje"  value="{{$korisnik->id}}"><i class="fa fa-trash"></i></button>
         </td>
     </tr>
     @endforeach
@@ -97,8 +98,22 @@
             @endif
         </div>
 
-        <div class="form-group checkboxoviforme">
-            <label><input type="checkbox" name="admin" id="admin"> &emsp;Da li je korisnik administrator?</label>
+        <div class="form-group{{ $errors->has('role_id') ? ' has-error' : '' }}">
+            <label for="role_id">Uloga korisnika</label>
+            <select id="role_id" name="role_id"
+                    class="chosen-select form-control"
+                    data-placeholder="Uloga korisnika ..." required>
+                <option value=""></option>
+                @foreach($uloge as $uloga)
+                <option value="{{ $uloga->id }}" {{ old('role_id') == $uloga->id ? 'selected' : '' }}>
+                        {{ $uloga->name }}</option>
+                @endforeach
+            </select>
+            @if ($errors->has('role_id'))
+            <span class="help-block">
+                <strong>{{ $errors->first('role_id') }}</strong>
+            </span>
+            @endif
         </div>
 
         <div class="row dugmici">
@@ -124,6 +139,18 @@
 @section('skripte')
 <script>
     $(document).ready(function () {
+        jQuery(window).on('resize', resizeChosen);
+
+        $('.chosen-select').chosen({
+            allow_single_deselect: true,
+            search_contains: true
+        });
+
+        function resizeChosen() {
+            $(".chosen-container").each(function () {
+                $(this).attr('style', 'width: 100%');
+            });
+        }
 
         $('#tabelaKorisnici').DataTable({
             columnDefs: [

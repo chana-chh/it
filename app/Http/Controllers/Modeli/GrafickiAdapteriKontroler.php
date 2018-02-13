@@ -4,26 +4,27 @@ namespace App\Http\Controllers\Modeli;
 
 use Illuminate\Http\Request;
 use Session;
-use Redirect;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
-
-Use App\Modeli\GrafickiAdapterModel;
-Use App\Modeli\Proizvodjac;
-Use App\Modeli\TipMemorije;
-Use App\Modeli\VgaSlot;
-Use App\Modeli\GrafickiAdapter;
-Use App\Modeli\Racunar;
-Use App\Modeli\MonitorPovezivanje;
-
-
+use App\Modeli\GrafickiAdapterModel;
+use App\Modeli\Proizvodjac;
+use App\Modeli\TipMemorije;
+use App\Modeli\VgaSlot;
+use App\Modeli\GrafickiAdapter;
+use App\Modeli\Racunar;
+use App\Modeli\MonitorPovezivanje;
 
 class GrafickiAdapteriKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin');
+    }
+
     public function getLista()
     {
-    	$vga = GrafickiAdapterModel::all();
-    	return view('modeli.vga')->with(compact ('vga'));
+        $vga = GrafickiAdapterModel::all();
+        return view('modeli.vga')->with(compact('vga'));
     }
 
     public function getDodavanje()
@@ -32,20 +33,28 @@ class GrafickiAdapteriKontroler extends Kontroler
         $tip = TipMemorije::all();
         $slotovi = VgaSlot::all();
         $povezivanje = MonitorPovezivanje::all();
-        return view('modeli.vga_dodavanje')->with(compact ('proizvodjaci', 'tip', 'slotovi', 'povezivanje'));
+        return view('modeli.vga_dodavanje')->with(compact('proizvodjaci', 'tip', 'slotovi', 'povezivanje'));
     }
 
     public function postDodavanje(Request $request)
     {
 
         $this->validate($request, [
-                'naziv' => ['required','unique:graficki_adapteri_modeli,naziv'],
-                'cip' => ['required'],
-                'proizvodjac_id' => ['required'],
-                'tip_memorije_id' => ['required'],
-                'vga_slot_id' => ['required'],
-                'kapacitet_memorije' => ['required', 'integer'],
-            ]);
+            'naziv' => [
+                'required',
+                'unique:graficki_adapteri_modeli,naziv'],
+            'cip' => [
+                'required'],
+            'proizvodjac_id' => [
+                'required'],
+            'tip_memorije_id' => [
+                'required'],
+            'vga_slot_id' => [
+                'required'],
+            'kapacitet_memorije' => [
+                'required',
+                'integer'],
+        ]);
 
         $data = new GrafickiAdapterModel();
         $data->naziv = $request->naziv;
@@ -61,7 +70,7 @@ class GrafickiAdapteriKontroler extends Kontroler
 
         $data->povezivanja()->attach($request->povezivanja);
 
-        Session::flash('uspeh','Model grafičkog adaptera je uspešno dodat!');
+        Session::flash('uspeh', 'Model grafičkog adaptera je uspešno dodat!');
         return redirect()->route('vga.modeli');
     }
 
@@ -72,21 +81,29 @@ class GrafickiAdapteriKontroler extends Kontroler
         $tip = TipMemorije::all();
         $slotovi = VgaSlot::all();
         $povezivanje = MonitorPovezivanje::all();
-        return view('modeli.vga_izmena')->with(compact ('vga', 'proizvodjaci', 'tip', 'slotovi', 'povezivanje'));
+        return view('modeli.vga_izmena')->with(compact('vga', 'proizvodjaci', 'tip', 'slotovi', 'povezivanje'));
     }
 
     public function postIzmena(Request $request, $id)
     {
 
-            $this->validate($request, [
-                'naziv' => ['required','unique:graficki_adapteri_modeli,naziv,' .$id],
-                'cip' => ['required'],
-                'proizvodjac_id' => ['required'],
-                'tip_memorije_id' => ['required'],
-                'vga_slot_id' => ['required'],
-                'kapacitet_memorije' => ['required', 'integer'],
-            ]);
-        
+        $this->validate($request, [
+            'naziv' => [
+                'required',
+                'unique:graficki_adapteri_modeli,naziv,' . $id],
+            'cip' => [
+                'required'],
+            'proizvodjac_id' => [
+                'required'],
+            'tip_memorije_id' => [
+                'required'],
+            'vga_slot_id' => [
+                'required'],
+            'kapacitet_memorije' => [
+                'required',
+                'integer'],
+        ]);
+
         $data = GrafickiAdapterModel::find($id);
 
         $data->povezivanja()->detach();
@@ -104,7 +121,7 @@ class GrafickiAdapteriKontroler extends Kontroler
 
         $data->povezivanja()->attach($request->povezivanja);
 
-        Session::flash('uspeh','Podaci o modelu grafičkog adaptera su uspešno izmenjeni!');
+        Session::flash('uspeh', 'Podaci o modelu grafičkog adaptera su uspešno izmenjeni!');
         return redirect()->route('vga.modeli');
     }
 
@@ -112,14 +129,15 @@ class GrafickiAdapteriKontroler extends Kontroler
     {
         // U WhereHas metodi kao prvi parametar navodi se metoda relacije iz modela - grafickiAdapteri(), a ne naziv tabele
         $vga = GrafickiAdapterModel::find($id);
-        $racunari = Racunar::whereHas('grafickiAdapteri', function($query) use ($id){
-            $query->where('graficki_adapteri.graficki_adapter_model_id', '=', $id);
-        })->count();
-        return view('modeli.vga_detalj')->with(compact ('vga', 'racunari'));
+        $racunari = Racunar::whereHas('grafickiAdapteri', function($query) use ($id) {
+                    $query->where('graficki_adapteri.graficki_adapter_model_id', '=', $id);
+                })->count();
+        return view('modeli.vga_detalj')->with(compact('vga', 'racunari'));
     }
 
-    public function postBrisanje(Request $request) {
-        
+    public function postBrisanje(Request $request)
+    {
+
         $data = GrafickiAdapterModel::find($request->idBrisanje);
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -131,21 +149,23 @@ class GrafickiAdapteriKontroler extends Kontroler
     }
 
     public function getRacunari($id)
-    {   
+    {
         // Dobra fora za uvlachenje id u funkciju, kao i eliminisanje sa WhereHas
         $model = GrafickiAdapterModel::find($id);
-        $racunari = Racunar::whereHas('grafickiAdapteri', function($query) use ($id){
-            $query->where('graficki_adapteri.graficki_adapter_model_id', '=', $id);
-        })->get();
-        return view('modeli.vga_racunari')->with(compact ('racunari', 'model'));
+        $racunari = Racunar::whereHas('grafickiAdapteri', function($query) use ($id) {
+                    $query->where('graficki_adapteri.graficki_adapter_model_id', '=', $id);
+                })->get();
+        return view('modeli.vga_racunari')->with(compact('racunari', 'model'));
     }
 
     public function getUredjaji($id)
-    {   
+    {
         //Dobra fora za pozivanje dodatnih relacija sa Tockicom.SledecaRElacija
-        $vga = GrafickiAdapter::with(['racunar', 'stavkaOtpremnice.otpremnica'])->where('graficki_adapter_model_id', '=', $id)->get();
+        $vga = GrafickiAdapter::with([
+                    'racunar',
+                    'stavkaOtpremnice.otpremnica'])->where('graficki_adapter_model_id', '=', $id)->get();
         $model = GrafickiAdapterModel::find($id);
-        return view('modeli.vga_uredjaji')->with(compact ('vga', 'model'));
+        return view('modeli.vga_uredjaji')->with(compact('vga', 'model'));
     }
 
 }

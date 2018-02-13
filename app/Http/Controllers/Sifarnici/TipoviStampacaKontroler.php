@@ -11,6 +11,11 @@ use App\Modeli\TipStampaca;
 class TipoviStampacaKontroler extends Kontroler
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin');
+    }
+
     public function getLista()
     {
         $data = TipStampaca::all();
@@ -73,4 +78,3 @@ class TipoviStampacaKontroler extends Kontroler
     }
 
 }
-

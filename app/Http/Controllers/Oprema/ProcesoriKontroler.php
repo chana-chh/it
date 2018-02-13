@@ -5,40 +5,48 @@ namespace App\Http\Controllers\Oprema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
-use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
 use Carbon\Carbon;
-
-Use App\Modeli\Procesor;
-Use App\Modeli\ProcesorModel;
-Use App\Modeli\Racunar;
-Use App\Modeli\OtpremnicaStavka;
-Use App\Modeli\Otpremnica;
-Use App\Modeli\Reciklaza;
-
-
+use App\Modeli\Procesor;
+use App\Modeli\ProcesorModel;
+use App\Modeli\Racunar;
+use App\Modeli\Otpremnica;
+use App\Modeli\Reciklaza;
 
 class ProcesoriKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except([
+            'getLista',
+            'getDetalj',
+            'getListaOtpisani']);
+        $this->middleware('can:korisnik')->only([
+            'getLista',
+            'getDetalj',
+            'getListaOtpisani']);
+    }
+
     public function getLista()
     {
-    	$uredjaj = Procesor::all();
-    	return view('oprema.procesori')->with(compact ('uredjaj'));
+        $uredjaj = Procesor::all();
+        return view('oprema.procesori')->with(compact('uredjaj'));
     }
 
     public function getListaOtpisani()
     {
         $uredjaj = Procesor::onlyTrashed()->get();
         $reciklaze = Reciklaza::all();
-        return view('oprema.procesori_otpisani')->with(compact ('uredjaj', 'reciklaze'));
+        return view('oprema.procesori_otpisani')->with(compact('uredjaj', 'reciklaze'));
     }
 
     public function getDetalj($id)
     {
         $uredjaj = Procesor::find($id);
         $brojno_stanje = Procesor::where('procesor_model_id', '=', $uredjaj->procesor_model_id)->count();
-        return view('oprema.procesori_detalj')->with(compact ('uredjaj', 'brojno_stanje'));
+        return view('oprema.procesori_detalj')->with(compact('uredjaj', 'brojno_stanje'));
     }
 
     public function getIzmena($id)
@@ -47,16 +55,18 @@ class ProcesoriKontroler extends Kontroler
         $modeli = ProcesorModel::all();
         $racunari = Racunar::all();
         $otpremnice = Otpremnica::all();
-        return view('oprema.procesori_izmena')->with(compact ('uredjaj', 'modeli', 'racunari', 'otpremnice'));
+        return view('oprema.procesori_izmena')->with(compact('uredjaj', 'modeli', 'racunari', 'otpremnice'));
     }
 
     public function postIzmena(Request $request, $id)
     {
 
         $this->validate($request, [
-                'serijski_broj' => ['max:50'],
-                'procesor_model_id' => ['required'],
-            ]);
+            'serijski_broj' => [
+                'max:50'],
+            'procesor_model_id' => [
+                'required'],
+        ]);
 
         $uredjaj = Procesor::find($id);
         $uredjaj->serijski_broj = $request->serijski_broj;
@@ -67,7 +77,7 @@ class ProcesoriKontroler extends Kontroler
 
         $uredjaj->save();
 
-        Session::flash('uspeh','Procesor je uspešno izmenjen!');
+        Session::flash('uspeh', 'Procesor je uspešno izmenjen!');
         return redirect()->route('procesori.oprema');
     }
 
@@ -81,13 +91,12 @@ class ProcesoriKontroler extends Kontroler
             $ime = $uredjaj->ime;
             $kanc = $uredjaj->kancelarija->naziv;
             $data->racunar_id = null;
-        }
-        else{
+        } else {
             $ime = " nije bio u računaru";
             $kanc = " nema podataka";
         }
 
-        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao  procesor koji je bio u računaru: '. $ime . ', kancelarija: ' . $kanc;
+        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name . ' je dana:' . Carbon::now() . ' otpisao  procesor koji je bio u računaru: ' . $ime . ', kancelarija: ' . $kanc;
         $data->save();
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -104,8 +113,8 @@ class ProcesoriKontroler extends Kontroler
         $data = Procesor::withTrashed()->find($request->idVracanje);
         $data->restore();
         if (!$data->stavkaOtpremnice) {
-              $data->stavka_otpremnice_id = 2; //Stavka otpremnice rezervisana za stare procesore
-          }
+            $data->stavka_otpremnice_id = 2; //Stavka otpremnice rezervisana za stare procesore
+        }
         $odgovor = $data->save();
 
         if ($odgovor) {
@@ -116,35 +125,38 @@ class ProcesoriKontroler extends Kontroler
         return redirect()->route('procesori.oprema.otpisani');
     }
 
-    public function postReciklirajLista(Request $request){
+    public function postReciklirajLista(Request $request)
+    {
 
         $uredjaj = Procesor::onlyTrashed()->whereNull('reciklirano_id')->get();
         $reciklaza = Reciklaza::find($request->reciklirano_id);
 
-        return view('oprema.procesori_recikliranje_lista')->with(compact ('uredjaj', 'reciklaza'));
+        return view('oprema.procesori_recikliranje_lista')->with(compact('uredjaj', 'reciklaza'));
     }
 
-    public function postRecikliraj(Request $request, $id_reciklaze){
+    public function postRecikliraj(Request $request, $id_reciklaze)
+    {
 
         if (!$request->id_uredjaji) {
             Session::flash('greska', 'Niste odabrali nijedan procesor!');
             return redirect()->route('procesori.oprema.otpisani');
-        }else{
-        DB::beginTransaction();
-        foreach ($request->id_uredjaji as $id) {
-            try{
-            $data = Procesor::withTrashed()->find($id);
-            $data->reciklirano_id = $id_reciklaze;
-            $data->save();
-        }catch (\Exception $e){
-                DB::rollback();
-                Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
-                return redirect()->route('procesori.oprema.otpisani');
+        } else {
+            DB::beginTransaction();
+            foreach ($request->id_uredjaji as $id) {
+                try {
+                    $data = Procesor::withTrashed()->find($id);
+                    $data->reciklirano_id = $id_reciklaze;
+                    $data->save();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
+                    return redirect()->route('procesori.oprema.otpisani');
+                }
+            }
+            DB::commit();
+            Session::flash('uspeh', 'Procesor je uspešno stavljen na listu reciklaže!');
         }
-        }
-        DB::commit();
-        Session::flash('uspeh', 'Procesor je uspešno stavljen na listu reciklaže!');}
-       return redirect()->route('procesori.oprema.otpisani');
+        return redirect()->route('procesori.oprema.otpisani');
     }
 
 }

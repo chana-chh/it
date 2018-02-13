@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use Redirect;
-use Gate;
 use Carbon\Carbon;
 use App\Modeli\Racunar;
 use App\Modeli\Monitor;
@@ -18,12 +17,11 @@ use App\Modeli\Aplikacija;
 use App\Modeli\Greska;
 use App\Modeli\Servis;
 use App\Modeli\Licenca;
-use App\Helpers\Uredjaj;
 
 class PocetnaKontroler extends Kontroler
 {
 
-    public function pocetna()
+    public function pocetna(Request $request)
     {
         $racunara = Racunar::count();
         $monitora = Monitor::count();
@@ -41,10 +39,14 @@ class PocetnaKontroler extends Kontroler
                     Carbon::now()->addMonths(2)
                 ])->get();
 
-
-        return view('pocetna')->with(compact(
+        if ($request->user()->imaUlogu('centrala')) {
+            return view('pocetna_centrala');
+        }else{
+            return view('pocetna')->with(compact(
                                 'racunara', 'monitora', 'stampaca', 'skenera', 'upseva', 'mreznih_uredjaja', 'projektora', 'aplikacija', 'greske', 'isticu'
         ));
+        }
+        
     }
 
     public function postBrisanje(Request $request)

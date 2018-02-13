@@ -11,6 +11,12 @@ use App\Modeli\TipBaterije;
 class BaterijeKontroler extends Kontroler
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except('getLista');
+        $this->middleware('can:korisnik')->only('getLista');
+    }
+
     public function getLista()
     {
         $data = TipBaterije::all();

@@ -11,6 +11,11 @@ use App\Modeli\Sprat;
 class SpratoviKontroler extends Kontroler
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except('getLista');
+    }
+
     public function getLista()
     {
         $data = Sprat::all();

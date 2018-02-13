@@ -5,40 +5,48 @@ namespace App\Http\Controllers\Oprema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
-use Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Kontroler;
 use Carbon\Carbon;
-
-Use App\Modeli\GrafickiAdapter;
-Use App\Modeli\GrafickiAdapterModel;
-Use App\Modeli\Racunar;
-Use App\Modeli\OtpremnicaStavka;
-Use App\Modeli\Otpremnica;
-Use App\Modeli\Reciklaza;
-
-
+use App\Modeli\GrafickiAdapter;
+use App\Modeli\GrafickiAdapterModel;
+use App\Modeli\Racunar;
+use App\Modeli\Otpremnica;
+use App\Modeli\Reciklaza;
 
 class GrafickiAdapteriKontroler extends Kontroler
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin')->except([
+            'getLista',
+            'getDetalj',
+            'getListaOtpisani']);
+        $this->middleware('can:korisnik')->only([
+            'getLista',
+            'getDetalj',
+            'getListaOtpisani']);
+    }
+
     public function getLista()
     {
-    	$uredjaj = GrafickiAdapter::all();
-    	return view('oprema.vga')->with(compact ('uredjaj'));
+        $uredjaj = GrafickiAdapter::all();
+        return view('oprema.vga')->with(compact('uredjaj'));
     }
 
     public function getListaOtpisani()
     {
         $uredjaj = GrafickiAdapter::onlyTrashed()->get();
         $reciklaze = Reciklaza::all();
-        return view('oprema.vga_otpisani')->with(compact ('uredjaj', 'reciklaze'));
+        return view('oprema.vga_otpisani')->with(compact('uredjaj', 'reciklaze'));
     }
 
     public function getDetalj($id)
     {
         $uredjaj = GrafickiAdapter::find($id);
         $brojno_stanje = GrafickiAdapter::where('graficki_adapter_model_id', '=', $uredjaj->graficki_adapter_model_id)->count();
-        return view('oprema.vga_detalj')->with(compact ('uredjaj', 'brojno_stanje'));
+        return view('oprema.vga_detalj')->with(compact('uredjaj', 'brojno_stanje'));
     }
 
     public function getIzmena($id)
@@ -47,16 +55,18 @@ class GrafickiAdapteriKontroler extends Kontroler
         $modeli = GrafickiAdapterModel::all();
         $racunari = Racunar::all();
         $otpremnice = Otpremnica::all();
-        return view('oprema.vga_izmena')->with(compact ('uredjaj', 'modeli', 'racunari', 'otpremnice'));
+        return view('oprema.vga_izmena')->with(compact('uredjaj', 'modeli', 'racunari', 'otpremnice'));
     }
 
     public function postIzmena(Request $request, $id)
     {
 
         $this->validate($request, [
-                'serijski_broj' => ['max:50'],
-                'graficki_adapter_model_id' => ['required'],
-            ]);
+            'serijski_broj' => [
+                'max:50'],
+            'graficki_adapter_model_id' => [
+                'required'],
+        ]);
 
         $uredjaj = GrafickiAdapter::find($id);
         $uredjaj->serijski_broj = $request->serijski_broj;
@@ -67,7 +77,7 @@ class GrafickiAdapteriKontroler extends Kontroler
 
         $uredjaj->save();
 
-        Session::flash('uspeh','Grafički adapter je uspešno izmenjen!');
+        Session::flash('uspeh', 'Grafički adapter je uspešno izmenjen!');
         return redirect()->route('vga.oprema');
     }
 
@@ -80,14 +90,13 @@ class GrafickiAdapteriKontroler extends Kontroler
             $uredjaj = $data->racunar;
             $ime = $uredjaj->ime;
             $kanc = $uredjaj->kancelarija->naziv;
-            $data->racunar_id=null;
-        }
-        else{
+            $data->racunar_id = null;
+        } else {
             $ime = " nije bio u računaru";
             $kanc = " nema podataka";
         }
 
-        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name .' je dana:'. Carbon::now().' otpisao grafički adapter koji je bio u računaru: '. $ime . ', kancelarija: ' . $kanc;
+        $data->napomena .= 'q#q# PODACI O OTPISU:  ' . Auth::user()->name . ' je dana:' . Carbon::now() . ' otpisao grafički adapter koji je bio u računaru: ' . $ime . ', kancelarija: ' . $kanc;
         $data->save();
         $odgovor = $data->delete();
         if ($odgovor) {
@@ -104,8 +113,8 @@ class GrafickiAdapteriKontroler extends Kontroler
         $data = GrafickiAdapter::withTrashed()->find($request->idVracanje);
         $data->restore();
         if (!$data->stavkaOtpremnice) {
-              $data->stavka_otpremnice_id = 3; //Stavka otpremnice rezervisana za stare graficke adaptere
-          }
+            $data->stavka_otpremnice_id = 3; //Stavka otpremnice rezervisana za stare graficke adaptere
+        }
         $odgovor = $data->save();
 
         if ($odgovor) {
@@ -116,35 +125,38 @@ class GrafickiAdapteriKontroler extends Kontroler
         return redirect()->route('vga.oprema.otpisani');
     }
 
-    public function postReciklirajLista(Request $request){
+    public function postReciklirajLista(Request $request)
+    {
 
         $uredjaj = GrafickiAdapter::onlyTrashed()->whereNull('reciklirano_id')->get();
         $reciklaza = Reciklaza::find($request->reciklirano_id);
 
-        return view('oprema.vga_recikliranje_lista')->with(compact ('uredjaj', 'reciklaza'));
+        return view('oprema.vga_recikliranje_lista')->with(compact('uredjaj', 'reciklaza'));
     }
 
-    public function postRecikliraj(Request $request, $id_reciklaze){
+    public function postRecikliraj(Request $request, $id_reciklaze)
+    {
 
         if (!$request->id_uredjaji) {
             Session::flash('greska', 'Niste odabrali nijedan grafički adapter!');
             return redirect()->route('vga.oprema.otpisani');
-        }else{
-        DB::beginTransaction();
-        foreach ($request->id_uredjaji as $id) {
-            try{
-            $data = GrafickiAdapter::withTrashed()->find($id);
-            $data->reciklirano_id = $id_reciklaze;
-            $data->save();
-        }catch (\Exception $e){
-                DB::rollback();
-                Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
-                return redirect()->route('vga.oprema.otpisani');
+        } else {
+            DB::beginTransaction();
+            foreach ($request->id_uredjaji as $id) {
+                try {
+                    $data = GrafickiAdapter::withTrashed()->find($id);
+                    $data->reciklirano_id = $id_reciklaze;
+                    $data->save();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    Session::flash('greska', 'Došlo je do greške prilikom stavljanja na listu reciklaže. Pokušajte ponovo, kasnije!');
+                    return redirect()->route('vga.oprema.otpisani');
+                }
+            }
+            DB::commit();
+            Session::flash('uspeh', 'Grafički adapter je uspešno stavljen na listu reciklaže!');
         }
-        }
-        DB::commit();
-        Session::flash('uspeh', 'Grafički adapter je uspešno stavljen na listu reciklaže!');}
-       return redirect()->route('vga.oprema.otpisani');
+        return redirect()->route('vga.oprema.otpisani');
     }
 
 }
