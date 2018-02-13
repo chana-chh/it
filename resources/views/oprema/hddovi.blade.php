@@ -124,8 +124,10 @@ $( document ).ready(function() {
         infoFiltered: "(filtrirano od ukupno _MAX_ elemenata)",
     },
     });
-
-        new $.fn.dataTable.FixedHeader( tabela );
+        if ($('#tabela').length) {
+            new $.fn.dataTable.FixedHeader( tabela );
+        }
+        
 
         $('#pretragaDugme').click(function () {
             $('#pretraga').toggle();

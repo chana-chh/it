@@ -25,7 +25,7 @@
     <th style="width: 10%">#</th>
     <th style="width: 35%">Ime i prezime</th>
     <th style="width: 30%">Korisničko ime</th>
-    <th style="width: 15%">Administrator</th>
+    <th style="width: 15%">Uloga</th>
     <th style="text-align:center; width: 10%"><i class="fa fa-cogs"></i></th>
 </thead>
 <tbody id="korisnici_lista" name="korisnici_lista">
@@ -34,7 +34,8 @@
         <td>{{$korisnik->id}}</td>
         <td><strong>{{$korisnik->name}}</strong></td>
         <td>{{$korisnik->username}}</td>
-        <td style="text-align:center">{!! $korisnik->imaUlogu('admin') ? '<i class="fa fa-check text-success">' : '' !!}</td>
+        <td style="text-align:center;{{ $korisnik->imaUlogu('admin') ? 'color: red;' : '' }}">{{ $korisnik->role->name }}</td>
+
         <td style="text-align:center">
             <a class="btn btn-success btn-sm otvori_izmenu" id="dugmeIzmena"  href="{{ route('korisnici.pregled', $korisnik->id) }}"><i class="fa fa-pencil"></i></a>
             <button data-toggle="modal" data-target="#brisanjeModal" class="btn btn-danger btn-sm otvori-brisanje"  value="{{$korisnik->id}}"><i class="fa fa-trash"></i></button>
