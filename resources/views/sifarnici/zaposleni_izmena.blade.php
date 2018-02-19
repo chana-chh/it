@@ -47,7 +47,7 @@
                 <div class="col-md-6">
                     <div class="form-group{{ $errors->has('ime') ? ' has-error' : '' }}">
                         <label for="ime">Ime:</label>
-                        <input type="text" name="ime" id="ime" class="form-control" value="{{ old('ime', $zaposleni->ime) }}" maxlength="50"> @if ($errors->has('ime'))
+                        <input type="text" name="ime" id="ime" class="form-control" value="{{ old('ime', $zaposleni->ime) }}" maxlength="50" required> @if ($errors->has('ime'))
                         <span class="help-block">
                             <strong>{{ $errors->first('ime') }}</strong>
                         </span>
@@ -70,7 +70,7 @@
 
             <hr> {{-- Red sa upravom --}}
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group{{ $errors->has('uprava_id') ? ' has-error' : '' }}">
                         <label for="uprava_id">Uprava:</label>
                         <select name="uprava_id" id="uprava_id" class="chosen-select form-control" data-placeholder="uprava ..." required>
@@ -89,10 +89,21 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                 <div class="col-md-4">
+                    <div class="form-group{{ $errors->has('radno_mesto') ? ' has-error' : '' }}">
+                        <label for="radno_mesto">Radno mesto:</label>
+                        <input type="text" name="radno_mesto" id="radno_mesto" class="form-control" value="{{ old('radno_mesto', $zaposleni->radno_mesto) }}"> @if ($errors->has('radno_mesto'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('radno_mesto') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="col-md-4">
                     <div class="form-group{{ $errors->has('kancelarija_id') ? ' has-error' : '' }}">
                         <label for="kancelarija_id">Kancelarija:</label>
-                        <select name="kancelarija_id" id="kancelarija_id" class="chosen-select form-control" data-placeholder="kancelarija ..." required>
+                        <select name="kancelarija_id" id="kancelarija_id" class="chosen-select form-control" data-placeholder="kancelarija ...">
                             <option value=""></option>
                             @foreach($kancelarije as $kancelarija)
                             <option value="{{ $kancelarija->id }}" {{ old( 'kancelarija_id')==$kancelarija->id ? ' selected' : '' }} {{ $zaposleni->kancelarija_id == $kancelarija->id ? ' selected' : ''
