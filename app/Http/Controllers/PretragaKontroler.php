@@ -21,8 +21,8 @@ class PretragaKontroler extends Controller
     public function getPrijavaKvara()
     {
         $kvarovi = Servis::all();
-        $zap = Zaposleni::orderBy('ime', 'asc')->orderBy('prezime', 'asc')->get();
-        $kanc = Kancelarija::orderBy('naziv', 'asc')->get();
+        $zap = Zaposleni::with('uprava', 'kancelarija', 'kancelarija.lokacija', 'kancelarija.sprat')->orderBy('ime', 'asc')->orderBy('prezime', 'asc')->get();
+        $kanc = Kancelarija::with('lokacija', 'sprat')->orderBy('naziv', 'asc')->get();
         return view('kvar')->with(compact('zap', 'kanc', 'kvarovi'));
     }
 

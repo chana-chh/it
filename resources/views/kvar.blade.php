@@ -22,7 +22,7 @@
         <a href="{{ route('imenik') }}">
             <img alt="Imenik" src="{{url('/images/imenik.png')}}" style="height: 128px;">
         </a>
-        <h4>Pretraživanje imenika</h4>
+        <a href="{{ route('imenik') }}" class="btn btn-success" style="margin-top: 3rem;">Pretraživanje imenika</a>
     </div>
     <div class="col-md-8">
         <h1 class="text-center">Prijava/status kvara</h1>
@@ -43,9 +43,27 @@
         <a href="{{ route('kvar') }}">
             <img alt="Kvar" src="{{url('/images/kvar.png')}}" style="height: 128px;">
         </a>
-        <h4>Prijava/status kvara</h4>
+        <a href="{{ route('kvar') }}" class="btn btn-success" style="margin-top: 3rem;">Prijava/status kvara</a>
     </div>
 </div>
+
+@if(Auth::user())
+<div class="row" style="margin: 10px 0px 10px 20px;">
+    <div class="col-md-12">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="window.history.back();"
+               title="Povratak na prethodnu stranu">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+        </div>
+    </div>
+</div>
+@endif
+
 <hr>
 <div class="row ceo_dva" id="formaPrijava">
     <div class="col-md-8 col-md-offset-2 boxic">

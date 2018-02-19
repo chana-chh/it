@@ -68,11 +68,18 @@ class ZaposleniKontroler extends Kontroler
             'prezime' => [
                 'required',
                 'max:100'],
-            'slika' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'slika' => 'sometimes|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $ime_slike = null;
-        if ($request->slika) {
+        $zaposleni = new Zaposleni();
+        $zaposleni->ime = $request->ime;
+        $zaposleni->prezime = $request->prezime;
+        $zaposleni->uprava_id = $request->uprava_id;
+        $zaposleni->radno_mesto = $request->radno_mesto;
+        $zaposleni->kancelarija_id = $request->kancelarija_id;
+        $zaposleni->napomena = $request->napomena;
+        if ($request->hasFile('slika'))
+        {
             $img = $request->slika;
             $ime_slike = $request->ime . time() . '.' . $request->slika->getClientOriginalExtension();
             $lokacija = public_path('images/slike_zaposlenih/' . $ime_slike);
@@ -80,19 +87,8 @@ class ZaposleniKontroler extends Kontroler
                 $constraint->upsize();
             });
             $resize_img->save($lokacija);
-        }
-
-
-        $zaposleni = new Zaposleni();
-        $zaposleni->ime = $request->ime;
-        $zaposleni->prezime = $request->prezime;
-        $zaposleni->uprava_id = $request->uprava_id;
-        $zaposleni->kancelarija_id = $request->kancelarija_id;
-        $zaposleni->napomena = $request->napomena;
-        if ($ime_slike) {
             $zaposleni->src = $ime_slike;
         }
-
         $zaposleni->save();
 
         Session::flash('uspeh', 'Zaposleni je uspešno dodata!');
@@ -155,6 +151,7 @@ class ZaposleniKontroler extends Kontroler
         $zaposleni->ime = $request->ime;
         $zaposleni->prezime = $request->prezime;
         $zaposleni->uprava_id = $request->uprava_id;
+        $zaposleni->radno_mesto = $request->radno_mesto;
         $zaposleni->kancelarija_id = $request->kancelarija_id;
         $zaposleni->napomena = $request->napomena;
         $zaposleni->src = $ime_slike;
