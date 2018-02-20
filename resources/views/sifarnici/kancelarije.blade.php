@@ -35,7 +35,7 @@
             <td><small>{{$kancelarija->id}}</small></td>
             <td><strong data-toggle="zaposleni" title="Zaposleni:" class="zaposleniPopover"  style="cursor: pointer;"
                 data-content="
-                <ul>
+                <ul class='liste_bez'>
                 @foreach($kancelarija->zaposleni as $z)
                 <li>
                 {{$z->imePrezime()}}

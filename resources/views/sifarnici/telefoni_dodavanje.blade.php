@@ -36,8 +36,8 @@
         <div class="row">
         <div class="col-md-8 col-md-offset-2">
         <div class="form-group {{ $errors->has('broj') ? ' has-error' : '' }}">
-            <label for="broj">Broj: </label>
-            <input  type="text" name="broj" id="broj" class="form-control" value="{{ old('broj') }}" required style="font-size: 3rem !important; line-height: 5rem !important; min-height: 5rem !important;">
+            <label for="broj" class="uvecano">Broj: </label>
+            <input  type="text" name="broj" id="broj" class="form-control uvecano" value="{{ old('broj') }}" required>
             @if ($errors->has('broj'))
             <span class="help-block">
                 <strong>{{ $errors->first('broj') }}</strong>
@@ -49,7 +49,7 @@
 
         <div class="row" style="font-size: 2rem; margin-top: 1rem">
         <div class="col-md-8 col-md-offset-2">
-        <div class="form-group-lg {{ $errors->has('vrsta') ? ' has-error' : '' }}">
+        <div class="form-group uvecano {{ $errors->has('vrsta') ? ' has-error' : '' }}">
             <label for="vrsta">Vrsta:</label>
                 <select name="vrsta" id="vrsta" class="chosen-select form-control" data-placeholder="izbor vrsta ..." required>
                 <option value=""></option>
@@ -68,7 +68,7 @@
         
         <div class="row" style="font-size: 2rem; margin-top: 1rem">
         <div class="col-md-8 col-md-offset-2">
-        <div class="form-group-lg {{ $errors->has('kancelarija_id') ? ' has-error' : '' }}">
+        <div class="form-group uvecano {{ $errors->has('kancelarija_id') ? ' has-error' : '' }}">
                     <label for="kancelarija_id">Kancelarija:</label>
                     <select name="kancelarija_id" id="kancelarija_id" class="chosen-select form-control" data-placeholder="izbor kancelarija ..." required>
                         <option value=""></option>
@@ -89,9 +89,9 @@
         
         <div class="row" style="font-size: 2rem; margin-top: 1rem">
         <div class="col-md-8 col-md-offset-2">
-        <div class="form-group-lg {{ $errors->has('napomena') ? ' has-error' : '' }}">
+        <div class="form-group uvecano {{ $errors->has('napomena') ? ' has-error' : '' }}">
                     <label for="napomena">Napomena:</label>
-                    <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena') }}</textarea>
+                    <textarea name="napomena" id="napomena" class="form-control uvecano">{{ old('napomena') }}</textarea>
                     @if ($errors->has('napomena'))
                         <span class="help-block">
                             <strong>{{ $errors->first('napomena') }}</strong>
@@ -133,6 +133,9 @@
 
    });
    };
+
+   $(".chosen-container-single .chosen-drop").addClass("uvecano");
+   $(".chosen-container").addClass("uvecano");
 
     $(document).on('click', '.otvori-brisanje', function () {
             var id = $(this).val();

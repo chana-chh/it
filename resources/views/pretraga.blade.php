@@ -89,26 +89,24 @@
             <div class="row">
                 <div class="col-md-8">
                     <h3>
-                        <span class="zaposleniImePrezime">{{ $zaposleni->imePrezime() }}</span>, <small>{{ $zaposleni->uprava->naziv }}</small>
+                        <span class="zaposleniImePrezime">{{ $zaposleni->imePrezime() }}</span>
+                        , <small>{{ $zaposleni->uprava->naziv }}</small>
                     </h3>
-                   
+                    <h4>
                         @if($zaposleni->kancelarija)
-                         <h4>
                         Kancelarija: {{ $zaposleni->kancelarija->naziv }},
                         <small>
                             {{ $zaposleni->kancelarija->lokacija->naziv }},
                             {{ $zaposleni->kancelarija->sprat->naziv }}
                         </small>
 
-                    
-                    <ul style="list-style-type: none; margin-top: 1rem">
+                    </h4>
+                    <ul style="list-style-type: none;">
                         @foreach($zaposleni->kancelarija->telefoni as $tel)
                         <li><i class="fa fa-phone fa-fw text-success"></i>&emsp;{{ $tel->broj }}, <small> {{ $tel->vrsta }}</small></li>
                         @endforeach
                     </ul>
-                    </h4>
                     @endif
-                    <h4>
                     <ul style="list-style-type: none;">
                         @foreach($zaposleni->mobilni as $mob)
                         <li><i class="fa fa-mobile fa-fw text-danger"></i>&emsp;{{ $mob->broj }}</li>
@@ -122,17 +120,10 @@
                         </li>
                         @endforeach
                     </ul>
-                    </h4>
                 </div>
                 <div class="col-md-4 text-right">
-                    @if (!empty($zaposleni->src))
-                    <img id="{{ $zaposleni->id }}" src="{{asset('images/slike_zaposlenih/'.$zaposleni->src)}}" class="img-circle"  alt="Slika zaposlenog" 
-                    style="height:128px; margin-top: 18px;">
-                    @else
-                    <img src="{{url('/images/korisnik_jedan.png')}}" alt="placeholder"
-                         style="height:64px; margin-top: 9px;">
-                    @endif
-                    
+                    <img src="{{url('/images/sara.jpg')}}" alt="sara" class="img-circle"
+                         style="height:128px; margin-top: 18px;">
                 </div>
             </div>
             <hr style="border:none; border-top:1px dotted #18BC9C; color:#18BC9C; height:1px;">
@@ -141,6 +132,9 @@
     @endforeach
     @endif
 </div>
+
+{{-- KANCELARIJE POCETAK --}}
+
 <div id="sveKancelarije">
     @if($kanc)
     @foreach($kanc as $kancelarija)
@@ -148,29 +142,26 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="row">
                 <div class="col-md-6">
-                    <h3>
-                        Kancelarija:
+                    <h2>
                         <span class="kancelarijaNazivBroj">
-                            {{ $kancelarija->naziv }}
+                        {{ $kancelarija->naziv }}
                         </span> ,
                         <small>
                             {{ $kancelarija->lokacija->naziv }},
                             {{ $kancelarija->sprat->naziv }}
                         </small>
-                    </h3>
-                    <h4>
-                    <ul style="list-style-type: none;">
+                    </h2>
+                    <ul style="list-style-type: none; font-size: 2rem;">
                         @foreach($kancelarija->telefoni as $tel)
-                        <li><i class="fa fa-phone fa-fw text-success"></i>&emsp;{{ $tel->broj }}, <small> {{ $tel->vrsta }}</small></li>
+                        <li><i class="fa fa-phone fa-fw text-success"></i>&emsp;<strong>{{ $tel->broj }}</strong>, <small> {{ $tel->vrsta }}</small></li>
                         @endforeach
                     </ul>
-                    </h4>
                 </div>
                 <div class="col-md-6">
                     <h4>Zaposleni:</h4>
                     <ul style="list-style-type: none; padding-left: 0;">
                         <table class="table" style="table-layout: fixed;">
-                            <tbody style="font-size: 1.4rem;">
+                            <tbody style="font-size: 1.75rem;">
                                 @foreach($kancelarija->zaposleni as $z)
                                 <tr>
                                     <th style="width: 50%;"><h4 class="zaposleniPopover"  style="cursor: pointer;"
