@@ -100,8 +100,8 @@
                             {{ $zaposleni->kancelarija->sprat->naziv }}
                         </small>
 
-                    </h4>
-                    <ul style="list-style-type: none;">
+                    
+                    <ul style="list-style-type: none; margin-top: 1rem">
                         @foreach($zaposleni->kancelarija->telefoni as $tel)
                         <li><i class="fa fa-phone fa-fw text-success"></i>&emsp;{{ $tel->broj }}, <small> {{ $tel->vrsta }}</small></li>
                         @endforeach
@@ -120,10 +120,16 @@
                         </li>
                         @endforeach
                     </ul>
+                    </h4>
                 </div>
                 <div class="col-md-4 text-right">
-                    <img src="{{url('/images/sara.jpg')}}" alt="sara" class="img-circle"
-                         style="height:128px; margin-top: 18px;">
+                    @if (!empty($zaposleni->src))
+                    <img id="{{ $zaposleni->id }}" src="{{asset('images/slike_zaposlenih/'.$zaposleni->src)}}" class="img-circle"  alt="Slika zaposlenog" 
+                    style="height:128px; margin-top: 18px;">
+                    @else
+                    <img src="{{url('/images/korisnik_jedan.png')}}" alt="placeholder"
+                         style="height:64px; margin-top: 9px;">
+                    @endif
                 </div>
             </div>
             <hr style="border:none; border-top:1px dotted #18BC9C; color:#18BC9C; height:1px;">
@@ -145,11 +151,12 @@
                     <h2>
                         <span class="kancelarijaNazivBroj">
                         {{ $kancelarija->naziv }}
-                        </span> ,
+                        </span> , 
                         <small>
                             {{ $kancelarija->lokacija->naziv }},
                             {{ $kancelarija->sprat->naziv }}
                         </small>
+                        <h5 class="text-success">({{$kancelarija->napomena}})</h5>
                     </h2>
                     <ul style="list-style-type: none; font-size: 2rem;">
                         @foreach($kancelarija->telefoni as $tel)
