@@ -103,8 +103,7 @@ class NabavkeKontroler extends Kontroler
                 'required',
             ],
             'datum' => [
-                'required',
-                'before:2100-01-01'
+                'required'
             ],
             'garancija' => [
                 'required',

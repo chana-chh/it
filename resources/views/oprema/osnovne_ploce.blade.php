@@ -20,8 +20,7 @@
         </button>
     </div>
 </div>
-<hr>
-<div class="row">
+<div class="row obavestenje">
     <div class="col-md-10 col-md-offset-1 text-center" style="font-size: 1rem;;">
         <div class="alert alert-info alert-dismissible ono" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -31,6 +30,7 @@
         </div>
     </div>
 </div>
+<hr class="linija" style="display: none;">
 <div class="row well" id="pretraga" style="display: none;">
     <div class="col-md-2">
         <a id="pretragaDugme" href="{{route('osnovne_ploce.oprema.otpisani')}}" class="btn btn-success btn-block ono">
@@ -99,6 +99,11 @@
 <script>
 $( document ).ready(function() {
 
+        setTimeout(function(){
+            $('.obavestenje').hide();
+            $('.linija').show();
+            }, 4000);
+
         var tabela = $('#tabela').DataTable({
 
         columnDefs: [
@@ -125,7 +130,9 @@ $( document ).ready(function() {
     },
     });
 
-        new $.fn.dataTable.FixedHeader( tabela );
+        if ($('#tabela').length) {
+            new $.fn.dataTable.FixedHeader( tabela );
+        }
 
         $('#pretragaDugme').click(function () {
             $('#pretraga').toggle();

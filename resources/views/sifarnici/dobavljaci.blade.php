@@ -66,7 +66,7 @@
                         </a>
                         @endif
                     </td>
-                    <td>{{ str_limit($d->napomena, 80) }}</td>
+                    <td><small>{{ str_limit($d->napomena, 80) }}</small></td>
                     <td style="text-align:right; vertical-align: middle; line-height: normal;">
                         <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('dobavljaci.detalj', $d->id)}}">
                             <i class="fa fa-eye"></i>
