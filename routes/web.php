@@ -161,9 +161,11 @@ Route::get('kancelarije', 'Sifarnici\KancelarijeKontroler@getLista')->name('kanc
 Route::get('kancelarije/detaljno/{id}', 'Sifarnici\KancelarijeKontroler@getDetalj')->name('kancelarije.detalj.get');
 Route::post('kancelarije/dodavanje', 'Sifarnici\KancelarijeKontroler@postDodavanje')->name('kancelarije.dodavanje');
 Route::post('kancelarije/brisanje', 'Sifarnici\KancelarijeKontroler@postBrisanje')->name('kancelarije.brisanje');
+Route::post('kancelarije/uklanjanje', 'Sifarnici\KancelarijeKontroler@postUklanjanje')->name('kancelarije.uklanjanje');
 Route::post('kancelarije/izmena', 'Sifarnici\KancelarijeKontroler@postIzmena')->name('kancelarije.izmena');
 Route::post('kancelarije/detalj', 'Sifarnici\KancelarijeKontroler@postDetalj')->name('kancelarije.detalj');
 Route::post('kancelarije/telefon', 'Sifarnici\KancelarijeKontroler@postDodavanjeTelefon')->name('kancelarija.telefon.dodavanje.post');
+Route::post('kancelarije/zaposleni', 'Sifarnici\KancelarijeKontroler@postDodavanjeZaposleni')->name('kancelarija.zaposleni.dodavanje.post');
 
 // Uprave
 Route::get('uprave', 'Sifarnici\UpraveKontroler@getLista')->name('uprave');

@@ -7,6 +7,7 @@ use Session;
 use Redirect;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\Kancelarija;
+use App\Modeli\Zaposleni;
 use App\Modeli\Sprat;
 use App\Modeli\Lokacija;
 use App\Modeli\Telefon;
@@ -49,7 +50,8 @@ class KancelarijeKontroler extends Kontroler
         $uredjaji_svi = UredjajiHelper::sviUredjaji();
         $uredjaji_kanc = $uredjaji_svi->where('kancelarija_id', $id)->where('otpis', null);
         $uredjaji = $this->paginate($uredjaji_kanc, 10);
-        return view('sifarnici.kancelarije_detalj')->with(compact('kancelarija', 'uredjaji'));
+        $zaposleni = Zaposleni::with('uprava')->orderBy('ime', 'asc')->orderBy('prezime', 'asc')->get();
+        return view('sifarnici.kancelarije_detalj')->with(compact('kancelarija', 'uredjaji', 'zaposleni'));
     }
 
     public function postDodavanje(Request $request)
@@ -106,6 +108,38 @@ class KancelarijeKontroler extends Kontroler
             Session::flash('greska', 'Došlo je do greške prilikom brisanja stavke. Pokušajte ponovo, kasnije!');
         }
         return redirect()->route('kancelarije');
+    }
+
+    public function postUklanjanje(Request $request)
+    {
+        $zaposleni = Zaposleni::findOrFail($request->idUklanjanjeZaposleni);
+        $zaposleni->kancelarija_id = null;
+        $odgovor = $zaposleni->save();
+        if ($odgovor) {
+            Session::flash('uspeh', 'Zaposleni je uspešno uklonjen iz kancelarije!');
+        } else {
+            Session::flash('greska', 'Došlo je do greške prilikom uklanjanja zaposlenog iz kancelarije. Pokušajte ponovo, kasnije!');
+        }
+        return Redirect::back();
+    }
+
+    public function postDodavanjeZaposleni(Request $request)
+    { 
+         $this->validate($request, [
+            'zaposleni_id' => [
+                'required',
+            ],
+            'kancelarija_id' => [
+                'required',
+            ],
+        ]);
+
+         $zaposleni = Zaposleni::findOrFail($request->zaposleni_id);
+         $zaposleni->kancelarija_id = $request->kancelarija_id;
+         $zaposleni->save();
+
+         Session::flash('uspeh', 'Zaposleni je uspešno raspoređen u kancelariju!');
+        return Redirect::back();
     }
 
     public function postDodavanjeTelefon(Request $request)

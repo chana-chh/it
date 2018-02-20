@@ -156,7 +156,9 @@
                             {{ $kancelarija->lokacija->naziv }},
                             {{ $kancelarija->sprat->naziv }}
                         </small>
+                        @if($kancelarija->napomena)
                         <h5 class="text-success">({{$kancelarija->napomena}})</h5>
+                        @endif
                     </h2>
                     <ul style="list-style-type: none; font-size: 2rem;">
                         @foreach($kancelarija->telefoni as $tel)

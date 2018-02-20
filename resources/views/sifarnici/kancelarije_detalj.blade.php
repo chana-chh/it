@@ -249,20 +249,165 @@
 @section('traka')
 <div class="row well" style="margin-top: 5rem;">
     <div class="col-md-12">
-<h4>Činovnici u kancelariji:</h4>
-<ul>
+<h4 style="margin-bottom: 2rem">Činovnici u kancelariji:</h4>
+
     @foreach ($kancelarija->zaposleni as $z)
-            <li><a href="{{ route('zaposleni.detalj', $z->id) }}">{{$z->imePrezime()}}</a></li>
+            
+                <div class="row" style="margin-top: 10px">
+
+                    <div class="col-md-1">
+                <strong>{{ $loop->iteration }}.</strong>
+                    </div>
+                    <div class="col-md-8">
+                    <a href="{{ route('zaposleni.detalj', $z->id) }}">{{$z->imePrezime()}}</a>
+                    </div>
+                    <div class="col-md-3">
+                    <a href="" title="Ukloni zaposlenog iz kancelarije" id="zaposleniUkljanjanje" 
+                    data-toggle="modal" data-target="#zaposleniUkljanjanjeModal" data-zaposleniid="{{$z->id}}"
+                    ><i class="fa fa-close text-danger"></i></a>
+                    </div>
+                </div>
+
     @endforeach
 
-</ul>
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-right">
+        <hr style="border-top: 1px dashed; color: #18BC9C;">
+        <button id="idZaposleni" class="btn btn-success btn-xs"
+                    title="Dodaj zaposlenog"
+                    data-toggle="modal" data-target="#zaposleniModal"
+                    value="{{$kancelarija->id}}">
+                <i class="fa fa-plus"></i></button>
+    </div>
+    
 </div>
 </div>
+{{--  pocetak modal_zaposleni_uklanjanje  --}}
+<div id = "zaposleniUkljanjanjeModal" class = "modal fade">
+    <div class = "modal-dialog">
+        <div class = "modal-content">
+            <div class = "modal-header">
+                <button class = "close" data-dismiss = "modal">&times;</button>
+                <h1 class = "modal-title text-danger">Upozorenje!</h1>
+            </div>
+            <div class = "modal-body">
+                <h3>Da li želite trajno da uklonite zaposlenog iz kancelarije? *</h3>
+                <p class = "text-danger">* Ova akcija je nepovratna!</p>
+                <form id="uklanjanje-forma" action="" method="POST">
+                    {{ csrf_field() }}
+                    <input type="hidden" id="idUklanjanjeZaposleni" name="idUklanjanjeZaposleni">
+                    <hr style="margin-top: 30px;">
+
+                    <div class="row dugmici" style="margin-top: 30px;">
+                        <div class="col-md-12" >
+                            <div class="form-group">
+                                <div class="col-md-6 snimi">
+                                    <button id = "btn-brisanje-obrisi" type="submit" class="btn btn-danger btn-block ono">
+                                        <i class="fa fa-minus"></i>&emsp;Ukloni
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <a class="btn btn-primary btn-block ono" data-dismiss="modal">
+                                        <i class="fa fa-ban"></i>&emsp;Otkaži
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{--  kraj modal_zaposleni_uklanjanje  --}}
+{{--  pocetak modal_zaposleni_dodavanje  --}}
+    <div class="modal fade" id="zaposleniModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title text-success">Dodavanje zaposlenog u kancelariju</h3>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('kancelarija.zaposleni.dodavanje.post') }}" method="POST" id="frmZaposleniDodavanje" data-parsley-validate>
+                        {{ csrf_field() }}
+                        <div class="row">
+                            <div class="col-md-12">
+                            <div class="form-group{{ $errors->has('zaposleni_id') ? ' has-error' : '' }}">
+                    <label for="zaposleni_id">Zaposleni:</label>
+                    <select name="zaposleni_id" id="zaposleni_id" class="chosen-select form-control" data-placeholder="zaposleni ..." required>
+                        <option value=""></option>
+                        @foreach($zaposleni as $radnik)
+                        <option value="{{ $radnik->id }}"{{ old('zaposleni_id') == $radnik->id ? ' selected' : '' }}>
+                            {{ $radnik->Imeprezime() }}, {{ $radnik->uprava ? $radnik->uprava->naziv : 'neraspoređen' }}
+                        </option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('zaposleni_id'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('zaposleni_id') }}</strong>
+                        </span>
+                    @endif
+        </div>
+                        
+
+                        <input type="hidden" id="kancelarija_id" name="kancelarija_id" value="{{$kancelarija->id}}">
+                        </div>
+                         </div>
+                        <hr>
+                       
+            <div class="row dugmici" style="margin-top: 30px;">
+            <div class="col-md-10 col-md-offset-1" >
+                <div class="form-group">
+                    <div class="col-md-6 snimi">
+                        <button id = "btn-dodaj-zaposlenog" type="submit" class="btn btn-success btn-block ono">
+                            <i class="fa fa-plus"></i>&emsp;Dodaj
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-warning btn-block ono" data-dismiss="modal">
+                            <i class="fa fa-ban"></i>&emsp;Otkaži
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{--  kraj modal_zaposleni_dodavanje  --}}
 @endsection
 
 @section('skripte')
 <script>
 $( document ).ready(function() {
+
+    $('#zaposleniModal').on('shown.bs.modal', function () {
+        $('.chosen-select', this).chosen({
+            allow_single_deselect: true,
+            search_contains: true
+            });
+            resizeChosen();
+    });
+    
+    jQuery(window).on('resize', resizeChosen);
+
+    function resizeChosen() {
+   $(".chosen-container").each(function() {
+       $(this).attr('style', 'width: 100%');
+
+   });
+   };
+   
+   $(document).on('click', '#zaposleniUkljanjanje', function () {
+            var id = $(this).data("zaposleniid");
+            $('#idUklanjanjeZaposleni').val(id);
+            var ruta = "{{ route('kancelarije.uklanjanje') }}";
+            $('#uklanjanje-forma').attr('action', ruta); });
 
     $(document).on('click', '#idBrisanjeKancelarije', function () {
             var id = $(this).val();
