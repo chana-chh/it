@@ -89,24 +89,26 @@
             <div class="row">
                 <div class="col-md-8">
                     <h3>
-                        <span class="zaposleniImePrezime">{{ $zaposleni->imePrezime() }}</span>
-                        , <small>{{ $zaposleni->uprava->naziv }}</small>
+                        <span class="zaposleniImePrezime">{{ $zaposleni->imePrezime() }}</span>, <small>{{ $zaposleni->uprava->naziv }}</small>
                     </h3>
-                    <h4>
+                   
                         @if($zaposleni->kancelarija)
+                         <h4>
                         Kancelarija: {{ $zaposleni->kancelarija->naziv }},
                         <small>
                             {{ $zaposleni->kancelarija->lokacija->naziv }},
                             {{ $zaposleni->kancelarija->sprat->naziv }}
                         </small>
 
-                    </h4>
-                    <ul style="list-style-type: none;">
+                    
+                    <ul style="list-style-type: none; margin-top: 1rem">
                         @foreach($zaposleni->kancelarija->telefoni as $tel)
                         <li><i class="fa fa-phone fa-fw text-success"></i>&emsp;{{ $tel->broj }}, <small> {{ $tel->vrsta }}</small></li>
                         @endforeach
                     </ul>
+                    </h4>
                     @endif
+                    <h4>
                     <ul style="list-style-type: none;">
                         @foreach($zaposleni->mobilni as $mob)
                         <li><i class="fa fa-mobile fa-fw text-danger"></i>&emsp;{{ $mob->broj }}</li>
@@ -120,10 +122,17 @@
                         </li>
                         @endforeach
                     </ul>
+                    </h4>
                 </div>
                 <div class="col-md-4 text-right">
-                    <img src="{{url('/images/sara.jpg')}}" alt="sara" class="img-circle"
-                         style="height:128px; margin-top: 18px;">
+                    @if (!empty($zaposleni->src))
+                    <img id="{{ $zaposleni->id }}" src="{{asset('images/slike_zaposlenih/'.$zaposleni->src)}}" class="img-circle"  alt="Slika zaposlenog" 
+                    style="height:128px; margin-top: 18px;">
+                    @else
+                    <img src="{{url('/images/korisnik_jedan.png')}}" alt="placeholder"
+                         style="height:64px; margin-top: 9px;">
+                    @endif
+                    
                 </div>
             </div>
             <hr style="border:none; border-top:1px dotted #18BC9C; color:#18BC9C; height:1px;">
@@ -149,11 +158,13 @@
                             {{ $kancelarija->sprat->naziv }}
                         </small>
                     </h3>
+                    <h4>
                     <ul style="list-style-type: none;">
                         @foreach($kancelarija->telefoni as $tel)
                         <li><i class="fa fa-phone fa-fw text-success"></i>&emsp;{{ $tel->broj }}, <small> {{ $tel->vrsta }}</small></li>
                         @endforeach
                     </ul>
+                    </h4>
                 </div>
                 <div class="col-md-6">
                     <h4>Zaposleni:</h4>
