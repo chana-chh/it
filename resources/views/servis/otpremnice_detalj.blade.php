@@ -290,7 +290,7 @@
         if (vrednost != "komad") {
             $('#kolicina').prop('step', "0.01");
         }else{
-            $('#kolicina').prop('step', null);
+            $('#kolicina').prop('step', "1");
         }
         });
 
