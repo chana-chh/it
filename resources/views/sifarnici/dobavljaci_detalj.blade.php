@@ -50,13 +50,14 @@
         <tbody style="font-size: 2rem;">
             <tr>
                 <th style="width: 20%;">Adresa:</th>
-                <td style="width: 80%;">@if($model->adresa_ulica)
-                            {{ $model->adresa_ulica }} 
+                <td style="width: 80%;">
+                    @if($model->adresa_ulica && $model->adresa_broj && $model->adresa_mesto)
+                            {{ $model->adresa_ulica }} {{ $model->adresa_broj }}, {{ $model->adresa_mesto }}
                         @elseif($model->adresa_ulica && $model->adresa_broj)
                             {{ $model->adresa_ulica }} {{ $model->adresa_broj }}
-                        @elseif($model->adresa_ulica && $model->adresa_broj && $model->adresa_mesto)
-                            {{ $model->adresa_ulica }} {{ $model->adresa_broj }}, {{ $model->adresa_mesto }}
-                        @else ()
+                        @elseif($model->adresa_ulica)
+                            {{ $model->adresa_ulica }} 
+                        @else
                             {{ $model->adresa_mesto }}
                         @endif</td>
             </tr>

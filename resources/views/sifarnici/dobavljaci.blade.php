@@ -46,13 +46,13 @@
                     <td>
                         <strong>{{ $d->naziv }}</strong>
                     </td>
-                    <td>@if($d->adresa_ulica)
-                            {{ $d->adresa_ulica }} 
+                    <td>@if($d->adresa_ulica && $d->adresa_broj && $d->adresa_mesto)
+                            {{ $d->adresa_ulica }} {{ $d->adresa_broj }}, {{ $d->adresa_mesto }}
                         @elseif($d->adresa_ulica && $d->adresa_broj)
                             {{ $d->adresa_ulica }} {{ $d->adresa_broj }}
-                        @elseif($d->adresa_ulica && $d->adresa_broj && $d->adresa_mesto)
-                            {{ $d->adresa_ulica }} {{ $d->adresa_broj }}, {{ $d->adresa_mesto }}
-                        @else ()
+                        @elseif($d->adresa_ulica)
+                            {{ $d->adresa_ulica }} 
+                        @else
                             {{ $d->adresa_mesto }}
                         @endif
                         </td>
