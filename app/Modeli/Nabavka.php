@@ -3,6 +3,7 @@
 namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Nabavka extends Model
 {
@@ -17,6 +18,11 @@ class Nabavka extends Model
     public function stavke()
     {
         return $this->hasMany('App\Modeli\NabavkaStavka', 'nabavka_id', 'id');
+    }
+
+    public function setDatumAttribute($value)
+    {
+        $this->attributes['datum'] = Carbon::parse($value)->format('Y-m-d');
     }
 
 }

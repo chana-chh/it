@@ -39,8 +39,10 @@ class LicenceKontroler extends Kontroler
                 'required',
                 'max:200'],
             'datum_pocetka_vazenja' => [
+                'required',
                 'date'],
             'datum_prestanka_vazenja' => [
+                'required',
                 'date'],
         ]);
 

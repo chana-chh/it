@@ -8,6 +8,7 @@ use App\Http\Controllers\Kontroler;
 use App\Modeli\Nabavka;
 use App\Modeli\Dobavljac;
 use App\Modeli\VrstaUredjaja;
+use Carbon\Carbon;
 
 class NabavkeKontroler extends Kontroler
 {
@@ -97,13 +98,19 @@ class NabavkeKontroler extends Kontroler
     }
 
     public function postDodavanje(Request $request)
-    {
+    {   
+        
+        $sada = Carbon::now();
+        $kraj_godine = $sada->endOfYear()->format('d.m.Y');
+        
         $this->validate($request, [
             'dobavljac_id' => [
                 'required',
             ],
             'datum' => [
-                'required'
+                'required',
+                'date',
+                'before:'.$kraj_godine
             ],
             'garancija' => [
                 'required',
@@ -111,6 +118,7 @@ class NabavkeKontroler extends Kontroler
             ],
         ]);
 
+        
         $nabavka = new Nabavka();
         $nabavka->dobavljac_id = $request->dobavljac_id;
         $nabavka->datum = $request->datum;
