@@ -20,8 +20,8 @@ class EmailKontroler extends Kontroler
 
     public function getLista()
     {
-        $data = Email::all();
-        $radnici = Zaposleni::all();
+        $data = Email::with('zaposleni')->get();
+        $radnici = Zaposleni::with('uprava')->orderBy('ime', 'asc')->orderBy('prezime', 'asc')->get();
         return view('sifarnici.email')->with(compact('data', 'radnici'));
     }
 
