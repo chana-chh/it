@@ -92,6 +92,7 @@
                         <span class="zaposleniImePrezime">{{ $zaposleni->imePrezime() }}</span>
                         , <small>{{ $zaposleni->uprava->naziv }}</small>
                     </h3>
+                    <p class="text-success"><em>{{$zaposleni->radno_mesto}}</em></p>
                     <h4>
                         @if($zaposleni->kancelarija)
                         Kancelarija: {{ $zaposleni->kancelarija->naziv }},
@@ -173,9 +174,17 @@
                             <tbody style="font-size: 1.75rem;">
                                 @foreach($kancelarija->zaposleni as $z)
                                 <tr>
-                                    <th style="width: 50%;"><h4 class="zaposleniPopover"  style="cursor: pointer;"
+                                    <th style="width: 50%;">
+                                        @if(strlen($z->imePrezime())<24 )
+                                        <h4 class="zaposleniPopover"  style="cursor: pointer;"
                                                                 data-title="{{ $z->imePrezime() }}"
-                                                                data-content="<img src='{{ $z->src ? asset('images/slike_zaposlenih/'.$z->src) : '' }}' class='img-rounded' style='height: 256px;'>"><i class="fa fa-user fa-fw text-success"></i>&emsp;{{ $z->imePrezime() }}</h4></th>
+                                                                data-content="<img src='{{ $z->src ? asset('images/slike_zaposlenih/'.$z->src) : '' }}' class='img-rounded' style='height: 256px;'>"><i class="fa fa-user fa-fw text-success"></i>&emsp;{{ $z->imePrezime() }}</h4>
+                                        @else
+                                        <h5 class="zaposleniPopover"  style="cursor: pointer;"
+                                                                data-title="{{ $z->imePrezime() }}"
+                                                                data-content="<img src='{{ $z->src ? asset('images/slike_zaposlenih/'.$z->src) : '' }}' class='img-rounded' style='height: 256px;'>"><i class="fa fa-user fa-fw text-success"></i>&emsp;{{ $z->imePrezime() }}</h5>
+                                        @endif
+                                                            </th>
                                     <td style="width: 50%;">  <ul style="list-style-type: none;">
                                             @foreach($z->mobilni as $m)
                                             <li>
