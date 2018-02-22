@@ -93,6 +93,7 @@
                         , <small>{{ $zaposleni->uprava->naziv }}</small>
                     </h3>
                     <p class="text-success"><em>{{$zaposleni->radno_mesto}}</em></p>
+                    <hr>
                     <h4>
                         @if($zaposleni->kancelarija)
                         Kancelarija: {{ $zaposleni->kancelarija->naziv }},
@@ -133,7 +134,7 @@
                     @endif
                 </div>
             </div>
-            <hr style="border:none; border-top:1px dotted #18BC9C; color:#18BC9C; height:1px;">
+            <hr style="border:none; border-top:2px dotted #18BC9C; color:#18BC9C; height:1px;">
         </div>
     </div>
     @endforeach
