@@ -159,8 +159,8 @@
                 <div class="col-md-12">
                     <div class="form-group{{ $errors->has('serijski_broj') ? ' has-error' : '' }}">
                         <label for="serijski_broj">Serijski broj:</label>
-                        <input type="text" name="serijski_broj" id="serijski_broj" class="form-control" value="{{ old('serijski_broj') }}" maxlength="50"
-                            required> @if ($errors->has('serijski_broj'))
+                        <input type="text" name="serijski_broj" id="serijski_broj" class="form-control" value="{{ old('serijski_broj') }}" maxlength="50">
+                        @if ($errors->has('serijski_broj'))
                         <span class="help-block">
                             <strong>{{ $errors->first('serijski_broj') }}</strong>
                         </span>

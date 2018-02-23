@@ -29,7 +29,7 @@
                title="Povratak na listu računara">
                 <i class="fa fa-list"></i>
             </a>
-            <a class="btn btn-primary" href=""
+            <a class="btn btn-primary" href="{{route('racunari.oprema.izmena.get', $uredjaj->id)}}"
                title="Izmena podataka računara">
                 <i class="fa fa-pencil"></i>
             </a>
@@ -184,7 +184,9 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
         <table class="table table-condensed table-hover" style="table-layout: fixed;">
         <tbody>
 <tr>
-    <th style="width: 70%;">@if ($uredjaj->osnovnaPloca) {{$uredjaj->osnovnaPloca->osnovnaPlocaModel->naziv}} 
+    <th style="width: 70%;">@if ($uredjaj->osnovnaPloca)<a href="{{route('osnovne_ploce.oprema.detalj', $uredjaj->osnovnaPloca->id)}}">
+     {{$uredjaj->osnovnaPloca->osnovnaPlocaModel->naziv}} 
+ </a>
                             @else Komponenta nije dodata ili nema podataka o njoj
                             @endif
     </th>
@@ -200,7 +202,7 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
         @if (!$uredjaj->procesori->isEmpty())
             <ul class="liste_bez">
                 @foreach($uredjaj->procesori as $p)
-                    <li>{{$p->procesorModel->proizvodjac->naziv}}, {{$p->procesorModel->naziv}}</li>
+                    <li><a href="{{route('procesori.oprema.detalj', $p->id)}}">{{$p->procesorModel->proizvodjac->naziv}}, {{$p->procesorModel->naziv}}</a></li>
                 @endforeach     
             </ul>
         @else Komponenta nije dodata ili nema podataka o njoj
@@ -218,7 +220,7 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
         @if (!$uredjaj->memorije->isEmpty())
             <ul class="liste_bez">
                 @foreach($uredjaj->memorije as $m)
-                    <li>{{$m->memorijaModel->proizvodjac->naziv}}, {{$m->memorijaModel->kapacitet}}</li>
+                    <li><a href="{{route('memorije.oprema.detalj', $m->id)}}">{{$m->memorijaModel->proizvodjac->naziv}}, {{$m->memorijaModel->kapacitet}}</a></li>
                 @endforeach     
             </ul>
         @else Komponenta nije dodata ili nema podataka o njoj
@@ -236,7 +238,7 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
         @if (!$uredjaj->hddovi->isEmpty())
             <ul class="liste_bez">
                 @foreach($uredjaj->hddovi as $h)
-                    <li>{{$h->hddModel->proizvodjac->naziv}}, {{$h->hddModel->kapacitet}}</li>
+                    <li><a href="{{route('hddovi.oprema.detalj', $h->id)}}">{{$h->hddModel->proizvodjac->naziv}}, {{$h->hddModel->kapacitet}}</a></li>
                 @endforeach     
             </ul>
         @else Komponenta nije dodata ili nema podataka o njoj
@@ -254,7 +256,7 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
         @if (!$uredjaj->grafickiAdapteri->isEmpty())
             <ul class="liste_bez">
                 @foreach($uredjaj->grafickiAdapteri as $g)
-                    <li>{{$g->grafickiAdapterModel->proizvodjac->naziv}}, {{$g->grafickiAdapterModel->cip}}</li>
+                    <li><a href="{{route('vga.oprema.detalj', $g->id)}}">{{$g->grafickiAdapterModel->proizvodjac->naziv}}, {{$g->grafickiAdapterModel->cip}}</a></li>
                 @endforeach     
             </ul>
         @else Komponenta nije dodata ili nema podataka o njoj
@@ -272,7 +274,7 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
         @if (!$uredjaj->napajanja->isEmpty())
             <ul class="liste_bez">
                 @foreach($uredjaj->napajanja as $n)
-                    <li>{{$n->napajanjeModel->proizvodjac->naziv}}, {{$n->napajanjeModel->snaga}} W</li>
+                    <li><a href="{{route('napajanja.oprema.detalj', $n->id)}}">{{$n->napajanjeModel->proizvodjac->naziv}}, {{$n->napajanjeModel->snaga}} W</a></li>
                 @endforeach     
             </ul>
         @else Komponenta nije dodata ili nema podataka o njoj
@@ -296,7 +298,7 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
         @if (!$uredjaj->monitori->isEmpty())
             <ul>
                 @foreach($uredjaj->monitori as $mo)
-                    <li>{{$mo->monitorModel->proizvodjac->naziv}}, {{$mo->monitorModel->dijagonala->naziv}} "</li>
+                    <li><a href="{{route('monitori.oprema.detalj', $mo->id)}}">{{$mo->monitorModel->proizvodjac->naziv}}, {{$mo->monitorModel->dijagonala->naziv}} "</a></li>
                 @endforeach     
             </ul>
         @else Uređaj nije povezan ili nema podataka o njemu
@@ -314,7 +316,7 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
         @if (!$uredjaj->stampaci->isEmpty())
             <ul>
                 @foreach($uredjaj->stampaci as $st)
-                    <li>{{$st->stampacModel->proizvodjac->naziv}}, {{$st->stampacModel->naziv}}</li>
+                    <li><a href="{{route('stampaci.oprema.detalj', $st->id)}}">{{$st->stampacModel->proizvodjac->naziv}}, {{$st->stampacModel->naziv}}</a></li>
                 @endforeach     
             </ul>
         @else Uređaj nije povezan ili nema podataka o njemu
@@ -331,8 +333,8 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
     <th style="width: 70%;">
         @if (!$uredjaj->skeneri->isEmpty())
             <ul>
-                @foreach($uredjaj->skeneri as $st)
-                    <li>{{$st->skenerModel->proizvodjac->naziv}}, {{$st->skenerModel->naziv}}</li>
+                @foreach($uredjaj->skeneri as $sk)
+                    <li><a href="{{route('skeneri.oprema.detalj', $sk->id)}}">{{$sk->skenerModel->proizvodjac->naziv}}, {{$sk->skenerModel->naziv}}</a></li>
                 @endforeach     
             </ul>
         @else Uređaj nije povezan ili nema podataka o njemu
@@ -366,18 +368,4 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
 </div>
 </div>
 
-@endsection
-
-@section('skripte')
-<script>
-$( document ).ready(function() {
-
-    $(document).on('click', '.otvori-brisanje', function () {
-            var id = $(this).val();
-            $('#idBrisanje').val(id);
-            /*var ruta = " route('procesori.oprema.brisanje') }}";*/
-            $('#brisanje-forma').attr('action', ruta); });
-
-});
-</script>
 @endsection

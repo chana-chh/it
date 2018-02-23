@@ -20,7 +20,7 @@
 <div class="row" style="margin-bottom: 16px;">
     <div class="col-md-12">
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="window.history.back();"
+            <a class="btn btn-primary" href="{{route('racunari.oprema.detalj', $uredjaj->id)}}"
                title="Povratak na prethodnu stranu">
                 <i class="fa fa-arrow-left"></i>
             </a>
