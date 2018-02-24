@@ -79,13 +79,13 @@ class NabavkeKontroler extends Kontroler
             $where[] = [
                 'datum',
                 '=',
-                $params['datum_1']];
+                Carbon::parse($params['datum_1'])->format('Y-m-d')];
             $rezultat = Nabavka::where($where)->get();
         }
         if ($params['datum_1'] && $params['datum_2']) {
             $rezultat = Nabavka::where($where)->whereBetween('datum', [
-                        $params['datum_1'],
-                        $params['datum_2']
+                        Carbon::parse($params['datum_1'])->format('Y-m-d'),
+                        Carbon::parse($params['datum_2'])->format('Y-m-d')
                     ])->get();
         }
         return $rezultat;

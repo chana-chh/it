@@ -28,13 +28,13 @@
         <h1 class="text-center" style="margin-bottom: 20px;">Pretraživanje imenika</h1>
         <div class="row">
             <div class="col-md-6">
-                <button id="dugmeZaposleni" class="btn btn-primary btn-lg btn-block">
+                <button id="dugmeZaposleni" class="btn btn-primary btn-lg btn-block" style="margin-bottom: 15px">
                     <i class="fa fa-users"></i>&emsp;
                     Zaposleni
                 </button>
             </div>
             <div class="col-md-6">
-                <button id="dugmeKancelarije" class="btn btn-primary btn-lg btn-block">
+                <button id="dugmeKancelarije" class="btn btn-primary btn-lg btn-block" style="margin-bottom: 15px">
                     <i class="fa fa-building"></i>&emsp;
                     Kancelarije
                 </button>
@@ -169,7 +169,7 @@
                     </ul>
                 </div>
                 <div class="col-md-6">
-                    <h4>Zaposleni:</h4>
+                    <h4 style="margin-top: 15px;" >Zaposleni:</h4>
                     <ul style="list-style-type: none; padding-left: 0;">
                         <table class="table" style="table-layout: fixed;">
                             <tbody style="font-size: 1.75rem;">
@@ -177,11 +177,11 @@
                                 <tr>
                                     <th style="width: 50%;">
                                         @if(strlen($z->imePrezime())<24 )
-                                        <h4 class="zaposleniPopover"  style="cursor: pointer;"
+                                        <h4 class="zaposleniPopover"  style="cursor: pointer; margin-bottom: 15px"
                                                                 data-title="{{ $z->imePrezime() }}"
                                                                 data-content="<img src='{{ $z->src ? asset('images/slike_zaposlenih/'.$z->src) : '' }}' class='img-rounded' style='height: 256px;'>"><i class="fa fa-user fa-fw text-success"></i>&emsp;{{ $z->imePrezime() }}</h4>
                                         @else
-                                        <h5 class="zaposleniPopover"  style="cursor: pointer;"
+                                        <h5 class="zaposleniPopover"  style="cursor: pointer; margin-bottom: 15px"
                                                                 data-title="{{ $z->imePrezime() }}"
                                                                 data-content="<img src='{{ $z->src ? asset('images/slike_zaposlenih/'.$z->src) : '' }}' class='img-rounded' style='height: 256px;'>"><i class="fa fa-user fa-fw text-success"></i>&emsp;{{ $z->imePrezime() }}</h5>
                                         @endif
@@ -195,9 +195,17 @@
                                         </ul>
                                         <ul style="list-style-type: none;">
                                             @foreach($z->emailovi as $e)
+                                            @if(strlen($e->adresa)<20 )
                                             <li>
-                                                <i class="fa fa-envelope fa-fw text-info"></i>&emsp;{{ $e->adresa }}
+                                                <i class="fa fa-envelope fa-fw text-info"></i>&emsp;
+                                                {{ $e->adresa }} {{strlen($e->adresa)}}
                                             </li>
+                                            @else
+                                            <li style="font-size: 1.5rem;">
+                                                <i class="fa fa-envelope fa-fw text-info"></i>&emsp;
+                                                {{ $e->adresa }}
+                                            </li>
+                                            @endif
                                             @endforeach
                                         </ul></td>
                                 </tr>
@@ -207,7 +215,7 @@
                     </ul>
                 </div>
             </div>
-            <hr style="border:none; border-top:1px dotted #18BC9C; color:#18BC9C; height:1px;">
+            <hr style="border:none; border-top:2px dotted #18BC9C; color:#18BC9C; height:2px;">
         </div>
     </div>
     @endforeach

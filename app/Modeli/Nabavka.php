@@ -8,6 +8,7 @@ use Carbon\Carbon;
 class Nabavka extends Model
 {
     protected $table = 'nabavke';
+    protected $appends = ['formatiran_datum'];
     public $timestamps = false;
 
     public function dobavljac()
@@ -23,6 +24,11 @@ class Nabavka extends Model
     public function setDatumAttribute($value)
     {
         $this->attributes['datum'] = Carbon::parse($value)->format('Y-m-d');
+    }
+
+    function getFormatiranDatumAttribute() 
+    {
+        return Carbon::parse($this->datum)->format('d.m.Y');
     }
 
 }

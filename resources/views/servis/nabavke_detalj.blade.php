@@ -11,7 +11,7 @@
     <img class="slicica_animirana" alt="Nabavka" src="{{ url('/images/nabavke.png') }}" style="height:64px;">
     Nabavka:
     <em class="text-success">
-        {{ $nabavka->dobavljac->naziv }} od {{ \Carbon\Carbon::parse($nabavka->datum)->format('d.m.Y') }}
+        {{ $nabavka->dobavljac->naziv }} od {{ $nabavka->formatiran_datum }}
     </em>
 </h1>
 @endsection
@@ -59,7 +59,7 @@
                 </tr>
                 <tr>
                     <th style="width: 20%;">Datum:</th>
-                    <td style="width: 80%;">{{ \Carbon\Carbon::parse($nabavka->datum)->format('d.m.Y') }}</td>
+                    <td style="width: 80%;">{{ $nabavka->formatiran_datum }}</td>
                 </tr>
                 <tr>
                     <th style="width: 20%;">Garancija (meseci):</th>

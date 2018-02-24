@@ -67,12 +67,12 @@
         </div>
         <div class="row">
             <div class="form-group col-md-3">
-                <label for="opis">Datum 1</label>
-                <input type="date" name="datum_1" id="datum_1" class="form-control">
+                <label for="opis">Datum 1</label>   
+                <input type="text" name="datum_1" id="datum_1" class="form-control datepicker" placeholder="dd.mm.yyyy">
             </div>
             <div class="form-group col-md-3">
                 <label for="opis">Datum 2</label>
-                <input type="date" name="datum_2" id="datum_2" class="form-control" readonly>
+                <input type="text" name="datum_2" id="datum_2" class="form-control datepicker" placeholder="dd.mm.yyyy" readonly>
             </div>
             <div class="col-md-6">
                 <label class="text-warning">Napomena</label>
@@ -128,7 +128,7 @@
                 <tr>
                     <td>{{ $nabavka->id }}</td>
                     <td><strong>{{ $nabavka->dobavljac->naziv }}</strong></td>
-                    <td>{{ \Carbon\Carbon::parse($nabavka->datum)->format('d.m.Y') }}</td>
+                    <td>{{$nabavka->formatiran_datum }}</td>
                     <td class="text-right">{{ $nabavka->garancija }}</td>
                     <td>{{ $nabavka->napomena }}</td>
                     <td class="text-right">
@@ -147,8 +147,18 @@
 @endsection
 
 @section('skripte')
+<script src="{{ asset('/js/moment.min.js') }}"></script>
+<script src="{{ asset('/js/datetime-moment.js') }}"></script>
+<script src="{{ asset('/js/bootstrap-datepicker.min.js') }}"></script>
 <script>
     $(document).ready(function () {
+        $.fn.dataTable.moment('DD.MM.YYYY');
+
+        $('.datepicker').datepicker({
+            format: 'dd.mm.yyyy',
+            autoclose: true,
+        });
+        
         var tabela = $('#tabela').DataTable({
             columnDefs: [
                 {
