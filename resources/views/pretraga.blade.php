@@ -195,10 +195,10 @@
                                         </ul>
                                         <ul style="list-style-type: none;">
                                             @foreach($z->emailovi as $e)
-                                            @if(strlen($e->adresa)<20 )
+                                            @if(strlen($e->adresa)<22 )
                                             <li>
                                                 <i class="fa fa-envelope fa-fw text-info"></i>&emsp;
-                                                {{ $e->adresa }} {{strlen($e->adresa)}}
+                                                {{ $e->adresa }}
                                             </li>
                                             @else
                                             <li style="font-size: 1.5rem;">
