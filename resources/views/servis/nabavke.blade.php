@@ -77,7 +77,7 @@
             <div class="col-md-6">
                 <label class="text-warning">Napomena</label>
                 <p class="text-warning">
-                    Ako se unese samo prvi datum pretraga će se vršiti za predmete sa tim datumom. Ako se unesu oba datuma pretraga će se vršiti za predmete između ta dva datuma.
+                    Ako se unese samo prvi datum pretraga će se vršiti za nabavke sa tim datumom. Ako se unesu oba datuma pretraga će se vršiti za nabavke između ta dva datuma.
                 </p>
             </div>
         </div>

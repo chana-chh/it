@@ -52,7 +52,7 @@
                 </tr>
                 <tr>
                     <th style="width: 20%;">Datum:</th>
-                    <td style="width: 80%;">{{ \Carbon\Carbon::parse($otpremnica->datum)->format('d.m.Y') }}</td>
+                    <td style="width: 80%;">{{ $otpremnica->formatiran_datum }}</td>
                 </tr>
                 <tr>
                     <th style="width: 20%;">Račun:</th>

@@ -3,10 +3,12 @@
 namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Otpremnica extends Model
 {
     protected $table = 'otpremnice';
+    protected $appends = ['formatiran_datum'];
     public $timestamps = false;
 
     public function dobavljac()
@@ -27,6 +29,16 @@ class Otpremnica extends Model
     public function stavke()
     {
         return $this->hasMany('App\Modeli\OtpremnicaStavka', 'otpremnica_id', 'id');
+    }
+
+    public function setDatumAttribute($value)
+    {
+        $this->attributes['datum'] = Carbon::parse($value)->format('Y-m-d');
+    }
+
+    function getFormatiranDatumAttribute() 
+    {
+        return Carbon::parse($this->datum)->format('d.m.Y');
     }
 
 }

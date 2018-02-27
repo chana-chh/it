@@ -55,12 +55,10 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="form-group{{ $errors->has('datum') ? ' has-error' : '' }}">
+                   <div class="form-group{{ $errors->has('datum') ? ' has-error' : '' }}">
                         <label for="datum">Datum:</label>
-                        <input type="date" id="datum" name="datum"
-                               class="form-control"
-                               value="{{ old('datum') }}"
-                               required>
+                        <input type="text" name="datum" id="datum" class="form-control datepicker" placeholder="dd.mm.yyyy"
+                               value="{{ old('datum') }}">
                         @if ($errors->has('datum'))
                         <span class="help-block">
                             <strong>{{ $errors->first('datum') }}</strong>
@@ -161,6 +159,7 @@
 @endsection
 
 @section('skripte')
+<script src="{{ asset('/js/bootstrap-datepicker.min.js') }}"></script>
 <script>
     $(document).ready(function () {
         jQuery(window).on('resize', resizeChosen);
@@ -174,6 +173,12 @@
                 $(this).attr('style', 'width: 100%');
             });
         }
+
+        $('.datepicker').datepicker({
+            format: 'dd.mm.yyyy',
+            autoclose: true,
+            endDate: '+1y'
+        });
     });
 </script>
 @endsection

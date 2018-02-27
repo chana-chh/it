@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Servis;
 use Illuminate\Http\Request;
 use Session;
 use Image;
+use Carbon\Carbon;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\Otpremnica;
 use App\Modeli\OtpremnicaSlika;
@@ -94,13 +95,13 @@ class OtpremniceKontroler extends Kontroler
             $where[] = [
                 'datum',
                 '=',
-                $params['datum_1']];
+                Carbon::parse($params['datum_1'])->format('Y-m-d')];
             $rezultat = Otpremnica::where($where)->get();
         }
         if ($params['datum_1'] && $params['datum_2']) {
             $rezultat = Otpremnica::where($where)->whereBetween('datum', [
-                        $params['datum_1'],
-                        $params['datum_2']
+                        Carbon::parse($params['datum_1'])->format('Y-m-d'),
+                        Carbon::parse($params['datum_2'])->format('Y-m-d')
                     ])->get();
         }
         return $rezultat;
@@ -115,6 +116,9 @@ class OtpremniceKontroler extends Kontroler
 
     public function postDodavanje(Request $request)
     {
+        $sada = Carbon::now();
+        $kraj_godine = $sada->endOfYear()->format('d.m.Y');
+
         $this->validate($request, [
             'broj' => [
                 'required',
@@ -122,6 +126,8 @@ class OtpremniceKontroler extends Kontroler
             ],
             'datum' => [
                 'required',
+                'date',
+                'before:'.$kraj_godine
             ],
             'dobavljac_id' => [
                 'required',
@@ -201,6 +207,9 @@ class OtpremniceKontroler extends Kontroler
 
     public function postIzmena(Request $request, $id)
     {
+        $sada = Carbon::now();
+        $kraj_godine = $sada->endOfYear()->format('d.m.Y');
+        
         $this->validate($request, [
             'broj' => [
                 'required',
@@ -208,6 +217,8 @@ class OtpremniceKontroler extends Kontroler
             ],
             'datum' => [
                 'required',
+                'date',
+                'before:'.$kraj_godine
             ],
             'dobavljac_id' => [
                 'required',

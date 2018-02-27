@@ -146,12 +146,17 @@ class NabavkeKontroler extends Kontroler
 
     public function postIzmena(Request $request, $id)
     {
+        $sada = Carbon::now();
+        $kraj_godine = $sada->endOfYear()->format('d.m.Y');
+        
         $this->validate($request, [
             'dobavljac_id' => [
                 'required',
             ],
             'datum' => [
                 'required',
+                'date',
+                'before:'.$kraj_godine
             ],
             'garancija' => [
                 'required',
