@@ -870,8 +870,22 @@ class RacunariKontroler extends Kontroler
         ]);
         $monitor = new Monitor();
         $monitor->serijski_broj = $request->serijski_broj;
+        $monitor->inventarski_broj = $request->inventarski_broj;
         $monitor->vrsta_uredjaja_id = 2;
         $monitor->monitor_model_id = $request->monitor_model_id;
+
+        if ($request->stavka_otpremnice_id) {
+            $monitor->stavka_otpremnice_id = $request->stavka_otpremnice_id;
+        }
+
+        if ($request->stavka_nabavke_id) {
+            $monitor->stavka_nabavke_id = $request->stavka_nabavke_id;
+        }
+
+        if ($racunar->kancelarija_id) {
+            $monitor->kancelarija_id = $racunar->kancelarija_id;
+        }
+        
         $monitor->napomena = $request->napomena;
         $monitor->racunar_id = $id;
         $monitor->save();
@@ -966,8 +980,22 @@ class RacunariKontroler extends Kontroler
         ]);
         $stampac = new Stampac();
         $stampac->serijski_broj = $request->serijski_broj;
+        $stampac->inventarski_broj = $request->inventarski_broj;
         $stampac->vrsta_uredjaja_id = 3;
         $stampac->stampac_model_id = $request->stampac_model_id;
+
+        if ($request->stavka_otpremnice_id) {
+            $stampac->stavka_otpremnice_id = $request->stavka_otpremnice_id;
+        }
+
+        if ($request->stavka_nabavke_id) {
+            $stampac->stavka_nabavke_id = $request->stavka_nabavke_id;
+        }
+
+        if ($racunar->kancelarija_id) {
+            $stampac->kancelarija_id = $racunar->kancelarija_id;
+        }
+        
         $stampac->napomena = $request->napomena;
         $stampac->racunar_id = $id;
         $stampac->save();
@@ -1065,6 +1093,19 @@ class RacunariKontroler extends Kontroler
         $skener->inventarski_broj = $request->inventarski_broj;
         $skener->vrsta_uredjaja_id = 3;
         $skener->skener_model_id = $request->skener_model_id;
+
+        if ($request->stavka_otpremnice_id) {
+            $skener->stavka_otpremnice_id = $request->stavka_otpremnice_id;
+        }
+
+        if ($request->stavka_nabavke_id) {
+            $skener->stavka_nabavke_id = $request->stavka_nabavke_id;
+        }
+
+        if ($racunar->kancelarija_id) {
+            $skener->kancelarija_id = $racunar->kancelarija_id;
+        }
+        
         $skener->napomena = $request->napomena;
         $skener->racunar_id = $id;
         $skener->save();
