@@ -43,7 +43,7 @@
                         <div class="col-md-3">
                     <div class="form-group{{ $errors->has('naziv') ? ' has-error' : '' }}">
                     <label for="naziv">Naziv:</label>
-                    <input type="text" name="naziv" id="naziv" class="form-control" value="{{ old('naziv', $model->naziv) }}" maxlength="50">
+                    <input type="text" name="naziv" id="naziv" class="form-control" value="{{ old('naziv', $hddovi->naziv) }}" maxlength="100">
                     @if ($errors->has('naziv'))
                         <span class="help-block">
                             <strong>{{ $errors->first('naziv') }}</strong>
