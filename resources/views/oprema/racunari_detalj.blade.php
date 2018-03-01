@@ -50,21 +50,21 @@
     <div class="col-md-12">
 <table class="table table-striped" style="table-layout: fixed;">
         <tbody style="font-size: 1.5rem;">
+
             <tr>
                 <th style="width: 40%;"><strong>Operativni sistem:</strong></th>
                 <td style="width: 60%;">{{$uredjaj->operativniSistem ? $uredjaj->operativniSistem->naziv : ''}}
                 </td>
             </tr>
+
+            @if($uredjaj->brend == 1)
             <tr>
                 <th style="width: 40%;">Da li se radi o <strong>BRAND</strong> računaru:</th>
                 <td style="width: 80%;">
-                        @if($uredjaj->brend == 1)
                         <i class="fa fa-check" aria-hidden="true" style="color: #18bc9c"></i>
-                        @endif
                 </td>
             </tr>
 
-            @if ($uredjaj->brend == 1)
             <tr>
                 <th style="width: 40%;"><strong>Proizvođač:</strong></th>
                 
@@ -77,23 +77,23 @@
             </tr>
             @endif
 
+            @if($uredjaj->laptop == 1)
              <tr>
                 <th style="width: 40%;">Da li se radi o <strong>LAPTOP</strong> računaru:</th>
                 <td style="width: 60%;">
-                     @if($uredjaj->laptop == 1)
                         <i class="fa fa-check" aria-hidden="true" style="color: #18bc9c"></i>
-                        @endif
                 </td>
             </tr>
+            @endif
 
+            @if($uredjaj->server == 1)
                  <tr>
                 <th style="width: 40%;">Da li se radi o <strong>SERVERU</strong> :</th>
                 <td style="width: 60%;">
-                     @if($uredjaj->server == 1)
                         <i class="fa fa-check" aria-hidden="true" style="color: #18bc9c"></i>
-                        @endif
                 </td>
             </tr>
+            @endif
 
             <tr>
                 <th style="width: 40%;"><strong>Naziv računara (Aktivni direktorijum):</strong></th>
@@ -238,7 +238,7 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
         @if (!$uredjaj->hddovi->isEmpty())
             <ul class="liste_bez">
                 @foreach($uredjaj->hddovi as $h)
-                    <li><a href="{{route('hddovi.oprema.detalj', $h->id)}}">{{$h->hddModel->proizvodjac->naziv}}, {{$h->hddModel->kapacitet}}</a></li>
+                    <li><a href="{{route('hddovi.oprema.detalj', $h->id)}}">{{$h->hddModel->proizvodjac->naziv}}, {{$h->hddModel->kapacitet}} GB - ({{$h->hddModel->naziv}})</a></li>
                 @endforeach     
             </ul>
         @else Komponenta nije dodata ili nema podataka o njoj
@@ -298,7 +298,7 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
         @if (!$uredjaj->monitori->isEmpty())
             <ul>
                 @foreach($uredjaj->monitori as $mo)
-                    <li><a href="{{route('monitori.oprema.detalj', $mo->id)}}">{{$mo->monitorModel->proizvodjac->naziv}}, {{$mo->monitorModel->dijagonala->naziv}} "</a></li>
+                    <li><a href="{{route('monitori.oprema.detalj', $mo->id)}}">{{$mo->monitorModel->proizvodjac->naziv}}, {{$mo->monitorModel->dijagonala->naziv}} " - ({{$mo->monitorModel->naziv}})</a></li>
                 @endforeach     
             </ul>
         @else Uređaj nije povezan ili nema podataka o njemu
@@ -307,7 +307,6 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
     <td style="width: 30%;">
         <a href="{{ route('racunari.oprema.monitori', $uredjaj->id) }}" class="btn btn-primary btn-block">
             Monitori
-            
         </a>
     </td>
 </tr>

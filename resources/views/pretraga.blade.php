@@ -57,10 +57,11 @@
         </div>
     </div>
     <div class="col-md-2 text-center">
-        <a href="{{ route('kvar') }}">
-            <img alt="Kvar" src="{{url('/images/kvar.png')}}" style="height: 128px;">
+        <a href="{{-- {{ route('kvar') }} --}}">
+            <img alt="Kvar" src="{{url('/images/kvar.png')}}" style="height: 128px;" title="Obaveštenje:" class="kvarPopover"  style="cursor: pointer;"
+                data-content="Ova sekcija trenutno nije dostupna. Baza računara je trenutno u izradi.">
         </a>
-        <a href="{{ route('kvar') }}" class="btn btn-success" style="margin-top: 3rem;">Prijava/status kvara</a>
+        <a href="{{-- {{ route('kvar') }} --}}" title="Obaveštenje:" data-content="Ova sekcija trenutno nije dostupna. Baza računara je trenutno u izradi." class="btn btn-success kvarPopover" style="margin-top: 3rem; cursor: pointer;">Prijava/status kvara</a>
     </div>
 </div>
 
@@ -226,6 +227,12 @@
 @section('skripte')
 <script>
     $(document).ready(function () {
+        
+        $('.kvarPopover').popover({
+            placement: 'left',
+            trigger: 'hover'
+        });
+
         var sviZaposleni = $('#sviZaposleni');
         var sveKancelarije = $('#sveKancelarije');
         var vrstaPretrage = $('#vrstaPretrage');
