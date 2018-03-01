@@ -177,7 +177,7 @@
                             required>
                             <option value=""></option>
                             @foreach($modeli as $m)
-                            <option value="{{ $m->id }}" {{ old( 'hdd_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }}, {{ $m->kapacitet }} GB
+                            <option value="{{ $m->id }}" {{ old( 'hdd_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }}, {{ $m->kapacitet }} GB ({{ $m->naziv }})
                             </option>
                             @endforeach
                         </select>

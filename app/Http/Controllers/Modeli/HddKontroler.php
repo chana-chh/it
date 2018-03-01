@@ -54,6 +54,7 @@ class HddKontroler extends Kontroler
 
         $data = new HddModel();
         $data->proizvodjac_id = $request->proizvodjac_id;
+        $data->naziv = $request->naziv;
         $data->povezivanje_id = $request->povezivanje_id;
         $data->kapacitet = $request->kapacitet;
         $data->ssd = $ssdc;
@@ -97,6 +98,7 @@ class HddKontroler extends Kontroler
 
         $data = HddModel::find($id);
         $data->proizvodjac_id = $request->proizvodjac_id;
+        $data->naziv = $request->naziv;
         $data->povezivanje_id = $request->povezivanje_id;
         $data->kapacitet = $request->kapacitet;
         $data->ssd = $ssdc;

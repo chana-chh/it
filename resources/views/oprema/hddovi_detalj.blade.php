@@ -114,6 +114,10 @@
     <table class="table">
         <tbody>
             <tr>
+                <th style="width: 40%;">Naziv:</th>
+                <td style="width: 60%;">{{$uredjaj->hddModel->naziv}}</td>
+            </tr>
+            <tr>
                 <th style="width: 40%;">Proizvođač:</th>
                 <td style="width: 60%;">{{$uredjaj->hddModel->proizvodjac->naziv}}</td>
             </tr>

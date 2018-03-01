@@ -26,11 +26,12 @@
         @else
         <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
             <thead>
-                <th style="width: 5%;">#</th>
+                <th style="width: 5%;">#</th>    
                 <th style="width: 10%;">Proizvođač</th>
+                <th style="width: 10%;">Naziv modela</th>
                 <th style="width: 10%;">Povezivanje</th>
                 <th style="width: 15%;">Kapacitet</th>
-                <th style="width: 15%;">SSD</th>
+                <th style="width: 5%;">SSD</th>
                 <th style="width: 15%;">Ocena</th>
                 <th style="width: 15%;">Link</th>
                 <th style="width: 15%;text-align:right">
@@ -40,9 +41,10 @@
                 @foreach ($hddovi as $m)
                 <tr>
                     <td>{{$m->id}}</td>
-                    <td>{{$m->proizvodjac->naziv}}</td>
+                    <td> <strong>{{$m->proizvodjac->naziv}}</strong> </td>
+                    <td>{{$m->naziv}}</td>
                     <td>{{$m->povezivanje->naziv}}</td>
-                    <td>{{$m->kapacitet}} MB</td>
+                    <td>{{$m->kapacitet}} GB</td>
                     <td>
                         <span title="U pitanju je Solid State Disk" style="color: #18bc9c;">
                             {!! $m->ssd == 1 ? "

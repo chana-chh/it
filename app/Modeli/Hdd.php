@@ -49,7 +49,7 @@ class Hdd extends Model
 
     public function dajModel()
     {   
-        $podaci = $this->hddModel->proizvodjac->naziv." - ".$this->hddModel->kapacitet."GB";
+        $podaci = $this->hddModel->proizvodjac->naziv." - ".$this->hddModel->kapacitet."GB"."(".$this->hddModel->naziv.")";
         return $podaci;
     }
     public function tip()

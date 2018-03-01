@@ -10,6 +10,7 @@ class NapraviTabeluHddModeli extends Migration
     {
         Schema::create('hdd_modeli', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('naziv', 100)->unique();
             $table->integer('proizvodjac_id')->unsigned();
             $table->integer('povezivanje_id')->unsigned();
             $table->integer('kapacitet')->unsigned();
