@@ -26,15 +26,27 @@
 <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
     <thead>
         <th style="width: 5%;">#</th>
-        <th style="width: 15%;">Ime računara (AD)</th>
+        <th style="width: 10%;">Ime računara (AD)</th>
         <th style="width: 10%;">Inventarski broj</th>
-        <th style="width: 10%;">IKT broj</th>
+        <th style="width: 5%;">IKT broj</th>
         <th style="width: 20%;">Kancelarija</th>
-        <th style="width: 10%;">Ocena</th>
+        <th style="width: 5%;">Ocena</th>
         <th style="width: 23%;">Korisnik računara</th>
+        <th style="width: 15%;">Uprava</th>
         <th style="width: 7%;text-align:right">
             <i class="fa fa-cogs"></i>&emsp;Akcije</th>
     </thead>
+    <tfoot>
+                <th>id</th>
+                <th>Ime računara (AD)</th>
+                <th>Inventarski broj</th>
+                <th>IKT broj</th>
+                <th>Kancelarija</th>
+                <th>Ocena</th>
+                <th>Korisnik računara</th>
+                <th>Uprava</th>
+                <th>Akcija</th>
+        </tfoot>
 </table>
     </div>
 </div>
@@ -44,6 +56,10 @@
 @section('skripte')
 <script>
 $( document ).ready(function() {
+
+        $('#tabela tfoot th').each( function () {
+        $(this).html( '<input type="text" placeholder="&#xF002;" style="font-family:Arial, FontAwesome" />' );
+        } );
 
         var tabela = $('#tabela').DataTable({
 
@@ -58,10 +74,9 @@ $( document ).ready(function() {
             {data: 'kancelarija.naziv', name: 'kancelarija.naziv'},
             {data: 'ocena', name: 'ocena'},
             {data: 'zaposleni.naziv', name: 'zaposleni.naziv'},
+            {data: 'zaposleni.uprava', name: 'zaposleni.uprava'},
             {data: 'akcije', name: 'akcije', orderable: false, searchable: false},
         ],
-            stateSave: true,
-        responsive: true,
         language: {
         search: "Pronađi u tabeli",
             paginate: {
@@ -77,6 +92,18 @@ $( document ).ready(function() {
         infoFiltered: "(filtrirano od ukupno _MAX_ elemenata)",
     },
     });
+
+        tabela.columns().every( function () {
+        var that = this;
+ 
+        $( 'input', this.footer() ).on( 'keyup change', function () {
+            if ( that.search() !== this.value ) {
+                that
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
 
         if ($('#tabela').length) {
             new $.fn.dataTable.FixedHeader( tabela );

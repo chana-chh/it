@@ -9,7 +9,7 @@
 @section('naslov')
         <h1 class="page-header">
         <img class="slicica_animirana" alt="Statistički podaci" src="{{url('/images/statistika.png')}}" style="height:64px;">&emsp;
-        Statistički podaci
+        Grafički pregled računara po ocenama
     </h1>
 <div class="row" style="margin-bottom: 16px;">
     <div class="col-md-12">
@@ -28,22 +28,22 @@
 
 <div class="row">
 <div class="col-md-8" style="text-align:center; margin: auto; min-height:300px;">
-<canvas id="grafikOS" width="600" height="300"></canvas>
+<canvas id="grafikOcene" width="600" height="300"></canvas>
 </div>
 <div class="col-md-4" style="padding: 30px">
-<table class="table table-striped tabelaOS" name="tabelaOS" id="tabelaOS">
+<table class="table table-striped tabelaOcene" name="tabelaOcene" id="tabelaOcene">
                 <thead>
                             <th style="width: 10%;">#</th>
-                            <th style="width: 60%;">Operativni sistem</th>
-                            <th style="width: 30%;">Broj instaliranih OS</th>
+                            <th style="width: 60%;">Ocena</th>
+                            <th style="width: 30%;">Broj</th>
                             
                 </thead>
                 <tbody >
-                @foreach ($os_tabela as $ot)
+                @foreach ($ocene_tabela as $o => $grupa)
                         <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$ot->naziv}}</td>
-                                    <td>{{$ot->broj}}</td>
+                                    <td>{{$o}}</td>
+                                    <td>{{$grupa->count()}}</td>
                         </tr>
                 @endforeach
                 </tbody>
@@ -56,8 +56,11 @@
 @section('skripte')
 <script src="{{ asset('/js/Chart.min.js') }}"></script>
 <script>
-	$(document).ready(function () {
-var boje = [
+$( document ).ready(function() {
+
+    var labelej =  {!!json_encode($labele)!!};
+    var brojj =  {!!json_encode($broj)!!};
+    var boje = [
                 'rgba(44, 62, 80, 0.5)',
                 'rgba(24, 188, 156, 0.5)',
                 'rgba(149, 165, 166, 0.5)',
@@ -68,29 +71,27 @@ var boje = [
                 'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 159, 64, 0.2)'
             ];
-var ctx = document.getElementById("grafikOS").getContext('2d');
-var grafikOS = new Chart(ctx, {
-    type: 'bar',
+
+    new Chart(document.getElementById("grafikOcene"), {
+    type: 'pie',
     data: {
-        labels: {!! json_encode($os_labele) !!},
-        datasets: [{
-            label: 'Operativni sistemi',
-            data: {!! json_encode($os_broj) !!},
-            backgroundColor:boje,
-            borderColor: boje,
-            borderWidth: 2
-        }]
+      labels: labelej,
+      datasets: [{
+        label: 'Ocena',
+        backgroundColor: boje,
+        data: brojj
+      }]
     },
     options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
+      title: {
+        display: true,
+        text: 'Grafički pregled računara po ocenama'
+      }
     }
 });
-  });
+
+
+
+});
 </script>
 @endsection

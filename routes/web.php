@@ -17,8 +17,11 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 //Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 //Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 //Route::post('/register', 'Auth\RegisterController@register');
+
 // STATISTIKA
 Route::get('statistika', 'StatistikaKontroler@getLista')->name('statistika');
+Route::get('statistika/os', 'StatistikaKontroler@getOs')->name('statistika.os');
+Route::get('statistika/ocene', 'StatistikaKontroler@getOcene')->name('statistika.ocene');
 
 
 // SERVIS

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+Use App\Modeli\Racunar;
 
 class StatistikaKontroler extends Kontroler
 {
@@ -14,6 +15,11 @@ class StatistikaKontroler extends Kontroler
     }
 
     public function getLista()
+    {
+        return view('statistika.statistika');
+    }
+
+    public function getOs()
     {
 
         $os_labele = DB::table('racunari')
@@ -34,7 +40,17 @@ class StatistikaKontroler extends Kontroler
                 ->groupBy('racunari.os_id')
                 ->get();
 
-        return view('statistika')->with(compact('os_labele', 'os_broj', 'os_tabela'));
+        return view('statistika.statistika_os')->with(compact('os_labele', 'os_broj', 'os_tabela'));
+    }
+
+    public function getOcene()
+    {
+        $ocene_tabela = Racunar::get()->groupBy('ocena');
+        foreach ($ocene_tabela as $o => $grupa) {
+            $labele[] = $o;
+            $broj[] = $grupa->count();
+        }
+        return view('statistika.statistika_ocene')->with(compact('ocene_tabela', 'broj', 'labele'));
     }
 
 }

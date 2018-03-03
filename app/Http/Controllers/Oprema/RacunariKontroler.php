@@ -59,12 +59,18 @@ class RacunariKontroler extends Kontroler
 
     public function getAjax()
     {
-        $racunari = Racunar::with('kancelarija', 'zaposleni')->get();
+        $racunari = Racunar::with('kancelarija', 'zaposleni', 'zaposleni.uprava')->get();
 
         return Datatables::of($racunari)
                         ->editColumn('zaposleni.naziv', function ($model) {
                             if ($model->zaposleni) {
                                 return '<a href="' . route('zaposleni.detalj', $model->zaposleni->id) . '">' . $model->zaposleni->imePrezime() . '</a>';
+                            }
+                            return " ";
+                        })
+                        ->editColumn('zaposleni.uprava', function ($model) {
+                            if ($model->zaposleni) {
+                                return '<small>' . $model->zaposleni->uprava->naziv . '</small>';
                             }
                             return " ";
                         })
@@ -79,6 +85,7 @@ class RacunariKontroler extends Kontroler
                         ->rawColumns([
                             'akcije',
                             'zaposleni.naziv',
+                            'zaposleni.uprava',
                             'kancelarija.naziv'])
                         ->make(true);
     }
