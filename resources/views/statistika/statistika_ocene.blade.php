@@ -30,15 +30,15 @@
 <div class="col-md-8" style="text-align:center; margin: auto; min-height:300px;">
 <canvas id="grafikOcene" width="600" height="300"></canvas>
 </div>
-<div class="col-md-4" style="padding: 30px">
+<div class="col-md-4" style="padding: 30px;">
 <table class="table table-striped tabelaOcene" name="tabelaOcene" id="tabelaOcene">
                 <thead>
                             <th style="width: 10%;">#</th>
-                            <th style="width: 60%;">Ocena</th>
-                            <th style="width: 30%;">Broj</th>
+                            <th style="width: 40%;">Ocena</th>
+                            <th style="width: 45%;">Broj računara sa ocenom</th>
                             
                 </thead>
-                <tbody >
+                <tbody style="font-size: 2rem">
                 @foreach ($ocene_tabela as $o => $grupa)
                         <tr>
                                     <td>{{$loop->iteration}}</td>
@@ -73,11 +73,10 @@ $( document ).ready(function() {
             ];
 
     new Chart(document.getElementById("grafikOcene"), {
-    type: 'pie',
+    type: 'doughnut',
     data: {
       labels: labelej,
       datasets: [{
-        label: 'Ocena',
         backgroundColor: boje,
         data: brojj
       }]

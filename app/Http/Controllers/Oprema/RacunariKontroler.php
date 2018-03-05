@@ -37,6 +37,8 @@ use App\Modeli\SkenerModel;
 use App\Modeli\Greska;
 use App\Modeli\Aplikacija;
 
+use App\Modeli\Dobavljac;
+
 class RacunariKontroler extends Kontroler
 {
 
@@ -53,8 +55,17 @@ class RacunariKontroler extends Kontroler
     }
 
     public function getLista()
-    {
-        return view('oprema.racunari');
+    {   
+        $dobavljaci = Dobavljac::all();
+        return view('oprema.racunari')->with(compact('dobavljaci'));
+    }
+
+    public function naprednaPretraga(Request $req){
+        $racunari = Racunar::with('kancelarija', 'zaposleni', 'zaposleni.uprava')->get();
+        $operator = $req->operator_ocena ? $req->operator_ocena : '=';
+        $filtrirano = $racunari->filter(function ($racunar) use($req, $operator){
+            return $racunar->ocena == $req->ocena;
+        });
     }
 
     public function getAjax()

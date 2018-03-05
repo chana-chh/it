@@ -559,6 +559,7 @@ Route::post('mrezni/recikliranje/{id_reciklaze}', 'Oprema\MrezniUredjajiKontrole
 
 //Racunari
 Route::get('racunari', 'Oprema\RacunariKontroler@getLista')->name('racunari.oprema');
+Route::post('racunari/pretraga', 'Oprema\RacunariKontroler@naprednaPretraga')->name('racunari.pretraga.post');
 Route::get('racunari/ajax', 'Oprema\RacunariKontroler@getAjax')->name('racunari.ajax');
 Route::get('racunari/detalj/{id}', 'Oprema\RacunariKontroler@getDetalj')->name('racunari.oprema.detalj');
 Route::get('racunari/dodavanje', 'Oprema\RacunariKontroler@getDodavanje')->name('racunari.oprema.dodavanje.get');

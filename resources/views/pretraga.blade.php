@@ -100,7 +100,12 @@
                         Kancelarija: {{ $zaposleni->kancelarija->naziv }},
                         <small>
                             {{ $zaposleni->kancelarija->lokacija->naziv }},
-                            {{ $zaposleni->kancelarija->sprat->naziv }}
+                            {{ $zaposleni->kancelarija->sprat->naziv }} 
+                            @if($zaposleni->kancelarija->napomena)
+                            <span class="text-success">
+                            ({{ $zaposleni->kancelarija->napomena }})
+                            </span>
+                            @endif
                         </small>
 
                     

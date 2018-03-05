@@ -8,7 +8,7 @@
 
 @section('naslov')
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-8">
         <h1>
             <span>
                 <img class="slicica_animirana" alt="Računari" src="{{url('/images/kompjuterici.png')}}" style="height:64px;">
@@ -19,8 +19,82 @@
         <a class="btn btn-primary ono" href="{{route('racunari.oprema.dodavanje.get')}}">
             <i class="fa fa-plus-circle fa-fw"></i> Dodaj računar</a>
     </div>
+    <div class="col-md-2 text-right" style="padding-top: 50px;">
+        <button id="pretragaDugme" class="btn btn-success btn-block ono">
+            <i class="fa fa-search fa-fw"></i> Napredna pretraga
+        </button>
+    </div>
 </div>
-        <hr>
+<hr>
+
+<div class="row well" id="pretraga" style="display: none;">
+    <form id="pretraga" action="{{ route('racunari.pretraga.post') }}" method="POST">
+        {{ csrf_field() }}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="dobavljac_id">Dobavljač:</label>
+                    <select id="dobavljac_id" name="dobavljac_id"
+                            class="chosen-select form-control"
+                            data-placeholder="Dobavljač ...">
+                        <option value=""></option>
+                        @foreach($dobavljaci as $dobavljac)
+                        <option value="{{ $dobavljac->id }}">
+                            {{ $dobavljac->naziv }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="operator_ocena">Ocena računara je:</label>
+                <select name="operator_ocena" id="operator_ocena" class="chosen-select form-control"
+                        data-placeholder="Odaberite kriterijum ...">
+                    <option value=""></option>
+                    <option value=">=">veća ili jednaka</option>
+                    <option value="<=">manja ili jednaka</option>
+                    <option value="=">jednaka</option>
+                    <option value=">">veća</option>
+                    <option value="<">manja</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="ocena">Ocena:</label>
+                    <input type="number" id="ocena" name="ocena" class="form-control"
+                           value="0" min="0" step="1">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="napomena">Napomena</label>
+                <textarea
+                    name="napomena" id="napomena"
+                    class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="row dugmici">
+            <div class="col-md-6 col-md-offset-6">
+                <div class="form-group text-right ceo_dva">
+                    <div class="col-md-6 snimi">
+                        <button type="submit" id="dugme_pretrazi" class="btn btn-success btn-block">
+                            <i class="fa fa-search"></i>&emsp;Pretraži
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-danger btn-block" href="{{ route('racunari.oprema') }}">
+                            <i class="fa fa-ban"></i>&emsp;Otkaži
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<hr class="linija" style="display: none;">
+
 <div class="row">
     <div class="col-md-12">
 <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
@@ -56,6 +130,11 @@
 @section('skripte')
 <script>
 $( document ).ready(function() {
+
+        // $('#pretragaDugme').click(function () {
+        //     $('#pretraga').toggle();
+        //     $('.linija').toggle();
+        // });
 
         $('#tabela tfoot th').each( function () {
         $(this).html( '<input type="text" placeholder="&#xF002;" style="font-family:Arial, FontAwesome" />' );
