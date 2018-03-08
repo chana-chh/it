@@ -33,30 +33,57 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
 
     public function postMonitoriDodavanje(Request $request)
     {
-        $this->validate($request, [
-            'stavka_nabavke_id' => [
-                'required',
-                'integer',
-            ],
-            'vrsta_uredjaja_id' => [
-                'required',
-                'integer',
-            ],
-            'inventarski_broj' => [
-                'max:10',
-            ],
-            'serijski_broj' => [
-                'required',
-                'max:10',
-            ],
-            'monitor_model_id' => [
-                'required',
-                'integer',
-            ],
-        ]);
+        // START promena
+        if($request->stavka_nabavke_id) {
+            $this->validate($request, [
+                'stavka_nabavke_id' => [
+                    'required',
+                    'integer',
+                ],
+                'vrsta_uredjaja_id' => [
+                    'required',
+                    'integer',
+                ],
+                'inventarski_broj' => [
+                    'max:10',
+                ],
+                'serijski_broj' => [
+                    'required',
+                    'max:50',
+                ],
+                'monitor_model_id' => [
+                    'required',
+                    'integer',
+                ],
+            ]);
+        } elseif($request->stavka_otpremnice_id) {
+            $this->validate($request, [
+                'stavka_otpremnice_id' => [
+                    'required',
+                    'integer',
+                ],
+                'vrsta_uredjaja_id' => [
+                    'required',
+                    'integer',
+                ],
+                'inventarski_broj' => [
+                    'max:10',
+                ],
+                'serijski_broj' => [
+                    'required',
+                    'max:50',
+                ],
+                'monitor_model_id' => [
+                    'required',
+                    'integer',
+                ],
+            ]);
+        }
+        // END promena
 
         $monitor = new Monitor();
         $monitor->stavka_nabavke_id = $request->stavka_nabavke_id;
+        $monitor->stavka_otpremnice_id = $request->stavka_otpremnice_id;
         $monitor->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
         $monitor->inventarski_broj = $request->inventarski_broj;
         $monitor->serijski_broj = $request->serijski_broj;
@@ -64,18 +91,19 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
         $monitor->save();
 
         Session::flash('uspeh', 'Monitor je uspešno dodat!');
-        $stavka_nabavke_id = $monitor->stavka_nabavke_id;
-        $stavka_otpremnice_id = $monitor->stavka_otpremnice_id;
-        if ($stavka_nabavke_id) {
-            return redirect()->route('nabavke.stavke.detalj', $stavka_nabavke_id);
+
+        if ($monitor->stavka_nabavke_id) {
+            return redirect()->route('nabavke.stavke.detalj', $monitor->stavka_nabavke_id);
         }
-        if ($stavka_otpremnice_id) {
-            return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
+        if ($monitor->stavka_otpremnice_id) {
+            return redirect()->route('otpremnice.stavke.detalj', $monitor->stavka_otpremnice_id);
         }
+        // END promena
     }
 
     public function postStampaciDodavanje(Request $request)
     {
+        if($request->stavka_nabavke_id) {
         $this->validate($request, [
             'stavka_nabavke_id' => [
                 'required',
@@ -90,13 +118,36 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
             ],
             'serijski_broj' => [
                 'required',
-                'max:10',
+                'max:50',
             ],
             'stampac_model_id' => [
                 'required',
                 'integer',
             ],
         ]);
+        } elseif($request->stavka_otpremnice_id) {
+            $this->validate($request, [
+            'stavka_otpremnice_id' => [
+                'required',
+                'integer',
+            ],
+            'vrsta_uredjaja_id' => [
+                'required',
+                'integer',
+            ],
+            'inventarski_broj' => [
+                'max:10',
+            ],
+            'serijski_broj' => [
+                'required',
+                'max:50',
+            ],
+            'stampac_model_id' => [
+                'required',
+                'integer',
+            ],
+        ]);
+        }
 
         $stampac = new Stampac();
         $stampac->stavka_nabavke_id = $request->stavka_nabavke_id;
@@ -110,15 +161,16 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
         $stavka_nabavke_id = $stampac->stavka_nabavke_id;
         $stavka_otpremnice_id = $stampac->stavka_otpremnice_id;
         if ($stavka_nabavke_id) {
-            return redirect()->route('nabavke.stavke.detalj', $stavka_nabavke_id);
+            return redirect()->route('nabavke.stavke.detalj', $stampac->stavka_nabavke_id);
         }
         if ($stavka_otpremnice_id) {
-            return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
+            return redirect()->route('otpremnice.stavke.detalj', $stampac->stavka_otpremnice_id);
         }
     }
 
     public function postSkeneriDodavanje(Request $request)
     {
+        if($request->stavka_nabavke_id) {
         $this->validate($request, [
             'stavka_nabavke_id' => [
                 'required',
@@ -133,13 +185,36 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
             ],
             'serijski_broj' => [
                 'required',
-                'max:10',
+                'max:50',
             ],
             'skener_model_id' => [
                 'required',
                 'integer',
             ],
         ]);
+        } elseif($request->stavka_otpremnice_id) {
+            $this->validate($request, [
+            'stavka_otpremnice_id' => [
+                'required',
+                'integer',
+            ],
+            'vrsta_uredjaja_id' => [
+                'required',
+                'integer',
+            ],
+            'inventarski_broj' => [
+                'max:10',
+            ],
+            'serijski_broj' => [
+                'required',
+                'max:50',
+            ],
+            'skener_model_id' => [
+                'required',
+                'integer',
+            ],
+        ]);
+        }
 
         $skener = new Skener();
         $skener->stavka_nabavke_id = $request->stavka_nabavke_id;
@@ -153,15 +228,16 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
         $stavka_nabavke_id = $skener->stavka_nabavke_id;
         $stavka_otpremnice_id = $skener->stavka_otpremnice_id;
         if ($stavka_nabavke_id) {
-            return redirect()->route('nabavke.stavke.detalj', $stavka_nabavke_id);
+            return redirect()->route('nabavke.stavke.detalj', $skener->stavka_nabavke_id);
         }
         if ($stavka_otpremnice_id) {
-            return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
+            return redirect()->route('otpremnice.stavke.detalj', $skener->stavka_otpremnice_id);
         }
     }
 
     public function postUpseviDodavanje(Request $request)
     {
+        if($request->stavka_nabavke_id) {
         $this->validate($request, [
             'stavka_nabavke_id' => [
                 'required',
@@ -176,13 +252,36 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
             ],
             'serijski_broj' => [
                 'required',
-                'max:10',
+                'max:50',
             ],
             'ups_model_id' => [
                 'required',
                 'integer',
             ],
         ]);
+        } elseif($request->stavka_otpremnice_id) {
+            $this->validate($request, [
+            'stavka_otpremnice_id' => [
+                'required',
+                'integer',
+            ],
+            'vrsta_uredjaja_id' => [
+                'required',
+                'integer',
+            ],
+            'inventarski_broj' => [
+                'max:10',
+            ],
+            'serijski_broj' => [
+                'required',
+                'max:50',
+            ],
+            'ups_model_id' => [
+                'required',
+                'integer',
+            ],
+        ]);
+        }
 
         $ups = new Ups();
         $ups->stavka_nabavke_id = $request->stavka_nabavke_id;
@@ -196,15 +295,16 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
         $stavka_nabavke_id = $ups->stavka_nabavke_id;
         $stavka_otpremnice_id = $ups->stavka_otpremnice_id;
         if ($stavka_nabavke_id) {
-            return redirect()->route('nabavke.stavke.detalj', $stavka_nabavke_id);
+            return redirect()->route('nabavke.stavke.detalj', $ups->stavka_nabavke_id);
         }
         if ($stavka_otpremnice_id) {
-            return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
+            return redirect()->route('otpremnice.stavke.detalj', $ups->stavka_otpremnice_id);
         }
     }
 
     public function postProjektoriDodavanje(Request $request)
     {
+        if($request->stavka_nabavke_id) {
         $this->validate($request, [
             'stavka_nabavke_id' => [
                 'required',
@@ -227,7 +327,7 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
             ],
             'serijski_broj' => [
                 'required',
-                'max:10',
+                'max:50',
             ],
             'tip_lampe' => [
                 'max:50',
@@ -239,6 +339,42 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
                 'max:255',
             ],
         ]);
+        } elseif($request->stavka_otpremnice_id) {
+            $this->validate($request, [
+            'stavka_otpremnice_id' => [
+                'required',
+                'integer',
+            ],
+            'vrsta_uredjaja_id' => [
+                'required',
+                'integer',
+            ],
+            'naziv' => [
+                'required',
+                'max:100',
+            ],
+            'proizvodjac_id' => [
+                'required',
+                'integer',
+            ],
+            'inventarski_broj' => [
+                'max:10',
+            ],
+            'serijski_broj' => [
+                'required',
+                'max:50',
+            ],
+            'tip_lampe' => [
+                'max:50',
+            ],
+            'rezolucija' => [
+                'max:255',
+            ],
+            'kontrast' => [
+                'max:255',
+            ],
+        ]);
+        }
 
         $projektor = new Projektor();
         $projektor->stavka_nabavke_id = $request->stavka_nabavke_id;
@@ -257,15 +393,16 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
         $stavka_nabavke_id = $projektor->stavka_nabavke_id;
         $stavka_otpremnice_id = $projektor->stavka_otpremnice_id;
         if ($stavka_nabavke_id) {
-            return redirect()->route('nabavke.stavke.detalj', $stavka_nabavke_id);
+            return redirect()->route('nabavke.stavke.detalj', $projektor->stavka_nabavke_id);
         }
         if ($stavka_otpremnice_id) {
-            return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
+            return redirect()->route('otpremnice.stavke.detalj', $projektor->stavka_otpremnice_id);
         }
     }
 
     public function postMrezniDodavanje(Request $request)
     {
+        if($request->stavka_nabavke_id) {
         $this->validate($request, [
             'stavka_nabavke_id' => [
                 'required',
@@ -288,13 +425,44 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
             ],
             'serijski_broj' => [
                 'required',
-                'max:10',
+                'max:50',
             ],
             'broj_portova' => [
                 'required',
                 'integer',
             ],
         ]);
+        } elseif($request->stavka_otpremnice_id) {
+            $this->validate($request, [
+            'stavka_otpremnice_id' => [
+                'required',
+                'integer',
+            ],
+            'vrsta_uredjaja_id' => [
+                'required',
+                'integer',
+            ],
+            'naziv' => [
+                'required',
+                'max:100',
+            ],
+            'proizvodjac_id' => [
+                'required',
+                'integer',
+            ],
+            'inventarski_broj' => [
+                'max:10',
+            ],
+            'serijski_broj' => [
+                'required',
+                'max:50',
+            ],
+            'broj_portova' => [
+                'required',
+                'integer',
+            ],
+        ]);
+        }
 
         $upravljiv = ($request->upravljiv) ? 1 : 0;
 
@@ -314,10 +482,10 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
         $stavka_nabavke_id = $mrezni->stavka_nabavke_id;
         $stavka_otpremnice_id = $mrezni->stavka_otpremnice_id;
         if ($stavka_nabavke_id) {
-            return redirect()->route('nabavke.stavke.detalj', $stavka_nabavke_id);
+            return redirect()->route('nabavke.stavke.detalj', $mrezni->stavka_nabavke_id);
         }
         if ($stavka_otpremnice_id) {
-            return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
+            return redirect()->route('otpremnice.stavke.detalj', $mrezni->stavka_otpremnice_id);
         }
     }
 
@@ -390,7 +558,7 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
             ],
             'serijski_broj' => [
                 'required',
-                'max:10',
+                'max:50',
             ],
             'procesor_model_id' => [
                 'required',
@@ -406,14 +574,8 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
         $cpu->save();
 
         Session::flash('uspeh', 'Procesor je uspešno dodat!');
-        $stavka_nabavke_id = $cpu->stavka_nabavke_id;
         $stavka_otpremnice_id = $cpu->stavka_otpremnice_id;
-        if ($stavka_nabavke_id) {
-            return redirect()->route('nabavke.stavke.detalj', $stavka_nabavke_id);
-        }
-        if ($stavka_otpremnice_id) {
-            return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
-        }
+        return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
     }
 
     public function postHddDodavanje(Request $request)
@@ -429,7 +591,7 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
             ],
             'serijski_broj' => [
                 'required',
-                'max:10',
+                'max:50',
             ],
             'hdd_model_id' => [
                 'required',
@@ -445,14 +607,8 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
         $hdd->save();
 
         Session::flash('uspeh', 'HDD je uspešno dodat!');
-        $stavka_nabavke_id = $hdd->stavka_nabavke_id;
         $stavka_otpremnice_id = $hdd->stavka_otpremnice_id;
-        if ($stavka_nabavke_id) {
-            return redirect()->route('nabavke.stavke.detalj', $stavka_nabavke_id);
-        }
-        if ($stavka_otpremnice_id) {
-            return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
-        }
+        return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
     }
 
     public function postMbdDodavanje(Request $request)
@@ -468,7 +624,7 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
             ],
             'serijski_broj' => [
                 'required',
-                'max:10',
+                'max:50',
             ],
             'osnovna_ploca_model_id' => [
                 'required',
@@ -484,14 +640,8 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
         $mbd->save();
 
         Session::flash('uspeh', 'Osnovna ploča je uspešno dodata!');
-        $stavka_nabavke_id = $mbd->stavka_nabavke_id;
         $stavka_otpremnice_id = $mbd->stavka_otpremnice_id;
-        if ($stavka_nabavke_id) {
-            return redirect()->route('nabavke.stavke.detalj', $stavka_nabavke_id);
-        }
-        if ($stavka_otpremnice_id) {
-            return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
-        }
+        return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
     }
 
     public function postPsuDodavanje(Request $request)
@@ -507,7 +657,7 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
             ],
             'serijski_broj' => [
                 'required',
-                'max:10',
+                'max:50',
             ],
             'napajanje_model_id' => [
                 'required',
@@ -523,14 +673,8 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
         $psu->save();
 
         Session::flash('uspeh', 'Napajanje je uspešno dodato!');
-        $stavka_nabavke_id = $psu->stavka_nabavke_id;
         $stavka_otpremnice_id = $psu->stavka_otpremnice_id;
-        if ($stavka_nabavke_id) {
-            return redirect()->route('nabavke.stavke.detalj', $stavka_nabavke_id);
-        }
-        if ($stavka_otpremnice_id) {
-            return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
-        }
+        return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
     }
 
     public function postRamDodavanje(Request $request)
@@ -546,7 +690,7 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
             ],
             'serijski_broj' => [
                 'required',
-                'max:10',
+                'max:50',
             ],
             'memorija_model_id' => [
                 'required',
@@ -562,14 +706,8 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
         $ram->save();
 
         Session::flash('uspeh', 'Memorija je uspešno dodata!');
-        $stavka_nabavke_id = $ram->stavka_nabavke_id;
         $stavka_otpremnice_id = $ram->stavka_otpremnice_id;
-        if ($stavka_nabavke_id) {
-            return redirect()->route('nabavke.stavke.detalj', $stavka_nabavke_id);
-        }
-        if ($stavka_otpremnice_id) {
-            return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
-        }
+        return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
     }
 
     public function postVgaDodavanje(Request $request)
@@ -585,7 +723,7 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
             ],
             'serijski_broj' => [
                 'required',
-                'max:10',
+                'max:50',
             ],
             'graficki_adapter_model_id' => [
                 'required',
@@ -601,14 +739,8 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
         $vga->save();
 
         Session::flash('uspeh', 'Grafički adapter je uspešno dodat!');
-        $stavka_nabavke_id = $vga->stavka_nabavke_id;
         $stavka_otpremnice_id = $vga->stavka_otpremnice_id;
-        if ($stavka_nabavke_id) {
-            return redirect()->route('nabavke.stavke.detalj', $stavka_nabavke_id);
-        }
-        if ($stavka_otpremnice_id) {
-            return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
-        }
+        return redirect()->route('otpremnice.stavke.detalj', $stavka_otpremnice_id);
     }
 
     /*

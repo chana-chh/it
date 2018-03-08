@@ -1,7 +1,15 @@
 <form action="{{ route('stavke.stampaci.dodavanje') }}" method="POST" data-parsley-validate>
     {{ csrf_field() }}
-    <input type="hidden" name="stavka_nabavke_id" id="stavka_nabavke_id" value="{{ $stavka->id }}">
+    
+    @if($stavka->nabavka_id)
+        <input type="hidden" name="stavka_nabavke_id" id="stavka_nabavke_id" value="{{ $stavka->id }}">
+        <input type="hidden" name="stavka_otpremnice_id" id="stavka_otpremnice_id" value="">
+    @elseif($stavka->otpremnica_id)
+        <input type="hidden" name="stavka_nabavke_id" id="stavka_nabavke_id" value="">
+        <input type="hidden" name="stavka_otpremnice_id" id="stavka_otpremnice_id" value="{{ $stavka->id }}">
+    @endif
     <input type="hidden" name="vrsta_uredjaja_id" id="vrsta_uredjaja_id" value="{{ $stavka->vrstaUredjaja->id }}">
+    
     <div class="col-md-12">
         <div class="form-group{{ $errors->has('inventarski_broj') ? ' has-error' : '' }}">
             <label for="inventarski_broj">Inventarski broj:</label>
