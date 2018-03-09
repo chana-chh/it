@@ -43,7 +43,19 @@
 
         <div class="row">
 
-                <div class="col-md-6">
+                <div class="col-md-3">
+                    <div class="form-group{{ $errors->has('naziv') ? ' has-error' : '' }}">
+                    <label for="naziv">Naziv:</label>
+                    <input type="text" name="naziv" id="naziv" class="form-control" value="{{ old('naziv', $memorija->naziv) }}" maxlength="100">
+                    @if ($errors->has('naziv'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('naziv') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                </div>
+
+                <div class="col-md-3">
                     <div class="form-group{{ $errors->has('proizvodjac_id') ? ' has-error' : '' }}">
                     <label for="proizvodjac_id">Proizvođač:</label>
                     <select name="proizvodjac_id" id="proizvodjac_id" class="chosen-select form-control" data-placeholder="proizvođač ..." required>
