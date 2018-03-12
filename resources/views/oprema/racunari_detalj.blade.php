@@ -119,7 +119,7 @@
             </tr>
                         <tr>
                 <th style="width: 40%;"><strong>Podaci o nabavci:</strong></th>
-                <td style="width: 60%;">{{$uredjaj->nabavkaStavka->nabavka->dobavljac->naziv}}, {{$uredjaj->nabavkaStavka->nabavka->datum}} 
+                <td style="width: 60%;">{{$uredjaj->nabavkaStavka->nabavka->dobavljac->naziv}}, {{$uredjaj->nabavkaStavka->nabavka->formatiran_datum}} 
                     sa garancijom od {{$uredjaj->nabavkaStavka->nabavka->garancija}} u mesecima
                 </td>
                 </tr>

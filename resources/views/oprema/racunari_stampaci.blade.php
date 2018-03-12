@@ -245,7 +245,7 @@
                             required>
                             <option value=""></option>
                             @foreach($modeli as $m)
-                            <option value="{{ $m->id }}" {{ old( 'stampac_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }},  {{ $m->tip->naziv }}, {{ $m->tipTonera->modeli_tonera }}
+                            <option value="{{ $m->id }}" {{ old( 'stampac_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }} - ({{ $m->naziv }}),  {{ $m->tip->naziv }}, {{ $m->tipTonera->modeli_tonera }}
                             </option>
                             @endforeach
                         </select>
