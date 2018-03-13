@@ -176,8 +176,8 @@ class RacunariKontroler extends Kontroler
     public function getDodavanje()
     {
         $proizvodjaci = Proizvodjac::all();
-        $zaposleni = Zaposleni::all();
-        $kancelarije = Kancelarija::all();
+        $zaposleni = Zaposleni::with('uprava')->orderBy('ime', 'asc')->orderBy('prezime', 'asc')->get();
+        $kancelarije = Kancelarija::with('lokacija', 'sprat')->orderBy('naziv', 'asc')->get();
         $nabavke = Nabavka::all();
         $os = OperativniSistem::all();
         return view('oprema.racunari_dodavanje')->with(compact('proizvodjaci', 'zaposleni', 'kancelarije', 'nabavke', 'os'));
