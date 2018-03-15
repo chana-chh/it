@@ -166,7 +166,7 @@
                             <optgroup label="{{ $o->dobavljac->naziv }}, {{ $o->broj }} od {{ $o->datum }}">
                                 @foreach($o->stavke as $s)
                                 <option value="{{ $s->id }}" {{ $s->id == old('stavka_otpremnice_id') ? ' selected' : '' }}> 
-                                    {{$s->naziv}} (popunjeno je {{$s->monitori->count()
+                                    {{$s->naziv}} (popunjeno je {{$s->stampaci->count()
                                     }} od {{$s->kolicina}} {{$s->jedinica_mere}})
                                 </option>
                                 @endforeach
@@ -191,7 +191,7 @@
                             <optgroup label="{{ $o->dobavljac->naziv }} od {{ $o->datum }}">
                                 @foreach($o->stavke as $s)
                                 <option value="{{ $s->id }}" {{ $s->id == old('stavka_nabavke_id') ? ' selected' : '' }}>
-                                    {{$s->naziv}} (popunjeno je {{$s->monitori->count() }} od {{$s->kolicina}}
+                                    {{$s->naziv}} (popunjeno je {{$s->stampaci->count() }} od {{$s->kolicina}}
                                     {{$s->jedinica_mere}})
                                 </option>
                                 @endforeach

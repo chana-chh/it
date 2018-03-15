@@ -111,8 +111,8 @@ class RacunariKontroler extends Kontroler
     {
         $uredjaj = Racunar::find($id);
         $proizvodjaci = Proizvodjac::all();
-        $zaposleni = Zaposleni::all();
-        $kancelarije = Kancelarija::all();
+        $zaposleni = Zaposleni::with('uprava')->orderBy('ime', 'asc')->orderBy('prezime', 'asc')->get();
+        $kancelarije = Kancelarija::with('lokacija', 'sprat')->orderBy('naziv', 'asc')->get();
         $nabavke = Nabavka::all();
         $os = OperativniSistem::all();
 

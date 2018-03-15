@@ -51,6 +51,10 @@
                     <th style="width: 20%;">Uprava:</th>
                     <td style="width: 80%;">{{$zaposleni->uprava->naziv}}</td>
                 </tr>
+                <tr>
+                    <th style="width: 20%;">Radno mesto:</th>
+                    <td style="width: 80%;">{{$zaposleni->radno_mesto}}</td>
+                </tr>
                 @if($zaposleni->kancelarija)
                 <tr>
                     <th style="width: 20%;">Kancelarija:</th>

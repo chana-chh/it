@@ -45,7 +45,8 @@ class StatistikaKontroler extends Kontroler
 
     public function getOcene()
     {
-        $ocene_tabela = Racunar::get()->groupBy('ocena');
+        $ocene_tabela = Racunar::get()->sortBy('ocena')->groupBy('ocena');
+
         foreach ($ocene_tabela as $o => $grupa) {
             $labele[] = $o;
             $broj[] = $grupa->count();
