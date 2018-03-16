@@ -46,12 +46,13 @@ class StatistikaKontroler extends Kontroler
     public function getOcene()
     {
         $ocene_tabela = Racunar::get()->sortBy('ocena')->groupBy('ocena');
+        $za_otpis = Racunar::get()->where('ocena', '<', 8)->count();
 
         foreach ($ocene_tabela as $o => $grupa) {
             $labele[] = $o;
             $broj[] = $grupa->count();
         }
-        return view('statistika.statistika_ocene')->with(compact('ocene_tabela', 'broj', 'labele'));
+        return view('statistika.statistika_ocene')->with(compact('ocene_tabela', 'broj', 'labele', 'za_otpis'));
     }
 
 }

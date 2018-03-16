@@ -42,12 +42,18 @@
                 @foreach ($ocene_tabela as $o => $grupa)
                         <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$o}}</td>
+                                    <td class="{{ $o < 8 ? ' text-danger' : ' text-primary' }}">{{$o}}</td>
                                     <td>{{$grupa->count()}}</td>
                         </tr>
                 @endforeach
                 </tbody>
             </table>
+            <hr>
+<label class="text-warning">Napomena:</label>
+        <p class="text-warning">
+            * Potrebno je planirati zamenu ili unapređenje svih računara čija je ocena manja od 8.
+        </p>
+<h3>Ukupno: {{$za_otpis}}</h3>
 </div>
 </div>
 
