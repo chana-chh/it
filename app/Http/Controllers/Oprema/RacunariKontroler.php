@@ -837,8 +837,12 @@ class RacunariKontroler extends Kontroler
         $uredjaj = Racunar::find($id);
         $modeli = MonitorModel::all();
         $monitori_uredjaji = Monitor::neraspordjeni()->get();
-        $otpremnice = Otpremnica::all();
-        $nabavke = Nabavka::all();
+        $otpremnice = Otpremnica::with(array('stavke' => function($query){
+            $query->where('vrsta_uredjaja_id', '=', 2);
+        } ))->get();
+        $nabavke = Nabavka::with(array('stavke' => function($query){
+            $query->where('vrsta_uredjaja_id', '=', 2);
+        } ))->get();
         return view('oprema.racunari_monitori')->with(compact('modeli', 'uredjaj', 'monitori_uredjaji', 'otpremnice', 'nabavke'));
     }
 
@@ -947,8 +951,12 @@ class RacunariKontroler extends Kontroler
         $uredjaj = Racunar::find($id);
         $modeli = StampacModel::all();
         $stampaci_uredjaji = Stampac::neraspordjeni()->get();
-        $otpremnice = Otpremnica::all();
-        $nabavke = Nabavka::all();
+        $otpremnice = Otpremnica::with(array('stavke' => function($query){
+            $query->where('vrsta_uredjaja_id', '=', 3);
+        } ))->get();
+        $nabavke = Nabavka::with(array('stavke' => function($query){
+            $query->where('vrsta_uredjaja_id', '=', 3);
+        } ))->get();
         return view('oprema.racunari_stampaci')->with(compact('modeli', 'uredjaj', 'stampaci_uredjaji', 'otpremnice', 'nabavke'));
     }
 
@@ -1057,8 +1065,12 @@ class RacunariKontroler extends Kontroler
         $uredjaj = Racunar::find($id);
         $modeli = SkenerModel::all();
         $skeneri_uredjaji = Skener::neraspordjeni()->get();
-        $otpremnice = Otpremnica::all();
-        $nabavke = Nabavka::all();
+        $otpremnice = Otpremnica::with(array('stavke' => function($query){
+            $query->where('vrsta_uredjaja_id', '=', 4);
+        } ))->get();
+        $nabavke = Nabavka::with(array('stavke' => function($query){
+            $query->where('vrsta_uredjaja_id', '=', 4);
+        } ))->get();
         return view('oprema.racunari_skeneri')->with(compact('modeli', 'uredjaj', 'skeneri_uredjaji', 'otpremnice', 'nabavke'));
     }
 
@@ -1109,7 +1121,7 @@ class RacunariKontroler extends Kontroler
         $skener = new Skener();
         $skener->serijski_broj = $request->serijski_broj;
         $skener->inventarski_broj = $request->inventarski_broj;
-        $skener->vrsta_uredjaja_id = 3;
+        $skener->vrsta_uredjaja_id = 4;
         $skener->skener_model_id = $request->skener_model_id;
 
         if ($request->stavka_otpremnice_id) {

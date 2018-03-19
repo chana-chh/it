@@ -33,16 +33,16 @@
 <div class="col-md-4" style="padding: 30px;">
 <table class="table table-striped tabelaOcene" name="tabelaOcene" id="tabelaOcene">
                 <thead>
-                            <th style="width: 10%;">#</th>
-                            <th style="width: 40%;">Ocena</th>
+                            <th style="width: 20%;">#</th>
+                            <th style="width: 30%;">Ocena</th>
                             <th style="width: 45%;">Broj računara sa ocenom</th>
                             
                 </thead>
                 <tbody style="font-size: 2rem">
                 @foreach ($ocene_tabela as $o => $grupa)
                         <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td class="{{ $o < 8 ? ' text-danger' : ' text-primary' }}">{{$o}}</td>
+                                    <td>{{$loop->iteration}}.</td>
+                                    <td class="{{ $o < 8 ? ' text-danger' : ' text-primary' }}"><strong>{{$o}}</strong></td>
                                     <td>{{$grupa->count()}}</td>
                         </tr>
                 @endforeach
