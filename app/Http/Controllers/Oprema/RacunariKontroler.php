@@ -113,7 +113,9 @@ class RacunariKontroler extends Kontroler
         $proizvodjaci = Proizvodjac::all();
         $zaposleni = Zaposleni::with('uprava')->orderBy('ime', 'asc')->orderBy('prezime', 'asc')->get();
         $kancelarije = Kancelarija::with('lokacija', 'sprat')->orderBy('naziv', 'asc')->get();
-        $nabavke = Nabavka::all();
+        $nabavke = Nabavka::with(array('stavke' => function($query){
+            $query->where('vrsta_uredjaja_id', '=', 1);
+        } ))->get();
         $os = OperativniSistem::all();
 
         return view('oprema.racunari_izmena')->with(compact('proizvodjaci', 'zaposleni', 'kancelarije', 'nabavke', 'os', 'uredjaj'));
@@ -178,7 +180,9 @@ class RacunariKontroler extends Kontroler
         $proizvodjaci = Proizvodjac::all();
         $zaposleni = Zaposleni::with('uprava')->orderBy('ime', 'asc')->orderBy('prezime', 'asc')->get();
         $kancelarije = Kancelarija::with('lokacija', 'sprat')->orderBy('naziv', 'asc')->get();
-        $nabavke = Nabavka::all();
+        $nabavke = Nabavka::with(array('stavke' => function($query){
+            $query->where('vrsta_uredjaja_id', '=', 1);
+        } ))->get();
         $os = OperativniSistem::all();
         return view('oprema.racunari_dodavanje')->with(compact('proizvodjaci', 'zaposleni', 'kancelarije', 'nabavke', 'os'));
     }
