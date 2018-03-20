@@ -25,7 +25,7 @@ class UredjajiHelper
     {
         $kolekcija = new Collection();
 
-        $racunari = Racunar::withTrashed()->get();
+        $racunari = Racunar::withTrashed()->with('kancelarija', 'zaposleni', 'nabavkaStavka')->get();
         foreach ($racunari as $racunar) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $racunar->vrstaUredjaja->id;
@@ -54,7 +54,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $monitori = Monitor::withTrashed()->get();
+        $monitori = Monitor::withTrashed()->with('kancelarija', 'racunar', 'nabavkaStavka', 'stavkaOtpremnice')->get();
         foreach ($monitori as $monitor) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $monitor->vrstaUredjaja->id;
@@ -88,7 +88,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $stampaci = Stampac::withTrashed()->get();
+        $stampaci = Stampac::withTrashed()->with('kancelarija', 'racunar', 'nabavkaStavka', 'stavkaOtpremnice')->get();
         foreach ($stampaci as $stampac) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $stampac->vrstaUredjaja->id;
@@ -122,7 +122,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $skeneri = Skener::withTrashed()->get();
+        $skeneri = Skener::withTrashed()->with('kancelarija', 'racunar', 'nabavkaStavka', 'stavkaOtpremnice')->get();
         foreach ($skeneri as $skener) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $skener->vrstaUredjaja->id;
@@ -156,7 +156,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $upsevi = Ups::withTrashed()->get();
+        $upsevi = Ups::withTrashed()->with('kancelarija', 'racunar', 'nabavkaStavka', 'stavkaOtpremnice')->get();
         foreach ($upsevi as $ups) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $ups->vrstaUredjaja->id;
@@ -192,7 +192,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $projektori = Projektor::withTrashed()->get();
+        $projektori = Projektor::withTrashed()->with('kancelarija', 'racunar', 'nabavkaStavka', 'stavkaOtpremnice')->get();
         foreach ($projektori as $projektor) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $projektor->vrstaUredjaja->id;
@@ -227,7 +227,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $mrezni_uredjaji = MrezniUredjaj::withTrashed()->get();
+        $mrezni_uredjaji = MrezniUredjaj::withTrashed()->with('kancelarija', 'racunar', 'nabavkaStavka', 'stavkaOtpremnice')->get();
         foreach ($mrezni_uredjaji as $mu) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $mu->vrstaUredjaja->id;
@@ -262,7 +262,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $osnovne_ploce = OsnovnaPloca::withTrashed()->get();
+        $osnovne_ploce = OsnovnaPloca::withTrashed()->with('racunar', 'stavkaOtpremnice')->get();
         foreach ($osnovne_ploce as $mbd) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $mbd->vrstaUredjaja->id;
@@ -286,7 +286,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $hddovi = Hdd::withTrashed()->get();
+        $hddovi = Hdd::withTrashed()->with('racunar', 'stavkaOtpremnice')->get();
         foreach ($hddovi as $hdd) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $hdd->vrstaUredjaja->id;
@@ -310,7 +310,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $procesori = Procesor::withTrashed()->get();
+        $procesori = Procesor::withTrashed()->with('racunar', 'stavkaOtpremnice')->get();
         foreach ($procesori as $cpu) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $cpu->vrstaUredjaja->id;
@@ -334,7 +334,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $memorije = Memorija::withTrashed()->get();
+        $memorije = Memorija::withTrashed()->with('racunar', 'stavkaOtpremnice')->get();
         foreach ($memorije as $ram) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $ram->vrstaUredjaja->id;
@@ -358,7 +358,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $graficke = GrafickiAdapter::withTrashed()->get();
+        $graficke = GrafickiAdapter::withTrashed()->with('racunar', 'stavkaOtpremnice')->get();
         foreach ($graficke as $vga) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $vga->vrstaUredjaja->id;
@@ -382,7 +382,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $napajanja = Napajanje::withTrashed()->get();
+        $napajanja = Napajanje::withTrashed()->with('racunar', 'stavkaOtpremnice')->get();
         foreach ($napajanja as $napajanje) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $napajanje->vrstaUredjaja->id;

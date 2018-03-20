@@ -114,7 +114,7 @@
             <tr>
                 <td>{{ $uredjaj->vrsta_uredjaja }}</td>
                 <td>{{ $uredjaj->naziv }}</td>
-                <td>{{ $uredjaj->serijski_broj }}</td>
+                <td><small>{{ $uredjaj->serijski_broj }}</small></td>
                 <td>{{ $uredjaj->inventarski_broj }}</td>
                 <td>{{ $uredjaj->tehnicki_detalji }}</td>
             </tr>
