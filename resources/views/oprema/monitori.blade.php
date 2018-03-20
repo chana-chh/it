@@ -37,7 +37,17 @@
             <i class="fa fa-recycle fa-fw"></i> Otpisani
         </a>
     </div>
-    <div class="col-md-10">
+        <div class="col-md-2">
+        <a id="pretragaDugme" href="" class="btn btn-success btn-block ono">
+            <i class="fa fa-filter fa-fw"></i> Bez serijskog
+        </a>
+    </div>
+            <div class="col-md-2">
+        <a id="pretragaDugme" href="" class="btn btn-success btn-block ono">
+            <i class="fa fa-filter fa-fw"></i> Bez inventarskog
+        </a>
+    </div>
+    <div class="col-md-6">
         Ostalo
     </div>
     

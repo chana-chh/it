@@ -12,7 +12,7 @@
         <h1>
             <img class="slicica_animirana" alt="Vezivanje monitora za računar"
                  src="{{url('/images/monitorS.png')}}" style="height:64px;">
-            &emsp;Rad sa monitoroma povezanih sa računarom {{$uredjaj->ime}}
+            &emsp;Rad sa monitoroma povezanih sa računarom <span class="text-success">{{$uredjaj->ime}}</span>
         </h1>
     </div>
 </div>
@@ -158,7 +158,7 @@
              <div class="col-md-12">
                     <div class="form-group{{ $errors->has('stavka_otpremnice_id') ? ' has-error' : '' }}">
                         <label for="stavka_otpremnice_id">Stavka otpremnice:</label>
-                        <select name="stavka_otpremnice_id" id="stavka_otpremnice_id" class="chosen-select form-control otpremnice" data-placeholder="otpremnice ...">
+                        <select name="stavka_otpremnice_id" id="stavka_otpremnice_id" class="chosen-select form-control otpremnice" data-placeholder="otpremnice ..." required>
                             <option value=""></option>
                             @foreach($otpremnice as $o)
                             <optgroup label="{{ $o->dobavljac->naziv }}, {{ $o->broj }} od {{ $o->datum }}">
@@ -183,7 +183,7 @@
                 <div class="col-md-12">
                     <div class="form-group{{ $errors->has('stavka_nabavke_id') ? ' has-error' : '' }}">
                         <label for="stavka_nabavke_id">Stavka nabavke:</label>
-                        <select name="stavka_nabavke_id" id="stavka_nabavke_id" class="chosen-select form-control nabavke" data-placeholder="nabavke ...">
+                        <select name="stavka_nabavke_id" id="stavka_nabavke_id" class="chosen-select form-control nabavke" data-placeholder="nabavke ..." required>
                             <option value=""></option>
                             @foreach($nabavke as $o)
                             <optgroup label="{{ $o->dobavljac->naziv }} od {{ $o->datum }}">
@@ -210,7 +210,7 @@
                     <div class="form-group{{ $errors->has('serijski_broj') ? ' has-error' : '' }}">
                         <label for="serijski_broj">Serijski broj:</label>
                         <input type="text" name="serijski_broj" id="serijski_broj" class="form-control" value="{{ old('serijski_broj') }}" maxlength="50"
-                            required> @if ($errors->has('serijski_broj'))
+                            > @if ($errors->has('serijski_broj'))
                         <span class="help-block">
                             <strong>{{ $errors->first('serijski_broj') }}</strong>
                         </span>
@@ -225,8 +225,7 @@
                 <div class="col-md-12">
                     <div class="form-group{{ $errors->has('inventarski_broj') ? ' has-error' : '' }}">
                         <label for="inventarski_broj">Inventarski broj:</label>
-                        <input type="text" name="inventarski_broj" id="inventarski_broj" class="form-control" value="{{ old('inventarski_broj') }}" maxlength="10"
-                            required> @if ($errors->has('inventarski_broj'))
+                        <input type="text" name="inventarski_broj" id="inventarski_broj" class="form-control" value="{{ old('inventarski_broj') }}" maxlength="10"> @if ($errors->has('inventarski_broj'))
                         <span class="help-block">
                             <strong>{{ $errors->first('inventarski_broj') }}</strong>
                         </span>
@@ -306,16 +305,20 @@
         $('#stavka_nabavke_id').on('change', function() {
             if(this.value !== "") {
                 $('#stavka_otpremnice_id').prop('disabled', true).trigger("chosen:updated");
+                $("#stavka_otpremnice_id").prop('required',false);
             }else{
                 $('#stavka_otpremnice_id').prop('disabled', false).trigger("chosen:updated");
+                $("#stavka_otpremnice_id").prop('required',true);
             }
         });
 
         $('#stavka_otpremnice_id').on('change', function() {
             if(this.value !== "") {
                 $('#stavka_nabavke_id').prop('disabled', true).trigger("chosen:updated");
+                $("#stavka_nabavke_id").prop('required',false);
             }else{
                 $('#stavka_nabavke_id').prop('disabled', false).trigger("chosen:updated");
+                $("#stavka_nabavke_id").prop('required',true);
             }
         });
     });
