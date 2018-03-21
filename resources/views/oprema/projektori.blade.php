@@ -50,8 +50,8 @@
 <table id="tabela" class="table table-striped display" cellspacing="0" width="100%" style="table-layout: fixed; font-size: 0.9375em;">
     <thead>
         <th style="width: 5%;">#</th>
-        <th style="width: 10%;">Inventarski broj</th>
-        <th style="width: 10%;">Serijski broj</th>
+        <th style="width: 9%;">Inventarski broj</th>
+        <th style="width: 11%;">Serijski broj</th>
         <th style="width: 20%;">Tehniči detalji</th>
         <th style="width: 10%;">Kancelarija</th>
         <th style="width: 10%;">Otpremnica</th>
