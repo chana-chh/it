@@ -104,8 +104,8 @@
             <tr>
                 <th style="width: 15%;">Vrsta</th>
                 <th style="width: 15%;">Naziv</th>
-                <th style="width: 15%;">Serijski broj</th>
-                <th style="width: 15%;">Inventarski broj</th>
+                <th style="width: 20%;">Serijski br.</th>
+                <th style="width: 10%;">Inventarski br.</th>
                 <th style="width: 40%;">Tehnički detalji</th>
             </tr>
         </thead>
