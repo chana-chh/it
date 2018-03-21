@@ -47,8 +47,8 @@ class KancelarijeKontroler extends Kontroler
     public function getDetalj($id)
     {
         $kancelarija = Kancelarija::find($id);
-        $uredjaji_svi = UredjajiHelper::sviUredjaji();
-        $uredjaji_kanc = $uredjaji_svi->where('kancelarija_id', $id)->where('otpis', null);
+        $uredjaji_svi = UredjajiHelper::kancelarijaUredjaji($id);
+        $uredjaji_kanc = $uredjaji_svi->where('otpis', null);
         $uredjaji = $this->paginate($uredjaji_kanc, 10);
         $zaposleni = Zaposleni::with('uprava')->orderBy('ime', 'asc')->orderBy('prezime', 'asc')->get();
         return view('sifarnici.kancelarije_detalj')->with(compact('kancelarija', 'uredjaji', 'zaposleni'));

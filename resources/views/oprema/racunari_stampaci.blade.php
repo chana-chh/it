@@ -12,7 +12,7 @@
         <h1>
             <img class="slicica_animirana" alt="Vezivanje štampača za računar"
                  src="{{url('/images/stampac.png')}}" style="height:64px;">
-            &emsp;Rad sa štampačima povezanim sa računarom {{$uredjaj->ime}}
+            &emsp;Rad sa štampačima povezanim sa računarom <span class="text-success">{{$uredjaj->ime}}</span>
         </h1>
     </div>
 </div>
@@ -160,7 +160,7 @@
              <div class="col-md-12">
                     <div class="form-group{{ $errors->has('stavka_otpremnice_id') ? ' has-error' : '' }}">
                         <label for="stavka_otpremnice_id">Stavka otpremnice:</label>
-                        <select name="stavka_otpremnice_id" id="stavka_otpremnice_id" class="chosen-select form-control" data-placeholder="otpremnice ...">
+                        <select name="stavka_otpremnice_id" id="stavka_otpremnice_id" class="chosen-select form-control" data-placeholder="otpremnice ..." required>
                             <option value=""></option>
                             @foreach($otpremnice as $o)
                             <optgroup label="{{ $o->dobavljac->naziv }}, {{ $o->broj }} od {{ $o->datum }}">
@@ -185,7 +185,7 @@
                 <div class="col-md-12">
                     <div class="form-group{{ $errors->has('stavka_nabavke_id') ? ' has-error' : '' }}">
                         <label for="stavka_nabavke_id">Stavka nabavke:</label>
-                        <select name="stavka_nabavke_id" id="stavka_nabavke_id" class="chosen-select form-control" data-placeholder="nabavke ...">
+                        <select name="stavka_nabavke_id" id="stavka_nabavke_id" class="chosen-select form-control" data-placeholder="nabavke ..." required>
                             <option value=""></option>
                             @foreach($nabavke as $o)
                             <optgroup label="{{ $o->dobavljac->naziv }} od {{ $o->datum }}">
@@ -307,16 +307,20 @@
          $('#stavka_nabavke_id').on('change', function() {
             if(this.value !== "") {
                 $('#stavka_otpremnice_id').prop('disabled', true).trigger("chosen:updated");
+                $("#stavka_otpremnice_id").prop('required',false);
             }else{
                 $('#stavka_otpremnice_id').prop('disabled', false).trigger("chosen:updated");
+                $("#stavka_otpremnice_id").prop('required',true);
             }
         });
 
         $('#stavka_otpremnice_id').on('change', function() {
             if(this.value !== "") {
                 $('#stavka_nabavke_id').prop('disabled', true).trigger("chosen:updated");
+                $("#stavka_nabavke_id").prop('required',false);
             }else{
                 $('#stavka_nabavke_id').prop('disabled', false).trigger("chosen:updated");
+                $("#stavka_nabavke_id").prop('required',true);
             }
         });
     });

@@ -99,7 +99,7 @@
     @if($uredjaji->isEmpty())
     <p class="text-danger">U ovoj kancelariji nema IKT opreme</p>
     @else
-    <table class="table table-striped table-condensed table-responsive">
+    <table class="table table-striped table-condensed table-responsive" style="font-size: 0.9375em;">
         <thead>
             <tr>
                 <th style="width: 15%;">Vrsta</th>
