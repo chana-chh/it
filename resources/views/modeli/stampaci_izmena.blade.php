@@ -109,8 +109,8 @@
                         <option value=""></option>
                         @foreach($toneri as $t)
                         <optgroup label="{{ $t->naziv }}">
-                        <option value="{{ $t->id }}"{{ old('tip_tonera_id') == $t->id ? ' selected' : '' }}>
-                            {{ $model->tip_tonera_id == $t->id ? ' selected' : '' }}
+                        <option value="{{ $t->id }}"{{ old('tip_tonera_id') == $t->id ? ' selected' : '' }}
+                            {{ $model->tip_tonera_id == $t->id ? ' selected' : '' }}>
                             {{ $t->modeli_tonera }}
                         </option>
                         @endforeach
