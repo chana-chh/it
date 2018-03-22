@@ -208,6 +208,26 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
+                    <div class="form-group{{ $errors->has('stampac_model_id') ? ' has-error' : '' }}">
+                        <label for="stampac_model_id">Modeli štampača:</label>
+                        <select name="stampac_model_id" id="stampac_model_id" class="chosen-select form-control" data-placeholder="model ..."
+                            required>
+                            <option value=""></option>
+                            @foreach($modeli as $m)
+                            <option value="{{ $m->id }}" {{ old( 'stampac_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }} - ({{ $m->naziv }}),  {{ $m->tip->naziv }}, {{ $m->tipTonera->modeli_tonera }}
+                            </option>
+                            @endforeach
+                        </select>
+                        @if ($errors->has('stampac_model_id'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('stampac_model_id') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
                     <div class="form-group{{ $errors->has('serijski_broj') ? ' has-error' : '' }}">
                         <label for="serijski_broj">Serijski broj:</label>
                         <input type="text" name="serijski_broj" id="serijski_broj" class="form-control" value="{{ old('serijski_broj') }}" maxlength="50"
@@ -237,26 +257,6 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group{{ $errors->has('stampac_model_id') ? ' has-error' : '' }}">
-                        <label for="stampac_model_id">Modeli štampača:</label>
-                        <select name="stampac_model_id" id="stampac_model_id" class="chosen-select form-control" data-placeholder="model ..."
-                            required>
-                            <option value=""></option>
-                            @foreach($modeli as $m)
-                            <option value="{{ $m->id }}" {{ old( 'stampac_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }} - ({{ $m->naziv }}),  {{ $m->tip->naziv }}, {{ $m->tipTonera->modeli_tonera }}
-                            </option>
-                            @endforeach
-                        </select>
-                        @if ($errors->has('stampac_model_id'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('stampac_model_id') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
@@ -295,7 +295,8 @@
         jQuery(window).on('resize', resizeChosen);
 
         var chsn = $('.chosen-select').chosen({
-            allow_single_deselect: true
+            allow_single_deselect: true,
+            search_contains: true
         });
 
         function resizeChosen() {

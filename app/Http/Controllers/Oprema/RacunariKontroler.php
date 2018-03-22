@@ -286,7 +286,7 @@ class RacunariKontroler extends Kontroler
     public function getPloce($id)
     {
         $uredjaj = Racunar::find($id);
-        $modeli = OsnovnaPlocaModel::all();
+        $modeli = OsnovnaPlocaModel::with('proizvodjac')->get()->sortBy('proizvodjac.naziv');
         $ploce = OsnovnaPloca::neraspordjeni()->get();
         return view('oprema.racunari_ploce')->with(compact('modeli', 'uredjaj', 'ploce'));
     }
@@ -370,7 +370,7 @@ class RacunariKontroler extends Kontroler
     public function getProcesore($id)
     {
         $uredjaj = Racunar::find($id);
-        $modeli = ProcesorModel::all();
+        $modeli = ProcesorModel::with('proizvodjac')->get()->sortBy('proizvodjac.naziv');
         $procesori = Procesor::neraspordjeni()->get();
         return view('oprema.racunari_procesori')->with(compact('modeli', 'uredjaj', 'procesori'));
     }
@@ -464,7 +464,7 @@ class RacunariKontroler extends Kontroler
     public function getMemorije($id)
     {
         $uredjaj = Racunar::find($id);
-        $modeli = MemorijaModel::all();
+        $modeli = MemorijaModel::with('proizvodjac')->get()->sortBy('proizvodjac.naziv');
         $memorije = Memorija::neraspordjeni()->get();
         return view('oprema.racunari_memorije')->with(compact('modeli', 'uredjaj', 'memorije'));
     }
@@ -557,7 +557,7 @@ class RacunariKontroler extends Kontroler
     public function getHddove($id)
     {
         $uredjaj = Racunar::find($id);
-        $modeli = HddModel::all();
+        $modeli = HddModel::with('proizvodjac')->get()->sortBy('proizvodjac.naziv');
         $hddovi = Hdd::neraspordjeni()->get();
         return view('oprema.racunari_hddovi')->with(compact('modeli', 'uredjaj', 'hddovi'));
     }
@@ -651,7 +651,7 @@ class RacunariKontroler extends Kontroler
     public function getVga($id)
     {
         $uredjaj = Racunar::find($id);
-        $modeli = GrafickiAdapterModel::all();
+        $modeli = GrafickiAdapterModel::with('proizvodjac')->get()->sortBy('proizvodjac.naziv');
         $vga_uredjaji = GrafickiAdapter::neraspordjeni()->get();
         return view('oprema.racunari_vga')->with(compact('modeli', 'uredjaj', 'vga_uredjaji'));
     }
@@ -745,7 +745,7 @@ class RacunariKontroler extends Kontroler
     public function getNapajanja($id)
     {
         $uredjaj = Racunar::find($id);
-        $modeli = NapajanjeModel::all();
+        $modeli = NapajanjeModel::with('proizvodjac')->get()->sortBy('proizvodjac.naziv');
         $napajanja_uredjaji = Napajanje::neraspordjeni()->get();
         return view('oprema.racunari_napajanja')->with(compact('modeli', 'uredjaj', 'napajanja_uredjaji'));
     }
@@ -839,7 +839,7 @@ class RacunariKontroler extends Kontroler
     public function getMonitor($id)
     {
         $uredjaj = Racunar::find($id);
-        $modeli = MonitorModel::all();
+        $modeli = MonitorModel::with('proizvodjac')->get()->sortBy('proizvodjac.naziv');
         $monitori_uredjaji = Monitor::neraspordjeni()->get();
         $otpremnice = Otpremnica::with(array('stavke' => function($query){
             $query->where('vrsta_uredjaja_id', '=', 2);
@@ -953,7 +953,7 @@ class RacunariKontroler extends Kontroler
     public function getStampac($id)
     {
         $uredjaj = Racunar::find($id);
-        $modeli = StampacModel::all();
+        $modeli = StampacModel::with('proizvodjac')->get()->sortBy('proizvodjac.naziv');
         $stampaci_uredjaji = Stampac::neraspordjeni()->get();
         $otpremnice = Otpremnica::with(array('stavke' => function($query){
             $query->where('vrsta_uredjaja_id', '=', 3);
@@ -1067,7 +1067,7 @@ class RacunariKontroler extends Kontroler
     public function getSkener($id)
     {
         $uredjaj = Racunar::find($id);
-        $modeli = SkenerModel::all();
+        $modeli = SkenerModel::with('proizvodjac')->get()->sortBy('proizvodjac.naziv');
         $skeneri_uredjaji = Skener::neraspordjeni()->get();
         $otpremnice = Otpremnica::with(array('stavke' => function($query){
             $query->where('vrsta_uredjaja_id', '=', 4);

@@ -153,22 +153,6 @@
         <form action="{{route('racunari.oprema.ploce.dodaj.novu', $uredjaj->id)}}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row">
-
-                <div class="col-md-12">
-                    <div class="form-group{{ $errors->has('serijski_broj') ? ' has-error' : '' }}">
-                        <label for="serijski_broj">Serijski broj:</label>
-                        <input type="text" name="serijski_broj" id="serijski_broj" class="form-control" value="{{ old('serijski_broj') }}" maxlength="50"
-                            required> @if ($errors->has('serijski_broj'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('serijski_broj') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="row">
                 <div class="col-md-12">
                     <div class="form-group{{ $errors->has('osnovna_ploca_model_id') ? ' has-error' : '' }}">
                         <label for="osnovna_ploca_model_id">Modeli osnovnih ploča:</label>
@@ -189,6 +173,22 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group{{ $errors->has('serijski_broj') ? ' has-error' : '' }}">
+                        <label for="serijski_broj">Serijski broj:</label>
+                        <input type="text" name="serijski_broj" id="serijski_broj" class="form-control" value="{{ old('serijski_broj') }}" maxlength="50"
+                            required> @if ($errors->has('serijski_broj'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('serijski_broj') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
@@ -228,7 +228,8 @@
         jQuery(window).on('resize', resizeChosen);
 
         var chsn = $('.chosen-select').chosen({
-            allow_single_deselect: true
+            allow_single_deselect: true,
+            search_contains: true
         });
 
         function resizeChosen() {

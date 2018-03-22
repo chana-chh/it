@@ -204,6 +204,28 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group{{ $errors->has('monitor_model_id') ? ' has-error' : '' }}">
+                        <label for="monitor_model_id">Modeli monitora:</label>
+                        <select name="monitor_model_id" id="monitor_model_id" class="chosen-select form-control" data-placeholder="model ..."
+                            required>
+                            <option value=""></option>
+                            @foreach($modeli as $m)
+                            <option value="{{ $m->id }}" {{ old( 'monitor_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }},  {{ $m->dijagonala->naziv }}" - ({{$m->naziv}})
+                            </option>
+                            @endforeach
+                        </select>
+                        @if ($errors->has('monitor_model_id'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('monitor_model_id') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
 
                 <div class="col-md-12">
@@ -235,26 +257,6 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group{{ $errors->has('monitor_model_id') ? ' has-error' : '' }}">
-                        <label for="monitor_model_id">Modeli monitora:</label>
-                        <select name="monitor_model_id" id="monitor_model_id" class="chosen-select form-control" data-placeholder="model ..."
-                            required>
-                            <option value=""></option>
-                            @foreach($modeli as $m)
-                            <option value="{{ $m->id }}" {{ old( 'monitor_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }},  {{ $m->dijagonala->naziv }}" - ({{$m->naziv}})
-                            </option>
-                            @endforeach
-                        </select>
-                        @if ($errors->has('monitor_model_id'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('monitor_model_id') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
@@ -293,7 +295,8 @@
         jQuery(window).on('resize', resizeChosen);
 
         var chsn = $('.chosen-select').chosen({
-            allow_single_deselect: true
+            allow_single_deselect: true,
+            search_contains: true
         });
 
         function resizeChosen() {
