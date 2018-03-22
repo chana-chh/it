@@ -12,52 +12,34 @@
         <h1>
             <span>
                 <img class="slicica_animirana" alt="Monitori" src="{{url('/images/monitorS.png')}}" style="height:64px;">
-            </span>&emsp;Monitori</h1>
-    </div>
-    <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <button id="pretragaDugme" class="btn btn-success btn-block ono">
-            <i class="fa fa-search fa-fw"></i> Napredna pretraga
-        </button>
+            </span>&emsp;Monitori kojima nedostaje <span class="text-success">inventarski broj</span></h1>
     </div>
 </div>
-<div class="row obavestenje">
-    <div class="col-md-10 col-md-offset-1 text-center" style="font-size: 1rem;;">
-        <div class="alert alert-info alert-dismissible ono" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <strong>Obavštenje: </strong> Dodavanje novog monitora se obavlja kroz <a href="{{ route('otpremnice') }}" style="color: #18BC9C"><strong> otpremnicu </strong></a> ili <a href="{{route('nabavke')}}" style="color: #18BC9C"><strong> nabavku </strong></a>.
+<hr>
+<div class="row" style="margin-bottom: 16px;">
+    <div class="col-md-12">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="window.history.back();"
+               title="Povratak na prethodnu stranu">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+            <a class="btn btn-primary" href="{{route('monitori.oprema')}}"
+               title="Povratak na listu monitora">
+                <i class="fa fa-list"></i>
+            </a>
         </div>
     </div>
-</div>
-<hr class="linija" style="display: none;">
-<div class="row well" id="pretraga" style="display: none;">
-    <div class="col-md-2">
-        <a id="pretragaDugme" href="{{route('monitori.oprema.otpisani')}}" class="btn btn-warning btn-sm btn-block">
-            <i class="fa fa-recycle fa-fw"></i> Otpisani
-        </a>
-    </div>
-        <div class="col-md-2">
-        <a id="serijski" href="{{route('monitori.oprema.serijski')}}" class="btn btn-warning btn-sm btn-block">
-            <i class="fa fa-filter fa-fw"></i> Bez serijskog
-        </a>
-    </div>
-    <div class="col-md-2">
-        <a id="inventarski" href="{{route('monitori.oprema.inventarski')}}" class="btn btn-warning btn-sm btn-block">
-            <i class="fa fa-filter fa-fw"></i> Bez inventarskog
-        </a>
-    </div>
-    <div class="col-md-6">
-
-    </div>
-    
 </div>
 <div class="row">
     <div class="col-md-12">
 @if($uredjaj->isEmpty())
             <h3 class="text-danger">Trenutno nema stavki u bazi podataka</h3>
         @else
-<table id="tabela" class="table table-striped display" cellspacing="0" width="100%" style="font-size: 0.9375em;">
+<table id="tabela" class="table table-striped display" cellspacing="0" width="100%" style="table-layout: fixed; font-size: 0.9375em;">
     <thead>
         <th style="width: 5%;">#</th>
         <th style="width: 9%;">Inventarski broj</th>
@@ -126,45 +108,8 @@
 <script>
 $( document ).ready(function() {
 
-        setTimeout(function(){
-            $('.obavestenje').hide();
-            $('.linija').show();
-            }, 4000);
-
         var tabela = $('#tabela').DataTable({
-            
-            dom: 'Bflrtip',
-            buttons: [
-                'copyHtml5',
-                'excelHtml5',
-                'csvHtml5',
-                {
-                    extend: 'pdfHtml5',
-                    orientation: 'landscape',
-                    pageSize: 'A4',
-                    customize: function (doc) {
-                        doc.content[1].table.widths = [
-                            "16%",
-                            "17%",
-                            "17%",
-                            "15%",
-                            "15%",
-                            "20%"
-                        ];
-                    },
-                    exportOptions: {
-                        columns: [
-                            1,
-                            2,
-                            3,
-                            4,
-                            5,
-                            8
-                        ]
-                    }
-                }
 
-            ],
         columnDefs: [
                 {
                     orderable: false,
@@ -172,6 +117,7 @@ $( document ).ready(function() {
                     "targets": -1
                 }
             ],
+        responsive: true,
         language: {
         search: "Pronađi u tabeli",
             paginate: {
@@ -191,10 +137,6 @@ $( document ).ready(function() {
         if ($('#tabela').length) {
             new $.fn.dataTable.FixedHeader( tabela );
         }
-
-        $('#pretragaDugme').click(function () {
-            $('#pretraga').toggle();
-        });
 
 });
 </script>

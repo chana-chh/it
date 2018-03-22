@@ -37,6 +37,26 @@ class MonitoriKontroler extends Kontroler
         return view('oprema.monitori')->with(compact('uredjaj'));
     }
 
+    public function getListaSerijski()
+    {
+
+        $uredjaj = Monitor::with('monitorModel', 'racunar', 'kancelarija', 'stavkaOtpremnice', 'nabavkaStavka')
+                    ->whereNull('serijski_broj')
+                    ->get();
+
+        return view('oprema.monitori_serijski')->with(compact('uredjaj'));
+    }
+
+    public function getListaInventarski()
+    {
+
+        $uredjaj = Monitor::with('monitorModel', 'racunar', 'kancelarija', 'stavkaOtpremnice', 'nabavkaStavka')
+                    ->whereNull('inventarski_broj')
+                    ->get();
+                    
+        return view('oprema.monitori_inventarski')->with(compact('uredjaj'));
+    }
+
     public function getListaOtpisani()
     {
         $uredjaj = Monitor::onlyTrashed()->get();
