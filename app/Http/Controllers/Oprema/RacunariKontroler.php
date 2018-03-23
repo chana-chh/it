@@ -46,10 +46,14 @@ class RacunariKontroler extends Kontroler
     {
         $this->middleware('can:admin')->except([
             'getLista',
+            'getListaIkt',
+            'getListaInventarski',
             'getDetalj',
             'getAjax']);
         $this->middleware('can:korisnik')->only([
             'getLista',
+            'getListaIkt',
+            'getListaInventarski',
             'getDetalj',
             'getAjax']);
     }
@@ -60,18 +64,57 @@ class RacunariKontroler extends Kontroler
         return view('oprema.racunari')->with(compact('dobavljaci'));
     }
 
-    public function naprednaPretraga(Request $req){
-        $racunari = Racunar::with('kancelarija', 'zaposleni', 'zaposleni.uprava')->get();
-        $operator = $req->operator_ocena ? $req->operator_ocena : '=';
-        $filtrirano = $racunari->filter(function ($racunar) use($req, $operator){
-            return $racunar->ocena == $req->ocena;
-        });
+    public function getListaIkt()
+    {
+
+        $uredjaj = Racunar::with('kancelarija', 'zaposleni', 'zaposleni.uprava', 'nabavkaStavka')
+                    ->whereNull('erc_broj')
+                    ->get();
+
+        return view('oprema.racunari_ikt')->with(compact('uredjaj'));
     }
 
-    public function getAjax()
+    public function getListaInventarski()
     {
-        $racunari = Racunar::with('kancelarija', 'zaposleni', 'zaposleni.uprava')->get();
 
+        $uredjaj = Racunar::with('kancelarija', 'zaposleni', 'zaposleni.uprava', 'nabavkaStavka')
+                    ->whereNull('inventarski_broj')
+                    ->get();
+
+        return view('oprema.racunari_inventarski')->with(compact('uredjaj'));
+    }
+
+    public function postListaPretraga(Request $request)
+    {
+        $request->session()->put('parametri_za_filter_racunari', $request->all());
+        return redirect()->route('racunari.pretraga');
+    }
+
+    public function getListaPretraga(Request $request)
+    {
+        $parametri = $request->session()->get('parametri_za_filter_racunari', null);
+        $racunari_filtrirani = $this->naprednaPretraga($parametri);
+        $dobavljaci = Dobavljac::all();
+        return view('oprema.racunari_pretraga')->with(compact('racunari_filtrirani', 'dobavljaci'));
+    }
+
+    public function naprednaPretraga($parametri){
+        $racunari = Racunar::with('kancelarija', 'zaposleni', 'zaposleni.uprava')->get();
+        $operator = $parametri['operator_ocena'] ? $parametri['operator_ocena'] : '==';
+        $filtrirano = $racunari->filter(function ($racunar) use($parametri, $operator){
+            return $racunar->ocena == $parametri['ocena'];
+        });
+        return $filtrirano;
+    }
+
+    public function getAjax($racunari_pretraga = null)
+    {
+        if ($racunari_pretraga) {
+            $racunari = $racunari_pretraga;
+        }
+        else{
+        $racunari = Racunar::with('kancelarija', 'zaposleni', 'zaposleni.uprava')->get();
+        }
         return Datatables::of($racunari)
                         ->editColumn('zaposleni.naziv', function ($model) {
                             if ($model->zaposleni) {
@@ -130,7 +173,6 @@ class RacunariKontroler extends Kontroler
             'stavka_nabavke_id' => [
                 'required'],
             'erc_broj' => [
-                'required',
                 'max:100'],
             'ime' => [
                 'required',
@@ -196,7 +238,6 @@ class RacunariKontroler extends Kontroler
             'stavka_nabavke_id' => [
                 'required'],
             'erc_broj' => [
-                'required',
                 'max:100'],
             'ime' => [
                 'required',

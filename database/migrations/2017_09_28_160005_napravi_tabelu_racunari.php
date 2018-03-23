@@ -18,7 +18,7 @@ class NapraviTabeluRacunari extends Migration
             $table->integer('proizvodjac_id')->unsigned()->nullable();
             $table->string('inventarski_broj', 10)->nullable();
             $table->string('serijski_broj', 50)->nullable();
-            $table->string('erc_broj', 100)->unique(); // dodati datum kod otpisa
+            $table->string('erc_broj', 100)->unique()->nullable(); // dodati datum kod otpisa
             $table->string('ime', 100)->unique(); // dodati datum kod otpisa
             $table->integer('zaposleni_id')->unsigned()->nullable();
             $table->integer('kancelarija_id')->unsigned()->nullable();

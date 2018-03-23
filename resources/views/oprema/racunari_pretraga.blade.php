@@ -12,7 +12,7 @@
         <h1>
             <span>
                 <img class="slicica_animirana" alt="Računari" src="{{url('/images/kompjuterici.png')}}" style="height:64px;">
-            </span>&emsp;Računari</h1>
+            </span>&emsp;Računari filtrirani</h1>
     </div>
 
     <div class="col-md-2 text-right" style="padding-top: 50px;">

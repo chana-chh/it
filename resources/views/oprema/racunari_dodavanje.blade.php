@@ -168,7 +168,7 @@
     <div class="col-md-3">
         <div class="form-group{{ $errors->has('erc_broj') ? ' has-error' : '' }}">
             <label for="erc_broj">Broj IKT odeljenja:</label>
-            <input type="text" name="erc_broj" id="erc_broj" class="form-control" value="{{ old('erc_broj') }}" maxlength="100" required> @if ($errors->has('erc_broj'))
+            <input type="text" name="erc_broj" id="erc_broj" class="form-control" value="{{ old('erc_broj') }}" maxlength="100"> @if ($errors->has('erc_broj'))
             <span class="help-block">
                 <strong>{{ $errors->first('erc_broj') }}</strong>
             </span>

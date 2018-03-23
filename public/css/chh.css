@@ -404,6 +404,12 @@ th{
     margin: 0;
 }
 
+.liste_sa::before{
+    content: "• ";
+    color: #18BC9C;
+}
+
+
 .ono{
     display: inline-block;
     border-radius: 5px;

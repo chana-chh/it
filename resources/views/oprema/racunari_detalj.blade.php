@@ -296,9 +296,9 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
 <tr>
     <th style="width: 70%;">
         @if (!$uredjaj->monitori->isEmpty())
-            <ul>
+            <ul class="liste_bez">
                 @foreach($uredjaj->monitori as $mo)
-                    <li><a href="{{route('monitori.oprema.detalj', $mo->id)}}">{{$mo->monitorModel->proizvodjac->naziv}}, {{$mo->monitorModel->dijagonala->naziv}} " - ({{$mo->monitorModel->naziv}})</a></li>
+                    <li class="liste_sa"><a href="{{route('monitori.oprema.detalj', $mo->id)}}">{{$mo->monitorModel->proizvodjac->naziv}}, {{$mo->monitorModel->dijagonala->naziv}} " - ({{$mo->monitorModel->naziv}})</a></li>
                 @endforeach     
             </ul>
         @else Uređaj nije povezan ili nema podataka o njemu
@@ -313,9 +313,9 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
 <tr>
     <th style="width: 70%;">
         @if (!$uredjaj->stampaci->isEmpty())
-            <ul>
+            <ul class="liste_bez">
                 @foreach($uredjaj->stampaci as $st)
-                    <li><a href="{{route('stampaci.oprema.detalj', $st->id)}}">{{$st->stampacModel->proizvodjac->naziv}}, {{$st->stampacModel->naziv}}</a></li>
+                    <li class="liste_sa"><a href="{{route('stampaci.oprema.detalj', $st->id)}}">{{$st->stampacModel->proizvodjac->naziv}}, {{$st->stampacModel->naziv}}</a></li>
                 @endforeach     
             </ul>
         @else Uređaj nije povezan ili nema podataka o njemu
@@ -331,9 +331,9 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
 <tr>
     <th style="width: 70%;">
         @if (!$uredjaj->skeneri->isEmpty())
-            <ul>
+            <ul class="liste_bez">
                 @foreach($uredjaj->skeneri as $sk)
-                    <li><a href="{{route('skeneri.oprema.detalj', $sk->id)}}">{{$sk->skenerModel->proizvodjac->naziv}}, {{$sk->skenerModel->naziv}}</a></li>
+                    <li class="liste_sa"><a href="{{route('skeneri.oprema.detalj', $sk->id)}}">{{$sk->skenerModel->proizvodjac->naziv}}, {{$sk->skenerModel->naziv}}</a></li>
                 @endforeach     
             </ul>
         @else Uređaj nije povezan ili nema podataka o njemu
