@@ -16,7 +16,7 @@ class UgovorOdrzavanje extends Model
 
     public function utroseno()
     {
-        return $this->racuni()->sum('ukupno');
+        return $this->racuni()->sum('iznos');
     }
 
     public function preostalo()

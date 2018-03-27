@@ -67,8 +67,8 @@ Route::post('otpremnice/izmena/{id}', 'Servis\OtpremniceKontroler@postIzmena')->
 Route::get('otpremnice/detalj/{id}', 'Servis\OtpremniceKontroler@getDetalj')->name('otpremnice.detalj');
 Route::post('otpremnice/brisanje', 'Servis\OtpremniceKontroler@postBrisanje')->name('otpremnice.brisanje');
 // Otpremnice slike
-Route::post('otpremnice/dodavanje/slike/{id}', 'Servis\otpremniceKontroler@postDodavanjeSlike')->name('otpremnice.dodavanje.slike');
-Route::post('otpremnice/brisanje/slike', 'Servis\otpremniceKontroler@postBrisanjeSlike')->name('otpremnice.brisanje.slike');
+Route::post('otpremnice/dodavanje/slike/{id}', 'Servis\OtpremniceKontroler@postDodavanjeSlike')->name('otpremnice.dodavanje.slike');
+Route::post('otpremnice/brisanje/slike', 'Servis\OtpremniceKontroler@postBrisanjeSlike')->name('otpremnice.brisanje.slike');
 // Otpremnice stavke
 Route::post('otpremnice/stavke/dodavanje', 'Servis\OtpremniceStavkeKontroler@postDodavanje')->name('otpremnice.stavke.dodavanje.post');
 Route::get('otpremnice/stavke/izmena/{id}', 'Servis\OtpremniceStavkeKontroler@getIzmena')->name('otpremnice.stavke.izmena.get');
@@ -566,7 +566,7 @@ Route::post('racunari/pretraga', 'Oprema\RacunariKontroler@postListaPretraga')->
 Route::get('racunari/ikt', 'Oprema\RacunariKontroler@getListaIkt')->name('racunari.oprema.ikt');
 Route::get('racunari/inventarski', 'Oprema\RacunariKontroler@getListaInventarski')->name('racunari.oprema.inventarski');
 Route::get('racunari/otpisani', 'Oprema\RacunariKontroler@getListaOtpisani')->name('racunari.oprema.otpisani');
-Route::get('racunari/ajax/{recunari?}', 'Oprema\RacunariKontroler@getAjax')->name('racunari.ajax');
+Route::get('racunari/ajax', 'Oprema\RacunariKontroler@getAjax')->name('racunari.ajax');
 Route::get('racunari/detalj/{id}', 'Oprema\RacunariKontroler@getDetalj')->name('racunari.oprema.detalj');
 Route::get('racunari/dodavanje', 'Oprema\RacunariKontroler@getDodavanje')->name('racunari.oprema.dodavanje.get');
 Route::post('racunari/dodavanje', 'Oprema\RacunariKontroler@postDodavanje')->name('racunari.oprema.dodavanje.post');

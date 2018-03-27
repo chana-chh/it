@@ -102,19 +102,34 @@ class RacunariKontroler extends Kontroler
         $racunari = Racunar::with('kancelarija', 'zaposleni', 'zaposleni.uprava')->get();
         $operator = $parametri['operator_ocena'] ? $parametri['operator_ocena'] : '==';
         $filtrirano = $racunari->filter(function ($racunar) use($parametri, $operator){
-            return $racunar->ocena == $parametri['ocena'];
+        
+        switch ($operator) {
+        case ">=":
+        return $racunar->ocena >= $parametri['ocena'];
+        break;
+        case "<=":
+        return $racunar->ocena <= $parametri['ocena'];
+        break;
+        case ">":
+        return $racunar->ocena > $parametri['ocena'];
+        break;
+        case "<":
+        return $racunar->ocena < $parametri['ocena'];
+        break;
+
+        default:
+        return $racunar->ocena == $parametri['ocena'];
+        }
+        
         });
         return $filtrirano;
     }
 
-    public function getAjax($racunari_pretraga = null)
+    public function getAjax()
     {
-        if ($racunari_pretraga) {
-            $racunari = $racunari_pretraga;
-        }
-        else{
+
         $racunari = Racunar::with('kancelarija', 'zaposleni', 'zaposleni.uprava')->get();
-        }
+
         return Datatables::of($racunari)
                         ->editColumn('zaposleni.naziv', function ($model) {
                             if ($model->zaposleni) {
