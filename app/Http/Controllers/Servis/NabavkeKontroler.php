@@ -50,8 +50,7 @@ class NabavkeKontroler extends Kontroler
     private function naprednaPretraga($params)
     {
         $rezultat = null;
-        $where = [
-                ];
+        $where = [];
         if ($params['dobavljac_id'] !== null) {
             $where[] = [
                 'dobavljac_id',

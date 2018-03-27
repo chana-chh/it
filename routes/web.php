@@ -566,7 +566,7 @@ Route::post('racunari/pretraga', 'Oprema\RacunariKontroler@postListaPretraga')->
 Route::get('racunari/ikt', 'Oprema\RacunariKontroler@getListaIkt')->name('racunari.oprema.ikt');
 Route::get('racunari/inventarski', 'Oprema\RacunariKontroler@getListaInventarski')->name('racunari.oprema.inventarski');
 Route::get('racunari/otpisani', 'Oprema\RacunariKontroler@getListaOtpisani')->name('racunari.oprema.otpisani');
-Route::get('racunari/ajax/{recunari?}', 'Oprema\RacunariKontroler@getAjax')->name('racunari.ajax');
+Route::get('racunari/ajax', 'Oprema\RacunariKontroler@getAjax')->name('racunari.ajax');
 Route::get('racunari/detalj/{id}', 'Oprema\RacunariKontroler@getDetalj')->name('racunari.oprema.detalj');
 Route::get('racunari/dodavanje', 'Oprema\RacunariKontroler@getDodavanje')->name('racunari.oprema.dodavanje.get');
 Route::post('racunari/dodavanje', 'Oprema\RacunariKontroler@postDodavanje')->name('racunari.oprema.dodavanje.post');
