@@ -102,7 +102,7 @@
                 <div class="form-group{{ $errors->has('takt') ? ' has-error' : '' }}">
             <label for="takt">Takt u MHz: </label>
             <input  type="number" name="takt" id="takt" class="form-control" value="{{ old('takt') }}"
-                    min="1000"  step="100" required>
+                    min="1000"  step="10" required>
             @if ($errors->has('takt'))
             <span class="help-block">
                 <strong>{{ $errors->first('takt') }}</strong>
