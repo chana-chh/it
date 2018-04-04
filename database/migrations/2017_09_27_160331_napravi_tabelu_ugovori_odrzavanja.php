@@ -12,6 +12,7 @@ class NapraviTabeluUgovoriOdrzavanja extends Migration
         Schema::create('ugovori_odrzavanja', function (Blueprint $table) {
             $table->increments('id');
             $table->string('broj', 50);
+            $table->string('predmet_ugovora', 70)->nullable();
             $table->date('datum_zakljucivanja');
             $table->date('datum_raskida');
             $table->decimal('iznos_sredstava', 15, 2)->default(0);

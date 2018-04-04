@@ -16,6 +16,8 @@ class NapraviTabeluStampaci extends Migration
             $table->string('serijski_broj', 50)->nullable();
             $table->integer('stampac_model_id')->unsigned();
             $table->integer('racunar_id')->unsigned()->nullable();
+            $table->boolean('mrezni')->default(0);
+            $table->string('ip_adresa', 15)->nullable();
             $table->integer('kancelarija_id')->unsigned()->nullable();
             $table->integer('stavka_otpremnice_id')->unsigned()->nullable();
             $table->integer('stavka_nabavke_id')->unsigned()->nullable();

@@ -149,12 +149,20 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
         ]);
         }
 
+        if ($request->mrezni) {
+            $mreznic = 1;
+        } else {
+            $mreznic = 0;
+        }
+
         $stampac = new Stampac();
         $stampac->stavka_nabavke_id = $request->stavka_nabavke_id;
         $stampac->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
         $stampac->inventarski_broj = $request->inventarski_broj;
         $stampac->serijski_broj = $request->serijski_broj;
         $stampac->stampac_model_id = $request->stampac_model_id;
+        $stampac->ip_adresa = $request->ip_adresa;
+        $stampac->mrezni = $mreznic;
         $stampac->save();
 
         Session::flash('uspeh', 'Štampač je uspešno dodat!');

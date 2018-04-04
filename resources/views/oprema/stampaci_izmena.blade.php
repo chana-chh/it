@@ -114,7 +114,25 @@
 
             <hr>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
+                    <div class="form-group checkboxoviforme">
+                        <label>
+                            <input type="checkbox" name="mrezni" id="mrezni" {!!$uredjaj->mrezni == 0 ? "" :'checked="checked"'!!}> &emsp;Da li je uređaj podešen za rad u mreži?
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="nevidljivi form-group{{ $errors->has('ip_adresa') ? ' has-error' : '' }}">
+                        <label for="ip_adresa">IP adresa:</label>
+                        <input type="text" name="ip_adresa" id="ip_adresa" class="form-control" value="{{ old('ip_adresa', $uredjaj->ip_adresa) }}"
+                            maxlength="15"> @if ($errors->has('ip_adresa'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('ip_adresa') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
+                <div class="col-md-7">
                     <div class="form-group{{ $errors->has('stampac_model_id') ? ' has-error' : '' }}">
                         <label for="stampac_model_id">Model štampača:</label>
                         <select name="stampac_model_id" id="stampac_model_id" class="chosen-select form-control" data-placeholder="model ..." required>
@@ -132,17 +150,6 @@
                         @endif
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
-                        <label for="napomena">Napomena:</label>
-                        <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena', $uredjaj->napomena) }}</textarea>
-                        @if ($errors->has('napomena'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('napomena') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                </div>
             </div>
             <hr>
             <div class="row">
@@ -152,7 +159,7 @@
             </div>
             {{-- Red II --}}
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="form-group{{ $errors->has('racunar_id') ? ' has-error' : '' }}">
                         <label for="racunar_id">Računar:</label>
                         <select name="racunar_id" id="racunar_id" class="chosen-select form-control" data-placeholder="računar ...">
@@ -172,7 +179,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group{{ $errors->has('kancelarija_id') ? ' has-error' : '' }}">
                         <label for="kancelarija_id">Kancelarija:</label>
                         <select name="kancelarija_id" id="kancelarija_id" class="chosen-select form-control" data-placeholder="kancelarija ...">
@@ -190,7 +197,17 @@
                         @endif
                     </div>
                 </div>
-
+                <div class="col-md-5">
+                    <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
+                        <label for="napomena">Napomena:</label>
+                        <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena', $uredjaj->napomena) }}</textarea>
+                        @if ($errors->has('napomena'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('napomena') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
             </div>
 
 
@@ -219,6 +236,20 @@
 @section('skripte')
 <script>
     $(document).ready(function () {
+
+        if (($("#mrezni").is(":checked")) ) {
+                $(".nevidljivi").show();
+            } else {
+                $(".nevidljivi").hide();
+        }
+
+        $("#mrezni").click(function () {
+            if (($(this).is(":checked"))) {
+                $(".nevidljivi").show(300);
+            } else {
+                $(".nevidljivi").hide(200);
+            }
+        });
 
         resizeChosen();
         jQuery(window).on('resize', resizeChosen);

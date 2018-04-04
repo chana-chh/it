@@ -40,7 +40,21 @@
         <form action="{{ route('ugovori.izmena.post', $data->id) }}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
+                    <div class="form-group{{ $errors->has('predmet_ugovora') ? ' has-error' : '' }}">
+                        <label for="predmet_ugovora">Predmet ugovora:</label>
+                        <input type="text" id="predmet_ugovora" name="predmet_ugovora"
+                               class="form-control"
+                               value="{{ old('predmet_ugovora', $data->predmet_ugovora) }}"
+                               maxlength="70">
+                        @if ($errors->has('predmet_ugovora'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('predmet_ugovora') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
+                <div class="col-md-3">
                     <div class="form-group{{ $errors->has('broj') ? ' has-error' : '' }}">
                         <label for="broj">Broj ugovora:</label>
                         <input type="text" id="broj" name="broj"

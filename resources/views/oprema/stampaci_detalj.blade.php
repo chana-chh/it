@@ -45,7 +45,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        
+  
 <table class="table table-striped" style="table-layout: fixed;">
         <tbody style="font-size: 2rem;">
             <tr>
@@ -103,7 +103,14 @@
 
 </div>
 </div>
-    
+<div class="row">
+    <div class="col-md-12">
+                @if ($uredjaj->mrezni == 1)
+                <img class="center-block img-responsive" alt="mrezni" src="{{url('/images/mreza.png')}}" style="height:64px;">
+                <h3 class="text-center text-success">{{$uredjaj->ip_adresa}}</h3>
+                @endif
+</div>
+</div>
 <div class="row ceo_dva">
 <div class="col-md-12 boxic">
 <h5>Napomena: 

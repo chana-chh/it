@@ -53,6 +53,13 @@
             @endif
         </div>
     </div>
+    <div class="col-md-12">
+        <div class="form-group checkboxoviforme">
+            <label>
+                <input type="checkbox" name="mrezni" id="mrezni"> &emsp;Da li će raditi kao mrežni?
+            </label>
+        </div>
+    </div>
     <div class="row dugmici">
         <div class="col-md-12">
             <div class="form-group text-right">

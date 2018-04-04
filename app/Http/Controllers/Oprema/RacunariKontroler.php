@@ -1064,6 +1064,7 @@ class RacunariKontroler extends Kontroler
             'stampac_model_id' => [
                 'required']
         ]);
+
         $stampac = new Stampac();
         $stampac->serijski_broj = $request->serijski_broj;
         $stampac->inventarski_broj = $request->inventarski_broj;

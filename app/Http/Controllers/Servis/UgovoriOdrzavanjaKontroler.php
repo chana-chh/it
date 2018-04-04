@@ -60,6 +60,7 @@ class UgovoriOdrzavanjaKontroler extends Kontroler
 
         $data = new UgovorOdrzavanje();
         $data->broj = $request->broj;
+        $data->predmet_ugovora = $request->predmet_ugovora;
         $data->iznos_sredstava = $request->iznos_sredstava;
         $data->dobavljac_id = $request->dobavljac_id;
         $data->datum_zakljucivanja = $request->datum_zakljucivanja;
@@ -110,6 +111,7 @@ class UgovoriOdrzavanjaKontroler extends Kontroler
 
         $data = UgovorOdrzavanje::find($id);
         $data->broj = $request->broj;
+        $data->predmet_ugovora = $request->predmet_ugovora;
         $data->dobavljac_id = $request->dobavljac_id;
         $data->iznos_sredstava = $request->iznos_sredstava;
         $data->datum_zakljucivanja = $request->datum_zakljucivanja;

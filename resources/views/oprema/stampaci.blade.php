@@ -52,12 +52,13 @@
         <th style="width: 5%;">#</th>
         <th style="width: 9%;">Inventarski broj</th>
         <th style="width: 11%;">Serijski broj</th>
+        <th style="width: 5%;">Mrežni</th>
         <th style="width: 10%;">Model</th>
         <th style="width: 10%;">Racunar</th>
         <th style="width: 10%;">Kancelarija</th>
         <th style="width: 10%;">Otpremnica</th>
         <th style="width: 10%;">Nabavka</th>
-        <th style="width: 15%;">Napomena</th>
+        <th style="width: 10%;">Napomena</th>
         <th style="width: 10%;text-align:right">
             <i class="fa fa-cogs"></i>&emsp;Akcije</th>
     </thead>
@@ -69,6 +70,11 @@
             <td>
                 <strong>{{$o->serijski_broj}}</strong>
             </td>
+            @if ($o->mrezni == 1)
+            <td><img class="ip" data-toggle="ip" title="IP adresa:" data-content="{{ $o->ip_adresa }}" alt="mrezni" src="{{url('/images/mreza.png')}}" style="height:32px;"></td>
+            @else
+            <td> </td>
+            @endif
             <td><a href="{{route('stampaci.modeli.detalj', $o->stampacModel->id)}}">{{$o->stampacModel->proizvodjac->naziv}}, {{$o->stampacModel->naziv}}</a></td>
             <td> @if($o->racunar)
                 {{$o->racunar->ime}}
@@ -94,7 +100,7 @@
                 </a>
                 @endif
             </td>
-            <td><em>{{$o->napomena}}</em></td>
+            <td><small>{{$o->napomena}}</small></td>
             <td style="text-align:right; vertical-align: middle; line-height: normal;">
                 <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('stampaci.oprema.detalj', $o->id)}}">
                     <i class="fa fa-eye"></i>
@@ -115,6 +121,11 @@
 @section('skripte')
 <script>
 $( document ).ready(function() {
+
+        $('.ip').popover({
+            placement: 'top',
+            trigger: 'hover',
+        });
 
         setTimeout(function(){
             $('.obavestenje').hide();

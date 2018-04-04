@@ -72,11 +72,19 @@ class StampaciKontroler extends Kontroler
                 'required'],
         ]);
 
+        if ($request->mrezni) {
+            $mreznic = 1;
+        } else {
+            $mreznic = 0;
+        }
+
         $uredjaj = Stampac::find($id);
         $uredjaj->inventarski_broj = $request->inventarski_broj;
         $uredjaj->serijski_broj = $request->serijski_broj;
         $uredjaj->stampac_model_id = $request->stampac_model_id;
         $uredjaj->racunar_id = $request->racunar_id;
+        $uredjaj->mrezni = $mreznic;
+        $uredjaj->ip_adresa = $request->ip_adresa;
         $uredjaj->kancelarija_id = $request->kancelarija_id;
         $uredjaj->stavka_otpremnice_id = $request->stavka_otpremnice_id;
         $uredjaj->stavka_nabavke_id = $request->stavka_nabavke_id;

@@ -38,12 +38,13 @@
         <table class="table table-striped display" cellspacing="0" width="100%" id="tabela">
             <thead>
             <th style="width: 5%;">#</th>
-            <th style="width: 11%;">Broj ugovora</th>
+            <th style="width: 10%;">Predmet ugovora</th>
+            <th style="width: 10%;">Broj ugovora</th>
             <th style="width: 12%;">Datum zaključivanja</th>
             <th style="width: 12%;">Datum prestanka</th>
-            <th style="width: 15%; text-align: right;">Ukupan iznos sredstava</th>
-            <th style="width: 15%; text-align: right;">Utrošeno sredstava</th>
-            <th style="width: 15%; text-align: right;">Preostalo sredstava</th>
+            <th style="width: 12%; text-align: right;">Ukupan iznos sredstava</th>
+            <th style="width: 12%; text-align: right;">Utrošeno sredstava</th>
+            <th style="width: 12%; text-align: right;">Preostalo sredstava</th>
             <th style="width: 15%; text-align:right;">
                 <i class="fa fa-cogs"></i>&emsp;Akcije
             </th>
@@ -52,6 +53,7 @@
                 @foreach ($ugovori as $ugovor)
                 <tr>
                     <td>{{ $ugovor->id }}</td>
+                    <td><strong>{{ $ugovor->predmet_ugovora }}</strong></td>
                     <td>
                         <a href="{{ route('ugovori.detalj', $ugovor->id) }}">
                             <strong>{{ $ugovor->broj }}</strong>

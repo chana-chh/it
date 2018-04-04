@@ -55,6 +55,10 @@
         <table class="table table-striped" style="table-layout: fixed;">
             <tbody>
                 <tr>
+                    <th style="width: 20%;">Predmet ugovora:</th>
+                    <td style="width: 80%;"><h4>{{ $data->predmet_ugovora }}</h4></td>
+                </tr>
+                <tr>
                     <th style="width: 20%;">Broj:</th>
                     <td style="width: 80%;">{{ $data->broj }}</td>
                 </tr>
