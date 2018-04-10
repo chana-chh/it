@@ -60,6 +60,17 @@
             </label>
         </div>
     </div>
+                    <div class="col-md-12">
+                    <div class="nevidljivi form-group{{ $errors->has('ip_adresa') ? ' has-error' : '' }}">
+                        <label for="ip_adresa">IP adresa:</label>
+                        <input type="text" name="ip_adresa" id="ip_adresa" class="form-control" value="{{ old('ip_adresa') }}"
+                            maxlength="15"> @if ($errors->has('ip_adresa'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('ip_adresa') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
     <div class="row dugmici">
         <div class="col-md-12">
             <div class="form-group text-right">

@@ -140,8 +140,23 @@
     jQuery(window).on('resize', resizeChosen);
 
     $('.chosen-select').chosen({
-        allow_single_deselect: true
+        allow_single_deselect: true,
+        search_contains: true
     });
+
+    if (($("#mrezni").is(":checked")) ) {
+                $(".nevidljivi").show();
+            } else {
+                $(".nevidljivi").hide();
+        }
+
+        $("#mrezni").click(function () {
+            if (($(this).is(":checked"))) {
+                $(".nevidljivi").show(300);
+            } else {
+                $(".nevidljivi").hide(200);
+            }
+        });
 
     function resizeChosen() {
         $(".chosen-container").each(function () {
