@@ -57,10 +57,10 @@ class NabavkeStavkeKontroler extends Kontroler
     {
         $stavka = NabavkaStavka::find($id);
         $proizvodjaci = Proizvodjac::all();
-        $modeli_monitora = MonitorModel::all();
-        $modeli_stampaca = StampacModel::all();
-        $modeli_skenera = SkenerModel::all();
-        $modeli_upseva = UpsModel::all();
+        $modeli_monitora = MonitorModel::with('proizvodjac')->get()->sortBy('proizvodjac.naziv');
+        $modeli_stampaca = StampacModel::with('proizvodjac')->get()->sortBy('proizvodjac.naziv');
+        $modeli_skenera = SkenerModel::with('proizvodjac')->get()->sortBy('proizvodjac.naziv');
+        $modeli_upseva = UpsModel::with('proizvodjac')->get()->sortBy('proizvodjac.naziv');
         return view('servis.nabavke_stavke_detalj')->with(compact('stavka', 'proizvodjaci', 'modeli_monitora', 'modeli_stampaca', 'modeli_skenera', 'modeli_upseva'));
     }
 

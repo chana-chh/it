@@ -179,5 +179,34 @@
         var ruta = "{{ route('stavke.uredjaji.brisanje') }}";
         $('#brisanje-forma').attr('action', ruta);
     });
+
+    var tabela = $('#tabela').DataTable({
+
+        columnDefs: [
+                {
+                    orderable: false,
+                    searchable: false,
+                    "targets": -1
+                }
+            ],
+        responsive: true,
+        language: {
+        search: "Pronađi u tabeli",
+            paginate: {
+            first:      "Prva",
+            previous:   "Prethodna",
+            next:       "Sledeća",
+            last:       "Poslednja"
+        },
+        processing:   "Procesiranje u toku...",
+        lengthMenu:   "Prikaži _MENU_ elemenata",
+        zeroRecords:  "Nije pronađen nijedan rezultat",
+        info:         "Prikaz _START_ do _END_ od ukupno _TOTAL_ elemenata",
+        infoFiltered: "(filtrirano od ukupno _MAX_ elemenata)",
+    },
+    });
+        if ($('#tabela').length) {
+            new $.fn.dataTable.FixedHeader( tabela );
+        }
 </script>
 @endsection

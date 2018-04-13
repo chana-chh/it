@@ -35,6 +35,7 @@
             @endif
         </div>
     </div>
+
     <div class="col-md-12">
         <div class="form-group{{ $errors->has('stampac_model_id') ? ' has-error' : '' }}">
             <label for="stampac_model_id">Model štampača:</label>
@@ -43,7 +44,7 @@
                 <option value=""></option>
                 @foreach($modeli_stampaca as $mm)
                 <option value="{{ $mm->id }}"
-                        {{ old( 'stampac_model_id') == $mm->id ? ' selected' : '' }}> {{ $mm->naziv }}</option>
+                        {{ old( 'stampac_model_id') == $mm->id ? ' selected' : '' }}> {{ $mm->proizvodjac->naziv }}, {{ $mm->naziv }}</option>
                 @endforeach
             </select>
             @if ($errors->has('stampac_model_id'))
@@ -53,6 +54,7 @@
             @endif
         </div>
     </div>
+
     <div class="col-md-12">
         <div class="form-group checkboxoviforme">
             <label>
