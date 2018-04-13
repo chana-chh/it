@@ -189,7 +189,6 @@
                     "targets": -1
                 }
             ],
-        responsive: true,
         language: {
         search: "Pronađi u tabeli",
             paginate: {
