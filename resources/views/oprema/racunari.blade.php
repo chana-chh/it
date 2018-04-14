@@ -166,6 +166,7 @@ $( document ).ready(function() {
 
             processing: true,
             serverSide: true,
+            deferRender: true,
             ajax: '{!! route('racunari.ajax') !!}',
             columns: [
             {data: 'id', name: 'id'},
