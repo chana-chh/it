@@ -227,7 +227,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $mrezni_uredjaji = MrezniUredjaj::withTrashed()->with('kancelarija', 'racunar', 'nabavkaStavka', 'stavkaOtpremnice')->get();
+        $mrezni_uredjaji = MrezniUredjaj::withTrashed()->with('kancelarija', 'nabavkaStavka', 'stavkaOtpremnice')->get();
         foreach ($mrezni_uredjaji as $mu) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $mu->vrstaUredjaja->id;
@@ -609,7 +609,7 @@ class UredjajiHelper
             $kolekcija->add($uredjaj);
         }
 
-        $mrezni_uredjaji = MrezniUredjaj::withTrashed()->with('kancelarija', 'racunar', 'nabavkaStavka', 'stavkaOtpremnice')->where('kancelarija_id', $kanc)->get();
+        $mrezni_uredjaji = MrezniUredjaj::withTrashed()->with('kancelarija', 'nabavkaStavka', 'stavkaOtpremnice')->where('kancelarija_id', $kanc)->get();
         foreach ($mrezni_uredjaji as $mu) {
             $uredjaj = new Uredjaj();
             $uredjaj->vrsta_uredjaja_id = $mu->vrstaUredjaja->id;
