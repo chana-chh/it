@@ -238,14 +238,8 @@ class UredjajiHelper
             $uredjaj->tehnicki_detalji = 'Broj portova: ' . $mu->broj_portova . '. ';
             $upravljiv = ($mu->upravljiv) ? 'DA' : 'NE';
             $uredjaj->tehnicki_detalji .= 'Upravljiv: ' . $upravljiv . '.';
-            if ($mu->kancelarija && $mu->racunar) {
-                $uredjaj->lokacija = $mu->kancelarija->sviPodaci() . ', ' . $mu->racunar->ime;
-            } else if ($mu->kancelarija && !$mu->racunar) {
+            if ($mu->kancelarija) {
                 $uredjaj->lokacija = $mu->kancelarija->sviPodaci();
-                $uredjaj->kancelarija_id = $mu->kancelarija->id;
-            } else if (!$mu->kancelarija && $mu->racunar) {
-                $uredjaj->lokacija = $mu->racunar->ime;
-                $uredjaj->racunar_id = $mu->racunar->id;
             }
             if ($mu->stavkaOtpremnice) {
                 $uredjaj->poreklo = $mu->stavkaOtpremnice->otpremnica->broj;
