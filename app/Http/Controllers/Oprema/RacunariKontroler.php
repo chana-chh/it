@@ -150,11 +150,18 @@ class RacunariKontroler extends Kontroler
                             }
                             return " ";
                         })
+                        ->editColumn('napomena', function ($model) {
+                            if ($model->napomena) {
+                                return '<small>' . $model->napomena . '</small>';
+                            }
+                            return " ";
+                        })
                         ->addColumn('akcije', 'sifarnici.inc.dugmici_racunari')
                         ->rawColumns([
                             'akcije',
                             'zaposleni.naziv',
                             'zaposleni.uprava',
+                            'napomena',
                             'kancelarija.naziv'])
                         ->make(true);
     }

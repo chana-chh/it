@@ -119,16 +119,17 @@
 
 <div class="row">
     <div class="col-md-12">
-<table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
+<table id="tabela" class="table table-striped display" cellspacing="0" width="100%" style="table-layout: fixed; font-size: 0.9375em;">
     <thead>
         <th style="width: 5%;">#</th>
-        <th style="width: 10%;">Ime računara (AD)</th>
-        <th style="width: 10%;">Inventarski broj</th>
+        <th style="width: 10%;">Ime (AD)</th>
+        <th style="width: 8%;">Inventarski broj</th>
         <th style="width: 5%;">IKT broj</th>
-        <th style="width: 20%;">Kancelarija</th>
+        <th style="width: 17%;">Kancelarija</th>
         <th style="width: 5%;">Ocena</th>
-        <th style="width: 23%;">Korisnik računara</th>
+        <th style="width: 17%;">Korisnik računara</th>
         <th style="width: 15%;">Uprava</th>
+        <th style="width: 11%;">Napomena</th>
         <th style="width: 7%;text-align:right">
             <i class="fa fa-cogs"></i>&emsp;Akcije</th>
     </thead>
@@ -177,6 +178,7 @@ $( document ).ready(function() {
             {data: 'ocena', name: 'ocena'},
             {data: 'zaposleni.naziv', name: 'zaposleni.naziv'},
             {data: 'zaposleni.uprava', name: 'zaposleni.uprava'},
+            {data: 'napomena', name: 'napomena'},
             {data: 'akcije', name: 'akcije', orderable: false, searchable: false},
         ],
         language: {
