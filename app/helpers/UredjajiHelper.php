@@ -621,14 +621,8 @@ class UredjajiHelper
             $upravljiv = ($mu->upravljiv) ? 'DA' : 'NE';
             $uredjaj->tehnicki_detalji .= 'Upravljiv: ' . $upravljiv . '.';
             if ($mu->kancelarija && $mu->racunar) {
-                $uredjaj->lokacija = $mu->kancelarija->sviPodaci() . ', ' . $mu->racunar->ime;
-            } else if ($mu->kancelarija && !$mu->racunar) {
                 $uredjaj->lokacija = $mu->kancelarija->sviPodaci();
-                $uredjaj->kancelarija_id = $mu->kancelarija->id;
-            } else if (!$mu->kancelarija && $mu->racunar) {
-                $uredjaj->lokacija = $mu->racunar->ime;
-                $uredjaj->racunar_id = $mu->racunar->id;
-            }
+            } 
             if ($mu->stavkaOtpremnice) {
                 $uredjaj->poreklo = $mu->stavkaOtpremnice->otpremnica->broj;
                 $uredjaj->otpremnica_stavka_id = $mu->stavkaOtpremnice->id;
