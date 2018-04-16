@@ -620,7 +620,7 @@ class UredjajiHelper
             $uredjaj->tehnicki_detalji = 'Broj portova: ' . $mu->broj_portova . '. ';
             $upravljiv = ($mu->upravljiv) ? 'DA' : 'NE';
             $uredjaj->tehnicki_detalji .= 'Upravljiv: ' . $upravljiv . '.';
-            if ($mu->kancelarija && $mu->racunar) {
+            if ($mu->kancelarija) {
                 $uredjaj->lokacija = $mu->kancelarija->sviPodaci();
             } 
             if ($mu->stavkaOtpremnice) {
