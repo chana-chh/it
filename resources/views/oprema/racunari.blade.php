@@ -133,7 +133,7 @@
         <th style="width: 7%;text-align:right">
             <i class="fa fa-cogs"></i>&emsp;Akcije</th>
     </thead>
-    <tfoot>
+{{--     <tfoot>
                 <th>id</th>
                 <th>Ime računara (AD)</th>
                 <th>Inventarski broj</th>
@@ -143,7 +143,7 @@
                 <th>Korisnik računara</th>
                 <th>Uprava</th>
                 <th>Akcija</th>
-        </tfoot>
+        </tfoot> --}}
 </table>
     </div>
 </div>
@@ -159,9 +159,9 @@ $( document ).ready(function() {
             $('.linija').toggle();
         });
 
-        $('#tabela tfoot th').each( function () {
-        $(this).html( '<input type="text" placeholder="&#xF002;" style="font-family:Arial, FontAwesome" />' );
-        } );
+        // $('#tabela tfoot th').each( function () {
+        // $(this).html( '<input type="text" placeholder="&#xF002;" style="font-family:Arial, FontAwesome" />' );
+        // } );
 
         var tabela = $('#tabela').DataTable({
 
@@ -197,17 +197,17 @@ $( document ).ready(function() {
     },
     });
 
-        tabela.columns().every( function () {
-        var that = this;
+    //     tabela.columns().every( function () {
+    //     var that = this;
  
-        $( 'input', this.footer() ).on( 'keyup change', function () {
-            if ( that.search() !== this.value ) {
-                that
-                    .search( this.value )
-                    .draw();
-            }
-        } );
-    } );
+    //     $( 'input', this.footer() ).on( 'keyup change', function () {
+    //         if ( that.search() !== this.value ) {
+    //             that
+    //                 .search( this.value )
+    //                 .draw();
+    //         }
+    //     } );
+    // } );
 
         if ($('#tabela').length) {
             new $.fn.dataTable.FixedHeader( tabela );
