@@ -150,7 +150,7 @@
             <td>{{$o->ocena}}</td>
             <td>
                 @if($o->zaposleni)
-                {{$o->zaposleni->imePrezime()}}
+                <a href="{{route('zaposleni.detalj', $o->zaposleni->id)}}">{{$o->zaposleni->imePrezime()}}</a>
                 @endif
             </td>
             <td>
