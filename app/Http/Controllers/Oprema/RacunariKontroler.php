@@ -60,8 +60,12 @@ class RacunariKontroler extends Kontroler
 
     public function getLista()
     {   
+        //Zbog polja u pretrazi su dodati dobavljaci treba ga ukloniti kada se napravi filter
         $dobavljaci = Dobavljac::all();
-        return view('oprema.racunari')->with(compact('dobavljaci'));
+        //Dodajem i kolekciju uredjaja dok se ne rese problemi sa performansama kada AJAX punitabelu
+        $uredjaj = Racunar::with('kancelarija', 'zaposleni', 'zaposleni.uprava', 'nabavkaStavka')
+                    ->get();
+        return view('oprema.racunari')->with(compact('dobavljaci', 'uredjaj'));
     }
 
     public function getListaIkt()

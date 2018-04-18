@@ -133,6 +133,47 @@
         <th style="width: 7%;text-align:right">
             <i class="fa fa-cogs"></i>&emsp;Akcije</th>
     </thead>
+    <tbody>
+        @foreach ($uredjaj as $o)
+        <tr>
+            <td>{{$o->id}}</td>
+            <td>
+                <strong>{{$o->ime}}</strong>
+            </td>
+            <td>{{$o->inventarski_broj}}</td>
+            <td>{{$o->erc_broj}}</td>
+            <td> 
+                @if($o->kancelarija)
+                {{$o->kancelarija->sviPodaci()}}
+                @endif
+            </td>
+            <td>{{$o->ocena}}</td>
+            <td>
+                @if($o->zaposleni)
+                {{$o->zaposleni->imePrezime()}}
+                @endif
+            </td>
+            <td>
+                @if($o->zaposleni)
+                @if($o->zaposleni->uprava)
+                <em>{{$o->zaposleni->uprava->naziv}}</em>
+                @endif
+                @endif
+            </td>
+            <td>
+                <small>{{$o->napomena}}</small>
+            </td>
+            <td style="text-align:right; vertical-align: middle; line-height: normal;">
+                <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('racunari.oprema.detalj', $o->id)}}">
+                    <i class="fa fa-eye"></i>
+                </a>
+                <a class="btn btn-info btn-sm" id="dugmeIzmena" href="{{route('racunari.oprema.izmena.get', $o->id)}}">
+                    <i class="fa fa-pencil"></i>
+                </a>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
 {{--     <tfoot>
                 <th>id</th>
                 <th>Ime računara (AD)</th>
@@ -165,22 +206,66 @@ $( document ).ready(function() {
 
         var tabela = $('#tabela').DataTable({
 
-            processing: true,
-            serverSide: true,
-            deferRender: true,
-            ajax: '{!! route('racunari.ajax') !!}',
-            columns: [
-            {data: 'id', name: 'id'},
-            {data: 'ime', name: 'ime'},
-            {data: 'inventarski_broj', name: 'inventarski_broj'},
-            {data: 'erc_broj', name: 'erc_broj'},
-            {data: 'kancelarija.naziv', name: 'kancelarija.naziv'},
-            {data: 'ocena', name: 'ocena'},
-            {data: 'zaposleni.naziv', name: 'zaposleni.naziv'},
-            {data: 'zaposleni.uprava', name: 'zaposleni.uprava'},
-            {data: 'napomena', name: 'napomena'},
-            {data: 'akcije', name: 'akcije', orderable: false, searchable: false},
-        ],
+            dom: 'Bflrtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'A4',
+                    customize: function (doc) {
+                        doc.content[1].table.widths = [
+                            "10%",
+                            "15%",
+                            "15%",
+                            "15%",
+                            "15%",
+                            "15%",
+                            "15%",
+                            "15%",
+                            "15%"
+                        ];
+                    },
+                    exportOptions: {
+                        columns: [
+                            1,
+                            2,
+                            3,
+                            4,
+                            5,
+                            6,
+                            7
+                        ]
+                    }
+                }
+
+            ],
+        columnDefs: [
+                {
+                    orderable: false,
+                    searchable: false,
+                    "targets": -1
+                }
+            ],
+
+        //     processing: true,
+        //     serverSide: true,
+        //     deferRender: true,
+        //     ajax: '{ route('racunari.ajax') !!}',
+        //     columns: [
+        //     {data: 'id', name: 'id'},
+        //     {data: 'ime', name: 'ime'},
+        //     {data: 'inventarski_broj', name: 'inventarski_broj'},
+        //     {data: 'erc_broj', name: 'erc_broj'},
+        //     {data: 'kancelarija.naziv', name: 'kancelarija.naziv'},
+        //     {data: 'ocena', name: 'ocena'},
+        //     {data: 'zaposleni.naziv', name: 'zaposleni.naziv'},
+        //     {data: 'zaposleni.uprava', name: 'zaposleni.uprava'},
+        //     {data: 'napomena', name: 'napomena'},
+        //     {data: 'akcije', name: 'akcije', orderable: false, searchable: false},
+        // ],
         language: {
         search: "Pronađi u tabeli",
             paginate: {
