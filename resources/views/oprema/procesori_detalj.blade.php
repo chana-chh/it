@@ -171,7 +171,7 @@
 
 <div class="row well" style="margin-right: 1px; margin-left: 1px">
     <div class="col-md-12">
-<h3>Broj procesora ovog modela: <a href="{{route('procesori.modeli.uredjaji', $uredjaj->id) }}" title="Pregled svih uređaja ovog modela procesora"> {{$brojno_stanje}} </a></h3>
+<h3>Broj procesora ovog modela: <a href="{{route('procesori.modeli.uredjaji', $uredjaj->procesorModel->id) }}" title="Pregled svih uređaja ovog modela procesora"> {{$brojno_stanje}} </a></h3>
 </div>
 </div>
 
