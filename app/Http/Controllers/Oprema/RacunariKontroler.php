@@ -317,7 +317,7 @@ class RacunariKontroler extends Kontroler
 
         $uredjaj = Racunar::find($id);
         $aplikacije = $uredjaj->aplikacije;
-        $sve_aplikacije = Aplikacija::all();
+        $sve_aplikacije = Aplikacija::orderBy('naziv')->get();
 
         return view('oprema.racunari_aplikacije')->with(compact('aplikacije', 'uredjaj', 'sve_aplikacije'));
     }
