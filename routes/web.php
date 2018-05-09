@@ -560,7 +560,6 @@ Route::post('mrezni/recikliranje/lista', 'Oprema\MrezniUredjajiKontroler@postRec
 Route::post('mrezni/recikliranje/{id_reciklaze}', 'Oprema\MrezniUredjajiKontroler@postRecikliraj')->name('mrezni.oprema.recikliranje');
 
 //Racunari
-Route::get('racunari', 'Oprema\RacunariKontroler@getLista')->name('racunari.oprema');
 Route::get('racunari/pretraga', 'Oprema\RacunariKontroler@getListaPretraga')->name('racunari.pretraga');
 Route::post('racunari/pretraga', 'Oprema\RacunariKontroler@postListaPretraga')->name('racunari.pretraga.post');
 Route::get('racunari/ikt', 'Oprema\RacunariKontroler@getListaIkt')->name('racunari.oprema.ikt');
@@ -574,6 +573,7 @@ Route::get('racunari/otpis/{id}', 'Oprema\RacunariKontroler@getOtpis')->name('ra
 Route::post('racunari/otpis', 'Oprema\RacunariKontroler@postOtpis')->name('racunari.oprema.otpis.post');
 Route::get('racunari/izmena/{id}', 'Oprema\RacunariKontroler@getIzmena')->name('racunari.oprema.izmena.get');
 Route::post('racunari/izmena/{id}', 'Oprema\RacunariKontroler@postIzmena')->name('racunari.oprema.izmena.post');
+Route::get('racunari/lista/{paginacija?}/{sortiraj_nacin?}/{sortiraj_kolona?}', 'Oprema\RacunariKontroler@getLista')->name('racunari.oprema');
 //Racunari - aplikacije
 Route::get('racunari/aplikacije/{id}', 'Oprema\RacunariKontroler@getAplikacije')->name('racunari.oprema.aplikacije');
 Route::post('racunari/aplikacije/{id}', 'Oprema\RacunariKontroler@postAplikacije')->name('racunari.oprema.aplikacije.post');

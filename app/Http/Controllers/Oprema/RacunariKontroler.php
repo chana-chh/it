@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use Redirect;
+use DB;
 use App\Http\Controllers\Kontroler;
 use Yajra\Datatables\Datatables;
 use Carbon\Carbon;
@@ -36,6 +37,12 @@ use App\Modeli\Skener;
 use App\Modeli\SkenerModel;
 use App\Modeli\Greska;
 use App\Modeli\Aplikacija;
+use App\Modeli\Sprat;
+use App\Modeli\Uprava;
+use App\Modeli\Lokacija;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 
 use App\Modeli\Dobavljac;
 
@@ -57,15 +64,62 @@ class RacunariKontroler extends Kontroler
             'getDetalj',
             'getAjax']);
     }
+    public function dajKolekciju($kobaja = []){
 
-    public function getLista()
+        $kolekcija = DB::table('racunari')
+        ->leftJoin('operativni_sistemi','racunari.os_id', '=', 'operativni_sistemi.id')
+        ->leftJoin('s_kancelarije','racunari.kancelarija_id', '=', 's_kancelarije.id')
+        ->leftJoin('s_spratovi','s_kancelarije.sprat_id', '=', 's_spratovi.id')
+        ->leftJoin('s_lokacije','s_kancelarije.lokacija_id', '=', 's_lokacije.id')
+        ->leftJoin('zaposleni','racunari.zaposleni_id', '=', 'zaposleni.id')
+        ->leftJoin('s_uprave','zaposleni.uprava_id', '=', 's_uprave.id')
+        ->select(DB::raw('racunari.ime as ime_racunara,
+                        racunari.id as id,
+                        racunari.erc_broj as erc_broj,
+                        racunari.inventarski_broj as inventarski_broj,
+                        racunari.os_id as os_id,
+                        racunari.napomena as napomena,
+                        operativni_sistemi.naziv as operativni,
+                        s_kancelarije.naziv as broj_kancelarije,
+                        s_kancelarije.sprat_id,
+                        s_spratovi.naziv as sprat,
+                        s_lokacije.naziv as lokacija,
+                        zaposleni.ime as ime_zaposlenog,
+                        zaposleni.prezime as prezime_zaposlenog,
+                        s_uprave.naziv as uprava
+                        '))
+        ->where($kobaja)
+        ->get();
+
+        $kolekcija->map(function ($r) {
+            $o = Racunar::findOrFail($r->id)->ocena;
+        $r->ocena = $o;
+        return $r;
+        });
+
+        return $kolekcija;
+    }
+    public function getLista($paginacija = 10, $sortiraj_nacin = 'desc', $sortiraj_kolona = 'id')
     {   
-        //Zbog polja u pretrazi su dodati dobavljaci treba ga ukloniti kada se napravi filter
-        $dobavljaci = Dobavljac::all();
-        //Dodajem i kolekciju uredjaja dok se ne rese problemi sa performansama kada AJAX punitabelu
-        $uredjaj = Racunar::with('kancelarija', 'zaposleni', 'zaposleni.uprava', 'nabavkaStavka')
-                    ->get();
-        return view('oprema.racunari')->with(compact('dobavljaci', 'uredjaj'));
+
+        $spratovi = Sprat::all();
+        $uprave = Uprava::all();
+        $lokacije = Lokacija::all();
+        $os = OperativniSistem::all();
+
+        $uredjaji_x = $this->dajKolekciju();        
+
+        if ($sortiraj_nacin == 'desc') {
+            $uredjaji_sortirani = $uredjaji_x->sortByDesc($sortiraj_kolona);
+        }elseif($sortiraj_nacin == 'asc'){
+            $uredjaji_sortirani = $uredjaji_x->sortBy($sortiraj_kolona);
+        }
+
+        $uredjaji = $this->paginacijaN($uredjaji_sortirani, $poStrani = $paginacija, $page = null, $options = []);
+
+        $broj_elemenata = Racunar::count();
+
+        return view('oprema.racunari')->with(compact('dobavljaci', 'uredjaji', 'spratovi', 'uprave', 'os', 'paginacija', 'broj_elemenata', 'lokacije'));
     }
 
     public function getListaIkt()
@@ -94,17 +148,64 @@ class RacunariKontroler extends Kontroler
         return redirect()->route('racunari.pretraga');
     }
 
+    public function paginacijaN($kolekcija, $poStrani = 15, $page = null)
+    {
+    $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+    $kolekcija = $kolekcija instanceof Collection ? $kolekcija : Collection::make($kolekcija);
+    return new LengthAwarePaginator($kolekcija->forPage($page, $poStrani), $kolekcija->count(), $poStrani, $page, [
+        'path' => Paginator::resolveCurrentPath(),
+        'pageName' => 'page',
+        ]);
+    }
+
     public function getListaPretraga(Request $request)
     {
         $parametri = $request->session()->get('parametri_za_filter_racunari', null);
         $racunari_filtrirani = $this->naprednaPretraga($parametri);
-        $dobavljaci = Dobavljac::all();
         return view('oprema.racunari_pretraga')->with(compact('racunari_filtrirani', 'dobavljaci'));
     }
 
     public function naprednaPretraga($parametri){
-        $racunari = Racunar::with('kancelarija', 'zaposleni', 'zaposleni.uprava')->get();
-        $operator = $parametri['operator_ocena'] ? $parametri['operator_ocena'] : '==';
+
+        $kobaja = [];
+        if($parametri['napomena']) {
+            $kobaja[] = ['napomena', 'like', '%'.$parametri['napomena'].'%'];
+        }
+        if($parametri['inventarski_broj']) {
+            $kobaja[] = ['inventarski_broj', 'like', '%'.$parametri['inventarski_broj'].'%'];
+        }
+        if($parametri['ime']) {
+            $kobaja[] = ['racunari.ime', 'like', '%'.$parametri['ime'].'%'];
+        }
+        if($parametri['erc_broj']) {
+            $kobaja[] = ['erc_broj', 'like', '%'.$parametri['erc_broj'].'%'];
+        }
+        if($parametri['os_id']) {
+            $kobaja[] = ['os_id', '=', $parametri['os_id']];
+        }
+        if($parametri['ime_zaposlenog']) {
+            $kobaja[] = ['zaposleni.ime', 'like', '%'.$parametri['ime_zaposlenog'].'%'];
+        } 
+        if($parametri['prezime']) {
+            $kobaja[] = ['zaposleni.prezime', 'like', '%'.$parametri['prezime'].'%'];
+        }
+        if($parametri['uprava_id']) {
+            $kobaja[] = ['zaposleni.uprava_id', '=', $parametri['uprava_id']];
+        }
+        if($parametri['sprat_id']) {
+            $kobaja[] = ['s_kancelarije.sprat_id', '=', $parametri['sprat_id']];
+        }
+        if($parametri['broj_k']) {
+            $kobaja[] = ['s_kancelarije.naziv', 'like', '%'.$parametri['broj_k'].'%'];
+        }
+        if($parametri['lokacija_id']) {
+            $kobaja[] = ['s_kancelarije.lokacija_id', '=', $parametri['lokacija_id']];
+        }
+
+
+        $racunari = $this->dajKolekciju($kobaja);
+
+        $operator = $parametri['operator_ocena'] ? $parametri['operator_ocena'] : '>';
         $filtrirano = $racunari->filter(function ($racunar) use($parametri, $operator){
         
         switch ($operator) {
