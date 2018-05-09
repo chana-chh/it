@@ -52,7 +52,7 @@ class Stampac extends Model
 
     public function scopeNeraspordjeni()
     {
-        return $this->doesntHave('racunar');
+        return $this->doesntHave('racunar')->doesntHave('kancelarija');
     }
 
     public function tip()

@@ -131,7 +131,8 @@
         jQuery(window).on('resize', resizeChosen);
 
         var chsn = $('.chosen-select').chosen({
-            allow_single_deselect: true
+            allow_single_deselect: true,
+            search_contains: true
         });
 
         function resizeChosen() {

@@ -135,8 +135,8 @@
                         <select name="vga_id" id="vga_id" class="chosen-select form-control" data-placeholder="vga ..." required>
                             <option value=""></option>
                             @foreach($vga_uredjaji as $p)
-                            <option value="{{ $p->id }}" {{ old( 'vga_id')== $p->id ? ' selected' : '' }}> sn: {{ $p->serijski_broj }}, {{ $p->grafickiAdapterModel->proizvodjac->naziv }}, 
-                                {{ $p->grafickiAdapterModel->kapacitet_memorije }} MB
+                            <option value="{{ $p->id }}" {{ old( 'vga_id')== $p->id ? ' selected' : '' }}> sn: {{ $p->serijski_broj }}, {{ $p->grafickiAdapterModel->proizvodjac->naziv }}, {{ $p->grafickiAdapterModel->naziv }}({{ $p->grafickiAdapterModel->kapacitet_memorije }} MB)
+                                
                             </option>
                             @endforeach
                         </select>
@@ -177,7 +177,7 @@
                             required>
                             <option value=""></option>
                             @foreach($modeli as $m)
-                            <option value="{{ $m->id }}" {{ old( 'graficki_adapter_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }}, {{ $m->cip }} ({{ $m->tipMemorije->naziv }})
+                            <option value="{{ $m->id }}" {{ old( 'graficki_adapter_model_id')== $m->id ? ' selected' : '' }}> {{ $m->proizvodjac->naziv }}, [{{$m->naziv}}] - {{ $m->cip }} ({{ $m->tipMemorije->naziv }})
                             </option>
                             @endforeach
                         </select>

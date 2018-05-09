@@ -418,7 +418,7 @@ class RacunariKontroler extends Kontroler
 
         $uredjaj = Racunar::find($id);
         $aplikacije = $uredjaj->aplikacije;
-        $sve_aplikacije = Aplikacija::all();
+        $sve_aplikacije = Aplikacija::orderBy('naziv')->get();
 
         return view('oprema.racunari_aplikacije')->with(compact('aplikacije', 'uredjaj', 'sve_aplikacije'));
     }
@@ -1122,7 +1122,8 @@ class RacunariKontroler extends Kontroler
     {
         $uredjaj = Racunar::find($id);
         $modeli = StampacModel::with('proizvodjac')->get()->sortBy('proizvodjac.naziv');
-        $stampaci_uredjaji = Stampac::neraspordjeni()->get();
+        $stampaci_uredjaji = Stampac::neraspordjeni()->where('mrezni', 0)->get();
+        //dd($stampaci_uredjaji);
         $otpremnice = Otpremnica::with(array('stavke' => function($query){
             $query->where('vrsta_uredjaja_id', '=', 3);
         } ))->get();
@@ -1201,7 +1202,7 @@ class RacunariKontroler extends Kontroler
 
         if ($racunar->stampaci->count() > 1) {
             $greska = new Greska();
-            $greska->greska = "U računar " . $racunar->ime . " je " . Auth::user()->name . " dodao više od jednog skenera! Dana: " . Carbon::now();
+            $greska->greska = "U računar " . $racunar->ime . " je " . Auth::user()->name . " dodao više od jednog štampača! Dana: " . Carbon::now();
             $greska->save();
             Session::flash('upozorenje', 'Štampač je uspešno dodato, ali nije jedino na ovom računaru!');
             return Redirect::back();
@@ -1222,7 +1223,7 @@ class RacunariKontroler extends Kontroler
 
         if ($racunar->monitori->count() > 1) {
             $greska = new Greska();
-            $greska->greska = "U računar " . $racunar->ime . " je " . Auth::user()->name . " dodao više od jednog skenera! Dana: " . Carbon::now();
+            $greska->greska = "U računar " . $racunar->ime . " je " . Auth::user()->name . " dodao više od jednog štampača! Dana: " . Carbon::now();
             $greska->save();
             Session::flash('upozorenje', 'Štampač je uspešno dodato, ali nije jedino u ovom računaru!');
             return Redirect::back();

@@ -164,13 +164,19 @@ class ZaposleniKontroler extends Kontroler
     public function postBrisanje(Request $request)
     {
         $zaposleni = Zaposleni::find($request->idBrisanje);
+        if ($zaposleni->racunar()->exists()) {
+            Session::flash('greska', 'Zaposleni poseduje računar/e i nije ga moguće obrisati!');
+            return Redirect::back();
+        }else{
         $odgovor = $zaposleni->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Zaposleni je uspešno obrisan!');
+             return redirect()->route('zaposleni');
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom brisanja zaposlenog. Pokušajte ponovo, kasnije!');
-        }
-        return redirect()->route('zaposleni');
+            return Redirect::back();
+        }}
+       
     }
 
 }
