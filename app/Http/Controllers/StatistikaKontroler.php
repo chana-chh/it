@@ -49,7 +49,7 @@ class StatistikaKontroler extends Kontroler
     {
         $ocene_tabela = Racunar::get()->sortBy('ocena')->groupBy('ocena');
         $za_otpis = Racunar::get()->where('ocena', '<', 8)->count();
-
+        dd($ocene_tabela);
         foreach ($ocene_tabela as $o => $grupa) {
             $labele[] = $o;
             $broj[] = $grupa->count();
