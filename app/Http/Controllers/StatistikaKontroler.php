@@ -40,7 +40,9 @@ class StatistikaKontroler extends Kontroler
                 ->groupBy('racunari.os_id')
                 ->get();
 
-        return view('statistika.statistika_os')->with(compact('os_labele', 'os_broj', 'os_tabela'));
+        $broj_elemenata = Racunar::count();
+
+        return view('statistika.statistika_os')->with(compact('os_labele', 'os_broj', 'os_tabela', 'broj_elemenata'));
     }
 
     public function getOcene()
@@ -52,7 +54,10 @@ class StatistikaKontroler extends Kontroler
             $labele[] = $o;
             $broj[] = $grupa->count();
         }
-        return view('statistika.statistika_ocene')->with(compact('ocene_tabela', 'broj', 'labele', 'za_otpis'));
+
+        $broj_elemenata = Racunar::count();
+        
+        return view('statistika.statistika_ocene')->with(compact('ocene_tabela', 'broj', 'labele', 'za_otpis', 'broj_elemenata'));
     }
 
 }

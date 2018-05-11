@@ -31,12 +31,14 @@
 <canvas id="grafikOS" width="600" height="300"></canvas>
 </div>
 <div class="col-md-4" style="padding: 30px">
+    <h4>Trenutno u bazu pohranjeno {{$broj_elemenata}} računara</h4>
+    <hr>
 <table class="table table-striped tabelaOS" name="tabelaOS" id="tabelaOS">
                 <thead>
                             <th style="width: 10%;">#</th>
-                            <th style="width: 60%;">Operativni sistem</th>
+                            <th style="width: 30%;">Operativni sistem</th>
                             <th style="width: 30%;">Broj instaliranih OS</th>
-                            
+                            <th style="width: 30%;"> % </th>
                 </thead>
                 <tbody >
                 @foreach ($os_tabela as $ot)
@@ -44,6 +46,7 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$ot->naziv}}</td>
                                     <td>{{$ot->broj}}</td>
+                                    <td>{{round($ot->broj*100/$broj_elemenata, 2)}}</td>
                         </tr>
                 @endforeach
                 </tbody>
