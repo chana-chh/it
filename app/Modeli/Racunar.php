@@ -149,7 +149,7 @@ class Racunar extends Model
             foreach ($this->procesori as $procesor) {
             $procesor_zbir += $procesor->procesorModel->ocena;
         }
-            $procesor_ocena = ceil($procesor_zbir / $this->procesori->count());
+            $procesor_ocena = $procesor_zbir / $this->procesori->count();
         }else{
             $kompletan = false;
         }
@@ -157,7 +157,7 @@ class Racunar extends Model
         foreach ($this->memorije as $memorija) {
            $memorija_zbir += $memorija->memorijaModel->ocena;
         }
-        $memorija_ocena = ceil($memorija_zbir / $this->memorije->count());
+        $memorija_ocena = $memorija_zbir / $this->memorije->count();
         }else{
             $kompletan = false;
         }
@@ -165,7 +165,7 @@ class Racunar extends Model
         foreach ($this->hddovi as $hdd) {
            $hdd_zbir += $hdd->hddModel->ocena;
         }
-        $hdd_ocena = ceil($hdd_zbir / $this->hddovi->count());
+        $hdd_ocena = $hdd_zbir / $this->hddovi->count();
         $kompletan = true;
         }else{
             $kompletan = false;
@@ -178,7 +178,7 @@ class Racunar extends Model
         }
         
 
-        return $s;
+        return (string) $s;
     }
 
     public function garancija()
