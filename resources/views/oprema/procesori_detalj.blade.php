@@ -70,7 +70,10 @@
 
             <tr>
                 <th style="width: 20%;">Lokacija:</th>
-                <td style="width: 80%;">@if($uredjaj->racunar)<a href="{{route('kancelarije.detalj.get', $uredjaj->racunar->kancelarija->id)}}">{{$uredjaj->racunar->kancelarija->lokacija->naziv}}, kancelarija {{$uredjaj->racunar->kancelarija->naziv}}</a>@endif
+                <td style="width: 80%;">@if($uredjaj->racunar)
+                                        @if($uredjaj->racunar->kancelarija)
+                                        <a href="{{route('kancelarije.detalj.get', $uredjaj->racunar->kancelarija->id)}}">{{$uredjaj->racunar->kancelarija->lokacija->naziv}}, kancelarija {{$uredjaj->racunar->kancelarija->naziv}}</a>@endif
+                                        @endif
                 </td>
             </tr>
         </tbody>
@@ -81,9 +84,10 @@
 <div class="row">
     <div class="col-md-12">
 @if ($uredjaj->racunar)
+@if($uredjaj->racunar->zaposleni)
 <h4>Ovaj računar koristi: <a href="{{ route('zaposleni.detalj', $uredjaj->racunar->zaposleni->id) }}">{{$uredjaj->racunar->zaposleni->imePrezime()}}</a></h4>
 @endif
-
+@endif
 </div>
 </div>
     
@@ -171,7 +175,7 @@
 
 <div class="row well" style="margin-right: 1px; margin-left: 1px">
     <div class="col-md-12">
-<h3>Broj procesora ovog modela: <a href="{{route('procesori.modeli.uredjaji', $uredjaj->id) }}" title="Pregled svih uređaja ovog modela procesora"> {{$brojno_stanje}} </a></h3>
+<h3>Broj procesora ovog modela: <a href="{{route('procesori.modeli.uredjaji', $uredjaj->procesorModel->id) }}" title="Pregled svih uređaja ovog modela procesora"> {{$brojno_stanje}} </a></h3>
 </div>
 </div>
 

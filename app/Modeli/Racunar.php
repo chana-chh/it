@@ -178,7 +178,7 @@ class Racunar extends Model
         }
         
 
-        return $s;
+        return (string) $s;
     }
 
     public function garancija()

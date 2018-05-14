@@ -84,7 +84,7 @@
                 <option value=""></option>
                 @foreach($sve_aplikacije as $app)
                 <option value="{{ $app->id }}" {{ old( 'aplikacija_id')==$app->id ? ' selected' : '' }}>
-                    <strong>{{ $app->naziv }}</strong>{{ $app->proizvodjac->naziv }}
+                   {{ $app->naziv }} - {{ $app->proizvodjac->naziv }}
                 </option>
                 @endforeach
             </select>
@@ -161,7 +161,7 @@ $( document ).ready(function() {
     resizeChosen();
     jQuery(window).on('resize', resizeChosen);
 
-    $('.chosen-select').chosen({allow_single_deselect: true});
+    $('.chosen-select').chosen({allow_single_deselect: true, search_contains: true});
 
     function resizeChosen() {
    $(".chosen-container").each(function() {

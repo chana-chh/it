@@ -24,16 +24,17 @@
 
 <div class="row">
     <div class="col-md-12">
-<table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
-    <thead>
+<table id="tabela" class="table table-striped display" cellspacing="0" width="100%" style="table-layout: fixed; font-size: 0.9375em;">
+        <thead>
         <th style="width: 5%;">#</th>
-        <th style="width: 10%;">Ime računara (AD)</th>
-        <th style="width: 10%;">Inventarski broj</th>
+        <th style="width: 10%;">Ime (AD)</th>
+        <th style="width: 8%;">Inventarski broj</th>
         <th style="width: 5%;">IKT broj</th>
-        <th style="width: 20%;">Kancelarija</th>
+        <th style="width: 17%;">Kancelarija</th>
         <th style="width: 5%;">Ocena</th>
-        <th style="width: 23%;">Korisnik računara</th>
+        <th style="width: 17%;">Korisnik računara</th>
         <th style="width: 15%;">Uprava</th>
+        <th style="width: 11%;">Napomena</th>
         <th style="width: 7%;text-align:right">
             <i class="fa fa-cogs"></i>&emsp;Akcije</th>
     </thead>
@@ -42,27 +43,28 @@
         <tr>
             <td>{{$o->id}}</td>
             <td>
-                <strong>{{$o->ime}}</strong>
+                <strong>{{$o->ime_racunara}} @if($o->operativni)<small><em class="text-success">({{$o->operativni}})</em></small>@endif</strong>
             </td>
             <td>{{$o->inventarski_broj}}</td>
             <td>{{$o->erc_broj}}</td>
             <td> 
-                @if($o->kancelarija)
-                {{$o->kancelarija->sviPodaci()}}
+                @if($o->broj_kancelarije)
+                {{$o->broj_kancelarije}}, {{$o->sprat}} - {{$o->lokacija}}
                 @endif
             </td>
             <td>{{$o->ocena}}</td>
             <td>
-                @if($o->zaposleni)
-                {{$o->zaposleni->imePrezime()}}
+                @if($o->ime_zaposlenog)
+                {{$o->ime_zaposlenog}} {{$o->prezime_zaposlenog}}
                 @endif
             </td>
             <td>
-                @if($o->zaposleni)
-                @if($o->zaposleni->uprava)
-                <em>{{$o->zaposleni->uprava->naziv}}</em>
+                @if($o->uprava)
+                <em>{{$o->uprava}}</em>
                 @endif
-                @endif
+            </td>
+            <td>
+                <small>{{$o->napomena}}</small>
             </td>
             <td style="text-align:right; vertical-align: middle; line-height: normal;">
                 <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('racunari.oprema.detalj', $o->id)}}">
@@ -97,14 +99,13 @@ $( document ).ready(function() {
                     customize: function (doc) {
                         doc.content[1].table.widths = [
                             "10%",
-                            "15%",
-                            "15%",
-                            "15%",
-                            "15%",
-                            "15%",
-                            "15%",
-                            "15%",
-                            "15%"
+                            "12%",
+                            "14%",
+                            "12%",
+                            "10%",
+                            "14%",
+                            "14%",
+                            "14%"
                         ];
                     },
                     exportOptions: {

@@ -35,6 +35,10 @@
                         value="{{ $kancelarija->id }}">
                     <i class="fa fa-pencil"></i>
             </button>
+            <a class="btn btn-primary" href="{{route('kancelarije.tlocrt.get', $kancelarija->id)}}"
+               title="Prikaz tlocrta sa lokacijom">
+                <i class="fa fa-map-signs"></i>
+            </a>
             <button id="idBrisanjeKancelarije" class="btn btn-warning"
                     title="Brisanje kancelarije"
                     data-toggle="modal" data-target="#brisanjeModal"

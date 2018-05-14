@@ -166,6 +166,14 @@ class KancelarijeKontroler extends Kontroler
         return Redirect::back();
     }
 
+    public function getTlocrt($id)
+    {
+
+        $kancelarija = Kancelarija::find($id);
+
+        return view('sifarnici.kancelarije_slika')->with(compact('kancelarija'));
+    }
+
     function paginate($kolekcija, $poStrani)
     {
         if (is_array($kolekcija)) {

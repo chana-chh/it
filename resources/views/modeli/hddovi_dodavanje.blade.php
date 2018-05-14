@@ -190,7 +190,8 @@ $(document).ready(function () {
     jQuery(window).on('resize', resizeChosen);
 
     $('.chosen-select').chosen({
-        allow_single_deselect: true
+        allow_single_deselect: true,
+        search_contains: true
     });
 
     function resizeChosen() {

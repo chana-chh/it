@@ -31,19 +31,23 @@
 <canvas id="grafikOcene" width="600" height="300"></canvas>
 </div>
 <div class="col-md-4" style="padding: 30px;">
+    <h4>Trenutno u bazu pohranjeno {{$broj_elemenata}} računara</h4>
+    <hr>
 <table class="table table-striped tabelaOcene" name="tabelaOcene" id="tabelaOcene">
                 <thead>
-                            <th style="width: 20%;">#</th>
-                            <th style="width: 30%;">Ocena</th>
-                            <th style="width: 45%;">Broj računara sa ocenom</th>
+                            <th style="width: 25%;">#</th>
+                            <th style="width: 25%;">Ocena</th>
+                            <th style="width: 25%;">Broj računara sa ocenom</th>
+                            <th style="width: 25%;"> % </th>
                             
                 </thead>
-                <tbody style="font-size: 2rem">
+                <tbody>
                 @foreach ($ocene_tabela as $o => $grupa)
                         <tr>
                                     <td>{{$loop->iteration}}.</td>
                                     <td class="{{ $o < 8 ? ' text-danger' : ' text-primary' }}"><strong>{{$o}}</strong></td>
                                     <td>{{$grupa->count()}}</td>
+                                    <td>{{round($grupa->count()*100/$broj_elemenata, 2)}}</td>
                         </tr>
                 @endforeach
                 </tbody>
@@ -53,7 +57,7 @@
         <p class="text-warning">
             * Potrebno je planirati zamenu ili unapređenje svih računara čija je ocena manja od 8.
         </p>
-<h3>Ukupno: {{$za_otpis}}</h3>
+<h3>Ukupno za otpis: {{$za_otpis}}</h3>
 </div>
 </div>
 
