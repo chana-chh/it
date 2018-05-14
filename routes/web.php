@@ -4,6 +4,8 @@ Route::get('/', 'PocetnaKontroler@pocetna')->name('pocetna');
 Route::post('greska/brisanje', 'PocetnaKontroler@postBrisanje')->name('greska.brisanje');
 
 Route::get('imenik', 'PretragaKontroler@getPretraga')->name('imenik');
+Route::get('napredna', 'PretragaKontroler@getNaprednaPretraga')->name('napredna.get');
+Route::post('napredna', 'PretragaKontroler@postNaprednaPretraga')->name('napredna.post');
 Route::get('kvar', 'PretragaKontroler@getPrijavaKvara')->name('kvar');
 Route::post('kvar', 'PretragaKontroler@postPrijavaKvara')->name('kvar.post');
 Route::get('status/{id}', 'PretragaKontroler@getStatus')->name('status');
@@ -17,7 +19,6 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 //Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 //Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 //Route::post('/register', 'Auth\RegisterController@register');
-
 // STATISTIKA
 Route::get('statistika', 'StatistikaKontroler@getLista')->name('statistika');
 Route::get('statistika/os', 'StatistikaKontroler@getOs')->name('statistika.os');

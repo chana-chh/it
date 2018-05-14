@@ -27,17 +27,21 @@
     <div class="col-md-8">
         <h1 class="text-center" style="margin-bottom: 20px;">Pretraživanje imenika</h1>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <button id="dugmeZaposleni" class="btn btn-primary btn-lg btn-block" style="margin-bottom: 15px">
-                    <i class="fa fa-users"></i>&emsp;
-                    Zaposleni
+                    <i class="fa fa-users"></i>&emsp;Zaposleni
                 </button>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <button id="dugmeKancelarije" class="btn btn-primary btn-lg btn-block" style="margin-bottom: 15px">
-                    <i class="fa fa-building"></i>&emsp;
-                    Kancelarije
+                    <i class="fa fa-building"></i>&emsp;Kancelarije
                 </button>
+            </div>
+            <div class="col-md-4">
+                <a id="dugmeNapredna" class="btn btn-primary btn-lg btn-block" style="margin-bottom: 15px;"
+                   href="{{ route('napredna.get') }}">
+                    <i class="fa fa-search"></i>&emsp;Napredna pretraga
+                </a>
             </div>
         </div>
         <div class="row">
@@ -59,7 +63,7 @@
     <div class="col-md-2 text-center">
         <a href="{{-- {{ route('kvar') }} --}}">
             <img alt="Kvar" src="{{url('/images/kvar.png')}}" style="height: 128px;" title="Obaveštenje:" class="kvarPopover"  style="cursor: pointer;"
-                data-content="Ova sekcija trenutno nije dostupna. Baza računara je trenutno u izradi.">
+                 data-content="Ova sekcija trenutno nije dostupna. Baza računara je trenutno u izradi.">
         </a>
         <a href="{{-- {{ route('kvar') }} --}}" title="Obaveštenje:" data-content="Ova sekcija trenutno nije dostupna. Baza računara je trenutno u izradi." class="btn btn-success kvarPopover" style="margin-top: 3rem; cursor: pointer;">Prijava/status kvara</a>
     </div>
@@ -100,40 +104,40 @@
                         Kancelarija: {{ $zaposleni->kancelarija->naziv }},
                         <small>
                             {{ $zaposleni->kancelarija->lokacija->naziv }},
-                            {{ $zaposleni->kancelarija->sprat->naziv }} 
+                            {{ $zaposleni->kancelarija->sprat->naziv }}
                             @if($zaposleni->kancelarija->napomena)
                             <span class="text-success">
-                            ({{ $zaposleni->kancelarija->napomena }})
+                                ({{ $zaposleni->kancelarija->napomena }})
                             </span>
                             @endif
                         </small>
 
-                    
-                    <ul style="list-style-type: none; margin-top: 1rem">
-                        @foreach($zaposleni->kancelarija->telefoni as $tel)
-                        <li><i class="fa fa-phone fa-fw text-success"></i>&emsp;{{ $tel->broj }}, <small> {{ $tel->vrsta }}</small></li>
-                        @endforeach
-                    </ul>
-                    @endif
-                    <ul style="list-style-type: none;">
-                        @foreach($zaposleni->mobilni as $mob)
-                        <li><i class="fa fa-mobile fa-fw text-danger"></i>&emsp;{{ $mob->broj }}</li>
-                        @endforeach
-                    </ul>
-                    <ul style="list-style-type: none;">
-                        @foreach($zaposleni->emailovi as $mail)
-                        <li>
-                            <i class="fa fa-envelope fa-fw text-info"></i>&emsp;
-                            <a href="mailto:{{ $mail->adresa }}">{{ $mail->adresa }}</a>
-                        </li>
-                        @endforeach
-                    </ul>
+
+                        <ul style="list-style-type: none; margin-top: 1rem">
+                            @foreach($zaposleni->kancelarija->telefoni as $tel)
+                            <li><i class="fa fa-phone fa-fw text-success"></i>&emsp;{{ $tel->broj }}, <small> {{ $tel->vrsta }}</small></li>
+                            @endforeach
+                        </ul>
+                        @endif
+                        <ul style="list-style-type: none;">
+                            @foreach($zaposleni->mobilni as $mob)
+                            <li><i class="fa fa-mobile fa-fw text-danger"></i>&emsp;{{ $mob->broj }}</li>
+                            @endforeach
+                        </ul>
+                        <ul style="list-style-type: none;">
+                            @foreach($zaposleni->emailovi as $mail)
+                            <li>
+                                <i class="fa fa-envelope fa-fw text-info"></i>&emsp;
+                                <a href="mailto:{{ $mail->adresa }}">{{ $mail->adresa }}</a>
+                            </li>
+                            @endforeach
+                        </ul>
                     </h4>
                 </div>
                 <div class="col-md-4 text-right">
                     @if (!empty($zaposleni->src))
-                    <img id="{{ $zaposleni->id }}" src="{{asset('images/slike_zaposlenih/'.$zaposleni->src)}}" class="img-circle"  alt="Slika zaposlenog" 
-                    style="height:128px; margin-top: 18px;">
+                    <img id="{{ $zaposleni->id }}" src="{{asset('images/slike_zaposlenih/'.$zaposleni->src)}}" class="img-circle"  alt="Slika zaposlenog"
+                         style="height:128px; margin-top: 18px;">
                     @else
                     <img src="{{url('/images/korisnik_jedan.png')}}" alt="placeholder"
                          style="height:64px; margin-top: 9px;">
@@ -158,8 +162,8 @@
                 <div class="col-md-6">
                     <h2>
                         <span class="kancelarijaNazivBroj">
-                        {{ $kancelarija->naziv }}
-                        </span> , 
+                            {{ $kancelarija->naziv }}
+                        </span> ,
                         <small>
                             {{ $kancelarija->lokacija->naziv }},
                             {{ $kancelarija->sprat->naziv }}
@@ -184,14 +188,14 @@
                                     <th style="width: 50%;">
                                         @if(strlen($z->imePrezime())<24 )
                                         <h4 class="zaposleniPopover"  style="cursor: pointer; margin-bottom: 15px"
-                                                                data-title="{{ $z->imePrezime() }}"
-                                                                data-content="<img src='{{ $z->src ? asset('images/slike_zaposlenih/'.$z->src) : '' }}' class='img-rounded' style='height: 256px;'>"><i class="fa fa-user fa-fw text-success"></i>&emsp;{{ $z->imePrezime() }}</h4>
+                                            data-title="{{ $z->imePrezime() }}"
+                                            data-content="<img src='{{ $z->src ? asset('images/slike_zaposlenih/'.$z->src) : '' }}' class='img-rounded' style='height: 256px;'>"><i class="fa fa-user fa-fw text-success"></i>&emsp;{{ $z->imePrezime() }}</h4>
                                         @else
                                         <h5 class="zaposleniPopover"  style="cursor: pointer; margin-bottom: 15px"
-                                                                data-title="{{ $z->imePrezime() }}"
-                                                                data-content="<img src='{{ $z->src ? asset('images/slike_zaposlenih/'.$z->src) : '' }}' class='img-rounded' style='height: 256px;'>"><i class="fa fa-user fa-fw text-success"></i>&emsp;{{ $z->imePrezime() }}</h5>
+                                            data-title="{{ $z->imePrezime() }}"
+                                            data-content="<img src='{{ $z->src ? asset('images/slike_zaposlenih/'.$z->src) : '' }}' class='img-rounded' style='height: 256px;'>"><i class="fa fa-user fa-fw text-success"></i>&emsp;{{ $z->imePrezime() }}</h5>
                                         @endif
-                                                            </th>
+                                    </th>
                                     <td style="width: 50%;">  <ul style="list-style-type: none;">
                                             @foreach($z->mobilni as $m)
                                             <li>
@@ -232,7 +236,7 @@
 @section('skripte')
 <script>
     $(document).ready(function () {
-        
+
         $('.kvarPopover').popover({
             placement: 'left',
             trigger: 'hover'

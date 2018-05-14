@@ -7,6 +7,9 @@ use Session;
 use App\Modeli\Zaposleni;
 use App\Modeli\Kancelarija;
 use App\Modeli\Servis;
+use App\Modeli\Uprava;
+use App\Modeli\Lokacija;
+use DB;
 
 class PretragaKontroler extends Controller
 {
@@ -16,6 +19,88 @@ class PretragaKontroler extends Controller
         $zap = Zaposleni::with('uprava', 'mobilni', 'emailovi', 'kancelarija', 'kancelarija.telefoni', 'kancelarija.lokacija', 'kancelarija.sprat')->orderBy('ime', 'asc')->orderBy('prezime', 'asc')->get();
         $kanc = Kancelarija::with('lokacija', 'sprat', 'telefoni', 'zaposleni', 'zaposleni.uprava', 'zaposleni.mobilni', 'zaposleni.emailovi')->orderBy('naziv', 'asc')->get();
         return view('pretraga')->with(compact('zap', 'kanc'));
+    }
+
+    public function getNaprednaPretraga()
+    {
+        $zap = null;
+        $uprave = Uprava::all();
+        $lokacije = Lokacija::all();
+        $staro = null;
+
+        return view('napredna_pretraga')->with(compact('zap', 'uprave', 'lokacije', 'staro'));
+    }
+
+    public function postNaprednaPretraga(Request $request)
+    {
+        $where = [];
+
+        $prezime = $request->prezime;
+        $ime = $request->ime;
+        $uprava = $request->uprava;
+        $lokacija = $request->lokacija;
+        $email = $request->email;
+        $kancelarija = $request->kancelarija;
+
+        $staro = $request->all();
+
+        if ($prezime) {
+            $where[] = ['prezime', 'like', '%' . $prezime . '%'];
+        }
+        if ($ime) {
+            $where[] = ['ime', 'like', '%' . $ime . '%'];
+        }
+        if ($uprava) {
+            $where[] = ['zaposleni.uprava_id', '=', $uprava];
+        }
+        if ($lokacija) {
+            $where[] = ['s_kancelarije.lokacija_id', '=', $lokacija];
+        }
+        if ($email) {
+            $where[] = ['adrese_e_poste.adresa', 'like', '%' . $email . '%'];
+        }
+        if ($kancelarija) {
+            $where[] = ['s_kancelarije.naziv', 'like', '%' . $kancelarija . '%'];
+        }
+
+        $zap = DB::table('zaposleni')
+                ->leftJoin('s_uprave', 'zaposleni.uprava_id', '=', 's_uprave.id')
+                ->leftJoin('s_kancelarije', 'zaposleni.kancelarija_id', '=', 's_kancelarije.id')
+                ->leftJoin('s_spratovi', 's_kancelarije.sprat_id', '=', 's_spratovi.id')
+                ->leftJoin('s_lokacije', 's_kancelarije.lokacija_id', '=', 's_lokacije.id')
+                ->leftJoin('telefoni', function($join) {
+                    $join->on('telefoni.kancelarija_id', '=', 's_kancelarije.id');
+                })
+                ->leftJoin('mobilni', function($join) {
+                    $join->on('zaposleni.id', '=', 'mobilni.zaposleni_id');
+                })
+                ->leftJoin('adrese_e_poste', function($join) {
+                    $join->on('zaposleni.id', '=', 'adrese_e_poste.zaposleni_id');
+                })
+                ->select(DB::raw(
+                                'zaposleni.id as zaposleni_id,
+                                zaposleni.ime as ime_zaposlenog,
+                                zaposleni.prezime as prezime_zaposlenog,
+                                zaposleni.uprava_id,
+                                zaposleni.src as src,
+                                s_uprave.naziv as uprava,
+                                zaposleni.radno_mesto as radno_mesto_zaposlenog,
+                                s_kancelarije.naziv as kancelarija,
+                                s_kancelarije.napomena as kancelarija_napomena,
+                                s_spratovi.naziv as sprat,
+                                s_lokacije.naziv as lokacija,
+                                GROUP_CONCAT(DISTINCT adrese_e_poste.adresa SEPARATOR "#") as emailovi,
+                                GROUP_CONCAT(DISTINCT mobilni.broj SEPARATOR "#") as mobilni,
+                                GROUP_CONCAT(DISTINCT telefoni.broj SEPARATOR "#") as telefoni'
+                ))
+                ->where($where)
+                ->groupBy("zaposleni.id")
+                ->get();
+
+        $uprave = Uprava::all();
+        $lokacije = Lokacija::all();
+        // dd($zap);
+        return view('napredna_pretraga')->with(compact('zap', 'uprave', 'lokacije', 'staro'));
     }
 
     public function getPrijavaKvara()
