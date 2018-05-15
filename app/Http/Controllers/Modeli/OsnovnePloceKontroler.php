@@ -126,6 +126,8 @@ class OsnovnePloceKontroler extends Kontroler
         }
 
         $data = OsnovnaPlocaModel::find($id);
+        $stara_ocena = $data->ocena;
+
         $data->naziv = $request->naziv;
         $data->cipset = $request->cipset;
         $data->proizvodjac_id = $request->proizvodjac_id;
@@ -138,6 +140,18 @@ class OsnovnePloceKontroler extends Kontroler
         $data->napomena = $request->napomena;
 
         $data->save();
+
+        if ($stara_ocena != $data->ocena) {
+
+            $racunari = Racunar::WhereHas('osnovnaPloca', function ($query) use ($data){
+            $query->where('osnovna_ploca_model_id', '=', $data->id);
+            })->get();
+
+            foreach ($racunari as $rac) {
+                $rac->ocena = $rac->oceniMe();
+                $rac->save();
+            }
+        }
 
         Session::flash('uspeh', 'Podaci o modelu osnovne ploče su uspešno izmenjeni!');
         return redirect()->route('osnovne_ploce.modeli');

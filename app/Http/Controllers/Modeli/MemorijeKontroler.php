@@ -101,6 +101,8 @@ class MemorijeKontroler extends Kontroler
         ]);
 
         $data = MemorijaModel::find($id);
+        $stara_ocena = $data->ocena;
+
         $data->naziv = $request->naziv;
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->tip_memorije_id = $request->tip_memorije_id;
@@ -111,6 +113,18 @@ class MemorijeKontroler extends Kontroler
         $data->napomena = $request->napomena;
 
         $data->save();
+
+        if ($stara_ocena != $data->ocena) {
+
+            $racunari = Racunar::WhereHas('memorije', function ($query) use ($data){
+            $query->where('memorija_model_id', '=', $data->id);
+            })->get();
+
+            foreach ($racunari as $rac) {
+                $rac->ocena = $rac->oceniMe();
+                $rac->save();
+            }
+        }
 
         Session::flash('uspeh', 'Podaci o modelu memorije su uspešno izmenjeni!');
         return redirect()->route('memorije.modeli');

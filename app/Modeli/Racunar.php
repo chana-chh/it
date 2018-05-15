@@ -10,7 +10,7 @@ class Racunar extends Model
 {
     use SoftDeletes;
     protected $table = 'racunari';
-    protected $appends = ['ocena'];
+    //protected $appends = ['ocena'];
     public $timestamps = false;
         protected $dates = [
         'deleted_at'
@@ -127,7 +127,61 @@ class Racunar extends Model
         return $query->where('brend', 1);
     }
 
-    public function getOcenaAttribute()
+    // public function getOcenaAttribute()
+    // {
+        
+    //     $procesor_zbir = 0;
+    //     $memorija_zbir = 0;
+    //     $hdd_zbir = 0;
+    //     $procesor_ocena = 0;
+    //     $memorija_ocena = 0;
+    //     $hdd_ocena = 0;
+    //     $osnovnaPloca_ocena = 0;
+        
+    //     $kompletan = true;
+
+    //     if ($this->osnovnaPloca) {
+    //         $osnovnaPloca_ocena = $this->osnovnaPloca->osnovnaPlocaModel->ocena; 
+    //     }else{
+    //         $kompletan = false;
+    //     }
+    //     if (!$this->procesori->isEmpty()) {
+    //         foreach ($this->procesori as $procesor) {
+    //         $procesor_zbir += $procesor->procesorModel->ocena;
+    //     }
+    //         $procesor_ocena = $procesor_zbir / $this->procesori->count();
+    //     }else{
+    //         $kompletan = false;
+    //     }
+    //     if (!$this->memorije->isEmpty()) {
+    //     foreach ($this->memorije as $memorija) {
+    //        $memorija_zbir += $memorija->memorijaModel->ocena;
+    //     }
+    //     $memorija_ocena = $memorija_zbir / $this->memorije->count();
+    //     }else{
+    //         $kompletan = false;
+    //     }
+    //     if (!$this->hddovi->isEmpty()) {
+    //     foreach ($this->hddovi as $hdd) {
+    //        $hdd_zbir += $hdd->hddModel->ocena;
+    //     }
+    //     $hdd_ocena = $hdd_zbir / $this->hddovi->count();
+    //     $kompletan = true;
+    //     }else{
+    //         $kompletan = false;
+    //     }
+        
+    //     if ($kompletan == false) {
+    //         $s = 0;
+    //     }else{
+    //         $s = ($procesor_ocena  + $memorija_ocena + $hdd_ocena + $osnovnaPloca_ocena);
+    //     }
+        
+
+    //     return (string) $s;
+    // }
+
+    public function oceniMe()
     {
         
         $procesor_zbir = 0;
@@ -172,13 +226,12 @@ class Racunar extends Model
         }
         
         if ($kompletan == false) {
-            $s = 0;
+            $s = 0.0;
         }else{
             $s = ($procesor_ocena  + $memorija_ocena + $hdd_ocena + $osnovnaPloca_ocena);
         }
-        
 
-        return (string) $s;
+        return $s;
     }
 
     public function garancija()

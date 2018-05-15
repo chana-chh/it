@@ -80,6 +80,8 @@ class ProcesoriKontroler extends Kontroler
         ]);
 
         $procesor = ProcesorModel::find($id);
+        $stara_ocena = $procesor->ocena;
+
         $procesor->naziv = $request->naziv;
         $procesor->proizvodjac_id = $request->proizvodjac_id;
         $procesor->soket_id = $request->soket_id;
@@ -92,6 +94,18 @@ class ProcesoriKontroler extends Kontroler
         $procesor->napomena = $request->napomena;
 
         $procesor->save();
+
+        if ($stara_ocena != $procesor->ocena) {
+
+            $racunari = Racunar::WhereHas('procesori', function ($query) use ($procesor){
+            $query->where('procesor_model_id', '=', $procesor->id);
+            })->get();
+
+            foreach ($racunari as $rac) {
+                $rac->ocena = $rac->oceniMe();
+                $rac->save();
+            }
+        }
 
         Session::flash('uspeh', 'Podaci o modelu procesora su uspešno izmenjeni!');
         return redirect()->route('procesori.modeli');

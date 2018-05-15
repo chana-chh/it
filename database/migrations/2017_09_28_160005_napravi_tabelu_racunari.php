@@ -29,6 +29,7 @@ class NapraviTabeluRacunari extends Migration
             $table->softDeletes(); // datum otpisa
             $table->text('napomena')->nullable();
             $table->integer('reciklirano_id')->unsigned()->nullable();
+            $table->decimal('ocena', 4,1)->unsigned()->nullable()->default(0.0);
 
             $table->foreign('reciklirano_id')->references('id')->on('reciklaza')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('vrsta_uredjaja_id')->references('id')->on('s_vrste_uredjaja')->onUpdate('cascade')->onDelete('restrict');

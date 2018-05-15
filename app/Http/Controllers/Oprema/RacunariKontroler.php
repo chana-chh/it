@@ -78,6 +78,7 @@ class RacunariKontroler extends Kontroler
                         racunari.erc_broj as erc_broj,
                         racunari.inventarski_broj as inventarski_broj,
                         racunari.os_id as os_id,
+                        racunari.ocena as ocena,
                         racunari.napomena as napomena,
                         operativni_sistemi.naziv as operativni,
                         s_kancelarije.naziv as broj_kancelarije,
@@ -91,11 +92,11 @@ class RacunariKontroler extends Kontroler
         ->where($kobaja)
         ->get();
 
-        $kolekcija->map(function ($r) {
-            $o = Racunar::findOrFail($r->id)->ocena;
-        $r->ocena = $o;
-        return $r;
-        });
+        // $kolekcija->map(function ($r) {
+        //     $o = Racunar::findOrFail($r->id)->ocena;
+        // $r->ocena = $o;
+        // return $r;
+        // });
 
         return $kolekcija;
     }
@@ -463,6 +464,7 @@ class RacunariKontroler extends Kontroler
     {
         $uredjaj = Racunar::find($id);
         $uredjaj->ploca_id = null;
+        $uredjaj->ocena = $uredjaj->oceniMe();
         $odgovor = $uredjaj->save();
 
         if ($odgovor) {
@@ -479,6 +481,7 @@ class RacunariKontroler extends Kontroler
         $uredjaj = Racunar::find($id);
         $ploca = OsnovnaPloca::find($uredjaj->osnovnaPloca->id);
         $uredjaj->ploca_id = null;
+        $uredjaj->ocena = $uredjaj->oceniMe();
         $uredjaj->save();
         $ploca->napomena .= 'q#q# PODACI O OTPISU: naziv računara ' . $uredjaj->ime . ', kancelarija ' . $uredjaj->kancelarija->naziv;
         $ploca->save();
@@ -514,6 +517,7 @@ class RacunariKontroler extends Kontroler
             $ploca->save();
 
             $racunar->ploca_id = $ploca->id;
+            $racunar->ocena = $racunar->oceniMe();
             $racunar->save();
             Session::flash('uspeh', 'Osnovna ploča je uspešno dodata!');
         }
@@ -528,6 +532,7 @@ class RacunariKontroler extends Kontroler
         } else {
             $ploca = OsnovnaPloca::find($request->ploca_id);
             $racunar->ploca_id = $ploca->id;
+            $racunar->ocena = $racunar->oceniMe();
             $racunar->save();
             Session::flash('uspeh', 'Osnovna ploča je uspešno dodata!');
         }
@@ -546,10 +551,14 @@ class RacunariKontroler extends Kontroler
     public function getIzvadiProcesor($id)
     {
         $procesor = Procesor::find($id);
+        $racunar = Racunar::find($procesor->racunar_id);
+        
         $procesor->racunar_id = null;
         $odgovor = $procesor->save();
 
         if ($odgovor) {
+            $racunar->ocena = $racunar->oceniMe();
+            $racunar->save();
             Session::flash('uspeh', 'Procesor je uspešno uklonjen!');
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom uklanjanja procesora. Pokušajte ponovo, kasnije!');
@@ -561,14 +570,18 @@ class RacunariKontroler extends Kontroler
     public function getIzvadiObrisiProcesor($id)
     {
         $procesor = Procesor::find($id);
+        $racunar = Racunar::find($procesor->racunar_id);
+        
         $uredjaj = $procesor->racunar;
         $procesor->napomena .= 'q#q# PODACI O OTPISU: naziv računara ' . $uredjaj->ime . ', kancelarija ' . $uredjaj->kancelarija->naziv . " Dana: " . Carbon::now();
         $procesor->racunar_id = null;
         $procesor->save();
 
         $odgovor = $procesor->delete();
-
+        
         if ($odgovor) {
+            $racunar->ocena = $racunar->oceniMe();
+            $racunar->save();
             Session::flash('uspeh', 'Procesor je uspešno uklonjen i pripremljen za reciklažu!');
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom uklanjanja procesora. Pokušajte ponovo, kasnije!');
@@ -595,6 +608,9 @@ class RacunariKontroler extends Kontroler
         $procesor->racunar_id = $id;
         $procesor->save();
 
+        $racunar->ocena = $racunar->oceniMe();
+        $racunar->save();
+
         if ($racunar->procesori->count() > 1 && $racunar->server == 0) {
             $greska = new Greska();
             $greska->greska = "U računar " . $racunar->ime . " je " . Auth::user()->name . " dodao više od jednog procesora! Dana: " . Carbon::now();
@@ -615,6 +631,9 @@ class RacunariKontroler extends Kontroler
         $procesor = Procesor::find($request->procesor_id);
         $procesor->racunar_id = $id;
         $procesor->save();
+
+        $racunar->ocena = $racunar->oceniMe();
+        $racunar->save();
 
         if ($racunar->procesori->count() > 1 && $racunar->server == 0) {
             $greska = new Greska();
@@ -640,10 +659,13 @@ class RacunariKontroler extends Kontroler
     public function getIzvadiMemoriju($id)
     {
         $memorija = Memorija::find($id);
+        $racunar = Racunar::find($memorija->racunar_id);
         $memorija->racunar_id = null;
         $odgovor = $memorija->save();
 
         if ($odgovor) {
+            $racunar->ocena = $racunar->oceniMe();
+            $racunar->save();
             Session::flash('uspeh', 'Memorija je uspešno uklonjena!');
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom uklanjanja memorije. Pokušajte ponovo, kasnije!');
@@ -655,6 +677,7 @@ class RacunariKontroler extends Kontroler
     public function getIzvadiObrisiMemoriju($id)
     {
         $memorija = Memorija::find($id);
+        $racunar = Racunar::find($memorija->racunar_id);
         $uredjaj = $memorija->racunar;
         $memorija->napomena .= 'q#q# PODACI O OTPISU: naziv računara ' . $uredjaj->ime . ', kancelarija ' . $uredjaj->kancelarija->naziv . " Dana: " . Carbon::now();
         $memorija->racunar_id = null;
@@ -663,6 +686,8 @@ class RacunariKontroler extends Kontroler
         $odgovor = $memorija->delete();
 
         if ($odgovor) {
+            $racunar->ocena = $racunar->oceniMe();
+            $racunar->save();
             Session::flash('uspeh', 'Memorija je uspešno izvađen i pripremljen za reciklažu!');
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom uklanjanja memorije. Pokušajte ponovo, kasnije!');
@@ -689,6 +714,9 @@ class RacunariKontroler extends Kontroler
         $memorija->racunar_id = $id;
         $memorija->save();
 
+        $racunar->ocena = $racunar->oceniMe();
+        $racunar->save();
+
         if ($racunar->memorije->count() > 1 && $racunar->server == 0) {
             $greska = new Greska();
             $greska->greska = "U računar " . $racunar->ime . " je " . Auth::user()->name . " dodao više od jednog memorijskog modula! Dana: " . Carbon::now();
@@ -708,6 +736,9 @@ class RacunariKontroler extends Kontroler
         $memorija = Memorija::find($request->memorija_id);
         $memorija->racunar_id = $id;
         $memorija->save();
+
+        $racunar->ocena = $racunar->oceniMe();
+        $racunar->save();
 
         if ($racunar->memorije->count() > 1 && $racunar->server == 0) {
             $greska = new Greska();
@@ -733,10 +764,13 @@ class RacunariKontroler extends Kontroler
     public function getIzvadiHdd($id)
     {
         $hdd = Hdd::find($id);
+        $racunar = Racunar::find($hdd->racunar_id);
         $hdd->racunar_id = null;
         $odgovor = $hdd->save();
 
         if ($odgovor) {
+            $racunar->ocena = $racunar->oceniMe();
+            $racunar->save();
             Session::flash('uspeh', 'Čvrsti disk je uspešno uklonjen!');
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom uklanjanja čvrstog diska. Pokušajte ponovo, kasnije!');
@@ -748,6 +782,7 @@ class RacunariKontroler extends Kontroler
     public function getIzvadiObrisiHdd($id)
     {
         $hdd = Hdd::find($id);
+        $racunar = Racunar::find($hdd->racunar_id);
         $uredjaj = $hdd->racunar;
         $hdd->napomena .= 'q#q# PODACI O OTPISU: naziv računara ' . $uredjaj->ime . ', kancelarija ' . $uredjaj->kancelarija->naziv . " Dana: " . Carbon::now();
         $hdd->racunar_id = null;
@@ -756,6 +791,8 @@ class RacunariKontroler extends Kontroler
         $odgovor = $hdd->delete();
 
         if ($odgovor) {
+            $racunar->ocena = $racunar->oceniMe();
+            $racunar->save();
             Session::flash('uspeh', 'Čvrsti disk je uspešno uklonjen i pripremljen za reciklažu!');
         } else {
             Session::flash('greska', 'Došlo je do greške prilikom uklanjanja čvrstog diska. Pokušajte ponovo, kasnije!');
@@ -782,6 +819,9 @@ class RacunariKontroler extends Kontroler
         $hdd->racunar_id = $id;
         $hdd->save();
 
+        $racunar->ocena = $racunar->oceniMe();
+        $racunar->save();
+
         if ($racunar->hddovi->count() > 1 && $racunar->server == 0) {
             $greska = new Greska();
             $greska->greska = "U računar " . $racunar->ime . " je " . Auth::user()->name . " dodao više od jednog čvrstog diska! Dana: " . Carbon::now();
@@ -802,6 +842,9 @@ class RacunariKontroler extends Kontroler
         $hdd = Hdd::find($request->hdd_id);
         $hdd->racunar_id = $id;
         $hdd->save();
+
+        $racunar->ocena = $racunar->oceniMe();
+        $racunar->save();
 
         if ($racunar->hddovi->count() > 1 && $racunar->server == 0) {
             $greska = new Greska();

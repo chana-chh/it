@@ -61,7 +61,6 @@ class HddKontroler extends Kontroler
         $data->ocena = $request->ocena;
         $data->link = $request->link;
         $data->napomena = $request->napomena;
-
         $data->save();
 
         Session::flash('uspeh', 'Model čvrstog diska je uspešno dodata!');
@@ -97,6 +96,8 @@ class HddKontroler extends Kontroler
         }
 
         $data = HddModel::find($id);
+        $stara_ocena = $data->ocena;
+
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->naziv = $request->naziv;
         $data->povezivanje_id = $request->povezivanje_id;
@@ -107,6 +108,18 @@ class HddKontroler extends Kontroler
         $data->napomena = $request->napomena;
 
         $data->save();
+
+        if ($stara_ocena != $data->ocena) {
+
+            $racunari = Racunar::WhereHas('hddovi', function ($query) use ($data){
+            $query->where('hdd_model_id', '=', $data->id);
+            })->get();
+
+            foreach ($racunari as $rac) {
+                $rac->ocena = $rac->oceniMe();
+                $rac->save();
+            }
+        }
 
         Session::flash('uspeh', 'Podaci o modelu čvrstih diskova su uspešno izmenjeni!');
         return redirect()->route('hddovi.modeli');
