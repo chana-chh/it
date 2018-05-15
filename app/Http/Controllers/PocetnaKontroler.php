@@ -23,12 +23,6 @@ class PocetnaKontroler extends Kontroler
 
     public function pocetna(Request $request)
     {
-        $racunari = Racunar::all();
-
-        foreach ($racunari as $racunar) {
-            $racunar->ocena = $racunar->oceniMe();
-            $racunar->save();
-        }
 
         $racunara = Racunar::count();
         $monitora = Monitor::count();
