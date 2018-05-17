@@ -391,6 +391,9 @@ th{
     .btn {
         display: none;
     }
+    .canvas{
+        display: none;
+    }
 }
 
 .bez-margina {

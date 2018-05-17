@@ -85,6 +85,7 @@ class PretragaKontroler extends Controller
                                 zaposleni.src as src,
                                 s_uprave.naziv as uprava,
                                 zaposleni.radno_mesto as radno_mesto_zaposlenog,
+                                s_kancelarije.id as id_kancelarije,
                                 s_kancelarije.naziv as kancelarija,
                                 s_kancelarije.napomena as kancelarija_napomena,
                                 s_spratovi.naziv as sprat,
@@ -152,6 +153,39 @@ class PretragaKontroler extends Controller
     {
         $servis = Servis::find($id);
         return view('status')->with(compact('servis'));
+    }
+
+    public function getPlan($id)
+    {
+        $kancelarija = Kancelarija::find($id);
+        
+        $slika = null;
+
+        switch ($kancelarija->lokacija_id) {
+            case 1:
+                if ($kancelarija->sprat_id == 8) {
+                    $slika = "../images/opstina5.jpg";
+                }elseif ($kancelarija->sprat_id == 7) {
+                    $slika = "../images/opstina4.jpg";
+                }elseif ($kancelarija->sprat_id == 6) {
+                    $slika = "../images/opstina3.jpg";
+                }elseif ($kancelarija->sprat_id == 5) {
+                    $slika = "../images/opstina2.jpg";
+                }elseif ($kancelarija->sprat_id == 4) {
+                    $slika = "../images/opstina1.jpg";
+                }elseif ($kancelarija->sprat_id == 3) {
+                    $slika = "../images/opstinaprizemlje.jpg";
+                }elseif ($kancelarija->sprat_id == 1) {
+                    $slika = "../images/opstinapodrum.jpg";
+                }
+                break;
+            
+            default:
+                $slika = null;
+                break;
+        }
+
+        return view('plan')->with(compact('kancelarija', 'slika'));
     }
 
 }

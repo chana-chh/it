@@ -476,6 +476,7 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
 
         $mrezni = new MrezniUredjaj();
         $mrezni->stavka_nabavke_id = $request->stavka_nabavke_id;
+        $mrezni->stavka_otpremnice_id = $request->stavka_otpremnice_id;
         $mrezni->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
         $mrezni->naziv = $request->naziv;
         $mrezni->proizvodjac_id = $request->proizvodjac_id;

@@ -1,4 +1,4 @@
-@extends('sabloni.app')
+@extends('sabloni.appmin')
 
 @section('naziv', 'Oprema | Računari')
 

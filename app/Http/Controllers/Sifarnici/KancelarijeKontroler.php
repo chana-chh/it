@@ -168,10 +168,46 @@ class KancelarijeKontroler extends Kontroler
 
     public function getTlocrt($id)
     {
-
         $kancelarija = Kancelarija::find($id);
+        
+        $slika = null;
 
-        return view('sifarnici.kancelarije_slika')->with(compact('kancelarija'));
+        switch ($kancelarija->lokacija_id) {
+            case 1:
+                if ($kancelarija->sprat_id == 8) {
+                    $slika = "../../images/opstina5.jpg";
+                }elseif ($kancelarija->sprat_id == 7) {
+                    $slika = "../../images/opstina4.jpg";
+                }elseif ($kancelarija->sprat_id == 6) {
+                    $slika = "../../images/opstina3.jpg";
+                }elseif ($kancelarija->sprat_id == 5) {
+                    $slika = "../../images/opstina2.jpg";
+                }elseif ($kancelarija->sprat_id == 4) {
+                    $slika = "../../images/opstina1.jpg";
+                }elseif ($kancelarija->sprat_id == 3) {
+                    $slika = "../../images/opstinaprizemlje.jpg";
+                }elseif ($kancelarija->sprat_id == 1) {
+                    $slika = "../../images/opstinapodrum.jpg";
+                }
+                break;
+            
+            default:
+                $slika = null;
+                break;
+        }
+
+        return view('sifarnici.kancelarije_slika')->with(compact('kancelarija', 'slika'));
+    }
+
+    public function postKoordinate(Request $request)
+    {
+
+        $kancelarija = Kancelarija::find($request->id_kancelarije);
+        $kancelarija->x = $request->x_inputPolje;
+        $kancelarija->y = $request->y_inputPolje;
+        $kancelarija->save();
+
+        return Redirect::back();
     }
 
     function paginate($kolekcija, $poStrani)

@@ -164,7 +164,6 @@
 
                 <ul style="list-style-type: none; margin-top: 1rem">
                     @foreach($tel as $t)
-                    <?php // dd($t); ?>
                     <li><i class="fa fa-phone fa-fw text-success"></i>&emsp;{{ $t }}</li>
                     @endforeach
                 </ul>
@@ -193,6 +192,21 @@
                 @endif
             </div>
         </div>
+                    <div class="row">
+                <div class="col-md-12 text-right">
+                    @if(!empty($zaposleni->id_kancelarije))
+                    <a class="btn btn-primary btn-xs" href="{{route('plan', $zaposleni->id_kancelarije)}}"
+               title="Prikaz tlocrta sa lokacijom" style="margin-right: 22px">
+                <i class="fa fa-map-signs"></i>
+            </a>
+            @else
+            <a class="btn btn-primary btn-xs" href=" "
+               title="Prikaz tlocrta sa lokacijom" style="margin-right: 22px">
+                <i class="fa fa-map-signs"></i>
+            </a>
+            @endif
+                </div>
+            </div>
         <hr style="border:none; border-top:2px dotted #18BC9C; color:#18BC9C; height:1px;">
     </div>
 </div>

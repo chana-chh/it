@@ -16,6 +16,8 @@ class NapraviTabeluSKancelarije extends Migration
             $table->integer('lokacija_id')->unsigned();
             $table->decimal('povrsina', 10, 2)->default(0);
             $table->text('napomena')->nullable();
+            $table->integer('x')->unsigned()->nullable();
+            $table->integer('y')->unsigned()->nullable();
 
             $table->unique([
                 'naziv',

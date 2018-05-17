@@ -17,7 +17,7 @@
 @endsection
 
 @section('naslov')
-<div class="row">
+<div class="row canvas">
     <div class="col-md-2 text-center">
         <a href="{{ route('imenik') }}">
             <img alt="Imenik" src="{{url('/images/imenik.png')}}" style="height: 128px;">
@@ -144,6 +144,21 @@
                     @endif
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    @if($zaposleni->kancelarija)
+                    <a class="btn btn-primary btn-xs" href="{{route('plan', $zaposleni->kancelarija->id)}}"
+               title="Prikaz tlocrta sa lokacijom" style="margin-right: 22px">
+                <i class="fa fa-map-signs"></i>
+            </a>
+            @else
+            <a class="btn btn-primary btn-xs" href=" "
+               title="Prikaz tlocrta sa lokacijom" style="margin-right: 22px">
+                <i class="fa fa-map-signs"></i>
+            </a>
+            @endif
+                </div>
+            </div>
             <hr style="border:none; border-top:2px dotted #18BC9C; color:#18BC9C; height:1px;">
         </div>
     </div>
@@ -223,6 +238,14 @@
                             </tbody>
                         </table>
                     </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <a class="btn btn-primary btn-xs" href="{{route('plan', $kancelarija->id)}}"
+                    title="Prikaz tlocrta sa lokacijom" style="margin-right: 22px">
+                    <i class="fa fa-map-signs"></i>
+                    </a>
                 </div>
             </div>
             <hr style="border:none; border-top:2px dotted #18BC9C; color:#18BC9C; height:2px;">

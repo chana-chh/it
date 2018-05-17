@@ -9,6 +9,7 @@ Route::post('napredna', 'PretragaKontroler@postNaprednaPretraga')->name('napredn
 Route::get('kvar', 'PretragaKontroler@getPrijavaKvara')->name('kvar');
 Route::post('kvar', 'PretragaKontroler@postPrijavaKvara')->name('kvar.post');
 Route::get('status/{id}', 'PretragaKontroler@getStatus')->name('status');
+Route::get('plan/{id}', 'PretragaKontroler@getPlan')->name('plan');
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
@@ -162,6 +163,7 @@ Route::post('reciklaze/detalj', 'Sifarnici\ReciklazeKontroler@postDetalj')->name
 
 // Kancelarije
 Route::get('kancelarije', 'Sifarnici\KancelarijeKontroler@getLista')->name('kancelarije');
+Route::post('kancelarije/koordinate', 'Sifarnici\KancelarijeKontroler@postKoordinate')->name('kancelarije.koordinate');
 Route::get('kancelarije/detaljno/{id}', 'Sifarnici\KancelarijeKontroler@getDetalj')->name('kancelarije.detalj.get');
 Route::get('kancelarije/tlocrt/{id}', 'Sifarnici\KancelarijeKontroler@getTlocrt')->name('kancelarije.tlocrt.get');
 Route::post('kancelarije/dodavanje', 'Sifarnici\KancelarijeKontroler@postDodavanje')->name('kancelarije.dodavanje');

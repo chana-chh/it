@@ -82,10 +82,17 @@
                     </button>
                 </div>
                 <div class="col-md-6">
+                    @if($stavka->otpremnica_id)
+                    <a class="btn btn-danger btn-block ono"
+                       href="{{ route('otpremnice.stavke.detalj', $stavka->id) }}">
+                        <i class="fa fa-ban"></i> Otkaži
+                    </a>
+                    @elseif($stavka->nabavka_id)
                     <a class="btn btn-danger btn-block ono"
                        href="{{ route('nabavke.stavke.detalj', $stavka->id) }}">
                         <i class="fa fa-ban"></i> Otkaži
                     </a>
+                    @endif
                 </div>
             </div>
         </div>
