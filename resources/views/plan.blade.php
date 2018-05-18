@@ -42,6 +42,11 @@
 @section('skripte')
 <script>
     $( document ).ready(function() {
+        $('.prijava').popover({
+            placement: 'top',
+            trigger: 'hover'
+        });
+        
 if (('#canvas').length) {
 var canvas = document.getElementById("canvas"),
 ctx = canvas.getContext("2d");

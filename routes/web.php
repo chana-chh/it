@@ -11,6 +11,7 @@ Route::post('kvar', 'PretragaKontroler@postPrijavaKvara')->name('kvar.post');
 Route::get('status/{id}', 'PretragaKontroler@getStatus')->name('status');
 Route::get('plan/{id}', 'PretragaKontroler@getPlan')->name('plan');
 Route::get('forma', 'PretragaKontroler@getForma')->name('forma');
+Route::post('forma', 'PretragaKontroler@postForma')->name('forma.post');
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');

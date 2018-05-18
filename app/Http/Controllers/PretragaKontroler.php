@@ -157,20 +157,32 @@ class PretragaKontroler extends Controller
     }
 
     public function getForma()
-    {  
+    {
         return view('forma');
     }
 
     public function postForma(Request $request)
     {  
-        $slanje = EmailHelper::PosaljiEmail('Testiranje 1');
+        $this->validate($request, [
+            'ime' => [
+                'required',
+                'max:50'],
+            'sadrzaj' => [
+                'required'],    
+            'email' => [
+                'email',
+                'required',
+            ]
+        ]);
+
+        $slanje = EmailHelper::PosaljiEmail($request->sadrzaj, $request->email, $request->ime, $request->tema);
 
         if ($slanje) {
             Session::flash('uspeh', 'Vaša poruka je prosleđena administratoru.');
         }else{
             Session::flash('greska', 'Vaša poruka nije prosleđena. Pokušajte ponovo kasnije');
         }
-        return view('forma');
+        return redirect()->route('imenik');
     }
 
     public function getPlan($id)
