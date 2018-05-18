@@ -10,6 +10,7 @@ use App\Modeli\Servis;
 use App\Modeli\Uprava;
 use App\Modeli\Lokacija;
 use DB;
+use App\helpers\EmailHelper;
 
 class PretragaKontroler extends Controller
 {
@@ -157,6 +158,18 @@ class PretragaKontroler extends Controller
 
     public function getForma()
     {  
+        return view('forma');
+    }
+
+    public function postForma(Request $request)
+    {  
+        $slanje = EmailHelper::PosaljiEmail('Testiranje 1');
+
+        if ($slanje) {
+            Session::flash('uspeh', 'Vaša poruka je prosleđena administratoru.');
+        }else{
+            Session::flash('greska', 'Vaša poruka nije prosleđena. Pokušajte ponovo kasnije');
+        }
         return view('forma');
     }
 
