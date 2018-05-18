@@ -20,8 +20,8 @@
                title="Povratak na prethodnu stranu">
                 <i class="fa fa-arrow-left"></i>
             </a>
-            <a class="btn btn-primary" href="{{ route('pocetna') }}"
-               title="Povratak na početnu stranu">
+            <a class="btn btn-primary" href="{{ route('imenik') }}"
+                title="Povratak na početnu stranu">
                 <i class="fa fa-home"></i>
             </a>
         </div>

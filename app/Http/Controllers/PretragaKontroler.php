@@ -155,6 +155,11 @@ class PretragaKontroler extends Controller
         return view('status')->with(compact('servis'));
     }
 
+    public function getForma()
+    {  
+        return view('forma');
+    }
+
     public function getPlan($id)
     {
         $kancelarija = Kancelarija::find($id);
