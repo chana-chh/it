@@ -30,7 +30,7 @@
 <hr>
 
 @if(is_null($slika))
-<h3>Nema fotke</h3>
+<h3>Plan zgrade nije dostupan!</h3>
 @else
 <div class="canvas">
 <canvas id="canvas" width="1400" height="703" style="padding: 0; margin: auto; display: block;">
