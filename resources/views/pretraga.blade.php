@@ -254,6 +254,11 @@
     @endforeach
     @endif
 </div>
+
+<a class="btn btn-primary prijava" href="{{ route('forma') }}"
+        data-content="Prijava nepotpunih ili neispravnih podataka" style="position: fixed; bottom: 50px; right: 50px;">
+        <i class="fa fa-envelope-o"></i>
+</a>
 @endsection
 
 @section('skripte')

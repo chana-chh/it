@@ -212,18 +212,25 @@
 </div>
 @endforeach
 @endif
+<a class="btn btn-primary prijava" href="{{ route('forma') }}"
+        data-content="Prijava nepotpunih ili neispravnih podataka" style="position: fixed; bottom: 50px; right: 50px;">
+        <i class="fa fa-envelope-o"></i>
+</a>
 @endsection
 
 @section('skripte')
 <script>
-    $(document).
-            ready(function () {
-                $('.kvarPopover').
-                        popover({
-                            placement: 'left',
-                            trigger: 'hover'
-                        });
+    $(document).ready(function () {
+            
+            $('.kvarPopover').popover({
+                placement: 'left',
+                trigger: 'hover'
             });
 
+            $('.prijava').popover({
+            placement: 'top',
+            trigger: 'hover'
+            });
+    });
 </script>
 @endsection
