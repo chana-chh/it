@@ -33,7 +33,32 @@ class MonitoriKontroler extends Kontroler
 
     public function getLista()
     {
-        $uredjaj = Monitor::all();
+        $uredjaj = Monitor::with('monitorModel', 'racunar', 'kancelarija', 'stavkaOtpremnice', 'nabavkaStavka')->get();
+
+        // $uredjaji = DB::table('monitori')
+        //     ->leftJoin('racunari','monitori.racunar_id', '=', 'racunari.id')
+        //     ->leftJoin('monitori_modeli','monitori.monitor_model_id', '=', 'monitori_modeli.id')
+        //     ->leftJoin('s_kancelarije','monitori.kancelarija_id', '=', 's_kancelarije.id')
+        //     ->leftJoin('nabavke_stavke','monitori.stavka_nabavke_id', '=', 'nabavke_stavke.id')
+        //     ->leftJoin('nabavke', function($join) {
+        //             $join->on('nabavke.id', '=','nabavke_stavke.nabavka_id' );})
+        //     ->leftJoin('otpremnice_stavke','monitori.stavka_otpremnice_id', '=', 'otpremnice_stavke.id')
+        //     ->leftJoin('otpremnice', function($join) {
+        //             $join->on('otpremnice.id', '=','otpremnice_stavke.otpremnica_id' );})
+        //     ->select(DB::raw(
+        //                         'monitori.id as monitor_id,
+        //                         monitori.inventarski_broj as inventarski_broj,
+        //                         monitori.serijski_broj as serijski_broj,
+        //                         monitori_modeli.naziv as naziv_modela,
+        //                         s_kancelarije.id as id_kancelarije,
+        //                         s_kancelarije.naziv as kancelarija,
+        //                         s_kancelarije.napomena as kancelarija_napomena,
+        //                         nabavke.datum as nabavka_datum'
+        //         ))
+        //         ->get();
+                
+        //         dd($uredjaji);
+
         return view('oprema.monitori')->with(compact('uredjaj'));
     }
 
