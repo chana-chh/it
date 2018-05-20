@@ -47,5 +47,12 @@
                 Pregled računara po ocenama
             </a>
         </div>
+        <div class="col-md-3">
+
+            <a class="btn btn-success" href="{{ route('statistika.upraveotpis') }}"
+               title="Grafički pregled računara predviđenih za zamenu po upravama">
+                Pregled računara za otpis po upravama
+            </a>
+        </div>
     </div>
 @endsection

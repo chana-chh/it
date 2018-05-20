@@ -60,4 +60,61 @@ class StatistikaKontroler extends Kontroler
         return view('statistika.statistika_ocene')->with(compact('ocene_tabela', 'broj', 'labele', 'za_otpis', 'broj_elemenata'));
     }
 
+    public function getUpraveOtpis(){
+
+        $uprave_labele = DB::table('zaposleni')
+                ->leftJoin('s_uprave', 'zaposleni.uprava_id', '=', 's_uprave.id')
+                ->leftJoin('racunari', 'zaposleni.id', '=', 'racunari.zaposleni_id')
+                ->select(DB::raw(
+                                'count(*) as broj,
+                                zaposleni.id as zaposleni_id,
+                                zaposleni.uprava_id,
+                                s_uprave.naziv as uprava'
+                ))
+                ->where('racunari.ocena', '<', 8)
+                ->groupBy("zaposleni.uprava_id")
+                ->pluck('uprava');
+
+        $uprave_broj = DB::table('zaposleni')
+                ->leftJoin('s_uprave', 'zaposleni.uprava_id', '=', 's_uprave.id')
+                ->leftJoin('racunari', 'zaposleni.id', '=', 'racunari.zaposleni_id')
+                ->select(DB::raw(
+                                'count(*) as broj,
+                                zaposleni.id as zaposleni_id,
+                                zaposleni.uprava_id,
+                                s_uprave.naziv as uprava'
+                ))
+                ->where('racunari.ocena', '<', 8)
+                ->groupBy("zaposleni.uprava_id")
+                ->pluck('broj');
+
+        $uprave_tabela = DB::table('zaposleni')
+                ->leftJoin('s_uprave', 'zaposleni.uprava_id', '=', 's_uprave.id')
+                ->leftJoin('racunari', 'zaposleni.id', '=', 'racunari.zaposleni_id')
+                ->select(DB::raw(
+                                'count(*) as broj,
+                                zaposleni.id as zaposleni_id,
+                                zaposleni.uprava_id,
+                                s_uprave.naziv as uprava'
+                ))
+                ->where('racunari.ocena', '<', 8)
+                ->groupBy("zaposleni.uprava_id")
+                ->get();
+
+                $broj_elemenata = DB::table('zaposleni')
+                ->leftJoin('s_uprave', 'zaposleni.uprava_id', '=', 's_uprave.id')
+                ->leftJoin('racunari', 'zaposleni.id', '=', 'racunari.zaposleni_id')
+                ->select(DB::raw(
+                                'count(*) as broj,
+                                zaposleni.id as zaposleni_id,
+                                zaposleni.uprava_id,
+                                s_uprave.naziv as uprava'
+                ))
+                ->where('racunari.ocena', '<', 8)
+                ->count();
+
+
+        return view('statistika.statistika_upraveotpis')->with(compact('uprave_labele', 'uprave_broj', 'uprave_tabela', 'broj_elemenata'));
+    }
+
 }
