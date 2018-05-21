@@ -136,7 +136,7 @@
                 </div>
                 <div class="col-md-4 text-right">
                     @if (!empty($zaposleni->src))
-                    <img id="{{ $zaposleni->id }}" src="{{asset('images/slike_zaposlenih/'.$zaposleni->src)}}" class="img-circle"  alt="Slika zaposlenog"
+                    <img id="{{ $zaposleni->id }}" src="{{asset('images/slike_zaposlenih/'.$zaposleni->src)}}" class="img-thumbnail"  alt="Slika zaposlenog"
                          style="height:128px; margin-top: 18px;">
                     @else
                     <img src="{{url('/images/korisnik_jedan.png')}}" alt="placeholder"
