@@ -33,14 +33,14 @@
 </div>
 <div class="row">
 <div class="col-md-12" style="padding: 30px">
-    <h4>Trenutno u bazu pohranjeno {{$broj_elemenata}} računara</h4>
+    <h4>Trenutno računara raspoređenih u upravama koje bi trebalo zameniti: {{$broj_elemenata}}</h4>
     <hr>
 <table class="table table-striped tabelaUpravaOtpis" name="tabelaUpravaOtpis" id="tabelaUpravaOtpis">
                 <thead>
                             <th style="width: 10%;">#</th>
-                            <th style="width: 30%;">Uprava</th>
-                            <th style="width: 30%;">Ukupno za zamenu</th>
-                            <th style="width: 30%;"> % </th>
+                            <th style="width: 50%;">Uprava</th>
+                            <th style="width: 20%;">Ukupno za zamenu</th>
+                            <th style="width: 20%;"> % </th>
                 </thead>
                 <tbody >
                 @foreach ($uprave_tabela as $ot)

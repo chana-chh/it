@@ -175,7 +175,10 @@ class PretragaKontroler extends Controller
             ]
         ]);
 
-        $slanje = EmailHelper::PosaljiEmail($request->sadrzaj, $request->email, $request->ime, $request->tema);
+        $ip_prijave = $request->ip();
+        $racunar_prijave = gethostbyaddr($ip_prijave);
+        $tema = "IP adresa:".$ip_prijave.", računar ".$racunar_prijave." - ".$request->tema;
+        $slanje = EmailHelper::PosaljiEmail($request->sadrzaj, $request->email, $request->ime, $tema);
 
         if ($slanje) {
             Session::flash('uspeh', 'Vaša poruka je prosleđena administratoru.');
