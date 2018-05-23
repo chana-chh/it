@@ -215,11 +215,11 @@ class PretragaKontroler extends Controller
                 }
                 break;
             
-            default:
+                default:
                 $slika = null;
                 break;
         }
-
+        
         return view('plan')->with(compact('kancelarija', 'slika'));
     }
 
