@@ -210,6 +210,8 @@ class PretragaKontroler extends Controller
                     $slika = "../images/opstinaprizemlje.jpg";
                 }elseif ($kancelarija->sprat_id == 1) {
                     $slika = "../images/opstinapodrum.jpg";
+                }elseif ($kancelarija->sprat_id == 9) {
+                    $slika = "../images/opstina6.jpg";
                 }
                 break;
             

@@ -341,7 +341,7 @@ class RacunariKontroler extends Kontroler
 
         $uredjaj->save();
 
-        Session::flash('uspeh', 'Podaci o računarau su uspešno izmenjeni!');
+        Session::flash('uspeh', 'Podaci o računaru su uspešno izmenjeni!');
         return redirect()->route('racunari.oprema');
     }
 

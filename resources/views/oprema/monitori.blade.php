@@ -60,8 +60,8 @@
 <table id="tabela" class="table table-striped display" cellspacing="0" width="100%" style="font-size: 0.9375em;">
     <thead>
         <th style="width: 5%;">#</th>
-        <th style="width: 9%;">Inventarski broj</th>
-        <th style="width: 11%;">Serijski broj</th>
+        <th style="width: 8%;">Inv. broj</th>
+        <th style="width: 12%;">Serijski broj</th>
         <th style="width: 10%;">Model</th>
         <th style="width: 10%;">Racunar</th>
         <th style="width: 10%;">Kancelarija</th>
@@ -77,7 +77,7 @@
             <td>{{$o->id}}</td>
             <td>{{$o->inventarski_broj}}</td>
             <td>
-                <strong>{{$o->serijski_broj}}</strong>
+                <small>{{$o->serijski_broj}}</small>
             </td>
             <td><a href="{{route('monitori.modeli.detalj', $o->monitorModel->id)}}">{{$o->monitorModel->proizvodjac->naziv}}, {{$o->monitorModel->dijagonala->naziv}} "</a></td>
             <td> @if($o->racunar)
