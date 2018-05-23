@@ -22,6 +22,9 @@
 <hr>
 <div class="row">
     <div class="col-md-12">
+        @if($zaposleni->isEmpty())
+<h3 class="text-danger">Trenutno nema zaposlenih u bazi</h3>
+@else
         <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
             <thead>
                 <th style="width: 5%;">#</th>
@@ -34,7 +37,56 @@
                 <i class="fa fa-cogs"></i>&emsp;Akcije
             </th>
             </thead>
+            <tbody>
+    @foreach ($zaposleni as $d)
+                <?php
+                $eml = explode("#", $d->emailovi);
+                ?>
+    <tr>
+        <td>
+            {{$d->zaposleni_id}}
+        </td>
+        <td>
+            <a href="{{ route('zaposleni.detalj', $d->zaposleni_id) }}">
+                {{ $d->ime_zaposlenog }} {{ $d->prezime_zaposlenog }}
+            </a>
+        </td>
+        <td>
+            {{$d->uprava}}
+        </td>
+        <td><small>{{ $d->radno_mesto_zaposlenog}}</small></td>
+        <td>  
+            @if($d->id_kancelarije) 
+            <a href="{{route('kancelarije.detalj.get', $d->id_kancelarije)}}"> {{$d->kancelarija}}, {{$d->lokacija}}, {{$d->sprat}} </a> 
+            @endif
+        </td>
+
+        <td>
+              @foreach($eml as $e)
+                        <a href="mailto:{{ $e }}">{{ $e }}</a>
+                        <br>
+                    @endforeach
+        </td>
+        <td>
+            <a class="btn btn-success btn-sm" 
+id="dugmeDetalj" href="{{ route('zaposleni.detalj', $d->zaposleni_id) }}">
+<i class="fa fa-eye"></i>
+</a>
+<a class="btn btn-info btn-sm" 
+id="dugmeIzmena" href="{{ route('zaposleni.izmena.get', $d->zaposleni_id) }}">
+<i class="fa fa-pencil"></i>
+</a>
+<button class="btn btn-danger btn-sm otvori-brisanje" 
+data-toggle="modal" data-target="#brisanjeModal"
+value="{{ $d->zaposleni_id }}">
+<i class="fa fa-trash"></i>
+</button>
+        </td>
+    </tr>
+    @endforeach
+</tbody>
         </table>
+        @endif
     </div>
 </div>
 
@@ -64,10 +116,10 @@
                 orientation: 'landscape',
                 pageSize: 'A4',
                 customize : function(doc){
-            doc.content[1].table.widths = ["25%", "25%", "25%", "25%"];
+            doc.content[1].table.widths = ["20%", "20%", "20%", "20%", "20%"];
         },
                 exportOptions: {
-        columns: [ 1, 2, 3, 4 ]
+        columns: [ 1, 2, 3, 4, 5 ]
         }
             }
                 
@@ -79,19 +131,6 @@
                     "targets": -1
                 }
             ],
-        stateSave: true,
-        processing: true,
-        serverSide: true,
-        ajax: '{!! route('zaposleni.ajax') !!}',
-        columns: [
-            {data: 'id', name: 'id'},
-            {data: 'ime', name: 'ime'},
-            {data: 'uprava.naziv', name: 'uprava.naziv'},
-            {data: 'radno_mesto', name: 'radno_mesto'},
-            {data: 'kancelarija.naziv', name: 'kancelarija.naziv'},
-            {data: 'email', name: 'email'},
-            {data: 'akcije', name: 'akcije', orderable: false, searchable: false}
-        ],
             responsive: true,
             stateSave: true,
             language: {

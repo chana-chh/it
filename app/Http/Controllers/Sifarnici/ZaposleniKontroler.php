@@ -10,6 +10,7 @@ use Yajra\Datatables\Datatables;
 use App\Modeli\Zaposleni;
 use App\Modeli\Uprava;
 use App\Modeli\Kancelarija;
+use DB;
 
 class ZaposleniKontroler extends Kontroler
 {
@@ -21,7 +22,33 @@ class ZaposleniKontroler extends Kontroler
 
     public function getLista()
     {
-        return view('sifarnici.zaposleni');
+        $zaposleni = DB::table('zaposleni')
+                ->leftJoin('s_uprave', 'zaposleni.uprava_id', '=', 's_uprave.id')
+                ->leftJoin('s_kancelarije', 'zaposleni.kancelarija_id', '=', 's_kancelarije.id')
+                ->leftJoin('s_spratovi', 's_kancelarije.sprat_id', '=', 's_spratovi.id')
+                ->leftJoin('s_lokacije', 's_kancelarije.lokacija_id', '=', 's_lokacije.id')
+                ->leftJoin('adrese_e_poste', function($join) {
+                    $join->on('zaposleni.id', '=', 'adrese_e_poste.zaposleni_id');
+                })
+                ->select(DB::raw(
+                                'zaposleni.id as zaposleni_id,
+                                zaposleni.ime as ime_zaposlenog,
+                                zaposleni.prezime as prezime_zaposlenog,
+                                zaposleni.uprava_id,
+                                s_uprave.naziv as uprava,
+                                zaposleni.radno_mesto as radno_mesto_zaposlenog,
+                                s_kancelarije.id as id_kancelarije,
+                                s_kancelarije.naziv as kancelarija,
+                                s_kancelarije.napomena as kancelarija_napomena,
+                                s_spratovi.naziv as sprat,
+                                s_lokacije.naziv as lokacija,
+                                GROUP_CONCAT(DISTINCT adrese_e_poste.adresa SEPARATOR "#") as emailovi'
+                ))
+                ->groupBy("zaposleni.id")
+                ->get();
+
+                //dd($zaposleni);
+        return view('sifarnici.zaposleni')->with(compact('zaposleni'));
     }
 
     public function getAjax()
