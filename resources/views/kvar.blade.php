@@ -114,13 +114,16 @@
                         data-placeholder="Opis kvara ..." required>
                     <option value=""></option>
                     <option value="Opis1">
-                        Opis 1
+                        Računar radi (čuju se ventilatori) ali ne prikazuje sliku na monitoru
                     </option>
                     <option value="Opis2">
-                        Opis 2
+                        Plavi ekran, restartovanje usred rada
                     </option>
                     <option value="Opis3">
-                        Opis 3
+                        Računar radi sporo
+                    </option>
+                    <option value="Opis4">
+                        Računar „pišti” kad se uključi
                     </option>
                     <option value="Ostalo">
                         Ostalo

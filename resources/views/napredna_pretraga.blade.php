@@ -34,7 +34,7 @@
                 <div class="col-md-6">
                     <div class="input-group">
                         <div class="input-group-addon" style="min-width: 10rem; text-align: left;">
-                            <span class="text-info">Prezme</span>
+                            <span class="text-info">Prezime</span>
                         </div>
                         <input type="text" name="prezime" class="form-control" value="{{ $staro ? $staro['prezime'] : '' }}">
                     </div>
