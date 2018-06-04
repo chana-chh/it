@@ -23,7 +23,8 @@
                 <option value=""></option>
                 @foreach($modeli_ram as $mm)
                 <option value="{{ $mm->id }}"
-                        {{ old( 'memorija_model_id') == $mm->id ? ' selected' : '' }}>{{ $mm->naziv }}</option>
+                        {{ old( 'memorija_model_id') == $mm->id ? ' selected' : '' }}>{{ $mm->proizvodjac->naziv }}, {{ $mm->naziv }} {{ $mm->tipMemorije->naziv
+                                }} sa {{ $mm->kapacitet}} MB, na {{ $mm->brzina}} MHz </option>
                 @endforeach
             </select>
             @if ($errors->has('memorija_model_id'))

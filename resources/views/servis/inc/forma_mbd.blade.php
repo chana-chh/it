@@ -23,7 +23,8 @@
                 <option value=""></option>
                 @foreach($modeli_mbd as $mm)
                 <option value="{{ $mm->id }}"
-                        {{ old( 'osnovna_ploca_model_id') == $mm->id ? ' selected' : '' }}>{{ $mm->naziv }}</option>
+                        {{ old( 'osnovna_ploca_model_id') == $mm->id ? ' selected' : '' }}>{{ $mm->proizvodjac->naziv }}, {{ $mm->naziv }} sa čipsetom {{ $mm->cipset
+                                }} ({{ $mm->tipMemorije->naziv }})</option>
                 @endforeach
             </select>
             @if ($errors->has('osnovna_ploca_model_id'))

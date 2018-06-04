@@ -43,7 +43,7 @@
                 <option value=""></option>
                 @foreach($modeli_skenera as $mm)
                 <option value="{{ $mm->id }}"
-                        {{ old( 'skener_model_id') == $mm->id ? ' selected' : '' }}> {{ $mm->naziv }}</option>
+                        {{ old( 'skener_model_id') == $mm->id ? ' selected' : '' }}> {{ $mm->proizvodjac->naziv }},  {{ $mm->naziv }}, {{ $mm->format }}, {{ $mm->rezolucija }}</option>
                 @endforeach
             </select>
             @if ($errors->has('skener_model_id'))

@@ -23,7 +23,7 @@
                 <option value=""></option>
                 @foreach($modeli_psu as $mm)
                 <option value="{{ $mm->id }}"
-                        {{ old( 'napajanje_model_id') == $mm->id ? ' selected' : '' }}>{{ $mm->naziv }}</option>
+                        {{ old( 'napajanje_model_id') == $mm->id ? ' selected' : '' }}>{{ $mm->proizvodjac->naziv }}, {{ $mm->naziv }} ({{ $mm->snaga }} W)</option>
                 @endforeach
             </select>
             @if ($errors->has('napajanje_model_id'))

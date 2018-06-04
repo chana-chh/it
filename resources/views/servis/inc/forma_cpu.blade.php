@@ -23,7 +23,7 @@
                 <option value=""></option>
                 @foreach($modeli_cpu as $mm)
                 <option value="{{ $mm->id }}"
-                        {{ old( 'procesor_model_id') == $mm->id ? ' selected' : '' }}>{{ $mm->naziv }}</option>
+                        {{ old( 'procesor_model_id') == $mm->id ? ' selected' : '' }}>{{ $mm->proizvodjac->naziv }}, {{ $mm->naziv }} sa taktom {{ $mm->takt }} i {{ $mm->kes}} MB keša</option>
                 @endforeach
             </select>
             @if ($errors->has('procesor_model_id'))

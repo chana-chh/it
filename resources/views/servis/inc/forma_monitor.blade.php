@@ -45,7 +45,7 @@
                 <option value=""></option>
                 @foreach($modeli_monitora as $mm)
                 <option value="{{ $mm->id }}"
-                        {{ old( 'monitor_model_id') == $mm->id ? ' selected' : '' }}> {{ $mm->naziv }}</option>
+                        {{ old( 'monitor_model_id') == $mm->id ? ' selected' : '' }}> {{ $mm->proizvodjac->naziv }},  {{ $mm->dijagonala->naziv }}" - ({{$mm->naziv}})</option>
                 @endforeach
             </select>
             @if ($errors->has('monitor_model_id'))

@@ -23,7 +23,7 @@
                 <option value=""></option>
                 @foreach($modeli_hdd as $mm)
                 <option value="{{ $mm->id }}"
-                        {{ old( 'hdd_model_id') == $mm->id ? ' selected' : '' }}>{{ $mm->proizvodjac->naziv }} {{ $mm->kapacitet }} GB</option>
+                        {{ old( 'hdd_model_id') == $mm->id ? ' selected' : '' }}>{{ $mm->proizvodjac->naziv }}, {{ $mm->kapacitet }} GB ({{ $mm->naziv }})</option>
                 @endforeach
             </select>
             @if ($errors->has('hdd_model_id'))

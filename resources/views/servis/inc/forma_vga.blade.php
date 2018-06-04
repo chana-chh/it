@@ -23,7 +23,7 @@
                 <option value=""></option>
                 @foreach($modeli_vga as $mm)
                 <option value="{{ $mm->id }}"
-                        {{ old( 'graficki_adapter_model_id') == $mm->id ? ' selected' : '' }}>{{ $mm->naziv }}</option>
+                        {{ old( 'graficki_adapter_model_id') == $mm->id ? ' selected' : '' }}>{{ $mm->proizvodjac->naziv }}, [{{$mm->naziv}}] - {{ $mm->cip }} ({{ $mm->tipMemorije->naziv }})</option>
                 @endforeach
             </select>
             @if ($errors->has('graficki_adapter_model_id'))
