@@ -75,6 +75,7 @@ class RacuniKontroler extends Kontroler
         $data->pdv = $request->pdv;
         $data->ukupno = $request->ukupno;
         $data->napomena = $request->napomena;
+        $data->opis = $request->opis;
         $data->save();
 
         Session::flash('uspeh', 'Račun je uspešno dodat!');
@@ -173,6 +174,7 @@ class RacuniKontroler extends Kontroler
         $data->pdv = $request->pdv;
         $data->ukupno = $request->ukupno;
         $data->napomena = $request->napomena;
+        $data->opis = $request->opis;
         $data->save();
 
         Session::flash('uspeh', 'Račun je uspešno izmenjen!');

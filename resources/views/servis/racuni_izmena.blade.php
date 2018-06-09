@@ -40,7 +40,7 @@
         <form action="{{ route('racuni.izmena.post', $data->id) }}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group{{ $errors->has('ugovor_id') ? ' has-error' : '' }}">
                         <label for="ugovor_id">Ugovor:</label>
                         <select id="ugovor_id" name="ugovor_id"
@@ -60,7 +60,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group{{ $errors->has('broj') ? ' has-error' : '' }}">
                         <label for="broj">Broj računa:</label>
                         <input type="text" id="broj" name="broj"
@@ -75,6 +75,21 @@
                     </div>
                 </div>
                 <div class="col-md-4">
+                    <div class="form-group{{ $errors->has('opis') ? ' has-error' : '' }}">
+                        <label for="opis">Opis:</label>
+                        <input type="text" id="opis" name="opis"
+                               class="form-control"
+                               value="{{ old('opis', $data->opis) }}"
+                               maxlength="70">
+                        @if ($errors->has('opis'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('opis') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="col-md-2">
                     <div class="form-group{{ $errors->has('datum') ? ' has-error' : '' }}">
                         <label for="datum">Datum:</label>
                         <input type="date" id="datum" name="datum"

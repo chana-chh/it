@@ -49,7 +49,7 @@
         <form id="forma" action="{{ route('racuni.dodavanje.post') }}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group{{ $errors->has('ugovor_id') ? ' has-error' : '' }}">
                         <label for="ugovor_id">Ugovor:</label>
                         <select id="ugovor_id" name="ugovor_id"
@@ -69,7 +69,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group{{ $errors->has('broj') ? ' has-error' : '' }}">
                         <label for="broj">Broj računa:</label>
                         <input type="text" id="broj" name="broj"
@@ -83,13 +83,27 @@
                         @endif
                     </div>
                 </div>
+
                 <div class="col-md-4">
+                    <div class="form-group{{ $errors->has('opis') ? ' has-error' : '' }}">
+                        <label for="opis">Opis:</label>
+                        <input type="text" id="opis" name="opis"
+                               class="form-control"
+                               value="{{ old('opis') }}"
+                               maxlength="70">
+                        @if ($errors->has('opis'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('opis') }}</strong>
+                        </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="col-md-2">
                     <div class="form-group{{ $errors->has('datum') ? ' has-error' : '' }}">
                         <label for="datum">Datum:</label>
-                        <input type="date" id="datum" name="datum"
-                               class="form-control"
-                               value="{{ old('datum') }}"
-                               required>
+                        <input type="text" name="datum" id="datum" class="form-control datepicker" placeholder="dd.mm.yyyy"
+                               value="{{ old('datum') }}">
                         @if ($errors->has('datum'))
                         <span class="help-block">
                             <strong>{{ $errors->first('datum') }}</strong>
@@ -181,8 +195,15 @@
 @endsection
 
 @section('skripte')
+<script src="{{ asset('/js/bootstrap-datepicker.min.js') }}"></script>
 <script>
     $(document).ready(function () {
+        $('.datepicker').datepicker({
+            format: 'dd.mm.yyyy',
+            autoclose: true,
+            endDate: '+1y'
+        });
+
         jQuery(window).on('resize', resizeChosen);
 
         $('.chosen-select').chosen({

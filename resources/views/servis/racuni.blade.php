@@ -40,13 +40,14 @@
         <table class="table table-striped display" cellspacing="0" width="100%" id="tabela">
             <thead>
             <th style="width: 5%;">#</th>
+            <th style="width: 20%;">Opis</th>
             <th style="width: 10%;">Broj računa</th>
             <th style="width: 7%;">Datum</th>
             <th style="width: 18%;">Ugovor</th>
-            <th style="width: 15%; text-align: right;">Iznos</th>
-            <th style="width: 15%; text-align: right;">PDV</th>
-            <th style="width: 15%; text-align: right;">Ukupno</th>
-            <th style="width: 15%; text-align:right;">
+            <th style="width: 10%; text-align: right;">Iznos</th>
+            <th style="width: 10%; text-align: right;">PDV</th>
+            <th style="width: 10%; text-align: right;">Ukupno</th>
+            <th style="width: 10%; text-align:right;">
                 <i class="fa fa-cogs"></i>&emsp;Akcije
             </th>
             </thead>
@@ -54,6 +55,7 @@
                 @foreach ($racuni as $racun)
                 <tr>
                     <td>{{ $racun->id }}</td>
+                    <td> <strong>{{ $racun->opis }}</strong> </td>
                     <td>
                         <a href="{{ route('racuni.detalj', $racun->id) }}">
                             <strong>{{ $racun->broj }}</strong>

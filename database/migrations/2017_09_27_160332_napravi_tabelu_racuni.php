@@ -12,6 +12,7 @@ class NapraviTabeluRacuni extends Migration
         Schema::create('racuni', function (Blueprint $table) {
             $table->increments('id');
             $table->string('broj', 50);
+            $table->string('opis', 70)->nullable();
             $table->date('datum');
             $table->decimal('iznos', 15, 2)->default(0);
             $table->decimal('pdv', 15, 2)->default(0);
