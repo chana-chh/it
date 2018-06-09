@@ -40,8 +40,9 @@
         <table class="table table-striped display" cellspacing="0" width="100%" id="tabela">
             <thead>
             <th style="width: 5%;">#</th>
-            <th style="width: 20%;">Broj računa</th>
-            <th style="width: 15%;">Datum</th>
+            <th style="width: 10%;">Broj računa</th>
+            <th style="width: 7%;">Datum</th>
+            <th style="width: 18%;">Ugovor</th>
             <th style="width: 15%; text-align: right;">Iznos</th>
             <th style="width: 15%; text-align: right;">PDV</th>
             <th style="width: 15%; text-align: right;">Ukupno</th>
@@ -58,7 +59,13 @@
                             <strong>{{ $racun->broj }}</strong>
                         </a>
                     </td>
-                    <td>{{ \Carbon\Carbon::parse($racun->datum)->format('d.m.Y') }}</td>
+                    <td>{{ $racun->formatiran_datum }}</td>
+                    <td>@if($racun->ugovor) 
+                        <small>
+                        {{ $racun->ugovor->broj }} - {{ $racun->ugovor->dobavljac->naziv}}, {{ $racun->ugovor->predmet_ugovora}}
+                        </small>
+                        @endif
+                    </td>
                     <td class="text-right">{{ number_format($racun->iznos, 2, ',', '.') }}</td>
                     <td class="text-right">{{ number_format($racun->pdv, 2, ',', '.') }}</td>
                     <td class="text-right">{{ number_format($racun->ukupno, 2, ',', '.') }}</td>

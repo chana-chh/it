@@ -17,9 +17,9 @@
     </div>
     <div class="col-md-12">
         <div class="form-group{{ $errors->has('graficki_adapter_model_id') ? ' has-error' : '' }}">
-            <label for="graficki_adapter_model_id">Model napajanja:</label>
+            <label for="graficki_adapter_model_id">Model gračkog adaptera:</label>
             <select name="graficki_adapter_model_id" id="graficki_adapter_model_id" class="chosen-select form-control"
-                    data-placeholder="Model napajanja ..." required>
+                    data-placeholder="Model gračkog adaptera ..." required>
                 <option value=""></option>
                 @foreach($modeli_vga as $mm)
                 <option value="{{ $mm->id }}"

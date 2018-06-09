@@ -15,15 +15,15 @@ class Licenca extends Model
 
 
 
-function getFormatiranPocetakAttribute() {
-  return Carbon::parse($this->datum_pocetka_vazenja)->format('d.m.Y');
-}
- 
-function getFormatiranPrestanakAttribute() {
-return Carbon::parse($this->datum_prestanka_vazenja)->format('d.m.Y');
-}
+    public function getFormatiranPocetakAttribute() {
+        return Carbon::parse($this->datum_pocetka_vazenja)->format('d.m.Y');
+    }
 
-public function setDatumPocetkaVazenjaAttribute($value)
+    public function getFormatiranPrestanakAttribute() {
+        return Carbon::parse($this->datum_prestanka_vazenja)->format('d.m.Y');
+    }
+
+    public function setDatumPocetkaVazenjaAttribute($value)
     {
         $this->attributes['datum_pocetka_vazenja'] = Carbon::parse($value)->format('Y-m-d');
     }

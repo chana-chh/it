@@ -29,7 +29,7 @@ class RacuniKontroler extends Kontroler
 
     public function getLista()
     {
-        $racuni = Racun::all();
+        $racuni = Racun::with('ugovor')->get();
         return view('servis.racuni')->with(compact('racuni'));
     }
 

@@ -36,7 +36,7 @@ class Otpremnica extends Model
         $this->attributes['datum'] = Carbon::parse($value)->format('Y-m-d');
     }
 
-    function getFormatiranDatumAttribute() 
+    public function getFormatiranDatumAttribute() 
     {
         return Carbon::parse($this->datum)->format('d.m.Y');
     }
