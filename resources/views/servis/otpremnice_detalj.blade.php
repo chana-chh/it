@@ -121,6 +121,30 @@
 
 @section('traka')
 <div class="well">
+    <h3>Dodavanje slike</h3>
+    <form action="{{route('otpremnice.dodavanje.slike', $otpremnica->id)}}" method="POST" enctype="multipart/form-data">
+        {{csrf_field()}}
+        <div class="input-group image-preview">
+            <input type="text" class="form-control image-preview-filename" disabled="disabled">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-danger image-preview-clear" style="display:none;">
+                    <span class="glyphicon glyphicon-remove"></span> Poništi
+                </button>
+                <div class="btn btn-warning image-preview-input">
+                    <span>
+                        <i class="fa fa-upload" aria-hidden="true"></i>
+                    </span>
+                    <span class="image-preview-input-title">Odaberi</span>
+                    <input type="file" accept="image/png, image/jpeg, image/gif" name="slika" id="slika" required/>
+                </div>
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-floppy-o"></i> Sačuvaj
+                </button>
+            </span>
+        </div>
+    </form>
+    <hr style="border-top: 1px solid #18BC9C">
+
     <h3>Dodavanje stavke</h3>
     <hr style="border-top: 1px solid #18BC9C">
     <form action="{{ route('otpremnice.stavke.dodavanje.post') }}" method="POST" data-parsley-validate>
@@ -213,47 +237,23 @@
         </div>
     </form>
     <hr style="border-top: 1px solid #18BC9C">
-    <h3>Dodavanje slike</h3>
-    <form action="{{route('otpremnice.dodavanje.slike', $otpremnica->id)}}" method="POST" enctype="multipart/form-data">
-        {{csrf_field()}}
-        <div class="input-group image-preview">
-            <input type="text" class="form-control image-preview-filename" disabled="disabled">
-            <span class="input-group-btn">
-                <button type="button" class="btn btn-danger image-preview-clear" style="display:none;">
-                    <span class="glyphicon glyphicon-remove"></span> Poništi
-                </button>
-                <div class="btn btn-warning image-preview-input">
-                    <span>
-                        <i class="fa fa-upload" aria-hidden="true"></i>
-                    </span>
-                    <span class="image-preview-input-title">Odaberi</span>
-                    <input type="file" accept="image/png, image/jpeg, image/gif" name="slika" id="slika" required/>
-                </div>
-                <button type="submit" class="btn btn-success">
-                    <i class="fa fa-floppy-o"></i> Sačuvaj
-                </button>
-            </span>
-        </div>
-    </form>
-    <hr style="border-top: 1px solid #18BC9C">
     <h3>Slike</h3>
     @if($otpremnica->slike->isEmpty())
     <h5 class="text-danger">Trenutno nema slika za ovu otpremnicu</h5>
     @else
     @foreach($otpremnica->slike as $slika)
-    <div class="img-thumbnail center-block" style="width: 80%; margin: 10px auto;">
         <img data-toggle="modal"
              data-target="#slikaModal"
              src="{{asset('images/otpremnice/' . $slika->src)}}"
-             class="img-responsive"
-             style="width: 80%; margin: 10px auto;">
-        <button class="btn btn-danger btn-xs btn-block otvori-brisanje"
-                style="width: 80%; margin: 5px auto;"
+             class="img-responsive img-thumbnail center-block"
+             style="width: 70%;">
+            <button class="btn btn-danger btn-xs btn-block otvori-brisanje"
+                style="width: 70%; margin: 5px auto;"
                 data-toggle="modal" data-target="#brisanjeModal"
                 value="{{$slika->id}}">
             <i class="fa fa-trash"></i>
         </button>
-    </div>
+        <hr style="border-top: 1px dashed #18BC9C">
     @endforeach
     @endif
 </div>
