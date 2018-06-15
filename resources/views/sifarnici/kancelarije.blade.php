@@ -329,7 +329,9 @@ $( document ).ready(function() {
     },
     });
 
-        new $.fn.dataTable.FixedHeader( tabela );
+        if ($('#tabela').length) {
+            new $.fn.dataTable.FixedHeader( tabela );
+        }
 
     resizeChosen();
     jQuery(window).on('resize', resizeChosen);

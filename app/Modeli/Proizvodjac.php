@@ -68,4 +68,9 @@ class Proizvodjac extends Model
 	{
 		return $this->hasMany('App\Modeli\Projektor', 'proizvodjac_id', 'id');
 	}
+
+	public function povezivanja()
+	{
+		return $this->hasMany('App\Modeli\Projektor', 'proizvodjac_id', 'id');
+	}
 }

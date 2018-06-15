@@ -24,7 +24,8 @@
 		<th style="width: 20%;">Naziv</th>
         <th style="width: 20%;">Adresa</th>
         <th style="width: 10%;">Broj</th>
-		<th style="width: 35%;">Napomena</th>
+        <th style="width: 20%;">Napomena</th>
+		<th style="width: 15%;">Povezivanje</th>
 		<th style="width: 10%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
 	</thead>
 	<tbody>
@@ -35,6 +36,12 @@
             <td>{{ $d->adresa_ulica }}</td>
             <td>{{ $d->adresa_broj }}</td>
             <td><small>{{ $d->napomena }}</small></td>
+            <td><small>@if($d->povezivanja)  
+                @foreach($d->povezivanja as $e)
+                        {{ $e->tip }}, {{ $e->brzina }}, {{ $e->cena }}
+                        <br>
+                    @endforeach
+                @endif</small></td>
             <td style="text-align:right;">
                 <button class="btn btn-success btn-sm otvori-izmenu"
                         data-toggle="modal" data-target="#editModal"

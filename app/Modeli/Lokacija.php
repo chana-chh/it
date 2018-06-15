@@ -14,4 +14,9 @@ class Lokacija extends Model
         return $this->hasMany('App\Modeli\Kancelarija', 'lokacija_id', 'id');
     }
 
+     public function povezivanja()
+    {
+        return $this->hasMany('App\Modeli\Povezivanje', 'lokacija_id', 'id');
+    }
+
 }

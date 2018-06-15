@@ -177,6 +177,13 @@ Route::post('kancelarije/detalj', 'Sifarnici\KancelarijeKontroler@postDetalj')->
 Route::post('kancelarije/telefon', 'Sifarnici\KancelarijeKontroler@postDodavanjeTelefon')->name('kancelarija.telefon.dodavanje.post');
 Route::post('kancelarije/zaposleni', 'Sifarnici\KancelarijeKontroler@postDodavanjeZaposleni')->name('kancelarija.zaposleni.dodavanje.post');
 
+// Povezivanje lokacija
+Route::get('povezivanje', 'Sifarnici\PovezivanjeKontroler@getLista')->name('povezivanje');
+Route::post('povezivanje/dodavanje', 'Sifarnici\PovezivanjeKontroler@postDodavanje')->name('povezivanje.dodavanje');
+Route::post('povezivanje/brisanje', 'Sifarnici\PovezivanjeKontroler@postBrisanje')->name('povezivanje.brisanje');
+Route::post('povezivanje/izmena', 'Sifarnici\PovezivanjeKontroler@postIzmena')->name('povezivanje.izmena');
+Route::post('povezivanje/detalj', 'Sifarnici\PovezivanjeKontroler@postDetalj')->name('povezivanje.detalj');
+
 // Uprave
 Route::get('uprave', 'Sifarnici\UpraveKontroler@getLista')->name('uprave');
 Route::post('uprave/dodavanje', 'Sifarnici\UpraveKontroler@postDodavanje')->name('uprave.dodavanje');
