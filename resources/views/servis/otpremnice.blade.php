@@ -118,11 +118,12 @@
         <table class="table table-striped display" cellspacing="0" width="100%" id="tabela">
             <thead>
             <th style="width: 5%;">#</th>
-            <th style="width: 25%;">Broj otpremnice</th>
+            <th style="width: 15%;">Broj otpremnice</th>
             <th style="width: 15%;">Datum</th>
             <th style="width: 15%;">Broj računa</th>
             <th style="width: 15%;">Dobavljač</th>
             <th style="width: 15%;">Broj profakture</th>
+            <th style="width: 10%;">Napomena</th>
             <th style="width: 10%; text-align:right;">
                 <i class="fa fa-cogs"></i>&emsp;Akcije
             </th>
@@ -140,6 +141,7 @@
                     @endif
                     <td>{{ $otpremnica->dobavljac->naziv }}</td>
                     <td>{{ $otpremnica->broj_profakture }}</td>
+                    <td><small>{{ $otpremnica->napomena }}</small></td>
                     <td class="text-right">
                         <a class="btn btn-success btn-sm"
                            href="{{ route('otpremnice.detalj', $otpremnica->id) }}">
