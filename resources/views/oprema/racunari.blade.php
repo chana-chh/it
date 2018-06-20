@@ -12,7 +12,7 @@
         <h1>
             <span>
                 <img class="slicica_animirana" alt="Računari" src="{{url('/images/kompjuterici.png')}}" style="height:64px;">
-            </span>&emsp;Računari</h1>
+            </span>&emsp;Računari <small>(aktivni)</small></h1>
     </div>
 
     <div class="col-md-2 text-right" style="padding-top: 50px;">
@@ -30,7 +30,7 @@
 <div class="row well" id="pretraga" style="display: none;">
 <div class="row">
     <div class="col-md-2">
-        <a id="pretragaDugme" href="" class="btn btn-warning btn-sm btn-block" disabled>
+        <a id="pretragaDugme" href="{{route('racunari.oprema.otpisani')}}" class="btn btn-warning btn-sm btn-block">
             <i class="fa fa-recycle fa-fw"></i> Otpisani
         </a>
     </div>

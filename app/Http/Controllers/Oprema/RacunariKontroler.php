@@ -64,7 +64,13 @@ class RacunariKontroler extends Kontroler
             'getDetalj',
             'getAjax']);
     }
-    public function dajKolekciju($kobaja = []){
+    public function dajKolekciju($kobaja = [], $sa = 0){
+
+        if ($sa == 0) {
+            $otpisani[] =  ['racunari.deleted_at', '=', null];
+        }else{
+            $otpisani[] =  ['racunari.deleted_at', '<>', null];
+        }
 
         $kolekcija = DB::table('racunari')
         ->leftJoin('operativni_sistemi','racunari.os_id', '=', 'operativni_sistemi.id')
@@ -90,6 +96,7 @@ class RacunariKontroler extends Kontroler
                         s_uprave.naziv as uprava
                         '))
         ->where($kobaja)
+        ->where($otpisani)
         ->get();
 
         // $kolekcija->map(function ($r) {
@@ -121,6 +128,15 @@ class RacunariKontroler extends Kontroler
         $broj_elemenata = Racunar::count();
 
         return view('oprema.racunari')->with(compact('dobavljaci', 'uredjaji', 'spratovi', 'uprave', 'os', 'paginacija', 'broj_elemenata', 'lokacije'));
+    }
+
+
+    public function getListaOtpisani()
+    {
+
+        $uredjaj = Racunar::onlyTrashed()->get();
+
+        return view('oprema.racunari_otpisani')->with(compact('uredjaj'));
     }
 
     public function getListaIkt()
@@ -274,13 +290,13 @@ class RacunariKontroler extends Kontroler
 
     public function getDetalj($id)
     {
-        $uredjaj = Racunar::find($id);
+        $uredjaj = Racunar::withTrashed()->findOrFail($id);
         return view('oprema.racunari_detalj')->with(compact('uredjaj'));
     }
 
     public function getIzmena($id)
     {
-        $uredjaj = Racunar::find($id);
+        $uredjaj = Racunar::withTrashed()->findOrFail($id);
         $proizvodjaci = Proizvodjac::all();
         $zaposleni = Zaposleni::with('uprava')->orderBy('ime', 'asc')->orderBy('prezime', 'asc')->get();
         $kancelarije = Kancelarija::with('lokacija', 'sprat')->orderBy('naziv', 'asc')->get();
@@ -1404,6 +1420,7 @@ class RacunariKontroler extends Kontroler
         $kanc = $racunar->kancelarija->naziv;
 
         //Osnovna ploca
+        if ($racunar->osnovnaPloca) {
         if (isset($request->osnovnaPloca)) {
             $ploca = OsnovnaPloca::find($request->osnovnaPloca);
             $racunar->ploca_id = null;
@@ -1418,6 +1435,7 @@ class RacunariKontroler extends Kontroler
             $ploca->save();
             $ploca->delete();
         }
+    }
 
         //Procesor
         if ($racunar->procesori) {
