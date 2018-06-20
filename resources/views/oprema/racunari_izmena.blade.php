@@ -12,7 +12,7 @@
         <h1>
             <img class="slicica_animirana" alt="Izmena osnovnih podataka računara"
                  src="{{url('/images/kompaS.png')}}" style="height:64px;">
-            &emsp;Izmena osnovnih podataka računara
+            &emsp;Izmena osnovnih podataka @if($uredjaj->trashed())<span><small>(otpisan dana: {{$uredjaj->deleted_at}})</small></span>@endif
         </h1>
     </div>
 </div>
@@ -139,7 +139,9 @@
         <div class="col-md-3">
             <div class="form-group{{ $errors->has('kancelarija_id') ? ' has-error' : '' }}">
                 <label for="kancelarija_id">Kancelarija:</label>
-                <select name="kancelarija_id" id="kancelarija_id" class="chosen-select form-control" data-placeholder="kancelarija ...">
+                <select name="kancelarija_id" id="kancelarija_id" class="chosen-select form-control" data-placeholder="kancelarija ..." @if ($uredjaj->trashed())
+                    disabled 
+                @endif>
                     <option value=""></option>
                     @foreach($kancelarije as $kancelarija)
                     <option value="{{ $kancelarija->id }}" 
@@ -188,7 +190,9 @@
     <div class="col-md-6">
         <div class="form-group zaposleni_select {{ $errors->has('zaposleni_id') ? ' has-error' : '' }}">
             <label for="zaposleni_id">Zaposleni koji koristi račnar:</label>
-            <select name="zaposleni_id" id="zaposleni_id" class="chosen-select form-control" data-placeholder="zaposleni ...">
+            <select name="zaposleni_id" id="zaposleni_id" class="chosen-select form-control" data-placeholder="zaposleni ..." @if ($uredjaj->trashed())
+                    disabled 
+                @endif>
                 <option data-kanc="0" value=""></option>
                 @foreach($zaposleni as $za)
                 <option data-kanc="[{{ $za->kancelarija_id }}]" value="{{ $za->id }}" 
@@ -210,7 +214,7 @@
 <hr>
 {{-- Red IV --}}
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group{{ $errors->has('os_id') ? ' has-error' : '' }}">
             <label for="os_id">Operativni sistem:</label>
             <select name="os_id" id="os_id" class="chosen-select form-control" data-placeholder="os ...">
@@ -242,7 +246,7 @@
     </div>
 
 </div>
-<div class="col-md-4">
+<div class="col-md-5">
     <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
         <label for="napomena">Napomena:</label>
         <textarea name="napomena" id="napomena" class="form-control">{{ old('napomena', $uredjaj->napomena) }}</textarea>

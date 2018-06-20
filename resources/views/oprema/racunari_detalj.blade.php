@@ -33,10 +33,12 @@
                title="Izmena podataka računara">
                 <i class="fa fa-pencil"></i>
             </a>
+            @if(!$uredjaj->trashed())
             <a class="btn btn-warning" href="{{route('racunari.oprema.otpis', $uredjaj->id)}}"
                title="Otpis računara">
                 <i class="fa fa-recycle"></i>
             </a>
+            @endif
         </div>
     </div>
 </div>
@@ -114,7 +116,11 @@
 
             <tr>
                 <th style="width: 40%;"><strong>Lokacija:</strong></th>
-                <td style="width: 60%;">@if($uredjaj->kancelarija)<a href="{{route('kancelarije.detalj.get', $uredjaj->kancelarija->id)}}">{{$uredjaj->kancelarija->lokacija->naziv}}, kancelarija {{$uredjaj->kancelarija->naziv}}</a>@endif
+                <td style="width: 60%;">@if($uredjaj->trashed())
+                    Računar se nalazi u kancelariji odeljenja za IKT ili nekoj od prostorija namenjenoj za skladištenje otpisane IK opreme
+                    @else
+                    @if($uredjaj->kancelarija)<a href="{{route('kancelarije.detalj.get', $uredjaj->kancelarija->id)}}">{{$uredjaj->kancelarija->lokacija->naziv}}, kancelarija {{$uredjaj->kancelarija->naziv}}</a>@endif
+                    @endif
                 </td>
             </tr>
                         <tr>
@@ -150,6 +156,10 @@
 @endsection
 
 @section('traka')
+ @if($uredjaj->trashed())
+    <h3 class="text-danger">Otpisan dana: {{$uredjaj->deleted_at}}</h3>
+    <hr>
+@else
 <h4>Ocena: </h4>
 <div class="row">
 <?php
@@ -366,5 +376,5 @@ if ($uredjaj->osnovnaPloca && !$uredjaj->procesori->isEmpty() && !$uredjaj->memo
 </table>
 </div>
 </div>
-
+@endif
 @endsection
