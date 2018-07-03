@@ -17,8 +17,14 @@
             <td>{{ $uredjaj->id }}</td>
             <td>{{ $uredjaj->inventarski_broj }}</td>
             <td>{{ $uredjaj->serijski_broj }}</td>
-            @if($uredjaj->vrsta_uredjaja_id == 3)
-            <td>{{ $uredjaj->stampacModel->proizvodjac->naziv }}, {{ $uredjaj->stampacModel->naziv }}</td>
+            @if($uredjaj->vrsta_uredjaja_id == 2)
+            <td> <small> {{ $uredjaj->monitorModel->proizvodjac->naziv }}, {{ $uredjaj->monitorModel->naziv }} ({{ $uredjaj->monitorModel->dijagonala->naziv }}") </small></td>
+            @elseif($uredjaj->vrsta_uredjaja_id == 3)
+            <td> <small>{{ $uredjaj->stampacModel->proizvodjac->naziv }}, {{ $uredjaj->stampacModel->naziv }}</small></td>
+            @elseif($uredjaj->vrsta_uredjaja_id == 4)
+            <td> <small>{{ $uredjaj->skenerModel->proizvodjac->naziv }}, {{ $uredjaj->skenerModel->naziv }}</small></td>
+             @elseif($uredjaj->vrsta_uredjaja_id == 5)
+            <td> <small>{{ $uredjaj->upsModel->proizvodjac->naziv }}, {{ $uredjaj->upsModel->naziv }}</small></td>
             @else
             <td>Nema, za sada!</td>
             @endif

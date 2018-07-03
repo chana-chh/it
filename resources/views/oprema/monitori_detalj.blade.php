@@ -150,7 +150,7 @@
                 <td style="width: 60%;">{{$uredjaj->monitorModel->proizvodjac->naziv}}</td>
             </tr>
              <tr>
-                <th style="width: 20%;">Snaga:</th>
+                <th style="width: 20%;">Dijagonala:</th>
                 <td style="width: 80%;">{{$uredjaj->monitorModel->dijagonala->naziv}} "
                 </td>
             </tr>

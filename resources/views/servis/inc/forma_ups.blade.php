@@ -41,7 +41,7 @@
             <select name="ups_model_id" id="ups_model_id" class="chosen-select form-control"
                     data-placeholder="Model UPS-a ..." required>
                 <option value=""></option>
-                @foreach($modeli_monitora as $mm)
+                @foreach($modeli_upseva as $mm)
                 <option value="{{ $mm->id }}"
                         {{ old( 'ups_model_id') == $mm->id ? ' selected' : '' }}> {{ $mm->naziv }}</option>
                 @endforeach
