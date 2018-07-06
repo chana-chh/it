@@ -32,7 +32,7 @@ class OtpremniceKontroler extends Kontroler
 
     public function getLista()
     {
-        $otpremnice = Otpremnica::all();
+        $otpremnice = Otpremnica::with('dobavljac', 'racun')->get();
         $dobavljaci = Dobavljac::all();
         $racuni = Racun::all();
         return view('servis.otpremnice')->with(compact('otpremnice', 'dobavljaci', 'racuni'));

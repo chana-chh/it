@@ -176,6 +176,7 @@
                     "targets": -1
                 }
             ],
+            order: [[ 2, "desc" ]],
             responsive: true,
             language: {
                 search: "Pronađi u tabeli",
