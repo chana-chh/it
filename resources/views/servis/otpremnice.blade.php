@@ -122,8 +122,7 @@
             <th style="width: 15%;">Datum</th>
             <th style="width: 15%;">Broj računa</th>
             <th style="width: 15%;">Dobavljač</th>
-            <th style="width: 15%;">Broj profakture</th>
-            <th style="width: 10%;">Napomena</th>
+            <th style="width: 25%;">Napomena</th>
             <th style="width: 10%; text-align:right;">
                 <i class="fa fa-cogs"></i>&emsp;Akcije
             </th>
@@ -140,7 +139,6 @@
                     <td>{{ $otpremnica->racun->broj }}</td>
                     @endif
                     <td>{{ $otpremnica->dobavljac->naziv }}</td>
-                    <td>{{ $otpremnica->broj_profakture }}</td>
                     <td><small>{{ $otpremnica->napomena }}</small></td>
                     <td class="text-right">
                         <a class="btn btn-success btn-sm"
