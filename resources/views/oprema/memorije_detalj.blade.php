@@ -82,7 +82,9 @@
 <div class="row">
     <div class="col-md-12">
 @if ($uredjaj->racunar)
+@if ($uredjaj->racunar->zaposleni)
 <h4>Ovaj računar koristi: <a href="{{ route('zaposleni.detalj', $uredjaj->racunar->zaposleni->id) }}">{{$uredjaj->racunar->zaposleni->imePrezime()}}</a></h4>
+@endif
 @endif
 
 </div>
