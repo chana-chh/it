@@ -214,6 +214,12 @@ class PretragaKontroler extends Controller
                     $slika = "../images/opstina6.jpg";
                 }
                 break;
+                case 37: 
+                    $slika = "../images/I maj.jpg";
+                    break;
+                case 62:
+                    $slika = "../images/I maj.jpg";
+                    break;
             
                 default:
                 $slika = null;
