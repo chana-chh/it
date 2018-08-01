@@ -57,6 +57,15 @@
                 </tr>
                 <tr>
                     <th style="width: 40%;">
+
+                        Inventarski broj:
+                    </th>
+                    <td style="width: 60%;">
+                        {{$mon->inventarski_broj}}
+                    </td>
+                </tr>
+                <tr>
+                    <th style="width: 40%;">
                         Proizvođač:
                     </th>
                     <td style="width: 60%;">

@@ -28,8 +28,8 @@
                title="Povratak na početnu stranu">
                 <i class="fa fa-home"></i>
             </a>
-            <a class="btn btn-primary" href="{{ route('otpremnice.stavke', $data->otpremnica->id) }}"
-               title="Povratak na listu stavki otpremnice">
+            <a class="btn btn-primary" href="{{ route('otpremnice.detalj', $data->otpremnica->id) }}"
+               title="Povratak na pregled otpremnice">
                 <i class="fa fa-list"></i>
             </a>
         </div>
@@ -113,7 +113,7 @@
                             </button>
                         </div>
                         <div class="col-md-6">
-                            <a class="btn btn-danger btn-block ono" href="{{ route('otpremnice.stavke', $data->otpremnica->id) }}">
+                            <a class="btn btn-danger btn-block ono" href="{{ route('otpremnice.stavke.detalj', $data->id) }}">
                                 <i class="fa fa-ban"></i> Otkaži
                             </a>
                         </div>
