@@ -48,6 +48,10 @@
         
 <table class="table table-striped" style="table-layout: fixed;">
         <tbody style="font-size: 2rem;">
+            @if($uredjaj->eksterni == 1)
+            <h3> Radi se o eksternom čvrstom disku <img alt="externi" src="{{url('/images/external_hardisk-512.png')}}" style="height:32px;"></h3>
+            <hr>
+            @endif
             <tr>
                 <th style="width: 20%;">Serijski broj:</th>
                 <td style="width: 80%;">{{$uredjaj->serijski_broj}}</td>
@@ -62,7 +66,20 @@
                         @endif
                 </td>
             </tr>
-
+            @if($uredjaj->eksterni == 1)
+            <tr>
+                <th style="width: 20%;">Zaposleni:</th>
+                <td style="width: 80%;">@if($uredjaj->zaposleni){{$uredjaj->zaposleni->imePrezime()}}@endif
+                </td>
+            </tr>
+            <tr>
+                <th style="width: 20%;">Lokacija:</th>
+                <td style="width: 80%;">@if($uredjaj->zaposleni)
+                                        @if($uredjaj->zaposleni->kancelarija)
+                    <a href="{{route('kancelarije.detalj.get', $uredjaj->zaposleni->kancelarija->id)}}">{{$uredjaj->zaposleni->kancelarija->lokacija->naziv}}, kancelarija {{$uredjaj->zaposleni->kancelarija->naziv}}</a>@endif @endif
+                </td>
+            </tr>
+            @else
             <tr>
                 <th style="width: 20%;">Računar:</th>
                 <td style="width: 80%;">@if($uredjaj->racunar){{$uredjaj->racunar->ime}}@endif
@@ -76,6 +93,7 @@
                     <a href="{{route('kancelarije.detalj.get', $uredjaj->racunar->kancelarija->id)}}">{{$uredjaj->racunar->kancelarija->lokacija->naziv}}, kancelarija {{$uredjaj->racunar->kancelarija->naziv}}</a>@endif @endif
                 </td>
             </tr>
+            @endif
         </tbody>
     </table>
 </div>

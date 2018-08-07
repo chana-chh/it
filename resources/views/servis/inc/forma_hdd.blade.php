@@ -33,6 +33,13 @@
             @endif
         </div>
     </div>
+    <div class="col-md-12">
+        <div class="form-group checkboxoviforme">
+            <label>
+                <input type="checkbox" name="eksterni" id="eksterni"> &emsp;Da li se radi o eksternom HDD?
+            </label>
+        </div>
+    </div>
     <div class="row dugmici">
         <div class="col-md-12">
             <div class="form-group text-right">

@@ -120,7 +120,7 @@ class OtpremniceStavkeKontroler extends Kontroler
         $stavka->save();
 
         Session::flash('uspeh', 'Stavka otpremnice je uspešno izmenjena!');
-        return redirect()->route('otpremnice.stavke', $stavka->otpremnica_id);
+        return redirect()->route('otpremnice.stavke.detalj', $stavka->otpremnica_id);
     }
 
     public function postBrisanje(Request $request)

@@ -608,10 +608,17 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
             ],
         ]);
 
+        if ($request->eksterni) {
+            $eksterni = 1;
+        } else {
+            $eksterni = 0;
+        }
+
         $hdd = new Hdd();
         $hdd->stavka_otpremnice_id = $request->stavka_otpremnice_id;
         $hdd->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
         $hdd->serijski_broj = $request->serijski_broj;
+        $hdd->eksterni = $eksterni;
         $hdd->hdd_model_id = $request->hdd_model_id;
         $hdd->save();
 

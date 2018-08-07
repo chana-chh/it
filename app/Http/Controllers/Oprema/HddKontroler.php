@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Modeli\Hdd;
 use App\Modeli\HddModel;
 use App\Modeli\Racunar;
+use App\Modeli\Zaposleni;
 use App\Modeli\Otpremnica;
 use App\Modeli\Reciklaza;
 
@@ -54,8 +55,9 @@ class HddKontroler extends Kontroler
         $uredjaj = Hdd::find($id);
         $modeli = HddModel::all();
         $racunari = Racunar::all();
+        $zaposleni = Zaposleni::with('uprava')->orderBy('ime', 'asc')->orderBy('prezime', 'asc')->get();
         $otpremnice = Otpremnica::all();
-        return view('oprema.hddovi_izmena')->with(compact('uredjaj', 'modeli', 'racunari', 'otpremnice'));
+        return view('oprema.hddovi_izmena')->with(compact('uredjaj', 'modeli', 'racunari', 'otpremnice', 'zaposleni'));
     }
 
     public function postIzmena(Request $request, $id)
@@ -68,10 +70,18 @@ class HddKontroler extends Kontroler
                 'required'],
         ]);
 
+        if ($request->eksterni) {
+            $eksterni = 1;
+        } else {
+            $eksterni = 0;
+        }
+
         $uredjaj = Hdd::find($id);
         $uredjaj->serijski_broj = $request->serijski_broj;
         $uredjaj->hdd_model_id = $request->hdd_model_id;
+        $uredjaj->eksterni = $eksterni;
         $uredjaj->racunar_id = $request->racunar_id;
+        $uredjaj->zaposleni_id = $request->zaposleni_id;
         $uredjaj->stavka_otpremnice_id = $request->stavka_otpremnice_id;
         $uredjaj->napomena = $request->napomena;
 
@@ -91,7 +101,14 @@ class HddKontroler extends Kontroler
             $ime = $uredjaj->ime;
             $kanc = $uredjaj->kancelarija->naziv;
             $data->racunar_id = null;
-        } else {
+        } elseif ($data->zaposleni) {
+            $ime = " nije bio u računaru, radi se o eksternom disku";
+            $br = $data->zaposleni->kancelarija->naziv;
+            $sp = $data->zaposleni->kancelarija->sprat->naziv;
+            $lo = $data->zaposleni->kancelarija->lokacija->naziv;
+            $kanc = "broj ". $br ." sprat  ". $sp ." na lokaciji - ". $lo;
+        }
+        else {
             $ime = " nije bio u računaru";
             $kanc = " nema podataka";
         }

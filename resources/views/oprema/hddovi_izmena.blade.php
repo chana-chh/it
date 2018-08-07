@@ -110,8 +110,16 @@
     </div>
     {{-- Red II --}}
     <div class="row">
-        <div class="col-md-6">
-            <div class="form-group{{ $errors->has('racunar_id') ? ' has-error' : '' }}">
+                <div class="col-md-2">
+                    <div class="form-group checkboxoviforme">
+                        <label>
+                            <input type="checkbox" name="eksterni" id="eksterni" {!!$uredjaj->eksterni == 0 ? "" :'checked="checked"'!!}> &emsp;Da li je HDD eksterni?
+                        </label>
+                    </div>
+                </div>
+
+        <div class="col-md-4 nevidljivi">
+            <div class="form-group {{ $errors->has('racunar_id') ? ' has-error' : '' }}">
                 <label for="racunar_id">Računar:</label>
                 <select name="racunar_id" id="racunar_id" class="chosen-select form-control" data-placeholder="računar ..." >
                     <option value=""></option>
@@ -133,6 +141,30 @@
             @endif
         </div>
     </div>
+
+        <div class="col-md-4 zaposleni_select">
+        <div class="form-group  {{ $errors->has('zaposleni_id') ? ' has-error' : '' }}">
+            <label for="zaposleni_id">Zaposleni:</label>
+            <select name="zaposleni_id" id="zaposleni_id" class="chosen-select form-control" data-placeholder="zaposleni ..." @if ($uredjaj->trashed())
+                    disabled 
+                @endif>
+                <option  value=""></option>
+                @foreach($zaposleni as $za)
+                <option value="{{ $za->id }}" 
+                    {{ old( 'zaposleni_id') == $za->id ? ' selected' : '' }}
+                    {{ $uredjaj->zaposleni_id == $za->id ? ' selected' : '' }}> 
+                    {{$za->imePrezime()}}, {{$za->uprava->naziv}}
+            </option>
+
+            @endforeach
+        </select>
+        @if ($errors->has('zaposleni_id'))
+        <span class="help-block">
+            <strong>{{ $errors->first('zaposleni_id') }}</strong>
+        </span>
+        @endif
+    </div>
+</div>
 
     <div class="col-md-6">
         <div class="form-group{{ $errors->has('napomena') ? ' has-error' : '' }}">
@@ -172,6 +204,28 @@
 @section('skripte')
 <script>
     $(document).ready(function () {
+
+        if (($("#eksterni").is(":checked")) ) {
+                $(".nevidljivi").hide();
+                $(".zaposleni_select").show();
+                resizeChosen();
+            } else {
+                $(".nevidljivi").show();
+                $(".zaposleni_select").hide();
+                resizeChosen();
+        }
+
+        $("#eksterni").click(function () {
+            if (($(this).is(":checked"))) {
+                $(".nevidljivi").hide(200);
+                $(".zaposleni_select").show(200);
+                resizeChosen();
+            } else {
+                $(".nevidljivi").show(300);
+                $(".zaposleni_select").hide(300);
+                resizeChosen();
+            }
+        });
 
         resizeChosen();
         jQuery(window).on('resize', resizeChosen);

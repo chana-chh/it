@@ -37,6 +37,11 @@ class Hdd extends Model
         return $this->belongsTo('App\Modeli\Racunar', 'racunar_id', 'id');
     }
 
+    public function zaposleni()
+    {
+        return $this->belongsTo('App\Modeli\Zaposleni', 'zaposleni_id', 'id');
+    }
+
     public function stavkaOtpremnice()
     {
         return $this->belongsTo('App\Modeli\OtpremnicaStavka', 'stavka_otpremnice_id', 'id');
@@ -44,7 +49,7 @@ class Hdd extends Model
 
     public function scopeNeraspordjeni()
     {
-        return $this->doesntHave('racunar');
+        return $this->doesntHave('racunar')->where('eksterni', '=', 0);
     }
 
     public function dajModel()

@@ -24,6 +24,11 @@ class Zaposleni extends Model
         return $this->hasMany('App\Modeli\Racunar', 'zaposleni_id', 'id');
     }
 
+    public function eksterniHdd()
+    {
+        return $this->hasMany('App\Modeli\Hdd', 'zaposleni_id', 'id');
+    }
+
     public function mobilni()
     {
         return $this->hasMany('App\Modeli\Mobilni', 'zaposleni_id', 'id');

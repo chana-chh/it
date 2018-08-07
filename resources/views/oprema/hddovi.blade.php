@@ -52,9 +52,10 @@
         <th style="width: 5%;">#</th>
         <th style="width: 15%;">Serijski broj</th>
         <th style="width: 20%;">Model</th>
-        <th style="width: 20%;">Racunar</th>
-        <th style="width: 25%;">Otpremnica</th>
-        <th style="width: 15%;text-align:right">
+        <th style="width: 20%;">Racunar/zaposleni</th>
+        <th style="width: 20%;">Otpremnica</th>
+        <th style="width: 10%; text-align:center; vertical-align: middle;">Eksterni</th>
+        <th style="width: 10%;text-align:right">
             <i class="fa fa-cogs"></i>&emsp;Akcije</th>
     </thead>
     <tbody>
@@ -76,6 +77,11 @@
                 {{$o->stavkaOtpremnice->otpremnica->broj}}, {{$o->stavkaOtpremnice->otpremnica->dobavljac->naziv}} od {{$o->stavkaOtpremnice->otpremnica->datum}}
                 </a>
                 @endif
+            </td>
+            <td style="text-align:center; vertical-align: middle;">
+                @if($o->eksterni == 1)
+           <img alt="externi" src="{{url('/images/external_hardisk-512.png')}}" style="height:24px;">
+            @endif
             </td>
 
             <td style="text-align:right; vertical-align: middle; line-height: normal;">
