@@ -69,7 +69,9 @@
             <td> @if($o->racunar)
                 {{$o->racunar->ime}}
                 @endif
-
+                @if($o->zaposleni)
+                {{$o->zaposleni->imePrezime()}}
+                @endif
             </td>
             <td>
                 @if($o->stavkaOtpremnice)
