@@ -51,8 +51,22 @@ class AplikacijeKontroler extends Kontroler
             ],
         ]);
 
+        if ($request->legalan) {
+            $legalan = 1;
+        } else {
+            $legalan = 0;
+        }
+
+        if ($request->microsoft) {
+            $microsoft = 1;
+        } else {
+            $microsoft = 0;
+        }
+
         $data = new Aplikacija();
         $data->naziv = $request->naziv;
+        $data->legalan = $legalan;
+        $data->microsoft = $microsoft;
         $data->proizvodjac_id = $request->proizvodjac_id;
         $data->opis = $request->opis;
         $data->save();
@@ -70,8 +84,22 @@ class AplikacijeKontroler extends Kontroler
             ],
         ]);
 
+         if ($request->legalanModal) {
+            $legalan = 1;
+        } else {
+            $legalan = 0;
+        }
+
+        if ($request->microsoftModal) {
+            $microsoft = 1;
+        } else {
+            $microsoft = 0;
+        }
+
         $data = Aplikacija::find($request->idModal);
         $data->naziv = $request->nazivModal;
+        $data->legalan = $legalan;
+        $data->microsoft = $microsoft;
         $data->proizvodjac_id = $request->proizvodjac_idModal;
         $data->opis = $request->opisModal;
         $data->save();

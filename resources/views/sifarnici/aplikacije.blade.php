@@ -18,14 +18,16 @@
 @if($aplikacije->isEmpty())
 <h3 class="text-danger">Trenutno nema stavki u šifarniku</h3>
 @else
-<table id="tabela" class="table table-striped" cellspacing="0" width="100%">
+<table id="tabela" class="table table-striped" cellspacing="0" width="100%" style="font-size: 0.9375em;">
     <thead>
-        <th style="width: 10%;">#</th>
-        <th style="width: 25%;">Naziv</th>
-        <th style="width: 20%;">Proizvođač</th>
-        <th style="width: 25%;">Opis</th>
-        <th style="width: 10%;">Broj</th>
-        <th style="text-align:right; width: 10%;"><i class="fa fa-cogs"></i></th>
+        <th style="width: 8%;">#</th>
+        <th style="width: 18%;">Naziv</th>
+        <th style="width: 18%;">Proizvođač</th>
+        <th style="width: 8%;">Microsoft</th>
+        <th style="width: 8%;">Legalan</th>
+        <th style="width: 23%;">Opis</th>
+        <th style="width: 8%;">Broj</th>
+        <th style="text-align:right; width: 9%;"><i class="fa fa-cogs"></i></th>
     </thead>
     <tbody>
         @foreach ($aplikacije as $d)
@@ -33,6 +35,16 @@
             <td>{{$d->id}}</td>
             <td><strong>{{$d->naziv}}</strong></td>
             <td>{{$d->proizvodjac->naziv}}</td>
+            <td style="text-align:center"><span title="U pitanju je aplikacija kojoj su neophodne Microsoft tehnologije"
+                            style="color: #18bc9c;">
+                            {!! $d->microsoft == 1 ? "
+                            <i class=\"fa fa-check-square-o\"></i>" : " "!!}
+                        </span></td>
+            <td style="text-align:center"><span title="U pitanju je legalna aplikacija"
+                            style="color: #18bc9c;">
+                            {!! $d->legalan == 1 ? "
+                            <i class=\"fa fa-check-square-o\"></i>" : " "!!}
+                        </span></td>
             <td>{{$d->opis}}</td>
             <td> <a href="{{ route('aplikacije.racunari', $d->id) }}">{{$d->racunari->count()}}</a></td>
             <td style="text-align:right;">
@@ -81,6 +93,14 @@
                     <select class="form-control" name="proizvodjac_idModal" id="proizvodjac_idModal" data-placeholder="proizvodjaci ..." required>
                     </select>
                 </div>
+
+                 <div class="form-group checkboxoviforme">
+                                <label><input type="checkbox" name="microsoftModal" id="microsoftModal"> &emsp;Da li je aplikacija predviđena za Microsoft OS?</label>
+                    </div>
+
+                                     <div class="form-group checkboxoviforme">
+                                <label><input type="checkbox" name="legalanModal" id="legalanModal"> &emsp;Da li je aplikacija legalna?</label>
+                    </div>
 
                 <div class="form-group">
                   <label for="opisModal">Opis:</label>
@@ -148,6 +168,14 @@
             </span>
             @endif
         </div>
+
+        <div class="form-group checkboxoviforme">
+                <label><input type="checkbox" name="microsoft" id="microsoft"> &emsp;Da li je aplikacija predviđena za Microsoft OS?</label>
+        </div>
+
+        <div class="form-group checkboxoviforme">
+                                <label><input type="checkbox" name="legalan" id="legalan"> &emsp;Da li je aplikacija legalna?</label>
+                    </div>
 
         <div class="form-group{{ $errors->has('opis') ? ' has-error' : '' }}">
             <label for="opis">Opis: </label>
@@ -243,6 +271,8 @@ $( document ).ready(function() {
         success: function(data){
           $("#idModal").val(data.aplikacija.id);
           $("#nazivModal").val(data.aplikacija.naziv);
+          $("#microsoftModal").prop('checked', data.aplikacija.microsoft);
+          $("#legalanModal").prop('checked', data.aplikacija.legalan);
           $("#opisModal").val(data.aplikacija.opis);
           
             $.each(data.proizvodjaci, function(index, lokObjekat){

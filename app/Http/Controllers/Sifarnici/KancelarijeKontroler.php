@@ -192,6 +192,9 @@ class KancelarijeKontroler extends Kontroler
                     $slika = "../../images/opstina6.jpg";
                 }
                 break;
+                 case 3: 
+                    $slika = "../../images/VARTEX.jpg";
+                    break;
                 case 37: 
                     $slika = "../../images/I maj.jpg";
                     break;

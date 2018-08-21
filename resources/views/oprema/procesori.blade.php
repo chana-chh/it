@@ -107,7 +107,36 @@ $( document ).ready(function() {
             }, 4000);
 
         var tabela = $('#tabela').DataTable({
+            dom: 'Bflrtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'A4',
+                    customize: function (doc) {
+                        doc.content[1].table.widths = [
+                            "10%",
+                            "20%",
+                            "20%",
+                            "20%",
+                            "30%"
+                        ];
+                    },
+                    exportOptions: {
+                        columns: [
+                            0,
+                            1,
+                            2,
+                            3,
+                            4
+                        ]
+                    }
+                }
 
+            ],
         columnDefs: [
                 {
                     orderable: false,

@@ -11,6 +11,8 @@ class NapraviTabeluAplikacije extends Migration
         Schema::create('aplikacije', function (Blueprint $table) {
             $table->increments('id');
             $table->string('naziv', 100)->unique();
+            $table->boolean('legalan')->default(0);
+            $table->boolean('microsoft')->default(0);
             $table->integer('proizvodjac_id')->unsigned();
             $table->text('opis')->nullable();
 

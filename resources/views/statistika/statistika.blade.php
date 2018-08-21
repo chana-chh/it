@@ -55,4 +55,19 @@
             </a>
         </div>
     </div>
+    <div class="row">
+    <div class="col-md-12">
+<h2>Komponente</h2>
+</div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-3">
+
+            <a class="btn btn-success" href="{{ route('statistika.cpu') }}"
+               title="Grafički pregled raspoređenosti procesora">
+                Pregled raspoređenosti procesora
+            </a>
+        </div>
+    </div>
 @endsection

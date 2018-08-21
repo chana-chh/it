@@ -45,6 +45,38 @@ class StatistikaKontroler extends Kontroler
         return view('statistika.statistika_os')->with(compact('os_labele', 'os_broj', 'os_tabela', 'broj_elemenata'));
     }
 
+    public function getCpu()
+    {
+        $cpu_labele = DB::table('procesori')
+        ->join('procesori_modeli', 'procesori.procesor_model_id', '=', 'procesori_modeli.id')
+        ->select(DB::raw('count(*) as broj, procesori_modeli.naziv as naziv, procesori.procesor_model_id'))
+        ->where('procesori.racunar_id', '<>',NULL)
+        ->where('procesori.deleted_at', NULL)
+        ->groupBy('procesori.procesor_model_id')
+        ->orderBy('broj', 'desc')
+        ->pluck('naziv');
+
+        $cpu_broj = DB::table('procesori')
+        ->join('procesori_modeli', 'procesori.procesor_model_id', '=', 'procesori_modeli.id')
+        ->select(DB::raw('count(*) as broj, procesori_modeli.naziv as naziv, procesori.procesor_model_id'))
+        ->where('procesori.racunar_id', '<>',NULL)
+        ->where('procesori.deleted_at', NULL)
+        ->groupBy('procesori.procesor_model_id')
+        ->orderBy('broj', 'desc')
+        ->pluck('broj');
+
+        $cpu_tabela = DB::table('procesori')
+        ->join('procesori_modeli', 'procesori.procesor_model_id', '=', 'procesori_modeli.id')
+        ->select(DB::raw('count(*) as broj, procesori_modeli.naziv as naziv, procesori.procesor_model_id'))
+        ->where('procesori.racunar_id', '<>',NULL)
+        ->where('procesori.deleted_at', NULL)
+        ->groupBy('procesori.procesor_model_id')
+        ->orderBy('broj', 'desc')
+        ->get();
+
+        return view('statistika.statistika_cpu')->with(compact('cpu_labele', 'cpu_broj', 'cpu_tabela'));
+    }
+
     public function getOcene()
     {
         $ocene_tabela = Racunar::get()->sortBy('ocena')->groupBy('ocena');

@@ -25,6 +25,7 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 // STATISTIKA
 Route::get('statistika', 'StatistikaKontroler@getLista')->name('statistika');
 Route::get('statistika/os', 'StatistikaKontroler@getOs')->name('statistika.os');
+Route::get('statistika/cpu', 'StatistikaKontroler@getCpu')->name('statistika.cpu');
 Route::get('statistika/ocene', 'StatistikaKontroler@getOcene')->name('statistika.ocene');
 Route::get('statistika/upraveotpis', 'StatistikaKontroler@getUpraveOtpis')->name('statistika.upraveotpis');
 
