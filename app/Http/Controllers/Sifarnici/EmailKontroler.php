@@ -85,7 +85,7 @@ class EmailKontroler extends Kontroler
         $data = Email::find($id);
         $data->adresa = $request->adresaModal;
         $data->sluzbena = $sluzbenic;
-        $data->lozinka = $request->lozinka;
+        $data->lozinka = $request->lozinkaModal;
         $data->zaposleni_id = $request->zaposleniIdModal;
         $data->napomena = $request->napomenaModal;
         $data->save();
