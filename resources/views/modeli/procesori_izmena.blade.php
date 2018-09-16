@@ -44,7 +44,7 @@
 
         <div class="row">
 
-            <div class="col-md-6">
+            <div class="col-md-5">
                     <div class="form-group{{ $errors->has('naziv') ? ' has-error' : '' }}">
                     <label for="naziv">Naziv:</label>
                     <input type="text" name="naziv" id="naziv" class="form-control" value="{{ old('naziv', $procesor->naziv) }}" maxlength="50">
@@ -56,7 +56,7 @@
                 </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-5">
                    <div class="form-group{{ $errors->has('proizvodjac_id') ? ' has-error' : '' }}">
                     <label for="proizvodjac_id">Proizvođač:</label>
                     <select name="proizvodjac_id" id="proizvodjac_id" class="chosen-select form-control" data-placeholder="proizvođač ..." required>
@@ -76,6 +76,21 @@
                     @endif
                 </div>
                 </div>
+
+            <div class="col-md-2">
+
+                <div class="form-group{{ $errors->has('godiste') ? ' has-error' : '' }}">
+            <label for="godiste">Godište: </label>
+            <input  type="number" name="godiste" id="godiste" class="form-control" value="{{ old('godiste', $procesor->godiste) }}"
+                    min="2000"  step="1">
+            @if ($errors->has('godiste'))
+            <span class="help-block">
+                <strong>{{ $errors->first('godiste') }}</strong>
+            </span>
+            @endif
+            </div>
+
+            </div>
         </div>
 
         <hr>

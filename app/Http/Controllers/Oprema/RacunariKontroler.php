@@ -222,7 +222,7 @@ class RacunariKontroler extends Kontroler
 
         $racunari = $this->dajKolekciju($kobaja);
 
-        $operator = $parametri['operator_ocena'] ? $parametri['operator_ocena'] : '>';
+        $operator = $parametri['operator_ocena'] ? $parametri['operator_ocena'] : '>=';
         $filtrirano = $racunari->filter(function ($racunar) use($parametri, $operator){
         
         switch ($operator) {

@@ -82,6 +82,11 @@
                 <td style="width: 80%;">{{$procesor->broj_niti}}
                 </td>
             </tr>
+            <tr>
+                <th style="width: 20%;">Godiste:</th>
+                <td style="width: 80%;">{{$procesor->godiste}}
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

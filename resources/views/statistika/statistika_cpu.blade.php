@@ -33,15 +33,17 @@
 <div class="col-md-4">
     <table class="table table-striped table-condensed  tabelaCPU" name="tabelaCPU" id="tabelaCPU">
                 <thead>
-                            <th style="width: 20%;">#</th>
-                            <th style="width: 40%;">Naziv modela procesora</th>
-                            <th style="width: 40%;">Broj procesora</th>
+                            <th style="width: 10%;">#</th>
+                            <th style="width: 35%;">Naziv modela procesora</th>
+                            <th style="width: 30%;">Godina proizvodnje</th>
+                            <th style="width: 25%;">Broj procesora</th>
                 </thead>
                 <tbody >
                 @foreach ($cpu_tabela as $ot)
                         <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$ot->naziv}}</td>
+                                    <td>{{$ot->godiste}}</td>
                                     <td>{{$ot->broj}}</td>
                         </tr>
                 @endforeach

@@ -67,7 +67,7 @@ class StatistikaKontroler extends Kontroler
 
         $cpu_tabela = DB::table('procesori')
         ->join('procesori_modeli', 'procesori.procesor_model_id', '=', 'procesori_modeli.id')
-        ->select(DB::raw('count(*) as broj, procesori_modeli.naziv as naziv, procesori.procesor_model_id'))
+        ->select(DB::raw('count(*) as broj, procesori_modeli.naziv as naziv, procesori_modeli.godiste as godiste, procesori.procesor_model_id'))
         ->where('procesori.racunar_id', '<>',NULL)
         ->where('procesori.deleted_at', NULL)
         ->groupBy('procesori.procesor_model_id')

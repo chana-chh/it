@@ -51,6 +51,7 @@ class ProcesoriKontroler extends Kontroler
         $procesor->kes = $request->kes;
         $procesor->broj_jezgara = $request->broj_jezgara;
         $procesor->broj_niti = $request->broj_niti;
+        $procesor->godiste = $request->godiste;
         $procesor->ocena = $request->ocena;
         $procesor->link = $request->link;
         $procesor->napomena = $request->napomena;
@@ -89,6 +90,7 @@ class ProcesoriKontroler extends Kontroler
         $procesor->kes = $request->kes;
         $procesor->broj_jezgara = $request->broj_jezgara;
         $procesor->broj_niti = $request->broj_niti;
+        $procesor->godiste = $request->godiste;
         $procesor->ocena = $request->ocena;
         $procesor->link = $request->link;
         $procesor->napomena = $request->napomena;
