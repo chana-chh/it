@@ -8,15 +8,18 @@
 
 @section('naslov')
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
         <h1>
             <span>
                 <img class="slicica_animirana" alt="Računari" src="{{url('/images/kompjuterici.png')}}" style="height:64px;">
             </span>&emsp;Računari <small>(aktivni)</small></h1>
     </div>
-
     <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <a class="btn btn-primary ono" href="{{route('racunari.oprema.dodavanje.get')}}">
+        <a class="btn btn-warning btn-block ono" title="Ova akcija preračunava ocene svih aktivnih računara i može da potraje, Bajo!" href="{{route('racunari.osveziocene')}}">
+            <i class="fa fa-refresh fa-fw"></i> Osveži ocene</a>
+    </div>
+    <div class="col-md-2 text-right" style="padding-top: 50px;">
+        <a class="btn btn-primary btn-block ono"  href="{{route('racunari.oprema.dodavanje.get')}}">
             <i class="fa fa-plus-circle fa-fw"></i> Dodaj računar</a>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">

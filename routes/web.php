@@ -576,6 +576,7 @@ Route::post('mrezni/recikliranje/{id_reciklaze}', 'Oprema\MrezniUredjajiKontrole
 
 //Racunari
 Route::get('racunari/pretraga', 'Oprema\RacunariKontroler@getListaPretraga')->name('racunari.pretraga');
+Route::get('racunari/osveziocene', 'Oprema\RacunariKontroler@getOsveziOcene')->name('racunari.osveziocene');
 Route::post('racunari/pretraga', 'Oprema\RacunariKontroler@postListaPretraga')->name('racunari.pretraga.post');
 Route::get('racunari/ikt', 'Oprema\RacunariKontroler@getListaIkt')->name('racunari.oprema.ikt');
 Route::get('racunari/inventarski', 'Oprema\RacunariKontroler@getListaInventarski')->name('racunari.oprema.inventarski');

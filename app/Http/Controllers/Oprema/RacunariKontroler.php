@@ -64,6 +64,19 @@ class RacunariKontroler extends Kontroler
             'getDetalj',
             'getAjax']);
     }
+
+    public function getOsveziOcene() {
+        
+        $racunari = Racunar::where('deleted_at', null)
+               ->get();
+
+        foreach ($racunari as $racunar) {
+            $racunar->ocena = $racunar->oceniMe();
+            $racunar->save();
+        }
+
+        return Redirect::back();
+    }
     public function dajKolekciju($kobaja = [], $sa = 0){
 
         if ($sa == 0) {
