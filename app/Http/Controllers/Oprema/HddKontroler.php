@@ -32,7 +32,7 @@ class HddKontroler extends Kontroler
 
     public function getLista()
     {
-        $uredjaj = Hdd::all();
+        $uredjaj = Hdd::with('zaposleni', 'racunar', 'hddModel', 'stavkaOtpremnice')->get();
         return view('oprema.hddovi')->with(compact('uredjaj'));
     }
 

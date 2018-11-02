@@ -52,11 +52,11 @@
         <th style="width: 5%;">#</th>
         <th style="width: 15%;">Serijski broj</th>
         <th style="width: 20%;">Model</th>
-        <th style="width: 10%;">Racunar/zaposleni</th>
-        <th style="width: 10%;">Napomena</th>
-        <th style="width: 10%;">Otpremnica</th>
-        <th style="width: 10%; text-align:center; vertical-align: middle;">Eksterni</th>
-        <th style="width: 10%;text-align:right">
+        <th style="width: 12%;">Racunar/zaposleni</th>
+        <th style="width: 20%;">Napomena</th>
+        <th style="width: 12%;">Otpremnica</th>
+        <th style="width: 8%; text-align:center; vertical-align: middle;">Eksterni</th>
+        <th style="width: 8%;text-align:right">
             <i class="fa fa-cogs"></i>&emsp;Akcije</th>
     </thead>
     <tbody>
@@ -74,7 +74,7 @@
                 {{$o->zaposleni->imePrezime()}}
                 @endif
             </td>
-             <td>
+             <td style="font-size: 0.75em">
                 {{$o->napomena}}
             </td>
             <td>
