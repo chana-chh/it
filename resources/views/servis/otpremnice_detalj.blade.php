@@ -121,6 +121,26 @@
 
 @section('traka')
 <div class="well">
+    <h3>Slike</h3>
+    @if($otpremnica->slike->isEmpty())
+    <h5 class="text-danger">Trenutno nema slika za ovu otpremnicu</h5>
+    @else
+    @foreach($otpremnica->slike as $slika)
+        <img data-toggle="modal"
+             data-target="#slikaModal"
+             src="{{asset('images/otpremnice/' . $slika->src)}}"
+             class="img-responsive img-thumbnail center-block"
+             style="width: 70%;">
+            <button class="btn btn-danger btn-xs btn-block otvori-brisanje"
+                style="width: 70%; margin: 5px auto;"
+                data-toggle="modal" data-target="#brisanjeModal"
+                value="{{$slika->id}}">
+            <i class="fa fa-trash"></i>
+        </button>
+        <hr style="border-top: 1px dashed #18BC9C">
+    @endforeach
+    @endif
+        <hr style="border-top: 1px solid #18BC9C">
     <h3>Dodavanje slike</h3>
     <form action="{{route('otpremnice.dodavanje.slike', $otpremnica->id)}}" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
@@ -236,26 +256,6 @@
             </div>
         </div>
     </form>
-    <hr style="border-top: 1px solid #18BC9C">
-    <h3>Slike</h3>
-    @if($otpremnica->slike->isEmpty())
-    <h5 class="text-danger">Trenutno nema slika za ovu otpremnicu</h5>
-    @else
-    @foreach($otpremnica->slike as $slika)
-        <img data-toggle="modal"
-             data-target="#slikaModal"
-             src="{{asset('images/otpremnice/' . $slika->src)}}"
-             class="img-responsive img-thumbnail center-block"
-             style="width: 70%;">
-            <button class="btn btn-danger btn-xs btn-block otvori-brisanje"
-                style="width: 70%; margin: 5px auto;"
-                data-toggle="modal" data-target="#brisanjeModal"
-                value="{{$slika->id}}">
-            <i class="fa fa-trash"></i>
-        </button>
-        <hr style="border-top: 1px dashed #18BC9C">
-    @endforeach
-    @endif
 </div>
 
 <!--  POCETAK brisanjeModal [brisanje slike] -->
