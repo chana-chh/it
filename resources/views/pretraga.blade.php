@@ -61,11 +61,11 @@
         </div>
     </div>
     <div class="col-md-2 text-center">
-        <a href="{{ route('kvar') }}">
+        <a href="{{ route('kvar') }}" disabled>
             <img alt="Kvar" src="{{url('/images/kvar.png')}}" style="height: 128px;" title="Obaveštenje:" class="kvarPopover"  style="cursor: pointer;"
                  data-content="Ova sekcija trenutno nije dostupna. Baza računara je trenutno u izradi.">
         </a>
-        <a href="{{ route('kvar') }}" title="Obaveštenje:" data-content="Ova sekcija trenutno nije dostupna. Baza računara je trenutno u izradi." class="btn btn-success kvarPopover" style="margin-top: 3rem; cursor: pointer;">Prijava/status kvara</a>
+        <a href="{{ route('kvar') }}" title="Obaveštenje:" data-content="Ova sekcija trenutno nije dostupna. Baza računara je trenutno u izradi." class="btn btn-success kvarPopover" style="margin-top: 3rem; cursor: pointer;" disabled>Prijava/status kvara</a>
     </div>
 </div>
 
