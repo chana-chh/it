@@ -1044,7 +1044,7 @@ class RacunariKontroler extends Kontroler
 
         if ($racunar->napajanja->count() > 1) {
             $greska = new Greska();
-            $greska->greska = "U računar " . $racunar->ime . " je " . Auth::user()->name . " dodao više od jednog grafičkog adaptera! Dana: " . Carbon::now();
+            $greska->greska = "U računar " . $racunar->ime . " je " . Auth::user()->name . " dodao više od jednog napajanja! Dana: " . Carbon::now();
             $greska->save();
             Session::flash('upozorenje', 'Napajanje je uspešno dodato, ali nije jedino u ovom računaru!');
             return Redirect::back();

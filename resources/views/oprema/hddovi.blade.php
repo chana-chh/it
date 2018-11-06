@@ -66,7 +66,7 @@
             <td>
                 <strong>{{$o->serijski_broj}}</strong>
             </td>
-            <td><a href="{{route('hddovi.modeli.detalj', $o->hddModel->id)}}">{{$o->hddModel->proizvodjac->naziv}}, {{$o->hddModel->kapacitet}} MB</a></td>
+            <td><a href="{{route('hddovi.modeli.detalj', $o->hddModel->id)}}">{{$o->hddModel->proizvodjac->naziv}}, {{$o->hddModel->kapacitet}} GB</a></td>
             <td> @if($o->racunar)
                 {{$o->racunar->ime}}
                 @endif

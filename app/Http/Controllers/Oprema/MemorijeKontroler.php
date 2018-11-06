@@ -31,7 +31,7 @@ class MemorijeKontroler extends Kontroler
 
     public function getLista()
     {
-        $uredjaj = Memorija::all();
+        $uredjaj = Memorija::with('memorijaModel', 'racunar', 'stavkaOtpremnice', 'vrstaUredjaja')->get();
         return view('oprema.memorije')->with(compact('uredjaj'));
     }
 
