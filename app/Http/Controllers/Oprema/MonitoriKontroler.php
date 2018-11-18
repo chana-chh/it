@@ -62,6 +62,21 @@ class MonitoriKontroler extends Kontroler
         return view('oprema.monitori')->with(compact('uredjaj'));
     }
 
+    public function postDupli(Request $request){
+
+        $this->validate($request, [
+            'polje' => [
+                'required'],
+        ]);
+
+        $uredjaj = Monitor::with('monitorModel', 'racunar', 'kancelarija', 'stavkaOtpremnice', 'nabavkaStavka')
+        ->groupBy($request->polje)
+        ->havingRaw('COUNT(*) > 1')
+        ->get();
+
+        return view('oprema.monitori_dupli')->with(compact('uredjaj'));
+    }
+
     public function getListaSerijski()
     {
 

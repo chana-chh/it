@@ -58,6 +58,11 @@ class Monitor extends Model
         return $this->doesntHave('racunar');
     }
 
+    public function scopeBezKancelarije()
+    {
+        return $this->doesntHave('kancelarija');
+    }
+
     public function tip()
     {   
         return 1;

@@ -510,6 +510,7 @@ Route::post('napajanja/recikliranje/{id_reciklaze}', 'Oprema\NapajanjaKontroler@
 Route::get('monitori', 'Oprema\MonitoriKontroler@getLista')->name('monitori.oprema');
 Route::get('monitori/serijski', 'Oprema\MonitoriKontroler@getListaSerijski')->name('monitori.oprema.serijski');
 Route::get('monitori/inventarski', 'Oprema\MonitoriKontroler@getListaInventarski')->name('monitori.oprema.inventarski');
+Route::post('monitori/dupli', 'Oprema\MonitoriKontroler@postDupli')->name('monitori.oprema.dupli');
 Route::get('monitori/otpisani', 'Oprema\MonitoriKontroler@getListaOtpisani')->name('monitori.oprema.otpisani');
 Route::get('monitori/detalj/{id}', 'Oprema\MonitoriKontroler@getDetalj')->name('monitori.oprema.detalj');
 Route::get('monitori/izmena/{id}', 'Oprema\MonitoriKontroler@getIzmena')->name('monitori.oprema.izmena.get');

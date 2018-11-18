@@ -15,61 +15,14 @@
             </span>&emsp;Monitori</h1>
     </div>
     <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <button id="pretragaDugme" class="btn btn-success btn-block ono">
-            <i class="fa fa-search fa-fw"></i> Napredna pretraga
-        </button>
+        <a href="{{route('monitori.oprema')}}" id="pretragaDugme" class="btn btn-success btn-block ono">
+            <i class="fa fa-arrow-circle-left fa-fw"></i> Monitori
+        </a>
     </div>
 </div>
-<div class="row obavestenje">
-    <div class="col-md-10 col-md-offset-1 text-center" style="font-size: 1rem;;">
-        <div class="alert alert-info alert-dismissible ono" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <strong>Obavštenje: </strong> Dodavanje novog monitora se obavlja kroz <a href="{{ route('otpremnice') }}" style="color: #18BC9C"><strong> otpremnicu </strong></a> ili <a href="{{route('nabavke')}}" style="color: #18BC9C"><strong> nabavku </strong></a>.
-        </div>
-    </div>
-</div>
+
 <hr class="linija" style="display: none;">
-<div class="row well" id="pretraga" style="display: none;">
-    <div class="col-md-2">
-        <a id="pretragaDugme" href="{{route('monitori.oprema.otpisani')}}" class="btn btn-warning btn-sm btn-block">
-            <i class="fa fa-recycle fa-fw"></i> Otpisani
-        </a>
-    </div>
-        <div class="col-md-2">
-        <a id="serijski" href="{{route('monitori.oprema.serijski')}}" class="btn btn-warning btn-sm btn-block">
-            <i class="fa fa-filter fa-fw"></i> Bez serijskog
-        </a>
-    </div>
-    <div class="col-md-2">
-        <a id="inventarski" href="{{route('monitori.oprema.inventarski')}}" class="btn btn-warning btn-sm btn-block">
-            <i class="fa fa-filter fa-fw"></i> Bez inventarskog
-        </a>
-    </div>
-        <div class="col-md-3">
-            <form action="{{ route('monitori.oprema.dupli') }}" method="post">
-              {{ csrf_field() }}
-              
 
-                <div class="form-group">
-                    <label for="polje">Polje u kome se trazi</label>
-                    <select class="form-control" name="polje" id="polje" data-placeholder="polje ..." required>
-                        <option value="inventarski_broj">Inventarski broj</option>
-                        <option value="serijski_broj">Serijski broj</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                        <button id = "btn-snimi" type="submit" class="btn btn-warning btn-sm btn-block">
-                            <i class="fa fa-filter fa-fw"></i>&emsp;Duplikati
-                        </button>
-
-                </div>
-
-            </form>
-    </div>
-</div>
 <div class="row">
     <div class="col-md-12">
 @if($uredjaj->isEmpty())
