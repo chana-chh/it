@@ -157,6 +157,7 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
 
         $stampac = new Stampac();
         $stampac->stavka_nabavke_id = $request->stavka_nabavke_id;
+        $stampac->stavka_nabavke_id = $request->stavka_otpremnice_id;
         $stampac->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
         $stampac->inventarski_broj = $request->inventarski_broj;
         $stampac->serijski_broj = $request->serijski_broj;
