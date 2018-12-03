@@ -157,7 +157,7 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
 
         $stampac = new Stampac();
         $stampac->stavka_nabavke_id = $request->stavka_nabavke_id;
-        $stampac->stavka_nabavke_id = $request->stavka_otpremnice_id;
+        $stampac->stavka_otpremnice_id = $request->stavka_otpremnice_id;
         $stampac->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
         $stampac->inventarski_broj = $request->inventarski_broj;
         $stampac->serijski_broj = $request->serijski_broj;
@@ -227,6 +227,7 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
 
         $skener = new Skener();
         $skener->stavka_nabavke_id = $request->stavka_nabavke_id;
+        $skener->stavka_otpremnice_id = $request->stavka_otpremnice_id;
         $skener->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
         $skener->inventarski_broj = $request->inventarski_broj;
         $skener->serijski_broj = $request->serijski_broj;
@@ -294,6 +295,7 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
 
         $ups = new Ups();
         $ups->stavka_nabavke_id = $request->stavka_nabavke_id;
+        $ups->stavka_otpremnice_id = $request->stavka_otpremnice_id;
         $ups->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
         $ups->inventarski_broj = $request->inventarski_broj;
         $ups->serijski_broj = $request->serijski_broj;
@@ -387,6 +389,7 @@ class NabavkeOtpremniceStavkeKontroler extends Kontroler
 
         $projektor = new Projektor();
         $projektor->stavka_nabavke_id = $request->stavka_nabavke_id;
+        $projektor->stavka_otpremnice_id = $request->stavka_otpremnice_id;
         $projektor->vrsta_uredjaja_id = $request->vrsta_uredjaja_id;
         $projektor->naziv = $request->naziv;
         $projektor->proizvodjac_id = $request->proizvodjac_id;
