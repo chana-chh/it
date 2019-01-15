@@ -140,7 +140,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td class="text-right"><strong>Ukupno</strong></td>
+                <td class="text-right"><strong>Ukupno bez uračunatog PDV</strong></td>
                 <td class="text-right text-danger">
                     <strong>{{ number_format($data->utroseno(), 2, ',', '.') }}</strong>
                 </td>
@@ -168,7 +168,7 @@
 @section('traka')
 <div class="well" style="margin-top: 5rem;">
     <p>
-        Ukupna sredstva po ugovoru:
+        Ukupna sredstva po ugovoru bez PDV:
         <strong class="text-info">{{ number_format($data->iznos_sredstava, 2, ',', '.') }}</strong>
     </p>
     <div class="progress pro">
@@ -178,7 +178,7 @@
     </div>
 
     <p>
-        Utrošena sredstva po ugovoru:
+        Utrošena sredstva po ugovoru bez PDV:
         <strong class="text-danger">{{ number_format($data->utroseno(), 2, ',', '.') }}</strong>
     </p>
     <div class="progress pro">
@@ -188,7 +188,7 @@
         </div>
     </div>
     <p>
-        Preostala sredstva po ugovoru:
+        Preostala sredstva po ugovoru bez PDV:
         <strong class="text-success">{{ number_format($data->preostalo(), 2, ',', '.') }}</strong>
     </p>
     <div class="progress pro">
