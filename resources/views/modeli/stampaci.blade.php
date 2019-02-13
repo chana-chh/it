@@ -32,7 +32,8 @@
         <th style="width: 20%;">Naziv</th>
         <th style="width: 20%;">Proizvođač</th>
         <th style="width: 20%;">Tip</th>
-        <th style="width: 20%;">Link</th>
+        <th style="width: 10%;">Link</th>
+        <th style="width: 10%;">Stanje</th>
         <th style="width: 15%;text-align:right">
             <i class="fa fa-cogs"></i>&emsp;Akcije</th>
     </thead>
@@ -51,6 +52,7 @@
                 </a>
                 @endif
             </td>
+            <td>{{$m->stampaci->count()}}</td>
             <td style="text-align:right; vertical-align: middle; line-height: normal;">
                 <a class="btn btn-success btn-sm" id="dugmeDetalj" href="{{route('stampaci.modeli.detalj', $m->id)}}">
                     <i class="fa fa-eye"></i>
