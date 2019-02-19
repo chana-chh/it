@@ -33,7 +33,7 @@ class StampaciKontroler extends Kontroler
 
     public function getLista()
     {
-        $uredjaj = Stampac::all();
+        $uredjaj = Stampac::with('stampacModel', 'racunar', 'kancelarija', 'stavkaOtpremnice', 'nabavkaStavka')->get();
         return view('oprema.stampaci')->with(compact('uredjaj'));
     }
 
