@@ -68,6 +68,13 @@
             </tr>
 
             <tr>
+                <th style="width: 40%;">Serijski broj</th>
+                <td style="width: 80%;">
+                        <strong>{{$uredjaj->serijski_broj}}</strong>
+                </td> 
+            </tr>
+
+            <tr>
                 <th style="width: 40%;"><strong>Proizvođač:</strong></th>
                 
                 <td style="width: 80%;">
@@ -86,6 +93,12 @@
                         <i class="fa fa-check" aria-hidden="true" style="color: #18bc9c"></i>
                 </td>
             </tr>
+            <tr>
+                <th style="width: 40%;">Serijski broj</th>
+                <td style="width: 80%;">
+                        <strong>{{$uredjaj->serijski_broj}}</strong>
+                </td> 
+            </tr>
             @endif
 
             @if($uredjaj->server == 1)
@@ -94,6 +107,12 @@
                 <td style="width: 60%;">
                         <i class="fa fa-check" aria-hidden="true" style="color: #18bc9c"></i>
                 </td>
+            </tr>
+            <tr>
+                <th style="width: 40%;">Serijski broj</th>
+                <td style="width: 80%;">
+                        <strong>{{$uredjaj->serijski_broj}}</strong>
+                </td> 
             </tr>
             @endif
 
