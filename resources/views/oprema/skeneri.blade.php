@@ -40,7 +40,7 @@
     <div class="col-md-10">
         Ostalo
     </div>
-    
+
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -122,7 +122,27 @@ $( document ).ready(function() {
             }, 4000);
 
         var tabela = $('#tabela').DataTable({
+            dom: 'Bflrtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'A4',
+                    exportOptions: {
+                        columns: [
+                            1,
+                            2,
+                            3,
+                            4,
+                            5
+                        ]
+                    }
+                }
 
+            ],
         columnDefs: [
                 {
                     orderable: false,
