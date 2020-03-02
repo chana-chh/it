@@ -8,30 +8,31 @@
 
 @section('naslov')
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <h1>
             <img class="slicica_animirana" alt="Ugovori"
                  src="{{ url('/images/ugovor.png') }}" style="height:64px;">
-            &emsp;Ugovori o održavanju
+            &emsp;Ugovori o održavanju - <small class="text-danger">[AKTIVNI] <i class="fa fa-filter"></i></small>
         </h1>
-    </div>
-    <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <button id="pretragaDugme" class="btn btn-success btn-block ono">
-            <i class="fa fa-search fa-fw"></i> Napredna pretraga
-        </button>
-    </div>
-    <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <a class="btn btn-primary btn-block ono" href="{{ route('ugovori.dodavanje.get') }}">
-            <i class="fa fa-plus-circle fa-fw"></i> Dodaj ugovor
-        </a>
     </div>
 </div>
 <hr>
-<div id="pretraga" class="row well" style="display: none;">
-    <div class="col-md-2">
-        <a id="aktivni" href="{{route('ugovori.aktivni')}}" class="btn btn-warning btn-sm btn-block">
-            <i class="fa fa-filter fa-fw"></i> Samo aktivni
-        </a>
+<div class="row" style="margin-bottom: 16px;">
+    <div class="col-md-12">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="window.history.back();"
+               title="Povratak na prethodnu stranu">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-primary" href="{{ route('pocetna') }}"
+               title="Povratak na početnu stranu">
+                <i class="fa fa-home"></i>
+            </a>
+            <a class="btn btn-primary" href="{{route('ugovori')}}"
+               title="Povratak na listu svih ugovora">
+                <i class="fa fa-list"></i>
+            </a>
+        </div>
     </div>
 </div>
 <div class="row">
@@ -77,11 +78,6 @@
                            href="{{ route('ugovori.izmena.get', $ugovor->id) }}">
                             <i class="fa fa-pencil"></i>
                         </a>
-                        <button class="btn btn-danger btn-sm otvori-brisanje"
-                                data-toggle="modal" data-target="#brisanjeModal"
-                                value="{{ $ugovor->id }}">
-                            <i class="fa fa-trash"></i>
-                        </button>
                     </td>
                 </tr>
                 @endforeach
@@ -90,9 +86,6 @@
         @endif
     </div>
 </div>
-<!--  POCETAK brisanjeModal  -->
-@include('sifarnici.inc.modal_brisanje')
-<!--  KRAJ brisanjeModal  -->
 @endsection
 
 @section('skripte')
@@ -127,17 +120,6 @@ $(document).ready(function () {
         }
     });
     new $.fn.dataTable.FixedHeader(tabela);
-
-    $(document).on('click', '.otvori-brisanje', function () {
-        var id = $(this).val();
-        $('#idBrisanje').val(id);
-        var ruta = "{{ route('ugovori.brisanje') }}";
-        $('#brisanje-forma').attr('action', ruta);
-    });
-
-    $('#pretragaDugme').click(function () {
-        $('#pretraga').toggle();
-    });
 
 });
 </script>

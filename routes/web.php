@@ -49,6 +49,7 @@ Route::get('ugovori/izmena/{id}', 'Servis\UgovoriOdrzavanjaKontroler@getIzmena')
 Route::post('ugovori/izmena/{id}', 'Servis\UgovoriOdrzavanjaKontroler@postIzmena')->name('ugovori.izmena.post');
 Route::get('ugovori/detalj/{id}', 'Servis\UgovoriOdrzavanjaKontroler@getDetalj')->name('ugovori.detalj');
 Route::post('ugovori/brisanje', 'Servis\UgovoriOdrzavanjaKontroler@postBrisanje')->name('ugovori.brisanje');
+Route::get('ugovori/aktivni', 'Servis\UgovoriOdrzavanjaKontroler@getAktivni')->name('ugovori.aktivni');
 
 // Racuni
 Route::get('racuni', 'Servis\RacuniKontroler@getLista')->name('racuni');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Servis;
 use Illuminate\Http\Request;
 use Session;
 use Redirect;
+use Carbon\Carbon;
 use App\Http\Controllers\Kontroler;
 use App\Modeli\UgovorOdrzavanje;
 use App\Modeli\Dobavljac;
@@ -28,6 +29,14 @@ class UgovoriOdrzavanjaKontroler extends Kontroler
     {
         $ugovori = UgovorOdrzavanje::all();
         return view('servis.ugovori')->with(compact('ugovori'));
+    }
+
+    public function getAktivni()
+    {
+
+        $ugovori = UgovorOdrzavanje::whereDate('datum_raskida', '>', Carbon::now())->get();
+
+        return view('servis.ugovori_aktivni')->with(compact('ugovori'));
     }
 
     public function getDodavanje()
