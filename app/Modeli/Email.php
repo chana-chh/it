@@ -17,7 +17,11 @@ class Email extends Model
 
     public function setLozinkaAttribute($value)
     {
-        $this->attributes['lozinka'] = Crypt::encryptString($value);
+        if ($value === null) {
+            $this->attributes['lozinka'] = null;
+        }else{
+            $this->attributes['lozinka'] = Crypt::encryptString($value);
+        }  
     }
 
     public function getLozinkaAttribute($value)

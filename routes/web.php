@@ -233,6 +233,8 @@ Route::post('mobilni/detalj', 'Sifarnici\MobilniKontroler@postDetalj')->name('mo
 
 // Email
 Route::get('email', 'Sifarnici\EmailKontroler@getLista')->name('email');
+Route::get('email/lozinke', 'Sifarnici\EmailKontroler@getListaLozinke')->name('email.lozinke');
+Route::get('email/bezlozinke', 'Sifarnici\EmailKontroler@getListaBezLozinke')->name('email.bezlozinke');
 Route::post('email/dodavanje', 'Sifarnici\EmailKontroler@postDodavanje')->name('email.dodavanje');
 Route::post('email/brisanje', 'Sifarnici\EmailKontroler@postBrisanje')->name('email.brisanje');
 Route::post('email/izmena', 'Sifarnici\EmailKontroler@postIzmena')->name('email.izmena');

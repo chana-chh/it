@@ -7,10 +7,33 @@
 @endsection
 
 @section('naslov')
-<h1 class="page-header">
-    <img class="slicica_animirana" alt="email" src="{{ url('/images/email.png') }}" style="height:64px;  width:64px">
-    &emsp;Adrese elektronske pošte
-</h1>
+<div class="row">
+    <div class="col-md-8">
+        <h1>
+            <img class="slicica_animirana" alt="Email"
+                 src="{{ url('/images/email.png') }}" style="height:64px;">
+            &emsp;Adrese elektronske pošte
+        </h1>
+    </div>
+    <div class="col-md-2 text-right" style="padding-top: 50px;">
+        <button id="pretragaDugme" class="btn btn-success ono">
+            <i class="fa fa-filter fa-fw"></i>
+        </button>
+    </div>
+</div>
+<hr>
+<div id="pretraga" class="row well" style="display: none;">
+    <div class="col-md-2">
+        <a id="aktivni" href="{{route('email.lozinke')}}" class="btn btn-warning btn-sm btn-block">
+            Nalozi sa prikazanim lozinkama
+        </a>
+    </div>
+    <div class="col-md-2">
+        <a id="aktivni" href="{{route('email.bezlozinke')}}" class="btn btn-warning btn-sm btn-block">
+            Nalozi bez lozinki u bazi
+        </a>
+    </div>
+</div>
 @endsection
 
 @section('sadrzaj')
@@ -233,13 +256,10 @@
             }
         });
 
-        $('#sluzbena').change(function () {
-            if (this.checked) {
-                $('#lozinka').prop('required', true);
-            } else {
-                $('#lozinka').prop('required', false);
-            }
+        $('#pretragaDugme').click(function () {
+        $('#pretraga').toggle();
         });
+
 
         $('#tabela').DataTable({
             order: [

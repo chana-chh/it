@@ -25,6 +25,18 @@ class EmailKontroler extends Kontroler
         return view('sifarnici.email')->with(compact('data', 'radnici'));
     }
 
+    public function getListaLozinke()
+    {
+        $data = Email::with('zaposleni')->get();
+        return view('sifarnici.email_loz')->with(compact('data'));
+    }
+
+    public function getListaBezLozinke()
+    {
+        $data = Email::with('zaposleni')->where('lozinka', null)->get();
+        return view('sifarnici.email_loz_bez')->with(compact('data'));
+    }
+
     public function postDodavanje(Request $request)
     {
 
