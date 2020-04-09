@@ -113,16 +113,20 @@
                     pageSize: 'A4',
                     customize: function (doc) {
                         doc.content[1].table.widths = [
-                            "30%",
-                            "30%",
-                            "30%"
+                            "20%",
+                            "20%",
+                            "20%",
+                            "20%",
+                            "20%"
                         ];
                     },
                     exportOptions: {
                         columns: [
                             1,
+                            2,
                             3,
-                            4
+                            4,
+                            5
                         ]
                     }
                 }

@@ -77,7 +77,7 @@
                             @foreach($racuni as $racun)
                             <option value="{{ $racun->id }}"
                                     {{ old('racun_id', $data->racun_id) == $racun->id ? ' selected' : '' }}>
-                                    {{ $racun->broj }}</option>
+                                    {{ $racun->broj }} ({{ $racun->datum }})</option>
                             @endforeach
                         </select>
                         @if ($errors->has('racun_id'))

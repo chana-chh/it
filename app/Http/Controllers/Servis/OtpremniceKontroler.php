@@ -109,7 +109,8 @@ class OtpremniceKontroler extends Kontroler
 
     public function getDodavanje($id_racuna = null)
     {
-        $racuni = Racun::all();
+        $racuni_nesortirani = Racun::all();
+        $racuni = $racuni_nesortirani->sortByDesc('datum');
         $dobavljaci = Dobavljac::all();
         return view('servis.otpremnice_dodavanje')->with(compact('racuni', 'dobavljaci', 'id_racuna'));
     }
@@ -193,7 +194,8 @@ class OtpremniceKontroler extends Kontroler
     public function getIzmena($id)
     {
         $data = Otpremnica::find($id);
-        $racuni = Racun::all();
+        $racuni_nesortirani = Racun::all();
+        $racuni = $racuni_nesortirani->sortByDesc('datum');
         $dobavljaci = Dobavljac::all();
         return view('servis.otpremnice_izmena')->with(compact('data', 'racuni', 'dobavljaci'));
     }
