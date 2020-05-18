@@ -13,4 +13,9 @@ class OperativniSistem extends Model
     {
         return $this->hasMany('App\Modeli\Racunar', 'os_id', 'id');
     }
+
+    public function serveri()
+    {
+        return $this->hasMany('App\Modeli\Server', 'os_id', 'id');
+    }
 }

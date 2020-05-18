@@ -44,6 +44,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{route('racunari.oprema')}}">Računari</a></li>
+                            <li><a href="{{route('serveri.oprema')}}">Serveri <span class="text-danger"><strong>NOVO!</strong></span></a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{route('osnovne_ploce.oprema')}}">Osnovne ploče</a></li>
                             <li><a href="{{route('procesori.oprema')}}">Procesori</a></li>

@@ -29,6 +29,11 @@ class Kancelarija extends Model
         return $this->hasMany('App\Modeli\Racunar', 'kancelarija_id', 'id');
     }
 
+    public function serveri()
+    {
+        return $this->hasMany('App\Modeli\Server', 'kancelarija_id', 'id');
+    }
+
     public function stampaci()
     {
         return $this->hasMany('App\Modeli\Stampac', 'kancelarija_id', 'id');

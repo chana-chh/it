@@ -578,6 +578,29 @@ Route::post('mrezni/vracanje_otpis', 'Oprema\MrezniUredjajiKontroler@postOtpisVr
 Route::post('mrezni/recikliranje/lista', 'Oprema\MrezniUredjajiKontroler@postReciklirajLista')->name('mrezni.oprema.recikliranje.lista');
 Route::post('mrezni/recikliranje/{id_reciklaze}', 'Oprema\MrezniUredjajiKontroler@postRecikliraj')->name('mrezni.oprema.recikliranje');
 
+//Serveri
+Route::get('serveri', 'Oprema\ServeriKontroler@getLista')->name('serveri.oprema');
+Route::get('serveri/detalj/{id}', 'Oprema\ServeriKontroler@getDetalj')->name('serveri.detalj');
+Route::get('serveri/updateovi/{id}', 'Oprema\ServeriKontroler@getUpdateovi')->name('serveri.updateovi');
+Route::get('serveri/up', 'Oprema\ServeriKontroler@getUp')->name('serveri.up.get');
+Route::get('serveri/backupovi/{id}', 'Oprema\ServeriKontroler@getBackupovi')->name('serveri.backupovi');
+Route::get('serveri/bu', 'Oprema\ServeriKontroler@getBu')->name('serveri.bu.get');
+Route::get('serveri/dodavanje', 'Oprema\ServeriKontroler@getDodavanje')->name('serveri.dodavanje.get');
+Route::post('serveri/dodavanje', 'Oprema\ServeriKontroler@postDodavanje')->name('serveri.dodavanje.post');
+Route::get('serveri/izmena/{id}', 'Oprema\ServeriKontroler@getIzmena')->name('serveri.izmena.get');
+Route::post('serveri/izmena/{id}', 'Oprema\ServeriKontroler@postIzmena')->name('serveri.izmena.post');
+Route::post('serveri/brisanje', 'Oprema\ServeriKontroler@postBrisanje')->name('serveri.brisanje');
+Route::get('serveri/up/dodavanje/{id?}', 'Oprema\ServeriKontroler@getUpDodavanje')->name('serveri.dodavanje.up.get');
+Route::post('serveri/up/dodavanje', 'Oprema\ServeriKontroler@postUpDodavanje')->name('serveri.dodavanje.up.post');
+Route::get('serveri/up/izmena/{id}', 'Oprema\ServeriKontroler@getUpIzmena')->name('serveri.izmena.up.get');
+Route::post('serveri/up/izmena/{id}', 'Oprema\ServeriKontroler@postUpIzmena')->name('serveri.izmena.up.post');
+Route::post('serveri/up/brisanje', 'Oprema\ServeriKontroler@postUpBrisanje')->name('serveri.brisanje.up.post');
+Route::get('serveri/bu/dodavanje/{id?}', 'Oprema\ServeriKontroler@getBuDodavanje')->name('serveri.dodavanje.bu.get');
+Route::post('serveri/bu/dodavanje', 'Oprema\ServeriKontroler@postBuDodavanje')->name('serveri.dodavanje.bu.post');
+Route::get('serveri/bu/izmena/{id}', 'Oprema\ServeriKontroler@getBuIzmena')->name('serveri.izmena.bu.get');
+Route::post('serveri/bu/izmena/{id}', 'Oprema\ServeriKontroler@postBuIzmena')->name('serveri.izmena.bu.post');
+Route::post('serveri/bu/brisanje', 'Oprema\ServeriKontroler@postBuBrisanje')->name('serveri.brisanje.bu.post');
+
 //Racunari
 Route::get('racunari/pretraga', 'Oprema\RacunariKontroler@getListaPretraga')->name('racunari.pretraga');
 Route::get('racunari/osveziocene', 'Oprema\RacunariKontroler@getOsveziOcene')->name('racunari.osveziocene');
