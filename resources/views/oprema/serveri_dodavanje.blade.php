@@ -158,6 +158,45 @@
 
 <hr>
 
+{{-- Red II ipo plus --}}
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group{{ $errors->has('nalog') ? ' has-error' : '' }}">
+                    <label for="nalog">Nalog koji se koristi za pristup:</label>
+                    <input type="text" name="nalog" id="nalog" class="form-control" value="{{ old('nalog') }}" maxlength="50"> @if ($errors->has('nalog'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('nalog') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group{{ $errors->has('lozinka') ? ' has-error' : '' }}">
+                    <label for="lozinka">Lozinka:</label>
+                    <input type="text" name="lozinka" id="lozinka" class="form-control" value="{{ old('lozinka') }}" maxlength="50"> @if ($errors->has('lozinka'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('lozinka') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group{{ $errors->has('hypervisor') ? ' has-error' : '' }}">
+                    <label for="hypervisor">Ako je uloga servera VHOST o kom se Hypervisoru radi:</label>
+                    <input type="text" name="hypervisor" id="hypervisor" class="form-control" value="{{ old('hypervisor') }}" maxlength="50"> @if ($errors->has('hypervisor'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('hypervisor') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
+
+</div>
+
+<hr>
+
 {{-- Red III --}}
 <div class="row">
 

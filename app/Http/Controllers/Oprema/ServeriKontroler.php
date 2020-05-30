@@ -46,6 +46,9 @@ class ServeriKontroler extends Kontroler
             'model' => ['max:50'],
             'cpu' => ['max:50'],
             'ram' => ['max:50'],
+            'nalog' => ['max:50'],
+            'lozinka' => ['max:50'],
+            'hypervisor' => ['max:50'],
         ]);
 
         if ($request->firewall) {
@@ -72,6 +75,9 @@ class ServeriKontroler extends Kontroler
         $server->rola_opis = $request->rola_opis;
         $server->rack = $request->rack;
         $server->ups = $request->ups;
+        $server->nalog = $request->nalog;
+        $server->lozinka = $request->lozinka;
+        $server->hypervisor = $request->hypervisor;
         $server->licenca = $request->licenca;
         $server->model = $request->model;
         $server->kancelarija_id = $request->kancelarija_id;
@@ -119,6 +125,9 @@ class ServeriKontroler extends Kontroler
             'model' => ['max:50'],
             'cpu' => ['max:50'],
             'ram' => ['max:50'],
+            'nalog' => ['max:50'],
+            'lozinka' => ['max:50'],
+            'hypervisor' => ['max:50'],
         ]);
 
         if ($request->firewall) {
@@ -145,6 +154,9 @@ class ServeriKontroler extends Kontroler
         $server->rola_opis = $request->rola_opis;
         $server->rack = $request->rack;
         $server->ups = $request->ups;
+        $server->nalog = $request->nalog;
+        $server->lozinka = $request->lozinka;
+        $server->hypervisor = $request->hypervisor;
         $server->licenca = $request->licenca;
         $server->model = $request->model;
         $server->kancelarija_id = $request->kancelarija_id;

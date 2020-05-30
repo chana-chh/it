@@ -239,6 +239,7 @@ Route::post('email/dodavanje', 'Sifarnici\EmailKontroler@postDodavanje')->name('
 Route::post('email/brisanje', 'Sifarnici\EmailKontroler@postBrisanje')->name('email.brisanje');
 Route::post('email/izmena', 'Sifarnici\EmailKontroler@postIzmena')->name('email.izmena');
 Route::post('email/detalj', 'Sifarnici\EmailKontroler@postDetalj')->name('email.detalj');
+Route::get('email/stampa/{id}', 'Sifarnici\EmailKontroler@getStampa')->name('email.stampa');
 
 // Dijagonale
 Route::get('dijagonale', 'Sifarnici\DijagonaleKontroler@getLista')->name('dijagonale');

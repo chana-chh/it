@@ -144,8 +144,8 @@
                     <label for="prioritet">Prioritet prilikom uključivanja:</label>
                     <select name="prioritet" id="prioritet" class="chosen-select form-control" data-placeholder="prioritet ...">
                         <option value="1" {{ $server->prioritet == 1 ? 'selected' : '' }}>1</option>
-                        <option value="2" {{ $server->prioritet == 1 ? 'selected' : '' }}>2</option>
-                        <option value="3" {{ $server->prioritet == 1 ? 'selected' : '' }}>3</option>
+                        <option value="2" {{ $server->prioritet == 2 ? 'selected' : '' }}>2</option>
+                        <option value="3" {{ $server->prioritet == 3 ? 'selected' : '' }}>3</option>
                 </select>
                 @if ($errors->has('prioritet'))
                 <span class="help-block">
@@ -154,6 +154,45 @@
                 @endif
             </div>
         </div>
+</div>
+
+<hr>
+
+{{-- Red II ipo plus --}}
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group{{ $errors->has('nalog') ? ' has-error' : '' }}">
+                    <label for="nalog">Nalog koji se koristi za pristup:</label>
+                    <input type="text" name="nalog" id="nalog" class="form-control" value="{{ old('nalog', $server->nalog) }}" maxlength="50"> @if ($errors->has('nalog'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('nalog') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group{{ $errors->has('lozinka') ? ' has-error' : '' }}">
+                    <label for="lozinka">Lozinka:</label>
+                    <input type="text" name="lozinka" id="lozinka" class="form-control" value="{{ old('lozinka', $server->lozinka) }}" maxlength="50"> @if ($errors->has('lozinka'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('lozinka') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group{{ $errors->has('hypervisor') ? ' has-error' : '' }}">
+                    <label for="hypervisor">Ako je uloga servera VHOST o kom se hypervisoru radi:</label>
+                    <input type="text" name="hypervisor" id="hypervisor" class="form-control" value="{{ old('hypervisor', $server->hypervisor) }}" maxlength="50"> @if ($errors->has('hypervisor'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('hypervisor') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
+
 </div>
 
 <hr>

@@ -118,4 +118,10 @@ class EmailKontroler extends Kontroler
         return Redirect::back();
     }
 
+    public function getStampa($id)
+    {
+        $mail = Email::find($id);
+        return view('sifarnici.email_stampa')->with(compact('mail'));
+    }
+
 }

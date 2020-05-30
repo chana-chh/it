@@ -42,6 +42,11 @@
         </div>
     </div>
 </div>
+<div class="row text-right" style="margin-bottom: 4px;">
+    <div class="col-md-12">
+<button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="NALOG ({{$server->nalog}}) LOZINKA ({{$server->lozinka}})"><i class="fa fa-user-secret"></i></button>
+</div>
+</div>
 <div class="row">
     <div class="col-md-12">
 <table class="table table-striped" style="table-layout: fixed;">
@@ -65,6 +70,12 @@
             <tr>
                 <th style="width: 20%;">Rola - detaljno:</th>
                 <td style="width: 80%;">{{$server->rola_opis}}
+                </td>
+            </tr>
+
+            <tr>
+                <th style="width: 20%;">Hypervisor (VHOST):</th>
+                <td style="width: 80%;">{{$server->hypervisor}}
                 </td>
             </tr>
 
@@ -232,5 +243,7 @@
         var ruta = "{{ route('serveri.brisanje') }}";
         $('#brisanje-forma').attr('action', ruta);
     });
+
+    $('[data-toggle="tooltip"]').tooltip()
 </script>
 @endsection

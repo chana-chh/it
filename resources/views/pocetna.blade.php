@@ -191,23 +191,65 @@
             </div>
         </div>
     </div>
-    <div class="row ceo_dva boxic">
-        <h4 class="text-center">Spoljne aplikacije</h4>
-        <dir class="col-md-6">
-            
-            <img alt="postfix" src="{{url('/images/postfix.png')}}" style="height: 64px;">&emsp;
+    <div class="row ceo_dva boxic text-center text-primary">
+        <h3>Spoljne aplikacije</h3>
+        <div class="row">
+        <div class="col-md-4">
             <a href="https://195.178.40.109:8080/">
-                     Administracija servera za elektronsku poštu
-                </a>
-            </dir>
-                <dir class="col-md-6">
-                     <img alt="eset" src="{{url('/images/eset.png')}}" style="height: 64px;">&emsp;
+                <img alt="postfix" src="{{url('/images/postfix.png')}}" style="height: 64px;">
+            </a>
+                <h4>Administracija servera za elektronsku poštu</h4>
+            </div>
+                <div class="col-md-4">
                 <a href="https://192.168.13.10/era/webconsole/">
-                    Administracija antivirusnog servera i klijenata
+                    <img alt="eset" src="{{url('/images/eset.png')}}" style="height: 64px;">
                 </a>
-            </dir>
-        </dir>
-    </div>
+                <h4>Administracija antivirusnog servera i klijenata</h4>
+            </div>
+            <div class="col-md-4">
+                <a href="http://gis.kg.org.rs/gis/">
+                    <img alt="gis" src="{{url('/images/gis.png')}}" style="height: 64px;">
+                </a>
+                <h4>Imovina (GIS) interno</h4>
+            </div>
+            </div>
+            <hr>
+            <div class="row">
+            <div class="col-md-4">
+                <a href="http://gis.kg.org.rs:85/gis/">
+                    <img alt="gis" src="{{url('/images/gis.png')}}" style="height: 64px;">
+                </a>
+                <h4>Imovina (GIS) eksterno</h4>
+            </div>
+            <div class="col-md-4">
+            <a href="http://gis.kg.org.rs/imovina/">
+                <img alt="imovina" src="{{url('/images/euexchange.jpg')}}" style="height: 64px;">
+            </a>
+                <h4>Imovina grada interno</h4>
+            </div>
+                <div class="col-md-4">
+                <a href="http://gis.kg.org.rs:85/imovina/">
+                    <img alt="imovina" src="{{url('/images/euexchange.jpg')}}" style="height: 64px;">
+                </a>
+                <h4>Imovina grada eksterno</h4>
+            </div>
+            </div>
+                        <hr>
+            <div class="row">
+            <div class="col-md-4">
+                <a href="http://rhas:7777/Meni/faces/WEB-INF/page/Meni.jspx">
+                    <img alt="lpa" src="{{url('/images/por.png')}}" style="height: 64px;">
+                </a>
+                <h4>LPA</h4>
+            </div>
+            <div class="col-md-4">
+            <a href="http://10.111.1.8:7777/IFLPrijave/faces/prijavaLogin.jspx">
+                <img alt="lpa notar" src="{{url('/images/por.png')}}" style="height: 64px;">
+            </a>
+                <h4>LPA - notar</h4>
+            </div>
+            </div>
+        </div>
 @endsection
 
 @section('traka')

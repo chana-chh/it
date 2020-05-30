@@ -81,6 +81,9 @@
         </td>
         <td><em>{{ str_limit($d->napomena, 60) }}</em></td>
         <td style="text-align:right;">
+            <a class="btn btn-warning btn-sm" id="dugmeStampa" href="{{route('email.stampa', $d->id)}}">
+                            <i class="fa fa-print"></i>
+                        </a>
             <button class="btn btn-success btn-sm otvori-izmenu"
                     data-toggle="modal" data-target="#editModal"
                     value="{{ $d->id }}">
