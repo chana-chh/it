@@ -7,9 +7,9 @@
 @endsection
 
 @section('naslov')
-    <h1 class="page-header">
+    <h2>
         Podešavanja mail naloga za KG.ORG.RS za korisnika <strong>{{ $mail->zaposleni->imePrezime() }}</strong>
-    </h1>
+    </h2>
 @endsection
 
 @section('sadrzaj')
@@ -33,35 +33,38 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-    <h3>Lokalni mail klijent POP3 podesavanje:</h3>
-    <p>POP3: mail.kg.org.rs, SSL/TLS Normal Password, port: <strong>995</strong></p> 
-    <p>SMTP: mail.kg.org.rs, SSL/TLS, Normal Password, port: <strong>465</strong></p>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h3>Korisničko ime (username, account):</h3>
+            <h4>{{ $mail->adresa }} <small class="text-danger">(dakle, cela e-mail adresa korisnika)</small></h4>
+            <h3>Lozinka (password):</h3>
+            <h4>{{ $mail->lozinka }} <small class="text-danger">(molimo vas da je nikome ne saopštavate niti pokazujete)</small></h4>
+        </div>
+    </div>
     <br>
-    <p>username: {{ $mail->adresa }}</p>
-    <p>password: {{ $mail->lozinka }}</p>
+    <br>
+    <h2>Parametri:</h2>
+    <h3>Lokalni mail klijent POP3 podesavanje:</h3>
+    <h4>POP3: mail.kg.org.rs, SSL/TLS Normal Password, port: <strong>995</strong></h4> 
+    <h4>SMTP: mail.kg.org.rs, SSL/TLS, Normal Password, port: <strong>465</strong></h4>
+    <br>
     <hr>
     <h3>Lokalni mail klijent IMAP podesavanje:</h3> 
-    <p>IMAP: mail.kg.org.rs, SSL/TLS, Normal Password, port: <strong>993</strong></p> 
-    <p>SMTP: mail.kg.org.rs, SSL/TLS, Normal Password, port: <strong>465</strong></p>
+    <h4>IMAP: mail.kg.org.rs, SSL/TLS, Normal Password, port: <strong>993</strong></h4> 
+    <h4>SMTP: mail.kg.org.rs, SSL/TLS, Normal Password, port: <strong>465</strong></h4>
     <br>
-    <p>username: {{ $mail->adresa }}</p>
-    <p>password: {{ $mail->lozinka }}</p> 
     <hr>
     <h3>WebMail (pristup email-u preko internet pretrazivača) adresa:</h3>
-    <h4>
+    <h2>
     <a href="https://mail.kg.org.rs/webmail/">
         <strong class="text-info">
             https://mail.kg.org.rs/webmail/
         </strong>
     </a>
-    </h4>
-    <br>
-    <p>username: {{ $mail->adresa }}</p>
-    <p>password: {{ $mail->lozinka }}</p> 
-
+    </h2>
     </div>
 </div>
-<div class="row">
+<div class="row" style="margin-bottom: 16px;">
     <div class="col-md-6 col-md-offset-6 text-right">
         <button id="stampaj" class="btn btn-default" value="{{$mail->id}}">
             <i class="fa fa-print fa-fw"></i> Štampaj
