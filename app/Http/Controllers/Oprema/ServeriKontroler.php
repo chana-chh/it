@@ -74,6 +74,7 @@ class ServeriKontroler extends Kontroler
         $server->rola = $request->rola;
         $server->rola_opis = $request->rola_opis;
         $server->rack = $request->rack;
+        $server->instalacija = $request->instalacija;
         $server->ups = $request->ups;
         $server->nalog = $request->nalog;
         $server->lozinka = $request->lozinka;
@@ -86,6 +87,7 @@ class ServeriKontroler extends Kontroler
         $server->os_id = $request->os_id;
         $server->ram = $request->ram;
         $server->napomena = $request->napomena;
+        $server->problemi = $request->problemi;
 
         $saved = $server->save();
 
@@ -153,6 +155,7 @@ class ServeriKontroler extends Kontroler
         $server->rola = $request->rola;
         $server->rola_opis = $request->rola_opis;
         $server->rack = $request->rack;
+        $server->instalacija = $request->instalacija;
         $server->ups = $request->ups;
         $server->nalog = $request->nalog;
         $server->lozinka = $request->lozinka;
@@ -165,6 +168,7 @@ class ServeriKontroler extends Kontroler
         $server->os_id = $request->os_id;
         $server->ram = $request->ram;
         $server->napomena = $request->napomena;
+        $server->problemi = $request->problemi;
 
         $saved = $server->save();
 

@@ -40,6 +40,21 @@
     <div class="col-md-12 boxic">
         <form action="{{ route('serveri.izmena.post', $server->id) }}" method="POST" data-parsley-validate>
             {{ csrf_field() }}
+                        {{-- Red 0 --}}
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group{{ $errors->has('problemi') ? ' has-error' : '' }}">
+            <label for="problemi">Problemi/greške:</label>
+            <textarea name="problemi" id="problemi" class="form-control">{{ old('problemi', $server->problemi) }}</textarea>
+            @if ($errors->has('problemi'))
+            <span class="help-block">
+                <strong>{{ $errors->first('problemi') }}</strong>
+            </span>
+            @endif
+        </div>
+    </div>
+</div>
+<hr>
             {{-- Red I --}}
             <div class="row">
                 <div class="col-md-4">
@@ -226,7 +241,7 @@
 <hr>
 {{-- Red IV --}}
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="form-group{{ $errors->has('os_id') ? ' has-error' : '' }}">
             <label for="os_id">Operativni sistem:</label>
             <select name="os_id" id="os_id" class="chosen-select form-control" data-placeholder="os ...">
@@ -247,11 +262,22 @@
         @endif
     </div>
     </div>
-
-    <div class="col-md-4">
+    <div class="col-md-2">
+    <div class="form-group{{ $errors->has('instalacija') ? ' has-error' : '' }}">
+            <label for="instalacija">Godina instalacije: </label>
+            <input  type="number" name="instalacija" id="instalacija" class="form-control" value="{{ old('instalacija', $server->instalacija) }}"
+                    min="2000"  step="1">
+            @if ($errors->has('instalacija'))
+            <span class="help-block">
+                <strong>{{ $errors->first('instalacija') }}</strong>
+            </span>
+            @endif
+        </div>
+    </div>
+    <div class="col-md-3">
         <div class="form-group{{ $errors->has('licenca') ? ' has-error' : '' }}">
             <label for="licenca">Licenca:</label>
-            <input type="text" name="licenca" id="licenca" class="form-control" value="{{ old('licenca', $server->licenca) }}" maxlength="50"> @if ($errors->has('licenca'))
+            <input type="text" name="licenca" id="licenca" class="form-control" value="{{ old('licenca', $server->licenca) }}"maxlength="50"> @if ($errors->has('licenca'))
             <span class="help-block">
                 <strong>{{ $errors->first('licenca') }}</strong>
             </span>

@@ -31,15 +31,17 @@
         @else
             <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
                 <thead>
-                        <th style="width: 5%;" class="text-center">!</th>
+                        <th style="width: 5%;" class="text-center">P</th>
                         <th style="width: 5%;" class="text-center">VR</th>
+                        <th style="width: 5%;" class="text-center">!</th>
+                        <th style="width: 5%;" class="text-center"><i class="fa fa-calendar"></i></th>
                         <th style="width: 15%;">Ime</th>
                         <th style="width: 10%;">Domen</th>
                         <th style="width: 10%;">Host</th>
-                        <th style="width: 15%;">Rola</th>
+                        <th style="width: 10%;">Rola</th>
                         <th style="width: 15%;">OS</th>
                         <th style="width: 10%;">IP adresa</th>
-                        <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
+                        <th style="width: 10%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
                 </thead>
                 <tbody>
                 @foreach ($serveri as $m)
@@ -50,7 +52,13 @@
                                     <i class="fa fa-check" aria-hidden="true" style="color: #18bc9c"></i>
                                 @endif
                             </td>
-                            <td>{{$m->ime}}</td>
+                            <td class="text-center">
+                                @if($m->problemi)
+                                    <i class="fa fa-exclamation-circle" aria-hidden="true" style="color: #FF0000"></i>
+                                @endif
+                            </td>
+                            <td class="text-warning">{{$m->instalacija}}</td>
+                            <td><strong>{{$m->ime}}</strong></td>
                             <td>{{$m->domen}}</td>
                             <td><em>{{$m->host}}</em></td>
                             <td><strong>{{$m->rola}}</strong></td>
@@ -96,6 +104,30 @@ $( document ).ready(function() {
 
         var tabela = $('#tabela').DataTable({
 
+            dom: 'Bflrtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                {
+                    extend: 'pdfHtml5',
+                    orientation: 'landscape',
+                    pageSize: 'A4',
+                    exportOptions: {
+                        columns: [
+                            0,
+                            3,
+                            4,
+                            5,
+                            6,
+                            7,
+                            8,
+                            9
+                        ]
+                    }
+                }
+
+            ],
         columnDefs: [
                 {
                     orderable: false,

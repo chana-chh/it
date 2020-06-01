@@ -4,6 +4,7 @@ namespace App\Modeli;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Crypt;
 
 class Server extends Model
 {
@@ -40,5 +41,22 @@ class Server extends Model
     {
         $up = $this->up()->orderBy('datum', 'desc')->first();
         return $up;
+    }
+
+    public function setLozinkaAttribute($value)
+    {
+        if ($value === null) {
+            $this->attributes['lozinka'] = null;
+        }else{
+            $this->attributes['lozinka'] = Crypt::encryptString($value);
+        }  
+    }
+
+    public function getLozinkaAttribute($value)
+    {
+        if ($value) {
+           return Crypt::decryptString($value);
+        }
+        return "";
     }
 }

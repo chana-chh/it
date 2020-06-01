@@ -14,6 +14,9 @@
 @endsection
 
 @section('sadrzaj')
+@if($server->problemi)
+<div class="alert alert-danger" role="alert">{{$server->problemi}}</div>
+@endif
 <div class="row" style="margin-bottom: 16px;">
     <div class="col-md-12">
         <div class="btn-group">
@@ -146,6 +149,22 @@
 </h5>
 </div>
 </div>
+@else
+<div class="col-md-6">
+<div class="jumbotron">
+  <h3>Poslednja rezervna kopija:</h3>
+  <h4 class="text-success">Nije dostupna!</h4>
+  <hr>
+  <h5>
+    <a class="btn btn-success btn-sm" href="{{route('serveri.backupovi', $server->id)}}" role="button">
+        <i class="fa fa-table fa-fw"></i> Ostale rezervne kopije ovog servera
+    </a> 
+    <a class="btn btn-primary btn-sm" href="{{route('serveri.dodavanje.bu.get', $server->id)}}" role="button">
+        <i class="fa fa-plus-circle fa-fw"></i> Dodaj
+    </a>
+</h5>
+</div>
+</div>
 @endif
 @if(count($server->up)>0)
 <div class="col-md-6">
@@ -153,6 +172,22 @@
   <h3>Poslednje ažuriranje:</h3>
   <h4 class="text-success">{{$server->poslednji_up()->formatiran_datum}}</h4>
   <h5>{{$server->poslednji_up()->opis}}</h5>
+  <hr>
+  <h5>
+    <a class="btn btn-success btn-sm" href="{{route('serveri.updateovi', $server->id)}}" role="button">
+        <i class="fa fa-table fa-fw"></i> Ostala ažuriranja ovog servera
+    </a> 
+    <a class="btn btn-primary btn-sm" href="{{route('serveri.dodavanje.up.get', $server->id)}}" role="button">
+        <i class="fa fa-plus-circle fa-fw"></i> Dodaj
+    </a>
+</h5>
+</div>
+</div>
+@else
+<div class="col-md-6">
+<div class="jumbotron">
+  <h3>Poslednje ažuriranje:</h3>
+  <h4 class="text-success">Nije dostupno!</h4>
   <hr>
   <h5>
     <a class="btn btn-success btn-sm" href="{{route('serveri.updateovi', $server->id)}}" role="button">
@@ -176,6 +211,7 @@
 <div class="row" style="margin-top: 50px">
 <div class="col-md-12 text-center">
     <h3 class="text-success">{{$server->operativniSistem->naziv}}</h3>
+    <h4 class="text-warning">({{$server->instalacija}})</h4>
 </div>
 </div>
 @endif
