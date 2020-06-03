@@ -35,13 +35,13 @@
                         <th style="width: 5%;" class="text-center">VR</th>
                         <th style="width: 5%;" class="text-center">!</th>
                         <th style="width: 5%;" class="text-center"><i class="fa fa-calendar"></i></th>
-                        <th style="width: 10%;">Ime</th>
+                        <th style="width: 12%;">Ime</th>
                         <th style="width: 10%;">Domen</th>
                         <th style="width: 10%;">Host</th>
                         <th style="width: 10%;">Rola</th>
                         <th style="width: 15%;">OS</th>
                         <th style="width: 10%;">IP adresa</th>
-                        <th style="width: 15%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
+                        <th style="width: 13%;text-align:right"><i class="fa fa-cogs"></i>&emsp;Akcije</th>
                 </thead>
                 <tbody>
                 @foreach ($serveri as $m)
