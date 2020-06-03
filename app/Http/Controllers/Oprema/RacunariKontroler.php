@@ -140,7 +140,7 @@ class RacunariKontroler extends Kontroler
 
         $broj_elemenata = Racunar::count();
 
-        return view('oprema.racunari')->with(compact('dobavljaci', 'uredjaji', 'spratovi', 'uprave', 'os', 'paginacija', 'broj_elemenata', 'lokacije'));
+        return view('oprema.racunari')->with(compact('uredjaji', 'spratovi', 'uprave', 'os', 'paginacija', 'broj_elemenata', 'lokacije'));
     }
 
 

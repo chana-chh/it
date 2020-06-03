@@ -29,7 +29,7 @@
 @if($serveri->isEmpty())
             <h3 class="text-danger">Trenutno nema stavki u bazi podataka</h3>
         @else
-            <table id="tabela" class="table table-striped display" cellspacing="0" width="100%">
+            <table id="tabela" class="table table-striped display" cellspacing="0" style="table-layout: fixed; font-size: 0.9375em;">
                 <thead>
                         <th style="width: 5%;" class="text-center">P</th>
                         <th style="width: 5%;" class="text-center">VR</th>
