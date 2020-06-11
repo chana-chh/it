@@ -104,7 +104,11 @@
                     <label for="tip">Tip:</label>
                     <select name="tip" id="tip" class="chosen-select form-control" data-placeholder="tip ...">
                         <option value=""></option>
-                        <option value="Full">Full</option>
+                        <option value="Full(sistem)">Full(sistem)</option>
+                        <option value="Full(baza)">Full(baza)</option>
+                        <option value="Full(fajlovi)">Full(fajlovi)</option>
+                        <option value="Snapshot">Snapshot</option>
+                        <option value="Image">Image</option>
                         <option value="Incremental">Incremental</option>
                         <option value="Differential">Differential</option>
                         <option value="Mirror">Mirror</option>

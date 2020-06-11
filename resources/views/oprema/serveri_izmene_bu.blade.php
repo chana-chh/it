@@ -99,7 +99,11 @@
                     <label for="tip">Tip:</label>
                     <select name="tip" id="tip" class="chosen-select form-control" data-placeholder="tip ...">
                         <option value=""></option>
-                        <option value="Full" {{ $bu->tip == "Full" ? 'selected' : '' }}>Full</option>
+                        <option value="Full(sistem)" {{ $bu->tip == "Full(sistem)" ? 'selected' : '' }}>Full(sistem)</option>
+                        <option value="Full(baza)" {{ $bu->tip == "Full(baza)" ? 'selected' : '' }}>Full(baza)</option>
+                        <option value="Full(fajlovi)" {{ $bu->tip == "Full(fajlovi)" ? 'selected' : '' }}>Full(fajlovi)</option>
+                        <option value="Snapshot" {{ $bu->tip == "Snapshot" ? 'selected' : '' }}>Snapshot</option>
+                        <option value="Image" {{ $bu->tip == "Image" ? 'selected' : '' }}>Image</option>
                         <option value="Incremental" {{ $bu->tip == "Incremental" ? 'selected' : '' }}>Incremental</option>
                         <option value="Differential" {{ $bu->tip == "Differential" ? 'selected' : '' }}>Differential</option>
                         <option value="Mirror" {{ $bu->tip == "Mirror" ? 'selected' : '' }}>Mirror</option>

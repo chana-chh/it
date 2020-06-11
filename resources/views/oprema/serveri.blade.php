@@ -54,7 +54,7 @@
                             </td>
                             <td class="text-center">
                                 @if($m->problemi)
-                                    <i class="fa fa-exclamation-circle" aria-hidden="true" style="color: #FF0000"></i>
+                                    <i class="fa fa-exclamation-circle problem" aria-hidden="true" style="color: #FF0000" data-toggle="problem" title="Problemi:" data-content="{{ $m->problemi }}"></i>
                                 @endif
                             </td>
                             <td class="text-warning">{{$m->instalacija}}</td>
@@ -66,7 +66,7 @@
                                 @if($m->os_id)
                                 <small><strong>{{$m->operativniSistem->naziv}}</strong></small></td>
                                 @endif
-                            <td>{{$m->ip_adresa}}</td>
+                            <td class="{{ping($m->ip_adresa) ? 'text-success' : 'text-danger'}}"><strong>{{$m->ip_adresa}}</strong></td>
                             <td style="text-align:right; vertical-align: middle; line-height: normal;">
                     <a class="btn btn-success btn-sm" id="dugmeDetalj"  href="{{route('serveri.detalj', $m->id)}}"><i class="fa fa-eye"></i></a>
                     <a class="btn btn-info btn-sm" id="dugmeIzmena"  href="{{route('serveri.izmena.get', $m->id)}}"><i class="fa fa-pencil"></i></a>
@@ -94,6 +94,11 @@
 @section('skripte')
 <script>
 $( document ).ready(function() {
+
+    $('.problem').popover({
+            placement: 'right',
+            trigger: 'hover'
+        });
 
         $(document).on('click', '.otvori-brisanje', function () {
             var id = $(this).val();
