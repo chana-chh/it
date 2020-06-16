@@ -2,8 +2,8 @@
 	
 	function ping($adresa)
 	{
-		$ping = exec("ping -c 1 $adresa 2>&1", $izlaz, $status);
-		if (strpos(implode(",", $izlaz), 'Destination host unreachable') !== false) {
+		$ping = exec("ping -c 1 $adresa", $izlaz, $status);
+		if (strpos(implode(",", $izlaz), 'Destination') !== false) {
 			return false;
     	} else {
         	return true;

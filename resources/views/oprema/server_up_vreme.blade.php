@@ -77,10 +77,6 @@
         $.fn.dataTable.moment('DD.MM.YYYY');
 
         var tabela = $('#tabela').DataTable({
-
-            order: [
-                [1, "desc"]
-            ],
             language: {
                 search: "Pronađi u tabeli",
                 paginate: {
