@@ -243,7 +243,7 @@ class ServeriKontroler extends Kontroler
         return view('oprema.serveri_bu_dodavanje')->with(compact('serveri', 'server'));
     }
 
-    public function postUpDodavanje(Request $request)
+    public function postUpDodavanje(Request $request, $put = null)
     {
         $this->validate($request, [
             'server_id' => ['required', 'integer'],
@@ -256,7 +256,17 @@ class ServeriKontroler extends Kontroler
         $up->opis = $request->opis;
         $saved = $up->save();
 
+        if($put){
         if ($saved) {
+            Session::flash('uspeh', 'Ažuriranje za server je uspešno dodato!');
+            return redirect()->route('serveri.updateovi', $request->server_id);
+        }
+        else{
+            Session::flash('greska', 'Došlo je do problema prilikom dodavanja ažuriranja za server. Pokušajte ponovo kasnije ili proverite formu!');
+            return redirect()->route('serveri.up.get');
+        }
+        }else{
+            if ($saved) {
             Session::flash('uspeh', 'Ažuriranje za server je uspešno dodato!');
             return redirect()->route('serveri.up.get');
         }
@@ -264,9 +274,11 @@ class ServeriKontroler extends Kontroler
             Session::flash('greska', 'Došlo je do problema prilikom dodavanja ažuriranja za server. Pokušajte ponovo kasnije ili proverite formu!');
             return redirect()->route('serveri.up.get');
         }
+
+        }
     }
 
-    public function postBuDodavanje(Request $request)
+    public function postBuDodavanje(Request $request, $put = null)
     {
         $this->validate($request, [
             'server_id' => ['required', 'integer'],
@@ -282,13 +294,25 @@ class ServeriKontroler extends Kontroler
         $bu->bu_path = $request->bu_path;
         $saved = $bu->save();
 
+        if($put){
         if ($saved) {
+            Session::flash('uspeh', 'Rezervna kopija za server je uspešno dodato!');
+            return redirect()->route('serveri.backupovi', $request->server_id);
+        }
+        else{
+            Session::flash('greska', 'Došlo je do problema prilikom dodavanja rezervne kopije za server. Pokušajte ponovo kasnije ili proverite formu!');
+            return redirect()->route('serveri.bu.get');
+        }
+        }else{
+             if ($saved) {
             Session::flash('uspeh', 'Rezervna kopija za server je uspešno dodato!');
             return redirect()->route('serveri.bu.get');
         }
         else{
             Session::flash('greska', 'Došlo je do problema prilikom dodavanja rezervne kopije za server. Pokušajte ponovo kasnije ili proverite formu!');
             return redirect()->route('serveri.bu.get');
+        }
+
         }
 
     }
@@ -383,6 +407,12 @@ class ServeriKontroler extends Kontroler
             Session::flash('greska', 'Došlo je do problema prilikom dodavanja ažuriranja za server. Pokušajte ponovo kasnije ili proverite formu za izmenu!');
             return redirect()->route('serveri.bu.get');
         }
+    }
+
+    public function getUpVreme()
+    {
+        $up = Server::all();
+        return view('oprema.server_up_vreme')->with(compact('up'));
     }
     
 }

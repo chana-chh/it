@@ -13,8 +13,11 @@
             <i class="fa fa-bomb fa-fw text-primary"></i>&emsp;Ažuriranja svih servera
         </h1>
     </div>
-    <div class="col-md-2 text-right" style="padding-top: 50px;">
-        <a class="btn btn-primary ono" href="{{route('serveri.dodavanje.up.get')}}"><i class="fa fa-plus-circle fa-fw"></i> Dodaj ažuriranje</a>
+    <div class="col-md-1" style="padding-top: 50px;">
+        <a class="btn btn-primary ono" href="{{route('serveri.dodavanje.up.get')}}"><i class="fa fa-plus-circle fa-fw"></i> Dodaj</a>
+    </div>
+    <div class="col-md-1 text-right" style="padding-top: 50px;">
+        <a class="btn btn-success ono" href="{{route('serveri.up.vreme')}}"><i class="fa fa-clock-o fa-fw"></i> Hronološki</a>
     </div>
 </div>
 <div class="row" style="margin-bottom: 16px;">

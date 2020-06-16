@@ -36,7 +36,11 @@
 
 <div class="row ceo_dva">
     <div class="col-md-12 boxic">
+        @if($server != null)
+        <form action="{{ route('serveri.dodavanje.up.post', 1) }}" method="POST" data-parsley-validate>
+        @else
         <form action="{{ route('serveri.dodavanje.up.post') }}" method="POST" data-parsley-validate>
+        @endif
             {{ csrf_field() }}
 
 <div class="row">
