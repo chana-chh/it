@@ -7,7 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class UgovorOdrzavanje extends Model
 {
     protected $table = 'ugovori_odrzavanja';
+    protected $appends = ['preostalo'];
     public $timestamps = false;
+
+    public function getPreostaloAttribute()
+    {
+    return $this->preostalo();
+    }
 
     public function racuni()
     {

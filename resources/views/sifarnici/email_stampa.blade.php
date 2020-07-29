@@ -58,7 +58,7 @@
     <h2>
     <a href="https://mail.kg.org.rs/webmail/">
         <strong class="text-info">
-            https://mail.kg.org.rs/webmail/
+            http://mail.kg.org.rs/webmail/
         </strong>
     </a>
     </h2>

@@ -34,8 +34,8 @@ class UgovoriOdrzavanjaKontroler extends Kontroler
     public function getAktivni()
     {
 
-        $ugovori = UgovorOdrzavanje::whereDate('datum_raskida', '>', Carbon::now())->get();
-
+        $ugovori_datum = UgovorOdrzavanje::whereDate('datum_raskida', '>', Carbon::now())->get();
+        $ugovori = $ugovori_datum->where('preostalo', '>', 600);
         return view('servis.ugovori_aktivni')->with(compact('ugovori'));
     }
 
