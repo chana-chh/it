@@ -99,6 +99,17 @@
                         <strong>{{$uredjaj->serijski_broj}}</strong>
                 </td> 
             </tr>
+
+            <tr>
+                <th style="width: 40%;"><strong>Proizvođač:</strong></th>
+                
+                <td style="width: 80%;">
+                    @if($uredjaj->proizvodjac)
+                    {{$uredjaj->proizvodjac->naziv}}
+                    @endif
+                </td>
+                
+            </tr>
             @endif
 
             @if($uredjaj->server == 1)
