@@ -253,6 +253,14 @@
 @endsection
 
 @section('traka')
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Prva dostupna IP adresa</h3>
+  </div>
+  <div class="panel-body text-center">
+    <a href="{{ route('staticke.prva.get', $dostupna) }}"><h3><strong>{{$dostupna}}</strong></h3></a>
+  </div>
+</div>
 @if($greske)
 <div class="panel panel-danger">
   <div class="panel-heading">

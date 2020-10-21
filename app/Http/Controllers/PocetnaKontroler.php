@@ -17,6 +17,7 @@ use App\Modeli\Aplikacija;
 use App\Modeli\Greska;
 use App\Modeli\Servis;
 use App\Modeli\Licenca;
+use App\Modeli\StatickaIP;
 
 class PocetnaKontroler extends Kontroler
 {
@@ -40,11 +41,14 @@ class PocetnaKontroler extends Kontroler
                     Carbon::now()->addMonths(2)
                 ])->get();
 
+        $ip = new StatickaIP();
+        $dostupna = $ip->prvaDostupna();
+
         if ($request->user()->imaUlogu('centrala')) {
             return view('pocetna_centrala');
         }else{
             return view('pocetna')->with(compact(
-                                'racunara', 'monitora', 'stampaca', 'skenera', 'upseva', 'mreznih_uredjaja', 'projektora', 'aplikacija', 'greske', 'isticu'
+                                'racunara', 'monitora', 'stampaca', 'skenera', 'upseva', 'mreznih_uredjaja', 'projektora', 'aplikacija', 'greske', 'isticu', 'dostupna'
         ));
         }
         

@@ -31,6 +31,21 @@ Route::get('statistika/upraveotpis', 'StatistikaKontroler@getUpraveOtpis')->name
 
 
 // SERVIS
+//Staticke
+Route::get('staticke/zauzete', 'Servis\StatickeKontroler@getZauzete')->name('staticke.zauzete');
+Route::get('staticke/slobodne', 'Servis\StatickeKontroler@getSlobodne')->name('staticke.slobodne');
+Route::get('staticke/dodavanje/{id}', 'Servis\StatickeKontroler@getDodavanje')->name('staticke.dodavanje.get');
+Route::get('staticke/prva/{adresa}', 'Servis\StatickeKontroler@getDodavanjePrva')->name('staticke.prva.get');
+Route::post('staticke/dodavanje/{id}', 'Servis\StatickeKontroler@postDodavanje')->name('staticke.dodavanje.post');
+Route::get('staticke/detalj/{id}', 'Servis\StatickeKontroler@getDetalj')->name('staticke.detalj.get');
+Route::get('staticke/izmena/{id}', 'Servis\StatickeKontroler@getIzmena')->name('staticke.izmena.get');
+Route::post('staticke/izmena/{id}', 'Servis\StatickeKontroler@postIzmena')->name('staticke.izmena.post');
+Route::get('staticke/opseg/dodaj', 'Servis\StatickeKontroler@getDodavanjeOpsega')->name('staticke.opseg.get');
+Route::get('staticke/obrisi/opseg', 'Servis\StatickeKontroler@getBrisanjeOpsega')->name('opseg.obrisi.get');
+Route::post('staticke/opseg/dodaj', 'Servis\StatickeKontroler@postDodavanjeOpsega')->name('staticke.opseg.post');
+Route::post('staticke/obrisi/opseg', 'Servis\StatickeKontroler@postBrisanjeOpsega')->name('opseg.obrisi.post');
+Route::post('staticke/brisanje', 'Servis\StatickeKontroler@postBrisanje')->name('staticke.brisanje');
+Route::post('staticke/ciscenje', 'Servis\StatickeKontroler@postCiscenje')->name('staticke.ciscenje');
 //Servis
 Route::get('servis', 'Servis\ServisKontroler@getLista')->name('servis');
 Route::get('servis/detalj/{id}', 'Servis\ServisKontroler@getDetalj')->name('servis.detalj');

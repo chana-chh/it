@@ -21,7 +21,16 @@
                     @endcan
                     <li><a href="{{route('imenik')}}"> <i class="fa fa-search fa-fw" style="color: #18BC9C"></i> Imenik</a></li>
                     @can('admin')
-                    <li><a href="{{route('servis')}}"> <i class="fa fa-cog fa-fw" style="color: #18BC9C"></i> Servis</a></li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="fa fa-cog fa-fw" style="color: #18BC9C"></i> Servis <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ route('servis') }}">Servis</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{ route('staticke.zauzete') }}">Statičke IP adrese <span class="text-danger"><strong>NOVO!</strong></span></a></li>
+                        </ul>
+                    </li>
                     @endcan
                     @can('korisnik')
                     <li class="dropdown">
