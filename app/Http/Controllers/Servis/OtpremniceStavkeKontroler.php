@@ -126,7 +126,7 @@ class OtpremniceStavkeKontroler extends Kontroler
     public function postBrisanje(Request $request)
     {
         $stavka = OtpremnicaStavka::find($request->idBrisanje);
-        if (count($stavka->uredjaji()) > 0) {
+        if ($stavka->uredjaji()) {
             Session::flash('upozorenje', 'Nije moguće obrisati stavku jer postoje uređaji koji su vezani za nju.');
             return redirect()->route('otpremnice.stavke.detalj', $stavka->id);
         }
