@@ -73,6 +73,9 @@
                             <option value="Server"{{ old('uredjaj', $ip->uredjaj) == 'Server' ? ' selected' : '' }}>Server</option>
                             <option value="WorkStation"{{ old('uredjaj', $ip->uredjaj) == 'WorkStation' ? ' selected' : '' }}>WorkStation</option>
                             <option value="IP Phone"{{ old('uredjaj', $ip->uredjaj) == 'IP Phone' ? ' selected' : '' }}>IP Phone</option>
+                            <option value="WIFI antena"{{ old('uredjaj', $ip->uredjaj) == 'IP Phone' ? ' selected' : '' }}>WIFI antena</option>
+                            <option value="WIFI router"{{ old('uredjaj', $ip->uredjaj) == 'IP Phone' ? ' selected' : '' }}>WIFI router</option>
+                            <option value="Firewall"{{ old('uredjaj', $ip->uredjaj) == 'IP Phone' ? ' selected' : '' }}>Firewall</option>
                         </select>
                         @if ($errors->has('uredjaj'))
                         <span class="help-block">

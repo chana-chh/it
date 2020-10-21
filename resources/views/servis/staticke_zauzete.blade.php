@@ -30,10 +30,10 @@
         <th style="width: 5%;">#</th>
         <th style="width: 10%;">Adresa</th>
         <th style="width: 10%;">Uređaj</th>
+        <th style="width: 15%;">Ime</th>
         <th style="width: 10%;">Utičnica</th>
         <th style="width: 10%;">VLAN</th>
         <th style="width: 15%;">Prvi čvor</th>
-        <th style="width: 15%;">Opis</th>
         <th style="width: 10%;">Kancelarija</th>
         <th style="width: 15%;">Napomena</th>
         <th style="text-align:right; width: 9%;"><i class="fa fa-cogs"></i></th>
@@ -44,10 +44,10 @@
             <td>{{$d->id}}</td>
             <td><strong>{{$d->ip_adresa}}</strong></td>
             <td>{{$d->uredjaj}}</td>
+            <td>{{$d->ime}}</td>
             <td>{{$d->uticnica}}</td>
             <td>{{$d->vlan}}</td>
             <td>{{$d->prvi_nod}}</td>
-            <td>{{$d->opis}}</td>
             <td>
                 @if($d->kancelarija)
                 {{$d->kancelarija->sviPodaci()}}
