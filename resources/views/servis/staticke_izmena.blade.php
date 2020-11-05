@@ -69,7 +69,7 @@
                             <option value="Hub"{{ old('uredjaj', $ip->uredjaj) == 'Hub' ? ' selected' : '' }}>Hub</option>
                             <option value="Router"{{ old('uredjaj', $ip->uredjaj) == 'Router' ? ' selected' : '' }}>Router</option>
                             <option value="Printer"{{ old('uredjaj', $ip->uredjaj) == 'Printer' ? ' selected' : '' }}>Printer</option>
-                            <option value="Acces Point"{{ old('uredjaj', $ip->uredjaj) == 'Acces Point' ? ' selected' : '' }}>Acces Point</option>
+                            <option value="Access Point"{{ old('uredjaj', $ip->uredjaj) == 'Access Point' ? ' selected' : '' }}>Acces Point</option>
                             <option value="IP Camera"{{ old('uredjaj', $ip->uredjaj) == 'IP Camera' ? ' selected' : '' }}>IP Camera</option>
                             <option value="Server"{{ old('uredjaj', $ip->uredjaj) == 'Server' ? ' selected' : '' }}>Server</option>
                             <option value="WorkStation"{{ old('uredjaj', $ip->uredjaj) == 'WorkStation' ? ' selected' : '' }}>WorkStation</option>
