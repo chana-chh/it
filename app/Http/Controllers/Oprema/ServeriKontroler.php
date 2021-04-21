@@ -186,6 +186,10 @@ class ServeriKontroler extends Kontroler
     {
 
         $data = Server::find($request->idBrisanje);
+        $id = $data->id;
+
+        ServerUp::where('server_id',$id)->delete();
+        ServerBu::where('server_id',$id)->delete();
         $odgovor = $data->delete();
         if ($odgovor) {
             Session::flash('uspeh', 'Server je uspešno obrisan!');
