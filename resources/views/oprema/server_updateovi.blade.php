@@ -86,7 +86,7 @@ $.fn.dataTable.moment('DD.MM.YYYY');
     $(document).on('click', '.otvori-brisanje', function () {
             var id = $(this).val();
             $('#idBrisanje').val(id);
-            var ruta = "{{ route('napajanja.modeli.brisanje') }}";
+            var ruta = "{{ route('serveri.brisanje.up.post') }}";
             $('#brisanje-forma').attr('action', ruta); });
 
         var tabela = $('#tabela').DataTable({
