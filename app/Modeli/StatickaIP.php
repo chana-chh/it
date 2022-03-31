@@ -13,7 +13,6 @@ class StatickaIP extends Model
     {
         return $query->whereNull('kancelarija_id')
         ->whereNull('uredjaj')
-        ->whereNull('vlan')
         ->whereNull('uticnica')
         ->whereNull('prvi_nod')
         ->whereNull('opis')
@@ -24,7 +23,6 @@ class StatickaIP extends Model
     {
         return $query->whereNotNull('kancelarija_id')
         ->orWhereNotNull('uredjaj')
-        ->orWhereNotNull('vlan')
         ->orWhereNotNull('uticnica')
         ->orWhereNotNull('prvi_nod')
         ->orWhereNotNull('opis')
@@ -40,7 +38,7 @@ class StatickaIP extends Model
     {
     	$adrese = $this->whereNull('kancelarija_id')
     	->whereNull('uredjaj')
-    	->whereNull('vlan')
+    	->whereIn('vlan', [0, 1])
         ->whereNull('uticnica')
         ->whereNull('prvi_nod')
     	->whereNull('opis')

@@ -47,7 +47,12 @@
             <i class="fa fa-filter fa-fw"></i> Bez inventarskog
         </a>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-2">
+        <a id="laptop" href="{{route('racunari.oprema.laptop')}}" class="btn btn-warning btn-sm btn-block">
+            <i class="fa fa-filter fa-fw"></i> Laptopovi
+        </a>
+    </div>
+    <div class="col-md-4">
 
     </div>
     

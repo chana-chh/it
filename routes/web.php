@@ -624,6 +624,7 @@ Route::get('racunari/pretraga', 'Oprema\RacunariKontroler@getListaPretraga')->na
 Route::get('racunari/osveziocene', 'Oprema\RacunariKontroler@getOsveziOcene')->name('racunari.osveziocene');
 Route::post('racunari/pretraga', 'Oprema\RacunariKontroler@postListaPretraga')->name('racunari.pretraga.post');
 Route::get('racunari/ikt', 'Oprema\RacunariKontroler@getListaIkt')->name('racunari.oprema.ikt');
+Route::get('racunari/laptop', 'Oprema\RacunariKontroler@getListaLapTop')->name('racunari.oprema.laptop');
 Route::get('racunari/inventarski', 'Oprema\RacunariKontroler@getListaInventarski')->name('racunari.oprema.inventarski');
 Route::get('racunari/otpisani', 'Oprema\RacunariKontroler@getListaOtpisani')->name('racunari.oprema.otpisani');
 Route::get('racunari/ajax', 'Oprema\RacunariKontroler@getAjax')->name('racunari.ajax');

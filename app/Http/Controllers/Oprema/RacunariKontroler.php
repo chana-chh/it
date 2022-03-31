@@ -162,6 +162,16 @@ class RacunariKontroler extends Kontroler
         return view('oprema.racunari_ikt')->with(compact('uredjaj'));
     }
 
+    public function getListaLapTop()
+    {
+
+        $uredjaj = Racunar::with('kancelarija', 'zaposleni', 'zaposleni.uprava', 'nabavkaStavka')
+                    ->where('laptop', 1)
+                    ->get();
+        
+        return view('oprema.racunari_laptop')->with(compact('uredjaj'));
+    }
+
     public function getListaInventarski()
     {
 
